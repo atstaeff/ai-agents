@@ -1,0 +1,148 @@
+name: Validate Agents
+
+on:
+  push:
+    paths:
+      - '.github/agents/**'
+      - 'skills/**'
+  pull_request:
+    paths:
+      - '.github/agents/**'
+      - 'skills/**'
+
+jobs:
+  validate-agents:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check agent files exist and have content
+        run: |
+          echo "🔍 Validating agent files..."
+          ERRORS=0
+
+          for file in .github/agents/*.agent.md; do
+            if [ ! -s "$file" ]; then
+              echo "❌ Empty agent file: $file"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            # Check required sections
+            FILENAME=$(basename "$file")
+            echo "📄 Checking $FILENAME..."
+
+            if ! grep -q "## Identity" "$file"; then
+              echo "  ⚠️  Missing '## Identity' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Core Responsibilities" "$file"; then
+              echo "  ⚠️  Missing '## Core Responsibilities' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Instructions" "$file"; then
+              echo "  ⚠️  Missing '## Instructions' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Best Practices" "$file"; then
+              echo "  ⚠️  Missing '## Best Practices' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Anti-Patterns" "$file"; then
+              echo "  ⚠️  Missing '## Anti-Patterns' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Example Prompts" "$file"; then
+              echo "  ⚠️  Missing '## Example Prompts' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            echo "  ✅ $FILENAME validated"
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS validation issues"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All agent files validated successfully"
+
+      - name: Check skill files exist and have content
+        run: |
+          echo "🔍 Validating skill files..."
+          ERRORS=0
+
+          for file in skills/*/SKILL.md; do
+            if [ ! -s "$file" ]; then
+              echo "❌ Empty skill file: $file"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+
+            FILENAME="$file"
+            echo "📄 Checking $FILENAME..."
+
+            if ! grep -q "## Instructions for AI" "$file"; then
+              echo "  ⚠️  Missing '## Instructions for AI' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if ! grep -q "## Best Practices" "$file"; then
+              echo "  ⚠️  Missing '## Best Practices' section in $FILENAME"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            echo "  ✅ $FILENAME validated"
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Found $ERRORS validation issues"
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ All skill files validated successfully"
+
+      - name: Check for broken internal links
+        run: |
+          echo "🔗 Checking internal links..."
+          ERRORS=0
+
+          for file in .github/agents/*.agent.md skills/*/SKILL.md; do
+            # Extract markdown links to local files
+            grep -oP '\[.*?\]\(((?!http).*?)\)' "$file" | grep -oP '\(([^)]+)\)' | tr -d '()' | while read -r link; do
+              # Resolve relative path
+              DIR=$(dirname "$file")
+              TARGET="$DIR/$link"
+              
+              if [ ! -f "$TARGET" ]; then
+                echo "  ⚠️  Broken link in $file: $link"
+                ERRORS=$((ERRORS + 1))
+              fi
+            done
+          done
+
+          if [ $ERRORS -gt 0 ]; then
+            echo "⚠️  Found broken links (non-blocking)"
+          else
+            echo "✅ No broken links found"
+          fi
+
+      - name: Generate summary
+        run: |
+          echo "## 📊 Repository Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Category | Count |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Agents | $(ls .github/agents/*.agent.md 2>/dev/null | wc -l) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Skills | $(ls skills/*/SKILL.md 2>/dev/null | wc -l) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Marp Templates | $(ls marp-templates/*.md 2>/dev/null | wc -l) |" >> $GITHUB_STEP_SUMMARY
+          echo "| Reference Repos | $(ls -d reference-repos/*/ 2>/dev/null | wc -l) |" >> $GITHUB_STEP_SUMMARY
