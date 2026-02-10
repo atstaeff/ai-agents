@@ -18,6 +18,7 @@ Use these agents by referencing them in conversations:
 |-------|----------|
 | **Lead Architect** | Designing systems, creating ADRs, DDD bounded contexts |
 | **Python Expert** | Writing/reviewing Python, Pydantic, FastAPI, async patterns |
+| **Frontend Expert** | Vue, Angular, TypeScript/JavaScript, component architecture |
 | **GCP Architect** | Cloud architecture, Terraform, Pub/Sub, BigQuery, IAM |
 | **Test Strategist** | Designing test strategies, quality gates, fixtures |
 | **DevOps Agent** | CI/CD pipelines, Docker, deployments, GitHub Actions |

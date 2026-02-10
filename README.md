@@ -14,7 +14,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 12 | Specialized AI agents for every role |
+| **Agents** | 13 | Specialized AI agents for every role |
 | **Skills** | 10+ | Technical knowledge bases |
 | **Marp Templates** | 3 | Presentation templates |
 | **Reference Repos** | 2 | Golden architecture examples |
@@ -28,6 +28,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 |-------|------|------|
 | **Lead Architect** | Architecture design, ADRs, DDD, Event Sourcing | [agents/lead-architect.agent.md](.github/agents/lead-architect.agent.md) |
 | **Python Expert** | Idiomatic Python, Pydantic, async, testing | [agents/python-expert.agent.md](.github/agents/python-expert.agent.md) |
+| **Frontend Expert** | Vue, Angular, TypeScript/JS, component architecture | [agents/frontend-expert.agent.md](.github/agents/frontend-expert.agent.md) |
 | **GCP Architect** | Cloud Run, Pub/Sub, BigQuery, Terraform, IAM | [agents/gcp-architect.agent.md](.github/agents/gcp-architect.agent.md) |
 | **Test Strategist** | Test pyramid, quality gates, coverage, CI/CD | [agents/test-strategist.agent.md](.github/agents/test-strategist.agent.md) |
 | **DevOps Agent** | CI/CD pipelines, deployments, Docker | [agents/devops-agent.agent.md](.github/agents/devops-agent.agent.md) |
@@ -65,6 +66,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 | **Testing** | Test pyramid, fakes, factories, quality gates | [skills/testing/SKILL.md](skills/testing/SKILL.md) |
 | **Marp Presentations** | Slide design, Marp syntax, templates | [skills/marp-presentations/SKILL.md](skills/marp-presentations/SKILL.md) |
 | **Anti-Patterns** | Code, architecture, and event-driven anti-patterns | [skills/anti-patterns/SKILL.md](skills/anti-patterns/SKILL.md) |
+| **Frontend Patterns** | Vue/Angular patterns, composables, signals, testing | [skills/frontend-patterns/SKILL.md](skills/frontend-patterns/SKILL.md) |
 
 ### Existing Skills
 
@@ -120,23 +122,25 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
  1. Task Orchestrator    → Break down project into tasks
  2. Lead Architect       → Design architecture, create ADRs
  3. Architecture Reviewer→ Review the design
- 4. Python Expert        → Implement the solution
- 5. Test Strategist      → Design & implement tests
- 6. Code Reviewer        → Review code quality
- 7. DevOps Agent         → Set up CI/CD & deploy
- 8. Context Manager      → Document decisions
- 9. Presentation Agent   → Create client presentation
-10. Stakeholder Agent    → Prepare status reports
-11. Proposal/Pitch Agent → Create project proposals
+ 4. Python Expert        → Implement backend solution
+ 5. Frontend Expert      → Implement frontend/UI
+ 6. Test Strategist      → Design & implement tests
+ 7. Code Reviewer        → Review code quality
+ 8. DevOps Agent         → Set up CI/CD & deploy
+ 9. Context Manager      → Document decisions
+10. Presentation Agent   → Create client presentation
+11. Stakeholder Agent    → Prepare status reports
+12. Proposal/Pitch Agent → Create project proposals
 ```
 
 ## Repository Structure
 
 ```
 .github/
-├── agents/                    # 12 specialized AI agents
+├── agents/                    # 13 specialized AI agents
 │   ├── lead-architect.agent.md
 │   ├── python-expert.agent.md
+│   ├── frontend-expert.agent.md
 │   ├── gcp-architect.agent.md
 │   ├── test-strategist.agent.md
 │   ├── devops-agent.agent.md
@@ -157,6 +161,7 @@ skills/
 ├── testing/SKILL.md           # Testing strategies
 ├── marp-presentations/SKILL.md# Presentation skills
 ├── anti-patterns/SKILL.md     # What to avoid
+├── frontend-patterns/SKILL.md # Vue, Angular, TS patterns
 ├── software-engineering/      # Core SE skills
 ├── architecture/              # Architecture skills
 ├── project-management/        # PM skills
