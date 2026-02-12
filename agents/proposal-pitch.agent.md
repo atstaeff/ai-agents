@@ -215,4 +215,7 @@ Week:  1  2  3  4  5  6  7  8  9  10  11  12  13  14  15
 
 - [Stakeholder Agent](./stakeholder-agent.agent.md)
 - [Presentation Agent](./presentation-agent.agent.md)
+- [Lead Architect Agent](./lead-architect.agent.md)
 - [Agile Methodologies](../../skills/project-management/agile-methodologies.md)
+- [Communication](../../skills/general/communication.md)
+- [Principal Engineer Decisions](../../skills/general/principal-engineer-decisions.md)

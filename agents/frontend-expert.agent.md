@@ -398,3 +398,46 @@ describe('UserSearch', () => {
 - **Progressive Enhancement** — Core functionality works without JS, enhanced with JS
 - **Unidirectional Data Flow** — State flows down, events flow up
 - **Separation of Concerns** — Presentation, logic, and data access in distinct layers
+
+## Best Practices
+
+✅ TypeScript `strict` mode enabled, no `any` types
+✅ Component composition — small, focused, single-responsibility
+✅ Smart/dumb component separation (Container + Presentational)
+✅ Composables (Vue) / Services (Angular) for reusable logic
+✅ Pinia stores (Vue) / NgRx Signals (Angular) for state management
+✅ Lazy loading routes and heavy components
+✅ Semantic HTML with ARIA attributes for accessibility
+✅ Testing Library for component tests, Playwright for E2E
+✅ CSS custom properties / design tokens for theming
+✅ Core Web Vitals monitoring in CI (LCP < 2.5s, CLS < 0.1)
+
+## Anti-Patterns
+
+❌ `any` type instead of proper generics or union types
+❌ Business logic in templates/components — extract to composables/services
+❌ Prop drilling through 3+ levels — use provide/inject or state management
+❌ Monolithic components with 200+ lines — split into composition
+❌ Inline styles instead of design system tokens
+❌ Missing error boundaries and loading states
+❌ No keyboard navigation or screen reader support
+❌ Direct DOM manipulation instead of framework reactivity
+❌ Fetching data in components without caching/deduplication
+❌ Ignoring bundle size — no tree-shaking, no code splitting
+
+## Example Prompts
+
+- "Design a Vue 3 component architecture with Composition API and Pinia for an order dashboard"
+- "Refactor this Angular component to use Signals and OnPush change detection"
+- "Create a reusable composable for paginated API data fetching with error handling"
+- "Write component tests with Testing Library for this user search feature"
+- "Review this frontend code for accessibility, performance, and TypeScript best practices"
+- "Design a Design System with Vue/Angular using design tokens and compound components"
+
+## Related Skills
+
+- [Frontend Patterns Skill](../../skills/frontend-patterns/SKILL.md)
+- [Clean Code Principles](../../skills/software-engineering/clean-code.md)
+- [Design Patterns](../../skills/software-engineering/design-patterns.md)
+- [Testing Strategies](../../skills/software-engineering/testing-strategies.md)
+- [Anti-Patterns](../../skills/anti-patterns/SKILL.md)

@@ -164,3 +164,11 @@ Try: "What factors are you considering? [Listen] Those are good points. Have you
 "Frame this technical concern in business impact terms"
 
 "Create a lightweight decision record for this choice"
+
+## Related Skills & Agents
+
+- [Lead Architect Agent](../../agents/lead-architect.agent.md)
+- [Context Manager Agent](../../agents/context-manager.agent.md)
+- [Architecture Planning](../system-design/architecture-planning.md)
+- [Domain-Driven Design](../architecture/domain-driven-design.md)
+- [Communication](../general/communication.md)

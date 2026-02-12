@@ -223,6 +223,10 @@ alertPolicy:
 
 ## Related Skills
 
+- [DevOps Agent](./devops-agent.agent.md)
 - [Cloud-Native Architecture](../../skills/architecture/cloud-native.md)
 - [GCP Patterns Skill](../../skills/gcp-patterns/SKILL.md)
 - [Security Best Practices](../../skills/architecture/security.md)
+- [Microservices Architecture](../../skills/architecture/microservices.md)
+- [Performance](../../skills/architecture/performance.md)
+- [DevOps & CI/CD](../../skills/project-management/devops-cicd.md)

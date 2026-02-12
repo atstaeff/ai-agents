@@ -183,3 +183,7 @@ graph TD
 
 - [Task Orchestrator Agent](./task-orchestrator.agent.md)
 - [Principal Engineer Decisions](../../skills/general/principal-engineer-decisions.md)
+- [Communication](../../skills/general/communication.md)
+- [Agile Methodologies](../../skills/project-management/agile-methodologies.md)
+- [Progress Sync](../../skills/team-collaboration/progress-sync.md)
+- [Feature Discovery Session](../../skills/team-collaboration/feature-discovery-session.md)

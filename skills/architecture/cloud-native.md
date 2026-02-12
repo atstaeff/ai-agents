@@ -55,7 +55,37 @@ Design applications optimized for cloud environments following these principles:
 - Detect failures and prevent cascading
 - Fail fast instead of waiting for timeout
 - Automatic recovery attempts
-- Fallback mechanisms
+
+```python
+# Python — tenacity retry with circuit breaker
+from tenacity import retry, stop_after_attempt, wait_exponential
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10))
+async def call_downstream(client: httpx.AsyncClient, url: str) -> dict:
+    response = await client.get(url, timeout=5.0)
+    response.raise_for_status()
+    return response.json()
+```
+
+```go
+// Go — errgroup with retry
+func fetchWithRetry(ctx context.Context, url string) ([]byte, error) {
+	var body []byte
+	err := retry.Do(
+		func() error {
+			resp, err := http.Get(url)
+			if err != nil { return err }
+			defer resp.Body.Close()
+			body, err = io.ReadAll(resp.Body)
+			return err
+		},
+		retry.Attempts(3),
+		retry.Delay(time.Second),
+		retry.Context(ctx),
+	)
+	return body, err
+}
+```
 
 **Retry Pattern**
 - Transient fault handling
@@ -277,3 +307,12 @@ Design applications optimized for cloud environments following these principles:
 "Design a resilient system with circuit breakers and retries"
 
 "Implement CQRS pattern with separate read/write databases"
+
+## Related Skills & Agents
+
+- [GCP Architect Agent](../../agents/gcp-architect.agent.md)
+- [DevOps Agent](../../agents/devops-agent.agent.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [Microservices Architecture](../architecture/microservices.md)
+- [Security Best Practices](../architecture/security.md)
+- [DevOps & CI/CD](../project-management/devops-cicd.md)

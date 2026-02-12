@@ -59,13 +59,49 @@ When conducting code reviews, evaluate code across multiple dimensions:
 - Are security vulnerabilities checked?
 - Is the dependency well-maintained?
 
-## Review Process
-1. Understand the context and requirements
-2. Review high-level design before details
-3. Look for patterns, not just individual issues
-4. Be constructive and specific in feedback
-5. Distinguish between must-fix and suggestions
-6. Acknowledge good practices
+## Review Workflow
+
+### Phase 1: Discovery
+Start by gathering information about the changes:
+- What triggered this modification?
+- Which files contain the alterations?
+- Are there connections to specific tasks or bugs?
+
+### Phase 2: Technical Examination
+Examine the technical aspects:
+- Does the implementation achieve its intended goal?
+- Are there scenarios that might cause unexpected behavior?
+- Is the control flow clear and logical?
+- Can someone unfamiliar with this code understand it quickly?
+- Are variable and function names self-explanatory?
+
+### Phase 3: Constructive Feedback
+Structure your observations:
+
+**Celebrate Wins** — Point out clever solutions and good practices.
+
+**Flag Concerns** — Group feedback by urgency:
+- Urgent: Blocks merging, needs immediate attention
+- Important: Should be addressed soon
+- Optional: Suggestions for future improvement
+
+**Offer Guidance** — For each concern, provide:
+- Why it matters
+- A concrete example or alternative approach
+- Resources if helpful
+
+### Phase 4: Decision Point
+Conclude with your recommendation:
+- Ready to integrate
+- Needs minor adjustments (specify which ones)
+- Requires significant changes (explain why)
+
+## Review Tips
+- Balance critique with recognition
+- Focus on substance over style preferences
+- Ask questions when uncertain rather than making assumptions
+- Consider the project's maturity and constraints
+- Remember you're reviewing code, not judging the author
 
 ## Review Comment Levels
 - **Critical**: Must be fixed (bugs, security issues)

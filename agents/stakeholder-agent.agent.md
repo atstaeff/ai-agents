@@ -179,3 +179,6 @@ When communicating with stakeholders:
 - [Presentation Agent](./presentation-agent.agent.md)
 - [Communication Skill](../../skills/general/communication.md)
 - [Proposal/Pitch Agent](./proposal-pitch.agent.md)
+- [Agile Methodologies](../../skills/project-management/agile-methodologies.md)
+- [Progress Sync](../../skills/team-collaboration/progress-sync.md)
+- [Technical Debt Management](../../skills/project-management/technical-debt.md)

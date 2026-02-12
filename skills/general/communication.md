@@ -372,3 +372,11 @@ Date: YYYY-MM-DD
 "Improve the communication in this code review comment"
 
 "Draft release notes for this version"
+
+## Related Skills & Agents
+
+- [Stakeholder Agent](../../agents/stakeholder-agent.agent.md)
+- [Presentation Agent](../../agents/presentation-agent.agent.md)
+- [PR Crafting](../team-collaboration/pr-crafting.md)
+- [Progress Sync](../team-collaboration/progress-sync.md)
+- [Principal Engineer Decisions](../general/principal-engineer-decisions.md)

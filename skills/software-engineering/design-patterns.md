@@ -81,6 +81,23 @@ class CustomerSupport:
         for ticket in ordering(self.tickets): ...
 ```
 
+**Go Strategy — Use function types:**
+```go
+// OrderingFunc defines the strategy signature.
+type OrderingFunc func([]Ticket) []Ticket
+
+func FIFO(tickets []Ticket) []Ticket { return slices.Clone(tickets) }
+func FILO(tickets []Ticket) []Ticket {
+	out := slices.Clone(tickets)
+	slices.Reverse(out)
+	return out
+}
+
+func (s *Support) Process(ordering OrderingFunc) {
+	for _, t := range ordering(s.tickets) { t.Handle() }
+}
+```
+
 ### Observer
 - Define one-to-many dependency between objects
 - Decouple publishers from subscribers via event system
@@ -93,6 +110,28 @@ subscribers: dict[str, list[Callable]] = defaultdict(list)
 def subscribe(event: str, handler: Callable): subscribers[event].append(handler)
 def post_event(event: str, data: Any):
     for handler in subscribers[event]: handler(data)
+```
+
+**Go Observer — Use channels or callback slices:**
+```go
+type EventBus struct {
+	mu   sync.RWMutex
+	subs map[string][]func(any)
+}
+
+func (b *EventBus) Subscribe(event string, handler func(any)) {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+	b.subs[event] = append(b.subs[event], handler)
+}
+
+func (b *EventBus) Publish(event string, data any) {
+	b.mu.RLock()
+	defer b.mu.RUnlock()
+	for _, handler := range b.subs[event] {
+		handler(data)
+	}
+}
 ```
 
 ### Command
@@ -166,3 +205,12 @@ See [`atstaeff/better-python`](https://github.com/atstaeff/better-python) for co
 "Create a document generation system using Strategy and Factory patterns"
 
 "Refactor this code to use appropriate design patterns"
+
+## Related Skills & Agents
+
+- [Python Expert Agent](../../agents/python-expert.agent.md)
+- [Golang Expert Agent](../../agents/golang-expert.agent.md)
+- [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)
+- [SOLID Principles](../software-engineering/solid-principles.md)
+- [Anti-Patterns](../anti-patterns/SKILL.md)

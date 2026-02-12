@@ -302,3 +302,11 @@ Then the item appears in my wishlist
 "Define a Definition of Done for our team"
 
 "Design a Kanban board for customer support tickets"
+
+## Related Skills & Agents
+
+- [Task Orchestrator Agent](../../agents/task-orchestrator.agent.md)
+- [Context Manager Agent](../../agents/context-manager.agent.md)
+- [Progress Sync](../team-collaboration/progress-sync.md)
+- [Feature Discovery Session](../team-collaboration/feature-discovery-session.md)
+- [Technical Debt Management](../project-management/technical-debt.md)

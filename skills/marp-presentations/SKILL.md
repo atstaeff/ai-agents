@@ -198,6 +198,13 @@ Speaker notes:
 ❌ Wall of text on a single slide
 ❌ More than 6 bullet points
 ❌ Inconsistent fonts or colors
+
+## Related Skills
+
+- [Presentation Agent](../../agents/presentation-agent.agent.md)
+- [Proposal/Pitch Agent](../../agents/proposal-pitch.agent.md)
+- [Stakeholder Agent](../../agents/stakeholder-agent.agent.md)
+- [Communication](../general/communication.md)
 ❌ No clear narrative/flow
 ❌ Missing speaker notes
 ❌ Too many slides (aim for 1 slide per 2 minutes)

@@ -41,6 +41,47 @@ Technical debt is the implied cost of rework caused by choosing an easy (limited
 
 ## Measuring Technical Debt
 
+### Assessment Approach
+
+**Discovery Phase**
+Identify areas where technical debt exists:
+- Look for repeated patterns that should be abstracted
+- Find modules that change frequently due to fragility
+- Identify areas with low or no test coverage
+- Spot outdated dependencies or deprecated APIs
+- Notice performance bottlenecks
+
+**Team Feedback**
+Ask developers about:
+- Which parts of the codebase slow them down
+- Where bugs cluster most frequently
+- What makes onboarding new team members difficult
+- Which areas they avoid modifying if possible
+
+**System Metrics**
+Review data showing:
+- Build and deployment times
+- Test execution duration
+- Frequency of production incidents
+- Time to implement typical changes
+- Bug discovery rates by module
+
+### Impact Evaluation
+
+For each debt item, assess:
+- **Pain Level**: How often and how severe are the problems?
+- **Cost to Fix**: How much effort to address properly?
+- **Cost of Waiting**: Does this get worse over time? What opportunities does it block?
+
+Use a scoring method to prioritize:
+```
+Urgency Score = (Pain Level × Affected People) / Cost to Fix
+
+High Score = Address soon
+Medium Score = Plan for upcoming sprint
+Low Score = Track but defer
+```
+
 ### Metrics
 
 **Code Quality Metrics:**

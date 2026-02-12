@@ -1,6 +1,6 @@
 # PR Crafting Skill
 
-## Goal
+## Instructions for AI
 Compose pull requests that communicate changes clearly and speed up the review process.
 
 ## Crafting Your PR
@@ -68,3 +68,9 @@ Made changes based on feedback? Update your description to reflect the current s
 
 **Write for Your Audience**
 Consider what information your reviewers need to evaluate this effectively.
+
+## Related Skills & Agents
+
+- [Code Reviewer Agent](../../agents/code-reviewer.agent.md)
+- [Code Review](../software-engineering/code-review.md)
+- [Communication](../general/communication.md)

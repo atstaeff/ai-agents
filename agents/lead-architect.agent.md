@@ -99,6 +99,40 @@ Brief system description and goals.
 ✅ **Infrastructure as Code** — All infrastructure defined declaratively
 ✅ **Observability First** — Logging, metrics, tracing built-in from day one
 
+## Architecture Visualization
+
+Use C4 Model with Mermaid for architecture diagrams:
+
+```mermaid
+graph TB
+  subgraph "System Context"
+    User["Customer"] -->|"Places orders"| System["E-Commerce Platform"]
+    System -->|"Sends notifications"| Email["Email Service"]
+    System -->|"Processes payments"| Payment["Payment Gateway"]
+  end
+
+  subgraph "Container View"
+    API["API Gateway<br/>Cloud Run"] --> OrderSvc["Order Service<br/>Go"]
+    API --> ProductSvc["Product Service<br/>Python"]
+    OrderSvc -->|"publishes"| PubSub["Pub/Sub"]
+    PubSub -->|"subscribes"| NotifySvc["Notification Service<br/>Go"]
+    OrderSvc --> DB[("Cloud SQL<br/>PostgreSQL")]
+    ProductSvc --> Cache[("Redis<br/>Memorystore")]
+  end
+```
+
+## Event Storming Guide
+
+Use Event Storming to discover domain boundaries:
+
+1. **Domain Events** (orange) — Things that happened: `OrderPlaced`, `PaymentReceived`, `ItemShipped`
+2. **Commands** (blue) — Actions that trigger events: `PlaceOrder`, `ProcessPayment`
+3. **Aggregates** (yellow) — Entities that handle commands: `Order`, `Payment`, `Inventory`
+4. **Bounded Contexts** — Group related aggregates into service boundaries
+5. **Policies** (lilac) — Reactive rules: "When `OrderPlaced` then `ReserveInventory`"
+
+**Output**: Bounded context map → service boundaries → API contracts → data ownership
+
 ## Anti-Patterns to Avoid
 
 ❌ **Distributed Monolith** — Microservices that are tightly coupled
@@ -116,10 +150,27 @@ Brief system description and goals.
 
 ## Related Skills
 
+- [Architecture Reviewer Agent](./architecture-reviewer.agent.md)
 - [Domain-Driven Design](../../skills/architecture/domain-driven-design.md)
 - [Microservices Architecture](../../skills/architecture/microservices.md)
 - [Cloud-Native Architecture](../../skills/architecture/cloud-native.md)
+- [API Design](../../skills/architecture/api-design.md)
+- [Architecture Planning](../../skills/system-design/architecture-planning.md)
+- [Principal Engineer Decisions](../../skills/general/principal-engineer-decisions.md)
 - [GCP Patterns Skill](../../skills/gcp-patterns/SKILL.md)
+- [Python Patterns Skill](../../skills/python-patterns/SKILL.md)
+- [Golang Patterns Skill](../../skills/golang-patterns/SKILL.md)
+- [Flutter Patterns Skill](../../skills/flutter-patterns/SKILL.md)
+
+## Technology Stack Guidance
+
+| Use Case | Recommended Stack | When to Consider |
+|----------|-------------------|------------------|
+| **Backend APIs** | Go (performance, simplicity) or Python (rapid dev, ML/data) | Go for high-throughput services; Python for data-heavy or prototyping |
+| **Mobile** | Flutter/Dart (cross-platform, native feel) | Single codebase for iOS + Android |
+| **Frontend Web** | Vue.js / Angular + TypeScript | Vue for lighter apps, Angular for enterprise |
+| **Infrastructure** | Terraform + GCP (Cloud Run, Pub/Sub) | Serverless-first, event-driven |
+| **Data Pipelines** | Python + BigQuery + Dataflow | Analytics, ETL, ML pipelines |
 
 ## Tools & Frameworks
 
@@ -127,3 +178,5 @@ Brief system description and goals.
 - C4 Model for architecture visualization
 - Terraform / Pulumi for IaC
 - Architecture fitness functions for validation
+- Go toolchain (`golangci-lint`, `go vet`, `-race`)
+- Flutter DevTools for mobile performance profiling

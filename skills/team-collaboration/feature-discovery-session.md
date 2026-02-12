@@ -1,6 +1,6 @@
 # Feature Discovery Session Skill
 
-## Intention
+## Instructions for AI
 Collaboratively explore, refine, and prioritize new feature ideas with stakeholders and users.
 
 ## Session Design
@@ -220,3 +220,11 @@ Before ending, establish:
 - Failing to capture ideas systematically
 - Skipping validation of assumptions
 - Not following through after the session
+
+## Related Skills & Agents
+
+- [Stakeholder Agent](../../agents/stakeholder-agent.agent.md)
+- [Task Orchestrator Agent](../../agents/task-orchestrator.agent.md)
+- [Context Manager Agent](../../agents/context-manager.agent.md)
+- [Agile Methodologies](../project-management/agile-methodologies.md)
+- [Communication](../general/communication.md)

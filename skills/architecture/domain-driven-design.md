@@ -34,11 +34,40 @@ Apply Domain-Driven Design principles to model complex business domains:
 - Identity persists across state changes
 - Example: User, Order, Product (with ID)
 
+```python
+# Python — Entity with Pydantic
+from pydantic import BaseModel, Field
+from uuid import UUID, uuid4
+
+class Order(BaseModel):
+    id: UUID = Field(default_factory=uuid4)
+    status: OrderStatus = OrderStatus.DRAFT
+    lines: list[OrderLine] = Field(default_factory=list)
+
+    def add_line(self, product_id: UUID, quantity: int, unit_price: Decimal) -> None:
+        if self.status != OrderStatus.DRAFT:
+            raise OrderFrozenError(self.id)
+        self.lines.append(OrderLine(product_id=product_id, quantity=quantity, unit_price=unit_price))
+
+    @property
+    def total(self) -> Decimal:
+        return sum(line.subtotal for line in self.lines)
 ```
-class Order {
-    private OrderId id;
-    private OrderStatus status;
-    // Identity is the defining characteristic
+
+```go
+// Go — Entity with domain methods
+type Order struct {
+	ID     uuid.UUID
+	Status OrderStatus
+	Lines  []OrderLine
+}
+
+func (o *Order) AddLine(productID uuid.UUID, qty int, price decimal.Decimal) error {
+	if o.Status != StatusDraft {
+		return fmt.Errorf("order %s is frozen: %w", o.ID, ErrOrderFrozen)
+	}
+	o.Lines = append(o.Lines, OrderLine{ProductID: productID, Quantity: qty, UnitPrice: price})
+	return nil
 }
 ```
 
@@ -47,11 +76,30 @@ class Order {
 - No identity, only values matter
 - Examples: Money, Address, DateRange
 
+```python
+# Python — Immutable Value Object with frozen Pydantic model
+class Money(BaseModel, frozen=True):
+    amount: Decimal
+    currency: str = "EUR"
+
+    def add(self, other: "Money") -> "Money":
+        if self.currency != other.currency:
+            raise CurrencyMismatchError(self.currency, other.currency)
+        return Money(amount=self.amount + other.amount, currency=self.currency)
 ```
-class Money {
-    private readonly decimal amount;
-    private readonly string currency;
-    // Immutable, equality by value
+
+```go
+// Go — Value Object (immutable by convention)
+type Money struct {
+	Amount   decimal.Decimal
+	Currency string
+}
+
+func (m Money) Add(other Money) (Money, error) {
+	if m.Currency != other.Currency {
+		return Money{}, fmt.Errorf("currency mismatch: %s vs %s", m.Currency, other.Currency)
+	}
+	return Money{Amount: m.Amount.Add(other.Amount), Currency: m.Currency}, nil
 }
 ```
 
@@ -62,21 +110,37 @@ class Money {
 - Enforce business invariants
 - Transaction boundary
 
-```
-class Order { // Aggregate Root
-    private List<OrderLine> orderLines;
-    
-    public void AddOrderLine(Product product, int quantity) {
-        // Business rule: validate and maintain consistency
-    }
-}
+```python
+# Python — Order as aggregate root
+class Order(BaseModel):
+    lines: list[OrderLine] = Field(default_factory=list)
+
+    def place(self) -> OrderPlacedEvent:
+        if not self.lines:
+            raise EmptyOrderError(self.id)
+        self.status = OrderStatus.PLACED
+        return OrderPlacedEvent(order_id=self.id, total=self.total)
 ```
 
 ### Repositories
 - Abstraction for data access
 - One repository per aggregate root
-- Provides collection-like interface
 - Hides persistence details
+
+```python
+# Python — Repository protocol
+class OrderRepository(Protocol):
+    async def find_by_id(self, order_id: UUID) -> Order | None: ...
+    async def save(self, order: Order) -> None: ...
+```
+
+```go
+// Go — Repository interface
+type OrderRepository interface {
+	FindByID(ctx context.Context, id uuid.UUID) (Order, error)
+	Save(ctx context.Context, order Order) error
+}
+```
 
 ```
 interface IOrderRepository {
@@ -90,19 +154,26 @@ interface IOrderRepository {
 - Operations that don't belong to any entity
 - Stateless operations
 - Coordinate between aggregates
-- Example: TransferMoneyService, PricingService
 
 ### Domain Events
 - Something significant that happened in domain
-- Immutable
-- Past tense naming
+- Immutable, past tense naming
 - Enable decoupling and eventual consistency
 
+```python
+# Python — Domain Event with Pydantic
+class OrderPlacedEvent(BaseModel, frozen=True):
+    order_id: UUID
+    total: Decimal
+    occurred_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 ```
-class OrderPlacedEvent {
-    public OrderId OrderId { get; }
-    public DateTime OccurredAt { get; }
-    public CustomerId CustomerId { get; }
+
+```go
+// Go — Domain Event
+type OrderPlacedEvent struct {
+	OrderID    uuid.UUID       `json:"order_id"`
+	Total      decimal.Decimal `json:"total"`
+	OccurredAt time.Time       `json:"occurred_at"`
 }
 ```
 
@@ -168,29 +239,30 @@ class OrderPlacedEvent {
 ## Common Patterns
 
 ### Specification Pattern
-```
-interface ISpecification<T> {
-    bool IsSatisfiedBy(T entity);
-    ISpecification<T> And(ISpecification<T> other);
-}
+```python
+class Specification(Protocol[T]):
+    def is_satisfied_by(self, entity: T) -> bool: ...
+
+class ActiveOrderSpec:
+    def is_satisfied_by(self, order: Order) -> bool:
+        return order.status == OrderStatus.ACTIVE
 ```
 
 ### Repository Pattern
-```
-interface IRepository<T, TId> where T : IAggregateRoot {
-    T FindById(TId id);
-    void Save(T aggregate);
-    void Delete(T aggregate);
-}
+```python
+class Repository(Protocol[T]):
+    async def find_by_id(self, id: UUID) -> T | None: ...
+    async def save(self, aggregate: T) -> None: ...
+    async def delete(self, aggregate: T) -> None: ...
 ```
 
 ### Unit of Work Pattern
-```
-interface IUnitOfWork {
-    void BeginTransaction();
-    void Commit();
-    void Rollback();
-}
+```python
+class UnitOfWork(Protocol):
+    async def __aenter__(self) -> "UnitOfWork": ...
+    async def __aexit__(self, *args: Any) -> None: ...
+    async def commit(self) -> None: ...
+    async def rollback(self) -> None: ...
 ```
 
 ## DDD with Modern Architecture
@@ -232,3 +304,12 @@ interface IUnitOfWork {
 "Create domain events for an e-commerce checkout process"
 
 "Refactor this anemic model to a rich domain model"
+
+## Related Skills & Agents
+
+- [Lead Architect Agent](../../agents/lead-architect.agent.md)
+- [Python Expert Agent](../../agents/python-expert.agent.md)
+- [Microservices Architecture](../architecture/microservices.md)
+- [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)
+- [Clean Code](../software-engineering/clean-code.md)

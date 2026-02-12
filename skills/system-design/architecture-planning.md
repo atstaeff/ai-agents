@@ -1,6 +1,6 @@
 # Architecture Planning Skill
 
-## Purpose
+## Instructions for AI
 Design software systems that solve real problems while remaining flexible for future needs.
 
 ## Planning Process
@@ -109,3 +109,11 @@ Every decision sacrifices something. Be intentional about what you're trading.
 - Not validating assumptions early
 - Forgetting about data migration paths
 - Skipping documentation of key decisions
+
+## Related Skills & Agents
+
+- [Lead Architect Agent](../../agents/lead-architect.agent.md)
+- [Context Manager Agent](../../agents/context-manager.agent.md)
+- [Principal Engineer Decisions](../general/principal-engineer-decisions.md)
+- [Domain-Driven Design](../architecture/domain-driven-design.md)
+- [Cloud-Native Architecture](../architecture/cloud-native.md)

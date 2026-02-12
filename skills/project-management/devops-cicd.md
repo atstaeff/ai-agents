@@ -372,3 +372,11 @@ Implement DevOps practices and CI/CD pipelines for efficient software delivery:
 "Design a security scanning process for CI/CD pipeline"
 
 "Create runbooks for common production incidents"
+
+## Related Skills & Agents
+
+- [DevOps Agent](../../agents/devops-agent.agent.md)
+- [GCP Architect Agent](../../agents/gcp-architect.agent.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [Testing Patterns](../testing/SKILL.md)
+- [Cloud-Native Architecture](../architecture/cloud-native.md)

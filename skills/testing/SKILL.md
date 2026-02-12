@@ -214,5 +214,8 @@ tests/
 
 ## Related Skills
 
+- [Test Strategist Agent](../../agents/test-strategist.agent.md)
 - [Testing Strategies](../software-engineering/testing-strategies.md)
 - [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)
+- [Flutter Patterns](../flutter-patterns/SKILL.md)

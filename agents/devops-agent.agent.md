@@ -234,3 +234,49 @@ CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8080"]
 
 - [DevOps and CI/CD](../../skills/project-management/devops-cicd.md)
 - [GCP Architect Agent](./gcp-architect.agent.md)
+- [Testing Patterns](../../skills/testing/SKILL.md)
+- [GCP Patterns](../../skills/gcp-patterns/SKILL.md)
+- [Security Best Practices](../../skills/architecture/security.md)
+- [Cloud-Native Architecture](../../skills/architecture/cloud-native.md)
+
+## Multi-Language Pipeline Examples
+
+### Go — CI/CD Pipeline
+
+```yaml
+jobs:
+  go-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+      - name: Lint
+        uses: golangci/golangci-lint-action@v4
+      - name: Test
+        run: go test -race -cover -coverprofile=coverage.out ./...
+      - name: Build
+        run: CGO_ENABLED=0 go build -ldflags="-s -w" -o bin/api ./cmd/api
+```
+
+### Flutter — CI/CD Pipeline
+
+```yaml
+jobs:
+  flutter-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.x'
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Analyze
+        run: flutter analyze
+      - name: Test
+        run: flutter test --coverage
+      - name: Build iOS
+        run: flutter build ios --release --no-codesign
+```

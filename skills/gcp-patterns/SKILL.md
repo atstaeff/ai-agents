@@ -85,6 +85,13 @@ resource "google_pubsub_topic" "topic" {
   message_retention_duration = "86400s"
 }
 
+resource "google_pubsub_topic" "dead_letter" {
+  name    = "${var.topic_name}-dlq"
+  project = var.project_id
+
+  message_retention_duration = "604800s"  # 7 days retention for dead letters
+}
+
 resource "google_pubsub_topic_iam_member" "dead_letter" {
   topic   = google_pubsub_topic.dead_letter.name
   role    = "roles/pubsub.publisher"
@@ -185,5 +192,9 @@ resource "google_pubsub_subscription" "sub" {
 
 ## Related Skills
 
+- [GCP Architect Agent](../../agents/gcp-architect.agent.md)
+- [DevOps Agent](../../agents/devops-agent.agent.md)
 - [Cloud-Native Architecture](../architecture/cloud-native.md)
 - [Security Best Practices](../architecture/security.md)
+- [Microservices Architecture](../architecture/microservices.md)
+- [DevOps & CI/CD](../project-management/devops-cicd.md)

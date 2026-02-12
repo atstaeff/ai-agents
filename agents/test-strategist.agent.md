@@ -195,9 +195,11 @@ quality_gates:
 
 ✅ One assertion per test (or one logical assertion group)
 ✅ Descriptive test names: `test_<action>_<scenario>_<expected>`
-✅ Use parameterized tests for multiple inputs
-✅ Run tests in parallel where possible
+✅ Use parameterized tests for multiple inputs (pytest, Go table-driven, Flutter)
+✅ Run tests in parallel where possible (`pytest-xdist`, `go test -parallel`, Flutter)
 ✅ Keep test code as clean as production code
+✅ Language-specific patterns: Python fakes, Go table-driven tests, Flutter widget tests
+✅ Use `blocTest` for Flutter BLoC testing, `mocktail` for mocking
 ✅ Use `conftest.py` for shared fixtures
 ✅ Tag tests for selective execution (`@pytest.mark.slow`)
 
@@ -217,8 +219,44 @@ quality_gates:
 - "Set up quality gates for a CI/CD pipeline with coverage requirements"
 - "Review these tests for anti-patterns and suggest improvements"
 
+## E2E Test Example (Playwright)
+
+```python
+import pytest
+from playwright.async_api import Page, expect
+
+
+@pytest.mark.e2e
+async def test_order_checkout_flow(page: Page) -> None:
+    """Verifies the full checkout flow from cart to confirmation."""
+    # Arrange
+    await page.goto("/products")
+    await page.get_by_role("button", name="Add to Cart").first.click()
+
+    # Act
+    await page.get_by_role("link", name="Cart").click()
+    await page.get_by_role("button", name="Checkout").click()
+    await page.get_by_label("Email").fill("test@example.com")
+    await page.get_by_role("button", name="Place Order").click()
+
+    # Assert
+    await expect(page.get_by_text("Order Confirmed")).to_be_visible()
+    await expect(page.get_by_text("test@example.com")).to_be_visible()
+```
+
+**E2E Best Practices:**
+- Run in CI against staging environment
+- Use page objects for reusable selectors
+- Limit to critical user journeys (login, checkout, signup)
+- Retry flaky assertions with `expect` timeouts, not `time.sleep`
+
 ## Related Skills
 
 - [Testing Strategies](../../skills/software-engineering/testing-strategies.md)
 - [Testing Patterns Skill](../../skills/testing/SKILL.md)
+- [Python Patterns](../../skills/python-patterns/SKILL.md)
+- [Golang Patterns](../../skills/golang-patterns/SKILL.md)
+- [Flutter Patterns](../../skills/flutter-patterns/SKILL.md)
 - [Python Expert Agent](./python-expert.agent.md)
+- [Golang Expert Agent](./golang-expert.agent.md)
+- [Flutter & iOS Expert Agent](./flutter-ios-expert.agent.md)

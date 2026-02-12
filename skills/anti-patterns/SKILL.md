@@ -243,6 +243,11 @@ async def handle_payment(event: PaymentReceived):
 
 ## Related Skills
 
+- [Architecture Reviewer Agent](../../agents/architecture-reviewer.agent.md)
+- [Code Reviewer Agent](../../agents/code-reviewer.agent.md)
 - [Design Patterns](../software-engineering/design-patterns.md)
 - [SOLID Principles](../software-engineering/solid-principles.md)
 - [Microservices Architecture](../architecture/microservices.md)
+- [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)
+- [Flutter Patterns](../flutter-patterns/SKILL.md)

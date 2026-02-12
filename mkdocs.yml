@@ -1,0 +1,174 @@
+site_name: Copilot Expert Hub
+site_description: >-
+  A complete, modular, and scalable repository of AI Agents, Skills, Templates,
+  and Reference Architectures for GitHub Copilot.
+site_url: https://atstaeff.github.io/ai-agents/
+repo_url: https://github.com/atstaeff/ai-agents
+repo_name: atstaeff/ai-agents
+edit_uri: edit/main/assets/mkdocs/
+
+docs_dir: assets/mkdocs
+site_dir: site
+
+theme:
+  name: material
+  language: de
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Dark Mode
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Light Mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+    logo: material/robot-happy-outline
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.progress
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+plugins:
+  - search:
+      lang: de
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/atstaeff/ai-agents
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Erste Schritte:
+      - Installation & Setup: getting-started/installation.md
+      - Schnellstart: getting-started/quick-start.md
+      - Empfohlener Workflow: getting-started/workflow.md
+  - Agents:
+      - Uebersicht: agents/index.md
+      - Engineering:
+          - Lead Architect: agents/lead-architect.md
+          - Python Expert: agents/python-expert.md
+          - Golang Expert: agents/golang-expert.md
+          - Flutter & iOS Expert: agents/flutter-ios-expert.md
+          - Frontend Expert: agents/frontend-expert.md
+          - GCP Architect: agents/gcp-architect.md
+          - Test Strategist: agents/test-strategist.md
+          - DevOps Agent: agents/devops-agent.md
+      - Review & Qualitaet:
+          - Architecture Reviewer: agents/architecture-reviewer.md
+          - Code Reviewer: agents/code-reviewer.md
+      - Produktivitaet:
+          - Task Orchestrator: agents/task-orchestrator.md
+          - Context Manager: agents/context-manager.md
+      - Kunden & Kommunikation:
+          - Presentation Agent: agents/presentation-agent.md
+          - Stakeholder Agent: agents/stakeholder-agent.md
+          - Proposal/Pitch Agent: agents/proposal-pitch.md
+  - Skills:
+      - Uebersicht: skills/index.md
+      - Sprach-Patterns:
+          - Python Patterns: skills/python-patterns.md
+          - Golang Patterns: skills/golang-patterns.md
+          - Flutter Patterns: skills/flutter-patterns.md
+          - Frontend Patterns: skills/frontend-patterns.md
+      - Software Engineering:
+          - Clean Code: skills/clean-code.md
+          - SOLID Principles: skills/solid-principles.md
+          - Design Patterns: skills/design-patterns.md
+          - Code Review: skills/code-review.md
+          - Testing Strategies: skills/testing-strategies.md
+          - Practical Refactoring: skills/practical-refactoring.md
+      - Architektur:
+          - Microservices: skills/microservices.md
+          - Domain-Driven Design: skills/domain-driven-design.md
+          - Cloud-Native: skills/cloud-native.md
+          - API Design: skills/api-design.md
+          - Security: skills/security.md
+          - Performance: skills/performance.md
+      - Cloud & DevOps:
+          - GCP Patterns: skills/gcp-patterns.md
+          - Testing: skills/testing.md
+          - DevOps & CI/CD: skills/devops-cicd.md
+      - Projekt & Team:
+          - Agile Methodologies: skills/agile-methodologies.md
+          - Technical Debt: skills/technical-debt.md
+          - PR Crafting: skills/pr-crafting.md
+          - Progress Sync: skills/progress-sync.md
+          - Feature Discovery: skills/feature-discovery.md
+          - Incident Response: skills/incident-response.md
+      - Weitere Skills:
+          - Anti-Patterns: skills/anti-patterns.md
+          - Marp Presentations: skills/marp-presentations.md
+          - Communication: skills/communication.md
+          - Architecture Planning: skills/architecture-planning.md
+          - Principal Engineer Decisions: skills/principal-engineer-decisions.md
+  - Templates & Referenzen:
+      - Uebersicht: references/index.md
+      - Marp Templates: references/marp-templates.md
+      - Python Golden Repo: references/python-golden.md
+      - Event-Driven Python: references/event-driven-python.md
+  - Mitmachen:
+      - Contributing Guide: contributing/index.md
+      - Neuen Agent erstellen: contributing/new-agent.md
+      - Neuen Skill erstellen: contributing/new-skill.md
+      - Guidelines: contributing/guidelines.md

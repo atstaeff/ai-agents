@@ -58,7 +58,33 @@ class PaypalPaymentProcessor(PaymentProcessor):  # Just add a new class
 - Derived classes must be substitutable for their base classes
 - Don't strengthen preconditions or weaken postconditions
 - Subtypes should enhance, not limit, base behavior
-- Example: Square should not extend Rectangle if it violates LSP
+
+```python
+# ❌ Before: Square breaks Rectangle contract (setting width changes height)
+class Rectangle:
+    def set_width(self, w: int) -> None: self.width = w
+    def set_height(self, h: int) -> None: self.height = h
+    def area(self) -> int: return self.width * self.height
+
+class Square(Rectangle):  # LSP violation!
+    def set_width(self, w: int) -> None: self.width = self.height = w
+    def set_height(self, h: int) -> None: self.width = self.height = h
+
+# ✅ After: Separate abstractions, no inheritance trap
+class Shape(ABC):
+    @abstractmethod
+    def area(self) -> int: ...
+
+class Rectangle(Shape):
+    def __init__(self, width: int, height: int) -> None:
+        self.width = width
+        self.height = height
+    def area(self) -> int: return self.width * self.height
+
+class Square(Shape):
+    def __init__(self, side: int) -> None: self.side = side
+    def area(self) -> int: return self.side * self.side
+```
 
 ### Interface Segregation Principle (ISP)
 - Clients should not depend on interfaces they don't use
@@ -119,6 +145,28 @@ class ElectricPowerSwitch:
         self.device = device
 ```
 
+**Go DIP — Interfaces are implicit, making DIP natural:**
+```go
+// ❌ Before: handler depends on concrete PostgresRepo
+type Handler struct {
+	repo *PostgresRepo // concrete dependency
+}
+
+// ✅ After: handler depends on interface (defined by consumer)
+type OrderRepository interface {
+	FindByID(ctx context.Context, id string) (Order, error)
+	Save(ctx context.Context, order Order) error
+}
+
+type Handler struct {
+	repo OrderRepository // interface — any implementation works
+}
+
+func NewHandler(repo OrderRepository) *Handler {
+	return &Handler{repo: repo}
+}
+```
+
 ## Application Guidelines
 
 When designing systems:
@@ -142,3 +190,12 @@ See [`atstaeff/better-python`](https://github.com/atstaeff/better-python) folder
 "Create an extensible architecture using Open/Closed Principle"
 
 "Review this class hierarchy for SOLID violations"
+
+## Related Skills & Agents
+
+- [Python Expert Agent](../../agents/python-expert.agent.md)
+- [Golang Expert Agent](../../agents/golang-expert.agent.md)
+- [Clean Code](../software-engineering/clean-code.md)
+- [Design Patterns](../software-engineering/design-patterns.md)
+- [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)

@@ -53,13 +53,62 @@ Design and implement microservices following these principles and patterns:
 - Prevent cascading failures
 - Fail fast when dependent service is down
 - Implement fallback mechanisms
-- Monitor and auto-recover
+
+```python
+# Python — Circuit Breaker with tenacity
+from tenacity import retry, stop_after_attempt, wait_exponential, CircuitBreaker
+
+breaker = CircuitBreaker(failure_threshold=5, recovery_timeout=30)
+
+@retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10))
+async def call_payment_service(order_id: str) -> PaymentResult:
+    async with httpx.AsyncClient(timeout=5.0) as client:
+        response = await client.post(f"{PAYMENT_URL}/charge", json={"order_id": order_id})
+        response.raise_for_status()
+        return PaymentResult.model_validate(response.json())
+```
+
+```go
+// Go — Circuit Breaker with sony/gobreaker
+cb := gobreaker.NewCircuitBreaker(gobreaker.Settings{
+    Name:        "payment-service",
+    MaxRequests: 3,
+    Interval:    10 * time.Second,
+    Timeout:     30 * time.Second,
+})
+
+func callPaymentService(ctx context.Context, orderID string) (*PaymentResult, error) {
+    result, err := cb.Execute(func() (any, error) {
+        return paymentClient.Charge(ctx, orderID)
+    })
+    if err != nil {
+        return nil, fmt.Errorf("payment service: %w", err)
+    }
+    return result.(*PaymentResult), nil
+}
+```
 
 ### Saga Pattern
 - Manage distributed transactions
 - Choreography vs Orchestration
 - Compensating transactions for rollback
-- Example: Order → Payment → Inventory → Shipping
+
+```python
+# Python — Saga Orchestrator
+class OrderSaga:
+    async def execute(self, order: Order) -> None:
+        try:
+            payment = await self.payment_service.charge(order)
+            inventory = await self.inventory_service.reserve(order)
+            await self.shipping_service.schedule(order)
+        except InventoryError:
+            await self.payment_service.refund(payment)
+            raise
+        except ShippingError:
+            await self.inventory_service.release(inventory)
+            await self.payment_service.refund(payment)
+            raise
+```
 
 ### Sidecar Pattern
 - Deploy helper services alongside main service
@@ -127,13 +176,16 @@ Design and implement microservices following these principles and patterns:
 5. **Data Migration**: Strategy for moving data to new services
 6. **Test Thoroughly**: Integration and end-to-end tests
 
-## Technology Stack Considerations
+## Technology Stack
 
-**Languages**: Match service needs (Java, Go, Node.js, Python, C#)
-**Communication**: REST, gRPC, message queues
-**Data**: SQL, NoSQL based on service requirements
-**Infrastructure**: Kubernetes, Docker, service mesh
-**Monitoring**: Prometheus, Grafana, ELK stack
+| Layer | Recommended | Notes |
+|-------|-------------|-------|
+| **Languages** | Go (performance), Python (rapid dev, ML) | Match service needs |
+| **Communication** | REST, gRPC, Pub/Sub | gRPC for internal, REST for external |
+| **Data** | Cloud SQL (PostgreSQL), Firestore, BigQuery | Database per service |
+| **Infrastructure** | Cloud Run, GKE, Terraform | Serverless-first |
+| **Messaging** | Pub/Sub, Cloud Tasks | Event-driven by default |
+| **Monitoring** | Cloud Monitoring, Cloud Trace, Cloud Logging | Observability triad |
 
 ## Example Prompts
 
@@ -146,3 +198,12 @@ Design and implement microservices following these principles and patterns:
 "Design a saga pattern for order processing"
 
 "Set up distributed tracing with correlation IDs"
+
+## Related Skills & Agents
+
+- [Lead Architect Agent](../../agents/lead-architect.agent.md)
+- [Architecture Reviewer Agent](../../agents/architecture-reviewer.agent.md)
+- [Cloud-Native Architecture](../architecture/cloud-native.md)
+- [API Design](../architecture/api-design.md)
+- [Anti-Patterns](../anti-patterns/SKILL.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)

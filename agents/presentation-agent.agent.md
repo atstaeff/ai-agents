@@ -177,8 +177,21 @@ Questions?
 - "Generate a project review slide deck with sprint metrics and roadmap"
 - "Adapt this technical content into a management-friendly presentation"
 
+## Content Adaptation Example
+
+**Same topic ("Event-Driven Architecture") for different audiences:**
+
+| Aspect | Technical Deep-Dive | Business Stakeholders |
+|--------|--------------------|-----------------------|
+| **Title** | "Event-Driven Architecture with Pub/Sub" | "Faster, More Reliable Order Processing" |
+| **Key Message** | Decoupled services via async messaging | 99.9% uptime, 3× faster order handling |
+| **Diagram** | Mermaid C4 container diagram | Simple flow: Order → Processing → Delivery |
+| **Metrics** | P99 latency, throughput, error rates | Revenue impact, customer satisfaction |
+| **Call to Action** | "Approve the ADR and begin Sprint 1" | "Invest in Phase 1 for Q3 launch" |
+
 ## Related Skills
 
 - [Marp Presentations Skill](../../skills/marp-presentations/SKILL.md)
 - [Stakeholder Agent](./stakeholder-agent.agent.md)
+- [Proposal/Pitch Agent](./proposal-pitch.agent.md)
 - [Communication Skill](../../skills/general/communication.md)

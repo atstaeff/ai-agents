@@ -1,6 +1,6 @@
 # Progress Sync Skill
 
-## Mission
+## Instructions for AI
 Run meetings that keep everyone informed without wasting time.
 
 ## Before the Meeting
@@ -145,3 +145,10 @@ Important Dates
 - Leverage chat for questions without interrupting
 - Share your screen when referencing specific work
 - Record meetings (with consent) for reference later
+
+## Related Skills & Agents
+
+- [Context Manager Agent](../../agents/context-manager.agent.md)
+- [Task Orchestrator Agent](../../agents/task-orchestrator.agent.md)
+- [Stakeholder Agent](../../agents/stakeholder-agent.agent.md)
+- [Agile Methodologies](../project-management/agile-methodologies.md)

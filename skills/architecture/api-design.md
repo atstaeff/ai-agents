@@ -2,7 +2,35 @@
 
 ## Instructions for AI
 
-Design robust, scalable, and developer-friendly APIs:
+Design robust, scalable, and developer-friendly APIs.
+
+## Design Philosophy
+
+- **User-Centered Thinking**: Design from the API consumer's perspective, not the internal implementation
+- **Consistency Matters**: Use predictable patterns throughout — similar things should work similarly
+- **Clear Over Clever**: Explicit, obvious designs beat clever, terse ones
+
+## Design Process
+
+### Step 1: Understand the Use Cases
+Before designing endpoints:
+- What tasks will developers accomplish with this API?
+- What data flows through these tasks?
+- Which operations happen frequently vs. rarely?
+- What errors might occur?
+
+### Step 2: Define Resource Model
+Identify the core concepts:
+- What entities exist in your domain?
+- How do they relate to each other?
+- What operations make sense for each entity?
+
+Example for a library system:
+```
+Resources: books, authors, members, loans
+Relationships: authors write books, members borrow books creating loans
+Operations: list, create, retrieve, update, delete (where applicable)
+```
 
 ## REST API Design
 
@@ -254,6 +282,33 @@ message User {
 - Performance critical
 - Strongly typed contracts
 - Streaming requirements
+
+## Testing Your API
+
+**Consumer Perspective**
+- Can someone understand what endpoints do without implementation code?
+- Are error messages helpful for debugging?
+- Is the API predictable based on patterns?
+
+**Technical Validation**
+- Test all endpoints with valid and invalid inputs
+- Verify error responses are correct
+- Check edge cases (empty lists, missing fields)
+- Load test to understand performance characteristics
+
+## Evolution Strategy
+
+### Backward Compatibility
+- Add new fields, don't remove old ones initially
+- Make new fields optional
+- Provide sensible defaults
+
+### Deprecation Process
+1. Announce deprecation well in advance
+2. Provide migration guide
+3. Give ample time (6-12 months)
+4. Monitor usage before removing
+5. Offer support during migration
 
 ## Best Practices Checklist
 

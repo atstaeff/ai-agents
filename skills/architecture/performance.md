@@ -240,19 +240,36 @@ arr.forEach(item => { /* ... */ });
 
 **Background Jobs**
 - Use queues for long-running tasks
-- Celery, Sidekiq, Bull
 - Don't block request/response
 - Retry failed jobs
 
 **Parallel Processing**
 ```python
-# Sequential (slow)
-for item in items:
-    process(item)
+# Python — asyncio for I/O-bound parallelism
+async def fetch_all_products(product_ids: list[str]) -> list[Product]:
+    async with httpx.AsyncClient() as client:
+        tasks = [client.get(f"{API_URL}/products/{pid}") for pid in product_ids]
+        responses = await asyncio.gather(*tasks)
+        return [Product.model_validate(r.json()) for r in responses]
+```
 
-# Parallel (fast)
-with ThreadPoolExecutor(max_workers=10) as executor:
-    executor.map(process, items)
+```go
+// Go — errgroup for concurrent processing
+func fetchAllProducts(ctx context.Context, ids []string) ([]Product, error) {
+	g, ctx := errgroup.WithContext(ctx)
+	products := make([]Product, len(ids))
+
+	for i, id := range ids {
+		g.Go(func() error {
+			p, err := client.GetProduct(ctx, id)
+			if err != nil { return err }
+			products[i] = p
+			return nil
+		})
+	}
+	if err := g.Wait(); err != nil { return nil, err }
+	return products, nil
+}
 ```
 
 ### Caching Layers
@@ -422,3 +439,11 @@ String result = sb.toString();
 "Optimize this N+1 query problem"
 
 "Set up performance monitoring for a microservice"
+
+## Related Skills & Agents
+
+- [Python Expert Agent](../../agents/python-expert.agent.md)
+- [Golang Expert Agent](../../agents/golang-expert.agent.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [Testing Strategies](../software-engineering/testing-strategies.md)
+- [Cloud-Native Architecture](../architecture/cloud-native.md)

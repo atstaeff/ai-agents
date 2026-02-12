@@ -318,7 +318,7 @@ class Order(BaseModel):
     id: UUID = Field(default_factory=uuid4)
     customer_id: UUID
     items: list[OrderItem] = Field(min_length=1)
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    created_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
 
     @field_validator("items")
     @classmethod
@@ -463,6 +463,48 @@ src/
 - "Refactor this class to use dependency injection and the repository pattern"
 - "Create a Pydantic model with custom validators for a User entity"
 - "Write async tests for this service using pytest and fixtures"
+
+## Async FastAPI with Dependency Injection
+
+```python
+import structlog
+from fastapi import APIRouter, Depends
+from pydantic import BaseModel
+
+logger = structlog.get_logger()
+
+
+class OrderResponse(BaseModel):
+    id: str
+    status: str
+    total: float
+
+
+class OrderService:
+    def __init__(self, repo: OrderRepository, events: EventPublisher) -> None:
+        self._repo = repo
+        self._events = events
+
+    async def get_order(self, order_id: str) -> OrderResponse:
+        log = logger.bind(order_id=order_id)
+        order = await self._repo.find_by_id(order_id)
+        if order is None:
+            log.warning("order_not_found")
+            raise OrderNotFoundError(order_id)
+        log.info("order_retrieved", status=order.status)
+        return OrderResponse(id=order.id, status=order.status, total=order.total)
+
+
+router = APIRouter(prefix="/orders", tags=["orders"])
+
+
+@router.get("/{order_id}", response_model=OrderResponse)
+async def get_order(
+    order_id: str,
+    service: OrderService = Depends(get_order_service),
+) -> OrderResponse:
+    return await service.get_order(order_id)
+```
 - "Design a clean project structure for a FastAPI microservice"
 - "Show me before/after for the Strategy Pattern applied to this processing logic"
 - "Decouple this registration flow using the Observer Pattern"
@@ -477,4 +519,6 @@ src/
 - [Testing Strategies](../../skills/software-engineering/testing-strategies.md)
 - [Design Patterns](../../skills/software-engineering/design-patterns.md)
 - [Python Patterns Skill](../../skills/python-patterns/SKILL.md)
+- [Anti-Patterns](../../skills/anti-patterns/SKILL.md)
+- [GCP Patterns](../../skills/gcp-patterns/SKILL.md)
 - [Reference: better-python](https://github.com/atstaeff/better-python) — Concrete before/after examples

@@ -155,15 +155,56 @@ command.Parameters.AddWithValue("@UserId", userId);
 - Session timeout
 
 ### JWT Security
-```javascript
-// Good practices:
+
+```python
+# Python — FastAPI JWT authentication dependency
+from fastapi import Depends, HTTPException, status
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+import jwt
+
+security = HTTPBearer()
+
+async def get_current_user(
+    credentials: HTTPAuthorizationCredentials = Depends(security),
+) -> User:
+    try:
+        payload = jwt.decode(
+            credentials.credentials,
+            settings.jwt_secret,
+            algorithms=["HS256"],
+        )
+        return await user_repo.find_by_id(payload["sub"])
+    except jwt.ExpiredSignatureError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token expired")
+    except jwt.InvalidTokenError:
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
+```
+
+```go
+// Go — JWT middleware
+func AuthMiddleware(secret []byte) func(http.Handler) http.Handler {
+	return func(next http.Handler) http.Handler {
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
+			claims, err := jwt.Parse(token, func(t *jwt.Token) (any, error) {
+				return secret, nil
+			})
+			if err != nil {
+				http.Error(w, "unauthorized", http.StatusUnauthorized)
+				return
+			}
+			ctx := context.WithValue(r.Context(), userKey, claims)
+			next.ServeHTTP(w, r.WithContext(ctx))
+		})
+	}
+}
+```
+
+**Best Practices:**
 - Short expiration (15-30 minutes)
 - Refresh token pattern
-- Verify signature server-side
 - Don't store sensitive data in payload
 - Use HTTPS only
-- Proper key management
-```
 
 ### Authorization Patterns
 - **RBAC** (Role-Based Access Control): Permissions via roles
@@ -173,14 +214,40 @@ command.Parameters.AddWithValue("@UserId", userId);
 ## Secure Coding Practices
 
 ### Input Validation
-```javascript
-// Whitelist approach
-const allowedFields = ['name', 'email', 'age'];
-const sanitized = pick(input, allowedFields);
 
-// Validation
-if (!validator.isEmail(email)) {
-  throw new ValidationError('Invalid email');
+```python
+# Python — Pydantic model with validation
+from pydantic import BaseModel, EmailStr, Field, field_validator
+
+class CreateUserRequest(BaseModel):
+    name: str = Field(min_length=1, max_length=100)
+    email: EmailStr
+    age: int = Field(ge=18, le=120)
+
+    @field_validator("name")
+    @classmethod
+    def sanitize_name(cls, v: str) -> str:
+        return html.escape(v.strip())
+```
+
+```go
+// Go — Input validation with go-playground/validator
+type CreateUserRequest struct {
+	Name  string `json:"name" validate:"required,min=1,max=100"`
+	Email string `json:"email" validate:"required,email"`
+	Age   int    `json:"age" validate:"gte=18,lte=120"`
+}
+
+func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
+	var req CreateUserRequest
+	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+		http.Error(w, "invalid request", http.StatusBadRequest)
+		return
+	}
+	if err := h.validator.Struct(req); err != nil {
+		http.Error(w, err.Error(), http.StatusUnprocessableEntity)
+		return
+	}
 }
 ```
 
@@ -389,3 +456,11 @@ cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
 "Implement rate limiting to prevent brute force"
 
 "Design an incident response plan for a data breach"
+
+## Related Skills & Agents
+
+- [Architecture Reviewer Agent](../../agents/architecture-reviewer.agent.md)
+- [GCP Architect Agent](../../agents/gcp-architect.agent.md)
+- [Cloud-Native Architecture](../architecture/cloud-native.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [API Design](../architecture/api-design.md)

@@ -96,24 +96,74 @@ Implement comprehensive testing strategies at multiple levels:
 ## Testing Patterns
 
 ### AAA Pattern (Arrange-Act-Assert)
+
+```python
+# Python — pytest with AAA
+async def test_create_order_calculates_total() -> None:
+    # Arrange
+    repo = FakeOrderRepository()
+    service = OrderService(repo=repo, events=FakeEventBus())
+
+    # Act
+    order = await service.create_order(
+        items=[LineItem(product_id="p1", quantity=2, unit_price=Decimal("10.00"))]
+    )
+
+    # Assert
+    assert order.total == Decimal("20.00")
+    assert order.status == OrderStatus.DRAFT
 ```
-// Arrange: Setup test data and dependencies
-var user = new User("John");
-var service = new UserService(mockRepo);
 
-// Act: Execute the behavior being tested
-var result = service.CreateUser(user);
+```go
+// Go — table-driven test with AAA
+func TestCalculateTotal(t *testing.T) {
+	tests := []struct {
+		name  string
+		items []LineItem
+		want  decimal.Decimal
+	}{
+		{
+			name:  "single item",
+			items: []LineItem{{Qty: 2, Price: decimal.NewFromInt(10)}},
+			want:  decimal.NewFromInt(20),
+		},
+		{
+			name:  "empty order",
+			items: nil,
+			want:  decimal.Zero,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			order := NewOrder(tt.items)
+			got := order.Total()
+			assert.True(t, tt.want.Equal(got))
+		})
+	}
+}
+```
 
-// Assert: Verify the outcome
-Assert.True(result.Success);
+```dart
+// Flutter — widget test
+testWidgets('OrderCard shows total', (tester) async {
+  // Arrange
+  final order = Order(id: '1', total: 42.0, status: OrderStatus.placed);
+
+  // Act
+  await tester.pumpWidget(MaterialApp(home: OrderCard(order: order)));
+
+  // Assert
+  expect(find.text('€42.00'), findsOneWidget);
+  expect(find.text('Placed'), findsOneWidget);
+});
 ```
 
 ### Builder Pattern for Test Data
-```
-var user = new UserBuilder()
-    .WithName("John")
-    .WithEmail("john@example.com")
-    .Build();
+```python
+# Python — Factory for test data
+def make_order(**overrides: Any) -> Order:
+    defaults = {"status": OrderStatus.DRAFT, "lines": [make_line()]}
+    return Order(**(defaults | overrides))
 ```
 
 ### Test Fixtures
@@ -154,3 +204,11 @@ var user = new UserBuilder()
 "Review these tests and suggest improvements"
 
 "Write property-based tests for this validation logic"
+
+## Related Skills & Agents
+
+- [Test Strategist Agent](../../agents/test-strategist.agent.md)
+- [Testing Patterns Skill](../testing/SKILL.md)
+- [Python Patterns](../python-patterns/SKILL.md)
+- [Golang Patterns](../golang-patterns/SKILL.md)
+- [Flutter Patterns](../flutter-patterns/SKILL.md)

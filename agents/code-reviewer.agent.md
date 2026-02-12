@@ -147,8 +147,21 @@ Brief assessment of the PR quality and scope.
 - "Assess the test coverage and quality of these unit tests"
 - "Is this code following SOLID principles? Suggest improvements"
 
+## Language-Specific Review Focus
+
+| Language | Key Review Checks |
+|----------|------------------|
+| **Python** | Type hints, PEP compliance, async patterns, Pydantic usage |
+| **Go** | Error handling/wrapping, context propagation, goroutine leaks, interface design |
+| **Dart/Flutter** | `const` usage, BLoC separation, `freezed` models, widget composition |
+| **TypeScript** | Strict mode, generics, discriminated unions, reactive patterns |
+
 ## Related Skills
 
 - [Code Review Guidelines](../../skills/software-engineering/code-review.md)
-- [Review Assistant](../../skills/code-quality/review-assistant.md)
 - [Clean Code Principles](../../skills/software-engineering/clean-code.md)
+- [Anti-Patterns](../../skills/anti-patterns/SKILL.md)
+- [Python Patterns](../../skills/python-patterns/SKILL.md)
+- [Golang Patterns](../../skills/golang-patterns/SKILL.md)
+- [Flutter Patterns](../../skills/flutter-patterns/SKILL.md)
+- [Frontend Patterns](../../skills/frontend-patterns/SKILL.md)

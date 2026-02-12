@@ -51,7 +51,7 @@ from uuid import UUID
 
 @dataclass(frozen=True)
 class DomainEvent:
-    occurred_at: datetime = field(default_factory=datetime.utcnow)
+    occurred_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 @dataclass(frozen=True)
 class OrderPlaced(DomainEvent):
@@ -344,7 +344,10 @@ src/
 
 ## Related Skills
 
+- [Python Expert Agent](../../agents/python-expert.agent.md)
 - [Clean Code](../software-engineering/clean-code.md)
 - [SOLID Principles](../software-engineering/solid-principles.md)
 - [Design Patterns](../software-engineering/design-patterns.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [Anti-Patterns](../anti-patterns/SKILL.md)
 - [Reference: better-python](https://github.com/atstaeff/better-python)

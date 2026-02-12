@@ -225,3 +225,10 @@ Follow YAGNI: You Aren't Gonna Need It
 "Write characterization tests before refactoring this code"
 
 "Translate this technical debt into business impact terms"
+
+## Related Skills & Agents
+
+- [Code Reviewer Agent](../../agents/code-reviewer.agent.md)
+- [Clean Code](../software-engineering/clean-code.md)
+- [Anti-Patterns](../anti-patterns/SKILL.md)
+- [Technical Debt Management](../project-management/technical-debt.md)

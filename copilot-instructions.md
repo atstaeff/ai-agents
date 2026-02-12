@@ -4,8 +4,16 @@ This repository is the **Copilot Expert Hub** — a comprehensive collection of 
 
 ## Repository Structure
 
-- **`.github/agents/`** — 12 specialized AI agents covering the full delivery lifecycle
-- **`skills/`** — Technical knowledge bases (Python, GCP, Testing, Architecture, etc.)
+- **`agents/`** — 15 specialized AI agents covering the full delivery lifecycle
+- **`skills/`** — Technical knowledge bases organized by domain:
+  - `python-patterns/`, `golang-patterns/`, `flutter-patterns/`, `frontend-patterns/` — Language-specific patterns
+  - `gcp-patterns/`, `testing/`, `anti-patterns/`, `marp-presentations/` — Domain skills
+  - `software-engineering/` — Clean code, SOLID, design patterns, code review, testing strategies, refactoring
+  - `architecture/` — Microservices, DDD, cloud-native, API design, security, performance
+  - `project-management/` — Agile, technical debt, DevOps/CI-CD
+  - `team-collaboration/` — PR crafting, progress sync, feature discovery, incident response
+  - `general/` — Communication, principal engineer decisions
+  - `system-design/` — Architecture planning
 - **`marp-templates/`** — Presentation templates (Client Pitch, Tech Deep-Dive, Project Review)
 - **`reference-repos/`** — Golden architecture examples
 - **`docs/`** — Documentation and contribution guidelines
@@ -18,6 +26,8 @@ Use these agents by referencing them in conversations:
 |-------|----------|
 | **Lead Architect** | Designing systems, creating ADRs, DDD bounded contexts |
 | **Python Expert** | Writing/reviewing Python, Pydantic, FastAPI, async patterns |
+| **Golang Expert** | Writing/reviewing Go, interfaces, concurrency, clean architecture |
+| **Flutter & iOS Expert** | Writing/reviewing Flutter/Dart, BLoC, iOS apps, mobile architecture |
 | **Frontend Expert** | Vue, Angular, TypeScript/JavaScript, component architecture |
 | **GCP Architect** | Cloud architecture, Terraform, Pub/Sub, BigQuery, IAM |
 | **Test Strategist** | Designing test strategies, quality gates, fixtures |
@@ -42,11 +52,14 @@ Use these agents by referencing them in conversations:
 
 - Write self-documenting code with clear naming conventions
 - Use modern Python (3.12+): type hints, Pydantic v2, dataclasses
+- Use idiomatic Go (1.22+): interfaces, error wrapping, slog, context propagation
+- Use modern Dart/Flutter (3.x): freezed, BLoC/Riverpod, const constructors, sound null safety
 - Include comprehensive error handling and structured logging
-- Follow PEP standards and use `ruff` for linting/formatting
-- Implement unit tests with high coverage (pytest, factories, fakes)
-- Use dependency injection and Protocol-based interfaces
-- Apply design patterns appropriately (Repository, UoW, Service Layer)
+- Follow language-specific standards: PEP (Python), Effective Go, very_good_analysis (Flutter)
+- Use `ruff` (Python), `golangci-lint` (Go), `flutter analyze` (Dart) for linting
+- Implement unit tests with high coverage (pytest, Go table-driven tests, Flutter widget tests)
+- Use dependency injection and interface-based design across all languages
+- Apply design patterns appropriately (Repository, UoW, Service Layer, BLoC)
 
 ## Architecture Principles
 

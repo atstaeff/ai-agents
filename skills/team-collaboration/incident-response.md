@@ -1,6 +1,6 @@
 # Incident Response Coordination Skill
 
-## Goal
+## Instructions for AI
 Manage production incidents efficiently to restore service and learn from failures.
 
 ## Response Framework
@@ -210,3 +210,10 @@ Post-Mortem: [When detailed analysis will be available]
 - Support ticket volume
 
 Use these to improve response over time.
+
+## Related Skills & Agents
+
+- [DevOps Agent](../../agents/devops-agent.agent.md)
+- [GCP Architect Agent](../../agents/gcp-architect.agent.md)
+- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [DevOps & CI/CD](../project-management/devops-cicd.md)

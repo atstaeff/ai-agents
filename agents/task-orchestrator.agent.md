@@ -44,8 +44,9 @@ When orchestrating tasks:
 ### Phase 2: Implementation (Week 3-6)
 | # | Task | Agent | Depends On | Status |
 |---|------|-------|------------|--------|
-| 2.1 | Set up project structure | Python Expert | 1.4 | ⬜ |
-| 2.2 | Implement domain models | Python Expert | 2.1 | ⬜ |
+| 2.1 | Set up project structure | Python Expert / Golang Expert | 1.4 | ⬜ |
+| 2.2 | Implement domain models | Python Expert / Golang Expert | 2.1 | ⬜ |
+| 2.2b | Implement mobile app | Flutter & iOS Expert | 2.1 | ⬜ |
 | 2.3 | Create Terraform modules | GCP Architect | 1.4 | ⬜ |
 | 2.4 | Set up CI/CD pipeline | DevOps Agent | 2.1 | ⬜ |
 | 2.5 | Write unit tests | Test Strategist | 2.2 | ⬜ |
@@ -75,11 +76,14 @@ When orchestrating tasks:
 |-----------|--------------|-----------------|
 | Architecture design | Lead Architect | Architecture Reviewer |
 | Python implementation | Python Expert | Code Reviewer |
+| Go implementation | Golang Expert | Code Reviewer |
+| Flutter/iOS implementation | Flutter & iOS Expert | Code Reviewer |
+| Frontend (Vue/Angular) | Frontend Expert | Code Reviewer |
 | GCP infrastructure | GCP Architect | DevOps Agent |
-| Testing strategy | Test Strategist | Python Expert |
+| Testing strategy | Test Strategist | Python Expert / Golang Expert |
 | CI/CD pipelines | DevOps Agent | GCP Architect |
 | Client presentation | Presentation Agent | Stakeholder Agent |
-| Code review | Code Reviewer | Python Expert |
+| Code review | Code Reviewer | Python Expert / Golang Expert |
 | Project context | Context Manager | Task Orchestrator |
 | Client communication | Stakeholder Agent | Presentation Agent |
 | Proposals & roadmaps | Proposal/Pitch Agent | Stakeholder Agent |
@@ -141,6 +145,26 @@ graph TD
 ✅ Communicate blockers immediately
 ✅ Maintain a clear audit trail of decisions
 
+## Estimation Guidance
+
+### T-Shirt Sizing
+| Size | Effort | Risk | Example |
+|------|--------|------|---------|
+| **XS** | < 2h | Low | Config change, typo fix |
+| **S** | 2h–1d | Low | Single-file feature, unit tests |
+| **M** | 1–3d | Medium | Multi-file feature, API endpoint |
+| **L** | 3–5d | Medium-High | Cross-service feature, migration |
+| **XL** | 1–2w | High | Architecture change, new service |
+
+### Risk Assessment
+For each task, evaluate:
+- **Complexity**: How many unknowns exist?
+- **Dependencies**: What must finish first?
+- **Blast Radius**: What breaks if this goes wrong?
+- **Reversibility**: Can we roll back easily?
+
+Apply a **1.5× buffer** for medium-risk tasks, **2× buffer** for high-risk tasks.
+
 ## Anti-Patterns
 
 ❌ Tasks too large or vague ("implement the system")
@@ -158,5 +182,9 @@ graph TD
 
 ## Related Skills
 
-- [Agile Methodologies](../../skills/project-management/agile-methodologies.md)
 - [Context Manager Agent](./context-manager.agent.md)
+- [Agile Methodologies](../../skills/project-management/agile-methodologies.md)
+- [DevOps & CI/CD](../../skills/project-management/devops-cicd.md)
+- [Technical Debt Management](../../skills/project-management/technical-debt.md)
+- [Progress Sync](../../skills/team-collaboration/progress-sync.md)
+- [Incident Response](../../skills/team-collaboration/incident-response.md)
