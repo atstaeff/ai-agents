@@ -1,6 +1,6 @@
 # Agent Catalog
 
-The Copilot Expert Hub includes **15 specialized AI agents**, organized by the phases of the Software Delivery Lifecycle.
+The Copilot Expert Hub includes **17 specialized AI agents**, organized by the phases of the Software Delivery Lifecycle.
 
 ---
 
@@ -136,6 +136,32 @@ Code quality, security checks, style enforcement, constructive feedback.
 
 ---
 
+## :material-gamepad-variant: Creative & Games
+
+<div class="grid" markdown>
+
+<div class="card" markdown>
+### :material-gamepad-variant: Game Developer
+<span class="agent-badge badge-phase-build">Creative</span>
+
+Game Design, Mechanics, Godot/Phaser/Unity/PyGame, State Machines, Object Pooling, Game Juice.
+
+[:material-arrow-right: Details](game-developer.md)
+</div>
+
+<div class="card" markdown>
+### :material-palette: Creative App Developer
+<span class="agent-badge badge-phase-build">Creative</span>
+
+Generative Art, Micro-Interactions, Gamification, Data Viz, Creative Coding, Delightful UX.
+
+[:material-arrow-right: Details](creative-app-developer.md)
+</div>
+
+</div>
+
+---
+
 ## :material-rocket-launch: Phase 4 — Deployment
 
 <div class="grid" markdown>
@@ -216,6 +242,8 @@ Project proposals, roadmaps, milestones, effort estimates.
 | Presentation Agent | Communication | Marp Slides | Client pitches, tech talks |
 | Stakeholder Agent | Communication | Business Language | Status reports, summaries |
 | Proposal/Pitch Agent | Communication | Proposals, Roadmaps | Proposal creation |
+| Game Developer | Creative | Game Design, Mechanics | 2D/3D Games, Game Jams |
+| Creative App Developer | Creative | Generative Art, Gamification | Creative Apps, Data Viz |
 
 ---
 
@@ -239,4 +267,7 @@ graph TD
     N -->|Presentation| O[Presentation Agent]
     N -->|Report| P[Stakeholder Agent]
     N -->|Proposal| Q["Proposal/Pitch Agent"]
+    A --> R{Creative?}
+    R -->|Game| S[Game Developer]
+    R -->|App| T[Creative App Developer]
 ```

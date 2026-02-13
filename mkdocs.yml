@@ -121,6 +121,9 @@ nav:
           - Code Reviewer: agents/code-reviewer.md
       - Deployment:
           - DevOps Agent: agents/devops-agent.md
+      - Creative & Games:
+          - Game Developer: agents/game-developer.md
+          - Creative App Developer: agents/creative-app-developer.md
       - Communication:
           - Context Manager: agents/context-manager.md
           - Presentation Agent: agents/presentation-agent.md
@@ -158,6 +161,13 @@ nav:
           - Progress Sync: skills/progress-sync.md
           - Feature Discovery: skills/feature-discovery.md
           - Incident Response: skills/incident-response.md
+      - Game Development:
+          - Game Design: skills/game-design.md
+          - Game Mechanics: skills/game-mechanics.md
+          - Game Architecture: skills/game-architecture.md
+          - Prototyping & Playtesting: skills/prototyping.md
+      - Creative Apps:
+          - Creative App Patterns: skills/creative-app-patterns.md
       - More Skills:
           - Anti-Patterns: skills/anti-patterns.md
           - Marp Presentations: skills/marp-presentations.md

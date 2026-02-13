@@ -64,6 +64,23 @@ Collaboration, communication, and project management.
 | [Feature Discovery](feature-discovery.md) | Requirements Gathering, Story Mapping |
 | [Incident Response](incident-response.md) | Incident Management, Postmortems |
 
+## Game Development
+
+Patterns und Prinzipien fuer Game- und Creative-App-Entwicklung.
+
+| Skill | Description |
+|-------|-------------|
+| [Game Design](game-design.md) | Core Loops, GDDs, Difficulty Curves, Progression |
+| [Game Mechanics](game-mechanics.md) | Physics, AI (FSM, Behavior Trees), Procedural Generation |
+| [Game Architecture](game-architecture.md) | ECS, Event Bus, Scene Management, Save/Load |
+| [Prototyping & Playtesting](prototyping.md) | Rapid Prototypes, Game Jam Strategies, Metriken |
+
+## Creative Apps
+
+| Skill | Description |
+|-------|-------------|
+| [Creative App Patterns](creative-app-patterns.md) | Micro-Interactions, Generative Design, Gamification, Audio |
+
 ## Additional Skills
 
 | Skill | Description |

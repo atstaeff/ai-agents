@@ -14,7 +14,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 15 | Specialized AI agents for every role |
+| **Agents** | 17 | Specialized AI agents for every role |
 | **Skills** | 12+ | Technical knowledge bases |
 | **Marp Templates** | 3 | Presentation templates |
 | **Reference Repos** | 2 | Golden architecture examples |
@@ -49,6 +49,13 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 | **Task Orchestrator** | Coordinate agents, plan tasks, track progress | [agents/task-orchestrator.agent.md](agents/task-orchestrator.agent.md) |
 | **Context Manager** | Maintain project memory, track decisions | [agents/context-manager.agent.md](agents/context-manager.agent.md) |
 
+### Creative & Games Agents
+
+| Agent | Role | File |
+|-------|------|------|
+| **Game Developer** | Game design, mechanics, Godot/Phaser/Unity/PyGame | [agents/game-developer.agent.md](agents/game-developer.agent.md) |
+| **Creative App Developer** | Creative coding, generative art, gamification, delightful UX | [agents/creative-app-developer.agent.md](agents/creative-app-developer.agent.md) |
+
 ### Customer-Facing Agents
 
 | Agent | Role | File |
@@ -82,6 +89,8 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 | **General** | [Communication](skills/general/communication.md), [Principal Engineer Decisions](skills/general/principal-engineer-decisions.md) |
 | **System Design** | [Architecture Planning](skills/system-design/architecture-planning.md) |
 | **Team Collaboration** | [PR Crafting](skills/team-collaboration/pr-crafting.md), [Progress Sync](skills/team-collaboration/progress-sync.md), [Feature Discovery](skills/team-collaboration/feature-discovery-session.md), [Incident Response](skills/team-collaboration/incident-response.md) |
+| **Game Development** | [Game Design](skills/game-development/game-design.md), [Game Mechanics](skills/game-development/game-mechanics.md), [Game Architecture](skills/game-development/game-architecture.md), [Prototyping](skills/game-development/prototyping.md) |
+| **Creative Apps** | [Creative App Patterns](skills/creative-apps/creative-app-patterns.md) |
 
 ## Marp Templates
 
@@ -131,20 +140,22 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
  4b. Golang Expert        → Implement backend solution (Go)
  5. Flutter & iOS Expert  → Implement mobile app
  6. Frontend Expert       → Implement frontend/UI (web)
- 6. Test Strategist      → Design & implement tests
- 7. Code Reviewer        → Review code quality
- 8. DevOps Agent         → Set up CI/CD & deploy
- 9. Context Manager      → Document decisions
-10. Presentation Agent   → Create client presentation
-11. Stakeholder Agent    → Prepare status reports
-12. Proposal/Pitch Agent → Create project proposals
+ 6b. Game Developer       → Build games (Godot, Phaser, PyGame)
+ 6c. Creative App Dev     → Build creative apps (generative art, gamification)
+ 7. Test Strategist      → Design & implement tests
+ 8. Code Reviewer        → Review code quality
+ 9. DevOps Agent         → Set up CI/CD & deploy
+10. Context Manager      → Document decisions
+11. Presentation Agent   → Create client presentation
+12. Stakeholder Agent    → Prepare status reports
+13. Proposal/Pitch Agent → Create project proposals
 ```
 
 ## Repository Structure
 
 ```
 .github/
-├── agents/                    # 15 specialized AI agents
+├── agents/                    # 17 specialized AI agents
 │   ├── lead-architect.agent.md
 │   ├── python-expert.agent.md
 │   ├── golang-expert.agent.md
@@ -164,6 +175,9 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 │   ├── validate-agents.yml
 │   └── ci-cd-check.yml
 └── copilot-instructions.md    # Global Copilot config
+agents/
+├── game-developer.agent.md    # Game Development
+└── creative-app-developer.agent.md  # Creative Apps
 skills/
 ├── python-patterns/SKILL.md   # Python best practices
 ├── golang-patterns/SKILL.md   # Go best practices
@@ -178,7 +192,14 @@ skills/
 ├── project-management/        # PM skills
 ├── team-collaboration/        # Collaboration skills
 ├── general/                   # Cross-cutting skills
-└── system-design/             # System design skills
+├── system-design/             # System design skills
+├── game-development/          # Game design, mechanics, architecture
+│   ├── game-design.md
+│   ├── game-mechanics.md
+│   ├── game-architecture.md
+│   └── prototyping.md
+└── creative-apps/             # Creative app patterns
+    └── creative-app-patterns.md
 marp-templates/                # Marp slide templates
 ├── client-pitch.md
 ├── technical-deepdive.md

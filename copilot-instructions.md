@@ -4,7 +4,7 @@ This repository is the **Copilot Expert Hub** — a comprehensive collection of 
 
 ## Repository Structure
 
-- **`agents/`** — 15 specialized AI agents covering the full delivery lifecycle
+- **`agents/`** — 17 specialized AI agents covering the full delivery lifecycle
 - **`skills/`** — Technical knowledge bases organized by domain:
   - `python-patterns/`, `golang-patterns/`, `flutter-patterns/`, `frontend-patterns/` — Language-specific patterns
   - `gcp-patterns/`, `testing/`, `anti-patterns/`, `marp-presentations/` — Domain skills
@@ -14,6 +14,8 @@ This repository is the **Copilot Expert Hub** — a comprehensive collection of 
   - `team-collaboration/` — PR crafting, progress sync, feature discovery, incident response
   - `general/` — Communication, principal engineer decisions
   - `system-design/` — Architecture planning
+  - `game-development/` — Game design, mechanics, architecture, prototyping & playtesting
+  - `creative-apps/` — Creative app patterns, generative design, gamification
 - **`marp-templates/`** — Presentation templates (Client Pitch, Tech Deep-Dive, Project Review)
 - **`reference-repos/`** — Golden architecture examples
 - **`docs/`** — Documentation and contribution guidelines
@@ -39,6 +41,8 @@ Use these agents by referencing them in conversations:
 | **Context Manager** | Maintaining project context, tracking decisions |
 | **Stakeholder Agent** | Translating technical content for business audiences |
 | **Proposal/Pitch Agent** | Creating proposals, roadmaps, cost estimates |
+| **Game Developer** | Game design, mechanics, Godot/Phaser/Unity, game jam prototypes |
+| **Creative App Developer** | Creative coding, generative art, gamification, delightful UX |
 
 ## General Guidelines
 
