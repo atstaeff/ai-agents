@@ -1,0 +1,180 @@
+# Copilot Expert Hub — Development Commands
+# Install just: https://github.com/casey/just
+
+# Default recipe — show available commands
+default:
+    @just --list
+
+# ============================================================================
+# Documentation
+# ============================================================================
+
+# Serve documentation locally (http://localhost:8000)
+docs:
+    mkdocs serve
+
+# Serve documentation on custom port
+docs-port port="8001":
+    mkdocs serve -a localhost:{{port}}
+
+# Build documentation site
+docs-build:
+    mkdocs build
+
+# Build documentation (clean)
+docs-clean:
+    mkdocs build --clean
+
+# Deploy documentation to GitHub Pages
+docs-deploy:
+    mkdocs gh-deploy --force
+
+# ============================================================================
+# Validation
+# ============================================================================
+
+# Validate all agent files exist and have correct format
+validate-agents:
+    @echo "🔍 Validating agents..."
+    @for f in agents/*.agent.md; do \
+        if [ ! -f "$$f" ]; then \
+            echo "❌ Missing: $$f"; \
+            exit 1; \
+        fi; \
+        echo "✅ $$f"; \
+    done
+    @echo ""
+    @echo "✅ All agents valid!"
+
+# Validate all skill files exist
+validate-skills:
+    @echo "🔍 Validating skills..."
+    @find skills -name 'SKILL.md' -o -name '*.md' | head -30 | while read f; do \
+        echo "✅ $$f"; \
+    done
+    @echo ""
+    @echo "✅ Skills check complete!"
+
+# Validate all templates
+validate-templates:
+    @echo "🔍 Validating templates..."
+    @for f in marp-templates/*.md; do \
+        echo "✅ $$f"; \
+    done
+    @echo ""
+    @echo "✅ Templates valid!"
+
+# Run all validations
+validate: validate-agents validate-skills validate-templates
+    @echo ""
+    @echo "✅ All validations passed!"
+
+# ============================================================================
+# Statistics
+# ============================================================================
+
+# Show project statistics
+stats:
+    @echo "📊 Copilot Expert Hub Statistics"
+    @echo "================================"
+    @echo ""
+    @echo "Agents:     $(find agents -name '*.agent.md' | wc -l | tr -d ' ')"
+    @echo "Skills:     $(find skills -name '*.md' | wc -l | tr -d ' ')"
+    @echo "Templates:  $(find marp-templates -name '*.md' | wc -l | tr -d ' ')"
+    @echo "Ref Repos:  $(ls -d reference-repos/*/ 2>/dev/null | wc -l | tr -d ' ')"
+    @echo "Doc Pages:  $(find assets/mkdocs -name '*.md' | wc -l | tr -d ' ')"
+    @echo ""
+    @echo "Lines of Documentation:"
+    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+
+# Count lines in all markdown files
+loc:
+    @echo "Agents:"
+    @find agents -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @echo "Skills:"
+    @find skills -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @echo "Documentation:"
+    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @echo "Templates:"
+    @find marp-templates -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+
+# ============================================================================
+# Setup
+# ============================================================================
+
+# Install documentation dependencies (requires pip/uv)
+setup:
+    pip install mkdocs-material
+    @echo "✅ Dependencies installed!"
+
+# Install with uv
+setup-uv:
+    uv pip install mkdocs-material
+    @echo "✅ Dependencies installed with uv!"
+
+# ============================================================================
+# Development
+# ============================================================================
+
+# Create a new agent from template
+new-agent name:
+    @if [ -f "agents/{{name}}.agent.md" ]; then \
+        echo "❌ Agent '{{name}}' already exists!"; \
+        exit 1; \
+    fi
+    @echo '# {{name}}' > agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "## Identity" >> agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "You are a **{{name}}** — [description]." >> agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "## Core Responsibilities" >> agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "- [responsibility 1]" >> agents/{{name}}.agent.md
+    @echo "- [responsibility 2]" >> agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "## Instructions" >> agents/{{name}}.agent.md
+    @echo "" >> agents/{{name}}.agent.md
+    @echo "✅ Agent template created: agents/{{name}}.agent.md"
+
+# Create a new skill from template
+new-skill name:
+    @if [ -d "skills/{{name}}" ]; then \
+        echo "❌ Skill '{{name}}' already exists!"; \
+        exit 1; \
+    fi
+    @mkdir -p skills/{{name}}
+    @cp templates/skill-template.md skills/{{name}}/SKILL.md
+    @echo "✅ Skill template created: skills/{{name}}/SKILL.md"
+
+# ============================================================================
+# Git Helpers
+# ============================================================================
+
+# Quick commit with message
+commit msg:
+    git add -A
+    git commit -m "{{msg}}"
+
+# Commit and push
+push msg:
+    git add -A
+    git commit -m "{{msg}}"
+    git push
+
+# ============================================================================
+# Cleanup
+# ============================================================================
+
+# Clean build artifacts
+clean:
+    rm -rf site/
+    @echo "✅ Build artifacts cleaned!"
+
+# Show project info
+info:
+    @echo "Project: Copilot Expert Hub"
+    @echo "Repo:    https://github.com/atstaeff/ai-agents"
+    @echo "Docs:    https://atstaeff.github.io/ai-agents/"
+    @echo ""
+    @just stats

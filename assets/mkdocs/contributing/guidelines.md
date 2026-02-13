@@ -1,84 +1,84 @@
 # Guidelines
 
-> Qualitaetsstandards und Konventionen fuer Beitraege zum Copilot Expert Hub.
+> Quality standards and conventions for contributions to the Copilot Expert Hub.
 
 ---
 
-## Allgemeine Konventionen
+## General Conventions
 
-### Dateinamen
+### File Naming
 
-- Kleinbuchstaben mit Bindestrichen: `mein-skill-name.md`
+- Lowercase with hyphens: `my-skill-name.md`
 - Agents: `{name}.agent.md`
-- Skills: `{name}.md` oder `SKILL.md` im Unterverzeichnis
+- Skills: `{name}.md` or `SKILL.md` in a subdirectory
 
-### Markdown-Standards
+### Markdown Standards
 
-- Ueberschriften: `#` fuer Titel, `##` fuer Abschnitte, `###` fuer Unterabschnitte
-- Code-Bloecke mit Sprachkennung: ` ```python `
-- Listen konsistent (entweder `-` oder `*`)
-- Tabellen fuer strukturierte Informationen
+- Headings: `#` for title, `##` for sections, `###` for subsections
+- Code blocks with language identifier: ` ```python `
+- Consistent lists (either `-` or `*`)
+- Tables for structured information
 
-### Sprache
+### Language
 
-- Agent- und Skill-Quelldateien: **Englisch**
-- Dokumentationsseiten (MkDocs): **Deutsch** (Zielgruppe: Entwickler-Teams)
-- Code-Beispiele und Kommentare: **Englisch**
+- Agent and skill source files: **English**
+- Documentation pages (MkDocs): **English**
+- Code examples and comments: **English**
 
-## Inhaltliche Standards
+## Content Standards
 
 ### Agents
 
-| Anforderung | Pflicht |
-|------------|---------|
-| Identity-Abschnitt | ✅ |
+| Requirement | Required |
+|-------------|----------|
+| Identity section | ✅ |
 | Core Responsibilities (5-8) | ✅ |
-| Nummerierte Instructions | ✅ |
-| Code-Beispiele | ✅ |
-| Before/After Demos | Empfohlen |
-| Cross-References | ✅ |
+| Numbered Instructions | ✅ |
+| Code examples | ✅ |
+| Before/after demos | Recommended |
+| Cross-references | ✅ |
 
 ### Skills
 
-| Anforderung | Pflicht |
-|------------|---------|
-| "Instructions for AI" Abschnitt | ✅ |
+| Requirement | Required |
+|-------------|----------|
+| "Instructions for AI" section | ✅ |
 | Best Practices (✅) | ✅ |
 | Anti-Patterns (❌) | ✅ |
-| Code-Beispiele | ✅ |
-| Example Prompts | Empfohlen |
+| Code examples | ✅ |
+| Example Prompts | Recommended |
 | Related Skills | ✅ |
 
-## Code-Beispiele
+## Code Examples
 
-### Sprachen
+### Languages
 
-- **Python** — Primaersprache, fuer die meisten Beispiele
-- **Go** — Fuer Concurrency, Microservices, CLIs
-- **TypeScript** — Fuer Frontend-Beispiele
-- **Dart** — Fuer Flutter/Mobile-Beispiele
-- **Terraform** — Fuer Infrastructure-as-Code
+- **Python** — Primary language, used for most examples
+- **Go** — For concurrency, microservices, CLIs
+- **TypeScript** — For frontend examples
+- **Dart** — For Flutter/mobile examples
+- **Terraform** — For infrastructure-as-code
 
 ### Format
 
 ```python
-# ❌ Before: Problematischer Code mit Erklaerung
+# ❌ Before: Problematic code with explanation
 def bad_example():
     pass
 
-# ✅ After: Verbesserter Code mit Erklaerung
+# ✅ After: Improved code with explanation
 def good_example():
     pass
 ```
 
-## Pull Request Prozess
+## Pull Request Process
 
-1. Fork erstellen und Branch anlegen
-2. Aenderungen umsetzen und lokal testen
-3. PR mit klarer Beschreibung erstellen
-4. Review abwarten und Feedback einarbeiten
-5. Nach Approval wird gemergt
+1. Create a fork and branch
+2. Implement changes and test locally
+3. Create a PR with a clear description
+4. Wait for review and incorporate feedback
+5. Merged after approval
 
 ---
 
-*Quelldateien: [`CONTRIBUTING.md`](https://github.com/atstaeff/ai-agents/blob/main/CONTRIBUTING.md) · [`docs/GUIDELINES.md`](https://github.com/atstaeff/ai-agents/blob/main/docs/GUIDELINES.md)*
+*Source files: [`CONTRIBUTING.md`](https://github.com/atstaeff/ai-agents/blob/main/CONTRIBUTING.md) · [`docs/GUIDELINES.md`](https://github.com/atstaeff/ai-agents/blob/main/docs/GUIDELINES.md)*

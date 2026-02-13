@@ -1,82 +1,82 @@
-# Neuen Agent erstellen
+# Create a New Agent
 
-Anleitung zum Erstellen eines neuen spezialisierten AI-Agents.
+Guide for creating a new specialized AI agent.
 
 ---
 
-## Voraussetzungen
+## Prerequisites
 
-- Der Agent deckt eine klar definierte Rolle oder Technologie ab
-- Es gibt keinen bestehenden Agent mit gleichem Fokus
-- Der Agent ist breit genug einsetzbar (nicht zu spezifisch fuer ein Projekt)
+- The agent covers a clearly defined role or technology
+- No existing agent has the same focus
+- The agent is broadly applicable (not too specific to one project)
 
-## Schritt-fuer-Schritt
+## Step by Step
 
-### 1. Datei anlegen
+### 1. Create the File
 
-Erstelle eine Datei unter `agents/` mit dem Namensschema:
+Create a file under `agents/` following the naming convention:
 
 ```
 agents/{name}.agent.md
 ```
 
-Beispiel: `agents/rust-expert.agent.md`
+Example: `agents/rust-expert.agent.md`
 
-### 2. Struktur folgen
+### 2. Follow the Structure
 
-Jeder Agent braucht folgende Abschnitte:
+Every agent needs the following sections:
 
 ```markdown
 # {Name} Agent
 
 ## Identity
-Wer ist der Agent? Rolle, Erfahrungslevel, Spezialisierung.
+Who is the agent? Role, experience level, specialization.
 
 ## Core Responsibilities
-Was kann der Agent? 5-8 Kernkompetenzen.
+What can the agent do? 5-8 core competencies.
 
 ## Instructions
-Wie arbeitet der Agent? Nummerierte Anweisungen.
+How does the agent work? Numbered instructions.
 
 ## [Patterns / Templates / Checklists]
-Konkrete Artefakte die der Agent nutzt.
+Concrete artifacts the agent uses.
 
 ## Example Output
-Beispiel fuer typische Agent-Ausgaben.
+Example of typical agent outputs.
 
 ## Cross-References
-Verwandte Agents und Skills.
+Related agents and skills.
 ```
 
-### 3. Identity formulieren
+### 3. Write the Identity
 
 !!! tip "Best Practice"
-    Schreibe die Identity in der zweiten Person:
-    "You are a **{Name} Agent** — a {erfahrung} specializing in {bereich}."
+    Write the identity in the second person:
+    "You are a **{Name} Agent** — a {experience} specializing in {area}."
 
-### 4. Instructions definieren
+### 4. Define Instructions
 
-- Nummerierte, priorisierte Anweisungen
-- Jede Instruktion mit **Fettdruck-Label** beginnen
-- Konkrete, handlungsorientierte Formulierungen
+- Numbered, prioritized instructions
+- Start each instruction with a **bold label**
+- Use concrete, action-oriented wording
 
-### 5. Beispiele hinzufuegen
+### 5. Add Examples
 
-- Before/After Code-Beispiele
-- Templates fuer typische Ausgaben
-- Checklisten fuer wiederkehrende Aufgaben
+- Before/after code examples
+- Templates for typical outputs
+- Checklists for recurring tasks
 
-### 6. Cross-References setzen
+### 6. Set Cross-References
 
-Verlinke zu:
-- Verwandten Agents (z.B. Test Strategist fuer jeden Sprach-Expert)
-- Relevanten Skills (z.B. Clean Code, SOLID, Design Patterns)
+Link to:
+- Related agents (e.g., Test Strategist for every language expert)
+- Relevant skills (e.g., Clean Code, SOLID, Design Patterns)
 
-## Checkliste
+## Checklist
 
-- [ ] `.agent.md` Dateinamen-Konvention eingehalten
-- [ ] Identity, Responsibilities, Instructions vorhanden
-- [ ] Mindestens 3 praktische Beispiele
-- [ ] Cross-References zu Agents und Skills
-- [ ] Keine urheberrechtlich geschuetzten Inhalte
-- [ ] PR mit Beschreibung erstellt
+- [ ] `.agent.md` file naming convention followed
+- [ ] Identity, Responsibilities, Instructions present
+- [ ] At least 3 practical examples
+- [ ] Cross-references to agents and skills
+- [ ] No copyrighted content
+- [ ] PR created with description

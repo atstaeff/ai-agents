@@ -1,8 +1,39 @@
 # Copilot Expert Hub
 
-Eine vollstaendige, modulare und skalierbare Sammlung von **AI Agents, Skills, Templates und Referenzarchitekturen** fuer GitHub Copilot und AI-gestuetzte Softwareentwicklung.
+<div class="hero" markdown>
+
+## Your AI Engineering Team — Right Inside VS Code
+
+**15 specialized agents** covering the entire Software Delivery Lifecycle:
+Architecture, Code, Testing, Review, Deployment, and Client Communication.
+**Clone one repo. Ship better software immediately.**
+
+[Get Started :material-rocket-launch:](getting-started/installation.md){ .md-button .md-button--primary }
+[Explore Agents :material-robot:](agents/index.md){ .md-button }
+
+</div>
 
 ---
+
+## Full SDLC Coverage — Powered by AI
+
+```mermaid
+graph LR
+    A["🎯 Planning"] --> B["🏗️ Architecture"]
+    B --> C["💻 Implementation"]
+    C --> D["🧪 Testing"]
+    D --> E["🔍 Review"]
+    E --> F["🚀 Deployment"]
+    F --> G["📊 Communication"]
+
+    style A fill:#e8eaf6,stroke:#3949ab
+    style B fill:#e8eaf6,stroke:#3949ab
+    style C fill:#e3f2fd,stroke:#1565c0
+    style D fill:#e8f5e9,stroke:#2e7d32
+    style E fill:#fff3e0,stroke:#e65100
+    style F fill:#f3e5f5,stroke:#6a1b9a
+    style G fill:#fce4ec,stroke:#c62828
+```
 
 <div class="stat-grid" markdown>
 <div class="stat" markdown>
@@ -10,7 +41,7 @@ Eine vollstaendige, modulare und skalierbare Sammlung von **AI Agents, Skills, T
 <span class="label">AI Agents</span>
 </div>
 <div class="stat" markdown>
-<span class="number">12+</span>
+<span class="number">25+</span>
 <span class="label">Skills</span>
 </div>
 <div class="stat" markdown>
@@ -19,66 +50,169 @@ Eine vollstaendige, modulare und skalierbare Sammlung von **AI Agents, Skills, T
 </div>
 <div class="stat" markdown>
 <span class="number">2</span>
-<span class="label">Referenz-Repos</span>
+<span class="label">Reference Repos</span>
 </div>
 </div>
 
 ---
 
-## Was ist der Copilot Expert Hub?
+## Get Started in 3 Steps
 
-Der Copilot Expert Hub bietet eine **Agent Chain**, die den gesamten Software Delivery Lifecycle abdeckt:
+<div class="grid" markdown>
 
-```
-Architektur → Implementierung → Testing → Review → Deployment → Praesentation → Kundenkommunikation
-```
-
-Jeder Agent ist ein spezialisierter AI-Experte, der mit GitHub Copilot in VS Code genutzt werden kann. Skills liefern das Fachwissen, Templates die Formate.
-
----
-
-## Fuer wen ist das?
-
-| Rolle | Nutzen |
-|-------|--------|
-| **Backend-Entwickler** | Python Expert, Golang Expert, Lead Architect, SOLID, Clean Code |
-| **Frontend-Entwickler** | Frontend Expert, Flutter Expert, Component Patterns |
-| **DevOps / SRE** | DevOps Agent, GCP Architect, CI/CD Patterns |
-| **Tech Leads** | Architecture Reviewer, Test Strategist, Code Reviewer |
-| **Projektleiter** | Task Orchestrator, Stakeholder Agent, Proposal Agent |
-
----
-
-## Schnellstart
+<div class="card" markdown>
+### :material-download: 1. Clone
 
 ```bash
-# 1. Repository klonen
 git clone https://github.com/atstaeff/ai-agents.git
-
-# 2. In VS Code oeffnen
-code ai-agents
-
-# 3. Agent in Copilot Chat verwenden
-# @workspace Nutze den Lead Architect Agent um eine Event-Driven
-# Architektur fuer unser Order-Management-System zu entwerfen.
 ```
+</div>
 
-:material-arrow-right: [Ausfuehrliche Anleitung](getting-started/installation.md)
+<div class="card" markdown>
+### :material-microsoft-visual-studio-code: 2. Open in VS Code
+
+```bash
+code ai-agents
+```
+</div>
+
+<div class="card" markdown>
+### :material-robot: 3. Use an Agent
+
+```
+@workspace Use the Lead Architect agent
+to design my new project.
+```
+</div>
+
+</div>
+
+:material-arrow-right: [Detailed Guide](getting-started/installation.md)
 
 ---
 
-## Dokumentation
+## Why Copilot Expert Hub?
 
-| Bereich | Zielgruppe | Beschreibung |
-|---------|------------|--------------|
-| [Erste Schritte](getting-started/installation.md) | Alle | Installation, Setup, erster Agent |
-| [Agents](agents/index.md) | Entwickler | Katalog aller 15 AI-Agents |
-| [Skills](skills/index.md) | Entwickler | Technische Wissensdatenbanken |
-| [Templates & Referenzen](references/index.md) | Alle | Marp Templates, Golden Repos |
-| [Mitmachen](contributing/index.md) | Contributors | Agents & Skills beitragen |
+<div class="grid" markdown>
+
+<div class="card" markdown>
+### :material-link-variant: Complete SDLC
+
+No other open-source project covers the entire Software Delivery Lifecycle — from architecture design to client presentations.
+</div>
+
+<div class="card" markdown>
+### :material-power-plug: Plug & Play
+
+No setup, no configuration, no dependencies. Clone the repo, open VS Code, start working.
+</div>
+
+<div class="card" markdown>
+### :material-shield-check: Enterprise Quality
+
+Every agent enforces production standards: SOLID, DDD, Hexagonal Architecture, Test Pyramid, Security Hardening.
+</div>
+
+<div class="card" markdown>
+### :material-open-source-initiative: Open Source & Extensible
+
+MIT License. Add your own agents and skills. Community-driven and transparent.
+</div>
+
+</div>
+
+:material-arrow-right: [Learn More](why-copilot-expert-hub.md)
 
 ---
 
-## Lizenz
+## Agent Highlights
 
-MIT — siehe [LICENSE](https://github.com/atstaeff/ai-agents/blob/main/LICENSE) fuer Details.
+<div class="grid" markdown>
+
+<div class="card" markdown>
+### :material-drawing: Lead Architect
+<span class="agent-badge badge-phase-plan">Architecture</span>
+
+System design, ADRs, DDD, Event Sourcing — for thorough architecture decisions.
+
+[:material-arrow-right: Details](agents/lead-architect.md)
+</div>
+
+<div class="card" markdown>
+### :material-language-python: Python Expert
+<span class="agent-badge badge-phase-build">Implementation</span>
+
+Idiomatic Python 3.12+, Pydantic, async/await, Repository Pattern.
+
+[:material-arrow-right: Details](agents/python-expert.md)
+</div>
+
+<div class="card" markdown>
+### :material-magnify: Code Reviewer
+<span class="agent-badge badge-phase-review">Review</span>
+
+Automated code reviews focused on quality, security, and best practices.
+
+[:material-arrow-right: Details](agents/code-reviewer.md)
+</div>
+
+<div class="card" markdown>
+### :material-presentation: Stakeholder Agent
+<span class="agent-badge badge-phase-communicate">Communication</span>
+
+Translate technical results into business language — reports, summaries, pitches.
+
+[:material-arrow-right: Details](agents/stakeholder-agent.md)
+</div>
+
+</div>
+
+[:material-view-grid: View All 15 Agents](agents/index.md){ .md-button }
+
+---
+
+## Who Is This For?
+
+| Role | Benefit | Entry Agents |
+|------|---------|-------------|
+| **Solo Developers & Freelancers** | One person, 15 experts — multiply your productivity | Python Expert, Lead Architect |
+| **Engineering Teams** | Standardize quality, onboard juniors faster | Code Reviewer, Task Orchestrator |
+| **Tech Leads & Architects** | Accelerate architecture decisions | Lead Architect, Architecture Reviewer |
+| **Consultants & Agencies** | Deliver client artifacts faster | Stakeholder Agent, Presentation Agent |
+
+---
+
+## Community & Contributing
+
+We're looking for **contributors**! Extend the hub with new agents, skills, or improvements.
+
+<div class="grid" markdown>
+
+<div class="card" markdown>
+### :material-plus-circle: Contribute an Agent
+Create a new specialized agent using our template.
+
+[:material-arrow-right: Guide](contributing/new-agent.md)
+</div>
+
+<div class="card" markdown>
+### :material-book-plus: Contribute a Skill
+Add a technical knowledge base to the skills catalog.
+
+[:material-arrow-right: Guide](contributing/new-skill.md)
+</div>
+
+<div class="card" markdown>
+### :material-github: On GitHub
+Open issues, create PRs, or discuss ideas.
+
+[:material-arrow-right: Repository](https://github.com/atstaeff/ai-agents)
+</div>
+
+</div>
+
+---
+
+## License
+
+MIT — see [LICENSE](https://github.com/atstaeff/ai-agents/blob/main/LICENSE) for details.

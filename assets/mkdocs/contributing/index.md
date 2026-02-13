@@ -1,67 +1,67 @@
 # Contributing Guide
 
-Vielen Dank fuer dein Interesse am Copilot Expert Hub! Hier erfaehrst du, wie du beitragen kannst.
+Thank you for your interest in the Copilot Expert Hub! Here's how you can contribute.
 
 ---
 
-## Beitragen
+## Contribute
 
 <div class="grid" markdown>
 
 <div class="card" markdown>
-### :material-robot: Neuen Agent erstellen
-Einen spezialisierten AI-Agent fuer eine neue Rolle oder Technologie.
+### :material-robot: Create a New Agent
+A specialized AI agent for a new role or technology.
 
-[:material-arrow-right: Anleitung](new-agent.md)
+[:material-arrow-right: Guide](new-agent.md)
 </div>
 
 <div class="card" markdown>
-### :material-book-open-variant: Neuen Skill erstellen
-Eine technische Wissensdatenbank zu einem neuen Thema.
+### :material-book-open-variant: Create a New Skill
+A technical knowledge base on a new topic.
 
-[:material-arrow-right: Anleitung](new-skill.md)
+[:material-arrow-right: Guide](new-skill.md)
 </div>
 
 </div>
 
 ---
 
-## Schnellstart
+## Quick Start
 
-1. **Repository forken** und lokal klonen
-2. **Branch erstellen**: `git checkout -b feature/mein-beitrag`
-3. **Aenderungen umsetzen** (Agent, Skill, oder Dokumentation)
-4. **Testen** — Sicherstellen, dass der Agent/Skill wie erwartet funktioniert
-5. **Pull Request erstellen** mit klarer Beschreibung
+1. **Fork the repository** and clone it locally
+2. **Create a branch**: `git checkout -b feature/my-contribution`
+3. **Make your changes** (agent, skill, or documentation)
+4. **Test** — ensure the agent/skill works as expected
+5. **Create a pull request** with a clear description
 
-## Kategorien
+## Categories
 
 ### Agents (`agents/`)
 
-| Kategorie | Beschreibung |
-|-----------|-------------|
-| Engineering | Sprach-/Technologie-spezifische Entwicklung |
-| Review & Qualitaet | Code- und Architektur-Reviews |
-| Produktivitaet | Projektkoordination, Wissensmanagement |
-| Kunden & Kommunikation | Praesentationen, Reports, Proposals |
+| Category | Description |
+|----------|-------------|
+| Engineering | Language/technology-specific development |
+| Review & Quality | Code and architecture reviews |
+| Productivity | Project coordination, knowledge management |
+| Client & Communication | Presentations, reports, proposals |
 
 ### Skills (`skills/`)
 
-| Kategorie | Verzeichnis |
-|-----------|------------|
-| Sprach-Patterns | `python-patterns/`, `golang-patterns/`, etc. |
+| Category | Directory |
+|----------|-----------|
+| Language Patterns | `python-patterns/`, `golang-patterns/`, etc. |
 | Software Engineering | `software-engineering/` |
-| Architektur | `architecture/` |
+| Architecture | `architecture/` |
 | Cloud & DevOps | `gcp-patterns/`, `testing/` |
-| Projekt & Team | `project-management/`, `team-collaboration/` |
-| Weitere | `anti-patterns/`, `marp-presentations/`, etc. |
+| Project & Team | `project-management/`, `team-collaboration/` |
+| Other | `anti-patterns/`, `marp-presentations/`, etc. |
 
-## Qualitaetsstandards
+## Quality Standards
 
-- [x] Klare, konsistente Markdown-Struktur
-- [x] Praktische Beispiele (Before/After wo sinnvoll)
-- [x] Querverweise zu verwandten Agents/Skills
-- [x] Keine urheberrechtlich geschuetzten Inhalte
-- [x] Sprachspezifische Beispiele in Python, Go oder TypeScript
+- [x] Clear, consistent Markdown structure
+- [x] Practical examples (before/after where appropriate)
+- [x] Cross-references to related agents/skills
+- [x] No copyrighted content
+- [x] Language-specific examples in Python, Go, or TypeScript
 
-:material-arrow-right: [Vollstaendige Guidelines](guidelines.md)
+:material-arrow-right: [Full Guidelines](guidelines.md)

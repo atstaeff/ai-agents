@@ -1,94 +1,94 @@
-# Skills-Katalog
+# Skills Catalog
 
-Skills sind **technische Wissensdatenbanken**, die Agents nutzten, um fundierte Empfehlungen zu geben. Jeder Skill enthaelt Best Practices, Patterns, Code-Beispiele und Anti-Patterns.
+Skills are **technical knowledge bases** that agents use to provide well-founded recommendations. Each skill contains best practices, patterns, code examples, and anti-patterns.
 
 ---
 
-## Sprach-Patterns
+## Language Patterns
 
-Sprachspezifische Patterns und Best Practices.
+Language-specific patterns and best practices.
 
-| Skill | Beschreibung | Fuer Agent |
-|-------|-------------|------------|
-| [Python Patterns](python-patterns.md) | Idiomatisches Python, Design Patterns, SOLID | Python Expert |
+| Skill | Description | For Agent |
+|-------|-------------|-----------|
+| [Python Patterns](python-patterns.md) | Idiomatic Python, Design Patterns, SOLID | Python Expert |
 | [Golang Patterns](golang-patterns.md) | Idiomatic Go, Concurrency, Interfaces | Golang Expert |
 | [Flutter Patterns](flutter-patterns.md) | Dart/Flutter, BLoC, Clean Architecture | Flutter & iOS Expert |
 | [Frontend Patterns](frontend-patterns.md) | TypeScript, Vue.js, Angular Patterns | Frontend Expert |
 
 ## Software Engineering
 
-Sprachuebergreifende Engineering-Prinzipien.
+Cross-language engineering principles.
 
-| Skill | Beschreibung |
+| Skill | Description |
 |-------|-------------|
-| [Clean Code](clean-code.md) | Naming, Funktionen, Error Handling, DRY |
-| [SOLID Principles](solid-principles.md) | SRP, OCP, LSP, ISP, DIP mit Beispielen |
+| [Clean Code](clean-code.md) | Naming, Functions, Error Handling, DRY |
+| [SOLID Principles](solid-principles.md) | SRP, OCP, LSP, ISP, DIP with examples |
 | [Design Patterns](design-patterns.md) | Strategy, Observer, Factory, Repository |
-| [Code Review](code-review.md) | Review-Guidelines, Checklisten, Feedback |
+| [Code Review](code-review.md) | Review guidelines, checklists, feedback |
 | [Testing Strategies](testing-strategies.md) | Test Pyramid, TDD, Mocking, Coverage |
-| [Practical Refactoring](practical-refactoring.md) | Refactoring-Taktiken und -Workflows |
+| [Practical Refactoring](practical-refactoring.md) | Refactoring tactics and workflows |
 
-## Architektur
+## Architecture
 
-Architektur-Patterns und Design-Entscheidungen.
+Architecture patterns and design decisions.
 
-| Skill | Beschreibung |
+| Skill | Description |
 |-------|-------------|
-| [Microservices](microservices.md) | Service-Schnitt, Kommunikation, Resilience |
+| [Microservices](microservices.md) | Service boundaries, communication, resilience |
 | [Domain-Driven Design](domain-driven-design.md) | Bounded Contexts, Aggregates, Events |
 | [Cloud-Native](cloud-native.md) | 12-Factor, Containers, Serverless |
-| [API Design](api-design.md) | REST, gRPC, Versionierung, Error Handling |
+| [API Design](api-design.md) | REST, gRPC, Versioning, Error Handling |
 | [Security](security.md) | AuthN/AuthZ, Input Validation, Encryption |
 | [Performance](performance.md) | Caching, Indexing, Profiling, Optimization |
 
 ## Cloud & DevOps
 
-Cloud-Infrastruktur und Operations.
+Cloud infrastructure and operations.
 
-| Skill | Beschreibung |
+| Skill | Description |
 |-------|-------------|
 | [GCP Patterns](gcp-patterns.md) | Cloud Run, Pub/Sub, BigQuery, Terraform |
 | [Testing](testing.md) | Testing Patterns, Fixtures, Mocking |
 | [DevOps & CI/CD](devops-cicd.md) | Pipelines, GitOps, Deployment Strategies |
 
-## Projekt & Team
+## Project & Team
 
-Zusammenarbeit, Kommunikation und Projektmanagement.
+Collaboration, communication, and project management.
 
-| Skill | Beschreibung |
+| Skill | Description |
 |-------|-------------|
 | [Agile Methodologies](agile-methodologies.md) | Scrum, Kanban, Sprint Planning |
-| [Technical Debt](technical-debt.md) | Bewertung, Priorisierung, Abbau |
-| [PR Crafting](pr-crafting.md) | Professionelle Pull Requests |
+| [Technical Debt](technical-debt.md) | Assessment, Prioritization, Reduction |
+| [PR Crafting](pr-crafting.md) | Professional Pull Requests |
 | [Progress Sync](progress-sync.md) | Standup, Status Updates, Reporting |
-| [Feature Discovery](feature-discovery.md) | Anforderungsermittlung, Story Mapping |
+| [Feature Discovery](feature-discovery.md) | Requirements Gathering, Story Mapping |
 | [Incident Response](incident-response.md) | Incident Management, Postmortems |
 
-## Weitere Skills
+## Additional Skills
 
-| Skill | Beschreibung |
+| Skill | Description |
 |-------|-------------|
-| [Anti-Patterns](anti-patterns.md) | Haeufige Fehler und wie man sie vermeidet |
+| [Anti-Patterns](anti-patterns.md) | Common mistakes and how to avoid them |
 | [Marp Presentations](marp-presentations.md) | Marp Syntax, Templates, Styling |
-| [Communication](communication.md) | Technische Kommunikation |
-| [Architecture Planning](architecture-planning.md) | Planungsmethodik, C4 Model |
-| [Principal Engineer Decisions](principal-engineer-decisions.md) | Entscheidungsfindung auf Senior-Level |
+| [Communication](communication.md) | Technical Communication |
+| [Architecture Planning](architecture-planning.md) | Planning Methodology, C4 Model |
+| [Principal Engineer Decisions](principal-engineer-decisions.md) | Senior-level decision making |
 
 ---
 
-## Skills im Workflow nutzen
+## Using Skills in Your Workflow
 
-Skills werden zusammen mit Agents referenziert:
+Skills are referenced together with agents:
 
 ```
-@workspace Nutze den Python Expert Agent mit den Skills:
+@workspace Use the Python Expert agent with the following skills:
 - Clean Code
 - SOLID Principles
 - Design Patterns
 
-Refactore den UserService nach diesen Prinzipien.
+Refactor the UserService according to these principles.
 ```
 
-!!! tip "Skills kombinieren"
-    Je mehr relevante Skills du referenzierst, desto fundierter
-    sind die Empfehlungen des Agents.
+!!! tip "Combining Skills"
+    The more relevant skills you reference, the more well-founded
+    the agent's recommendations will be.

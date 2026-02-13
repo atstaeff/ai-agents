@@ -1,104 +1,104 @@
-# Schnellstart
+# Quick Start
 
-In 5 Minuten zum ersten AI-gestuetzten Code-Review oder Refactoring.
-
----
-
-## 1. Agent auswaehlen
-
-Waehle den passenden Agent fuer deine Aufgabe:
-
-| Aufgabe | Agent |
-|---------|-------|
-| Python-Service entwickeln | `python-expert` |
-| Architektur planen | `lead-architect` |
-| Code Review durchfuehren | `code-reviewer` |
-| Tests schreiben | `test-strategist` |
-| CI/CD Pipeline erstellen | `devops-agent` |
-| Frontend umsetzen | `frontend-expert` |
+Get your first AI-powered code review or refactoring done in 5 minutes.
 
 ---
 
-## 2. Chat oeffnen und Agent aufrufen
+## 1. Choose an Agent
 
-Oeffne den Copilot Chat und formuliere deine Anfrage:
+Select the right agent for your task:
 
-### Beispiel: Python-Service refactoren
+| Task | Agent |
+|------|-------|
+| Develop a Python service | `python-expert` |
+| Plan architecture | `lead-architect` |
+| Perform a code review | `code-reviewer` |
+| Write tests | `test-strategist` |
+| Create a CI/CD pipeline | `devops-agent` |
+| Build a frontend | `frontend-expert` |
+
+---
+
+## 2. Open Chat and Invoke the Agent
+
+Open Copilot Chat and formulate your request:
+
+### Example: Refactor a Python Service
 
 ```
-@workspace Nutze den Python Expert Agent.
-Refactore den UserService in src/services/user_service.py.
-Wende das Repository Pattern an und fuege Dependency Injection hinzu.
+@workspace Use the Python Expert agent.
+Refactor the UserService in src/services/user_service.py.
+Apply the Repository Pattern and add Dependency Injection.
 ```
 
-### Beispiel: Architektur-Review
+### Example: Architecture Review
 
 ```
-@workspace Nutze den Architecture Reviewer Agent.
-Pruefe die aktuelle Microservice-Architektur und identifiziere
-Verbesserungspotenziale bei Kopplung und Kohäsion.
+@workspace Use the Architecture Reviewer agent.
+Review the current microservice architecture and identify
+improvement opportunities regarding coupling and cohesion.
 ```
 
-### Beispiel: Test-Strategie erstellen
+### Example: Create a Test Strategy
 
 ```
-@workspace Nutze den Test Strategist Agent.
-Erstelle eine Teststrategie fuer den Payment-Service.
-Beruecksichtige Unit Tests, Integration Tests und Contract Tests.
+@workspace Use the Test Strategist agent.
+Create a test strategy for the Payment Service.
+Include Unit Tests, Integration Tests, and Contract Tests.
 ```
 
 ---
 
-## 3. Skills ergaenzen
+## 3. Add Skills
 
-Fuer tiefere Expertise kannst du Skills hinzufuegen:
+For deeper expertise, you can add skills:
 
 ```
-@workspace Nutze den Python Expert mit den Skills:
+@workspace Use the Python Expert with the following skills:
 - Clean Code
 - SOLID Principles
 - Design Patterns (Repository, Factory)
 
-Refactore die Datenbankzugriffe in src/repositories/.
+Refactor the database access layer in src/repositories/.
 ```
 
 ---
 
-## 4. Iterativ arbeiten
+## 4. Work Iteratively
 
-Die Agents arbeiten am besten im Dialog. Verfeinere die Ergebnisse:
+Agents work best in dialogue. Refine the results:
 
 ```mermaid
 graph LR
-    A[Anfrage stellen] --> B[Agent-Antwort pruefen]
-    B --> C{Zufrieden?}
-    C -->|Ja| D[Code uebernehmen]
-    C -->|Nein| E[Feedback geben]
+    A[Submit request] --> B[Review agent response]
+    B --> C{Satisfied?}
+    C -->|Yes| D[Accept code]
+    C -->|No| E[Give feedback]
     E --> B
 ```
 
 !!! tip "Best Practice"
-    Gib dem Agent konkretes Feedback: "Aendere die Fehlerbehandlung auf Custom Exceptions"
-    statt "Mach es besser".
+    Give the agent specific feedback: "Change the error handling to use Custom Exceptions"
+    instead of "Make it better".
 
 ---
 
-## 5. Ergebnisse validieren
+## 5. Validate Results
 
-- [x] Code-Aenderungen im Diff pruefen
-- [x] Tests ausfuehren
-- [x] Linting/Formatting pruefen
-- [x] PR erstellen mit Agent-Unterstuetzung
+- [x] Review code changes in the diff
+- [x] Run tests
+- [x] Check linting/formatting
+- [x] Create a PR with agent assistance
 
 ```
-@workspace Nutze den PR Crafting Skill.
-Erstelle eine aussagekraeftige PR-Beschreibung fuer die
-Aenderungen im UserService.
+@workspace Use the PR Crafting skill.
+Create a meaningful PR description for the
+changes in the UserService.
 ```
 
 ---
 
-## Naechste Schritte
+## Next Steps
 
-- :material-swap-horizontal: [Empfohlener Workflow](workflow.md) — Der optimale Agent-Workflow
-- :material-robot: [Agent-Katalog](../agents/index.md) — Alle Agents im Detail
+- :material-swap-horizontal: [Recommended Workflow](workflow.md) — The optimal agent workflow
+- :material-robot: [Agent Catalog](../agents/index.md) — All agents in detail

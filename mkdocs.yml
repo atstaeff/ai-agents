@@ -12,7 +12,7 @@ site_dir: site
 
 theme:
   name: material
-  language: de
+  language: en
   palette:
     - scheme: default
       primary: indigo
@@ -49,7 +49,7 @@ theme:
 
 plugins:
   - search:
-      lang: de
+      lang: en
 
 markdown_extensions:
   - abbr
@@ -99,34 +99,36 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Erste Schritte:
+  - Why: why-copilot-expert-hub.md
+  - Getting Started:
       - Installation & Setup: getting-started/installation.md
-      - Schnellstart: getting-started/quick-start.md
-      - Empfohlener Workflow: getting-started/workflow.md
+      - Quick Start: getting-started/quick-start.md
+      - Recommended Workflow: getting-started/workflow.md
   - Agents:
-      - Uebersicht: agents/index.md
-      - Engineering:
+      - Overview: agents/index.md
+      - Planning & Architecture:
           - Lead Architect: agents/lead-architect.md
+          - Task Orchestrator: agents/task-orchestrator.md
+          - GCP Architect: agents/gcp-architect.md
+      - Implementation:
           - Python Expert: agents/python-expert.md
           - Golang Expert: agents/golang-expert.md
           - Flutter & iOS Expert: agents/flutter-ios-expert.md
           - Frontend Expert: agents/frontend-expert.md
-          - GCP Architect: agents/gcp-architect.md
+      - Quality & Review:
           - Test Strategist: agents/test-strategist.md
-          - DevOps Agent: agents/devops-agent.md
-      - Review & Qualitaet:
           - Architecture Reviewer: agents/architecture-reviewer.md
           - Code Reviewer: agents/code-reviewer.md
-      - Produktivitaet:
-          - Task Orchestrator: agents/task-orchestrator.md
+      - Deployment:
+          - DevOps Agent: agents/devops-agent.md
+      - Communication:
           - Context Manager: agents/context-manager.md
-      - Kunden & Kommunikation:
           - Presentation Agent: agents/presentation-agent.md
           - Stakeholder Agent: agents/stakeholder-agent.md
           - Proposal/Pitch Agent: agents/proposal-pitch.md
   - Skills:
-      - Uebersicht: skills/index.md
-      - Sprach-Patterns:
+      - Overview: skills/index.md
+      - Language Patterns:
           - Python Patterns: skills/python-patterns.md
           - Golang Patterns: skills/golang-patterns.md
           - Flutter Patterns: skills/flutter-patterns.md
@@ -138,7 +140,7 @@ nav:
           - Code Review: skills/code-review.md
           - Testing Strategies: skills/testing-strategies.md
           - Practical Refactoring: skills/practical-refactoring.md
-      - Architektur:
+      - Architecture:
           - Microservices: skills/microservices.md
           - Domain-Driven Design: skills/domain-driven-design.md
           - Cloud-Native: skills/cloud-native.md
@@ -149,26 +151,29 @@ nav:
           - GCP Patterns: skills/gcp-patterns.md
           - Testing: skills/testing.md
           - DevOps & CI/CD: skills/devops-cicd.md
-      - Projekt & Team:
+      - Project & Team:
           - Agile Methodologies: skills/agile-methodologies.md
           - Technical Debt: skills/technical-debt.md
           - PR Crafting: skills/pr-crafting.md
           - Progress Sync: skills/progress-sync.md
           - Feature Discovery: skills/feature-discovery.md
           - Incident Response: skills/incident-response.md
-      - Weitere Skills:
+      - More Skills:
           - Anti-Patterns: skills/anti-patterns.md
           - Marp Presentations: skills/marp-presentations.md
           - Communication: skills/communication.md
           - Architecture Planning: skills/architecture-planning.md
           - Principal Engineer Decisions: skills/principal-engineer-decisions.md
-  - Templates & Referenzen:
-      - Uebersicht: references/index.md
+  - Use Cases: use-cases.md
+  - Architecture: architecture.md
+  - Templates & References:
+      - Overview: references/index.md
       - Marp Templates: references/marp-templates.md
       - Python Golden Repo: references/python-golden.md
       - Event-Driven Python: references/event-driven-python.md
-  - Mitmachen:
+  - Contributing:
       - Contributing Guide: contributing/index.md
-      - Neuen Agent erstellen: contributing/new-agent.md
-      - Neuen Skill erstellen: contributing/new-skill.md
+      - Create a New Agent: contributing/new-agent.md
+      - Create a New Skill: contributing/new-skill.md
       - Guidelines: contributing/guidelines.md
+  - FAQ: faq.md

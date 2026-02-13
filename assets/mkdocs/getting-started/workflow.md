@@ -1,91 +1,91 @@
-# Empfohlener Workflow
+# Recommended Workflow
 
-Der optimale Workflow nutzt die Agents in einer strukturierten Reihenfolge — von der Planung bis zum Deployment.
+The optimal workflow uses agents in a structured sequence — from planning to deployment.
 
 ---
 
-## Uebersicht
+## Overview
 
 ```mermaid
 graph TD
-    A["1. Task Orchestrator<br/>Aufgabe planen"] --> B["2. Lead Architect<br/>Architektur designen"]
-    B --> C["3. Sprach-Expert<br/>Implementieren"]
-    C --> D["4. Test Strategist<br/>Tests schreiben"]
-    D --> E["5. Code Reviewer<br/>Review durchfuehren"]
+    A["1. Task Orchestrator<br/>Plan the task"] --> B["2. Lead Architect<br/>Design architecture"]
+    B --> C["3. Language Expert<br/>Implement"]
+    C --> D["4. Test Strategist<br/>Write tests"]
+    D --> E["5. Code Reviewer<br/>Perform review"]
     E --> F["6. DevOps Agent<br/>CI/CD + Deploy"]
-    F --> G["7. Context Manager<br/>Dokumentieren"]
+    F --> G["7. Context Manager<br/>Document"]
 ```
 
 ---
 
-## Phase 1: Planung
+## Phase 1: Planning
 
 ### Task Orchestrator
 
-Zerlege komplexe Aufgaben in handhabbare Schritte:
+Break complex tasks into manageable steps:
 
 ```
-@workspace Nutze den Task Orchestrator Agent.
-Plane die Implementierung eines neuen Notification-Service
-mit E-Mail, SMS und Push-Benachrichtigungen.
+@workspace Use the Task Orchestrator agent.
+Plan the implementation of a new Notification Service
+with email, SMS, and push notifications.
 ```
 
-**Ergebnis:** Strukturierter Implementierungsplan mit Abhaengigkeiten und Reihenfolge.
+**Result:** Structured implementation plan with dependencies and sequencing.
 
 ---
 
-## Phase 2: Architektur
+## Phase 2: Architecture
 
 ### Lead Architect
 
-Entwirf die technische Architektur:
+Design the technical architecture:
 
 ```
-@workspace Nutze den Lead Architect Agent.
-Entwirf die Architektur fuer den Notification-Service.
-Beruecksichtige Event-Driven Architecture und das Strategy Pattern
-fuer verschiedene Notification-Channels.
+@workspace Use the Lead Architect agent.
+Design the architecture for the Notification Service.
+Consider Event-Driven Architecture and the Strategy Pattern
+for different notification channels.
 ```
 
-**Ergebnis:** Architektur-Diagramme, Komponentenstruktur, API-Design.
+**Result:** Architecture diagrams, component structure, API design.
 
 ### Architecture Reviewer
 
-Pruefe den Entwurf auf Schwachstellen:
+Review the design for weaknesses:
 
 ```
-@workspace Nutze den Architecture Reviewer Agent.
-Pruefe den Architekturentwurf des Notification-Service
-auf Skalierbarkeit, Fehlertoleranz und Wartbarkeit.
+@workspace Use the Architecture Reviewer agent.
+Review the Notification Service architecture design
+for scalability, fault tolerance, and maintainability.
 ```
 
 ---
 
-## Phase 3: Implementierung
+## Phase 3: Implementation
 
-### Sprach-spezifische Experts
+### Language-Specific Experts
 
-Waehle den passenden Expert fuer deine Programmiersprache:
+Choose the right expert for your programming language:
 
 === "Python"
     ```
-    @workspace Nutze den Python Expert Agent.
-    Implementiere den Notification-Service nach dem
-    Architekturentwurf. Nutze FastAPI, SQLAlchemy und Celery.
+    @workspace Use the Python Expert agent.
+    Implement the Notification Service following the
+    architecture design. Use FastAPI, SQLAlchemy, and Celery.
     ```
 
 === "Frontend"
     ```
-    @workspace Nutze den Frontend Expert Agent.
-    Implementiere das Notification-Dashboard mit React
-    und TypeScript. Nutze TanStack Query fuer Data Fetching.
+    @workspace Use the Frontend Expert agent.
+    Implement the Notification Dashboard with React
+    and TypeScript. Use TanStack Query for data fetching.
     ```
 
 === "GCP"
     ```
-    @workspace Nutze den GCP Architect Agent.
-    Konfiguriere Cloud Pub/Sub fuer die Event-Verarbeitung
-    und Cloud Functions fuer die Notification-Zustellung.
+    @workspace Use the GCP Architect agent.
+    Configure Cloud Pub/Sub for event processing
+    and Cloud Functions for notification delivery.
     ```
 
 ---
@@ -94,15 +94,15 @@ Waehle den passenden Expert fuer deine Programmiersprache:
 
 ### Test Strategist
 
-Erstelle eine umfassende Teststrategie:
+Create a comprehensive test strategy:
 
 ```
-@workspace Nutze den Test Strategist Agent.
-Erstelle Tests fuer den Notification-Service:
-- Unit Tests fuer Business-Logik
-- Integration Tests fuer DB und Message Queue
-- Contract Tests fuer die REST API
-- Performance Tests fuer Massenversand
+@workspace Use the Test Strategist agent.
+Create tests for the Notification Service:
+- Unit tests for business logic
+- Integration tests for DB and message queue
+- Contract tests for the REST API
+- Performance tests for bulk sending
 ```
 
 ---
@@ -111,21 +111,21 @@ Erstelle Tests fuer den Notification-Service:
 
 ### Code Reviewer
 
-Fuehre ein gruendliches Code Review durch:
+Perform a thorough code review:
 
 ```
-@workspace Nutze den Code Reviewer Agent.
-Pruefe die Implementierung des Notification-Service.
-Achte auf Error Handling, Security und Code Quality.
+@workspace Use the Code Reviewer agent.
+Review the Notification Service implementation.
+Focus on error handling, security, and code quality.
 ```
 
 ### PR Crafting
 
-Erstelle einen professionellen Pull Request:
+Create a professional pull request:
 
 ```
-@workspace Nutze den PR Crafting Skill.
-Erstelle eine PR-Beschreibung fuer den Notification-Service.
+@workspace Use the PR Crafting skill.
+Create a PR description for the Notification Service.
 ```
 
 ---
@@ -134,60 +134,60 @@ Erstelle eine PR-Beschreibung fuer den Notification-Service.
 
 ### DevOps Agent
 
-Konfiguriere CI/CD und Deployment:
+Configure CI/CD and deployment:
 
 ```
-@workspace Nutze den DevOps Agent.
-Erstelle eine GitHub Actions Pipeline fuer den Notification-Service:
-- Build und Test
-- Docker Image bauen
-- Deploy auf GCP Cloud Run
+@workspace Use the DevOps Agent.
+Create a GitHub Actions pipeline for the Notification Service:
+- Build and test
+- Build Docker image
+- Deploy to GCP Cloud Run
 ```
 
 ---
 
-## Phase 7: Dokumentation
+## Phase 7: Documentation
 
 ### Context Manager
 
-Sichere das Wissen fuer zukuenftige Aufgaben:
+Preserve knowledge for future tasks:
 
 ```
-@workspace Nutze den Context Manager Agent.
-Dokumentiere die Architekturentscheidungen und den
-Implementierungsstand des Notification-Service.
+@workspace Use the Context Manager agent.
+Document the architecture decisions and the
+implementation status of the Notification Service.
 ```
 
 ---
 
-## Rollenbasierte Einstiegspunkte
+## Role-Based Entry Points
 
-Je nach Rolle steigst du an unterschiedlichen Stellen ein:
+Depending on your role, you enter at different phases:
 
-| Rolle | Einstieg | Agents |
-|-------|----------|--------|
+| Role | Entry Point | Agents |
+|------|-------------|--------|
 | **Tech Lead** | Phase 1 | Task Orchestrator → Lead Architect |
-| **Backend-Entwickler** | Phase 3 | Python Expert → Test Strategist |
-| **Frontend-Entwickler** | Phase 3 | Frontend Expert → Test Strategist |
+| **Backend Developer** | Phase 3 | Python Expert → Test Strategist |
+| **Frontend Developer** | Phase 3 | Frontend Expert → Test Strategist |
 | **DevOps Engineer** | Phase 6 | DevOps Agent → GCP Architect |
 | **Reviewer** | Phase 5 | Code Reviewer → Architecture Reviewer |
 
 ---
 
-## Tipps fuer effektives Arbeiten
+## Tips for Effective Use
 
-!!! tip "Kontext ist King"
-    Je mehr Kontext du dem Agent gibst, desto besser die Ergebnisse.
-    Referenziere konkrete Dateien, Patterns und Anforderungen.
+!!! tip "Context Is King"
+    The more context you provide to the agent, the better the results.
+    Reference specific files, patterns, and requirements.
 
-!!! tip "Iterativ verfeinern"
-    Akzeptiere nicht das erste Ergebnis. Gib Feedback und lasse
-    den Agent seine Antwort verbessern.
+!!! tip "Iterate and Refine"
+    Don't accept the first result. Give feedback and let
+    the agent improve its response.
 
-!!! tip "Skills kombinieren"
-    Kombiniere mehrere Skills fuer umfassendere Ergebnisse:
-    Clean Code + SOLID + Design Patterns ergibt produktionsreifen Code.
+!!! tip "Combine Skills"
+    Combine multiple skills for more comprehensive results:
+    Clean Code + SOLID + Design Patterns yields production-ready code.
 
-!!! warning "Agent-Grenzen beachten"
-    Agents ersetzen kein menschliches Urteil. Pruefe generierte
-    Architekturentscheidungen und Security-relevanten Code immer manuell.
+!!! warning "Know the Agent's Limits"
+    Agents don't replace human judgment. Always manually review
+    generated architecture decisions and security-relevant code.

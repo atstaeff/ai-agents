@@ -1,33 +1,33 @@
-# Templates & Referenzen
+# Templates & References
 
-Uebersicht ueber verfuegbare Vorlagen und Referenzarchitekturen im Copilot Expert Hub.
-
----
-
-## Marp-Templates
-
-Fertige Praesentationsvorlagen fuer verschiedene Anlaesse.
-
-| Template | Zielgruppe | Zweck |
-|----------|------------|-------|
-| [Client Pitch](marp-templates.md#client-pitch) | Kunden | Projektvorstellung, Value Proposition |
-| [Technical Deep-Dive](marp-templates.md#technical-deep-dive) | Entwickler | Architektur, technische Konzepte |
-| [Project Review](marp-templates.md#project-review) | Stakeholder | Sprint Reviews, Status Updates |
-
-:material-arrow-right: [Alle Marp-Templates](marp-templates.md)
+Overview of available templates and reference architectures in the Copilot Expert Hub.
 
 ---
 
-## Referenz-Repositories
+## Marp Templates
 
-Konkrete Referenzimplementierungen fuer Best-Practice-Projektstrukturen.
+Ready-to-use presentation templates for various occasions.
+
+| Template | Audience | Purpose |
+|----------|----------|---------|
+| [Client Pitch](marp-templates.md#client-pitch) | Clients | Project presentation, value proposition |
+| [Technical Deep-Dive](marp-templates.md#technical-deep-dive) | Developers | Architecture, technical concepts |
+| [Project Review](marp-templates.md#project-review) | Stakeholders | Sprint reviews, status updates |
+
+:material-arrow-right: [All Marp Templates](marp-templates.md)
+
+---
+
+## Reference Repositories
+
+Concrete reference implementations for best-practice project structures.
 
 <div class="grid" markdown>
 
 <div class="card" markdown>
 ### :material-language-python: Python Golden Repo
 
-Referenzstruktur fuer ein produktionsreifes Python-Projekt mit Clean Architecture, FastAPI, SQLAlchemy und pytest.
+Reference structure for a production-ready Python project with Clean Architecture, FastAPI, SQLAlchemy, and pytest.
 
 [:material-arrow-right: Details](python-golden.md)
 </div>
@@ -35,7 +35,7 @@ Referenzstruktur fuer ein produktionsreifes Python-Projekt mit Clean Architectur
 <div class="card" markdown>
 ### :material-lightning-bolt: Event-Driven Python
 
-Referenz-Patterns fuer event-getriebene Python-Architekturen auf GCP mit Pub/Sub, Cloud Functions und BigQuery.
+Reference patterns for event-driven Python architectures on GCP with Pub/Sub, Cloud Functions, and BigQuery.
 
 [:material-arrow-right: Details](event-driven-python.md)
 </div>
@@ -44,6 +44,6 @@ Referenz-Patterns fuer event-getriebene Python-Architekturen auf GCP mit Pub/Sub
 
 ---
 
-## Skill-Template
+## Skill Template
 
-Vorlage zum Erstellen neuer Skills. Siehe [Neuen Skill erstellen](../contributing/new-skill.md).
+Template for creating new skills. See [Create a New Skill](../contributing/new-skill.md).

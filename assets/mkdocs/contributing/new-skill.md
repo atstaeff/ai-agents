@@ -1,47 +1,47 @@
-# Neuen Skill erstellen
+# Create a New Skill
 
-Anleitung zum Erstellen einer neuen technischen Wissensdatenbank (Skill).
+Guide for creating a new technical knowledge base (skill).
 
 ---
 
-## Voraussetzungen
+## Prerequisites
 
-- Der Skill passt in eine bestehende Kategorie oder begruendet eine neue
-- Es existiert kein Skill mit gleichem Fokus
-- Der Skill ist breit anwendbar fuer AI-gestuetzte Entwicklung
+- The skill fits into an existing category or justifies a new one
+- No skill with the same focus exists
+- The skill is broadly applicable for AI-assisted development
 
-## Schritt-fuer-Schritt
+## Step by Step
 
-### 1. Kategorie waehlen
+### 1. Choose a Category
 
-| Kategorie | Verzeichnis | Beispiele |
-|-----------|------------|-----------|
-| Sprach-Patterns | `skills/{sprache}-patterns/` | Python, Golang, Flutter |
+| Category | Directory | Examples |
+|----------|-----------|----------|
+| Language Patterns | `skills/{language}-patterns/` | Python, Golang, Flutter |
 | Software Engineering | `skills/software-engineering/` | Clean Code, SOLID |
-| Architektur | `skills/architecture/` | Microservices, DDD |
-| Projekt & Team | `skills/team-collaboration/` | PR Crafting, Incident Response |
-| Weitere | `skills/{thema}/` | Anti-Patterns |
+| Architecture | `skills/architecture/` | Microservices, DDD |
+| Project & Team | `skills/team-collaboration/` | PR Crafting, Incident Response |
+| Other | `skills/{topic}/` | Anti-Patterns |
 
-### 2. Datei anlegen
+### 2. Create the File
 
 ```
-skills/{kategorie}/{skill-name}.md
-# oder
+skills/{category}/{skill-name}.md
+# or
 skills/{skill-name}/SKILL.md
 ```
 
-### 3. Template verwenden
+### 3. Use the Template
 
-Kopiere die Vorlage aus `templates/skill-template.md`:
+Copy the template from `templates/skill-template.md`:
 
 ```markdown
 # {Skill Name}
 
 ## Instructions for AI
-Klare Anweisungen fuer den AI-Agent.
+Clear instructions for the AI agent.
 
-## [Hauptthema 1]
-Detaillierte Erklaerung mit Beispielen.
+## [Main Topic 1]
+Detailed explanation with examples.
 
 ## Best Practices
 ✅ Good Practice 1
@@ -52,33 +52,33 @@ Detaillierte Erklaerung mit Beispielen.
 ❌ Bad Practice 2
 
 ## Example Prompts
-"Beispiel-Prompt 1"
+"Example prompt 1"
 
 ## Related Skills
-- [Verwandter Skill 1]
+- [Related Skill 1]
 ```
 
-### 4. "Instructions for AI" schreiben
+### 4. Write "Instructions for AI"
 
-Dieser Abschnitt ist **der wichtigste** — er steuert, wie der Agent den Skill anwendet.
+This section is **the most important** — it controls how the agent applies the skill.
 
 !!! tip "Best Practice"
-    - Spezifisch und handlungsorientiert formulieren
-    - "Wie" beschreiben, nicht nur "Was"
-    - Konkrete Beispiele einbinden
-    - Edge Cases beruecksichtigen
+    - Be specific and action-oriented
+    - Describe "how", not just "what"
+    - Include concrete examples
+    - Consider edge cases
 
-### 5. Beispiele bereitstellen
+### 5. Provide Examples
 
-- ✅ / ❌ Before/After Vergleiche
-- Code in Python, Go oder TypeScript
-- Praxisnahe Szenarien
+- ✅ / ❌ Before/after comparisons
+- Code in Python, Go, or TypeScript
+- Real-world scenarios
 
-## Checkliste
+## Checklist
 
-- [ ] Richtige Kategorie und Verzeichnis gewaehlt
-- [ ] Template-Struktur eingehalten
-- [ ] "Instructions for AI" klar formuliert
-- [ ] Mindestens 2 Code-Beispiele (Good/Bad)
-- [ ] Related Skills verlinkt
-- [ ] PR mit Beschreibung erstellt
+- [ ] Correct category and directory chosen
+- [ ] Template structure followed
+- [ ] "Instructions for AI" clearly formulated
+- [ ] At least 2 code examples (good/bad)
+- [ ] Related skills linked
+- [ ] PR created with description
