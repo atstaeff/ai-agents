@@ -38,5 +38,5 @@ Thumbs.db
 # yarn.lock
 # pnpm-lock.yaml
 
-# MkDocs build output
+# MkDocs build output (old location)
 site/
