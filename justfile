@@ -82,10 +82,10 @@ stats:
     @echo "Skills:     $(find skills -name '*.md' | wc -l | tr -d ' ')"
     @echo "Templates:  $(find marp-templates -name '*.md' | wc -l | tr -d ' ')"
     @echo "Ref Repos:  $(ls -d reference-repos/*/ 2>/dev/null | wc -l | tr -d ' ')"
-    @echo "Doc Pages:  $(find assets/mkdocs -name '*.md' | wc -l | tr -d ' ')"
+    @echo "Doc Pages:  $(find docs -name '*.md' | wc -l | tr -d ' ')"
     @echo ""
     @echo "Lines of Documentation:"
-    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @find docs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
 
 # Count lines in all markdown files
 loc:
@@ -94,7 +94,7 @@ loc:
     @echo "Skills:"
     @find skills -name '*.md' | xargs wc -l 2>/dev/null | tail -1
     @echo "Documentation:"
-    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @find docs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
     @echo "Templates:"
     @find marp-templates -name '*.md' | xargs wc -l 2>/dev/null | tail -1
 

@@ -5,9 +5,9 @@ site_description: >-
 site_url: https://atstaeff.github.io/ai-agents/
 repo_url: https://github.com/atstaeff/ai-agents
 repo_name: atstaeff/ai-agents
-edit_uri: edit/main/assets/mkdocs/
+edit_uri: edit/main/docs/
 
-docs_dir: assets/mkdocs
+docs_dir: docs
 site_dir: site
 
 theme:

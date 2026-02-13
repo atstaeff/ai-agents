@@ -159,7 +159,7 @@ ai-agents/
 │   └── event-driven-python/
 ├── templates/                  # Templates for new Skills
 │   └── skill-template.md
-├── assets/mkdocs/              # MkDocs Documentation
+├── docs/                       # MkDocs Documentation
 ├── copilot-instructions.md     # Global Copilot Configuration
 ├── justfile                    # Development Commands
 └── mkdocs.yml                  # MkDocs Configuration
