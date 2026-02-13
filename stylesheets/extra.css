@@ -1,0 +1,216 @@
+/* ============================================================================
+   Grid & Card System
+   ============================================================================ */
+
+.md-typeset .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.md-typeset .grid .card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.5rem;
+  padding: 1.2rem;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.md-typeset .grid .card:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.md-typeset .grid .card h3 {
+  margin-top: 0;
+}
+
+/* ============================================================================
+   Agent Badges — Legacy (functional categories)
+   ============================================================================ */
+
+.md-typeset .agent-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.md-typeset .badge-engineering {
+  background: #e8eaf6;
+  color: #283593;
+}
+
+.md-typeset .badge-review {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.md-typeset .badge-productivity {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.md-typeset .badge-customer {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-engineering {
+  background: #1a237e;
+  color: #c5cae9;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-review {
+  background: #bf360c;
+  color: #ffccbc;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-productivity {
+  background: #1b5e20;
+  color: #c8e6c9;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-customer {
+  background: #880e4f;
+  color: #f8bbd0;
+}
+
+/* ============================================================================
+   Agent Badges — Lifecycle Phases
+   ============================================================================ */
+
+.md-typeset .badge-phase-plan {
+  background: #e8eaf6;
+  color: #3949ab;
+}
+
+.md-typeset .badge-phase-build {
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.md-typeset .badge-phase-quality {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.md-typeset .badge-phase-deploy {
+  background: #f3e5f5;
+  color: #6a1b9a;
+}
+
+.md-typeset .badge-phase-communicate {
+  background: #fce4ec;
+  color: #c62828;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-phase-plan {
+  background: #1a237e;
+  color: #c5cae9;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-phase-build {
+  background: #0d47a1;
+  color: #bbdefb;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-phase-quality {
+  background: #1b5e20;
+  color: #c8e6c9;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-phase-deploy {
+  background: #4a148c;
+  color: #e1bee7;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .badge-phase-communicate {
+  background: #880e4f;
+  color: #f8bbd0;
+}
+
+/* ============================================================================
+   Stat Grid
+   ============================================================================ */
+
+.md-typeset .stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.md-typeset .stat-grid .stat {
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background: var(--md-code-bg-color);
+}
+
+.md-typeset .stat-grid .stat .number {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--md-primary-fg-color);
+  line-height: 1.2;
+}
+
+.md-typeset .stat-grid .stat .label {
+  font-size: 0.8rem;
+  color: var(--md-default-fg-color--light);
+}
+
+/* ============================================================================
+   Hero Section
+   ============================================================================ */
+
+.md-typeset .hero {
+  text-align: center;
+  padding: 2rem 1rem;
+  margin: -0.5rem 0 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, var(--md-primary-fg-color--light) 0%, var(--md-accent-fg-color) 100%);
+  color: var(--md-primary-bg-color);
+}
+
+.md-typeset .hero h2 {
+  color: var(--md-primary-bg-color);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.md-typeset .hero p {
+  color: var(--md-primary-bg-color);
+  opacity: 0.95;
+  max-width: 42rem;
+  margin: 0 auto 1rem;
+}
+
+.md-typeset .hero .md-button {
+  margin: 0.3rem;
+}
+
+.md-typeset .hero .md-button--primary {
+  background: var(--md-primary-bg-color);
+  color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-bg-color);
+}
+
+.md-typeset .hero .md-button:not(.md-button--primary) {
+  border-color: var(--md-primary-bg-color);
+  color: var(--md-primary-bg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .hero h2,
+[data-md-color-scheme="slate"] .md-typeset .hero p {
+  color: #e8eaf6;
+}
