@@ -48,6 +48,7 @@ Cloud infrastructure and operations.
 | Skill | Description |
 |-------|-------------|
 | [GCP Patterns](gcp-patterns.md) | Cloud Run, Pub/Sub, BigQuery, Terraform |
+| [IoT & Embedded Patterns](iot-embedded-patterns.md) | MQTT, OPC UA, Sensors, PLCs, Edge Computing |
 | [Testing](testing.md) | Testing Patterns, Fixtures, Mocking |
 | [DevOps & CI/CD](devops-cicd.md) | Pipelines, GitOps, Deployment Strategies |
 

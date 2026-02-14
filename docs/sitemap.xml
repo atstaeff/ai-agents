@@ -2,282 +2,290 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://atstaeff.github.io/ai-agents/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/architecture/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/faq/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/use-cases/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/why-copilot-expert-hub/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/architecture-reviewer/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/code-reviewer/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/context-manager/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/creative-app-developer/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/devops-agent/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/flutter-ios-expert/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/frontend-expert/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/game-developer/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/gcp-architect/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/golang-expert/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://atstaeff.github.io/ai-agents/agents/iot-embedded-expert/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/lead-architect/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/presentation-agent/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/proposal-pitch/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/python-expert/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/stakeholder-agent/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/task-orchestrator/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/agents/test-strategist/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/contributing/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/contributing/guidelines/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/contributing/new-agent/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/contributing/new-skill/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/getting-started/installation/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/getting-started/quick-start/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/getting-started/workflow/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/references/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/references/event-driven-python/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/references/marp-templates/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/references/python-golden/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/agile-methodologies/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/anti-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/api-design/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/architecture-planning/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/clean-code/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/cloud-native/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/code-review/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/communication/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/creative-app-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/design-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/devops-cicd/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/domain-driven-design/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/feature-discovery/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/flutter-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/frontend-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/game-architecture/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/game-design/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/game-mechanics/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/gcp-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/golang-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/incident-response/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
+    </url>
+    <url>
+         <loc>https://atstaeff.github.io/ai-agents/skills/iot-embedded-patterns/</loc>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/marp-presentations/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/microservices/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/performance/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/pr-crafting/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/practical-refactoring/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/principal-engineer-decisions/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/progress-sync/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/prototyping/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/python-patterns/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/security/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/solid-principles/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/technical-debt/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/testing-strategies/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
     <url>
          <loc>https://atstaeff.github.io/ai-agents/skills/testing/</loc>
-         <lastmod>2026-02-13</lastmod>
+         <lastmod>2026-02-14</lastmod>
     </url>
 </urlset>

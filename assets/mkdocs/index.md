@@ -4,8 +4,8 @@
 
 ## Your AI Engineering Team — Right Inside VS Code
 
-**15 specialized agents** covering the entire Software Delivery Lifecycle:
-Architecture, Code, Testing, Review, Deployment, and Client Communication.
+**18 specialized agents** covering the entire Software Delivery Lifecycle:
+Architecture, Code, Testing, Review, Deployment, IoT/Embedded, Creative, and Client Communication.
 **Clone one repo. Ship better software immediately.**
 
 [Get Started :material-rocket-launch:](getting-started/installation.md){ .md-button .md-button--primary }
@@ -37,11 +37,11 @@ graph LR
 
 <div class="stat-grid" markdown>
 <div class="stat" markdown>
-<span class="number">15</span>
+<span class="number">18</span>
 <span class="label">AI Agents</span>
 </div>
 <div class="stat" markdown>
-<span class="number">25+</span>
+<span class="number">36</span>
 <span class="label">Skills</span>
 </div>
 <div class="stat" markdown>

@@ -7,15 +7,15 @@ A complete, modular, and scalable repository of **AI Agents, Skills, Templates, 
 The Copilot Expert Hub provides a full agent chain covering the entire software delivery lifecycle:
 
 ```
-Architecture → Implementation → Testing → Review → Deployment → Presentation → Client Communication
+Architecture → Implementation → Quality → Deployment → IoT/Embedded → Creative → Communication
 ```
 
 ### What's Inside
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 17 | Specialized AI agents for every role |
-| **Skills** | 12+ | Technical knowledge bases |
+| **Agents** | 18 | Specialized AI agents for every role |
+| **Skills** | 17+ | Technical knowledge bases |
 | **Marp Templates** | 3 | Presentation templates |
 | **Reference Repos** | 2 | Golden architecture examples |
 | **Workflows** | 2 | CI/CD validation |
@@ -34,6 +34,12 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 | **GCP Architect** | Cloud Run, Pub/Sub, BigQuery, Terraform, IAM | [agents/gcp-architect.agent.md](agents/gcp-architect.agent.md) |
 | **Test Strategist** | Test pyramid, quality gates, coverage, CI/CD | [agents/test-strategist.agent.md](agents/test-strategist.agent.md) |
 | **DevOps Agent** | CI/CD pipelines, deployments, Docker | [agents/devops-agent.agent.md](agents/devops-agent.agent.md) |
+
+### IoT & Embedded Agents
+
+| Agent | Role | File |
+|-------|------|------|
+| **IoT & Embedded Expert** | MQTT, sensors, actuators, PLCs, Revolution Pi, Siemens, Beckhoff | [agents/iot-embedded-expert.agent.md](agents/iot-embedded-expert.agent.md) |
 
 ### Quality & Review Agents
 
@@ -78,6 +84,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 | **Marp Presentations** | Slide design, Marp syntax, templates | [skills/marp-presentations/SKILL.md](skills/marp-presentations/SKILL.md) |
 | **Anti-Patterns** | Code, architecture, and event-driven anti-patterns | [skills/anti-patterns/SKILL.md](skills/anti-patterns/SKILL.md) |
 | **Frontend Patterns** | Vue/Angular patterns, composables, signals, testing | [skills/frontend-patterns/SKILL.md](skills/frontend-patterns/SKILL.md) |
+| **IoT & Embedded Patterns** | MQTT, OPC UA, sensors, PLCs, edge computing | [skills/iot-embedded-patterns/SKILL.md](skills/iot-embedded-patterns/SKILL.md) |
 
 ### Existing Skills
 
@@ -113,7 +120,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 
 1. **Clone this repository:**
    ```bash
-   git clone https://github.com/atstaeff/ai-skills.git
+   git clone https://github.com/atstaeff/ai-agents.git
    ```
 
 2. **Open in VS Code** — The `.github/copilot-instructions.md` provides global Copilot context.
@@ -145,6 +152,7 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
  7. Test Strategist      → Design & implement tests
  8. Code Reviewer        → Review code quality
  9. DevOps Agent         → Set up CI/CD & deploy
+ 9b. IoT & Embedded Expert→ Implement IoT/edge solutions
 10. Context Manager      → Document decisions
 11. Presentation Agent   → Create client presentation
 12. Stakeholder Agent    → Prepare status reports
@@ -154,39 +162,36 @@ Architecture → Implementation → Testing → Review → Deployment → Presen
 ## Repository Structure
 
 ```
-.github/
-├── agents/                    # 17 specialized AI agents
-│   ├── lead-architect.agent.md
-│   ├── python-expert.agent.md
-│   ├── golang-expert.agent.md
-│   ├── flutter-ios-expert.agent.md
-│   ├── frontend-expert.agent.md
-│   ├── gcp-architect.agent.md
-│   ├── test-strategist.agent.md
-│   ├── devops-agent.agent.md
-│   ├── presentation-agent.agent.md
-│   ├── architecture-reviewer.agent.md
-│   ├── code-reviewer.agent.md
-│   ├── task-orchestrator.agent.md
-│   ├── context-manager.agent.md
-│   ├── stakeholder-agent.agent.md
-│   └── proposal-pitch.agent.md
-├── workflows/                 # CI/CD validation
-│   ├── validate-agents.yml
-│   └── ci-cd-check.yml
-└── copilot-instructions.md    # Global Copilot config
-agents/
-├── game-developer.agent.md    # Game Development
-└── creative-app-developer.agent.md  # Creative Apps
+agents/                        # 18 specialized AI agents
+├── lead-architect.agent.md
+├── python-expert.agent.md
+├── golang-expert.agent.md
+├── flutter-ios-expert.agent.md
+├── frontend-expert.agent.md
+├── gcp-architect.agent.md
+├── iot-embedded-expert.agent.md
+├── test-strategist.agent.md
+├── devops-agent.agent.md
+├── presentation-agent.agent.md
+├── architecture-reviewer.agent.md
+├── code-reviewer.agent.md
+├── task-orchestrator.agent.md
+├── context-manager.agent.md
+├── stakeholder-agent.agent.md
+├── proposal-pitch.agent.md
+├── game-developer.agent.md
+└── creative-app-developer.agent.md
+copilot-instructions.md        # Global Copilot config
 skills/
 ├── python-patterns/SKILL.md   # Python best practices
 ├── golang-patterns/SKILL.md   # Go best practices
 ├── flutter-patterns/SKILL.md  # Flutter/Dart/iOS best practices
+├── frontend-patterns/SKILL.md # Vue, Angular, TS patterns
 ├── gcp-patterns/SKILL.md      # GCP architecture patterns
+├── iot-embedded-patterns/SKILL.md # IoT, MQTT, PLCs, edge computing
 ├── testing/SKILL.md           # Testing strategies
 ├── marp-presentations/SKILL.md# Presentation skills
 ├── anti-patterns/SKILL.md     # What to avoid
-├── frontend-patterns/SKILL.md # Vue, Angular, TS patterns
 ├── software-engineering/      # Core SE skills
 ├── architecture/              # Architecture skills
 ├── project-management/        # PM skills
@@ -194,12 +199,7 @@ skills/
 ├── general/                   # Cross-cutting skills
 ├── system-design/             # System design skills
 ├── game-development/          # Game design, mechanics, architecture
-│   ├── game-design.md
-│   ├── game-mechanics.md
-│   ├── game-architecture.md
-│   └── prototyping.md
 └── creative-apps/             # Creative app patterns
-    └── creative-app-patterns.md
 marp-templates/                # Marp slide templates
 ├── client-pitch.md
 ├── technical-deepdive.md
@@ -207,15 +207,14 @@ marp-templates/                # Marp slide templates
 reference-repos/               # Golden architecture examples
 ├── python-golden/
 └── event-driven-python/
-docs/                          # Documentation
-├── README.md
-├── CONTRIBUTING.md
-└── GUIDELINES.md
+assets/mkdocs/                 # MkDocs source files
+docs/                          # Built documentation site
+assets/                        # Documentation assets
 ```
 
 ## Contributing
 
-See [docs/CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on adding agents, skills, and templates.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding agents, skills, and templates.
 
 ## License
 

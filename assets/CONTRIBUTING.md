@@ -6,7 +6,7 @@ Thank you for your interest in contributing! This guide will help you add new ag
 
 ### Adding a New Agent
 
-1. Create a file in `.github/agents/` following the naming convention: `{name}.agent.md`
+1. Create a file in `agents/` following the naming convention: `{name}.agent.md`
 2. Use the required structure:
 
 ```markdown
@@ -100,7 +100,7 @@ paginate: true
 
 ### Code Examples Must:
 
-- Use modern language features (Python 3.11+)
+- Use modern language features (Python 3.12+, Go 1.22+, Dart 3.x)
 - Include type hints
 - Follow language-specific style guides
 - Be syntactically correct and runnable
@@ -134,15 +134,15 @@ feat(templates): add sprint retrospective Marp template
 
 ```bash
 # Clone the repository
-git clone https://github.com/atstaeff/ai-skills.git
-cd ai-skills
+git clone https://github.com/atstaeff/ai-agents.git
+cd ai-agents
 
 # Create a branch
 git checkout -b feat/new-agent
 
 # Make changes, then validate locally
 # Check agent structure
-for f in .github/agents/*.agent.md; do
+for f in agents/*.agent.md; do
   echo "Checking $f..."
   grep -q "## Identity" "$f" && echo "  ✅ Identity" || echo "  ❌ Identity"
   grep -q "## Instructions" "$f" && echo "  ✅ Instructions" || echo "  ❌ Instructions"

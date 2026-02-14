@@ -11,23 +11,23 @@ default:
 
 # Serve documentation locally (http://localhost:8000)
 docs:
-    mkdocs serve
+    mkdocs serve -f assets/mkdocs.yml
 
 # Serve documentation on custom port
 docs-port port="8001":
-    mkdocs serve -a localhost:{{port}}
+    mkdocs serve -f assets/mkdocs.yml -a localhost:{{port}}
 
 # Build documentation site
 docs-build:
-    mkdocs build
+    mkdocs build -f assets/mkdocs.yml
 
 # Build documentation (clean)
 docs-clean:
-    mkdocs build --clean
+    mkdocs build -f assets/mkdocs.yml --clean
 
 # Deploy documentation to GitHub Pages
 docs-deploy:
-    mkdocs gh-deploy --force
+    mkdocs gh-deploy -f assets/mkdocs.yml --force
 
 # ============================================================================
 # Validation
@@ -82,10 +82,10 @@ stats:
     @echo "Skills:     $(find skills -name '*.md' | wc -l | tr -d ' ')"
     @echo "Templates:  $(find marp-templates -name '*.md' | wc -l | tr -d ' ')"
     @echo "Ref Repos:  $(ls -d reference-repos/*/ 2>/dev/null | wc -l | tr -d ' ')"
-    @echo "Doc Pages:  $(find docs-src -name '*.md' | wc -l | tr -d ' ')"
+    @echo "Doc Pages:  $(find assets/mkdocs -name '*.md' | wc -l | tr -d ' ')"
     @echo ""
     @echo "Lines of Documentation:"
-    @find docs-src -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
 
 # Count lines in all markdown files
 loc:
@@ -94,7 +94,7 @@ loc:
     @echo "Skills:"
     @find skills -name '*.md' | xargs wc -l 2>/dev/null | tail -1
     @echo "Documentation:"
-    @find docs-src -name '*.md' | xargs wc -l 2>/dev/null | tail -1
+    @find assets/mkdocs -name '*.md' | xargs wc -l 2>/dev/null | tail -1
     @echo "Templates:"
     @find marp-templates -name '*.md' | xargs wc -l 2>/dev/null | tail -1
 

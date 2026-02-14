@@ -1,6 +1,6 @@
 # Agent Catalog
 
-The Copilot Expert Hub includes **17 specialized AI agents**, organized by the phases of the Software Delivery Lifecycle.
+The Copilot Expert Hub includes **18 specialized AI agents**, organized by the phases of the Software Delivery Lifecycle.
 
 ---
 
@@ -179,6 +179,23 @@ CI/CD Pipelines, Docker, GitHub Actions, GitOps, Deployment Strategies, Monitori
 
 ---
 
+## :material-chip: IoT & Embedded
+
+<div class="grid" markdown>
+
+<div class="card" markdown>
+### :material-chip: IoT & Embedded Expert
+<span class="agent-badge badge-phase-build">Engineering</span>
+
+IoT Architectures, MQTT, OPC UA, Sensors/Actuators, Revolution Pi, Siemens S7, Beckhoff TwinCAT, Edge Computing, Mechatronics.
+
+[:material-arrow-right: Details](iot-embedded-expert.md)
+</div>
+
+</div>
+
+---
+
 ## :material-account-voice: Phase 5 — Communication
 
 <div class="grid" markdown>
@@ -244,6 +261,7 @@ Project proposals, roadmaps, milestones, effort estimates.
 | Proposal/Pitch Agent | Communication | Proposals, Roadmaps | Proposal creation |
 | Game Developer | Creative | Game Design, Mechanics | 2D/3D Games, Game Jams |
 | Creative App Developer | Creative | Generative Art, Gamification | Creative Apps, Data Viz |
+| IoT & Embedded Expert | Engineering | MQTT, PLCs, Sensors, Edge | IoT, Industrial Automation |
 
 ---
 
@@ -270,4 +288,8 @@ graph TD
     A --> R{Creative?}
     R -->|Game| S[Game Developer]
     R -->|App| T[Creative App Developer]
+    A --> U{IoT / Embedded?}
+    U -->|Sensors| V["IoT & Embedded Expert"]
+    U -->|PLC| V
+    U -->|MQTT| V
 ```
