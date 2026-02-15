@@ -1,4 +1,70 @@
 /* ============================================================================
+   Custom Branding — stefanposs.com
+   ============================================================================ */
+
+:root {
+  /* Primary color - #122E53 (stefanposs.com) */
+  --md-primary-fg-color: #122E53 !important;
+  --md-primary-fg-color--light: #1a3d6b !important;
+  --md-primary-fg-color--dark: #0d1f38 !important;
+  --md-primary-bg-color: #ffffff !important;
+
+  /* Accent color */
+  --md-accent-fg-color: #2196f3 !important;
+  --md-accent-fg-color--transparent: rgba(33, 150, 243, 0.1) !important;
+}
+
+/* Header / Navigation bar */
+.md-header {
+  background-color: #122E53 !important;
+}
+
+.md-tabs {
+  background-color: #122E53 !important;
+}
+
+/* Links */
+.md-typeset a {
+  color: #122E53 !important;
+}
+
+.md-typeset a:hover {
+  color: #1a3d6b !important;
+}
+
+/* Active navigation items */
+.md-nav__link--active {
+  color: #122E53 !important;
+}
+
+.md-nav__link:hover {
+  color: #122E53 !important;
+}
+
+/* Dark mode adjustments */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #1a3d6b !important;
+  --md-primary-fg-color--light: #2a4d7b !important;
+  --md-primary-fg-color--dark: #122E53 !important;
+}
+
+[data-md-color-scheme="slate"] .md-header {
+  background-color: #1a3d6b !important;
+}
+
+[data-md-color-scheme="slate"] .md-tabs {
+  background-color: #1a3d6b !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a {
+  color: #5c9ce6 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset a:hover {
+  color: #82b5f0 !important;
+}
+
+/* ============================================================================
    Grid & Card System
    ============================================================================ */
 
@@ -41,8 +107,8 @@
 }
 
 .md-typeset .badge-engineering {
-  background: #e8eaf6;
-  color: #283593;
+  background: #e3ecf7;
+  color: #122E53;
 }
 
 .md-typeset .badge-review {
@@ -61,8 +127,8 @@
 }
 
 [data-md-color-scheme="slate"] .md-typeset .badge-engineering {
-  background: #1a237e;
-  color: #c5cae9;
+  background: #122E53;
+  color: #b3cde6;
 }
 
 [data-md-color-scheme="slate"] .md-typeset .badge-review {
@@ -85,13 +151,13 @@
    ============================================================================ */
 
 .md-typeset .badge-phase-plan {
-  background: #e8eaf6;
-  color: #3949ab;
+  background: #e3ecf7;
+  color: #122E53;
 }
 
 .md-typeset .badge-phase-build {
   background: #e3f2fd;
-  color: #1565c0;
+  color: #0d1f38;
 }
 
 .md-typeset .badge-phase-quality {
@@ -110,12 +176,12 @@
 }
 
 [data-md-color-scheme="slate"] .md-typeset .badge-phase-plan {
-  background: #1a237e;
-  color: #c5cae9;
+  background: #122E53;
+  color: #b3cde6;
 }
 
 [data-md-color-scheme="slate"] .md-typeset .badge-phase-build {
-  background: #0d47a1;
+  background: #0d1f38;
   color: #bbdefb;
 }
 
@@ -174,18 +240,18 @@
   padding: 2rem 1rem;
   margin: -0.5rem 0 1rem;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, var(--md-primary-fg-color--light) 0%, var(--md-accent-fg-color) 100%);
-  color: var(--md-primary-bg-color);
+  background: linear-gradient(135deg, #122E53 0%, #1a3d6b 50%, #2196f3 100%);
+  color: #ffffff;
 }
 
 .md-typeset .hero h2 {
-  color: var(--md-primary-bg-color);
+  color: #ffffff;
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
 
 .md-typeset .hero p {
-  color: var(--md-primary-bg-color);
+  color: #ffffff;
   opacity: 0.95;
   max-width: 42rem;
   margin: 0 auto 1rem;
@@ -196,21 +262,21 @@
 }
 
 .md-typeset .hero .md-button--primary {
-  background: var(--md-primary-bg-color);
-  color: var(--md-primary-fg-color);
-  border-color: var(--md-primary-bg-color);
+  background: #ffffff;
+  color: #122E53;
+  border-color: #ffffff;
 }
 
 .md-typeset .hero .md-button:not(.md-button--primary) {
-  border-color: var(--md-primary-bg-color);
-  color: var(--md-primary-bg-color);
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 [data-md-color-scheme="slate"] .md-typeset .hero {
-  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  background: linear-gradient(135deg, #0d1f38 0%, #122E53 50%, #1a3d6b 100%);
 }
 
 [data-md-color-scheme="slate"] .md-typeset .hero h2,
 [data-md-color-scheme="slate"] .md-typeset .hero p {
-  color: #e8eaf6;
+  color: #e3ecf7;
 }

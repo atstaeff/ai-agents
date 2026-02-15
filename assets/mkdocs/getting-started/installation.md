@@ -91,5 +91,5 @@ ai-agents/
 ## Next Steps
 
 - :material-rocket-launch: [Quick Start](quick-start.md) — Try your first agent
-- :material-robot: [Agent Catalog](../agents/index.md) — Overview of all 15 agents
+- :material-robot: [Agent Catalog](../agents/index.md) — Overview of all 18 agents
 - :material-book-open-variant: [Skills](../skills/index.md) — Available knowledge bases

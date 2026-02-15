@@ -75,7 +75,7 @@ Every agent enforces proven production standards:
 
 ### :material-puzzle: Modular Skills System
 
-Agents are intelligent thanks to **25+ skills** — technical knowledge bases covering:
+Agents are intelligent thanks to **35+ skills** — technical knowledge bases covering:
 
 - Language-specific patterns (Python, Go, Flutter, TypeScript)
 - Software engineering (Clean Code, SOLID, Design Patterns)
@@ -95,7 +95,7 @@ Agents are intelligent thanks to **25+ skills** — technical knowledge bases co
 
 | Feature | Copilot Expert Hub | Individual Prompts | Custom Instructions |
 |---------|-------------------|-------------------|-------------------|
-| Specialized Roles | :material-check: 15 Agents | :material-close: | :material-close: |
+| Specialized Roles | :material-check: 18 Agents | :material-close: | :material-close: |
 | SDLC Coverage | :material-check: Complete | :material-close: | :material-close: |
 | Technical Skills | :material-check: 25+ | :material-close: | Limited |
 | Marp Templates | :material-check: 3 | :material-close: | :material-close: |

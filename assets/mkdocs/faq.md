@@ -4,7 +4,7 @@
 
 ### What is the Copilot Expert Hub?
 
-An open-source repository with 15 specialized AI agents, 25+ skills, and templates for GitHub Copilot. It turns Copilot into a team of senior engineers covering the entire Software Delivery Lifecycle.
+An open-source repository with 18 specialized AI agents, 35+ skills, and templates for GitHub Copilot. It turns Copilot into a team of senior engineers covering the entire Software Delivery Lifecycle.
 
 ### Do I need a GitHub Copilot license?
 

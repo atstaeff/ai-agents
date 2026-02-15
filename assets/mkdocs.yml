@@ -15,14 +15,14 @@ theme:
   language: en
   palette:
     - scheme: default
-      primary: indigo
-      accent: cyan
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-7
         name: Dark Mode
     - scheme: slate
-      primary: indigo
-      accent: cyan
+      primary: custom
+      accent: custom
       toggle:
         icon: material/brightness-4
         name: Light Mode
@@ -182,6 +182,7 @@ nav:
   - Architecture: architecture.md
   - Templates & References:
       - Overview: references/index.md
+      - LLM-Modell-Guide: references/llm-model-guide.md
       - Marp Templates: references/marp-templates.md
       - Python Golden Repo: references/python-golden.md
       - Event-Driven Python: references/event-driven-python.md

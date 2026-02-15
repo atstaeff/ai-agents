@@ -167,7 +167,7 @@ Translate technical results into business language — reports, summaries, pitch
 
 </div>
 
-[:material-view-grid: View All 15 Agents](agents/index.md){ .md-button }
+[:material-view-grid: View All 18 Agents](agents/index.md){ .md-button }
 
 ---
 

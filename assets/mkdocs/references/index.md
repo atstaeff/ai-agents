@@ -4,6 +4,14 @@ Overview of available templates and reference architectures in the Copilot Exper
 
 ---
 
+## LLM-Modell-Guide
+
+Welches LLM-Modell eignet sich für welche Aufgabe? Der Guide bietet eine Übersicht über aktuelle Modelle von Anthropic, OpenAI und Google mit konkreten Empfehlungen nach Aufgabentyp, Kosten-Vergleich und Entscheidungsbaum.
+
+:material-arrow-right: [Zum LLM-Modell-Guide](llm-model-guide.md)
+
+---
+
 ## Marp Templates
 
 Ready-to-use presentation templates for various occasions.
