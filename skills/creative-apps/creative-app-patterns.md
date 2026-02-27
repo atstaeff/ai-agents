@@ -1,4 +1,3 @@
-````skill
 # Creative App Patterns
 
 ## Instructions for AI
@@ -657,4 +656,3 @@ class ExportManager {
 - [Generative Design Book](http://www.generative-gestaltung.de/)
 - [p5.js — Creative Coding Library](https://p5js.org/)
 - [The Nature of Code — Daniel Shiffman](https://natureofcode.com/)
-````

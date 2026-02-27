@@ -1,3 +1,8 @@
+---
+name: frontend-patterns
+description: Modern frontend patterns, TypeScript best practices, and production-grade standards for Vue.js and Angular
+---
+
 # Frontend Patterns Skill
 
 ## Instructions for AI

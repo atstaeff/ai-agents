@@ -1,3 +1,8 @@
+---
+name: anti-patterns
+description: Identify and avoid common anti-patterns in code, architecture, and event-driven systems
+---
+
 # Anti-Patterns Skill
 
 ## Instructions for AI

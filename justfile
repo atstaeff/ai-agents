@@ -35,25 +35,71 @@ docs-deploy:
 
 # Validate all agent files exist and have correct format
 validate-agents:
-    @echo "🔍 Validating agents..."
-    @for f in agents/*.agent.md; do \
-        if [ ! -f "$$f" ]; then \
-            echo "❌ Missing: $$f"; \
-            exit 1; \
-        fi; \
-        echo "✅ $$f"; \
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "🔍 Validating agents..."
+    ok=true
+    for f in agents/*.agent.md; do
+        if [ ! -f "$f" ]; then
+            echo "❌ Missing: $f"
+            ok=false
+            continue
+        fi
+        for section in "## Identity" "## Core Responsibilities" "## Instructions" "## Example Prompts" "## Related Skills"; do
+            if ! grep -q "$section" "$f"; then
+                echo "⚠️  $f: missing \"$section\" section"
+            fi
+        done
+        if head -1 "$f" | grep -q '````'; then
+            echo "⚠️  $f: starts with code fence (should be plain markdown)"
+            ok=false
+        fi
+        echo "✅ $f"
     done
-    @echo ""
-    @echo "✅ All agents valid!"
+    echo ""
+    if [ "$ok" = false ]; then
+        echo "❌ Some agents have issues!"
+        exit 1
+    fi
+    echo "✅ All agents valid!"
 
-# Validate all skill files exist
+# Validate all skill directories have SKILL.md with proper frontmatter
 validate-skills:
-    @echo "🔍 Validating skills..."
-    @find skills -name 'SKILL.md' -o -name '*.md' | head -30 | while read f; do \
-        echo "✅ $$f"; \
+    #!/usr/bin/env bash
+    set -euo pipefail
+    echo "🔍 Validating skills..."
+    ok=true
+    for d in skills/*/; do
+        skill_file="${d}SKILL.md"
+        if [ ! -f "$skill_file" ]; then
+            echo "❌ Missing: $skill_file"
+            ok=false
+            continue
+        fi
+        first_line=$(head -1 "$skill_file")
+        if [ "$first_line" != "---" ]; then
+            echo "❌ $skill_file: missing YAML frontmatter (must start with ---)"
+            ok=false
+            continue
+        fi
+        if ! head -5 "$skill_file" | grep -q 'name:'; then
+            echo "❌ $skill_file: missing 'name:' in frontmatter"
+            ok=false
+            continue
+        fi
+        if ! head -5 "$skill_file" | grep -q 'description:'; then
+            echo "❌ $skill_file: missing 'description:' in frontmatter"
+            ok=false
+            continue
+        fi
+        echo "✅ $skill_file"
     done
-    @echo ""
-    @echo "✅ Skills check complete!"
+    echo ""
+    if [ "$ok" = false ]; then
+        echo "❌ Some skills have issues!"
+        exit 1
+    fi
+    echo "✅ All skills valid!"
 
 # Validate all templates
 validate-templates:

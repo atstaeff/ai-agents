@@ -1,3 +1,8 @@
+---
+name: python-patterns
+description: Idiomatic Python patterns, modern best practices, and production-grade code standards
+---
+
 # Python Patterns Skill
 
 ## Instructions for AI

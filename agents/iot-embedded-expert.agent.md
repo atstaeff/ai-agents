@@ -1,4 +1,3 @@
-````chatagent
 # IoT & Embedded Expert Agent
 
 ## Identity
@@ -906,4 +905,3 @@ OTA_TOPICS = {
 | `node-red` | Visual flow-based programming |
 | `grafana` | Dashboards & Visualization |
 | `balena` | Fleet management for edge |
-````

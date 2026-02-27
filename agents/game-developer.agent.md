@@ -1,4 +1,3 @@
-````chatagent
 # Game Developer Agent
 
 ## Identity
@@ -513,4 +512,3 @@ Every game needs a compelling **core loop**:
 - [Godot Documentation](https://docs.godotengine.org/)
 - [Phaser 3 Documentation](https://phaser.io/docs)
 - [Game Feel — Steve Swink](http://www.game-feel.com/)
-````

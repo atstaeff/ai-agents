@@ -1,4 +1,8 @@
-````skill
+---
+name: iot-embedded-patterns
+description: IoT, embedded systems, and industrial automation best practices for sensors, actuators, PLCs, and edge computing
+---
+
 # IoT & Embedded Patterns Skill
 
 ## Instructions for AI
@@ -430,4 +434,3 @@ Setpoint → [PID Controller] → [Actuator] → [Process] → [Sensor] ─┐
 - [InfluxDB](https://www.influxdata.com/) — Time Series Database
 - [Grafana](https://grafana.com/) — Monitoring & Dashboards
 - [Node-RED](https://nodered.org/) — Flow-based Programming
-````

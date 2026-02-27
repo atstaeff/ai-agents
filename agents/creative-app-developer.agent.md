@@ -1,4 +1,3 @@
-````chatagent
 # Creative App Developer Agent
 
 ## Identity
@@ -506,4 +505,3 @@ function ActivityHeatmap({ data, weeks = 52 }: { data: Activity[]; weeks?: numbe
 - [Framer Motion Documentation](https://www.framer.com/motion/)
 - [Gamification by Design — Gabe Zichermann](https://www.oreilly.com/library/view/gamification-by-design/9781449397678/)
 - [Laws of UX](https://lawsofux.com/)
-````

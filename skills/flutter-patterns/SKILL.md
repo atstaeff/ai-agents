@@ -1,4 +1,8 @@
-````skill
+---
+name: flutter-patterns
+description: Modern Flutter and Dart patterns, production-grade standards, and iOS-optimized practices
+---
+
 # Flutter Patterns Skill
 
 ## Instructions for AI
@@ -518,5 +522,3 @@ testWidgets('OrderCard renders correctly', (tester) async {
 - [Design Patterns](../software-engineering/design-patterns.md)
 - [Testing Strategies](../software-engineering/testing-strategies.md)
 - [Anti-Patterns](../anti-patterns/SKILL.md)
-
-````

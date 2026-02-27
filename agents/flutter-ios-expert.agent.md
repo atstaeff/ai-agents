@@ -1,4 +1,3 @@
-````chatagent
 # Flutter & iOS Expert Agent
 
 ## Identity
@@ -687,5 +686,3 @@ class AccessibleOrderCard extends StatelessWidget {
 - [Testing Strategies](../../skills/software-engineering/testing-strategies.md)
 - [Design Patterns](../../skills/software-engineering/design-patterns.md)
 - [Anti-Patterns](../../skills/anti-patterns/SKILL.md)
-
-````

@@ -1,3 +1,8 @@
+---
+name: testing
+description: Comprehensive testing best practices for test strategies, test writing, and testing infrastructure
+---
+
 # Testing Patterns Skill
 
 ## Instructions for AI

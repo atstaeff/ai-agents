@@ -1,3 +1,8 @@
+---
+name: marp-presentations
+description: Create professional Marp-based presentations for clients, technical audiences, and project reviews
+---
+
 # Marp Presentations Skill
 
 ## Instructions for AI

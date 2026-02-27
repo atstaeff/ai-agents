@@ -1,4 +1,3 @@
-````skill
 # Rapid Prototyping & Playtesting
 
 ## Instructions for AI
@@ -510,4 +509,3 @@ Hour 44-48: Build final version, submit, write description
 - [How to Playtest — GDC Talk](https://www.gdcvault.com/)
 - [The Art of Game Design — Chapter: Playtesting](https://www.schellgames.com/art-of-game-design)
 - [itch.io — Game Jam Platform](https://itch.io/jams)
-````

@@ -1,4 +1,3 @@
-````skill
 # Game Architecture Patterns
 
 ## Instructions for AI
@@ -501,4 +500,3 @@ class AssetManager {
 - [Fix Your Timestep — Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/)
 - [Entity Component System FAQ](https://github.com/SanderMertens/ecs-faq)
 - [Godot Best Practices](https://docs.godotengine.org/en/stable/tutorials/best_practices/)
-````

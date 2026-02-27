@@ -1,3 +1,8 @@
+---
+name: gcp-patterns
+description: Google Cloud Platform best practices for serverless, event-driven architectures
+---
+
 # GCP Patterns Skill
 
 ## Instructions for AI

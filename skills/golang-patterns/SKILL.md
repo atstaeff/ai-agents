@@ -1,4 +1,8 @@
-````skill
+---
+name: golang-patterns
+description: Idiomatic Go patterns, modern best practices, and production-grade code standards
+---
+
 # Golang Patterns Skill
 
 ## Instructions for AI
@@ -431,5 +435,3 @@ pkg/                         # Public reusable code (optional)
 - [Testing Strategies](../software-engineering/testing-strategies.md)
 - [GCP Patterns](../gcp-patterns/SKILL.md)
 - [Anti-Patterns](../anti-patterns/SKILL.md)
-
-````

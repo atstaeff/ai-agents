@@ -1,4 +1,3 @@
-````skill
 # Game Mechanics & Systems
 
 ## Instructions for AI
@@ -665,4 +664,3 @@ def astar(
 - [Red Blob Games — Amit Patel](https://www.redblobgames.com/)
 - [AI for Games — Ian Millington](https://www.ai4g.com/)
 - [Fix Your Timestep — Glenn Fiedler](https://gafferongames.com/post/fix_your_timestep/)
-````

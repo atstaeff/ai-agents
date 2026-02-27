@@ -1,4 +1,3 @@
-````skill
 # Game Design Principles
 
 ## Instructions for AI
@@ -278,4 +277,3 @@ Income Sources → Player Wallet → Spending Sinks
 - [Game Balance — Ian Schreiber](https://gamebalanceconcepts.wordpress.com/)
 - [Designing Games — Tynan Sylvester](https://tynansylvester.com/book/)
 - [GDC Vault — Free Talks](https://gdcvault.com/free)
-````
