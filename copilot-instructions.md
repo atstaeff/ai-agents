@@ -47,6 +47,47 @@ Use these agents by referencing them in conversations:
 
 ## General Guidelines
 
+### Default Workflow: Plan → Execute → Feedback
+
+Every task follows a three-phase cycle. This is the default workflow for all agents:
+
+```
+┌─────────────────────────────────────────────────────────┐
+│  1. PLAN  (expensive model — e.g. Claude Opus / GPT-4.1)│
+│     • Analyze context, explore codebase                  │
+│     • Decompose into atomic, independent tasks           │
+│     • Define expected outcomes per task                   │
+│     • Use the task-orchestrator agent for complex work    │
+└──────────────────────┬──────────────────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  2. EXECUTE  (cheap model — e.g. Haiku / GPT-4.1 mini)  │
+│     • Pick tasks in priority order                       │
+│     • Execute each task atomically                       │
+│     • Parallelise independent tasks where possible       │
+│     • Track progress with todo lists                     │
+└──────────────────────┬──────────────────────────────────┘
+                       ▼
+┌─────────────────────────────────────────────────────────┐
+│  3. FEEDBACK  (expensive model)                          │
+│     • Validate results against expected outcomes         │
+│     • Run validation / tests / linting                   │
+│     • Identify missed edge cases or improvements         │
+│     • Iterate if needed (back to Plan or Execute)        │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Model selection:** See the [LLM Model Guide](assets/mkdocs/references/llm-model-guide.md) for current model recommendations and pricing. Model names and costs change frequently — the guide is the single source of truth and should be updated regularly.
+
+**Key principles:**
+- Start cheap, escalate only when needed
+- Planning and review justify expensive models; repetitive execution does not
+- When in doubt, use a mid-tier model (Claude Sonnet / GPT-4.1 mini)
+
+### Engineering Principles
+
+### Engineering Principles
+
 - Follow clean code principles and SOLID design patterns
 - Apply enterprise-grade software engineering practices
 - Consider scalability, maintainability, and security in all solutions
