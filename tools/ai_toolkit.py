@@ -228,24 +228,36 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             raise ToolkitError("Invalid export manifest; select another output directory.") from exc
         if not isinstance(old, dict) or any(not isinstance(k, str) or not isinstance(v, str) for k, v in old.items()):
             raise ToolkitError("Invalid export manifest.")
-    for relative in set(planned) | set(old):
+    hashes = {relative: digest(data) for relative, data in planned.items()}
+    changed = []
+    removed = []
+    for relative in sorted(set(planned) | set(old)):
         target = output / relative
         if Path(relative).is_absolute() or not target.resolve().is_relative_to(output.resolve()):
             raise ToolkitError("Export path escapes its destination.")
         if target.is_symlink() or any(parent.is_symlink() for parent in target.parents):
             raise ToolkitError("Export destination must not contain symlinks.")
+        current_hash = None
         if target.exists():
             if not target.is_file():
                 raise ToolkitError(f"Export target is not a file: {relative}")
-            if not force and (relative not in old or digest(target.read_bytes()) != old[relative]):
+            current_hash = digest(target.read_bytes())
+            if not force and (relative not in old or current_hash != old[relative]):
                 raise ToolkitError(f"Refusing to overwrite an unmanaged or edited file: {relative}. Use a separate output or explicitly pass --force.")
+        if relative in planned:
+            if current_hash != hashes[relative]:
+                changed.append(relative)
+        elif current_hash is not None:
+            removed.append(relative)
     if not dry_run:
-        for relative, data in planned.items():
-            atomic_write(output / relative, data)
-        for relative in set(old) - set(planned):
-            (output / relative).unlink(missing_ok=True)
-        atomic_write(manifest_path, (json.dumps({'runtime': runtime, 'files': {p: digest(b) for p, b in planned.items()}}, indent=2) + '\n').encode())
-    return {'runtime': runtime, 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), 'dry_run': dry_run}
+        for relative in changed:
+            atomic_write(output / relative, planned[relative])
+        for relative in removed:
+            (output / relative).unlink()
+        manifest = (json.dumps({'runtime': runtime, 'files': hashes}, indent=2) + '\n').encode()
+        if not manifest_path.exists() or manifest_path.read_bytes() != manifest:
+            atomic_write(manifest_path, manifest)
+    return {'runtime': runtime, 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), 'changed': len(changed), 'unchanged': len(planned) - len(changed), 'removed': len(removed), 'dry_run': dry_run}
 
 
 TASK_ROW = re.compile(r"^\| (?P<id>T[1-9][0-9]*) \| (?P<title>[^|]*) \| (?P<status>open|in_progress|blocked|done) \| (?P<evidence>[^|]*) \|$", re.M)

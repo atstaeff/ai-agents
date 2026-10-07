@@ -36,14 +36,17 @@ These are OpenCode 1 configuration files; web session navigation depends on your
 
 Try these requests:
 
-> Jörg, inspect this project, plan a small complete improvement and implement it.
-> Keep the plan and my feedback in one `.ai/work/` record and verify the result.
+> Jörg, fix this small issue directly and run the relevant check.
+
+> Jörg, improve this larger feature. Keep the plan and my feedback in one
+> `.ai/work/` record, implement the first complete increment and verify it.
 
 > Use the second-brain agent to propose where these notes belong in my existing PARA
 > vault. Preserve my wording, aliases and links.
 
-Re-export after updating the repository. Edited bundle files are protected; change
-canonical sources here or select another destination. See [runtime details](toolkit/RUNTIMES.md).
+Re-export after updating the repository; unchanged files are skipped. Edited bundle
+files are protected; change canonical sources here or select another destination.
+See [runtime details](toolkit/RUNTIMES.md).
 
 ## Plans, tasks and your comments
 

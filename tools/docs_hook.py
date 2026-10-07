@@ -14,19 +14,28 @@ DOCUMENTS = {
     'toolkit/api.md': 'toolkit/API.md',
     'contributing/index.md': 'CONTRIBUTING.md',
 }
+ENTRIES = []
+SOURCES = {}
+REVERSE = {}
+
+
+def on_pre_build(config):
+    """Refresh once per build, including each rebuild under mkdocs serve."""
+    global ENTRIES, SOURCES, REVERSE
+    ENTRIES = catalog()
+    SOURCES = {f'{e.kind}s/{e.name}.md': e.path for e in ENTRIES}
+    SOURCES.update(DOCUMENTS)
+    REVERSE = {value: key for key, value in SOURCES.items()}
 
 
 def on_page_markdown(markdown, page, config, files):
-    entries = catalog()
-    sources = {f'{e.kind}s/{e.name}.md': e.path for e in entries}
-    sources.update(DOCUMENTS)
-    source = sources.get(page.file.src_uri)
+    source = SOURCES.get(page.file.src_uri)
     if page.file.src_uri == 'skills/feature-discovery.md':
         source = 'skills/team-collaboration/feature-discovery-session.md'
     if page.file.src_uri in {'agents/index.md','skills/index.md'}:
         kind = page.file.src_uri.split('/')[0][:-1]
         title = 'Agents' if kind == 'agent' else 'Skills'
-        relevant = [e for e in entries if e.kind == kind]
+        relevant = [e for e in ENTRIES if e.kind == kind]
         text = f'# {title}\n\n{len(relevant)} English profiles generated from canonical sources. Select by outcome; load focused references only when needed.\n\n'
         text += '| Name | Use when |\n| --- | --- |\n'
         for entry in relevant:
@@ -38,15 +47,14 @@ def on_page_markdown(markdown, page, config, files):
     if text.startswith('---\n'):
         meta, text = metadata(text)
         page.meta['description'] = meta['description']
-    reverse = {value:key for key,value in sources.items()}
     def rewrite(match):
         target = match.group(1)
         parts = urlsplit(target)
         if parts.scheme or parts.netloc or not parts.path:
             return match[0]
         resolved = ((ROOT/source).parent/unquote(parts.path)).resolve().relative_to(ROOT)
-        if resolved.as_posix() in reverse:
-            destination = Path(os.path.relpath(reverse[resolved.as_posix()],Path(page.file.src_uri).parent)).as_posix()
+        if resolved.as_posix() in REVERSE:
+            destination = Path(os.path.relpath(REVERSE[resolved.as_posix()],Path(page.file.src_uri).parent)).as_posix()
             if parts.fragment:
                 destination += '#' + parts.fragment
         else:

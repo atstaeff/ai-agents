@@ -54,7 +54,10 @@ host-specific; other Copilot surfaces may interpret frontmatter differently.
 Re-export after source updates. `.ai-toolkit-manifest.json` tracks owned paths and
 hashes. Edited or unmanaged files are not silently overwritten. `--dry-run` checks
 without writing; `--force` explicitly permits replacing files at planned paths.
-Successful updates remove obsolete owned files. Use a dedicated destination.
+Updates write only changed files and remove obsolete owned files. Identical files,
+including the manifest, keep their timestamps. JSON output reports `changed`,
+`unchanged` and `removed` file counts; the manifest is excluded. With `--dry-run`,
+these counts describe the proposed update. Use a dedicated destination.
 
 Keep model keys and private vault paths in local configuration. The catalog/dashboard
 uses no remote runtime service; AI provider calls are managed by your host.

@@ -5,26 +5,30 @@ description: "Plan and execute a larger task with one compact Markdown record co
 
 # Work Management
 
-1. Inspect project instructions and existing work. For a small edit, use the current conversation and existing tests; do not create process files automatically.
-2. For larger work use `.ai/work/<slug>.md`, created from the toolkit template or CLI. Keep one record per outcome, not one per session or agent.
-3. Write the goal, constraints and observable acceptance criteria. Make a short ordered plan and task rows with stable IDs.
-4. Keep tasks `open`, `in_progress`, `blocked` or `done`. A completed task needs evidence: a result, changed file, check or an explicit manual observation.
-5. Append human feedback with stable IDs. Preserve original wording and record its disposition; do not silently remove comments when replanning.
-6. Record only consequential decisions with a reason. Update evidence as work happens and distinguish unrun checks from passing checks.
-7. When the outcome is verified, move the record to `.ai/archive/`. Extract only reusable knowledge into the existing project documentation or private vault.
+1. Inspect relevant instructions and existing work. A small edit uses the conversation
+   and appropriate checks; create no process file automatically.
+2. For larger work, reuse or create one `.ai/work/<slug>.md` per outcome using the
+   template or CLI. Sessions and agents share it.
+3. Define the goal, constraints, observable acceptance criteria and a short ordered plan.
+   Use stable task IDs with states `open`, `in_progress`, `blocked` and `done`.
+4. Update evidence as work happens. Implementation progress and acceptance verification
+   are separate: a changed file alone does not prove resulting behavior.
+5. Preserve human feedback verbatim with stable IDs and an explicit disposition. Record
+   only consequential decisions and their reasons.
+6. Archive in `.ai/archive/` when the outcome is verified and unresolved feedback is
+   reviewed. Link reusable knowledge into existing documentation or the private vault.
 
-## Storage and handoffs
+## Safe updates and handoffs
 
-- Keep shared rules in the toolkit. Project `AGENTS.md` contains only project-specific constraints and verification commands.
-- Keep `docs/` available for its existing purpose, including GitHub Pages. Do not turn it into an agent scratch folder.
-- CSV is an export from the task table, not a second manually maintained task list.
-- Read the current record and relevant files on a handoff; load historical work only when needed.
-- Respect repository privacy rules. Never copy private vault notes into a public work record.
-- A dashboard updates the same Markdown file. Use its ETag/concurrency check or reread the file before applying an update from another session.
-- Before any rewrite, compare the current file with the version you read. Preserve intervening comments and changes, then retry or resolve the conflict explicitly. Never replace the whole record from an old session snapshot.
-- Distinguish implementing a task from verifying its acceptance criterion. A changed file can establish implementation progress; verification needs an appropriate check or explicit observation.
-- If a required check cannot run, record why, the affected acceptance criterion and the next action. Keep verification outstanding unless other adequate evidence establishes the criterion; do not archive an unverified outcome.
-
-## Completion
-
-Confirm acceptance criteria with evidence, preserve unresolved feedback, identify remaining limits and give the user a concise result.
+- Read the current record and relevant files; load historical work only when needed.
+  Before rewriting, compare against the version read and preserve intervening edits.
+  Retry or resolve conflicts; never replace a record from a stale session snapshot.
+- The dashboard edits the same Markdown file using ETag checks. Filesystem updates
+  require the same reread and comparison discipline.
+- A completed task needs evidence. If a required check cannot run, record why, the
+  affected criterion and the next action. Keep verification outstanding unless other
+  adequate evidence establishes it; never archive an unverified outcome.
+- Keep shared rules in the toolkit and local constraints in project `AGENTS.md`.
+  Keep `docs/` for its existing purpose. CSV is generated, not maintained separately.
+- Follow repository privacy rules. Keep private vault notes and configuration out of
+  public records. Report the outcome, actual checks and material limits concisely.

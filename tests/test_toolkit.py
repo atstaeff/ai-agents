@@ -10,6 +10,7 @@ import tempfile
 import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import ai_toolkit as tk
@@ -86,6 +87,73 @@ class ExportTests(unittest.TestCase):
         with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
             tk.export('opencode', self.output)
         self.assertEqual((self.output/'agents/joerg.md').read_text(), 'My custom instructions')
+
+    def test_unchanged_exports_preserve_files_and_write_nothing(self):
+        for runtime in ('opencode', 'copilot', 'portable'):
+            with self.subTest(runtime=runtime):
+                output = self.output / runtime
+                first = tk.export(runtime, output)
+                before = {p: (p.stat().st_ino, p.stat().st_mtime_ns)
+                          for p in output.rglob('*') if p.is_file()}
+                with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+                    second = tk.export(runtime, output)
+                write.assert_not_called()
+                self.assertEqual((second['changed'], second['removed']), (0, 0))
+                self.assertEqual(second['unchanged'], first['files'])
+                self.assertEqual(before, {p: (p.stat().st_ino, p.stat().st_mtime_ns)
+                                         for p in before})
+
+    def source_fixture(self):
+        root = Path(self.temp.name) / 'source'
+        for folder, name in (('agents', 'one.agent.md'), ('agents', 'two.agent.md'),
+                             ('skills/skill', 'SKILL.md')):
+            path = root / folder / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            slug = 'skill' if name == 'SKILL.md' else name.removesuffix('.agent.md')
+            path.write_text(f'---\nname: {slug}\ndescription: A focused profile\n---\n\nOriginal body.\n')
+        return root
+
+    def test_source_update_only_rewrites_affected_files(self):
+        root = self.source_fixture()
+        tk.export('portable', self.output, root)
+        source = root / 'agents/one.agent.md'
+        source.write_text(source.read_text().replace('Original body.', 'Updated body.'))
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            result = tk.export('portable', self.output, root)
+        self.assertEqual({call.args[0].relative_to(self.output).as_posix()
+                          for call in write.call_args_list},
+                         {'catalog/agents/one.agent.md', 'agents/one.agent.md', '.ai-toolkit-manifest.json'})
+        self.assertEqual(result['changed'], 2)
+        self.assertIn('Updated body.', (self.output / 'agents/one.agent.md').read_text())
+
+    def test_obsolete_files_are_removed_but_edited_ones_are_protected(self):
+        root = self.source_fixture()
+        tk.export('portable', self.output, root)
+        (root / 'agents/two.agent.md').unlink()
+        edited = self.output / 'agents/two.agent.md'
+        edited.write_text('Keep this human edit.')
+        with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
+            tk.export('portable', self.output, root)
+        self.assertEqual(edited.read_text(), 'Keep this human edit.')
+        preview = tk.export('portable', self.output, root, force=True, dry_run=True)
+        self.assertEqual((preview['changed'], preview['removed']), (1, 2))
+        self.assertTrue(edited.exists())
+        result = tk.export('portable', self.output, root, force=True)
+        self.assertEqual((result['changed'], result['removed']), (1, 2))
+        self.assertFalse(edited.exists())
+        self.assertFalse((self.output / 'catalog/agents/two.agent.md').exists())
+        self.assertTrue((self.output / 'agents/one.agent.md').is_file())
+
+    def test_missing_owned_file_is_restored(self):
+        tk.export('opencode', self.output)
+        missing = self.output / 'agents/build.md'
+        expected = missing.read_bytes()
+        missing.unlink()
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            result = tk.export('opencode', self.output)
+        self.assertEqual(result['changed'], 1)
+        self.assertEqual([call.args[0] for call in write.call_args_list], [missing])
+        self.assertEqual(missing.read_bytes(), expected)
 
     def test_unmanaged_configuration_is_not_overwritten(self):
         self.output.mkdir()
