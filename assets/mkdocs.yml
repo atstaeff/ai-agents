@@ -1,7 +1,7 @@
-site_name: Copilot Expert Hub
+site_name: AI Agents Workbench
 site_description: >-
-  A complete, modular, and scalable repository of AI Agents, Skills, Templates,
-  and Reference Architectures for GitHub Copilot.
+  A portable English agent and skill catalog with a local work toolkit,
+  OpenCode and Copilot adapters, and Obsidian PARA support.
 site_url: https://atstaeff.github.io/ai-agents/
 repo_url: https://github.com/atstaeff/ai-agents
 repo_name: atstaeff/ai-agents
@@ -26,9 +26,7 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Light Mode
-  font:
-    text: Inter
-    code: JetBrains Mono
+  font: false
   icon:
     repo: fontawesome/brands/github
     logo: material/robot-happy-outline
@@ -50,6 +48,9 @@ theme:
 plugins:
   - search:
       lang: en
+
+hooks:
+  - ../tools/docs_hook.py
 
 markdown_extensions:
   - abbr
@@ -104,8 +105,16 @@ nav:
       - Installation & Setup: getting-started/installation.md
       - Quick Start: getting-started/quick-start.md
       - Recommended Workflow: getting-started/workflow.md
+      - Work Records: toolkit/work-records.md
+      - Local API: toolkit/api.md
   - Agents:
       - Overview: agents/index.md
+      - Personal & Product:
+          - Jörg: agents/joerg.md
+          - Second Brain: agents/second-brain.md
+          - Product Manager: agents/product-manager.md
+          - Plan: agents/plan.md
+          - Build: agents/build.md
       - Planning & Architecture:
           - Lead Architect: agents/lead-architect.md
           - Task Orchestrator: agents/task-orchestrator.md
@@ -133,6 +142,20 @@ nav:
           - Proposal/Pitch Agent: agents/proposal-pitch.md
   - Skills:
       - Overview: skills/index.md
+      - Topic Routers:
+          - Architecture: skills/architecture.md
+          - Creative Apps: skills/creative-apps.md
+          - Game Development: skills/game-development.md
+          - General: skills/general.md
+          - Project Management: skills/project-management.md
+          - Software Engineering: skills/software-engineering.md
+          - System Design: skills/system-design.md
+          - Team Collaboration: skills/team-collaboration.md
+      - Workflow & Knowledge:
+          - Work Management: skills/work-management.md
+          - Agent Routing: skills/agent-routing.md
+          - Product Discovery: skills/product-discovery.md
+          - Obsidian PARA: skills/obsidian-para.md
       - Language Patterns:
           - Python Patterns: skills/python-patterns.md
           - Golang Patterns: skills/golang-patterns.md
@@ -163,7 +186,7 @@ nav:
           - Technical Debt: skills/technical-debt.md
           - PR Crafting: skills/pr-crafting.md
           - Progress Sync: skills/progress-sync.md
-          - Feature Discovery: skills/feature-discovery.md
+          - Feature Discovery: skills/feature-discovery-session.md
           - Incident Response: skills/incident-response.md
       - Game Development:
           - Game Design: skills/game-design.md
@@ -182,7 +205,7 @@ nav:
   - Architecture: architecture.md
   - Templates & References:
       - Overview: references/index.md
-      - LLM-Modell-Guide: references/llm-model-guide.md
+      - Model Selection: references/llm-model-guide.md
       - Marp Templates: references/marp-templates.md
       - Python Golden Repo: references/python-golden.md
       - Event-Driven Python: references/event-driven-python.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Routing"
+  short_description: "Choose focused skills and hand off bounded tasks to agents"
+  default_prompt: "Use $agent-routing to help with this task."

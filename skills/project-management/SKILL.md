@@ -1,21 +1,22 @@
 ---
-name: project-management
-description: Project management methodologies including agile practices, technical debt management, and DevOps CI/CD
+name: "project-management"
+description: "Organize delivery, technical debt or release work without excessive process overhead."
 ---
 
-# Project Management Skill
+# Project Management
 
-## Instructions for AI
+## Workflow
 
-Apply project management methodologies and practices when planning, executing, or improving software delivery processes. Use these sub-skills for agile workflows, technical debt strategies, and CI/CD pipelines.
+1. Use one work record for the outcome, acceptance criteria, tasks, feedback and evidence.
+2. Select agile-methodologies for flow, technical-debt for repayment choices or devops-cicd for release mechanics.
+3. Keep task granularity useful for execution and do not introduce ceremonies or parallel tracking systems without a need.
 
-## Sub-Skills
+## Completion
 
-- [Agile Methodologies](agile-methodologies.md) — Agile principles, Scrum, Kanban, and sprint management
-- [DevOps CI/CD](devops-cicd.md) — Continuous integration and deployment pipelines
-- [Technical Debt](technical-debt.md) — Technical debt identification, tracking, and reduction strategies
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [Software Engineering](../software-engineering/SKILL.md)
-- [Team Collaboration](../team-collaboration/SKILL.md)
+- [agile-methodologies](agile-methodologies.md)
+- [devops-cicd](devops-cicd.md)
+- [technical-debt](technical-debt.md)

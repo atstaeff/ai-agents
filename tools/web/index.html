@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AI Workbench · Local toolkit</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <aside class="sidebar">
+    <div class="brand"><span class="mark" aria-hidden="true">ai</span><div>Work<span>bench</span><small>YOUR LOCAL TOOLKIT</small></div></div>
+    <nav aria-label="Main navigation">
+      <button class="nav active" id="nav-work" aria-pressed="true">Work records <span id="work-count">…</span></button>
+      <button class="nav" id="nav-catalog" aria-pressed="false">Agents &amp; skills <span id="catalog-count">…</span></button>
+    </nav>
+    <div class="sidebar-note"><span class="dot" aria-hidden="true"></span> Running locally<p>Your files stay in the selected workspace. No external scripts or services.</p></div>
+  </aside>
+  <main id="main">
+    <header><span class="eyebrow">LESS ADMIN. MORE PROGRESS.</span><div class="local-badge">LOCAL / v1</div></header>
+    <p id="notice" role="status" aria-live="polite" hidden></p>
+    <section id="work-view" aria-labelledby="work-heading">
+      <div class="section-head"><div><h1 id="work-heading">One outcome.<br>One work record.</h1><p>Plan, tasks, your feedback and evidence — together.</p></div><button id="new-button" class="primary">+ New work record</button></div>
+      <form id="new-form" class="panel form" hidden>
+        <h2>Start a focused piece of work</h2>
+        <label>Title<input name="title" required maxlength="200" placeholder="Improve the customer onboarding flow"></label>
+        <div class="form-row"><label>ID<input name="id" required maxlength="64" pattern="[a-z0-9]+(-[a-z0-9]+)*" placeholder="customer-onboarding"></label><label>Kind<select name="kind"><option value="software">Software</option><option value="product">Product</option><option value="general">General</option></select></label></div>
+        <div class="actions"><button class="primary">Create record</button><button type="button" id="cancel-new" class="secondary">Cancel</button></div>
+      </form>
+      <div class="workspace-grid">
+        <section class="panel record-list" aria-label="Active work"><div class="panel-head"><h2>Active work</h2><button id="refresh" class="text-button">Refresh</button></div><div id="records"><p class="muted">Loading work records…</p></div></section>
+        <section class="panel detail" aria-labelledby="detail-heading"><div id="record-empty" class="empty"><span class="empty-icon" aria-hidden="true">↗</span><h2 id="detail-heading">Make progress visible</h2><p>Choose a work record or create one.<br>Agents and humans use the same Markdown file.</p></div>
+          <div id="record-detail" hidden>
+            <div class="panel-head"><div><span id="record-kind" class="eyebrow"></span><h2 id="record-title"></h2></div><button id="copy-path" class="secondary">Copy path</button></div>
+            <p id="record-path" class="file-path"></p>
+            <div id="task-list"></div>
+            <form id="feedback-form" class="feedback"><label for="feedback">Your feedback</label><textarea id="feedback" required maxlength="4000" rows="3" placeholder="What should change? What is already useful?"></textarea><button class="primary">Add comment</button><p class="muted">Comments are appended; existing notes are preserved.</p></form>
+            <details><summary>Full plan &amp; history</summary><pre id="markdown"></pre></details>
+          </div>
+        </section>
+      </div>
+    </section>
+    <section id="catalog-view" aria-labelledby="catalog-heading" hidden>
+      <div class="section-head"><div><h1 id="catalog-heading">The right expertise.<br>When you need it.</h1><p>Start with Jörg. Load focused skills instead of the entire library.</p></div></div>
+      <div class="catalog-tools"><label class="search">Search the catalog<input type="search" id="search" placeholder="Try Python, API, Obsidian…"></label><label>Type<select id="kind-filter"><option value="all">All entries</option><option value="agent">Agents</option><option value="skill">Skills</option></select></label><p id="results-count" role="status"></p></div>
+      <div id="catalog-cards" class="cards"></div>
+    </section>
+    <footer>Markdown is the source of truth. This dashboard manages records; your AI host runs the agents.</footer>
+  </main>
+</body>
+</html>

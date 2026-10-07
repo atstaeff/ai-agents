@@ -40,3 +40,13 @@ Thumbs.db
 
 # MkDocs build output (old location)
 site/
+
+# Local toolkit state and environments
+.venv/
+__pycache__/
+*.py[cod]
+.ai/work/
+.ai/archive/
+.ai/generated/
+.ai/exports/
+.ai-toolkit-manifest.json

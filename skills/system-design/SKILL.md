@@ -1,19 +1,20 @@
 ---
-name: system-design
-description: System design and architecture planning for solving real problems while remaining flexible for future needs
+name: "system-design"
+description: "Plan system-level behavior, data flow, interfaces and operational constraints for a concrete use case."
 ---
 
-# System Design Skill
+# System Design
 
-## Instructions for AI
+## Workflow
 
-Design software systems that solve real problems while remaining flexible for future needs. Use this skill when planning system architecture, evaluating trade-offs, or making design decisions.
+1. Establish use cases, scale, data lifecycle and quality requirements before choosing components.
+2. Use architecture-planning for a compact option comparison and decision.
+3. Keep topology as simple as the needs allow and verify the riskiest assumption.
 
-## Sub-Skills
+## Completion
 
-- [Architecture Planning](architecture-planning.md) — System design methodology, trade-off analysis, and scalability planning
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [Architecture](../architecture/SKILL.md)
-- [Software Engineering](../software-engineering/SKILL.md)
+- [architecture-planning](architecture-planning.md)

@@ -6,6 +6,15 @@ on:
     paths:
       - 'assets/mkdocs/**'
       - 'assets/mkdocs.yml'
+      - 'agents/**'
+      - 'skills/**'
+      - 'toolkit/**'
+      - 'templates/**'
+      - 'tools/docs_hook.py'
+      - 'tools/ai_toolkit.py'
+      - 'CONTRIBUTING.md'
+      - 'pyproject.toml'
+      - 'uv.lock'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -30,15 +39,16 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install MkDocs & plugins
+      - name: Install reproducible documentation environment
         run: |
-          pip install --upgrade pip
-          pip install \
-            mkdocs-material==9.7.* \
-            mkdocs>=1.6
+          python -m pip install uv==0.12.19
+          uv sync --locked --group docs
+
+      - name: Validate canonical catalog
+        run: python3 tools/ai_toolkit.py check
 
       - name: Build documentation
-        run: mkdocs build -f assets/mkdocs.yml --strict
+        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict
 
       - name: Add .nojekyll
         run: touch docs/.nojekyll
@@ -52,6 +62,6 @@ jobs:
             echo "No changes to docs — skipping commit"
           else
             git commit -m "docs: rebuild documentation site"
-            git pull --rebase origin main
+            # A newer main commit must be rebuilt by its own run, not overwritten.
             git push
           fi

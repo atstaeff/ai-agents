@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian PARA"
+  short_description: "Maintain a private Obsidian second brain with the PARA method"
+  default_prompt: "Use $obsidian-para to help with this task."

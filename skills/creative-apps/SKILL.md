@@ -1,19 +1,20 @@
 ---
-name: creative-apps
-description: Creative, interactive, and delightful application patterns including generative design, gamification, and sensory feedback
+name: "creative-apps"
+description: "Develop an interactive creative application for music, art, editing or other expressive workflows."
 ---
 
-# Creative Apps Skill
+# Creative Apps
 
-## Instructions for AI
+## Workflow
 
-Apply creative, interactive, and delightful application patterns when building engaging user experiences. Use this skill for generative design, gamification, animations, and sensory feedback.
+1. Identify the creative action and the feedback loop that makes it usable. Prototype that loop before building secondary features.
+2. Separate document state from rendering and transient input. Design undo/redo, persistence and accessible controls early.
+3. Load creative-app-patterns only for the relevant medium and performance constraints.
 
-## Sub-Skills
+## Completion
 
-- [Creative App Patterns](creative-app-patterns.md) — Generative design, gamification, micro-interactions, and delightful UX patterns
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [Frontend Patterns](../frontend-patterns/SKILL.md)
-- [Game Development](../game-development/SKILL.md)
+- [creative-app-patterns](creative-app-patterns.md)

@@ -1,52 +1,23 @@
-# Skill Template
+# Skill source template
 
-## Instructions for AI
+Create `skills/<slug>/SKILL.md`. Replace placeholders with actionable domain guidance;
+host-specific fields belong in adapters.
 
-[Clear, concise instructions for the AI on how to apply this skill]
+```markdown
+---
+name: "replace-with-slug"
+description: "Explain the capability and concrete situations in which to select it."
+---
 
-## [Main Topic 1]
+# Descriptive title
 
-### [Subtopic]
-- Key point 1
-- Key point 2
-- Key point 3
+## Workflow
 
-**Examples:**
-```[language]
-// Code example showing good practice
+1. Inspect context and existing conventions.
+2. Perform the domain-specific action with concrete constraints.
+3. Verify the result and report material limits.
+
+## Focused references
+
+Link optional reference files only when they provide useful details.
 ```
-
-## [Main Topic 2]
-
-### [Subtopic]
-[Detailed explanation]
-
-## Best Practices
-
-✅ Good practice 1
-✅ Good practice 2
-✅ Good practice 3
-
-## Anti-Patterns
-
-❌ Bad practice 1
-❌ Bad practice 2
-❌ Bad practice 3
-
-## Example Prompts
-
-"[Example prompt 1]"
-
-"[Example prompt 2]"
-
-"[Example prompt 3]"
-
-## Related Skills
-
-- [Link to related skill 1]
-- [Link to related skill 2]
-
-## References
-
-- [External resource 1]
-- [External resource 2]

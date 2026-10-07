@@ -1,25 +1,25 @@
 ---
-name: architecture
-description: Software architecture patterns including microservices, DDD, cloud-native, API design, security, and performance
+name: "architecture"
+description: "Choose an architecture approach when planning system boundaries, interfaces, deployment or quality requirements."
 ---
 
-# Architecture Skill
+# Architecture
 
-## Instructions for AI
+## Workflow
 
-Apply software architecture patterns and best practices when designing, reviewing, or evolving systems. Use these sub-skills for domain-specific architectural guidance.
+1. Start with users, use cases, existing constraints and measurable quality requirements.
+2. Choose the smallest viable architecture; a modular application is a valid default. Compare alternatives by operating cost and change cost.
+3. Select a focused topic below only when the task requires it. Record consequential tradeoffs in the current work record.
 
-## Sub-Skills
+## Completion
 
-- [API Design](api-design.md) — Design robust, scalable, and developer-friendly APIs
-- [Cloud Native](cloud-native.md) — Cloud-native architecture patterns and practices
-- [Domain-Driven Design](domain-driven-design.md) — DDD strategic and tactical patterns
-- [Microservices](microservices.md) — Microservice architecture patterns and decomposition
-- [Performance](performance.md) — Performance optimization and scalability patterns
-- [Security](security.md) — Security architecture and secure-by-design practices
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [System Design](../system-design/SKILL.md)
-- [Software Engineering](../software-engineering/SKILL.md)
-- [GCP Patterns](../gcp-patterns/SKILL.md)
+- [api-design](api-design.md)
+- [cloud-native](cloud-native.md)
+- [domain-driven-design](domain-driven-design.md)
+- [microservices](microservices.md)
+- [performance](performance.md)
+- [security](security.md)

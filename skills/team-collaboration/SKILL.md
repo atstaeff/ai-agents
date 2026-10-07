@@ -1,22 +1,23 @@
 ---
-name: team-collaboration
-description: Team collaboration skills including PR crafting, progress sync, feature discovery sessions, and incident response
+name: "team-collaboration"
+description: "Coordinate shared work, reviews, incidents or handoffs with explicit ownership and compact records."
 ---
 
-# Team Collaboration Skill
+# Team Collaboration
 
-## Instructions for AI
+## Workflow
 
-Apply team collaboration best practices when working with others on software projects. Use these sub-skills for effective communication, coordination, and incident handling.
+1. Use the current work record as the handoff surface; do not create competing task lists.
+2. Choose feature-discovery-session, incident-response, pr-crafting or progress-sync for the actual collaboration need.
+3. Preserve user feedback, make dependencies clear and require evidence before calling work complete.
 
-## Sub-Skills
+## Completion
 
-- [Feature Discovery Session](feature-discovery-session.md) — Structured feature exploration and requirements gathering
-- [Incident Response](incident-response.md) — Incident management, triage, and post-mortems
-- [PR Crafting](pr-crafting.md) — Compose pull requests that communicate changes clearly
-- [Progress Sync](progress-sync.md) — Effective status updates and team synchronization
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [General](../general/SKILL.md)
-- [Project Management](../project-management/SKILL.md)
+- [feature-discovery-session](feature-discovery-session.md)
+- [incident-response](incident-response.md)
+- [pr-crafting](pr-crafting.md)
+- [progress-sync](progress-sync.md)

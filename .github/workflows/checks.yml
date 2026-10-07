@@ -1,0 +1,42 @@
+name: Validate Toolkit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate catalog and local links
+        run: python3 tools/ai_toolkit.py check
+      - name: Test exports, storage and HTTP contracts
+        run: python3 -m unittest discover -s tests -v
+      - name: Check frontend JavaScript syntax
+        run: node --check tools/web/app.js
+      - name: Install reproducible docs environment
+        run: |
+          python -m pip install uv==0.12.19
+          uv sync --locked --group docs
+      - name: Strict documentation build
+        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir .ai/generated/site
+      - name: Upload documentation preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-preview
+          path: .ai/generated/site

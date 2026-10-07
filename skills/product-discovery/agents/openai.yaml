@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Discovery"
+  short_description: "Turn product needs into small, measurable delivery increments"
+  default_prompt: "Use $product-discovery to help with this task."
