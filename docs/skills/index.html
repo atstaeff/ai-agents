@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="A complete, modular, and scalable repository of AI Agents, Skills, Templates, and Reference Architectures for GitHub Copilot.">
+        <meta name="description" content="A portable English agent and skill catalog with a local work toolkit, OpenCode and Copilot adapters, and Obsidian PARA support.">
       
       
       
@@ -16,22 +16,22 @@
         <link rel="prev" href="../agents/proposal-pitch/">
       
       
-        <link rel="next" href="python-patterns/">
+        <link rel="next" href="architecture/">
       
       
         
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Overview - Copilot Expert Hub</title>
+        <title>Overview - AI Agents Workbench</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -44,12 +44,6 @@
       
     
     
-      
-        
-        
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
     
@@ -80,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#skills-catalog" class="md-skip">
+        <a href="#skills" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +90,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Copilot Expert Hub" class="md-header__button md-logo" aria-label="Copilot Expert Hub" data-md-component="logo">
+    <a href=".." title="AI Agents Workbench" class="md-header__button md-logo" aria-label="AI Agents Workbench" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
@@ -110,7 +104,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Copilot Expert Hub
+            AI Agents Workbench
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -442,13 +436,13 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Copilot Expert Hub" class="md-nav__button md-logo" aria-label="Copilot Expert Hub" data-md-component="logo">
+    <a href=".." title="AI Agents Workbench" class="md-nav__button md-logo" aria-label="AI Agents Workbench" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.5 15.5c0 .37-.1.7-.28 1-.34-.59-.98-1-1.72-1s-1.38.41-1.72 1c-.17-.3-.28-.63-.28-1 0-1.1.9-2 2-2s2 .9 2 2M23 15v3c0 .55-.45 1-1 1h-1v1c0 1.11-.89 2-2 2H5a2 2 0 0 1-2-2v-1H2c-.55 0-1-.45-1-1v-3c0-.55.45-1 1-1h1c0-3.87 3.13-7 7-7h1V5.73c-.6-.34-1-.99-1-1.73 0-1.1.9-2 2-2s2 .9 2 2c0 .74-.4 1.39-1 1.73V7h1c3.87 0 7 3.13 7 7h1c.55 0 1 .45 1 1m-2 1h-2v-2c0-2.76-2.24-5-5-5h-4c-2.76 0-5 2.24-5 5v2H3v1h2v3h14v-3h2zm-5.5-2.5c-1.1 0-2 .9-2 2 0 .37.11.7.28 1 .34-.59.98-1 1.72-1s1.38.41 1.72 1c.18-.3.28-.63.28-1a2 2 0 0 0-2-2"/></svg>
 
     </a>
-    Copilot Expert Hub
+    AI Agents Workbench
   </label>
   
     <div class="md-nav__source">
@@ -657,6 +651,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../toolkit/work-records/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work Records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../toolkit/api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Local API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -778,7 +828,7 @@
   <span class="md-ellipsis">
     
   
-    Planning & Architecture
+    Personal & Product
   
 
     
@@ -791,6 +841,208 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Personal & Product
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/joerg/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Jörg
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/second-brain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Second Brain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/product-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Manager
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../agents/build/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Build
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Planning & Architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -914,10 +1166,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
             
   
   
@@ -935,8 +1187,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1088,10 +1340,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
             
   
   
@@ -1109,8 +1361,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1234,10 +1486,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
         
           
-          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
             
   
   
@@ -1255,8 +1507,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1324,10 +1576,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_7" >
         
           
-          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
             
   
   
@@ -1345,8 +1597,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1414,10 +1666,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_8" >
         
           
-          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
             
   
   
@@ -1435,8 +1687,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1532,10 +1784,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_9" >
         
           
-          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_9" id="__nav_4_9_label" tabindex="0">
             
   
   
@@ -1553,8 +1805,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -1764,24 +2016,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Overview
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1798,124 +2032,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#language-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Language Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-engineering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Engineering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloud-devops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cloud &amp; DevOps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-team" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project &amp; Team
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#game-development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Game Development
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creative-apps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Creative Apps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-skills" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Skills
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-skills-in-your-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using Skills in Your Workflow
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -1957,7 +2073,7 @@
   <span class="md-ellipsis">
     
   
-    Language Patterns
+    Topic Routers
   
 
     
@@ -1970,6 +2086,472 @@
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Topic Routers
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="creative-apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Creative Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="game-development/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Game Development
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="project-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="software-engineering/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Software Engineering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="system-design/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Design
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="team-collaboration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Team Collaboration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Workflow & Knowledge
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Workflow & Knowledge
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-management/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agent-routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="product-discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Product Discovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="obsidian-para/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Obsidian PARA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Language Patterns
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2124,10 +2706,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
             
   
   
@@ -2145,8 +2727,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_3">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2357,10 +2939,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
         
           
-          <label class="md-nav__link" for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
             
   
   
@@ -2378,8 +2960,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2590,10 +3172,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_7" >
         
           
-          <label class="md-nav__link" for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="">
             
   
   
@@ -2611,8 +3193,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_7">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2739,10 +3321,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_8" >
         
           
-          <label class="md-nav__link" for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
             
   
   
@@ -2760,8 +3342,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_8">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2832,10 +3414,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_9" >
         
           
-          <label class="md-nav__link" for="__nav_5_7" id="__nav_5_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
             
   
   
@@ -2853,8 +3435,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_9">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2983,7 +3565,7 @@
   
   
     <li class="md-nav__item">
-      <a href="feature-discovery/" class="md-nav__link">
+      <a href="feature-discovery-session/" class="md-nav__link">
         
   
   
@@ -3065,10 +3647,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_10" >
         
           
-          <label class="md-nav__link" for="__nav_5_8" id="__nav_5_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="">
             
   
   
@@ -3086,8 +3668,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_10">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3242,10 +3824,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_9" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_11" >
         
           
-          <label class="md-nav__link" for="__nav_5_9" id="__nav_5_9_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_11" id="__nav_5_11_label" tabindex="">
             
   
   
@@ -3263,8 +3845,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_9_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_9">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_11">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3335,10 +3917,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_12" >
         
           
-          <label class="md-nav__link" for="__nav_5_10" id="__nav_5_10_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5_12" id="__nav_5_12_label" tabindex="">
             
   
   
@@ -3356,8 +3938,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_12">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -3672,7 +4254,7 @@
   <span class="md-ellipsis">
     
   
-    LLM-Modell-Guide
+    Model Selection
   
 
     
@@ -3997,113 +4579,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#language-patterns" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Language Patterns
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#software-engineering" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Software Engineering
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Architecture
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#cloud-devops" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Cloud &amp; DevOps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-team" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Project &amp; Team
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#game-development" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Game Development
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#creative-apps" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Creative Apps
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#additional-skills" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Additional Skills
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-skills-in-your-workflow" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Using Skills in Your Workflow
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -4122,267 +4597,210 @@
   
 
 
-<h1 id="skills-catalog">Skills Catalog<a class="headerlink" href="#skills-catalog" title="Permanent link">&para;</a></h1>
-<p>Skills are <strong>technical knowledge bases</strong> that agents use to provide well-founded recommendations. Each skill contains best practices, patterns, code examples, and anti-patterns.</p>
-<hr />
-<h2 id="language-patterns">Language Patterns<a class="headerlink" href="#language-patterns" title="Permanent link">&para;</a></h2>
-<p>Language-specific patterns and best practices.</p>
+<h1 id="skills">Skills<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h1>
+<p>48 English profiles generated from canonical sources. Select by outcome; load focused references only when needed.</p>
 <table>
 <thead>
 <tr>
-<th>Skill</th>
-<th>Description</th>
-<th>For Agent</th>
+<th>Name</th>
+<th>Use when</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="python-patterns/">Python Patterns</a></td>
-<td>Idiomatic Python, Design Patterns, SOLID</td>
-<td>Python Expert</td>
+<td><a href="agent-routing/">agent-routing</a></td>
+<td>Select skills and specialist agents for a user outcome, using progressive loading and explicit, verifiable handoffs.</td>
 </tr>
 <tr>
-<td><a href="golang-patterns/">Golang Patterns</a></td>
-<td>Idiomatic Go, Concurrency, Interfaces</td>
-<td>Golang Expert</td>
+<td><a href="anti-patterns/">anti-patterns</a></td>
+<td>Spot avoidable complexity when reviewing architecture, code, processes or proposed dependencies.</td>
 </tr>
 <tr>
-<td><a href="flutter-patterns/">Flutter Patterns</a></td>
-<td>Dart/Flutter, BLoC, Clean Architecture</td>
-<td>Flutter &amp; iOS Expert</td>
+<td><a href="architecture/">architecture</a></td>
+<td>Choose an architecture approach when planning system boundaries, interfaces, deployment or quality requirements.</td>
 </tr>
 <tr>
-<td><a href="frontend-patterns/">Frontend Patterns</a></td>
-<td>TypeScript, Vue.js, Angular Patterns</td>
-<td>Frontend Expert</td>
+<td><a href="api-design/">api-design</a></td>
+<td>Design or review an HTTP API, consumer contract, errors, authorization, pagination or compatibility changes.</td>
+</tr>
+<tr>
+<td><a href="cloud-native/">cloud-native</a></td>
+<td>Plan or review cloud deployment, managed services, runtime configuration and operational resilience.</td>
+</tr>
+<tr>
+<td><a href="domain-driven-design/">domain-driven-design</a></td>
+<td>Model business rules, aggregates, bounded contexts or domain terminology in an existing or new application.</td>
+</tr>
+<tr>
+<td><a href="microservices/">microservices</a></td>
+<td>Evaluate a service split or improve an existing distributed system with explicit ownership and failure handling.</td>
+</tr>
+<tr>
+<td><a href="performance/">performance</a></td>
+<td>Investigate measured latency, throughput, memory or resource problems and validate an optimization.</td>
+</tr>
+<tr>
+<td><a href="security/">security</a></td>
+<td>Review a concrete trust boundary, authentication, authorization, secret handling or vulnerability fix.</td>
+</tr>
+<tr>
+<td><a href="creative-apps/">creative-apps</a></td>
+<td>Develop an interactive creative application for music, art, editing or other expressive workflows.</td>
+</tr>
+<tr>
+<td><a href="creative-app-patterns/">creative-app-patterns</a></td>
+<td>Implement document models, undo/redo, real-time feedback or media processing in a creative application.</td>
+</tr>
+<tr>
+<td><a href="flutter-patterns/">flutter-patterns</a></td>
+<td>Build, review or debug a Flutter application, including platform integration and widget behavior.</td>
+</tr>
+<tr>
+<td><a href="frontend-patterns/">frontend-patterns</a></td>
+<td>Build or improve a web interface with accessible interaction, clear states, reusable components and API contracts.</td>
+</tr>
+<tr>
+<td><a href="game-development/">game-development</a></td>
+<td>Plan or implement a playable prototype, game loop, mechanics or game architecture.</td>
+</tr>
+<tr>
+<td><a href="game-architecture/">game-architecture</a></td>
+<td>Structure an existing or new game for clear state ownership, engine integration and testable mechanics.</td>
+</tr>
+<tr>
+<td><a href="game-design/">game-design</a></td>
+<td>Clarify a game concept, core loop, player goals, balancing or playtest criteria.</td>
+</tr>
+<tr>
+<td><a href="game-mechanics/">game-mechanics</a></td>
+<td>Implement or tune a specific game mechanic such as movement, combat, inventory or progression.</td>
+</tr>
+<tr>
+<td><a href="prototyping/">prototyping</a></td>
+<td>Create a short experiment to reduce uncertainty in a game, interface or technical concept.</td>
+</tr>
+<tr>
+<td><a href="gcp-patterns/">gcp-patterns</a></td>
+<td>Design, deploy or troubleshoot a workload on Google Cloud with clear cost and operational constraints.</td>
+</tr>
+<tr>
+<td><a href="general/">general</a></td>
+<td>Select communication or engineering decision support for work that does not require a language-specific skill.</td>
+</tr>
+<tr>
+<td><a href="communication/">communication</a></td>
+<td>Write a status update, explanation, decision request or stakeholder message with a clear audience and purpose.</td>
+</tr>
+<tr>
+<td><a href="principal-engineer-decisions/">principal-engineer-decisions</a></td>
+<td>Compare consequential technical options and record an architecture or delivery decision.</td>
+</tr>
+<tr>
+<td><a href="golang-patterns/">golang-patterns</a></td>
+<td>Write, review or debug idiomatic Go code, concurrency, interfaces and resource management.</td>
+</tr>
+<tr>
+<td><a href="iot-embedded-patterns/">iot-embedded-patterns</a></td>
+<td>Develop or review firmware, embedded protocols, resource-constrained systems or device integration.</td>
+</tr>
+<tr>
+<td><a href="marp-presentations/">marp-presentations</a></td>
+<td>Create or revise a Marp presentation with concise narrative, readable slides and compatible frontmatter.</td>
+</tr>
+<tr>
+<td><a href="obsidian-para/">obsidian-para</a></td>
+<td>Capture, retrieve and maintain notes in a private Obsidian vault organized as Projects, Areas, Resources and Archive, including Windows/WSL links.</td>
+</tr>
+<tr>
+<td><a href="product-discovery/">product-discovery</a></td>
+<td>Clarify a product idea or feature, test uncertain assumptions and produce a small delivery slice with measurable acceptance criteria.</td>
+</tr>
+<tr>
+<td><a href="project-management/">project-management</a></td>
+<td>Organize delivery, technical debt or release work without excessive process overhead.</td>
+</tr>
+<tr>
+<td><a href="agile-methodologies/">agile-methodologies</a></td>
+<td>Improve delivery flow, break down work or plan a small iteration using proportionate agile practices.</td>
+</tr>
+<tr>
+<td><a href="devops-cicd/">devops-cicd</a></td>
+<td>Build or repair CI, deployment, release, rollback or reproducible development workflows.</td>
+</tr>
+<tr>
+<td><a href="technical-debt/">technical-debt</a></td>
+<td>Assess a maintainability problem and prioritize a safe, incremental repayment plan.</td>
+</tr>
+<tr>
+<td><a href="python-patterns/">python-patterns</a></td>
+<td>Write, review or refactor Python using dataclasses, explicit boundaries, uv and behavior-focused tests.</td>
+</tr>
+<tr>
+<td><a href="software-engineering/">software-engineering</a></td>
+<td>Select focused engineering guidance for code quality, testing, refactoring or design choices.</td>
+</tr>
+<tr>
+<td><a href="clean-code/">clean-code</a></td>
+<td>Improve readability and changeability of code while preserving behavior and project conventions.</td>
+</tr>
+<tr>
+<td><a href="code-review/">code-review</a></td>
+<td>Review a change for correctness, regression risk, security and maintainability with actionable findings.</td>
+</tr>
+<tr>
+<td><a href="design-patterns/">design-patterns</a></td>
+<td>Choose or simplify a design pattern at a real variation, lifecycle or integration boundary.</td>
+</tr>
+<tr>
+<td><a href="practical-refactoring/">practical-refactoring</a></td>
+<td>Refactor existing code incrementally while preserving behavior and keeping changes reviewable.</td>
+</tr>
+<tr>
+<td><a href="solid-principles/">solid-principles</a></td>
+<td>Evaluate responsibilities and dependencies using SOLID principles without unnecessary abstractions.</td>
+</tr>
+<tr>
+<td><a href="testing-strategies/">testing-strategies</a></td>
+<td>Choose meaningful unit, integration or end-to-end checks proportional to a software change.</td>
+</tr>
+<tr>
+<td><a href="system-design/">system-design</a></td>
+<td>Plan system-level behavior, data flow, interfaces and operational constraints for a concrete use case.</td>
+</tr>
+<tr>
+<td><a href="architecture-planning/">architecture-planning</a></td>
+<td>Produce a concise architecture plan with boundaries, alternatives, delivery steps and verification.</td>
+</tr>
+<tr>
+<td><a href="team-collaboration/">team-collaboration</a></td>
+<td>Coordinate shared work, reviews, incidents or handoffs with explicit ownership and compact records.</td>
+</tr>
+<tr>
+<td><a href="feature-discovery-session/">feature-discovery-session</a></td>
+<td>Turn a stakeholder conversation into a scoped feature, assumptions and verifiable acceptance criteria.</td>
+</tr>
+<tr>
+<td><a href="incident-response/">incident-response</a></td>
+<td>Investigate an outage or regression, restore service and record an evidence-based follow-up.</td>
+</tr>
+<tr>
+<td><a href="pr-crafting/">pr-crafting</a></td>
+<td>Prepare a reviewable pull request description, scope and validation evidence for a code change.</td>
+</tr>
+<tr>
+<td><a href="progress-sync/">progress-sync</a></td>
+<td>Summarize current work, evidence, blockers and next actions without duplicating project records.</td>
+</tr>
+<tr>
+<td><a href="testing/">testing</a></td>
+<td>Design or improve behavior-focused tests and a practical verification strategy for a change.</td>
+</tr>
+<tr>
+<td><a href="work-management/">work-management</a></td>
+<td>Plan and execute a larger task with one compact Markdown record containing acceptance criteria, tasks, feedback, decisions and evidence.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="software-engineering">Software Engineering<a class="headerlink" href="#software-engineering" title="Permanent link">&para;</a></h2>
-<p>Cross-language engineering principles.</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="clean-code/">Clean Code</a></td>
-<td>Naming, Functions, Error Handling, DRY</td>
-</tr>
-<tr>
-<td><a href="solid-principles/">SOLID Principles</a></td>
-<td>SRP, OCP, LSP, ISP, DIP with examples</td>
-</tr>
-<tr>
-<td><a href="design-patterns/">Design Patterns</a></td>
-<td>Strategy, Observer, Factory, Repository</td>
-</tr>
-<tr>
-<td><a href="code-review/">Code Review</a></td>
-<td>Review guidelines, checklists, feedback</td>
-</tr>
-<tr>
-<td><a href="testing-strategies/">Testing Strategies</a></td>
-<td>Test Pyramid, TDD, Mocking, Coverage</td>
-</tr>
-<tr>
-<td><a href="practical-refactoring/">Practical Refactoring</a></td>
-<td>Refactoring tactics and workflows</td>
-</tr>
-</tbody>
-</table>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<p>Architecture patterns and design decisions.</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="microservices/">Microservices</a></td>
-<td>Service boundaries, communication, resilience</td>
-</tr>
-<tr>
-<td><a href="domain-driven-design/">Domain-Driven Design</a></td>
-<td>Bounded Contexts, Aggregates, Events</td>
-</tr>
-<tr>
-<td><a href="cloud-native/">Cloud-Native</a></td>
-<td>12-Factor, Containers, Serverless</td>
-</tr>
-<tr>
-<td><a href="api-design/">API Design</a></td>
-<td>REST, gRPC, Versioning, Error Handling</td>
-</tr>
-<tr>
-<td><a href="security/">Security</a></td>
-<td>AuthN/AuthZ, Input Validation, Encryption</td>
-</tr>
-<tr>
-<td><a href="performance/">Performance</a></td>
-<td>Caching, Indexing, Profiling, Optimization</td>
-</tr>
-</tbody>
-</table>
-<h2 id="cloud-devops">Cloud &amp; DevOps<a class="headerlink" href="#cloud-devops" title="Permanent link">&para;</a></h2>
-<p>Cloud infrastructure and operations.</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="gcp-patterns/">GCP Patterns</a></td>
-<td>Cloud Run, Pub/Sub, BigQuery, Terraform</td>
-</tr>
-<tr>
-<td><a href="iot-embedded-patterns/">IoT &amp; Embedded Patterns</a></td>
-<td>MQTT, OPC UA, Sensors, PLCs, Edge Computing</td>
-</tr>
-<tr>
-<td><a href="testing/">Testing</a></td>
-<td>Testing Patterns, Fixtures, Mocking</td>
-</tr>
-<tr>
-<td><a href="devops-cicd/">DevOps &amp; CI/CD</a></td>
-<td>Pipelines, GitOps, Deployment Strategies</td>
-</tr>
-</tbody>
-</table>
-<h2 id="project-team">Project &amp; Team<a class="headerlink" href="#project-team" title="Permanent link">&para;</a></h2>
-<p>Collaboration, communication, and project management.</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="agile-methodologies/">Agile Methodologies</a></td>
-<td>Scrum, Kanban, Sprint Planning</td>
-</tr>
-<tr>
-<td><a href="technical-debt/">Technical Debt</a></td>
-<td>Assessment, Prioritization, Reduction</td>
-</tr>
-<tr>
-<td><a href="pr-crafting/">PR Crafting</a></td>
-<td>Professional Pull Requests</td>
-</tr>
-<tr>
-<td><a href="progress-sync/">Progress Sync</a></td>
-<td>Standup, Status Updates, Reporting</td>
-</tr>
-<tr>
-<td><a href="feature-discovery/">Feature Discovery</a></td>
-<td>Requirements Gathering, Story Mapping</td>
-</tr>
-<tr>
-<td><a href="incident-response/">Incident Response</a></td>
-<td>Incident Management, Postmortems</td>
-</tr>
-</tbody>
-</table>
-<h2 id="game-development">Game Development<a class="headerlink" href="#game-development" title="Permanent link">&para;</a></h2>
-<p>Patterns und Prinzipien fuer Game- und Creative-App-Entwicklung.</p>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="game-design/">Game Design</a></td>
-<td>Core Loops, GDDs, Difficulty Curves, Progression</td>
-</tr>
-<tr>
-<td><a href="game-mechanics/">Game Mechanics</a></td>
-<td>Physics, AI (FSM, Behavior Trees), Procedural Generation</td>
-</tr>
-<tr>
-<td><a href="game-architecture/">Game Architecture</a></td>
-<td>ECS, Event Bus, Scene Management, Save/Load</td>
-</tr>
-<tr>
-<td><a href="prototyping/">Prototyping &amp; Playtesting</a></td>
-<td>Rapid Prototypes, Game Jam Strategies, Metriken</td>
-</tr>
-</tbody>
-</table>
-<h2 id="creative-apps">Creative Apps<a class="headerlink" href="#creative-apps" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="creative-app-patterns/">Creative App Patterns</a></td>
-<td>Micro-Interactions, Generative Design, Gamification, Audio</td>
-</tr>
-</tbody>
-</table>
-<h2 id="additional-skills">Additional Skills<a class="headerlink" href="#additional-skills" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Skill</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="anti-patterns/">Anti-Patterns</a></td>
-<td>Common mistakes and how to avoid them</td>
-</tr>
-<tr>
-<td><a href="marp-presentations/">Marp Presentations</a></td>
-<td>Marp Syntax, Templates, Styling</td>
-</tr>
-<tr>
-<td><a href="communication/">Communication</a></td>
-<td>Technical Communication</td>
-</tr>
-<tr>
-<td><a href="architecture-planning/">Architecture Planning</a></td>
-<td>Planning Methodology, C4 Model</td>
-</tr>
-<tr>
-<td><a href="principal-engineer-decisions/">Principal Engineer Decisions</a></td>
-<td>Senior-level decision making</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="using-skills-in-your-workflow">Using Skills in Your Workflow<a class="headerlink" href="#using-skills-in-your-workflow" title="Permanent link">&para;</a></h2>
-<p>Skills are referenced together with agents:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>@workspace Use the Python Expert agent with the following skills:
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>- Clean Code
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>- SOLID Principles
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>- Design Patterns
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Refactor the UserService according to these principles.
-</span></code></pre></div>
-<div class="admonition tip">
-<p class="admonition-title">Combining Skills</p>
-<p>The more relevant skills you reference, the more well-founded
-the agent's recommendations will be.</p>
-</div>
 
 
 
@@ -4456,7 +4874,7 @@ the agent's recommendations will be.</p>
       <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.instant", "navigation.instant.progress", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
