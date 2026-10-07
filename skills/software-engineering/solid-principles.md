@@ -1,201 +1,21 @@
-# SOLID Principles
+---
+name: "solid-principles"
+description: "Evaluate responsibilities and dependencies using SOLID principles without unnecessary abstractions."
+---
 
-## Instructions for AI
+# Solid Principles
 
-Apply SOLID principles when designing and implementing code. Reference [`atstaeff/better-python`](https://github.com/atstaeff/better-python) for concrete Python before/after examples.
+## Workflow
 
-### Single Responsibility Principle (SRP)
-- A class should have only one reason to change
-- Each class/module should have a single, well-defined purpose
-- Separate concerns into different classes
+1. Look for concrete reasons a module changes and split responsibilities only when the boundary helps.
+2. Depend on small consumer-facing contracts at real substitution points.
+3. Check substitutability and avoid exposing methods consumers cannot use safely.
+4. Prefer composition and direct implementations when inheritance or interface layers would add only ceremony.
 
-```python
-# ❌ Before: Order handles data, price logic, AND payment
-class Order:
-    def add_item(self, name, quantity, price): ...
-    def total_price(self): ...
-    def pay(self, payment_type, security_code):  # SRP violation!
-        if payment_type == "debit": ...
-        elif payment_type == "credit": ...
+## Completion
 
-# ✅ After: Order is data only, PaymentProcessor handles payments
-class Order:
-    def add_item(self, name, quantity, price): ...
-    def total_price(self): ...
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-class PaymentProcessor:
-    def pay_debit(self, order: Order, code: str): ...
-    def pay_credit(self, order: Order, code: str): ...
-```
+## Focused references
 
-### Open/Closed Principle (OCP)
-- Software entities should be open for extension, closed for modification
-- Use interfaces, abstract classes, and dependency injection
-- Prefer composition over inheritance
-
-```python
-# ❌ Before: Adding PayPal = modifying PaymentProcessor
-class PaymentProcessor:
-    def pay_debit(self, order, code): ...
-    def pay_credit(self, order, code): ...
-
-# ✅ After: New payment methods = new classes, no modification
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def pay(self, order: Order, security_code: str) -> None: ...
-
-class DebitPaymentProcessor(PaymentProcessor):
-    def pay(self, order, security_code): ...
-
-class CreditPaymentProcessor(PaymentProcessor):
-    def pay(self, order, security_code): ...
-
-class PaypalPaymentProcessor(PaymentProcessor):  # Just add a new class
-    def pay(self, order, security_code): ...
-```
-
-### Liskov Substitution Principle (LSP)
-- Derived classes must be substitutable for their base classes
-- Don't strengthen preconditions or weaken postconditions
-- Subtypes should enhance, not limit, base behavior
-
-```python
-# ❌ Before: Square breaks Rectangle contract (setting width changes height)
-class Rectangle:
-    def set_width(self, w: int) -> None: self.width = w
-    def set_height(self, h: int) -> None: self.height = h
-    def area(self) -> int: return self.width * self.height
-
-class Square(Rectangle):  # LSP violation!
-    def set_width(self, w: int) -> None: self.width = self.height = w
-    def set_height(self, h: int) -> None: self.width = self.height = h
-
-# ✅ After: Separate abstractions, no inheritance trap
-class Shape(ABC):
-    @abstractmethod
-    def area(self) -> int: ...
-
-class Rectangle(Shape):
-    def __init__(self, width: int, height: int) -> None:
-        self.width = width
-        self.height = height
-    def area(self) -> int: return self.width * self.height
-
-class Square(Shape):
-    def __init__(self, side: int) -> None: self.side = side
-    def area(self) -> int: return self.side * self.side
-```
-
-### Interface Segregation Principle (ISP)
-- Clients should not depend on interfaces they don't use
-- Create small, focused interfaces
-- Split fat interfaces into multiple specific ones
-
-```python
-# ❌ Before: PaymentProcessor forces SMS auth on all implementations
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def auth_sms(self, code): ...   # Credit card doesn't need this!
-    @abstractmethod
-    def pay(self, order): ...
-
-# ✅ After: Separate Authorizer from PaymentProcessor
-class Authorizer(ABC):
-    @abstractmethod
-    def is_authorized(self) -> bool: ...
-
-class SMSAuthorizer(Authorizer):
-    def verify_code(self, code): self.authorized = True
-    def is_authorized(self) -> bool: return self.authorized
-
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def pay(self, order) -> None: ...
-
-class DebitPaymentProcessor(PaymentProcessor):
-    def __init__(self, code: str, authorizer: Authorizer): ...
-    def pay(self, order):
-        if not self.authorizer.is_authorized(): raise Exception("Not authorized")
-        ...
-```
-
-### Dependency Inversion Principle (DIP)
-- Depend on abstractions, not concretions
-- High-level modules should not depend on low-level modules
-- Use dependency injection to provide implementations
-
-```python
-# ❌ Before: Switch hardcodes LightBulb
-class ElectricPowerSwitch:
-    def __init__(self):
-        self.bulb = LightBulb()  # Concrete dependency
-
-# ✅ After: Switch depends on Switchable abstraction
-class Switchable(ABC):
-    @abstractmethod
-    def turn_on(self): ...
-    @abstractmethod
-    def turn_off(self): ...
-
-class LightBulb(Switchable): ...
-class Fan(Switchable): ...
-
-class ElectricPowerSwitch:
-    def __init__(self, device: Switchable):  # Inject abstraction
-        self.device = device
-```
-
-**Go DIP — Interfaces are implicit, making DIP natural:**
-```go
-// ❌ Before: handler depends on concrete PostgresRepo
-type Handler struct {
-	repo *PostgresRepo // concrete dependency
-}
-
-// ✅ After: handler depends on interface (defined by consumer)
-type OrderRepository interface {
-	FindByID(ctx context.Context, id string) (Order, error)
-	Save(ctx context.Context, order Order) error
-}
-
-type Handler struct {
-	repo OrderRepository // interface — any implementation works
-}
-
-func NewHandler(repo OrderRepository) *Handler {
-	return &Handler{repo: repo}
-}
-```
-
-## Application Guidelines
-
-When designing systems:
-1. Start by identifying responsibilities
-2. Define abstractions (interfaces) before implementations
-3. Use dependency injection containers
-4. Apply SOLID at the appropriate level (class, module, service)
-5. Balance purity with pragmatism
-6. **Always show before/after** to demonstrate the improvement
-
-## Reference
-
-See [`atstaeff/better-python`](https://github.com/atstaeff/better-python) folder `9 - solid/` for complete before/after Python implementations of all 5 SOLID principles.
-
-## Example Prompts
-
-"Design this feature following SOLID principles"
-
-"Refactor this code to comply with the Single Responsibility Principle"
-
-"Create an extensible architecture using Open/Closed Principle"
-
-"Review this class hierarchy for SOLID violations"
-
-## Related Skills & Agents
-
-- [Python Expert Agent](../../agents/python-expert.agent.md)
-- [Golang Expert Agent](../../agents/golang-expert.agent.md)
-- [Clean Code](../software-engineering/clean-code.md)
-- [Design Patterns](../software-engineering/design-patterns.md)
-- [Python Patterns](../python-patterns/SKILL.md)
-- [Golang Patterns](../golang-patterns/SKILL.md)
+- [Detailed examples](references/solid-principles.md): load only the section relevant to the task.

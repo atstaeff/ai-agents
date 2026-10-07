@@ -1,0 +1,4 @@
+interface:
+  display_name: "Work Management"
+  short_description: "Keep plans, tasks, feedback and evidence in one work record"
+  default_prompt: "Use $work-management to help with this task."

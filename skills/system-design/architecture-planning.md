@@ -1,119 +1,21 @@
-# Architecture Planning Skill
+---
+name: "architecture-planning"
+description: "Produce a concise architecture plan with boundaries, alternatives, delivery steps and verification."
+---
 
-## Instructions for AI
-Design software systems that solve real problems while remaining flexible for future needs.
+# Architecture Planning
 
-## Planning Process
+## Workflow
 
-### Step 1: Understand the Landscape
-Before designing anything, investigate:
-- What problems are users actually experiencing?
-- What are the hard constraints (budget, timeline, technical)?
-- What existing systems must this integrate with?
-- What volumes and loads will it handle?
+1. Inspect the existing system and write measurable requirements and constraints.
+2. Compare viable options with the current design; include data and API boundaries and important failure cases.
+3. Choose an incremental implementation sequence and an observable acceptance check for each step.
+4. Record the selected option, tradeoffs and revisit condition in the current work file.
 
-### Step 2: Define Success Criteria
-Be explicit about what matters most:
-- Speed targets (response times, throughput)
-- Reliability expectations (uptime, error rates)
-- Scale requirements (users, data volume, growth rate)
-- Security boundaries (data protection, access control)
-- Cost limitations (infrastructure, maintenance)
+## Completion
 
-### Step 3: Explore Approaches
-Consider different structural patterns:
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-**Organizational Patterns**
-- Single unified application
-- Multiple independent services
-- Event-driven reactive system
-- Hybrid combinations
+## Focused references
 
-For each approach, document:
-- What it enables
-- What it complicates
-- Where it fits best
-- What it costs
-
-### Step 4: Component Mapping
-Sketch out the major pieces:
-- What responsibilities does each piece have?
-- How do they communicate?
-- Where does data live?
-- What fails if a piece goes down?
-
-### Step 5: Technology Matching
-Select tools and frameworks based on:
-- Team familiarity and expertise
-- Community support and documentation
-- Performance characteristics
-- Operational complexity
-- Long-term viability
-
-### Step 6: Document Decisions
-For significant choices, record:
-- The situation that prompted this decision
-- Options you evaluated
-- Why you picked this option
-- Trade-offs you're accepting
-- Date and decision makers
-
-Use this format:
-```
-Decision: [Short descriptive title]
-Date: [When decided]
-Context: [What situation led to this choice]
-Options: [What alternatives did you consider]
-Choice: [What you decided]
-Reasoning: [Why this made sense]
-Consequences: [What this enables and what it costs]
-```
-
-### Step 7: Visual Documentation
-Create diagrams showing:
-- How users interact with the system
-- How components connect and communicate
-- How data flows through the system
-- Where external dependencies exist
-
-Keep diagrams simple and focused on specific aspects.
-
-### Step 8: Validation
-Test your design before implementing:
-- Build small prototypes of risky components
-- Simulate load patterns
-- Verify integration assumptions
-- Review with experienced engineers
-
-## Design Principles
-
-**Start Simple**
-Begin with the simplest thing that works. Add complexity only when simpler approaches fail.
-
-**Plan for Change**
-Assume requirements will evolve. Make boundaries between components clear.
-
-**Consider Operations**
-Think about deployment, monitoring, debugging, and scaling from the start.
-
-**Document Reasoning**
-Future you (or others) will need to understand why choices were made.
-
-**Embrace Trade-offs**
-Every decision sacrifices something. Be intentional about what you're trading.
-
-## Common Pitfalls
-- Over-engineering for hypothetical future requirements
-- Choosing unfamiliar technology without good reason
-- Ignoring operational complexity
-- Not validating assumptions early
-- Forgetting about data migration paths
-- Skipping documentation of key decisions
-
-## Related Skills & Agents
-
-- [Lead Architect Agent](../../agents/lead-architect.agent.md)
-- [Context Manager Agent](../../agents/context-manager.agent.md)
-- [Principal Engineer Decisions](../general/principal-engineer-decisions.md)
-- [Domain-Driven Design](../architecture/domain-driven-design.md)
-- [Cloud-Native Architecture](../architecture/cloud-native.md)
+- [Detailed examples](references/architecture-planning.md): load only the section relevant to the task.

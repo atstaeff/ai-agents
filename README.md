@@ -1,225 +1,124 @@
-# Copilot Expert Hub
+# AI Agents · Local work toolkit
 
-A complete, modular, and scalable repository of **AI Agents, Skills, Templates, and Reference Architectures** for GitHub Copilot and AI-assisted software development.
+An English catalog of **23 agents and 48 skills**, with native profile exporters and a
+local dashboard. Use **Jörg** as the general assistant, select a specialist when needed,
+and keep larger work in one Markdown record. Detailed examples load on demand.
 
-## Overview
+The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
+It does not run models, create chat sessions or access your Obsidian vault automatically.
+Your AI host provides model execution, tools and any native delegation capabilities.
 
-The Copilot Expert Hub provides a full agent chain covering the entire software delivery lifecycle:
+## Start in WSL with OpenCode 1
 
-```
-Architecture → Implementation → Quality → Deployment → IoT/Embedded → Creative → Communication
-```
+Run in your WSL terminal:
 
-### What's Inside
-
-| Category | Count | Description |
-|----------|-------|-------------|
-| **Agents** | 18 | Specialized AI agents for every role |
-| **Skills** | 17+ | Technical knowledge bases |
-| **Marp Templates** | 3 | Presentation templates |
-| **Reference Repos** | 2 | Golden architecture examples |
-| **Workflows** | 2 | CI/CD validation |
-
-## Agents
-
-### Core Engineering Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **Lead Architect** | Architecture design, ADRs, DDD, Event Sourcing | [agents/lead-architect.agent.md](agents/lead-architect.agent.md) |
-| **Python Expert** | Idiomatic Python, Pydantic, async, testing | [agents/python-expert.agent.md](agents/python-expert.agent.md) |
-| **Golang Expert** | Idiomatic Go, interfaces, concurrency, clean architecture | [agents/golang-expert.agent.md](agents/golang-expert.agent.md) |
-| **Flutter & iOS Expert** | Flutter, Dart, BLoC, Clean Architecture, iOS HIG | [agents/flutter-ios-expert.agent.md](agents/flutter-ios-expert.agent.md) |
-| **Frontend Expert** | Vue, Angular, TypeScript/JS, component architecture | [agents/frontend-expert.agent.md](agents/frontend-expert.agent.md) |
-| **GCP Architect** | Cloud Run, Pub/Sub, BigQuery, Terraform, IAM | [agents/gcp-architect.agent.md](agents/gcp-architect.agent.md) |
-| **Test Strategist** | Test pyramid, quality gates, coverage, CI/CD | [agents/test-strategist.agent.md](agents/test-strategist.agent.md) |
-| **DevOps Agent** | CI/CD pipelines, deployments, Docker | [agents/devops-agent.agent.md](agents/devops-agent.agent.md) |
-
-### IoT & Embedded Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **IoT & Embedded Expert** | MQTT, sensors, actuators, PLCs, Revolution Pi, Siemens, Beckhoff | [agents/iot-embedded-expert.agent.md](agents/iot-embedded-expert.agent.md) |
-
-### Quality & Review Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **Architecture Reviewer** | Review designs, identify risks & anti-patterns | [agents/architecture-reviewer.agent.md](agents/architecture-reviewer.agent.md) |
-| **Code Reviewer** | Code quality, security, style, tests | [agents/code-reviewer.agent.md](agents/code-reviewer.agent.md) |
-
-### Productivity Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **Task Orchestrator** | Coordinate agents, plan tasks, track progress | [agents/task-orchestrator.agent.md](agents/task-orchestrator.agent.md) |
-| **Context Manager** | Maintain project memory, track decisions | [agents/context-manager.agent.md](agents/context-manager.agent.md) |
-
-### Creative & Games Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **Game Developer** | Game design, mechanics, Godot/Phaser/Unity/PyGame | [agents/game-developer.agent.md](agents/game-developer.agent.md) |
-| **Creative App Developer** | Creative coding, generative art, gamification, delightful UX | [agents/creative-app-developer.agent.md](agents/creative-app-developer.agent.md) |
-
-### Customer-Facing Agents
-
-| Agent | Role | File |
-|-------|------|------|
-| **Presentation Agent** | Create Marp slide decks for any audience | [agents/presentation-agent.agent.md](agents/presentation-agent.agent.md) |
-| **Stakeholder Agent** | Translate technical → business language | [agents/stakeholder-agent.agent.md](agents/stakeholder-agent.agent.md) |
-| **Proposal/Pitch Agent** | Roadmaps, milestones, proposals | [agents/proposal-pitch.agent.md](agents/proposal-pitch.agent.md) |
-
-## Skills
-
-### New Skills
-
-| Skill | Description | File |
-|-------|-------------|------|
-| **Python Patterns** | Repository pattern, DI, domain events, Result type | [skills/python-patterns/SKILL.md](skills/python-patterns/SKILL.md) |
-| **Golang Patterns** | Interfaces, error handling, concurrency, functional options | [skills/golang-patterns/SKILL.md](skills/golang-patterns/SKILL.md) |
-| **Flutter Patterns** | BLoC, Riverpod, freezed, clean architecture, iOS HIG | [skills/flutter-patterns/SKILL.md](skills/flutter-patterns/SKILL.md) |
-| **GCP Patterns** | Cloud Run, Pub/Sub, BigQuery, Terraform modules | [skills/gcp-patterns/SKILL.md](skills/gcp-patterns/SKILL.md) |
-| **Testing** | Test pyramid, fakes, factories, quality gates | [skills/testing/SKILL.md](skills/testing/SKILL.md) |
-| **Marp Presentations** | Slide design, Marp syntax, templates | [skills/marp-presentations/SKILL.md](skills/marp-presentations/SKILL.md) |
-| **Anti-Patterns** | Code, architecture, and event-driven anti-patterns | [skills/anti-patterns/SKILL.md](skills/anti-patterns/SKILL.md) |
-| **Frontend Patterns** | Vue/Angular patterns, composables, signals, testing | [skills/frontend-patterns/SKILL.md](skills/frontend-patterns/SKILL.md) |
-| **IoT & Embedded Patterns** | MQTT, OPC UA, sensors, PLCs, edge computing | [skills/iot-embedded-patterns/SKILL.md](skills/iot-embedded-patterns/SKILL.md) |
-
-### Existing Skills
-
-| Category | Skills |
-|----------|--------|
-| **Software Engineering** | [Clean Code](skills/software-engineering/clean-code.md), [SOLID](skills/software-engineering/solid-principles.md), [Design Patterns](skills/software-engineering/design-patterns.md), [Code Review](skills/software-engineering/code-review.md), [Testing Strategies](skills/software-engineering/testing-strategies.md), [Practical Refactoring](skills/software-engineering/practical-refactoring.md) |
-| **Architecture** | [Microservices](skills/architecture/microservices.md), [DDD](skills/architecture/domain-driven-design.md), [Cloud-Native](skills/architecture/cloud-native.md), [API Design](skills/architecture/api-design.md), [Security](skills/architecture/security.md), [Performance](skills/architecture/performance.md) |
-| **Project Management** | [Agile](skills/project-management/agile-methodologies.md), [Technical Debt](skills/project-management/technical-debt.md), [DevOps/CI-CD](skills/project-management/devops-cicd.md) |
-| **General** | [Communication](skills/general/communication.md), [Principal Engineer Decisions](skills/general/principal-engineer-decisions.md) |
-| **System Design** | [Architecture Planning](skills/system-design/architecture-planning.md) |
-| **Team Collaboration** | [PR Crafting](skills/team-collaboration/pr-crafting.md), [Progress Sync](skills/team-collaboration/progress-sync.md), [Feature Discovery](skills/team-collaboration/feature-discovery-session.md), [Incident Response](skills/team-collaboration/incident-response.md) |
-| **Game Development** | [Game Design](skills/game-development/game-design.md), [Game Mechanics](skills/game-development/game-mechanics.md), [Game Architecture](skills/game-development/game-architecture.md), [Prototyping](skills/game-development/prototyping.md) |
-| **Creative Apps** | [Creative App Patterns](skills/creative-apps/creative-app-patterns.md) |
-
-## Marp Templates
-
-| Template | Audience | Purpose | File |
-|----------|----------|---------|------|
-| **Client Pitch** | Business stakeholders | Sell a solution | [marp-templates/client-pitch.md](marp-templates/client-pitch.md) |
-| **Technical Deep-Dive** | Engineers | Explain architecture | [marp-templates/technical-deepdive.md](marp-templates/technical-deepdive.md) |
-| **Project Review** | Stakeholders | Sprint/project status | [marp-templates/project-review.md](marp-templates/project-review.md) |
-
-## Reference Repositories
-
-| Reference | Description | Directory |
-|-----------|-------------|-----------|
-| **Python Golden Repo** | Production-grade Python project structure | [reference-repos/python-golden/](reference-repos/python-golden/) |
-| **Event-Driven Python** | Event-driven architecture patterns on GCP | [reference-repos/event-driven-python/](reference-repos/event-driven-python/) |
-
-## How to Use
-
-### With GitHub Copilot in VS Code
-
-1. **Clone this repository:**
-   ```bash
-   git clone https://github.com/atstaeff/ai-agents.git
-   ```
-
-2. **Open in VS Code** — The `.github/copilot-instructions.md` provides global Copilot context.
-
-3. **Reference agents in conversations:**
-   ```
-   @workspace Use the Lead Architect agent to design an event-driven
-   architecture for our order management system.
-   ```
-
-4. **Use skills for context:**
-   ```
-   @workspace Apply the Python Patterns skill to refactor this service
-   using the repository pattern and dependency injection.
-   ```
-
-### Recommended Workflow
-
-```
- 1. Task Orchestrator    → Break down project into tasks
- 2. Lead Architect       → Design architecture, create ADRs
- 3. Architecture Reviewer→ Review the design
- 4. Python Expert        → Implement backend solution (Python)
- 4b. Golang Expert        → Implement backend solution (Go)
- 5. Flutter & iOS Expert  → Implement mobile app
- 6. Frontend Expert       → Implement frontend/UI (web)
- 6b. Game Developer       → Build games (Godot, Phaser, PyGame)
- 6c. Creative App Dev     → Build creative apps (generative art, gamification)
- 7. Test Strategist      → Design & implement tests
- 8. Code Reviewer        → Review code quality
- 9. DevOps Agent         → Set up CI/CD & deploy
- 9b. IoT & Embedded Expert→ Implement IoT/edge solutions
-10. Context Manager      → Document decisions
-11. Presentation Agent   → Create client presentation
-12. Stakeholder Agent    → Prepare status reports
-13. Proposal/Pitch Agent → Create project proposals
+```sh
+git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
+cd ~/tools/ai-agents
+python3 tools/ai_toolkit.py check
+python3 tools/ai_toolkit.py export --runtime opencode \
+  --output "$HOME/.config/ai-agents/opencode"
 ```
 
-## Repository Structure
+Start OpenCode Web from the project you want to work on:
 
-```
-agents/                        # 18 specialized AI agents
-├── lead-architect.agent.md
-├── python-expert.agent.md
-├── golang-expert.agent.md
-├── flutter-ios-expert.agent.md
-├── frontend-expert.agent.md
-├── gcp-architect.agent.md
-├── iot-embedded-expert.agent.md
-├── test-strategist.agent.md
-├── devops-agent.agent.md
-├── presentation-agent.agent.md
-├── architecture-reviewer.agent.md
-├── code-reviewer.agent.md
-├── task-orchestrator.agent.md
-├── context-manager.agent.md
-├── stakeholder-agent.agent.md
-├── proposal-pitch.agent.md
-├── game-developer.agent.md
-└── creative-app-developer.agent.md
-copilot-instructions.md        # Global Copilot config
-skills/
-├── python-patterns/SKILL.md   # Python best practices
-├── golang-patterns/SKILL.md   # Go best practices
-├── flutter-patterns/SKILL.md  # Flutter/Dart/iOS best practices
-├── frontend-patterns/SKILL.md # Vue, Angular, TS patterns
-├── gcp-patterns/SKILL.md      # GCP architecture patterns
-├── iot-embedded-patterns/SKILL.md # IoT, MQTT, PLCs, edge computing
-├── testing/SKILL.md           # Testing strategies
-├── marp-presentations/SKILL.md# Presentation skills
-├── anti-patterns/SKILL.md     # What to avoid
-├── software-engineering/      # Core SE skills
-├── architecture/              # Architecture skills
-├── project-management/        # PM skills
-├── team-collaboration/        # Collaboration skills
-├── general/                   # Cross-cutting skills
-├── system-design/             # System design skills
-├── game-development/          # Game design, mechanics, architecture
-└── creative-apps/             # Creative app patterns
-marp-templates/                # Marp slide templates
-├── client-pitch.md
-├── technical-deepdive.md
-└── project-review.md
-reference-repos/               # Golden architecture examples
-├── python-golden/
-└── event-driven-python/
-assets/mkdocs/                 # MkDocs source files
-docs/                          # Built documentation site
-assets/                        # Documentation assets
+```sh
+cd /path/to/your/project
+OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
+OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" \
+opencode web
 ```
 
-## Contributing
+The exported configuration selects `joerg` by default. It supplies custom `plan` and
+`build` profiles, specialist subagents, all 48 native skills and `/work-plan`,
+`/work-build` and `/brain` commands. No provider, model or third-party plugin is forced.
+These are OpenCode 1 configuration files; web session navigation depends on your release.
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on adding agents, skills, and templates.
+Try these requests:
 
-## License
+> Jörg, inspect this project, plan a small complete improvement and implement it.
+> Keep the plan and my feedback in one `.ai/work/` record and verify the result.
 
-MIT License — See [LICENSE](LICENSE) for details.
+> Use the second-brain agent to propose where these notes belong in my existing PARA
+> vault. Preserve my wording, aliases and links.
 
----
+Re-export after updating the repository. Edited bundle files are protected; change
+canonical sources here or select another destination. See [runtime details](toolkit/RUNTIMES.md).
 
-**Built for productivity, quality, and collaboration.**
+## Plans, tasks and your comments
+
+Small changes need no process file. For a larger outcome, create one record:
+
+```sh
+python3 ~/tools/ai-agents/tools/ai_toolkit.py work --workspace . new onboarding \
+  --title "Improve onboarding" --kind product
+python3 ~/tools/ai-agents/tools/ai_toolkit.py serve --workspace .
+```
+
+Open **http://127.0.0.1:4097**. The dashboard searches the catalog, creates records,
+shows plans, appends comments and updates task status/evidence. Edit plans in your
+editor or AI host; the dashboard writes selected task rows and appended feedback.
+Stale updates are rejected so you can reload before retrying.
+
+The agent instructions ask agents to update the same record while working. There is
+no background session watcher: a model must follow the instructions. The dashboard
+does not start AI sessions or execute shell commands.
+
+```text
+.ai/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
+.ai/archive/old-outcome.md   # Completed records; load only when needed
+```
+
+`docs/` stays available for existing documentation or GitHub Pages. CSV is an optional
+export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
+[work-record guide](toolkit/WORK-RECORDS.md).
+
+## Jörg and your Second Brain
+
+Jörg selects relevant skills and specialists from metadata. Delegation uses the host's
+actual tools and permissions; otherwise he works in the current session using the
+selected guidance. OpenCode reviewer profiles are restricted; Build can implement.
+
+Second Brain uses your existing **Projects, Areas, Resources and Archive**, including
+numbered folders. Provide an accessible private vault path to your host when needed.
+Keep notes and local settings outside this public repository. Filesystem moves require
+backlink and relative-link checks.
+
+```sh
+python3 tools/ai_toolkit.py obsidian-uri \
+  --vault "My Second Brain" --file "Projects/Customer portal.md"
+```
+
+Whether an `obsidian://` link is clickable in OpenCode Web depends on its renderer.
+Copy the URI to a Windows application that supports the protocol if needed.
+
+## Other runtimes and APIs
+
+```sh
+# Export into another project; edited/unmanaged files are protected.
+python3 tools/ai_toolkit.py export --runtime copilot --output /path/to/other-project
+# Generic Agent Skills plus portable Markdown profiles.
+python3 tools/ai_toolkit.py export --runtime portable --output /path/to/bundle
+# Metadata only, useful for routing.
+python3 tools/ai_toolkit.py catalog --kind skill
+```
+
+Canonical `agents/` is a source catalog, not an automatically discovered directory in
+every host. The exporter creates native layouts and fields. See
+[compatibility](toolkit/RUNTIMES.md) and the [local API](toolkit/API.md).
+
+## Develop and verify
+
+```sh
+python3 tools/ai_toolkit.py check
+python3 -m unittest discover -s tests -v
+uv sync --group docs
+uv run --group docs mkdocs build -f assets/mkdocs.yml --strict
+uv run --group docs mkdocs serve -f assets/mkdocs.yml
+```
+
+MkDocs sources are in `assets/mkdocs/`. The existing website is
+[atstaeff.github.io/ai-agents](https://atstaeff.github.io/ai-agents/).
+CI checks catalog, tests and docs on PRs; the main workflow rebuilds tracked `docs/`
+for the existing Pages setup. Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
+License: [MIT](LICENSE).

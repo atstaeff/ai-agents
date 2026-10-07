@@ -1,76 +1,21 @@
-# PR Crafting Skill
+---
+name: "pr-crafting"
+description: "Prepare a reviewable pull request description, scope and validation evidence for a code change."
+---
 
-## Instructions for AI
-Compose pull requests that communicate changes clearly and speed up the review process.
+# Pr Crafting
 
-## Crafting Your PR
+## Workflow
 
-### The Header
-Create a title that tells the story in one line:
-- Use action verbs: "Implement", "Resolve", "Optimize", "Remove"
-- Be specific: "Fix memory leak in image processor" beats "Fix bug"
-- Keep it under 72 characters when possible
+1. Lead with the concrete problem and resulting behavior.
+2. Explain only implementation decisions a reviewer needs and list the checks actually run.
+3. Include material limitations, migration steps or rollback needs when present.
+4. Keep title and description aligned with the final diff. Do not merge or publish unless authorized.
 
-### The Body
+## Completion
 
-**Opening Statement**
-Begin with 2-3 sentences answering:
-- What changed?
-- Why was this necessary?
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-**The Details Section**
-Break down your explanation:
+## Focused references
 
-*Implementation Notes*
-- Key technical decisions you made
-- Why you chose this approach over alternatives
-- Any interesting challenges you solved
-
-*Connection Points*
-- Reference relevant issue numbers
-- Link to design docs or discussions
-- Mention dependent or related PRs
-
-*Validation Approach*
-- How you confirmed it works
-- Test scenarios you covered
-- Edge cases you considered
-
-**Visual Context**
-Include when relevant:
-- Screenshots showing UI modifications
-- Terminal output demonstrating functionality
-- Diagrams explaining complex changes
-
-### The Checklist
-Track what you've verified:
-- Passes all existing tests
-- New tests cover the changes
-- Documentation reflects the updates
-- No unintended side effects observed
-- Follows the codebase conventions
-
-### Request Reviews Thoughtfully
-- Tag people familiar with affected areas
-- Add context if reviewers aren't domain experts
-- Use labels to categorize the change type
-
-## Composition Strategies
-
-**Keep It Focused**
-One PR should address one thing. Multiple unrelated changes? Split them up.
-
-**Size Matters**
-Large PRs take longer to review. If yours exceeds 400 lines of substantive changes, consider breaking it into logical chunks.
-
-**Update as You Go**
-Made changes based on feedback? Update your description to reflect the current state.
-
-**Write for Your Audience**
-Consider what information your reviewers need to evaluate this effectively.
-
-## Related Skills & Agents
-
-- [Code Reviewer Agent](../../agents/code-reviewer.agent.md)
-- [Code Review](../software-engineering/code-review.md)
-- [Communication](../general/communication.md)
+- [Detailed examples](references/pr-crafting.md): load only the section relevant to the task.

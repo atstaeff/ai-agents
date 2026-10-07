@@ -1,23 +1,23 @@
 ---
-name: game-development
-description: Game design principles, mechanics, architecture patterns, and prototyping workflows
+name: "game-development"
+description: "Plan or implement a playable prototype, game loop, mechanics or game architecture."
 ---
 
-# Game Development Skill
+# Game Development
 
-## Instructions for AI
+## Workflow
 
-Apply game development best practices when designing, building, or reviewing games. Use these sub-skills for domain-specific guidance on design, mechanics, architecture, and rapid prototyping.
+1. State the intended player experience and one playable success criterion.
+2. Prototype the core loop using the existing engine before adding progression, infrastructure or content systems.
+3. Select game-design, game-mechanics, game-architecture or prototyping based on the current bottleneck.
 
-## Sub-Skills
+## Completion
 
-- [Game Design](game-design.md) — Game design principles, player experience, and level design
-- [Game Mechanics](game-mechanics.md) — Core game mechanics, physics, and interaction systems
-- [Game Architecture](game-architecture.md) — Game engine architecture, ECS, and rendering patterns
-- [Prototyping](prototyping.md) — Rapid prototyping workflows and iteration strategies
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [Creative Apps](../creative-apps/SKILL.md)
-- [Software Engineering](../software-engineering/SKILL.md)
-- [Design Patterns](../software-engineering/design-patterns.md)
+- [game-architecture](game-architecture.md)
+- [game-design](game-design.md)
+- [game-mechanics](game-mechanics.md)
+- [prototyping](prototyping.md)

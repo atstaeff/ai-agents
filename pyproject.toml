@@ -1,0 +1,12 @@
+[project]
+name = "ai-agents-toolkit"
+version = "1.0.0"
+description = "Portable agent and skill catalog with a local work-record toolkit"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+docs = ["mkdocs-material>=9.7,<10", "mkdocs>=1.6,<2"]
+
+[tool.uv]
+package = false

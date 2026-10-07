@@ -1,20 +1,21 @@
 ---
-name: general
-description: Cross-cutting skills including effective communication and principal engineer decision-making
+name: "general"
+description: "Select communication or engineering decision support for work that does not require a language-specific skill."
 ---
 
-# General Skills
+# General
 
-## Instructions for AI
+## Workflow
 
-Apply cross-cutting skills that are relevant across all domains. Use these sub-skills for communication best practices and senior engineering decision-making.
+1. Clarify the desired outcome, audience and constraints from the available context.
+2. Use communication for stakeholder-facing work and principal-engineer-decisions for consequential technical tradeoffs.
+3. Keep the output as short as the decision allows and preserve the user's language.
 
-## Sub-Skills
+## Completion
 
-- [Communication](communication.md) — Effective technical communication for clarity and impact
-- [Principal Engineer Decisions](principal-engineer-decisions.md) — Senior engineering decision frameworks and trade-off analysis
+Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
 
-## Related Skills
+## Select a focused topic
 
-- [Team Collaboration](../team-collaboration/SKILL.md)
-- [Project Management](../project-management/SKILL.md)
+- [communication](communication.md)
+- [principal-engineer-decisions](principal-engineer-decisions.md)
