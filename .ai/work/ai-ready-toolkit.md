@@ -41,7 +41,7 @@ the existing GitHub Pages role of `docs/`. Deliver reviewable changes without me
 | T4 | Implement native adapters and work UI/API | done | 28 unittest checks cover native layouts, ownership protection, traversal, stale writes, comments, task evidence and real HTTP requests. |
 | T5 | Improve canonical website and CI | done | Strict MkDocs 1.6.1 / Material 9.7.7 build passes; uv.lock records public package URLs; CI validates PRs. |
 | T6 | Validate skill compatibility and frontend syntax | done | All 21 native source skills and all 48 exported skills pass skill-creator validation; node --check passes. |
-| T8 | Publish a GitHub branch and PR | in_progress | GitHub App access verified on 2026-10-07; branch codex/ai-ready-toolkit-20261006 created at base 6fd9461. Upload and PR verification are in progress. |
+| T8 | Publish a GitHub branch and PR | done | Draft PR [#1](https://github.com/atstaeff/ai-agents/pull/1) opened on 2026-10-07; all 236 changed files verified against local Git blobs; unrelated source files and the Pages output tree are preserved; [Validate Toolkit CI](https://github.com/atstaeff/ai-agents/actions/runs/37573557937) passed. |
 | T7 | Review in installed OpenCode/VS Code and visually inspect UI | open | Host executables unavailable here; local browser binary download failed and the provided browser blocks localhost. This manual check remains explicit. |
 
 ## Feedback
@@ -80,3 +80,7 @@ system. No real private vault, deployment or merge was modified.
 
 The record remains active for review and the manual checks above. Archive it only after
 those decisions and checks are resolved; do not mark unrun checks as passed.
+
+Published implementation: commit 4539e74b on branch codex/ai-ready-toolkit-20261006,
+with parent 6fd9461 and draft PR #1. Publication is complete; host and visual review
+remains open under T7.
