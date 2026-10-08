@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "nodes": [
+    {
+      "id": "ADR-0001",
+      "title": "ADR-0001 Retry-safe document upload",
+      "status": "proposed",
+      "owner": "technical-owner",
+      "slug": "decisions/adr-0001",
+      "path": "decisions/0001-retry-safe-upload.md",
+      "sources": [
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/issues/42"
+      ],
+      "relations": {}
+    },
+    {
+      "id": "ADR-0002",
+      "title": "ADR-0002 Establish one owner for a concurrent upload attempt",
+      "status": "proposed",
+      "owner": "technical-owner",
+      "slug": "decisions/adr-0002",
+      "path": "decisions/0002-atomic-upload-claim.md",
+      "sources": [
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/issues/42"
+      ],
+      "relations": {
+        "depends_on": [
+          "ADR-0001"
+        ]
+      }
+    },
+    {
+      "id": "ITERATION-I1",
+      "title": "Iteration I1 outcome report",
+      "status": "draft",
+      "owner": "product-owner",
+      "slug": "iterations/i1",
+      "path": "iterations/I1.md",
+      "sources": [
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/issues/42",
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/pull/57"
+      ],
+      "relations": {
+        "reports_on": [
+          "ADR-0001",
+          "ADR-0002",
+          "PROCESS-UPLOAD"
+        ]
+      }
+    },
+    {
+      "id": "PROCESS-UPLOAD",
+      "title": "Upload retry behavior",
+      "status": "draft",
+      "owner": "technical-owner",
+      "slug": "knowledge/upload-retries",
+      "path": "knowledge/upload-retries.md",
+      "sources": [
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/issues/42",
+        "https://github.com/CUSTOMER_ORG/CUSTOMER_REPO/pull/57"
+      ],
+      "relations": {
+        "governed_by": [
+          "ADR-0001",
+          "ADR-0002"
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "ADR-0002",
+      "target": "ADR-0001",
+      "type": "depends_on"
+    },
+    {
+      "source": "ITERATION-I1",
+      "target": "ADR-0001",
+      "type": "reports_on"
+    },
+    {
+      "source": "ITERATION-I1",
+      "target": "ADR-0002",
+      "type": "reports_on"
+    },
+    {
+      "source": "ITERATION-I1",
+      "target": "PROCESS-UPLOAD",
+      "type": "reports_on"
+    },
+    {
+      "source": "PROCESS-UPLOAD",
+      "target": "ADR-0001",
+      "type": "governed_by"
+    },
+    {
+      "source": "PROCESS-UPLOAD",
+      "target": "ADR-0002",
+      "type": "governed_by"
+    }
+  ]
+}

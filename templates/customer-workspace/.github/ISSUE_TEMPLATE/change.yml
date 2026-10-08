@@ -1,0 +1,28 @@
+name: Deliver a change
+description: A bounded outcome with acceptance criteria and relevant context.
+title: "[Change] "
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Outcome and value
+      description: Who benefits and what observable improvement is needed?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions, including important failure cases.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Relevant context
+      description: Link only the affected processes, code, decisions or related work.
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and open decisions
+      description: Scope boundaries, required decision owners and verification constraints.

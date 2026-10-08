@@ -50,6 +50,18 @@ class DocsHookTests(unittest.TestCase):
         alias = hook.on_page_markdown('', page('skills/feature-discovery.md'), {}, [])
         self.assertIn('Canonical source: [`skills/team-collaboration/feature-discovery-session.md`]', alias)
 
+    def test_customer_template_uses_its_canonical_readme_and_links(self):
+        hook.on_pre_build({})
+        current = page('references/customer-workspace.md')
+        rendered = hook.on_page_markdown('Placeholder', current, {}, [])
+        self.assertIn('# Customer workspace template', rendered)
+        self.assertNotIn('Placeholder', rendered)
+        self.assertIn('[AGENTS.md](https://github.com/atstaeff/ai-agents/blob/main/templates/customer-workspace/AGENTS.md)', rendered)
+        self.assertIn('[workspace/README.md](https://github.com/atstaeff/ai-agents/blob/main/templates/customer-workspace/workspace/README.md)', rendered)
+        self.assertIn('https://github.com/atstaeff/ai-agents/blob/main/templates/customer-workspace/workspace/README.md', rendered)
+        self.assertIn('https://github.com/atstaeff/ai-agents/blob/main/templates/customer-workspace/examples/docusaurus-integration.md', rendered)
+        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/templates/customer-workspace/README.md')
+
 
 if __name__ == '__main__':
     unittest.main()

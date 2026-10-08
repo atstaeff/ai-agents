@@ -205,6 +205,7 @@ nav:
   - Architecture: architecture.md
   - Templates & References:
       - Overview: references/index.md
+      - Customer Workspace: references/customer-workspace.md
       - Model Selection: references/llm-model-guide.md
       - Marp Templates: references/marp-templates.md
       - Python Golden Repo: references/python-golden.md

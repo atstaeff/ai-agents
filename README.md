@@ -76,6 +76,20 @@ does not start AI sessions or execute shell commands.
 export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
 [work-record guide](toolkit/WORK-RECORDS.md).
 
+## Customer-owned GitHub workspace
+
+Use [templates/customer-workspace](templates/customer-workspace/README.md) when a
+customer's GitHub Project coordinates delivery. The Project owns priority, iteration
+and status; the issue owns the live plan and questions; `workspace/` keeps durable
+decisions, process knowledge and iteration outcomes in the customer's repository.
+Use that issue instead of a duplicate `.ai/work/` record for the same assignment.
+
+Start with three workspace entry files and merge the example instructions into the
+customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
+stakeholder questions, linked ADRs, a local knowledge graph generator and integration
+with an existing Docusaurus site. Adopt only what the project needs; this template is
+not an automatic installer or background runner.
+
 ## Jörg and your Second Brain
 
 Jörg selects relevant skills and specialists from metadata. Delegation uses the host's

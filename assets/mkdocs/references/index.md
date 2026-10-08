@@ -2,6 +2,15 @@
 
 Overview of available templates and reference architectures in the Copilot Expert Hub.
 
+## Customer Workspace
+
+Keep customer delivery in GitHub Projects and issues, and durable knowledge in a
+customer-owned `workspace/`. Start with three entry files; add ADRs, process knowledge
+and iteration reports when the work warrants them. The worked example includes local
+graph generation and integration with an existing Docusaurus site.
+
+:material-arrow-right: [Customer workspace template](customer-workspace.md)
+
 ---
 
 ## LLM-Modell-Guide

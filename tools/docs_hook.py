@@ -12,6 +12,7 @@ DOCUMENTS = {
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
     'toolkit/work-records.md': 'toolkit/WORK-RECORDS.md',
     'toolkit/api.md': 'toolkit/API.md',
+    'references/customer-workspace.md': 'templates/customer-workspace/README.md',
     'contributing/index.md': 'CONTRIBUTING.md',
 }
 ENTRIES = []
@@ -61,7 +62,9 @@ def on_page_markdown(markdown, page, config, files):
             destination = 'https://github.com/atstaeff/ai-agents/blob/main/' + quote(resolved.as_posix(),safe='/')
             if parts.fragment:
                 destination += '#' + parts.fragment
-        return match[0].replace(target,destination)
+        start = match.start(1) - match.start()
+        end = match.end(1) - match.start()
+        return match[0][:start] + destination + match[0][end:]
     text = LINK.sub(rewrite,text)
     page.edit_url = 'https://github.com/atstaeff/ai-agents/edit/main/' + source
     return text + f'\n---\nCanonical source: [`{source}`](https://github.com/atstaeff/ai-agents/blob/main/{source}).\n'
