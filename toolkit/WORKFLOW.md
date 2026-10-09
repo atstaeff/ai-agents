@@ -23,6 +23,14 @@ web interface consider HTML, Flask/Jinja or HTMX. Preserve an established stack.
 
 ## Implement and verify
 
+If the user, project or selected planning flow requires plan review, prepare the
+concrete plan first. Use available Plannotator review, or explicit review in the current
+conversation if unavailable. Preserve feedback, revise after requested changes and wait
+for actual approval of the current revision before Build. Record the approval in the
+existing planning home. A changed scope or consequential design reopens review; routine
+details within approved scope do not. See [plan review](PLAN-REVIEW.md) for setup and
+model handoff. Approval does not grant merge, deployment or broader tool permissions.
+
 1. Define observable acceptance criteria. Resolve routine reversible choices
    independently; ask only when missing information changes a consequential decision
    or an action needs authorization not already given.

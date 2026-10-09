@@ -11,6 +11,14 @@ Yes. Edit their canonical profiles and re-export. OpenCode Plan has scoped edit
 permissions for work records; its shell/task tools are denied. Review the final merged
 host configuration and other installed tools before relying on a read-only boundary.
 
+## Can I comment on and approve a plan before using another model for Build?
+
+Use the optional [Plannotator plan review](getting-started/plan-review.md) in OpenCode 1.
+Plan submits a concrete revision, receives comments and resubmits after requested changes.
+Build starts after actual approval. Separate model and supported variant fields configure
+the two phases; verify their selection in your installed Web version. The toolkit configures
+the external plugin; it neither proves runtime switching nor synchronizes GitHub issues.
+
 ## Must every task create a document?
 
 No. Small changes use the conversation and existing checks. Larger outcomes use one

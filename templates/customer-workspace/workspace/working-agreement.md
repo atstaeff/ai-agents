@@ -20,10 +20,20 @@ a shared claim mechanism rather than relying on an assignee field as a lock.
 ## Deliver an increment
 
 1. Read the issue, relevant code and selected workspace pages. Reuse already loaded guidance.
-2. Implement the smallest complete increment. Keep the plan in the issue's designated AI section.
-3. Run relevant checks and prepare a linked PR. Explain missing verification explicitly.
-4. Move to Review when the result is reviewable. Done requires acceptance evidence, required
+2. Keep the plan in the issue's designated AI section. For planned delivery in this example,
+   the Technical Owner reviews the concrete revision in local Plannotator before Build.
+   Address requested changes and resubmit; record actual approval and notes in the issue.
+3. Implement the smallest complete increment within the approved scope.
+4. Run relevant checks and prepare a linked PR. Explain missing verification explicitly.
+5. Move to Review when the result is reviewable. Done requires acceptance evidence, required
    review and the customer's agreed completion point. In this example, a human-approved merge.
+
+Use the [plan review example](../examples/plan-review.md). While approval or a consequential
+answer is pending, use Blocked with the reason and next action; no extra board field is
+needed. Cancellation, timeout or tool failure does not authorize implementation. If the
+review UI is unavailable, require explicit review through the existing issue or conversation.
+Reopen review for material scope or design changes. Small direct tasks need a gate only
+when the user or customer requires one. Plan approval does not accept an ADR, merge or deploy.
 
 ## Action scope
 

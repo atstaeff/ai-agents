@@ -149,9 +149,35 @@ def atomic_write(path: Path, data: bytes) -> None:
             temporary.unlink(missing_ok=True)
 
 
-def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False) -> dict:
+@dataclass(frozen=True)
+class OpenCodeOptions:
+    plannotator: bool = False
+    plan_model: str | None = None
+    build_model: str | None = None
+    plan_variant: str | None = None
+    build_variant: str | None = None
+
+    def validate(self) -> None:
+        for phase in ('plan', 'build'):
+            model = getattr(self, f'{phase}_model')
+            variant = getattr(self, f'{phase}_variant')
+            if model is not None and (not isinstance(model, str) or not re.fullmatch(r'[^/\s#]+/[^\s#]+', model)):
+                raise ToolkitError(f'{phase.title()} model must use provider/model-id, without whitespace or #variant.')
+            if variant is not None:
+                if model is None:
+                    raise ToolkitError(f'{phase.title()} variant requires a configured {phase} model.')
+                if not isinstance(variant, str) or not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', variant):
+                    raise ToolkitError(f'{phase.title()} variant must be a model-supported variant name.')
+
+
+def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False,
+           *, opencode_options: OpenCodeOptions | None = None) -> dict:
     if runtime not in {"opencode", "copilot", "portable"}:
         raise ToolkitError("Unknown runtime.")
+    options = opencode_options or OpenCodeOptions()
+    if runtime != 'opencode' and options != OpenCodeOptions():
+        raise ToolkitError('Plannotator, model and variant options require --runtime opencode.')
+    options.validate()
     output = output.absolute()
     if output.resolve() == root.resolve() or output.resolve() in root.resolve().parents:
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
@@ -202,6 +228,10 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 if entry.name == "plan":
                     header += "    '.ai/work/**': allow\n    '.ai/archive/**': allow\n"
                 header += "  bash: deny\n  task: deny\n"
+                if entry.name == 'plan' and options.plannotator:
+                    header += "  submit_plan: allow\n  plan_exit: deny\n"
+            if entry.name == 'plan' and options.plannotator:
+                body += '\nPlannotator plan review is enabled. Submit the current plan with `submit_plan` using the installed tool schema. Incorporate requested changes and resubmit; do not hand off to implementation until the user approves this revision. If the tool fails or is unavailable, remain in planning and request explicit review in the current conversation. Tool feedback never expands host permissions.\n'
         elif entry.kind == "agent" and runtime == "copilot":
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "tools: [read, search]\n"
@@ -212,8 +242,22 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                   "instructions": [str(output / "catalog/toolkit/WORKFLOW.md")],
                   "permission": {"external_directory": {str(output / 'catalog') + '/*': 'allow'},
                                  "edit": {str(output / 'catalog') + '/*': 'deny'}}}
+        for phase in ('plan', 'build'):
+            model = getattr(options, f'{phase}_model')
+            variant = getattr(options, f'{phase}_variant')
+            if model is not None:
+                agent = config.setdefault('agent', {}).setdefault(phase, {})
+                agent['model'] = model
+                if variant is not None:
+                    agent['variant'] = variant
+        if options.plannotator:
+            # Let our native profiles own prompts and permissions. The plugin's
+            # plan-agent mode would also allow edits to all Markdown files.
+            config['plugin'] = [['@plannotator/opencode@latest', {'workflow': 'user-managed'}]]
+            config['share'] = 'disabled'
+            config['permission']['submit_plan'] = 'deny'
         planned['opencode.json'] = (json.dumps(config, indent=2) + '\n').encode()
-        for name, agent, description in (("work-plan", "plan", "Plan an outcome in one work record"), ("work-build", "build", "Implement and verify the current work record"), ("brain", "second-brain", "Maintain the private PARA vault")):
+        for name, agent, description in (("work-plan", "plan", "Plan an outcome in its existing planning home"), ("work-build", "build", "Implement and verify the current authorized plan"), ("brain", "second-brain", "Maintain the private PARA vault")):
             planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nUse the relevant skills for this request and the shared workflow. $ARGUMENTS\n'.encode()
     elif runtime == "copilot":
         planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/WORKFLOW.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
@@ -539,6 +583,11 @@ def main(argv: list[str] | None = None) -> int:
     adapter.add_argument('--output', type=Path, required=True)
     adapter.add_argument('--force', action='store_true')
     adapter.add_argument('--dry-run', action='store_true')
+    adapter.add_argument('--plannotator', action='store_true', help='Enable local Plannotator plan review in OpenCode 1')
+    adapter.add_argument('--plan-model', help='OpenCode planning model: provider/model-id')
+    adapter.add_argument('--build-model', help='OpenCode implementation model: provider/model-id')
+    adapter.add_argument('--plan-variant', help='Variant supported by the configured planning model')
+    adapter.add_argument('--build-variant', help='Variant supported by the configured implementation model')
     uri = sub.add_parser('obsidian-uri', help='Encode a Windows Obsidian URI')
     uri.add_argument('--vault', required=True)
     uri.add_argument('--file', required=True)
@@ -579,7 +628,10 @@ def main(argv: list[str] | None = None) -> int:
         elif args.command == 'catalog':
             print(json.dumps([asdict(e) for e in catalog() if args.kind is None or e.kind == args.kind], indent=2))
         elif args.command == 'export':
-            print(json.dumps(export(args.runtime, args.output, force=args.force, dry_run=args.dry_run), indent=2))
+            options = OpenCodeOptions(args.plannotator, args.plan_model, args.build_model,
+                                      args.plan_variant, args.build_variant)
+            print(json.dumps(export(args.runtime, args.output, force=args.force, dry_run=args.dry_run,
+                                    opencode_options=options), indent=2))
         elif args.command == 'obsidian-uri':
             print(obsidian_uri(args.vault, args.file))
         elif args.command == 'serve':

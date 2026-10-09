@@ -108,6 +108,7 @@ nav:
   - Get Started:
       - Quick Start in WSL: getting-started/quick-start.md
       - Runtime Profiles: getting-started/installation.md
+      - Plan Review & Models: getting-started/plan-review.md
       - Working Contract: getting-started/workflow.md
       - Local Work Records: toolkit/work-records.md
       - Local API: toolkit/api.md
@@ -122,6 +123,7 @@ nav:
       - Worked Increment:
           - Assignment: customer-workspace/assignment.md
           - Questions & Answers: customer-workspace/questions.md
+          - Plan Review: customer-workspace/plan-review.md
           - Review & Evidence: customer-workspace/review.md
       - Decisions:
           - ADR-0001 Retry Semantics: customer-workspace/decisions/adr-0001.md

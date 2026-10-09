@@ -13,6 +13,7 @@ asking people to maintain several copies of the same plan.
 | Stage | Human responsibility | AI contribution | Evidence |
 | --- | --- | --- | --- |
 | Frame | Choose outcome, scope and acceptance | Inspect context and propose a bounded increment | A Ready assignment |
+| Approve the plan when required | Verify assumptions, comment and approve the current revision | Revise the plan and preserve feedback | A receipt in the existing planning home |
 | Deliver | Resolve consequential questions | Implement within scope and keep the plan accurate | Focused code and relevant checks |
 | Review | Review and decide acceptance | Prepare a reviewable PR and explain remaining limits | Required review and acceptance |
 | Learn and operate | Choose follow-up work and assess impact | Update affected knowledge and prepare iteration closeout | Current knowledge, significant ADRs and observed results |
@@ -47,6 +48,12 @@ spreadsheet for that assignment.
 For larger local work without a board assignment, use one [work record](WORK-RECORDS.md).
 For a small fix, inspect, change and verify directly. The local dashboard manages Markdown
 records; Project and issue updates use authorized tools available in your AI host.
+
+For planned work that needs approval, use [local Plannotator review](PLAN-REVIEW.md)
+between Plan and Build. Comments go back to Plan; Build starts after the current
+revision is approved. Keep the plan and approval receipt in the existing issue or record.
+Choose a model and supported thinking variant for each phase when useful. Model changes
+carry the approved scope and evidence forward; they do not restart the decision process.
 
 ## Questions improve the assignment
 
@@ -88,6 +95,8 @@ The toolkit exports Jörg, Plan, Build, specialists and focused skills. It inclu
 local dashboard and a [customer workspace starter](../templates/customer-workspace/README.md).
 Your host runs models and tools and provides native delegation where supported. Provider
 choice controls whether inference is local or remote.
+The OpenCode 1 export can optionally configure Plannotator and separate Plan/Build models
+and variants. Review happens locally; installed-host behavior needs a local smoke check.
 
 The starter includes a local graph generator and an existing-site Docusaurus guide.
 Its runner page is a design contract. Adopt the manual issue-to-PR flow first; recurring

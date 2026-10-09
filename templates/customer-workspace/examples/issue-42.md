@@ -33,6 +33,7 @@ Product Owner decides upload intent; Technical Owner reviews design; Operations 
 
 Plan: confirm attempt semantics and retry window; inspect the existing upload boundary;
 implement one bounded change; verify acceptance cases; prepare a linked PR and knowledge update.
+Plan review: r1 draft; local review required before Build; approval evidence: none.
 Next action: inspect existing handling and bundle consequential questions.
 Evidence: none yet. Required checks and human acceptance are outstanding.
 <!-- ai:status:end -->

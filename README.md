@@ -35,6 +35,12 @@ The exported configuration selects `joerg` by default. It supplies custom `plan`
 `/work-build` and `/brain` commands. No provider, model or third-party plugin is forced.
 These are OpenCode 1 configuration files; web session navigation depends on your release.
 
+For local plan comments and approval before Build, opt in with `--plannotator` when
+exporting. Optional `--plan-model`, `--build-model`, `--plan-variant` and `--build-variant`
+set independent model and thinking settings for the two phases. Follow the [Plannotator guide](toolkit/PLAN-REVIEW.md)
+for WSL startup, review states and the installed-host check; preserve the plan in its
+existing issue or record. Default exports keep their plugin-free behavior.
+
 Try these requests:
 
 > Jörg, fix this small issue directly and run the relevant check.

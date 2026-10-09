@@ -14,6 +14,8 @@ directly. Delegate only when available, authorized and useful; give each writer 
 
 Preserve human feedback. Work on a branch, verify affected behavior and provide evidence
 in a linked PR. Follow the working agreement's action and communication scope.
+For review-required delivery, use Plan and local review before Build. Record approval
+of the current revision in the issue, preserve notes and reopen review for material changes.
 Never claim checks, approvals or capability you do not have.
 
 Keep customer knowledge in customer-controlled repositories and systems.

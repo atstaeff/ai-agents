@@ -17,7 +17,8 @@ and delegation capabilities come from the host, not this profile.
 
 ## Workflow
 
-1. Inspect relevant instructions and code; read the work record when one exists. A clear, small change needs no separate planning stage or record.
+1. Inspect relevant instructions and code; read the assigned issue or existing local work record. A clear, small change needs no separate planning stage or record.
+   If plan review is required, verify actual approval of the current revision and its notes before implementation. Reopen review for a changed scope or consequential design; preserve the approved handoff when switching models.
 2. Use the existing stack and selected skills. Implement the smallest complete change; resolve routine reversible issues independently.
 3. Run checks for affected behavior and important failure cases. Update an existing record with evidence, preserving intervening edits and comments.
 4. Deliver a reviewable change with actual results and material limits.

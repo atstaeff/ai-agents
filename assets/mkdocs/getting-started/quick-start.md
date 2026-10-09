@@ -16,6 +16,11 @@ OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
 Jörg is the default agent. Use `/work-plan` to plan and `/work-build` to implement,
 or ask Jörg to coordinate the whole outcome. Specialists and skills load as needed.
 
+For comments and approval before Build, use the [local Plannotator setup](plan-review.md).
+Add `--plannotator` when exporting; optional per-phase model and variant flags let Plan
+and Build use different models or supported thinking levels. Review and approve the
+current plan revision before starting `/work-build` for a gated assignment.
+
 ## Choose the assignment's planning home
 
 For customer delivery on GitHub, adopt the [workspace starter](../references/customer-workspace.md),

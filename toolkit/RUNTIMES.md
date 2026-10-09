@@ -28,7 +28,7 @@ OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
 OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
 ```
 
-The adapter uses `mode` and singular `permission`, with no fixed model or plugin.
+By default the adapter uses `mode` and singular `permission`, with no fixed model or plugin.
 Reviewers deny edit, shell and task tools. Plan has edit exceptions for `.ai/work/**`
 and `.ai/archive/**`. This is a planning guardrail, not an OS sandbox: consider other
 installed tools and project configuration. Build and Jörg use normal host permissions.
@@ -37,6 +37,11 @@ Do not install unrestricted write tools on a profile intended to be read-only.
 Use `/work-plan`, `/work-build` or `/brain`. Native delegation and interaction with
 child sessions in OpenCode Web depend on your release. The toolkit adds no session
 orchestration plugin.
+
+For plan comments and approval before implementation, add `--plannotator` to the export.
+Use `--plan-model`, `--build-model`, `--plan-variant` and `--build-variant` for independent
+phase settings. These are optional and OpenCode-specific. See [the local plan review
+guide](PLAN-REVIEW.md) for WSL startup, privacy, review states and model handoff.
 
 ## Copilot
 
@@ -58,6 +63,7 @@ Updates write only changed files and remove obsolete owned files. Identical file
 including the manifest, keep their timestamps. JSON output reports `changed`,
 `unchanged` and `removed` file counts; the manifest is excluded. With `--dry-run`,
 these counts describe the proposed update. Use a dedicated destination.
+Re-export with the same optional phase settings; omitted options restore the defaults.
 
 Keep model keys and private vault paths in local configuration. The catalog/dashboard
 uses no remote runtime service; AI provider calls are managed by your host.

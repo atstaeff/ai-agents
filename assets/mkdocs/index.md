@@ -48,6 +48,10 @@ using the models, tools and permissions available in its host.
 
 ## Choose your starting point
 
+For planned work that needs approval, [review the plan locally with Plannotator](getting-started/plan-review.md):
+comment, revise, approve the current version, then Build with its own model and supported
+thinking variant. Keep the receipt in the assignment's existing planning home.
+
 | Your situation | Start here | Keep the plan in |
 | --- | --- | --- |
 | Customer or team delivery on GitHub | [Customer workspace starter](references/customer-workspace.md) | The assigned issue |

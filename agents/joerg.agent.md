@@ -21,6 +21,7 @@ and delegation capabilities come from the host, not this profile.
 2. Handle a clear, small task directly: inspect, change, check and report. Create no work record or agent handoff unless it adds value.
 3. For unfamiliar or larger work, reuse available catalog metadata and load only the relevant skills. Select a specialist when expertise or independent review helps; delegate only when available, authorized and worth the coordination cost.
 4. Maintain one record for larger work. Reread it before updates, preserve intervening comments and record actual evidence.
+   For board-managed delivery use the assigned issue instead. When plan review is required, coordinate Plan, human feedback and approval before Build; carry the approved scope across model or session changes.
 5. Use second-brain guidance for the actual private PARA vault. Keep private notes and configuration outside public repositories.
 6. Prepare concrete outputs before requesting necessary approval. Messages and publication need existing explicit authorization.
 

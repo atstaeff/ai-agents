@@ -88,6 +88,70 @@ class ExportTests(unittest.TestCase):
             tk.export('opencode', self.output)
         self.assertEqual((self.output/'agents/joerg.md').read_text(), 'My custom instructions')
 
+    def test_plannotator_opt_in_preserves_plan_permissions_and_catalog(self):
+        options = tk.OpenCodeOptions(plannotator=True)
+        tk.export('opencode', self.output, opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['plugin'], [['@plannotator/opencode@latest', {'workflow': 'user-managed'}]])
+        self.assertEqual(config['share'], 'disabled')
+        self.assertEqual(config['permission']['submit_plan'], 'deny')
+        self.assertNotIn('model', config)
+        plan = (self.output/'agents/plan.md').read_text()
+        self.assertIn('  submit_plan: allow\n  plan_exit: deny\n', plan)
+        self.assertIn("'.ai/work/**': allow", plan)
+        self.assertNotIn("'*.md': allow", plan)
+        self.assertIn('  bash: deny\n  task: deny\n', plan)
+        self.assertIn('installed tool schema', plan)
+        self.assertNotIn('Plannotator plan review is enabled.', (self.output/'catalog/agents/plan.agent.md').read_text())
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            again = tk.export('opencode', self.output, opencode_options=options)
+        write.assert_not_called()
+        self.assertEqual(again['changed'], 0)
+
+    def test_models_and_variants_are_independent_without_enabling_plugins(self):
+        options = tk.OpenCodeOptions(plan_model='local/planner', plan_variant='high',
+                                     build_model='other/coder', build_variant='medium')
+        tk.export('opencode', self.output, opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['agent'], {'plan': {'model': 'local/planner', 'variant': 'high'},
+                                           'build': {'model': 'other/coder', 'variant': 'medium'}})
+        self.assertNotIn('plugin', config)
+        self.assertNotIn('model', config)
+        self.assertIn('bash: deny', (self.output/'agents/plan.md').read_text())
+
+    def test_opencode_options_reject_invalid_input_before_writing(self):
+        for options in (tk.OpenCodeOptions(plan_variant='high'), tk.OpenCodeOptions(build_variant='medium'),
+                        tk.OpenCodeOptions(plan_model='no-provider'), tk.OpenCodeOptions(build_model='provider/'),
+                        tk.OpenCodeOptions(plan_model='provider/model#high'),
+                        tk.OpenCodeOptions(plan_model='provider/model\nother'),
+                        tk.OpenCodeOptions(plan_model='provider/model', plan_variant='bad name')):
+            with self.subTest(options=options), self.assertRaises(tk.ToolkitError):
+                tk.export('opencode', self.output, opencode_options=options)
+            self.assertFalse(self.output.exists())
+        for runtime in ('copilot', 'portable'):
+            for options in (tk.OpenCodeOptions(plannotator=True), tk.OpenCodeOptions(build_model='provider/model')):
+                with self.subTest(runtime=runtime, options=options), self.assertRaisesRegex(tk.ToolkitError, 'runtime opencode'):
+                    tk.export(runtime, self.output, opencode_options=options)
+                self.assertFalse(self.output.exists())
+
+    def test_cli_exports_review_and_phase_settings_and_protects_edits(self):
+        args = ['export', '--runtime', 'opencode', '--output', str(self.output), '--plannotator',
+                '--plan-model', 'provider/planner', '--build-model', 'provider/coder',
+                '--plan-variant', 'high', '--build-variant', 'medium']
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+            self.assertFalse(self.output.exists())
+            self.assertEqual(tk.main(args), 0)
+        path = self.output/'opencode.json'
+        config = json.loads(path.read_text())
+        self.assertEqual(config['agent']['plan']['variant'], 'high')
+        self.assertEqual(config['agent']['build']['model'], 'provider/coder')
+        config['agent']['build']['model'] = 'human/choice'
+        path.write_text(json.dumps(config))
+        with patch('sys.stderr', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args), 1)
+        self.assertEqual(json.loads(path.read_text())['agent']['build']['model'], 'human/choice')
+
     def test_unchanged_exports_preserve_files_and_write_nothing(self):
         for runtime in ('opencode', 'copilot', 'portable'):
             with self.subTest(runtime=runtime):

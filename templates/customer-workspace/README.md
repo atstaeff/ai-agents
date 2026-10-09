@@ -17,7 +17,8 @@ Markdown is reusable across GitHub, an AI host and an existing documentation sit
 3. Configure one customer-owned GitHub Project using [the board example](examples/github-project.md).
 4. Create a real issue from [the worked assignment](examples/issue-42.md).
 5. Start Jörg manually with that issue in the customer's repository, using your host's
-   installed AI Agents profiles. Add a local runner only after the manual flow works.
+   installed AI Agents profiles. Adopt [plan comments and approval](examples/plan-review.md)
+   before Build when required. Add a local runner only after the manual flow works.
 6. For a documentation site, adopt [the local Docusaurus integration](examples/docusaurus-integration.md)
    and generate the knowledge index before building the existing website.
 
@@ -65,6 +66,7 @@ of routine context. The worked files stay drafts until a real project's evidence
 ## Optional worked documents
 
 - [Question and resumption](examples/discussion-42.md)
+- [Plan comments, revision and approval](examples/plan-review.md)
 - [Proposed PR](examples/pull-request-57.md)
 - [Decision draft](workspace/decisions/0001-retry-safe-upload.md)
 - [Dependent decision draft](workspace/decisions/0002-atomic-upload-claim.md)

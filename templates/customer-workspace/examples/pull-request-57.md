@@ -10,6 +10,7 @@ The final description must reflect the actual implementation and chosen expiry b
 
 ## Verification required before review completion
 
+- [ ] Link actual approval of the implemented plan revision and its review notes from issue 42.
 - [ ] Establish each acceptance case from issue 42, including concurrent requests.
 - [ ] Run the project's relevant checks and link actual results.
 - [ ] Confirm the Product Owner's attempt semantics and Operations' retry window.
