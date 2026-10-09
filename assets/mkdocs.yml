@@ -1,7 +1,7 @@
 site_name: AI Agents Workbench
 site_description: >-
-  A portable English agent and skill catalog with a local work toolkit,
-  OpenCode and Copilot adapters, and Obsidian PARA support.
+  Work with AI as a teammate: clear outcomes, accountable decisions,
+  customer-owned knowledge, portable profiles and a local toolkit.
 site_url: https://atstaeff.github.io/ai-agents/
 repo_url: https://github.com/atstaeff/ai-agents
 repo_name: atstaeff/ai-agents
@@ -34,7 +34,6 @@ theme:
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - navigation.instant
     - navigation.instant.progress
@@ -100,118 +99,143 @@ extra_css:
 
 nav:
   - Home: index.md
-  - Why: why-copilot-expert-hub.md
-  - Getting Started:
-      - Installation & Setup: getting-started/installation.md
-      - Quick Start: getting-started/quick-start.md
-      - Recommended Workflow: getting-started/workflow.md
-      - Work Records: toolkit/work-records.md
+  - Concept:
+      - Operating Model: concept.md
+      - Why This Model: why-copilot-expert-hub.md
+      - Source Ownership: architecture.md
+      - Example Outcomes: use-cases.md
+      - Questions & Capabilities: faq.md
+  - Get Started:
+      - Quick Start in WSL: getting-started/quick-start.md
+      - Runtime Profiles: getting-started/installation.md
+      - Plan Review & Models: getting-started/plan-review.md
+      - Working Contract: getting-started/workflow.md
+      - Local Work Records: toolkit/work-records.md
       - Local API: toolkit/api.md
-  - Agents:
-      - Overview: agents/index.md
-      - Personal & Product:
-          - Jörg: agents/joerg.md
-          - Second Brain: agents/second-brain.md
-          - Product Manager: agents/product-manager.md
-          - Plan: agents/plan.md
-          - Build: agents/build.md
-      - Planning & Architecture:
-          - Lead Architect: agents/lead-architect.md
-          - Task Orchestrator: agents/task-orchestrator.md
-          - GCP Architect: agents/gcp-architect.md
-      - Implementation:
-          - Python Expert: agents/python-expert.md
-          - Golang Expert: agents/golang-expert.md
-          - Flutter & iOS Expert: agents/flutter-ios-expert.md
-          - Frontend Expert: agents/frontend-expert.md
-      - Quality & Review:
-          - Test Strategist: agents/test-strategist.md
-          - Architecture Reviewer: agents/architecture-reviewer.md
-          - Code Reviewer: agents/code-reviewer.md
-      - Deployment:
-          - DevOps Agent: agents/devops-agent.md
-      - IoT & Embedded:
-          - IoT & Embedded Expert: agents/iot-embedded-expert.md
-      - Creative & Games:
-          - Game Developer: agents/game-developer.md
-          - Creative App Developer: agents/creative-app-developer.md
-      - Communication:
-          - Context Manager: agents/context-manager.md
-          - Presentation Agent: agents/presentation-agent.md
-          - Stakeholder Agent: agents/stakeholder-agent.md
-          - Proposal/Pitch Agent: agents/proposal-pitch.md
-  - Skills:
-      - Overview: skills/index.md
-      - Topic Routers:
-          - Architecture: skills/architecture.md
-          - Creative Apps: skills/creative-apps.md
-          - Game Development: skills/game-development.md
-          - General: skills/general.md
-          - Project Management: skills/project-management.md
-          - Software Engineering: skills/software-engineering.md
-          - System Design: skills/system-design.md
-          - Team Collaboration: skills/team-collaboration.md
-      - Workflow & Knowledge:
-          - Work Management: skills/work-management.md
-          - Agent Routing: skills/agent-routing.md
-          - Product Discovery: skills/product-discovery.md
-          - Obsidian PARA: skills/obsidian-para.md
-      - Language Patterns:
-          - Python Patterns: skills/python-patterns.md
-          - Golang Patterns: skills/golang-patterns.md
-          - Flutter Patterns: skills/flutter-patterns.md
-          - Frontend Patterns: skills/frontend-patterns.md
-      - Software Engineering:
-          - Clean Code: skills/clean-code.md
-          - SOLID Principles: skills/solid-principles.md
-          - Design Patterns: skills/design-patterns.md
-          - Code Review: skills/code-review.md
-          - Testing Strategies: skills/testing-strategies.md
-          - Practical Refactoring: skills/practical-refactoring.md
-      - Architecture:
-          - Microservices: skills/microservices.md
-          - Domain-Driven Design: skills/domain-driven-design.md
-          - Cloud-Native: skills/cloud-native.md
-          - API Design: skills/api-design.md
-          - Security: skills/security.md
-          - Performance: skills/performance.md
-      - Cloud & DevOps:
-          - GCP Patterns: skills/gcp-patterns.md
-          - Testing: skills/testing.md
-          - DevOps & CI/CD: skills/devops-cicd.md
-      - IoT & Embedded:
-          - IoT & Embedded Patterns: skills/iot-embedded-patterns.md
-      - Project & Team:
-          - Agile Methodologies: skills/agile-methodologies.md
-          - Technical Debt: skills/technical-debt.md
-          - PR Crafting: skills/pr-crafting.md
-          - Progress Sync: skills/progress-sync.md
-          - Feature Discovery: skills/feature-discovery-session.md
-          - Incident Response: skills/incident-response.md
-      - Game Development:
-          - Game Design: skills/game-design.md
-          - Game Mechanics: skills/game-mechanics.md
-          - Game Architecture: skills/game-architecture.md
-          - Prototyping & Playtesting: skills/prototyping.md
-      - Creative Apps:
-          - Creative App Patterns: skills/creative-app-patterns.md
-      - More Skills:
-          - Anti-Patterns: skills/anti-patterns.md
-          - Marp Presentations: skills/marp-presentations.md
-          - Communication: skills/communication.md
-          - Architecture Planning: skills/architecture-planning.md
-          - Principal Engineer Decisions: skills/principal-engineer-decisions.md
-  - Use Cases: use-cases.md
-  - Architecture: architecture.md
-  - Templates & References:
-      - Overview: references/index.md
-      - Model Selection: references/llm-model-guide.md
+      - Preview Locally: getting-started/local-preview.md
+  - Customer Workspace:
+      - Adopt the Starter: references/customer-workspace.md
+      - Entry Pages:
+          - Goal & Value Chain: customer-workspace/context.md
+          - Working Agreement: customer-workspace/working-agreement.md
+          - Decision Rights: customer-workspace/stakeholders.md
+      - GitHub Project: customer-workspace/project.md
+      - Worked Increment:
+          - Assignment: customer-workspace/assignment.md
+          - Questions & Answers: customer-workspace/questions.md
+          - Plan Review: customer-workspace/plan-review.md
+          - Review & Evidence: customer-workspace/review.md
+      - Decisions:
+          - ADR-0001 Retry Semantics: customer-workspace/decisions/adr-0001.md
+          - ADR-0002 Atomic Claim: customer-workspace/decisions/adr-0002.md
+      - Process Knowledge: customer-workspace/knowledge.md
+      - Iteration Closeout: customer-workspace/iteration.md
+      - Knowledge Map: customer-workspace/knowledge-map.md
+      - Docusaurus Integration: customer-workspace/docusaurus.md
+      - Optional Runner Contract: customer-workspace/runner.md
+  - Catalog:
+      - Agents:
+          - Overview: agents/index.md
+          - Personal & Product:
+              - Jörg: agents/joerg.md
+              - Second Brain: agents/second-brain.md
+              - Product Manager: agents/product-manager.md
+              - Plan: agents/plan.md
+              - Build: agents/build.md
+          - Planning & Architecture:
+              - Lead Architect: agents/lead-architect.md
+              - Task Orchestrator: agents/task-orchestrator.md
+              - GCP Architect: agents/gcp-architect.md
+          - Implementation:
+              - Python Expert: agents/python-expert.md
+              - Golang Expert: agents/golang-expert.md
+              - Flutter & iOS Expert: agents/flutter-ios-expert.md
+              - Frontend Expert: agents/frontend-expert.md
+          - Quality & Review:
+              - Test Strategist: agents/test-strategist.md
+              - Architecture Reviewer: agents/architecture-reviewer.md
+              - Code Reviewer: agents/code-reviewer.md
+          - Deployment:
+              - DevOps Agent: agents/devops-agent.md
+          - IoT & Embedded:
+              - IoT & Embedded Expert: agents/iot-embedded-expert.md
+          - Creative & Games:
+              - Game Developer: agents/game-developer.md
+              - Creative App Developer: agents/creative-app-developer.md
+          - Communication:
+              - Context Manager: agents/context-manager.md
+              - Presentation Agent: agents/presentation-agent.md
+              - Stakeholder Agent: agents/stakeholder-agent.md
+              - Proposal/Pitch Agent: agents/proposal-pitch.md
+      - Skills:
+          - Overview: skills/index.md
+          - Topic Routers:
+              - Architecture: skills/architecture.md
+              - Creative Apps: skills/creative-apps.md
+              - Game Development: skills/game-development.md
+              - General: skills/general.md
+              - Project Management: skills/project-management.md
+              - Software Engineering: skills/software-engineering.md
+              - System Design: skills/system-design.md
+              - Team Collaboration: skills/team-collaboration.md
+          - Workflow & Knowledge:
+              - Work Management: skills/work-management.md
+              - Agent Routing: skills/agent-routing.md
+              - Product Discovery: skills/product-discovery.md
+              - Obsidian PARA: skills/obsidian-para.md
+          - Language Patterns:
+              - Python Patterns: skills/python-patterns.md
+              - Golang Patterns: skills/golang-patterns.md
+              - Flutter Patterns: skills/flutter-patterns.md
+              - Frontend Patterns: skills/frontend-patterns.md
+          - Software Engineering:
+              - Clean Code: skills/clean-code.md
+              - SOLID Principles: skills/solid-principles.md
+              - Design Patterns: skills/design-patterns.md
+              - Code Review: skills/code-review.md
+              - Testing Strategies: skills/testing-strategies.md
+              - Practical Refactoring: skills/practical-refactoring.md
+          - Architecture:
+              - Microservices: skills/microservices.md
+              - Domain-Driven Design: skills/domain-driven-design.md
+              - Cloud-Native: skills/cloud-native.md
+              - API Design: skills/api-design.md
+              - Security: skills/security.md
+              - Performance: skills/performance.md
+          - Cloud & DevOps:
+              - GCP Patterns: skills/gcp-patterns.md
+              - Testing: skills/testing.md
+              - DevOps & CI/CD: skills/devops-cicd.md
+          - IoT & Embedded:
+              - IoT & Embedded Patterns: skills/iot-embedded-patterns.md
+          - Project & Team:
+              - Agile Methodologies: skills/agile-methodologies.md
+              - Technical Debt: skills/technical-debt.md
+              - PR Crafting: skills/pr-crafting.md
+              - Progress Sync: skills/progress-sync.md
+              - Feature Discovery: skills/feature-discovery-session.md
+              - Incident Response: skills/incident-response.md
+          - Game Development:
+              - Game Design: skills/game-design.md
+              - Game Mechanics: skills/game-mechanics.md
+              - Game Architecture: skills/game-architecture.md
+              - Prototyping & Playtesting: skills/prototyping.md
+          - Creative Apps:
+              - Creative App Patterns: skills/creative-app-patterns.md
+          - More Skills:
+              - Anti-Patterns: skills/anti-patterns.md
+              - Marp Presentations: skills/marp-presentations.md
+              - Communication: skills/communication.md
+              - Architecture Planning: skills/architecture-planning.md
+              - Principal Engineer Decisions: skills/principal-engineer-decisions.md
+  - References:
+      - Templates & References: references/index.md
+      - Model Selection Reference: references/llm-model-guide.md
       - Marp Templates: references/marp-templates.md
       - Python Golden Repo: references/python-golden.md
       - Event-Driven Python: references/event-driven-python.md
-  - Contributing:
-      - Contributing Guide: contributing/index.md
-      - Create a New Agent: contributing/new-agent.md
-      - Create a New Skill: contributing/new-skill.md
-      - Guidelines: contributing/guidelines.md
-  - FAQ: faq.md
+      - Contributing:
+          - Contributing Guide: contributing/index.md
+          - Create a New Agent: contributing/new-agent.md
+          - Create a New Skill: contributing/new-skill.md
+          - Guidelines: contributing/guidelines.md

@@ -10,6 +10,7 @@ import tempfile
 import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
+from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import ai_toolkit as tk
@@ -86,6 +87,137 @@ class ExportTests(unittest.TestCase):
         with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
             tk.export('opencode', self.output)
         self.assertEqual((self.output/'agents/joerg.md').read_text(), 'My custom instructions')
+
+    def test_plannotator_opt_in_preserves_plan_permissions_and_catalog(self):
+        options = tk.OpenCodeOptions(plannotator=True)
+        tk.export('opencode', self.output, opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['plugin'], [['@plannotator/opencode@latest', {'workflow': 'user-managed'}]])
+        self.assertEqual(config['share'], 'disabled')
+        self.assertEqual(config['permission']['submit_plan'], 'deny')
+        self.assertNotIn('model', config)
+        plan = (self.output/'agents/plan.md').read_text()
+        self.assertIn('  submit_plan: allow\n  plan_exit: deny\n', plan)
+        self.assertIn("'.ai/work/**': allow", plan)
+        self.assertNotIn("'*.md': allow", plan)
+        self.assertIn('  bash: deny\n  task: deny\n', plan)
+        self.assertIn('installed tool schema', plan)
+        self.assertNotIn('Plannotator plan review is enabled.', (self.output/'catalog/agents/plan.agent.md').read_text())
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            again = tk.export('opencode', self.output, opencode_options=options)
+        write.assert_not_called()
+        self.assertEqual(again['changed'], 0)
+
+    def test_models_and_variants_are_independent_without_enabling_plugins(self):
+        options = tk.OpenCodeOptions(plan_model='local/planner', plan_variant='high',
+                                     build_model='other/coder', build_variant='medium')
+        tk.export('opencode', self.output, opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['agent'], {'plan': {'model': 'local/planner', 'variant': 'high'},
+                                           'build': {'model': 'other/coder', 'variant': 'medium'}})
+        self.assertNotIn('plugin', config)
+        self.assertNotIn('model', config)
+        self.assertIn('bash: deny', (self.output/'agents/plan.md').read_text())
+
+    def test_opencode_options_reject_invalid_input_before_writing(self):
+        for options in (tk.OpenCodeOptions(plan_variant='high'), tk.OpenCodeOptions(build_variant='medium'),
+                        tk.OpenCodeOptions(plan_model='no-provider'), tk.OpenCodeOptions(build_model='provider/'),
+                        tk.OpenCodeOptions(plan_model='provider/model#high'),
+                        tk.OpenCodeOptions(plan_model='provider/model\nother'),
+                        tk.OpenCodeOptions(plan_model='provider/model', plan_variant='bad name')):
+            with self.subTest(options=options), self.assertRaises(tk.ToolkitError):
+                tk.export('opencode', self.output, opencode_options=options)
+            self.assertFalse(self.output.exists())
+        for runtime in ('copilot', 'portable'):
+            for options in (tk.OpenCodeOptions(plannotator=True), tk.OpenCodeOptions(build_model='provider/model')):
+                with self.subTest(runtime=runtime, options=options), self.assertRaisesRegex(tk.ToolkitError, 'runtime opencode'):
+                    tk.export(runtime, self.output, opencode_options=options)
+                self.assertFalse(self.output.exists())
+
+    def test_cli_exports_review_and_phase_settings_and_protects_edits(self):
+        args = ['export', '--runtime', 'opencode', '--output', str(self.output), '--plannotator',
+                '--plan-model', 'provider/planner', '--build-model', 'provider/coder',
+                '--plan-variant', 'high', '--build-variant', 'medium']
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+            self.assertFalse(self.output.exists())
+            self.assertEqual(tk.main(args), 0)
+        path = self.output/'opencode.json'
+        config = json.loads(path.read_text())
+        self.assertEqual(config['agent']['plan']['variant'], 'high')
+        self.assertEqual(config['agent']['build']['model'], 'provider/coder')
+        config['agent']['build']['model'] = 'human/choice'
+        path.write_text(json.dumps(config))
+        with patch('sys.stderr', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args), 1)
+        self.assertEqual(json.loads(path.read_text())['agent']['build']['model'], 'human/choice')
+
+    def test_unchanged_exports_preserve_files_and_write_nothing(self):
+        for runtime in ('opencode', 'copilot', 'portable'):
+            with self.subTest(runtime=runtime):
+                output = self.output / runtime
+                first = tk.export(runtime, output)
+                before = {p: (p.stat().st_ino, p.stat().st_mtime_ns)
+                          for p in output.rglob('*') if p.is_file()}
+                with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+                    second = tk.export(runtime, output)
+                write.assert_not_called()
+                self.assertEqual((second['changed'], second['removed']), (0, 0))
+                self.assertEqual(second['unchanged'], first['files'])
+                self.assertEqual(before, {p: (p.stat().st_ino, p.stat().st_mtime_ns)
+                                         for p in before})
+
+    def source_fixture(self):
+        root = Path(self.temp.name) / 'source'
+        for folder, name in (('agents', 'one.agent.md'), ('agents', 'two.agent.md'),
+                             ('skills/skill', 'SKILL.md')):
+            path = root / folder / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            slug = 'skill' if name == 'SKILL.md' else name.removesuffix('.agent.md')
+            path.write_text(f'---\nname: {slug}\ndescription: A focused profile\n---\n\nOriginal body.\n')
+        return root
+
+    def test_source_update_only_rewrites_affected_files(self):
+        root = self.source_fixture()
+        tk.export('portable', self.output, root)
+        source = root / 'agents/one.agent.md'
+        source.write_text(source.read_text().replace('Original body.', 'Updated body.'))
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            result = tk.export('portable', self.output, root)
+        self.assertEqual({call.args[0].relative_to(self.output).as_posix()
+                          for call in write.call_args_list},
+                         {'catalog/agents/one.agent.md', 'agents/one.agent.md', '.ai-toolkit-manifest.json'})
+        self.assertEqual(result['changed'], 2)
+        self.assertIn('Updated body.', (self.output / 'agents/one.agent.md').read_text())
+
+    def test_obsolete_files_are_removed_but_edited_ones_are_protected(self):
+        root = self.source_fixture()
+        tk.export('portable', self.output, root)
+        (root / 'agents/two.agent.md').unlink()
+        edited = self.output / 'agents/two.agent.md'
+        edited.write_text('Keep this human edit.')
+        with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
+            tk.export('portable', self.output, root)
+        self.assertEqual(edited.read_text(), 'Keep this human edit.')
+        preview = tk.export('portable', self.output, root, force=True, dry_run=True)
+        self.assertEqual((preview['changed'], preview['removed']), (1, 2))
+        self.assertTrue(edited.exists())
+        result = tk.export('portable', self.output, root, force=True)
+        self.assertEqual((result['changed'], result['removed']), (1, 2))
+        self.assertFalse(edited.exists())
+        self.assertFalse((self.output / 'catalog/agents/two.agent.md').exists())
+        self.assertTrue((self.output / 'agents/one.agent.md').is_file())
+
+    def test_missing_owned_file_is_restored(self):
+        tk.export('opencode', self.output)
+        missing = self.output / 'agents/build.md'
+        expected = missing.read_bytes()
+        missing.unlink()
+        with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
+            result = tk.export('opencode', self.output)
+        self.assertEqual(result['changed'], 1)
+        self.assertEqual([call.args[0] for call in write.call_args_list], [missing])
+        self.assertEqual(missing.read_bytes(), expected)
 
     def test_unmanaged_configuration_is_not_overwritten(self):
         self.output.mkdir()

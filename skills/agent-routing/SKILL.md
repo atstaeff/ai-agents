@@ -5,11 +5,11 @@ description: "Select skills and specialist agents for a user outcome, using prog
 
 # Agent Routing
 
-1. Read catalog metadata first. Match the user outcome and existing technology to a small set of skills; load their bodies only when selected.
-2. Prefer the narrowest relevant specialist. Jörg is the general entry point; use second-brain for PARA notes, product-manager for product uncertainty and language/domain experts for implementation.
-3. Read the host capabilities and governing instructions. Native subagent/session tools must exist and delegation must be authorized. Otherwise use the specialist profile as guidance in the current session and say how the work is being performed.
-4. Give a delegated task a goal, context pointers, acceptance criteria, allowed files, dependencies and expected evidence. Avoid concurrent writers to the same file.
-5. Inspect returned changes and checks. Resolve contradictions and integrate the result into the current work record; a successful tool call alone is not proof of completion.
+1. Handle clear, small tasks directly. When routing helps, reuse available metadata and inspect only what is missing. Load selected skill bodies.
+2. Use the narrowest relevant expertise: second-brain for PARA, product-manager for product uncertainty and domain experts for implementation. Skills can guide the current session without switching agents.
+3. Check actual host capabilities and instructions. Delegate only when tools exist, authorization permits it and the benefit exceeds coordination cost. Otherwise apply specialist guidance in the current session.
+4. Supply a bounded goal, context pointers, acceptance criteria, allowed files and expected evidence. Avoid concurrent writers to the same file.
+5. Inspect returned changes and checks, resolve contradictions and update an existing work record when present. A successful tool call does not prove completion.
 
 ## Selection examples
 

@@ -1,8 +1,9 @@
 # AI Agents · Local work toolkit
 
-An English catalog of **23 agents and 48 skills**, with native profile exporters and a
-local dashboard. Use **Jörg** as the general assistant, select a specialist when needed,
-and keep larger work in one Markdown record. Detailed examples load on demand.
+Work with AI as a teammate using a shared [operating model](toolkit/OPERATING-MODEL.md),
+an English catalog of **23 agents and 48 skills**, native exporters and a local dashboard.
+Use **Jörg** as the general assistant. Keep board-managed plans in the assigned issue
+and larger local work in one Markdown record. Load focused expertise as needed.
 
 The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
 It does not run models, create chat sessions or access your Obsidian vault automatically.
@@ -34,16 +35,25 @@ The exported configuration selects `joerg` by default. It supplies custom `plan`
 `/work-build` and `/brain` commands. No provider, model or third-party plugin is forced.
 These are OpenCode 1 configuration files; web session navigation depends on your release.
 
+For local plan comments and approval before Build, opt in with `--plannotator` when
+exporting. Optional `--plan-model`, `--build-model`, `--plan-variant` and `--build-variant`
+set independent model and thinking settings for the two phases. Follow the [Plannotator guide](toolkit/PLAN-REVIEW.md)
+for WSL startup, review states and the installed-host check; preserve the plan in its
+existing issue or record. Default exports keep their plugin-free behavior.
+
 Try these requests:
 
-> Jörg, inspect this project, plan a small complete improvement and implement it.
-> Keep the plan and my feedback in one `.ai/work/` record and verify the result.
+> Jörg, fix this small issue directly and run the relevant check.
+
+> Jörg, improve this larger feature. Keep the plan and my feedback in one
+> `.ai/work/` record, implement the first complete increment and verify it.
 
 > Use the second-brain agent to propose where these notes belong in my existing PARA
 > vault. Preserve my wording, aliases and links.
 
-Re-export after updating the repository. Edited bundle files are protected; change
-canonical sources here or select another destination. See [runtime details](toolkit/RUNTIMES.md).
+Re-export after updating the repository; unchanged files are skipped. Edited bundle
+files are protected; change canonical sources here or select another destination.
+See [runtime details](toolkit/RUNTIMES.md).
 
 ## Plans, tasks and your comments
 
@@ -72,6 +82,20 @@ does not start AI sessions or execute shell commands.
 `docs/` stays available for existing documentation or GitHub Pages. CSV is an optional
 export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
 [work-record guide](toolkit/WORK-RECORDS.md).
+
+## Customer-owned GitHub workspace
+
+Use [templates/customer-workspace](templates/customer-workspace/README.md) when a
+customer's GitHub Project coordinates delivery. The Project owns priority, iteration
+and status; the issue owns the live plan and questions; `workspace/` keeps durable
+decisions, process knowledge and iteration outcomes in the customer's repository.
+Use that issue instead of a duplicate `.ai/work/` record for the same assignment.
+
+Start with three workspace entry files and merge the example instructions into the
+customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
+stakeholder questions, linked ADRs, a local knowledge graph generator and integration
+with an existing Docusaurus site. Adopt only what the project needs; this template is
+not an automatic installer or background runner.
 
 ## Jörg and your Second Brain
 
@@ -117,7 +141,10 @@ uv run --group docs mkdocs build -f assets/mkdocs.yml --strict
 uv run --group docs mkdocs serve -f assets/mkdocs.yml
 ```
 
-MkDocs sources are in `assets/mkdocs/`. The existing website is
+Open **http://localhost:8000** after starting MkDocs. The
+[local preview guide](assets/mkdocs/getting-started/local-preview.md) also covers static builds.
+The Docusaurus guide integrates customer workspace sources into an existing customer site.
+MkDocs sources for this catalog site are in `assets/mkdocs/`. The existing website is
 [atstaeff.github.io/ai-agents](https://atstaeff.github.io/ai-agents/).
 CI checks catalog, tests and docs on PRs; the main workflow rebuilds tracked `docs/`
 for the existing Pages setup. Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
