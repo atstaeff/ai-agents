@@ -1,6 +1,11 @@
 # One record per outcome
 
-Use `.ai/work/<slug>.md` for larger work. Keep acceptance criteria, plan, tasks,
+Use `.ai/work/<slug>.md` for larger local work without a board-owned assignment.
+For customer delivery on a GitHub Project, the assigned issue owns the live plan;
+follow the [operating model](OPERATING-MODEL.md) and the project's working agreement.
+The dashboard below manages files; Project updates use your host's authorized tools.
+
+Keep acceptance criteria, plan, tasks,
 feedback, decisions and evidence together. Small fixes need no record. Avoid separate
 proposal, spreadsheet and decision logs unless the project already requires them.
 

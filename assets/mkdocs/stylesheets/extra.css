@@ -280,3 +280,47 @@
 [data-md-color-scheme="slate"] .md-typeset .hero p {
   color: #e3ecf7;
 }
+
+/* Clear entry point, keyboard focus and a local SVG knowledge view. */
+.md-typeset .intro-hero { text-align: left; padding: 2rem; }
+.md-typeset .intro-hero h1 {
+  color: #fff; font-weight: 700; line-height: 1.15; max-width: 26rem;
+}
+.md-typeset .intro-hero p { margin-left: 0; }
+.md-typeset .intro-hero .eyebrow {
+  font-size: .65rem; letter-spacing: .06em; text-transform: uppercase;
+}
+.md-typeset .hero a.md-button { color: #fff !important; }
+.md-typeset .hero a.md-button--primary { color: #122E53 !important; }
+.md-typeset .delivery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.md-typeset a:focus-visible,
+.md-typeset .knowledge-diagram a:focus-visible rect {
+  outline: 3px solid #2196f3; outline-offset: 3px;
+}
+.knowledge-diagram {
+  overflow-x: auto; border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: .5rem; margin: 1rem 0; background: var(--md-code-bg-color);
+}
+.knowledge-diagram svg { display: block; width: 100%; min-width: 34rem; }
+.knowledge-diagram .knowledge-edge {
+  stroke: var(--md-default-fg-color--light); stroke-width: 1.5;
+}
+.knowledge-diagram marker path { fill: var(--md-default-fg-color--light); }
+.knowledge-diagram .knowledge-label {
+  fill: var(--md-default-fg-color); font-size: 13px; paint-order: stroke;
+  stroke: var(--md-code-bg-color); stroke-width: 5px; stroke-linejoin: round;
+}
+.knowledge-diagram rect {
+  fill: var(--md-default-bg-color); stroke: #2196f3; stroke-width: 1.5;
+}
+.knowledge-diagram .knowledge-id {
+  fill: var(--md-default-fg-color); font-size: 17px; font-weight: 600;
+}
+.knowledge-diagram .knowledge-status {
+  fill: var(--md-default-fg-color--light); font-size: 14px;
+}
+.knowledge-diagram a:hover rect { stroke-width: 3; }
+@media (max-width: 40rem) {
+  .md-typeset .intro-hero { padding: 1.2rem; }
+  .md-typeset .delivery-grid { grid-template-columns: minmax(0, 1fr); }
+}

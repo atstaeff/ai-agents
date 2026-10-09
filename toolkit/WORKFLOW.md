@@ -12,6 +12,8 @@ checks and report the result. No work record, catalog scan or agent handoff is r
 
 For larger work, keep one `.ai/work/<slug>.md` using the
 [work template](../templates/work-item.md). Reuse an existing record for the same outcome.
+If the project uses an assigned issue as its planning home, follow that working agreement
+and update the issue instead of creating a duplicate local record.
 Keep the goal, acceptance criteria, short plan, tasks, feedback, decisions and evidence
 together. Keep `docs/` available for its existing purpose, including GitHub Pages.
 

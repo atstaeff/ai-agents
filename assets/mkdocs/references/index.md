@@ -1,6 +1,7 @@
 # Templates & References
 
-Overview of available templates and reference architectures in the Copilot Expert Hub.
+Reusable templates and focused references for AI Agents. Start with the
+[operating model](../concept.md) and select only what the assignment needs.
 
 ## Customer Workspace
 
@@ -13,11 +14,12 @@ graph generation and integration with an existing Docusaurus site.
 
 ---
 
-## LLM-Modell-Guide
+## Model Selection Reference
 
-Welches LLM-Modell eignet sich für welche Aufgabe? Der Guide bietet eine Übersicht über aktuelle Modelle von Anthropic, OpenAI und Google mit konkreten Empfehlungen nach Aufgabentyp, Kosten-Vergleich und Entscheidungsbaum.
+This reference discusses tasks and tradeoffs. Check current provider documentation
+before relying on model availability or prices.
 
-:material-arrow-right: [Zum LLM-Modell-Guide](llm-model-guide.md)
+:material-arrow-right: [Model selection reference](llm-model-guide.md)
 
 ---
 

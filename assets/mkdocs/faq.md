@@ -14,7 +14,32 @@ host configuration and other installed tools before relying on a read-only bound
 ## Must every task create a document?
 
 No. Small changes use the conversation and existing checks. Larger outcomes use one
-`.ai/work/` file, archived at completion. CSV is an export only.
+planning home: an assigned issue for board-managed delivery, or `.ai/work/` for larger
+local work without that assignment. CSV is an export only.
+
+## Is this website Docusaurus?
+
+The AI Agents catalog site uses MkDocs. The workspace starter integrates with a customer's
+existing Docusaurus site. Both publish views of canonical Markdown; compiled `docs/`
+output stays separate from editable workspace sources.
+
+## Does an accepted ADR prove delivery?
+
+It records the authorized decision maker's agreement. Implementation, verification,
+review, merge, deployment and observed impact each need evidence. Write significant
+decisions during delivery and link them at iteration close.
+
+## Must I copy all the starter files?
+
+Start with the workspace entry page, working agreement and stakeholders. Adopt relevant
+instructions into the existing AGENTS.md. The worked files illustrate format; create
+real ADRs and knowledge pages when the assignment warrants them.
+
+## Is the recurring local worker implemented?
+
+The manual host workflow, profile exports, dashboard and graph generator are available.
+The runner page is a design contract. Recurring processing needs an implementation and
+authorized tools for the customer's Project, issues and repositories.
 
 ## Does it upload my Obsidian vault?
 

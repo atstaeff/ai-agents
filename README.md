@@ -1,8 +1,9 @@
 # AI Agents · Local work toolkit
 
-An English catalog of **23 agents and 48 skills**, with native profile exporters and a
-local dashboard. Use **Jörg** as the general assistant, select a specialist when needed,
-and keep larger work in one Markdown record. Detailed examples load on demand.
+Work with AI as a teammate using a shared [operating model](toolkit/OPERATING-MODEL.md),
+an English catalog of **23 agents and 48 skills**, native exporters and a local dashboard.
+Use **Jörg** as the general assistant. Keep board-managed plans in the assigned issue
+and larger local work in one Markdown record. Load focused expertise as needed.
 
 The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
 It does not run models, create chat sessions or access your Obsidian vault automatically.
@@ -134,7 +135,10 @@ uv run --group docs mkdocs build -f assets/mkdocs.yml --strict
 uv run --group docs mkdocs serve -f assets/mkdocs.yml
 ```
 
-MkDocs sources are in `assets/mkdocs/`. The existing website is
+Open **http://localhost:8000** after starting MkDocs. The
+[local preview guide](assets/mkdocs/getting-started/local-preview.md) also covers static builds.
+The Docusaurus guide integrates customer workspace sources into an existing customer site.
+MkDocs sources for this catalog site are in `assets/mkdocs/`. The existing website is
 [atstaeff.github.io/ai-agents](https://atstaeff.github.io/ai-agents/).
 CI checks catalog, tests and docs on PRs; the main workflow rebuilds tracked `docs/`
 for the existing Pages setup. Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
