@@ -172,7 +172,7 @@ class OpenCodeOptions:
 
 def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False,
            *, opencode_options: OpenCodeOptions | None = None) -> dict:
-    if runtime not in {"opencode", "copilot", "portable"}:
+    if runtime not in {"opencode", "copilot", "claude", "portable"}:
         raise ToolkitError("Unknown runtime.")
     options = opencode_options or OpenCodeOptions()
     if runtime != 'opencode' and options != OpenCodeOptions():
@@ -194,14 +194,14 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
     planned['catalog/index.json'] = (json.dumps([asdict(e) for e in entries], indent=2) + '\n').encode()
     for entry in entries:
         if entry.kind == "skill":
-            base = {"opencode": "skills", "copilot": ".github/skills", "portable": ".agents/skills"}[runtime]
+            base = {"opencode": "skills", "copilot": ".github/skills", "claude": ".claude/skills", "portable": ".agents/skills"}[runtime]
             destination = f"{base}/{entry.name}/SKILL.md"
             interface = (root / entry.path).parent / 'agents/openai.yaml'
             if interface.is_file():
                 planned[f'{base}/{entry.name}/agents/openai.yaml'] = interface.read_bytes()
         else:
-            base = {"opencode": "agents", "copilot": ".github/agents", "portable": "agents"}[runtime]
-            suffix = ".md" if runtime == "opencode" else ".agent.md"
+            base = {"opencode": "agents", "copilot": ".github/agents", "claude": ".claude/agents", "portable": "agents"}[runtime]
+            suffix = ".md" if runtime in {"opencode", "claude"} else ".agent.md"
             destination = f"{base}/{entry.name}{suffix}"
         meta, body = metadata((root / entry.path).read_text(encoding="utf-8"))
         def rebase(match):
@@ -236,6 +236,10 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "tools: [read, search]\n"
                 body += '\nThis adapter provides read/search tools only. Return a proposed patch or plan; writing a work record requires switching to a writing agent.\n'
+        elif entry.kind == "agent" and runtime == "claude":
+            if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
+                header += "tools: Read, Grep, Glob\n"
+                body += '\nThis adapter permits file reading and search only. Return proposed plans or findings to the coordinating session; it owns required review, record updates and executable verification. Do not claim checks you cannot run.\n'
         planned[destination] = (header + "---\n\n" + body).encode()
     if runtime == "opencode":
         config = {"$schema": "https://opencode.ai/config.json", "default_agent": "joerg",
@@ -261,6 +265,8 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nUse the relevant skills for this request and the shared workflow. $ARGUMENTS\n'.encode()
     elif runtime == "copilot":
         planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/WORKFLOW.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
+    elif runtime == "claude":
+        planned['CLAUDE.md'] = b'@catalog/toolkit/WORKFLOW.md\n'
     manifest_path = output / '.ai-toolkit-manifest.json'
     if manifest_path.is_symlink():
         raise ToolkitError("The export manifest must not be a symlink.")
@@ -579,7 +585,7 @@ def main(argv: list[str] | None = None) -> int:
     cat = sub.add_parser('catalog', help='Print catalog metadata without loading all prompts')
     cat.add_argument('--kind', choices=['agent','skill'])
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
-    adapter.add_argument('--runtime', choices=['opencode','copilot','portable'], required=True)
+    adapter.add_argument('--runtime', choices=['opencode','copilot','claude','portable'], required=True)
     adapter.add_argument('--output', type=Path, required=True)
     adapter.add_argument('--force', action='store_true')
     adapter.add_argument('--dry-run', action='store_true')

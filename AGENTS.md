@@ -6,7 +6,8 @@ or existing category topic files. Runtime adapters materialize every skill in a 
 `<name>/SKILL.md` directory. Edit the canonical sources, not generated bundles.
 
 Read [toolkit/WORKFLOW.md](toolkit/WORKFLOW.md) for shared working guidance. Keep
-instructions concise and use `references/` for examples. Every catalog entry requires
+instructions concise and use `references/` for examples. Keep shared rules tool-neutral;
+see [portability](toolkit/PORTABILITY.md) when changing host integration. Every catalog entry requires
 YAML `name` and `description`; avoid runtime-specific fields in canonical frontmatter.
 
 Verify relevant changes with:
@@ -25,5 +26,6 @@ protection. The dashboard manages Markdown work records; it does not execute AI 
 the documentation workflow rebuilds it after changes reach main. Do not use `docs/`
 as a scratch directory or commit generated bundles, vault contents or private paths.
 
-Keep larger work in `.ai/work/` and archive verified work in `.ai/archive/` when useful.
+For larger work, follow the project-designated planning home or use one `.ai/work/`
+record when no assigned system owns the plan. Archive verified local work in `.ai/archive/` when useful.
 Do not merge or deploy as part of repository maintenance unless explicitly requested.

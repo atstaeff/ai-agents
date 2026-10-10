@@ -15,6 +15,8 @@ DOCUMENTS = {
     'concept.md': 'toolkit/OPERATING-MODEL.md',
     'getting-started/workflow.md': 'toolkit/WORKFLOW.md',
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
+    'getting-started/portability.md': 'toolkit/PORTABILITY.md',
+    'getting-started/project-config.md': 'toolkit/PROJECT-CONFIG.md',
     'getting-started/plan-review.md': 'toolkit/PLAN-REVIEW.md',
     'toolkit/work-records.md': 'toolkit/WORK-RECORDS.md',
     'toolkit/api.md': 'toolkit/API.md',

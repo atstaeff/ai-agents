@@ -14,15 +14,18 @@ Markdown is reusable across GitHub, an AI host and an existing documentation sit
 2. Copy and adapt [workspace/README.md](workspace/README.md),
    [working-agreement.md](workspace/working-agreement.md) and
    [stakeholders.md](workspace/stakeholders.md). Replace the fictional context and roles.
-3. Configure one customer-owned GitHub Project using [the board example](examples/github-project.md).
-4. Create a real issue from [the worked assignment](examples/issue-42.md).
-5. Start Jörg manually with that issue in the customer's repository, using your host's
+3. Adapt [workspace/project.yaml](workspace/project.yaml), the canonical tooling map.
+   Reuse customer tools; [the Jira variant](examples/project-jira.yaml) shows a different setup.
+   Link it from `AGENTS.md`; use an existing equivalent config instead when appropriate.
+4. Select the real work item in that system. For GitHub, use [the board example](examples/github-project.md)
+   and [worked assignment](examples/issue-42.md); Jira needs no mirror GitHub issue.
+5. Start Jörg manually with that work item in the customer's repository, using your host's
    installed AI Agents profiles. Adopt [plan comments and approval](examples/plan-review.md)
    before Build when required. Add a local runner only after the manual flow works.
 6. For a documentation site, adopt [the local Docusaurus integration](examples/docusaurus-integration.md)
    and generate the knowledge index before building the existing website.
 
-The Project owns priority, iteration and status. The issue owns the current plan and
+In the fictional GitHub configuration below, the Project owns priority, iteration and status. The issue owns the current plan and
 questions. The repository owns durable knowledge. Documentation sites are generated
 views of that knowledge. General agent skills stay in the toolkit; customer facts stay here.
 
@@ -34,15 +37,22 @@ export bundles this starter as reference material; it does not apply it to a pro
 
 The `workspace/` name covers product context, people, working agreements and durable
 knowledge. If that name already has a technical purpose in the target repository, use
-`context/` and update the entry links and website content path. Keep live plans in issues;
+`context/` and update the entry links and website content path. It may hold only an index
+to authoritative external knowledge. Keep live plans in the designated work items;
 add knowledge pages only when a decision or completed increment warrants them.
-When the customer already uses Jira for product scope and capacity planning, preserve
-that ownership and link engineering issues to the existing delivery object.
+When Jira owns delivery, keep the plan and acceptance in the Jira ticket and link the
+code PR/MR directly. Do not create a matching GitHub issue. Decisions may live in a
+designated wiki or repository. Define exact locations, status meanings, owners and
+allowed updates in the project. A missing connector never changes that ownership.
 
-## One place for each kind of information
+## Example ownership: GitHub and repository knowledge
+
+The following table explains the fictional example. Actual tool locations are maintained
+once in `workspace/project.yaml`; do not maintain a second live configuration here.
 
 | Information | Canonical place | Update when |
 | --- | --- | --- |
+| Tool and location ownership | `workspace/project.yaml` | Project systems change |
 | Product goal and value chain | [Workspace entry](workspace/README.md) | The outcome or business context changes |
 | Priority, iteration, status and assignment | Customer GitHub Project | Work is selected or changes state |
 | Current plan, acceptance and open questions | Assigned GitHub issue | A material increment, question or answer changes the plan |

@@ -33,12 +33,12 @@ jobs:
         run: |
           python -m pip install uv==0.12.19
           uv sync --locked --group docs
-      - name: Validate optional customer workspace graph
-        run: uv run --locked --group docs python -m unittest discover -s tests -p test_customer_workspace.py -v
+      - name: Validate optional customer workspace helpers
+        run: uv run --locked --group docs python -m unittest discover -s tests -v
       - name: Check customer Docusaurus options syntax
         run: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
       - name: Strict documentation build
-        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir .ai/generated/site
+        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir "$PWD/.ai/generated/site"
       - name: Upload documentation preview
         uses: actions/upload-artifact@v4
         with:

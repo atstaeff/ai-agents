@@ -2,12 +2,15 @@
 
 Work with AI as a teammate using a shared [operating model](toolkit/OPERATING-MODEL.md),
 an English catalog of **23 agents and 48 skills**, native exporters and a local dashboard.
-Use **Jörg** as the general assistant. Keep board-managed plans in the assigned issue
-and larger local work in one Markdown record. Load focused expertise as needed.
+Use **Jörg** as the general assistant. Each project defines its tracker, planning home,
+knowledge locations and review tools. Keep larger local work in one Markdown record
+only when no assigned system owns the plan. Load focused expertise as needed.
 
 The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
 It does not run models, create chat sessions or access your Obsidian vault automatically.
 Your AI host provides model execution, tools and any native delegation capabilities.
+Keep the same process and customer knowledge when switching models or tools: the
+[portability contract](toolkit/PORTABILITY.md) explains the small host-specific adapters.
 
 ## Start in WSL with OpenCode 1
 
@@ -57,7 +60,8 @@ See [runtime details](toolkit/RUNTIMES.md).
 
 ## Plans, tasks and your comments
 
-Small changes need no process file. For a larger outcome, create one record:
+Small changes need no process file. The project-designated work item (for example Jira
+or GitHub) remains the planning home for tracked delivery. For a larger outcome without that assignment, create one record:
 
 ```sh
 python3 ~/tools/ai-agents/tools/ai_toolkit.py work --workspace . new onboarding \
@@ -83,16 +87,21 @@ does not start AI sessions or execute shell commands.
 export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
 [work-record guide](toolkit/WORK-RECORDS.md).
 
-## Customer-owned GitHub workspace
+## Customer-owned workspace and project tooling
 
-Use [templates/customer-workspace](templates/customer-workspace/README.md) when a
-customer's GitHub Project coordinates delivery. The Project owns priority, iteration
-and status; the issue owns the live plan and questions; `workspace/` keeps durable
+Use [templates/customer-workspace](templates/customer-workspace/README.md) to define
+a project’s tool and knowledge ownership. Its worked example uses GitHub; adapt the
+map to Jira, another tracker or the customer’s existing wiki/review system. In the
+GitHub example, the Project owns priority, iteration and status; the issue owns the live plan and questions; `workspace/` keeps durable
 decisions, process knowledge and iteration outcomes in the customer's repository.
 Use that issue instead of a duplicate `.ai/work/` record for the same assignment.
 
-Start with three workspace entry files and merge the example instructions into the
-customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
+Read the [project YAML config](toolkit/PROJECT-CONFIG.md) before selecting integrations
+or creating records. If an
+authoritative system is unavailable, prepare an unsent update and report the gap.
+
+Start with `workspace/project.yaml` and three workspace entry pages. Merge the example
+instructions into the customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
 stakeholder questions, linked ADRs, a local knowledge graph generator and integration
 with an existing Docusaurus site. Adopt only what the project needs; this template is
 not an automatic installer or background runner.
@@ -121,6 +130,8 @@ Copy the URI to a Windows application that supports the protocol if needed.
 ```sh
 # Export into another project; edited/unmanaged files are protected.
 python3 tools/ai_toolkit.py export --runtime copilot --output /path/to/other-project
+# Native Claude Code profiles and one imported shared workflow.
+python3 tools/ai_toolkit.py export --runtime claude --output /path/to/other-project
 # Generic Agent Skills plus portable Markdown profiles.
 python3 tools/ai_toolkit.py export --runtime portable --output /path/to/bundle
 # Metadata only, useful for routing.

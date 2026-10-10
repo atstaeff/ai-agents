@@ -12,6 +12,15 @@ Keep useful knowledge where the customer can own and reuse it.
 
 </div>
 
+## One process across models and tools
+
+Keep customer knowledge and shared expertise in stable, owned sources. Native adapters
+configure OpenCode, Claude Code or VS Code/Copilot; changing the model keeps the same
+project structure. Start with one session and selected skills, then add coordination
+only where it earns its cost.
+
+[Understand portability](getting-started/portability.md){ .md-button }
+
 ## One assignment, one current plan
 
 AI Agents provides a shared operating model, reusable profiles and a local toolkit.
@@ -28,7 +37,7 @@ using the models, tools and permissions available in its host.
 
 - :material-source-branch: **Deliver an increment**
 
-    Keep the current plan in the assigned issue and evidence in a linked PR.
+    Keep the current plan at the project-designated home and link review evidence.
 
     [Follow a worked assignment](customer-workspace/assignment.md)
 
@@ -54,7 +63,7 @@ thinking variant. Keep the receipt in the assignment's existing planning home.
 
 | Your situation | Start here | Keep the plan in |
 | --- | --- | --- |
-| Customer or team delivery on GitHub | [Customer workspace starter](references/customer-workspace.md) | The assigned issue |
+| Customer or team delivery | [Customer workspace starter](references/customer-workspace.md) | The project-designated item: Jira, GitHub or another system |
 | Larger local work without a board assignment | [Local work records](toolkit/work-records.md) | One `.ai/work/` file |
 | A small, clear fix | [Quick start](getting-started/quick-start.md) | The current conversation |
 | Personal knowledge work | [Second Brain](agents/second-brain.md) | Your existing private PARA vault |
@@ -64,7 +73,7 @@ thinking variant. Keep the receipt in the assignment's existing planning home.
 **23 agents · 48 skills · Python 3.11+ · Standard-library runtime**
 
 [Jörg](agents/joerg.md) selects relevant expertise; [runtime profiles](getting-started/installation.md)
-bring the catalog to OpenCode or Copilot. The [local dashboard](toolkit/work-records.md)
+bring the catalog to OpenCode, Claude Code or Copilot. The [local dashboard](toolkit/work-records.md)
 manages Markdown plans and feedback. Your host supplies execution and any delegation.
 
 This website uses **MkDocs**. The [Docusaurus guide](customer-workspace/docusaurus.md)

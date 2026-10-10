@@ -53,7 +53,7 @@ class ExportTests(unittest.TestCase):
         self.output = Path(self.temp.name) / 'bundle'
 
     def test_all_native_layouts_and_rebased_links(self):
-        for runtime, skills, agents in [('opencode','skills','agents'), ('copilot','.github/skills','.github/agents'), ('portable','.agents/skills','agents')]:
+        for runtime, skills, agents in [('opencode','skills','agents'), ('copilot','.github/skills','.github/agents'), ('claude','.claude/skills','.claude/agents'), ('portable','.agents/skills','agents')]:
             with self.subTest(runtime=runtime):
                 output = self.output / runtime
                 result = tk.export(runtime, output)
@@ -77,6 +77,39 @@ class ExportTests(unittest.TestCase):
         self.assertIn('mode: subagent', (self.output/'agents/python-expert.md').read_text())
         self.assertIn("'.ai/work/**': allow", (self.output/'agents/plan.md').read_text())
         self.assertIn('bash: deny', (self.output/'agents/code-reviewer.md').read_text())
+
+    def test_claude_import_permissions_and_existing_instructions(self):
+        tk.export('claude', self.output)
+        entrypoint = self.output / 'CLAUDE.md'
+        imported = entrypoint.read_text().strip().removeprefix('@')
+        self.assertTrue((self.output / imported).is_file())
+        self.assertEqual((self.output / imported).read_bytes(), (tk.ROOT / 'toolkit/WORKFLOW.md').read_bytes())
+        for name in ('plan', 'code-reviewer', 'architecture-reviewer'):
+            profile = (self.output / f'.claude/agents/{name}.md').read_text()
+            frontmatter = profile.split('---')[1]
+            self.assertIn('tools: Read, Grep, Glob', frontmatter)
+            self.assertNotIn('Bash', frontmatter)
+            self.assertNotIn('permission:', frontmatter)
+        writer = (self.output / '.claude/agents/build.md').read_text().split('---')[1]
+        self.assertNotIn('tools:', writer)
+        self.assertNotIn('model:', writer)
+        self.assertFalse((self.output / '.claude/settings.json').exists())
+        entrypoint.write_text('Existing customer rules')
+        with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
+            tk.export('claude', self.output)
+        self.assertEqual(entrypoint.read_text(), 'Existing customer rules')
+
+    def test_claude_cli_dry_run_and_unmanaged_file_protection(self):
+        args = ['export', '--runtime', 'claude', '--output', str(self.output)]
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+        self.assertFalse(self.output.exists())
+        self.output.mkdir()
+        (self.output / 'CLAUDE.md').write_text('Customer guidance')
+        with self.assertRaisesRegex(tk.ToolkitError, 'unmanaged or edited'):
+            tk.export('claude', self.output)
+        self.assertFalse((self.output / '.claude').exists())
+        self.assertEqual((self.output / 'CLAUDE.md').read_text(), 'Customer guidance')
 
     def test_update_is_idempotent_and_protects_human_edits(self):
         tk.export('opencode', self.output)
@@ -128,7 +161,7 @@ class ExportTests(unittest.TestCase):
             with self.subTest(options=options), self.assertRaises(tk.ToolkitError):
                 tk.export('opencode', self.output, opencode_options=options)
             self.assertFalse(self.output.exists())
-        for runtime in ('copilot', 'portable'):
+        for runtime in ('copilot', 'claude', 'portable'):
             for options in (tk.OpenCodeOptions(plannotator=True), tk.OpenCodeOptions(build_model='provider/model')):
                 with self.subTest(runtime=runtime, options=options), self.assertRaisesRegex(tk.ToolkitError, 'runtime opencode'):
                     tk.export(runtime, self.output, opencode_options=options)
@@ -153,7 +186,7 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(json.loads(path.read_text())['agent']['build']['model'], 'human/choice')
 
     def test_unchanged_exports_preserve_files_and_write_nothing(self):
-        for runtime in ('opencode', 'copilot', 'portable'):
+        for runtime in ('opencode', 'copilot', 'claude', 'portable'):
             with self.subTest(runtime=runtime):
                 output = self.output / runtime
                 first = tk.export(runtime, output)

@@ -13,7 +13,8 @@ State the concrete outcome and important constraints.
 
 ## Acceptance criteria
 
-- Describe observable success before implementation.
+- Describe observable success before implementation and how it can be checked.
+- Distinguish delivered behavior from any business impact that needs later observation.
 
 ## Plan
 

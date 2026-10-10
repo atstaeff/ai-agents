@@ -8,7 +8,7 @@ The [operating model](concept.md) gives each kind of information one home: a Pro
 coordinates delivery, an issue holds its plan, a PR holds evidence, and the customer's
 repository preserves meaningful decisions and current knowledge.
 
-Start with a clear outcome and three workspace entry pages. Add an ADR when a significant
+Start with a clear outcome, the project tooling config and three workspace entry pages. Add an ADR when a significant
 choice arises; write a brief report at iteration close. Reuse customer systems, technology
 and review rules. Load focused context and archive completed work.
 

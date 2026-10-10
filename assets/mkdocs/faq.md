@@ -1,5 +1,26 @@
 # Frequently asked questions
 
+## Must my repository use a .claude folder or change for every model?
+
+No. Keep shared rules in `AGENTS.md`, customer knowledge in `workspace/` and reusable
+expertise in the canonical catalog. A model change within a host needs no folder change.
+Host tools have different discovery paths and permissions; exports generate those
+adapters from the same sources. See [portability](getting-started/portability.md).
+
+## Must every project use GitHub Issues or repository knowledge?
+
+No. Each project defines its tracker, planning home, code review, decision and knowledge
+locations in [`workspace/project.yaml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
+Confluence or a repository can own knowledge. The customer starter uses GitHub as a
+worked example. Missing tool access means an unsent proposed update, not a new tracker.
+
+## Which hosts have native exports?
+
+OpenCode 1, VS Code/Copilot and Claude Code. A portable export also provides Agent
+Skills and generic agent profiles; generic profile discovery remains host-specific.
+Permissions and review UI are not equivalent across hosts. See
+[runtime setup](getting-started/installation.md) and perform a local discovery check.
+
 ## Is it an OpenCode session orchestration plugin?
 
 No. It exports native agents, skills and commands. Delegation and session interaction
@@ -22,7 +43,7 @@ the external plugin; it neither proves runtime switching nor synchronizes GitHub
 ## Must every task create a document?
 
 No. Small changes use the conversation and existing checks. Larger outcomes use one
-planning home: an assigned issue for board-managed delivery, or `.ai/work/` for larger
+planning home: the project-designated work item for tracked delivery, or `.ai/work/` for larger
 local work without that assignment. CSV is an export only.
 
 ## Is this website Docusaurus?
@@ -39,7 +60,7 @@ decisions during delivery and link them at iteration close.
 
 ## Must I copy all the starter files?
 
-Start with the workspace entry page, working agreement and stakeholders. Adopt relevant
+Start with the project YAML config, workspace entry page, working agreement and stakeholders. Adopt relevant
 instructions into the existing AGENTS.md. The worked files illustrate format; create
 real ADRs and knowledge pages when the assignment warrants them.
 

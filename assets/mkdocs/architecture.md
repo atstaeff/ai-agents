@@ -6,8 +6,9 @@ Separate reusable guidance, live work, durable knowledge and generated views.
 | --- | --- | --- |
 | Agents and skills | This repository's `agents/` and `skills/` | Reusable roles and focused instructions |
 | Operating model | `toolkit/OPERATING-MODEL.md` | Outcomes, ownership, handoffs and knowledge lifecycle |
-| Customer work | Customer Project, issues and PRs | Priority, live plans, questions, implementation and evidence |
-| Customer workspace | Customer repository's `workspace/` | Context, decision rights, ADRs and current knowledge |
+| Project configuration | Customer `workspace/project.yaml` or declared equivalent | Authoritative tooling and location ownership |
+| Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
+| Customer workspace | `workspace/` and project-selected knowledge space | Context, decision rights, knowledge or pointers to its authoritative home |
 | Local work records | Each project's `.ai/work/`, without a board-owned assignment | One record per larger local outcome |
 | Private Second Brain | Existing Obsidian PARA vault | Personal projects, areas, resources and archive |
 | Runtime adapters | `tools/ai_toolkit.py export` | Native profiles, permissions and references |
@@ -22,7 +23,7 @@ the current session can otherwise use selected guidance directly. Inference may 
 local or remote according to your provider configuration.
 
 The toolkit exports profiles and manages files. Its dashboard does not run models or
-update GitHub Projects. Recurring work needs an implemented runner and authorized host
+synchronize project trackers or wikis. Recurring work needs an implemented runner and authorized host
 tools; the [runner contract](customer-workspace/runner.md) describes the requirements.
 
 ## Sources and published views

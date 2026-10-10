@@ -1,0 +1,30 @@
+# Alternative project configuration. Copy to workspace/project.yaml and adapt.
+version: 1
+name: Customer service portal
+
+work:
+  system: jira
+  location: https://CUSTOMER.atlassian.net/browse/PORTAL
+  # The selected Jira ticket owns the entire plan; create no mirror GitHub issue.
+review:
+  system: github
+  location: https://github.com/CUSTOMER_ORG/service-portal/pulls
+knowledge:
+  system: confluence
+  location: https://CUSTOMER.atlassian.net/wiki/spaces/PORTAL
+decisions:
+  system: repository
+  location: workspace/decisions/
+iteration_reports:
+  system: confluence
+  location: https://CUSTOMER.atlassian.net/wiki/spaces/PORTAL/pages/ITERATIONS
+communication:
+  system: work-item-comments
+  location: Assigned work item
+
+working_agreement: workspace/working-agreement.md
+stakeholders: workspace/stakeholders.md
+commands:
+  setup: null
+  start: null
+  check: null

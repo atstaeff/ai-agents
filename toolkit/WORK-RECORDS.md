@@ -1,7 +1,7 @@
 # One record per outcome
 
 Use `.ai/work/<slug>.md` for larger local work without a board-owned assignment.
-For customer delivery on a GitHub Project, the assigned issue owns the live plan;
+For tracked delivery, the project-designated work item (such as Jira or GitHub) owns the live plan;
 follow the [operating model](OPERATING-MODEL.md) and the project's working agreement.
 The dashboard below manages files; Project updates use your host's authorized tools.
 
@@ -33,4 +33,4 @@ not a distributed transaction system for uncoordinated editors or OneDrive.
 Decide per repository whether to commit work records. This toolkit ignores them by
 default; explicitly track sanitized records if useful. Private notes never belong in
 public repositories. Extract only reusable conclusions into existing documentation
-or the private PARA vault. Archive completed records and load history on demand.
+or the private PARA vault for an appropriate personal task. Archive completed records and load history on demand.

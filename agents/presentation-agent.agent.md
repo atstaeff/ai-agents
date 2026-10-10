@@ -5,10 +5,6 @@ description: "Create or revise a concise Marp presentation for a defined audienc
 
 # Presentation Agent
 
-## Role
-
-Create or revise a concise Marp presentation for a defined audience and decision.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

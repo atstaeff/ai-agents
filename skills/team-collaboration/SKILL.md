@@ -7,7 +7,7 @@ description: "Coordinate shared work, reviews, incidents or handoffs with explic
 
 ## Workflow
 
-1. Use the current work record as the handoff surface; do not create competing task lists.
+1. Use the project-designated planning home as the handoff surface; resolve tools and channels from its working agreement and do not create competing task lists.
 2. Choose feature-discovery-session, incident-response, pr-crafting or progress-sync for the actual collaboration need.
 3. Preserve user feedback, make dependencies clear and require evidence before calling work complete.
 
