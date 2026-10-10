@@ -108,6 +108,8 @@ nav:
   - Get Started:
       - Quick Start in WSL: getting-started/quick-start.md
       - Runtime Profiles: getting-started/installation.md
+      - Tool & Model Independence: getting-started/portability.md
+      - Project Tooling Config: getting-started/project-config.md
       - Plan Review & Models: getting-started/plan-review.md
       - Working Contract: getting-started/workflow.md
       - Local Work Records: toolkit/work-records.md

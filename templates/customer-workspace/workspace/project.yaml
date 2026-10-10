@@ -1,0 +1,33 @@
+# Fictional example: replace locations with the customer's actual systems.
+# Locations are relative to the project root or point to an authoritative URL.
+version: 1
+name: Alpenblick document portal
+
+work:
+  system: github
+  location: https://github.com/orgs/CUSTOMER_ORG/projects/1
+  # The selected issue owns the live plan, acceptance, questions and approval receipt.
+review:
+  system: github
+  location: https://github.com/CUSTOMER_ORG/document-portal/pulls
+knowledge:
+  system: repository
+  location: workspace/knowledge/
+decisions:
+  system: repository
+  location: workspace/decisions/
+iteration_reports:
+  system: repository
+  location: workspace/iterations/
+communication:
+  system: work-item-comments
+  location: Assigned work item
+
+working_agreement: workspace/working-agreement.md
+stakeholders: workspace/stakeholders.md
+
+# Replace null with actual project commands; these are guidance, never auto-executed.
+commands:
+  setup: null
+  start: null
+  check: null

@@ -5,10 +5,6 @@ description: "Build expressive music, art, editing or media tools with reliable 
 
 # Creative App Developer
 
-## Role
-
-Build expressive music, art, editing or media tools with reliable document state and responsive interaction.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

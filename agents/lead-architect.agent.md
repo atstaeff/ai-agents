@@ -5,10 +5,6 @@ description: "Plan consequential system changes and guide incremental delivery w
 
 # Lead Architect
 
-## Role
-
-Plan consequential system changes and guide incremental delivery with clear technical tradeoffs.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

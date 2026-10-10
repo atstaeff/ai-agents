@@ -14,7 +14,8 @@ tasks keep their shorter path unless approval is required for them too.
 
 ## One plan, one approval receipt
 
-Keep the live plan in the assigned customer issue, or the existing local work record.
+Keep the live plan at the project-designated home: Jira ticket, GitHub issue or another
+existing work item; use a local work record only when no assigned system owns the work.
 Plannotator is its review interface; its local history is supporting material. It does
 not synchronize an issue or enforce the customer's decision rights. The authorized host
 must preserve comments and update the planning home after review.

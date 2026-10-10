@@ -1,23 +1,29 @@
 ---
 name: "product-discovery"
-description: "Clarify a product idea or feature, test uncertain assumptions and produce a small delivery slice with measurable acceptance criteria."
+description: "Clarify a product or feature with uncertain user value, compare minimal solutions and define a measurable experiment or delivery slice."
 ---
 
 # Product Discovery
 
-1. Identify the user, current problem and desired change in behavior. Reuse existing research and constraints before asking for more.
-2. Separate known facts, assumptions and open questions. Choose the uncertainty that would most change the decision.
-3. Define a small experiment or end-to-end slice with an observable success signal. Include a failure or stop condition where relevant.
-4. Describe the primary flow, edge cases and necessary interface/API contract. Prefer the existing stack and one complete slice over speculative infrastructure.
-5. Add acceptance criteria and tasks to the current work record. Link designs or research at their existing location rather than duplicating them.
-6. Collect user feedback, preserve its wording and record what changed. Verify the outcome before broadening scope.
+1. Identify the user, current task, observed friction and desired change in behavior.
+   Reuse customer research, support evidence and constraints. Label facts, assumptions
+   and unknowns; never invent interviews, demand, baselines or measured improvement.
+2. Identify the uncertainty most likely to change the decision. Consider a process
+   change, existing capability or smaller solution before committing to new software.
+3. Choose the cheapest useful experiment or complete end-to-end slice. State the
+   observable success signal, how it will be measured and what result would stop or
+   change the approach. Label proposed targets; use real baselines when available.
+4. Define scope and exclusions, the primary user journey, material error/recovery
+   behavior and consumer-visible API needs. Separate usability, feasibility and demand
+   questions; a working prototype establishes neither adoption nor business value.
+5. Put acceptance scenarios and the next action at the project-designated planning
+   home (for example, the assigned Jira ticket or GitHub issue). Link research/designs at their source. Ask only for information that
+   changes a consequential decision; resolve routine reversible details independently.
+6. Deliver a small increment, collect actual feedback and compare it with the success
+   signal before expanding scope. Keep technical completion and observed impact separate.
 
 ## Output
 
-Produce a concise problem statement, success signal, scope, acceptance scenarios and next action. Add options and tradeoffs only when a real decision needs them.
-
-## Guardrails
-
-- Do not treat a brainstorm as evidence of demand or invent interview findings and metrics.
-- Do not add a new roadmap, proposal and task spreadsheet when one work record will do.
-- Ask only for missing information that changes a consequential decision; make routine reversible choices independently.
+Return the problem, evidence/assumptions, chosen increment, exclusions, acceptance
+scenarios, success signal and next decision in a compact form. Include alternatives
+only when they explain a real tradeoff; create no extra roadmap or proposal by default.

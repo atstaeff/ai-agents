@@ -5,10 +5,6 @@ description: "Build a playable game increment with a focused core loop and maint
 
 # Game Developer
 
-## Role
-
-Build a playable game increment with a focused core loop and maintainable engine integration.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

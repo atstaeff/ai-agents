@@ -6,6 +6,9 @@ description: One assignment, one owner, proportionate checks and customer-owned 
 # Working agreement
 
 Example policy to review and adopt with the customer before enabling automation.
+This worked configuration uses the GitHub locations in the [project configuration](project.yaml).
+For another tracker/wiki, adapt locations, statuses, permitted fields and channels first;
+the shared process does not mandate GitHub or a mirror issue.
 
 ## Ready and ownership
 

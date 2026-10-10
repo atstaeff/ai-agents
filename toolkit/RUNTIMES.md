@@ -2,11 +2,14 @@
 
 Canonical entries use common `name` and `description` frontmatter. Exporters add
 host fields and layout and rebase links into one shared `catalog/` copy.
+The [portability contract](PORTABILITY.md) separates shared content, host configuration
+and model selection; keep customer knowledge independent of all three.
 
 | Runtime | Exported layout | Behavior |
 | --- | --- | --- |
 | OpenCode 1 | `agents/*.md`, `skills/<name>/SKILL.md`, `commands/`, `opencode.json` | Jörg, Plan and Build are primary; specialists are subagents |
 | VS Code / Copilot | `.github/agents/*.agent.md`, `.github/skills/<name>/SKILL.md` | Project-native profiles; select in the host |
+| Claude Code | `.claude/agents/*.md`, `.claude/skills/<name>/SKILL.md`, `CLAUDE.md` | Native profiles; select Jörg explicitly; Plan/reviewers are read/search-only |
 | Portable | `.agents/skills/<name>/SKILL.md`, `agents/*.agent.md` | Agent Skills plus portable profiles; agent discovery is host-specific |
 
 ## OpenCode in WSL
@@ -54,6 +57,35 @@ VS Code aliases `read` and `search` restrict reviewers and Plan to proposed chan
 Use a writing profile to apply a plan. Permissions and tool availability are
 host-specific; other Copilot surfaces may interpret frontmatter differently.
 
+## Claude Code
+
+Export into a customer project or a staging directory, not this source repository:
+
+```sh
+python3 tools/ai_toolkit.py export --runtime claude --output /path/to/customer-project
+cd /path/to/customer-project
+claude --agent joerg
+```
+
+The adapter generates native `.claude/agents/` and `.claude/skills/` from the same
+canonical entries. `CLAUDE.md` imports `catalog/toolkit/WORKFLOW.md`. Existing
+`CLAUDE.md`, profiles and edited generated files are protected: export to staging
+and integrate the import into existing instructions deliberately when necessary.
+Keep the shared `catalog/` in the project. No model, effort, plugins, MCP servers or
+permission bypasses are configured; the user's host settings remain responsible.
+
+Plan, code-reviewer and architecture-reviewer allow only `Read`, `Grep` and `Glob`.
+They return proposals/findings to the coordinating session; that session performs
+record updates, required approval and executable checks under its own permissions.
+Other profiles inherit host tool availability. A native subagent does not provide
+the same interaction or plan-approval UI as an OpenCode primary agent. The optional
+Plannotator/model/variant export switches remain OpenCode-only.
+
+After installation, use `/agents` to inspect discovery and `/context` to inspect
+loaded instructions. Run the [host smoke check](PORTABILITY.md#verify-a-new-host-once).
+Adapter tests cover file formats, links, restrictions and safe updates; they do not
+establish behavior in your installed Claude Code version.
+
 ## Updates and privacy
 
 Re-export after source updates. `.ai-toolkit-manifest.json` tracks owned paths and
@@ -70,5 +102,8 @@ uses no remote runtime service; AI provider calls are managed by your host.
 
 Sources: [OpenCode agents](https://opencode.ai/docs/agents/),
 [configuration](https://opencode.ai/docs/config/), [skills](https://opencode.ai/docs/skills/),
-[VS Code custom agents](https://code.visualstudio.com/docs/agent-customization/custom-agents).
+[VS Code custom agents](https://code.visualstudio.com/docs/agent-customization/custom-agents),
+[Claude Code subagents](https://code.claude.com/docs/en/sub-agents),
+[skills](https://code.claude.com/docs/en/skills) and
+[memory imports](https://code.claude.com/docs/en/memory).
 Structural checks do not establish model behavior or installed web UX compatibility.
