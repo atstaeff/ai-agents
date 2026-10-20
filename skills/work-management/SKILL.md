@@ -7,7 +7,7 @@ description: "Maintain the plan, acceptance criteria, human feedback and verific
 
 1. Inspect the assignment, project rules and existing work. Complete a clear small edit
    directly with appropriate checks; create no process file automatically.
-2. Read the declared project config (normally `workspace/project.yaml`) and working
+2. Read the declared project config (normally `workspace/workspace.yml`) and working
    agreement. Choose the designated planning home: Jira ticket,
    GitHub issue or another work item. Only without an assigned system, reuse or create
    one `.ai/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,
@@ -34,13 +34,26 @@ Do not invent current status, approval, assignment, synchronization or a fallbac
 
 ## Safe updates and handoffs
 
+- On start or resume, compare the current assignment, relevant decisions, contracts and
+  repository revisions with the previous handoff before following its next action.
+  Follow the [context recovery contract](../../toolkit/CONTEXT-RECOVERY.md) for larger
+  work or a session/model switch; load only the sources relevant to the assignment.
+- Record significant decisions when they arise, with alternatives, reasons, status,
+  source and responsible role. A proposed replacement does not revoke an accepted ADR.
+  Flag consequential conflicts instead of silently preferring the newest text or code.
 - Reread mutable state before writing. Compare it with the version read, preserve
   intervening edits and retry or resolve conflicts. Use API version/precondition checks
   where available; a local reread alone is not an atomic remote lock.
 - The local dashboard uses ETags for the same Markdown record. Filesystem clients
   must also preserve intervening edits and human feedback.
-- Carry the outcome, planning-home link, current revision, relevant decisions, required
-  approval, evidence and next action. Avoid copying the entire conversation.
+- Carry the outcome, planning-home revision, each relevant repository commit, applicable
+  decisions, required approval, criterion-linked evidence, unsaved work, pending writes
+  and next action in one bounded summary. Avoid copying the entire conversation.
+- Reassess affected plans, approvals and checks after material scope, decision, contract
+  or code changes. An old green check does not prove a new revision. After API timeouts,
+  inspect existing effects before retrying; never claim an atomic cross-system update.
+- Follow the project's blocked mapping without losing the underlying flow position or
+  WIP accounting. Closed as cancelled, duplicate or not implemented is not delivered.
 - If a required check cannot run, name the affected criterion, reason and next action.
   Keep verification outstanding unless other adequate evidence establishes it.
 - Keep customer facts with the customer, `docs/` available for its existing purpose,

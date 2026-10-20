@@ -14,8 +14,8 @@ Markdown is reusable across GitHub, an AI host and an existing documentation sit
 2. Copy and adapt [workspace/README.md](workspace/README.md),
    [working-agreement.md](workspace/working-agreement.md) and
    [stakeholders.md](workspace/stakeholders.md). Replace the fictional context and roles.
-3. Adapt [workspace/project.yaml](workspace/project.yaml), the canonical tooling map.
-   Reuse customer tools; [the Jira variant](examples/project-jira.yaml) shows a different setup.
+3. Adapt [workspace/workspace.yml](workspace/workspace.yml), the canonical tooling map.
+   Reuse customer tools; [the Jira variant](examples/workspace-jira.yml) shows a different setup.
    Link it from `AGENTS.md`; use an existing equivalent config instead when appropriate.
 4. Select the real work item in that system. For GitHub, use [the board example](examples/github-project.md)
    and [worked assignment](examples/issue-42.md); Jira needs no mirror GitHub issue.
@@ -48,11 +48,11 @@ allowed updates in the project. A missing connector never changes that ownership
 ## Example ownership: GitHub and repository knowledge
 
 The following table explains the fictional example. Actual tool locations are maintained
-once in `workspace/project.yaml`; do not maintain a second live configuration here.
+once in `workspace/workspace.yml`; do not maintain a second live configuration here.
 
 | Information | Canonical place | Update when |
 | --- | --- | --- |
-| Tool and location ownership | `workspace/project.yaml` | Project systems change |
+| Tool and location ownership | `workspace/workspace.yml` | Project systems change |
 | Product goal and value chain | [Workspace entry](workspace/README.md) | The outcome or business context changes |
 | Priority, iteration, status and assignment | Customer GitHub Project | Work is selected or changes state |
 | Current plan, acceptance and open questions | Assigned GitHub issue | A material increment, question or answer changes the plan |
@@ -75,6 +75,8 @@ of routine context. The worked files stay drafts until a real project's evidence
 
 ## Optional worked documents
 
+- [Bounded handoff](workspace/handoff.md)
+- [Cold-session pilot](examples/context-recovery-pilot.md)
 - [Question and resumption](examples/discussion-42.md)
 - [Plan comments, revision and approval](examples/plan-review.md)
 - [Proposed PR](examples/pull-request-57.md)

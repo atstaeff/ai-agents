@@ -112,6 +112,8 @@ nav:
       - Project Tooling Config: getting-started/project-config.md
       - Plan Review & Models: getting-started/plan-review.md
       - Working Contract: getting-started/workflow.md
+      - Context & Session Recovery: getting-started/context-recovery.md
+      - Recovery Observation: getting-started/context-recovery-observation.md
       - Local Work Records: toolkit/work-records.md
       - Local API: toolkit/api.md
       - Preview Locally: getting-started/local-preview.md
@@ -120,6 +122,7 @@ nav:
       - Entry Pages:
           - Goal & Value Chain: customer-workspace/context.md
           - Working Agreement: customer-workspace/working-agreement.md
+          - Handoff: customer-workspace/handoff.md
           - Decision Rights: customer-workspace/stakeholders.md
       - GitHub Project: customer-workspace/project.md
       - Worked Increment:
@@ -135,6 +138,7 @@ nav:
       - Knowledge Map: customer-workspace/knowledge-map.md
       - Docusaurus Integration: customer-workspace/docusaurus.md
       - Optional Runner Contract: customer-workspace/runner.md
+      - Cold-Session Pilot: customer-workspace/context-recovery-pilot.md
   - Catalog:
       - Agents:
           - Overview: agents/index.md

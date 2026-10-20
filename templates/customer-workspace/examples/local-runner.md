@@ -7,7 +7,7 @@ repositories and an AI host capable of performing the authorized actions.
 
 ## Minimal loop
 
-1. Read the configured customer Project. Select current-iteration Ready issues assigned
+1. Read the configured customer Project. Select current-iteration Todo issues that meet the readiness condition assigned
    to the explicitly authorized worker identity; resume its existing active issue first.
 2. Compare Project field changes and issue/comment revisions with the local cursor.
    Load the active issue's current body, open questions and relevant new feedback.

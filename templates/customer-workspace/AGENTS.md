@@ -4,7 +4,7 @@ Read [the customer workspace](workspace/README.md) and the relevant project cons
 Use [the working agreement](workspace/working-agreement.md) and
 [role ownership](workspace/stakeholders.md). Load only knowledge needed for the current issue.
 
-Read [workspace/project.yaml](workspace/project.yaml) for the authoritative tracker,
+Read [workspace/workspace.yml](workspace/workspace.yml) for the authoritative tracker,
 planning home, knowledge, decision, review and communication locations before selecting
 an integration or creating records. Its GitHub configuration is a fictional example;
 adapt it to the actual project, including Jira or another tracker. Keep one live plan

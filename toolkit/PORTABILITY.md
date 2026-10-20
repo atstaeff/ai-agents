@@ -21,7 +21,7 @@ configure a tool to read it.
 
 ## Use the project’s tooling map
 
-Read the [project configuration](PROJECT-CONFIG.md), normally `workspace/project.yaml`,
+Read the [project configuration](PROJECT-CONFIG.md), normally `workspace/workspace.yml`,
 and the [operating model](OPERATING-MODEL.md#let-each-project-choose-its-tools).
 Resolve authoritative locations and permitted actions from the project, not from the
 model name, the current host, an available connector or this catalog’s examples.

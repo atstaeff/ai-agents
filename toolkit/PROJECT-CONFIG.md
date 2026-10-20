@@ -1,11 +1,17 @@
 # Project-owned tooling configuration
 
-Use one `workspace/project.yaml` to declare where the project works. Link it from
+Use one `workspace/workspace.yml` to declare where the project works. Link it from
 `AGENTS.md`. If the project already has an equivalent configuration, keep that file
 and declare its location instead; do not introduce a competing configuration.
 
-The [GitHub example](../templates/customer-workspace/workspace/project.yaml) and
-[Jira example](../templates/customer-workspace/examples/project-jira.yaml) demonstrate
+The starter now uses `workspace.yml`. A linked existing `project.yaml` or equivalent
+custom configuration remains valid; the format is unchanged. When adopting the new
+name, rename one file and update its links together. Do not maintain both defaults:
+the validator rejects `workspace.yml` and `project.yaml` side by side rather than
+silently selecting one. It never renames or removes a customer's files.
+
+The [GitHub example](../templates/customer-workspace/workspace/workspace.yml) and
+[Jira example](../templates/customer-workspace/examples/workspace-jira.yml) demonstrate
 one contract with different tools. The YAML is the canonical tooling map. Markdown
 explains the process and links to it; avoid manually maintaining the same map twice.
 
@@ -51,12 +57,15 @@ Different projects can use different tools without changing generic skills or ag
 6. If access is missing, prepare an unsent update and state the exact gap. Continue
    independent authorized work; never claim a remote update, approval or synchronization.
 
+Use the [context recovery contract](CONTEXT-RECOVERY.md) to bind a handoff to current
+work-item, code and decision sources. Keep transient progress out of this tooling map.
+
 ## Validate before adoption
 
 Run the optional local validator from this toolkit:
 
 ```sh
-uv run tools/project_config.py --config /path/to/project/workspace/project.yaml
+uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
 ```
 
 It checks shape, version, required locations, unknown fields and duplicate YAML keys.
