@@ -13,6 +13,8 @@ from ai_toolkit import ROOT, LINK, catalog, metadata
 
 DOCUMENTS = {
     'concept.md': 'toolkit/OPERATING-MODEL.md',
+    'workspace-concept.md': 'toolkit/WORKSPACE-CONCEPT.md',
+    'repository-workspace.md': 'workspace/README.md',
     'getting-started/workflow.md': 'toolkit/WORKFLOW.md',
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
     'getting-started/portability.md': 'toolkit/PORTABILITY.md',

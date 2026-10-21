@@ -43,7 +43,7 @@ the external plugin; it neither proves runtime switching nor synchronizes GitHub
 ## Must every task create a document?
 
 No. Small changes use the conversation and existing checks. Larger outcomes use one
-planning home: the project-designated work item for tracked delivery, or `.ai/work/` for larger
+planning home: the project-designated work item for tracked delivery, or `workspace/work/` for larger
 local work without that assignment. CSV is an export only.
 
 ## Is this website Docusaurus?

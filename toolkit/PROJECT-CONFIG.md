@@ -15,7 +15,7 @@ The [GitHub example](../templates/customer-workspace/workspace/workspace.yml) an
 one contract with different tools. The YAML is the canonical tooling map. Markdown
 explains the process and links to it; avoid manually maintaining the same map twice.
 
-## Small, explicit contract
+## Required, backward-compatible contract
 
 | Field | Meaning |
 | --- | --- |
@@ -68,10 +68,43 @@ Run the optional local validator from this toolkit:
 uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
 ```
 
-It checks shape, version, required locations, unknown fields and duplicate YAML keys.
+It checks the [JSON Schema](workspace.schema.json), required locations, optional process mappings,
+unknown fields and duplicate YAML keys.
 It does not access URLs, test credentials, execute commands or prove that a location
-exists. PyYAML is isolated to this optional command; the main toolkit remains stdlib-only.
+exists. PyYAML and jsonschema are isolated to this optional command; the main toolkit remains stdlib-only.
 Replace example placeholders, confirm locations and perform the [host smoke check](PORTABILITY.md#verify-a-new-host-once).
 
 The bundled graph generator reads local Markdown. A remote wiki requires a separately
 authorized integration to generate a website or graph; this config does not implement one.
+
+## Optional operating-model fields
+
+All examples use the same schema. Existing minimal version-1 configs remain valid.
+See the [complete workspace concept](WORKSPACE-CONCEPT.md) and the richer GitHub/Jira
+examples for the complete flow; the YAML does not implement the described integrations.
+
+| Section | Content |
+| --- | --- |
+| `profile`, `method` | Tool arrangement and adopted delivery method; open strings |
+| `repositories` | Unique `name`, `location`, optional project-relative `path` and `default_branch` |
+| `planning` | Optional `priority`, `iteration`, `engineering_status`, each with `system` and `location` |
+| `flow` | Distinct `states` mapping for todo/in_progress/in_review/done, `blocked: additional_property`, completion reasons and code-Done requirements |
+| `handoff` | Existing work-item `location` and shared `template` path |
+| `labels`, `reviewers` | Purpose-to-label map and reviewer role/contact references adopted by the project |
+| `quality_gates` | List of `name`, `command` and boolean `required`; commands are never auto-executed |
+| `actions` | Action categories: `within_assignment`, `separate_authorization`, `forbidden` |
+
+Action keys are `edit_assigned_branch`, `open_draft_pr`, `update_work_item`,
+`ask_questions`, `merge`, `deploy`, `delete`, `change_access`. Real permissions and
+existing instructions still apply. A label/reviewer name configures neither the tracker
+nor a notification, claim or approval. A missing optional field is unspecified, not
+permission to guess. Match gate commands to actual project technology.
+
+`flow` describes tracked delivery; the local task table retains its existing four task
+states and is not a replacement board. Product/capacity and engineering ownership can
+be mapped separately in a split profile, without duplicating the same live assignment.
+
+Schema source: `toolkit/workspace.schema.json`. The optional validator reads that exact
+local schema; it does not maintain a second list of accepted fields or fetch remote refs.
+The old standalone concept schema (`schema_version`, `sources`, `paths`) must be mapped
+into this contract, not copied as a second supported format.

@@ -5,6 +5,10 @@ for shared repository artifacts and the user's language in conversation. Reuse t
 guidance and catalog metadata already in context; load selected skills and focused
 references only when they help the current task.
 
+Use `workspace/` as the conventional project context and optional local-work root.
+The [workspace concept](WORKSPACE-CONCEPT.md) explains ownership, config and migration;
+local work, archives, generated previews and exports are outside knowledge publication.
+
 ## Choose the shortest complete path
 
 For a clear, small task: inspect the relevant files, make the change, run appropriate
@@ -15,7 +19,7 @@ or the equivalent linked from `AGENTS.md`) and working agreement first. See the
 [project configuration contract](PROJECT-CONFIG.md). Use the
 designated work item and planning home, whether Jira, GitHub, another tracker or a file.
 Do not create a second issue, local record or wiki plan for the same assignment.
-If no system owns the assignment, use one `.ai/work/<slug>.md` with the
+If no system owns the assignment, use one `workspace/work/<slug>.md` with the
 [work template](../templates/work-item.md). Reuse existing work for the same outcome.
 If ownership is ambiguous, resolve it before creating shared records. If the designated
 system is inaccessible, report the access gap and prepare an unsent update; do not
@@ -88,7 +92,7 @@ Do not create a second task store or carry an entire transcript as mandatory con
 
 ## Finish with reusable knowledge
 
-For local work records, archive in `.ai/archive/` after acceptance criteria are verified
+For local work records, archive in `workspace/archive/` after acceptance criteria are verified
 and unresolved feedback is reviewed. Close tracked work according to the project agreement. Keep historical records out of routine context. Link reusable knowledge
 into its existing customer documentation; use a private vault only when appropriate
 to the requested personal task. Avoid duplicate task lists. CSV is

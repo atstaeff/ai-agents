@@ -5,6 +5,11 @@ Canonical agents live in `agents/*.agent.md`; skills are either `skills/*/SKILL.
 or existing category topic files. Runtime adapters materialize every skill in a native
 `<name>/SKILL.md` directory. Edit the canonical sources, not generated bundles.
 
+Start project context at [workspace/README.md](workspace/README.md) and the
+[workspace configuration](workspace/workspace.yml). Read the
+[detailed concept](toolkit/WORKSPACE-CONCEPT.md) when changing information ownership,
+workspace layout, migration or knowledge publication.
+
 Read [toolkit/WORKFLOW.md](toolkit/WORKFLOW.md) for shared working guidance. Keep
 instructions concise and use `references/` for examples. Keep shared rules tool-neutral;
 see [portability](toolkit/PORTABILITY.md) when changing host integration. Every catalog entry requires
@@ -26,6 +31,6 @@ protection. The dashboard manages Markdown work records; it does not execute AI 
 the documentation workflow rebuilds it after changes reach main. Do not use `docs/`
 as a scratch directory or commit generated bundles, vault contents or private paths.
 
-For larger work, follow the project-designated planning home or use one `.ai/work/`
-record when no assigned system owns the plan. Archive verified local work in `.ai/archive/` when useful.
+For larger work, follow the project-designated planning home or use one `workspace/work/`
+record when no assigned system owns the plan. Archive verified local work in `workspace/archive/` when useful.
 Do not merge or deploy as part of repository maintenance unless explicitly requested.

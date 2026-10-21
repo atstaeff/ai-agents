@@ -101,6 +101,8 @@ nav:
   - Home: index.md
   - Concept:
       - Operating Model: concept.md
+      - Detailed Workspace Concept: workspace-concept.md
+      - This Repository's Workspace: repository-workspace.md
       - Why This Model: why-copilot-expert-hub.md
       - Source Ownership: architecture.md
       - Example Outcomes: use-cases.md

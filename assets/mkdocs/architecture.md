@@ -9,7 +9,7 @@ Separate reusable guidance, live work, durable knowledge and generated views.
 | Project configuration | Customer `workspace/workspace.yml` or declared equivalent | Authoritative tooling and location ownership |
 | Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
 | Customer workspace | `workspace/` and project-selected knowledge space | Context, decision rights, knowledge or pointers to its authoritative home |
-| Local work records | Each project's `.ai/work/`, without a board-owned assignment | One record per larger local outcome |
+| Local work records | Each project's `workspace/work/`, without a board-owned assignment | One record per larger local outcome |
 | Private Second Brain | Existing Obsidian PARA vault | Personal projects, areas, resources and archive |
 | Runtime adapters | `tools/ai_toolkit.py export` | Native profiles, permissions and references |
 | Local dashboard/API | `tools/web/` and Python loopback server | Markdown records, task evidence and comments |

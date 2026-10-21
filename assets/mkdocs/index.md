@@ -64,7 +64,7 @@ thinking variant. Keep the receipt in the assignment's existing planning home.
 | Your situation | Start here | Keep the plan in |
 | --- | --- | --- |
 | Customer or team delivery | [Customer workspace starter](references/customer-workspace.md) | The project-designated item: Jira, GitHub or another system |
-| Larger local work without a board assignment | [Local work records](toolkit/work-records.md) | One `.ai/work/` file |
+| Larger local work without a board assignment | [Local work records](toolkit/work-records.md) | One `workspace/work/` file |
 | A small, clear fix | [Quick start](getting-started/quick-start.md) | The current conversation |
 | Personal knowledge work | [Second Brain](agents/second-brain.md) | Your existing private PARA vault |
 

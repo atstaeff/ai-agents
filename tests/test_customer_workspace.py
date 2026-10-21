@@ -47,6 +47,21 @@ class KnowledgeGraphTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Unknown or self reference'):
             graph.load_graph(self.root)
 
+    def test_local_work_archive_generated_and_exports_are_not_knowledge_sources(self):
+        self.record('ADR-0001')
+        for folder in ('work', 'archive', 'generated', 'exports'):
+            path = self.root / folder
+            path.mkdir()
+            (path / 'private.md').write_text('---\ninvalid: [private unclosed YAML\n---\n')
+            (path / 'link.md').symlink_to(self.root.parent / 'outside.md')
+        result = graph.load_graph(self.root)
+        self.assertEqual([node['id'] for node in result['nodes']], ['ADR-0001'])
+        self.assertNotIn('private', json.dumps(result))
+
+    def test_repository_workspace_has_valid_decision_metadata(self):
+        result = graph.load_graph((TEMPLATE.parents[1] / 'workspace').resolve())
+        self.assertEqual([node['id'] for node in result['nodes']], ['ADR-0001'])
+
     def test_duplicate_knowledge_id_is_rejected(self):
         self.record('ADR-0001')
         self.record('ADR-0001', filename='second.md', slug='decisions/second')

@@ -8,6 +8,10 @@ As implementation becomes faster with AI, goals, decision rights, feedback and s
 knowledge need to remain explicit. This model makes those handoffs visible without
 asking people to maintain several copies of the same plan.
 
+Use the [workspace concept](WORKSPACE-CONCEPT.md) for the complete folder, YAML,
+decision, recovery and publication model. Optional local records now share `workspace/`
+with project context; tracked delivery retains its existing issue or ticket.
+
 ## From business value to useful knowledge
 
 | Stage | Human responsibility | AI contribution | Evidence |

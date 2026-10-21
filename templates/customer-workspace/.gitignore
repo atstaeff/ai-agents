@@ -1,0 +1,9 @@
+# Merge these entries into the customer's existing ignore rules.
+/workspace/work/
+/workspace/archive/
+/workspace/generated/
+/workspace/exports/
+
+# Keep legacy local records ignored during an explicit migration.
+/.ai/work/
+/.ai/archive/
