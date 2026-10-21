@@ -1,4 +1,4 @@
-# Alternative project configuration. Copy to workspace/project.yaml and adapt.
+# Alternative project configuration. Copy to workspace/workspace.yml and adapt.
 version: 1
 name: Customer service portal
 

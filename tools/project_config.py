@@ -67,6 +67,11 @@ def validate(data):
 
 
 def load(path: Path):
+    # Explicit legacy paths remain supported; two conventional live configs are ambiguous.
+    if path.name in {'workspace.yml', 'project.yaml'}:
+        other = path.with_name('project.yaml' if path.name == 'workspace.yml' else 'workspace.yml')
+        if path.exists() and other.exists():
+            raise ValueError('Both workspace.yml and project.yaml exist; keep one authoritative configuration.')
     return validate(yaml.load(path.read_text(encoding='utf-8'), Loader=UniqueLoader))
 
 

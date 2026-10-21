@@ -100,11 +100,18 @@ Read the [project YAML config](toolkit/PROJECT-CONFIG.md) before selecting integ
 or creating records. If an
 authoritative system is unavailable, prepare an unsent update and report the gap.
 
-Start with `workspace/project.yaml` and three workspace entry pages. Merge the example
+Start with `workspace/workspace.yml` and three workspace entry pages. Merge the example
 instructions into the customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
 stakeholder questions, linked ADRs, a local knowledge graph generator and integration
 with an existing Docusaurus site. Adopt only what the project needs; this template is
 not an automatic installer or background runner.
+
+Use the [context recovery contract](toolkit/CONTEXT-RECOVERY.md) for session/model handoffs:
+compare current work, decisions and commits with the last bounded summary before resuming.
+The starter includes a handoff template and a cold-session pilot. Significant rationale
+stays with the customer; an old transcript is not required context. The new conventional
+configuration name is `workspace/workspace.yml`; explicitly linked legacy configurations
+remain supported, without keeping two competing defaults.
 
 ## Jörg and your Second Brain
 

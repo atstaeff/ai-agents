@@ -10,7 +10,7 @@ adapters from the same sources. See [portability](getting-started/portability.md
 ## Must every project use GitHub Issues or repository knowledge?
 
 No. Each project defines its tracker, planning home, code review, decision and knowledge
-locations in [`workspace/project.yaml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
+locations in [`workspace/workspace.yml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
 Confluence or a repository can own knowledge. The customer starter uses GitHub as a
 worked example. Missing tool access means an unsent proposed update, not a new tracker.
 

@@ -10,7 +10,7 @@ references only when they help the current task.
 For a clear, small task: inspect the relevant files, make the change, run appropriate
 checks and report the result. No work record, catalog scan or agent handoff is required.
 
-For larger work, read the project’s tooling config (normally `workspace/project.yaml`,
+For larger work, read the project’s tooling config (normally `workspace/workspace.yml`,
 or the equivalent linked from `AGENTS.md`) and working agreement first. See the
 [project configuration contract](PROJECT-CONFIG.md). Use the
 designated work item and planning home, whether Jira, GitHub, another tracker or a file.
@@ -70,6 +70,21 @@ Select one bounded increment before increasing concurrency. A different model or
 second reviewer is useful only when it improves the result; carry the same requirements
 and approval evidence across handoffs. Verify the integrated result after delegated work.
 Use [portability guidance](PORTABILITY.md) when changing hosts, discovery paths or adapters.
+
+## Resume from current shared sources
+
+For larger work or a session/model switch, use the [context recovery contract](CONTEXT-RECOVERY.md).
+Read current assignment and relevant decisions, contracts and code; compare them with the
+last bounded handoff. Keep significant rationale at its designated decision home when it
+arises. A newer comment does not automatically revoke an accepted decision; resolve the
+responsible authority and preserve the history. Continue independent authorized work
+while a consequential conflict blocks dependent steps.
+
+Before switching, save source revisions, relevant commits, criterion-linked evidence,
+open questions, unsaved work, pending writes and the next action at the existing planning
+home. Reassess affected approvals/checks after material changes. Reread before updates;
+inspect existing effects after API timeouts rather than blindly repeating them.
+Do not create a second task store or carry an entire transcript as mandatory context.
 
 ## Finish with reusable knowledge
 

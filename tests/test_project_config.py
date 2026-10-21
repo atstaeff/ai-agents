@@ -17,11 +17,11 @@ cfg = SimpleNamespace(**runpy.run_path(str(ROOT / 'tools/project_config.py'))) i
 @unittest.skipUnless(HAS_YAML, 'Optional YAML validator: run with uv --group docs')
 class ProjectConfigTests(unittest.TestCase):
     def setUp(self):
-        self.github = ROOT / 'templates/customer-workspace/workspace/project.yaml'
+        self.github = ROOT / 'templates/customer-workspace/workspace/workspace.yml'
         self.data = cfg.load(self.github)
 
     def test_examples_keep_tracker_and_review_independent(self):
-        jira = cfg.load(ROOT / 'templates/customer-workspace/examples/project-jira.yaml')
+        jira = cfg.load(ROOT / 'templates/customer-workspace/examples/workspace-jira.yml')
         self.assertEqual(self.data['work']['system'], 'github')
         self.assertEqual((jira['work']['system'], jira['review']['system']), ('jira', 'github'))
         self.assertEqual(jira['knowledge']['system'], 'confluence')
@@ -73,3 +73,30 @@ class ProjectConfigTests(unittest.TestCase):
         with patch('sys.stderr', new_callable=io.StringIO) as err:
             self.assertEqual(cfg.main(['--config', '/nonexistent/project.yaml']), 1)
         self.assertIn('Invalid project configuration', err.getvalue())
+
+    def test_explicit_legacy_filename_remains_valid(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'project.yaml'
+            path.write_text(cfg.yaml.safe_dump(self.data))
+            self.assertEqual(cfg.load(path), self.data)
+
+    def test_two_conventional_configs_are_rejected_without_changing_either(self):
+        with tempfile.TemporaryDirectory() as folder:
+            current = Path(folder) / 'workspace.yml'
+            legacy = Path(folder) / 'project.yaml'
+            current.write_text(cfg.yaml.safe_dump(self.data))
+            alternate = copy.deepcopy(self.data)
+            alternate['work']['system'] = 'jira'
+            legacy.write_text(cfg.yaml.safe_dump(alternate))
+            before = (current.read_bytes(), legacy.read_bytes())
+            for path in (current, legacy):
+                with self.subTest(path=path.name), self.assertRaisesRegex(ValueError, 'Both workspace.yml and project.yaml'):
+                    cfg.load(path)
+            self.assertEqual((current.read_bytes(), legacy.read_bytes()), before)
+
+    def test_a_missing_requested_default_does_not_claim_two_configs_exist(self):
+        with tempfile.TemporaryDirectory() as folder:
+            legacy = Path(folder) / 'project.yaml'
+            legacy.write_text(cfg.yaml.safe_dump(self.data))
+            with self.assertRaises(FileNotFoundError):
+                cfg.load(Path(folder) / 'workspace.yml')

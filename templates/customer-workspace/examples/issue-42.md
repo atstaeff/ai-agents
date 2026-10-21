@@ -1,7 +1,7 @@
 # Issue 42: Prevent duplicate document handling after upload retries
 
 Fictional issue body; create a real issue and use its actual identifier.
-Project fields: Ready, Iteration I1, High priority, authorized customer worker assignee.
+Project fields: Todo, Iteration I1, High priority, authorized customer worker assignee.
 
 ## Outcome and value
 

@@ -22,6 +22,6 @@ prepare the change while this decision is pending; final acceptance depends on y
 ## Working update
 
 Preserve the reply as source feedback. Update the bounded issue section with the confirmed
-meaning, unresolved retry window, next action and real evidence. Keep the issue Blocked if
+meaning, unresolved retry window, next action and real evidence. Keep the issue marked as blocked, preserving its flow position, if
 that answer prevents the next complete increment; otherwise continue independent work.
 Do not repeatedly notify the same contact without a material change or an agreed reminder rule.

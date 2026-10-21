@@ -39,7 +39,7 @@ proves customer value.
 ## Let each project choose its tools
 
 The project defines the system of record for each information type in a small
-[`workspace/project.yaml`](PROJECT-CONFIG.md), linked from `AGENTS.md`. Use an existing
+[`workspace/workspace.yml`](PROJECT-CONFIG.md), linked from `AGENTS.md`. Use an existing
 equivalent configuration when already present. The YAML owns the tooling map; the
 working agreement explains statuses, authority and process without duplicating locations.
 
@@ -70,6 +70,11 @@ wiki synchronization is not implemented by this toolkit.
 Read the project tooling map and active assignment before selecting an integration or
 creating records. Keep the plan, acceptance, questions and required approval receipt at
 the designated home. Respect project-owned fields and preserve human feedback.
+
+Use the [context recovery contract](CONTEXT-RECOVERY.md) across session or model switches.
+Read current sources before resuming an old plan, preserve significant rationale when it
+arises and save a bounded handoff at the existing home. Old green checks and copied approval
+do not automatically apply after material scope, decision, contract or code changes.
 
 For larger local work with no assigned system, use one [work record](WORK-RECORDS.md).
 For a small fix, inspect, change and verify directly. If the designated system is

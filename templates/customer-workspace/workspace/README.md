@@ -19,7 +19,7 @@ customer measurements; this example provides no measured business result.
 
 ## Project tooling configuration
 
-Read [project.yaml](project.yaml) before selecting tools or creating shared records.
+Read [workspace.yml](workspace.yml) before selecting tools or creating shared records.
 It defines the authoritative work, review, knowledge, decision, iteration and communication
 locations. This example selects GitHub. Replace those values on adoption; a Jira ticket
 can own the entire plan with a linked GitHub PR and no mirror issue.
@@ -31,7 +31,7 @@ an unsent proposed update, never an automatic switch to another system.
 
 ## Working entry points
 
-- [Project configuration](project.yaml): authoritative tools and locations.
+- [Project configuration](workspace.yml): authoritative tools and locations.
 - [Working agreement](working-agreement.md): delivery, acceptance and communication rules.
 - [Stakeholders](stakeholders.md): who decides and reviews.
 - [Upload process draft](knowledge/upload-retries.md): relevant domain knowledge.
