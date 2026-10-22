@@ -1,37 +1,79 @@
-# Repository instructions
+# Engineering collaboration contract
 
-This repository is a portable English agent/skill catalog and a local Python toolkit.
-Canonical agents live in `agents/<domain>/<name>.agent.md`; skills use
-`skills/<domain>/<name>/SKILL.md`. Select among the disciplines in
-`toolkit/catalog-domains.json`. Keep stable exported names unique. Edit canonical
-sources, not generated bundles. See [catalog management](toolkit/CATALOG-GUIDE.md).
+This repository maintains an English engineering agent/skill catalog, a shared operating
+model and a local Python toolkit. Follow current user and host instructions and the
+applicable project rules. Use the user's language in conversation.
 
-Start project context at [workspace/README.md](workspace/README.md) and the
-[workspace configuration](workspace/workspace.yml). Read the
-[detailed concept](toolkit/WORKSPACE-CONCEPT.md) when changing information ownership,
-workspace layout, migration or knowledge publication.
+## Project sources
 
-Read [toolkit/WORKFLOW.md](toolkit/WORKFLOW.md) for shared working guidance. Keep
-instructions concise and use `references/` for examples. Keep shared rules tool-neutral;
-see [portability](toolkit/PORTABILITY.md) when changing host integration. Every catalog entry requires
-YAML `name` and `description`; avoid runtime-specific fields in canonical frontmatter.
+Read these entry sources, then only the detail relevant to the assignment:
 
-Verify relevant changes with:
+| Need | Authoritative source |
+| --- | --- |
+| Vision, goals and success signals | [Project](PROJECT.md#vision-and-goals) |
+| Stakeholders and decision/acceptance roles | [Stakeholders](knowledge/stakeholders.md) |
+| Scope, exclusions and constraints | [Scope](PROJECT.md#scope-and-boundaries) |
+| Process, tools, skills and checks | [Contributing source](CONTRIBUTING.md), [published process](https://atstaeff.github.io/ai-agents/contributing/) |
+| Current knowledge and significant decisions | [Knowledge index](knowledge/README.md) |
+| Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
+| Assignment and live plan | Assigned GitHub issue or existing PR representing the request |
+
+The [documentation website](https://atstaeff.github.io/ai-agents/) publishes the maintained
+sources. This checkout is authoritative for its revision; the published site can lag an
+unmerged change. Read the [project concept](toolkit/PROJECT-CONCEPT.md) when changing the
+operating model, information ownership, knowledge layout or documentation publication.
+No project.yaml or workspace folder is required to adopt this contract.
+
+## Ownership and parallel work
+
+Keep one authoritative work item and one live plan per assignment. Identify its accountable
+human owner, active writer, bounded change scope, dependencies and integration owner.
+Use separate branches and working directories for independent writers; agree changes to
+shared contracts before dependent implementation. Coordinate overlapping scopes through
+the project's shared claim/handover mechanism; an assignee or a branch is no atomic lock.
+Preserve other contributors' changes and reread shared records before updating them.
+
+Follow the [shared workflow](toolkit/WORKFLOW.md) and
+[recovery contract](toolkit/CONTEXT-RECOVERY.md). Proceed with routine reversible choices
+within the assignment; resolve consequential scope/design conflicts with the named owner.
+Delegate only when supported, authorized and useful. Keep material progress, feedback,
+check evidence and the next action at the same work home.
+
+## Repository navigation and engineering rules
+
+- Maintain canonical profiles in agents/<domain>/<name>.agent.md and skills/<domain>/<name>/SKILL.md.
+  Use [catalog domains](toolkit/catalog-domains.json) and [catalog guidance](toolkit/CATALOG-GUIDE.md).
+  Keep exported names unique and name/description frontmatter present.
+- Read the selected skill body and relevant references; links neither install skills nor
+  start sessions. Keep host-specific discovery and permissions in adapters;
+  see [portability](toolkit/PORTABILITY.md).
+- Preserve Python 3.11+ and the standard-library-only core. Keep the dashboard on loopback,
+  its assets local, and its comment persistence and stale-write protections intact.
+- Edit canonical sources. website/ owns Docusaurus; docs/ is generated GitHub Pages output.
+  Preserve public routes. Keep private data, local work and generated bundles out of commits.
+
+## Verification and completion
+
+Use the [runbook](toolkit/REPOSITORY-WORKFLOW.md) and [CI](.github/workflows/checks.yml).
+Run checks appropriate to the change:
 
 ```sh
 python3 tools/ai_toolkit.py check
 python3 -m unittest discover -s tests -v
-uv run --group docs mkdocs build -f website/mkdocs.yml --strict
+uv run --locked --group validation python -m unittest discover -s tests -v
+npm --prefix website ci
+npm --prefix website run build
 ```
 
-The toolkit uses Python 3.11+ and the standard library at runtime. Keep it local: bind
-the dashboard to loopback, serve no external assets, and preserve comments and stale-write
-protection. The dashboard manages Markdown work records; it does not execute AI agents.
+Verify combined changes after integration and associate evidence with the tested revision.
+Report passed, failed, blocked and unrun checks honestly. Required review, acceptance,
+integration and deployment are separate states. Do not merge or deploy without an explicit request.
 
-`website/content/` contains website sources. `docs/` is existing GitHub Pages output:
-the documentation workflow rebuilds it after changes reach main. Do not use `docs/`
-as a scratch directory or commit generated bundles, vault contents or private paths.
+## Shared memory and handoff
 
-For larger work, follow the project-designated planning home or use one `workspace/work/`
-record when no assigned system owns the plan. Archive verified local work in `workspace/archive/` when useful.
-Do not merge or deploy as part of repository maintenance unless explicitly requested.
+Maintain affected current knowledge and record significant rationale at
+[knowledge/](knowledge/README.md). Preserve accepted reasons and replacement links.
+Before pausing, save result, relevant revisions, evidence/limits, blockers, pending writes
+and one next action at the existing work home. A fresh session checks current sources.
+For otherwise unassigned larger local work, the optional toolkit uses ignored
+workspace/work/ and workspace/archive/; those are storage details, not the project model.

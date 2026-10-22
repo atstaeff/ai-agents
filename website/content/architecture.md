@@ -6,14 +6,14 @@ Separate reusable guidance, live work, durable knowledge and generated views.
 | --- | --- | --- |
 | Agents and skills | This repository's `agents/` and `skills/` | Reusable roles and focused instructions |
 | Operating model | `toolkit/OPERATING-MODEL.md` | Outcomes, ownership, handoffs and knowledge lifecycle |
-| Project configuration | Customer `workspace/workspace.yml` or declared equivalent | Authoritative tooling and location ownership |
+| Project entry | AGENTS.md linking local or explicitly adopted web sources | Collaboration rules and authoritative source ownership |
 | Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
-| Customer workspace | `workspace/` and project-selected knowledge space | Context, decision rights, knowledge or pointers to its authoritative home |
+| Project knowledge | Project-chosen local Markdown or authorized wiki | Current context, contracts, decision rights and significant rationale |
 | Local work records | Each project's `workspace/work/`, without a board-owned assignment | One record per larger local outcome |
 | Private Second Brain | Existing Obsidian PARA vault | Personal projects, areas, resources and archive |
 | Runtime adapters | `tools/ai_toolkit.py export` | Native profiles, permissions and references |
 | Local dashboard/API | `tools/web/` and Python loopback server | Markdown records, task evidence and comments |
-| This website | `website/content/` and `tools/docs_hook.py` | MkDocs views of canonical guidance and examples |
+| This website | `website/content/` and `website/generate.py` | Docusaurus views of canonical guidance and examples |
 | Customer documentation site | Existing Docusaurus configuration and workspace sources | Customer-controlled publishing |
 
 ## Execution belongs to your host
@@ -29,8 +29,9 @@ tools; the [runner contract](customer-workspace/runner.md) describes the require
 ## Sources and published views
 
 Edit canonical Markdown, then regenerate the index, relationships and website. This
-catalog site uses MkDocs. The [Docusaurus guide](customer-workspace/docusaurus.md) applies
-to the customer's existing site. A root `docs/` used for compiled Pages output stays generated.
+catalog site uses Docusaurus with generated canonical content. The
+[customer publishing guide](customer-workspace/docusaurus.md) covers adoption in an existing site. A root `docs/` used for compiled Pages output stays generated.
+See the [website source guide](https://github.com/atstaeff/ai-agents/blob/main/website/README.md) for build ownership and commands.
 
 The site renders profiles, the operating model and worked examples from canonical sources.
 The [knowledge map](customer-workspace/knowledge-map.md) uses explicit metadata and local links.

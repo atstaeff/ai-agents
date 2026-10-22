@@ -23,6 +23,28 @@ class CatalogTests(unittest.TestCase):
         self.assertEqual({e.domain for e in entries}, set(tk.domains()))
         self.assertEqual(tk.check(), [])
 
+    def test_link_check_covers_project_knowledge_and_excludes_local_work(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for name in ('README.md', 'PROJECT.md', 'AGENTS.md', 'CONTRIBUTING.md',
+                         'copilot-instructions.md', '.github/copilot-instructions.md'):
+                path = root/name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text('# Entry\n')
+            (root/'PROJECT.md').write_text('[Context](missing-context.md)\n')
+            (root/'knowledge').mkdir()
+            (root/'knowledge/current.md').write_text('[Contract](missing-contract.md)\n')
+            (root/'workspace/work').mkdir(parents=True)
+            (root/'workspace/work/private.md').write_text('[Local only](absent.md)\n')
+            with patch.object(tk, 'catalog', return_value=[]):
+                errors = tk.check(root)
+                self.assertTrue(any('PROJECT.md -> missing-context.md' in e for e in errors))
+                self.assertTrue(any('knowledge/current.md -> missing-contract.md' in e for e in errors))
+                self.assertFalse(any('private.md' in e for e in errors))
+                (root/'PROJECT.md').write_text('# Context\n')
+                (root/'knowledge/current.md').write_text('# Contract\n')
+                self.assertEqual(tk.check(root), [])
+
     def test_frontmatter_rejects_duplicate_or_invalid_values(self):
         for text in ('No metadata', '---\nname: test\nname: other\n---\n', '---\nname: "broken\n---\n'):
             with self.subTest(text=text), self.assertRaises(tk.ToolkitError):

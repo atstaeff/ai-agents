@@ -1,21 +1,24 @@
 # Event-Driven Python Reference
 
-This directory contains the reference patterns for event-driven Python architectures on GCP.
+This document sketches event-driven Python patterns on GCP. Snippets illustrate
+interfaces and sequencing; they are not an integrated or verified implementation.
+Use the [quality standard](../../toolkit/QUALITY-STANDARD.md) and evaluate concurrency,
+duplicate delivery and partial failure before adopting a pattern.
 
 ## Architecture
 
+```mermaid
+flowchart TB
+    API["API on Cloud Run"] --> Events["Pub/Sub topics"]
+    Events --> Workers["Event workers"]
+    API --> Database["Cloud SQL"]
+    Events -.-> Failed["Dead-letter handling"]
+    Workers --> Analytics["BigQuery"]
 ```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   API        │────▶│  Pub/Sub    │────▶│  Workers    │
-│  (Cloud Run) │     │  Topics     │     │ (Cloud Func)│
-└─────────────┘     └─────────────┘     └─────────────┘
-       │                   │                    │
-       ▼                   ▼                    ▼
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│  Cloud SQL   │     │  Dead Letter│     │  BigQuery   │
-│ (PostgreSQL) │     │  Queue      │     │ (Analytics) │
-└─────────────┘     └─────────────┘     └─────────────┘
-```
+
+The diagram illustrates responsibilities. Configure retry and dead-letter behavior for
+the actual subscription and define who owns failed-event recovery.
+
 
 ## Key Patterns
 

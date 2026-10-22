@@ -1,0 +1,309 @@
+{
+  "start": {
+    "label": "Project",
+    "items": [
+      {
+        "Team Project Starter": "getting-started/lean-project.md"
+      },
+      {
+        "AGENTS.md Templates": "getting-started/agents-templates.md"
+      },
+      {
+        "Adopt in a Project": "getting-started/adopt-workspace.md"
+      },
+      {
+        "This Repository": [
+          {
+            "Collaboration Entry": "project/agents.md"
+          },
+          {
+            "Vision, Goals and Scope": "repository-workspace.md"
+          },
+          {
+            "Stakeholders": "project/stakeholders.md"
+          },
+          {
+            "Working Agreement": "project/working-agreement.md"
+          },
+          {
+            "Work in GitHub": "https://github.com/atstaeff/ai-agents/issues"
+          }
+        ]
+      }
+    ]
+  },
+  "operating": {
+    "label": "Process",
+    "items": [
+      {
+        "Engineering Operating Model": "concept.md"
+      },
+      {
+        "AGENTS.md Worked Example": "operating-model/project-kernel.md"
+      },
+      {
+        "Lean Worked Example": "operating-model/lean-example.md"
+      },
+      {
+        "Engineering Quality": "operating-model/quality.md"
+      },
+      {
+        "Knowledge at Project Scale": "operating-model/knowledge.md"
+      },
+      {
+        "Detailed Project Concept": "workspace-concept.md"
+      },
+      {
+        "Working Contract": "getting-started/workflow.md"
+      },
+      {
+        "Optional Legacy YAML": "getting-started/project-config.md"
+      },
+      {
+        "Plan Review": "getting-started/plan-review.md"
+      },
+      {
+        "Session Recovery": "getting-started/context-recovery.md"
+      },
+      {
+        "Worked Project": [
+          {
+            "Starter and Adoption": "references/customer-workspace.md"
+          },
+          {
+            "Goal and Context": "customer-workspace/context.md"
+          },
+          {
+            "Working Agreement": "customer-workspace/working-agreement.md"
+          },
+          {
+            "Decision Roles": "customer-workspace/stakeholders.md"
+          },
+          {
+            "Planning and Flow": "customer-workspace/project.md"
+          },
+          {
+            "Assignment": "customer-workspace/assignment.md"
+          },
+          {
+            "Questions and Answers": "customer-workspace/questions.md"
+          },
+          {
+            "Plan Review": "customer-workspace/plan-review.md"
+          },
+          {
+            "Review and Evidence": "customer-workspace/review.md"
+          },
+          {
+            "Retry Decision": "customer-workspace/decisions/adr-0001.md"
+          },
+          {
+            "Concurrency Decision": "customer-workspace/decisions/adr-0002.md"
+          },
+          {
+            "Current Knowledge": "customer-workspace/knowledge.md"
+          },
+          {
+            "Iteration Review": "customer-workspace/iteration.md"
+          },
+          {
+            "Knowledge Map": "customer-workspace/knowledge-map.md"
+          },
+          {
+            "Optional Runner Contract": "customer-workspace/runner.md"
+          }
+        ]
+      }
+    ]
+  },
+  "catalog": {
+    "label": "Catalog",
+    "items": []
+  },
+  "templates": {
+    "label": "Templates",
+    "items": [
+      {
+        "Choose an Artifact": "templates/index.md"
+      },
+      {
+        "AGENTS.md Variants": "getting-started/agents-templates.md"
+      },
+      {
+        "Compact Assignment": "templates/delivery/assignment.md"
+      },
+      {
+        "Ideas List": "templates/knowledge/ideas.md"
+      },
+      {
+        "Concept / Spec": "templates/knowledge/concept.md"
+      },
+      {
+        "General Decision": "templates/knowledge/decision.md"
+      },
+      {
+        "Current Knowledge": "templates/knowledge/current.md"
+      },
+      {
+        "Incident Review": "templates/quality/incident-review.md"
+      },
+      {
+        "Project Brief": "templates/project/project-brief.md"
+      },
+      {
+        "Change Request": "templates/project/change-request.md"
+      },
+      {
+        "Architecture Decision": "templates/architecture/decision.md"
+      },
+      {
+        "Architecture Review": "templates/architecture/architecture-review.md"
+      },
+      {
+        "Quality Scenario": "templates/architecture/quality-scenario.md"
+      },
+      {
+        "Delegation Brief": "templates/delivery/delegation.md"
+      },
+      {
+        "Iteration Review": "templates/delivery/iteration-review.md"
+      },
+      {
+        "Verification Evidence": "templates/quality/verification.md"
+      },
+      {
+        "Release Readiness": "templates/quality/release-readiness.md"
+      },
+      {
+        "Local Work Record": "templates/delivery/work-item.md"
+      },
+      {
+        "Session Handoff": "customer-workspace/handoff.md"
+      },
+      {
+        "Project Setup Prompt": "customer-workspace/setup-prompt.md"
+      },
+      {
+        "Agent Source": "templates/catalog/agent-template.md"
+      },
+      {
+        "Skill Source": "templates/catalog/skill-template.md"
+      }
+    ]
+  },
+  "knowledge": {
+    "label": "Knowledge",
+    "items": [
+      {
+        "Repository Knowledge": "knowledge/index.md"
+      },
+      {
+        "Current Architecture": "knowledge/architecture.md"
+      },
+      {
+        "Decisions": [
+          {
+            "Decision Index": "knowledge/decisions/index.md"
+          },
+          {
+            "AGENTS.md Entry Proposal": "knowledge/decisions/adr-0003.md"
+          },
+          {
+            "Historical YAML Proposal": "knowledge/decisions/adr-0002.md"
+          },
+          {
+            "Historical Workspace Proposal": "knowledge/decisions/adr-0001.md"
+          }
+        ]
+      },
+      {
+        "Knowledge Lifecycle": "operating-model/knowledge.md"
+      },
+      {
+        "Session Recovery": "getting-started/context-recovery.md"
+      }
+    ]
+  },
+  "maintenance": {
+    "label": "Tools",
+    "items": [
+      {
+        "Runtime Exports": "getting-started/installation.md"
+      },
+      {
+        "Tool and Model Independence": "getting-started/portability.md"
+      },
+      {
+        "Local Work Records": "toolkit/work-records.md"
+      },
+      {
+        "Local API": "toolkit/api.md"
+      },
+      {
+        "Preview the Website": "getting-started/local-preview.md"
+      },
+      {
+        "Customer Docusaurus Publishing": "customer-workspace/docusaurus.md"
+      },
+      {
+        "Evidence and Experiments": [
+          {
+            "AGENTS.md Model Observations": "getting-started/agents-observation.md"
+          },
+          {
+            "Cold-Session Protocol": "customer-workspace/context-recovery-pilot.md"
+          },
+          {
+            "Local Recovery Observation": "getting-started/context-recovery-observation.md"
+          },
+          {
+            "Repository Replay Observation": "getting-started/workspace-pilot.md"
+          }
+        ]
+      },
+      {
+        "Contributing": "contributing/index.md"
+      },
+      {
+        "Add an Agent": "contributing/new-agent.md"
+      },
+      {
+        "Add a Skill": "contributing/new-skill.md"
+      },
+      {
+        "Contribution Guidelines": "contributing/guidelines.md"
+      },
+      {
+        "References": [
+          {
+            "Background": "why-copilot-expert-hub.md"
+          },
+          {
+            "Ownership Map": "architecture.md"
+          },
+          {
+            "Use Cases": "use-cases.md"
+          },
+          {
+            "Questions": "faq.md"
+          },
+          {
+            "Reference Index": "references/index.md"
+          },
+          {
+            "Model Guide": "references/llm-model-guide.md"
+          },
+          {
+            "Presentation Templates": "references/marp-templates.md"
+          },
+          {
+            "Python Example": "references/python-golden.md"
+          },
+          {
+            "Event-Driven Example": "references/event-driven-python.md"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,7 +1,7 @@
 # Quick start in WSL
 
 Requirements: Python 3.11+ and your installed OpenCode 1. The companion uses only
-Python's standard library; documentation development additionally uses uv and MkDocs.
+Python's standard library; website development additionally uses Node.js and Docusaurus.
 
 ```sh
 git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents

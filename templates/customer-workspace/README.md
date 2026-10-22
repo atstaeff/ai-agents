@@ -7,13 +7,17 @@ It contains no customer data, application implementation or running automation.
 All CUSTOMER_* accounts, URLs, issue numbers, approvals and results are placeholders.
 Markdown is reusable across GitHub, an AI host and an existing documentation site.
 
-The [detailed workspace concept](../../toolkit/WORKSPACE-CONCEPT.md) describes the full
-folder, configuration, delivery and recovery model. The optional local work store now
-uses the same `workspace/` root as knowledge, with an explicit publication boundary.
+This extended workspace/YAML example is optional compatibility material. Its paths are
+preserved for existing graph and adapter users. The [current project concept](../../toolkit/PROJECT-CONCEPT.md)
+uses AGENTS.md and linked local/web sources without a mandatory workspace or YAML file.
 
-## Start with the minimum
+## Choose current adoption or this compatibility example
 
-For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).
+For ordinary adoption, use the [team starter](../project-starter/README.md): AGENTS.md,
+linked project facts and CONTRIBUTING.md; no tooling map is required. Continue below when this
+extended fictional example helps explain a real coordination or publication need.
+
+For a shareable explanation, read [Adopt the project model](../../toolkit/ADOPT-PROJECT.md).
 To have a coding agent configure an existing project, copy the [English setup prompt](SETUP-PROMPT.md).
 Choose the [minimal YAML](examples/workspace-minimal.yml), the GitHub example below,
 the [Jira variant](examples/workspace-jira.yml) or the

@@ -16,7 +16,7 @@ HAS_YAML = find_spec('yaml') is not None
 graph = SimpleNamespace(**runpy.run_path(str(TEMPLATE / 'examples/knowledge_graph.py'))) if HAS_YAML else None
 
 
-@unittest.skipUnless(HAS_YAML, 'Optional graph parser: run with uv --group docs')
+@unittest.skipUnless(HAS_YAML, 'Optional graph parser: run with uv --group validation')
 class KnowledgeGraphTests(unittest.TestCase):
     def setUp(self):
         self.temporary = TemporaryDirectory()
@@ -58,9 +58,9 @@ class KnowledgeGraphTests(unittest.TestCase):
         self.assertEqual([node['id'] for node in result['nodes']], ['ADR-0001'])
         self.assertNotIn('private', json.dumps(result))
 
-    def test_repository_workspace_has_valid_decision_metadata(self):
-        result = graph.load_graph((TEMPLATE.parents[1] / 'workspace').resolve())
-        self.assertEqual([node['id'] for node in result['nodes']], ['ADR-0001'])
+    def test_repository_knowledge_has_valid_decision_metadata(self):
+        result = graph.load_graph((TEMPLATE.parents[1] / 'knowledge').resolve())
+        self.assertEqual([node['id'] for node in result['nodes']], ['ADR-0001', 'ADR-0002', 'ADR-0003'])
 
     def test_duplicate_knowledge_id_is_rejected(self):
         self.record('ADR-0001')

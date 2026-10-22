@@ -25,6 +25,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 | [product-discovery](delivery/product-discovery/SKILL.md) | Clarify a product or feature with uncertain user value, compare minimal solutions and define a measurable experiment or delivery slice. |
 | [progress-sync](delivery/progress-sync/SKILL.md) | Summarize current work, evidence, blockers and next actions without duplicating project records. |
 | [project-management](delivery/project-management/SKILL.md) | Organize delivery, technical debt or release work without excessive process overhead. |
+| [repository-contribution](delivery/repository-contribution/SKILL.md) | Establish how to contribute to an unfamiliar repository or after contribution rules change: resolve project purpose, local process, relevant skills, tool locations and verification before a substantial code or documentation change. Reuse already-loaded rules for a clear small correction. |
 | [team-collaboration](delivery/team-collaboration/SKILL.md) | Coordinate shared work, reviews, incidents or handoffs with explicit ownership and compact records. |
 | [technical-debt](delivery/technical-debt/SKILL.md) | Assess a maintainability problem and prioritize a safe, incremental repayment plan. |
 | [work-management](delivery/work-management/SKILL.md) | Maintain the plan, acceptance criteria, human feedback and verification for a larger assignment at the project-designated home, such as Jira, GitHub or one local Markdown record. |

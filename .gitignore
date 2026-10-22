@@ -33,12 +33,7 @@ temp/
 Thumbs.db
 .DS_Store
 
-# Package manager locks (optional - uncomment if you want to ignore)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
-
-# MkDocs build output (old location)
+# Static website output (legacy location)
 site/
 
 # Local toolkit state and environments
@@ -56,3 +51,8 @@ __pycache__/
 .ai/generated/
 .ai/exports/
 .ai-toolkit-manifest.json
+
+# Docusaurus source materialization, cache and static output
+/website/.generated/
+/website/.docusaurus/
+/website/build/

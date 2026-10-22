@@ -1,23 +1,25 @@
 # Preview this website locally
 
-Run from the AI Agents checkout in WSL. Python 3.11+ and uv are needed for documentation
-development; the locked docs group installs MkDocs and its theme.
+Use Python 3.11+, Node.js 22 or 24 LTS and npm. From the repository checkout in WSL:
 
 ```sh
-uv run --locked --group docs mkdocs serve -f website/mkdocs.yml -a 127.0.0.1:8000
+npm --prefix website ci
+npm --prefix website start
 ```
 
-Open **http://localhost:8000** in your Windows browser. The server rebuilds on source
-changes. Stop with Ctrl+C. This previews the MkDocs catalog; a customer's Docusaurus
-site uses its own existing configuration.
+Open **http://localhost:3000/ai-agents/** in your Windows browser. Stop with Ctrl+C.
+Docusaurus reloads website files. After editing canonical agent, skill or toolkit sources,
+run `npm --prefix website run generate` again and restart after navigation changes.
 
-For a static build without writing to the tracked Pages output:
+For a production preview, including the GitHub Pages base path:
 
 ```sh
-uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
-python3 -m http.server 8000 --bind 127.0.0.1 --directory workspace/generated/site
+npm --prefix website run build
+npm --prefix website run serve
 ```
 
-Local preview does not deploy a site. Read [the concept](../concept.md), follow
+The build generates current content automatically and rejects broken links. Its output
+stays in ignored `website/build/`; previewing does not publish it. Edit canonical sources,
+not `.generated/` Markdown. See the [ownership map](../architecture.md), follow
 [the assignment](../customer-workspace/assignment.md), then explore
 [the knowledge map](../customer-workspace/knowledge-map.md).

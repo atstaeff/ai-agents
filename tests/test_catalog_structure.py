@@ -8,7 +8,8 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
 import ai_toolkit as tk
-import docs_hook as hook
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'website'))
+import generate as site
 
 
 class CatalogStructureTests(unittest.TestCase):
@@ -43,23 +44,20 @@ class CatalogStructureTests(unittest.TestCase):
         for kind in ('agent', 'skill'):
             self.assertEqual((tk.ROOT/f'{kind}s/README.md').read_text().strip(), tk.catalog_markdown(tk.catalog(), kind).strip())
 
-    def test_every_profile_and_template_is_generated_and_included(self):
-        try:
-            from mkdocs.config import load_config
-            from mkdocs.structure.files import Files, InclusionLevel
-        except ImportError:
-            self.skipTest('Optional documentation dependencies are not installed')
-        config = load_config(str(tk.ROOT/'website/mkdocs.yml'))
-        hook.on_pre_build(config)
-        config.plugins._current_plugin = 'hooks'  # Normally set by MkDocs' event dispatcher.
-        files = hook.on_files(Files([]), config)
+    def test_every_profile_and_template_is_generated_and_navigable(self):
+        pages, sidebars, counts = site.generate()
+        nav = json.dumps(sidebars)
         for entry in tk.catalog():
-            generated = files.get_file_from_path(f'{entry.kind}s/{entry.name}.md')
-            self.assertIsNotNone(generated, entry.path)
-            self.assertEqual(generated.inclusion, InclusionLevel.INCLUDED)
+            path = f'{entry.kind}s/{entry.name}.md'
+            self.assertIn(path, pages)
+            self.assertIn(path.removesuffix('.md'), nav)
+            text = pages[path]
+            self.assertIn(f'custom_edit_url: "https://github.com/atstaeff/ai-agents/edit/main/{entry.path}"', text)
         for template in ('templates/architecture/decision.md', 'templates/delivery/work-item.md',
-                         'templates/project/project-brief.md', 'templates/quality/verification.md'):
-            self.assertEqual(files.get_file_from_path(template).inclusion, InclusionLevel.INCLUDED)
-        nav = json.dumps(config['nav'])
-        for entry in tk.catalog():
-            self.assertIn(f'{entry.kind}s/{entry.name}.md', nav)
+                         'templates/project/project-brief.md', 'templates/quality/verification.md',
+                         'templates/delivery/assignment.md', 'templates/knowledge/concept.md',
+                         'templates/knowledge/decision.md', 'templates/quality/incident-review.md',
+                         'getting-started/lean-project.md', 'operating-model/lean-example.md'):
+            self.assertIn(template, pages)
+            self.assertIn(template.removesuffix('.md'), nav)
+        self.assertNotIn('index.md', pages)  # Root route is the homepage component.

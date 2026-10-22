@@ -1,0 +1,52 @@
+---
+title: ADR-0002 Required project manifest and contribution routing
+knowledge_id: ADR-0002
+slug: decisions/adr-0002
+status: deprecated
+owner: repository-owner
+relations: {}
+sources:
+  - https://github.com/atstaeff/ai-agents/pull/8
+---
+
+# ADR-0002: Required project manifest and contribution routing
+
+Historical proposal, deprecated by the requested AGENTS.md direction. The original
+reasoning below is retained; it does not describe the current entry contract. See
+[ADR-0003](0003-agents-first-project-entry.md). Neither proposal is presented as accepted.
+
+## Context
+
+The project entry must identify vision, goals, boundaries, owners, key links, decisions
+and the AI process. Free-form Markdown alone can silently omit a required area. Teams
+also need to keep their existing document names and knowledge/decision directories.
+Reusable procedures copied into every project would drift and grow session context.
+
+## Proposed decision and alternatives
+
+Require one project.yaml at the repository root. Version 2 uses one flat list of explicit references
+for vision, stakeholders, scope, process, work, knowledge and decisions. Goals and
+success signals stay with vision. Stakeholders covers affected groups and decision/acceptance
+roles; scope names included responsibilities, exclusions and material constraints. Each value
+is a path, URL or named work/review home; code_review is optional.
+Check required keys, local Markdown files/sections and recognizable unfilled prompts.
+A schema-only setup check must not claim source completeness. Preserve version-1 reading
+for existing tooling maps and reject competing conventional configurations.
+
+All Markdown names and content directories remain project choices. The starter uses
+PROJECT.md and CONTRIBUTING.md as small defaults; several required references may point
+to different sections of the same document. Host instructions load the manifest, the
+relevant project sources and selected skills. Skills own reusable technique; the manifest
+owns source locations. Commands, method and action policy stay in the contribution guide
+and existing CI, avoiding a second process configuration. Existing workspace/ local-store paths remain an
+optional tool convention, not a required project hierarchy.
+
+## Consequences and status
+
+Required areas become visible and mechanically checkable without forcing separate
+documents for each area or a folder rename. Source checks cannot establish truth, sufficient quality, approval,
+implementation or remote access. Required local entries may link authoritative external
+detail. Project review and actual checks still establish those facts.
+
+This proposal is implemented for review in draft PR #8. It refines ADR-0001's entry
+placement and configuration without claiming owner acceptance, merge or deployment.
