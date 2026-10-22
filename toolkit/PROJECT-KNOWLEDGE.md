@@ -6,9 +6,10 @@ chat history is neither the authoritative record nor a required onboarding packa
 
 ## Start with a small entry
 
-`AGENTS.md` points to the project config, PROJECT.md and CONTRIBUTING.md (or existing
-equivalents). The project entry states the product outcome, important boundaries and relevant source links. The
-YAML maps actual repositories, tracker and knowledge homes. Keep these short and current.
+AGENTS.md links project context, process, work/review homes, knowledge and decisions.
+PROJECT.md and CONTRIBUTING.md are useful defaults; existing files or explicitly adopted
+web sources are valid equivalents. Project facts cover vision/goals, stakeholders, scope
+and authoritative source ownership. No YAML manifest or workspace hierarchy is required.
 
 Use the [context recovery contract](CONTEXT-RECOVERY.md) for interruptions. This guide
 adds the retrieval and maintenance choices needed as the project grows.
@@ -138,7 +139,7 @@ gaps. A routine cleanup should not rewrite human history.
 
 | Situation | Add when needed | Evidence it helps |
 | --- | --- | --- |
-| First increment | Entry, real config, first criteria and significant decisions | Fresh session finds the next authorized step |
+| First increment | AGENTS.md, real source links, first criteria and significant decisions | Fresh session finds the next authorized step |
 | Several contributors | Domain entry pages, ownership, repeatable checks | Fewer repeated questions and conflicting edits |
 | Several repositories | Stable repo names, cross-repo links and integration order | No missing dependency or partially claimed feature |
 | Concurrent agents | Disjoint scopes, shared claim/recovery mechanism and integrator | Contention/retry cases are exercised |

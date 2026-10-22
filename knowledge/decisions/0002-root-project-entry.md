@@ -2,7 +2,7 @@
 title: ADR-0002 Required project manifest and contribution routing
 knowledge_id: ADR-0002
 slug: decisions/adr-0002
-status: proposed
+status: deprecated
 owner: repository-owner
 relations: {}
 sources:
@@ -10,6 +10,10 @@ sources:
 ---
 
 # ADR-0002: Required project manifest and contribution routing
+
+Historical proposal, deprecated by the requested AGENTS.md direction. The original
+reasoning below is retained; it does not describe the current entry contract. See
+[ADR-0003](0003-agents-first-project-entry.md). Neither proposal is presented as accepted.
 
 ## Context
 

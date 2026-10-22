@@ -1,8 +1,12 @@
-# Project entry moved
+# Optional local workbench storage
 
-Read [PROJECT.md](../PROJECT.md) at the repository root for vision, goals, boundaries,
-owners, key sources and the AI working process. This compatibility pointer keeps older
-links useful; project context is maintained only in that entry.
+The project entry is [AGENTS.md](../AGENTS.md). Project facts are in
+[PROJECT.md](../PROJECT.md); current knowledge and decisions are in
+[knowledge/](../knowledge/README.md).
 
-This directory holds [project manifest](../project.yaml), selected shared project records
-and optional ignored local work. Follow [CONTRIBUTING.md](../CONTRIBUTING.md) before contributing.
+This directory remains only for the optional toolkit's ignored work/, archive/,
+generated/ and exports/ storage. No workspace folder is needed for project adoption.
+The old context and decision links have moved to the explicit knowledge index.
+
+Existing tracked work records are retained as historical compatibility material; new
+local records remain ignored by default. Neither set is included in website publication.

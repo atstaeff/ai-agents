@@ -5,26 +5,30 @@ Use AI to explore, plan, build, verify and maintain that memory within actual pe
 People own priorities, consequential decisions and acceptance. This is a practical default
 built from established practices, not a claim of universally optimal productivity.
 
-## Start with one manifest and small linked entries
+## Start with AGENTS.md and authoritative project sources
 
-Inspect the [project-kernel example](examples/project-kernel.md) and use the
-[lean project starter](../templates/lean-project/README.md). Merge it into existing
-conventions; do not replace customer content or copy the larger fictional example.
+Use [AGENTS.md](../AGENTS.md) as the collaboration entry. It names where to read vision,
+goals, stakeholders, scope, process, work, current knowledge and decisions, and defines
+ownership, parallel-work, verification and handoff rules. Read the [worked example](examples/project-kernel.md)
+and adapt the [team starter](../templates/project-starter/README.md) or another
+[instruction template](../templates/agent-instructions/README.md).
 
 | Entry | Maintain here |
 | --- | --- |
-| `AGENTS.md` | Where a session starts and the few rules it must follow |
-| `PROJECT.md` | Vision and goals, stakeholders/decision roles, scope and key source links |
-| `CONTRIBUTING.md` | Project working process and links to relevant reusable skills |
-| `project.yaml` | Four entry references: vision, stakeholders, scope and process; work and memory locations |
+| AGENTS.md | Source navigation and the collaboration contract |
+| PROJECT.md or equivalent | Vision/goals, affected groups, decision roles, scope and source map |
+| CONTRIBUTING.md or adopted central process | Workflow, actual tools/commands, relevant skills and quality gates |
+| Project-owned knowledge and decisions | Current behavior and preserved significant rationale |
 
-Only root project.yaml is fixed; other files and folders are project choices.
-The starter keeps owner roles inline in PROJECT.md and the working agreement in
-CONTRIBUTING.md. Those guides link details and selected skills; avoid copying reusable
-procedures into every project. Separate role/policy pages become useful when they outgrow
-the entries. Reuse existing equivalent documents rather than adding duplicate ones.
-The starter's local configuration works without a tracker; adapt the map to the project's real GitHub/Jira
-locations before tracked delivery. The YAML is a map, not an orchestrator or permission grant.
+Sources can be local Markdown or accessible web documentation. Read the explicitly adopted
+process, pin shared policy to a verified source revision or maintained version and record
+what was loaded. Keep each fact at its authoritative source. No YAML manifest or workspace
+folder is required. Verify instruction discovery and remote retrieval in the chosen host.
+
+Docusaurus publishes the same selected Markdown as a reading view. Project facts stay
+with the project; the central engineering site owns reusable methods and templates.
+See the [project concept](PROJECT-CONCEPT.md) for versioning, unavailable-source handling,
+publication boundaries and compatibility with existing tools.
 
 An [expertise catalog](CATALOG-GUIDE.md) supplies reusable skills. Project facts stay in
 the project. Load the narrowest useful skill; another profile need not mean another session.
@@ -65,11 +69,18 @@ Use a few tasks only when coordination needs them. On material progress or a blo
 update the same assignment. At a useful review point, link delivered outcomes, unresolved
 risks and the next choice there; a separate iteration report or recurring meeting is optional.
 
-One session is the default. Add specialists only for a bounded uncertainty and through
-supported, authorized host capabilities. Give disjoint file/action scopes, selected source
-revisions, acceptance and expected evidence; name an integrator. Concurrent writers need
-an effective shared claim and recovery mechanism. This toolkit implements no distributed
-lock, tracker synchronization, model runner or automatic multi-session coordination.
+For each assignment, identify the accountable human, active writer, bounded change scope,
+dependencies, required reviewer and integration owner. One person can hold several roles.
+Use independent branches and working directories for parallel writers. Agree changes to
+shared contracts before dependent implementation. Coordinate overlapping scopes through
+an effective shared claim and recovery mechanism; without it, serialize overlapping writes.
+An assignee or Git branch is not a distributed lock.
+
+Select specialists for bounded uncertainties through supported authorized host capabilities.
+Keep integration order visible, integrate reviewable increments frequently within actual
+permissions, and verify the combined result. For several repositories, record a tested
+revision per repository and cross-repository acceptance. See the [collaboration templates](../templates/agent-instructions/README.md).
+This toolkit implements no distributed lock, tracker synchronization or model orchestration.
 
 ## Keep a small, connected memory
 
@@ -133,7 +144,7 @@ a role label, template or YAML file grants no authorization.
 
 Start with the [lean worked example](examples/lean-project.md). For more elaborate customer
 coordination, use [the worked assignment](../templates/customer-workspace/examples/issue-42.md)
-and the [detailed workspace concept](WORKSPACE-CONCEPT.md). Observe reconstruction effort,
+and the [detailed project concept](PROJECT-CONCEPT.md). Observe reconstruction effort,
 rework, review time and useful outcomes on real assignments before adding automation.
 
 Practices behind this default include [DORA small batches](https://dora.dev/capabilities/working-in-small-batches/),

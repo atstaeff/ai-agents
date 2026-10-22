@@ -151,6 +151,9 @@ def check(root: Path = ROOT) -> list[str]:
         errors.append(str(exc))
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
     paths += list((root / "toolkit").rglob("*.md")) + list((root / "templates").rglob("*.md"))
+    paths += list((root / "knowledge").rglob("*.md"))
+    if (root / "PROJECT.md").is_file():
+        paths.append(root / "PROJECT.md")
     for directory, folders, filenames in os.walk(root / 'workspace'):
         if Path(directory) == root / 'workspace':
             folders[:] = [name for name in folders if name not in {'work', 'archive', 'generated', 'exports'}]

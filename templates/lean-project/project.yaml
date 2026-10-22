@@ -1,9 +1,0 @@
-schema_version: 2
-project_name: Lean project
-vision: PROJECT.md#vision-and-goals
-stakeholders: PROJECT.md#responsibilities
-scope: PROJECT.md#scope-and-boundaries
-process: CONTRIBUTING.md
-work_tracking: workspace/work/
-knowledge_base: PROJECT.md
-decision_records: PROJECT.md

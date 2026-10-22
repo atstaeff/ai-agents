@@ -13,9 +13,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
-    'getting-started/lean-project.md': 'templates/lean-project/README.md',
-    'lean-project/workspace.md': 'templates/lean-project/PROJECT.md',
-    'lean-project/contributing.md': 'templates/lean-project/CONTRIBUTING.md',
+    'getting-started/agents-observation.md': 'toolkit/evaluations/agents-entry-20261022.md',
+    'project/agents.md': 'AGENTS.md',
+    'project/stakeholders.md': 'knowledge/stakeholders.md',
+    'project/working-agreement.md': 'knowledge/working-agreement.md',
+    'knowledge/index.md': 'knowledge/README.md',
+    'knowledge/architecture.md': 'knowledge/architecture.md',
+    'knowledge/decisions/index.md': 'knowledge/decisions/README.md',
+    'knowledge/decisions/adr-0001.md': 'knowledge/decisions/0001-project-workspace.md',
+    'knowledge/decisions/adr-0002.md': 'knowledge/decisions/0002-root-project-entry.md',
+    'knowledge/decisions/adr-0003.md': 'knowledge/decisions/0003-agents-first-project-entry.md',
+    'knowledge/iterations.md': 'knowledge/iterations/README.md',
+    'getting-started/agents-templates.md': 'templates/agent-instructions/README.md',
+    'getting-started/lean-project.md': 'templates/project-starter/README.md',
+    'lean-project/workspace.md': 'templates/project-starter/PROJECT.md',
+    'lean-project/contributing.md': 'templates/project-starter/CONTRIBUTING.md',
     'operating-model/lean-example.md': 'toolkit/examples/lean-project.md',
     'operating-model/project-kernel.md': 'toolkit/examples/project-kernel.md',
     'getting-started/local-preview.md': 'website/README.md',
@@ -27,10 +39,10 @@ DOCUMENTS = {
     'templates/index.md': 'templates/README.md',
     'getting-started/repository-workflow.md': 'toolkit/REPOSITORY-WORKFLOW.md',
     'getting-started/workspace-pilot.md': 'toolkit/evaluations/workspace-pilot-20261022.md',
-    'getting-started/adopt-workspace.md': 'toolkit/ADOPT-WORKSPACE.md',
+    'getting-started/adopt-workspace.md': 'toolkit/ADOPT-PROJECT.md',
     'customer-workspace/setup-prompt.md': 'templates/customer-workspace/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',
-    'workspace-concept.md': 'toolkit/WORKSPACE-CONCEPT.md',
+    'workspace-concept.md': 'toolkit/PROJECT-CONCEPT.md',
     'repository-workspace.md': 'PROJECT.md',
     'getting-started/workflow.md': 'toolkit/WORKFLOW.md',
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
@@ -219,6 +231,8 @@ def sidebar_items(items):
             if isinstance(value, list):
                 result.append({'type': 'category', 'label': label, 'collapsed': True,
                                'items': sidebar_items(value)})
+            elif value.startswith(('https://', 'http://')):
+                result.append({'type': 'link', 'href': value, 'label': label})
             else:
                 result.append({'type': 'doc', 'id': document_id(value), 'label': label})
     return result

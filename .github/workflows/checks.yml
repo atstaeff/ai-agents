@@ -42,8 +42,6 @@ jobs:
           uv sync --locked --group validation
       - name: Validate optional customer workspace helpers
         run: uv run --locked --group validation python -m unittest discover -s tests -v
-      - name: Validate required project manifest and source sections
-        run: uv run --locked --group validation python tools/project_config.py --config project.yaml
       - name: Check customer Docusaurus options syntax
         run: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
       - name: Install locked website dependencies

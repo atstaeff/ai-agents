@@ -27,24 +27,11 @@ class ProjectConfigTests(unittest.TestCase):
         self.assertEqual(jira['knowledge']['system'], 'confluence')
         self.assertEqual(jira['decisions']['system'], 'repository')
 
-    def test_schema_and_repository_config_are_valid(self):
+    def test_schema_and_optional_flat_manifest_are_valid(self):
         cfg.Draft202012Validator.check_schema(cfg.SCHEMA)
-        data = cfg.load(ROOT / 'project.yaml')
-        self.assertEqual(data['project_name'], 'AI Agents')
-        self.assertEqual(data['work_tracking'], 'https://github.com/atstaeff/ai-agents/issues')
-        for key in ('process', 'stakeholders'):
-            self.assertTrue((ROOT / data[key]).is_file())
-
-    def test_lean_starter_resolves_project_contribution_owners_and_knowledge(self):
-        starter = ROOT / 'templates/lean-project'
-        data = cfg.load(starter/'project.yaml', check_references=False)
-        self.assertEqual(data['work_tracking'], 'workspace/work/')
-        for key, expected in (('process', 'CONTRIBUTING.md'), ('stakeholders', 'PROJECT.md#responsibilities')):
-            self.assertEqual(data[key], expected)
-            self.assertTrue((starter/data[key].split('#')[0]).is_file())
-        for key in ('knowledge_base', 'decision_records'):
-            self.assertTrue((starter/data[key]).is_file())
-        self.assertNotIn('commands', data)  # No fabricated setup/test commands.
+        with tempfile.TemporaryDirectory() as folder:
+            path, expected = self.manifest_fixture(Path(folder))
+            self.assertEqual(cfg.load(path), expected)
 
     def manifest_fixture(self, root):
         paths = {
@@ -69,8 +56,8 @@ class ProjectConfigTests(unittest.TestCase):
         path.write_text(cfg.yaml.safe_dump(data))
         return path, data
 
-    def test_project_kernel_example_uses_the_complete_explicit_contract(self):
-        source = (ROOT/'toolkit/examples/project-kernel.md').read_text()
+    def test_optional_legacy_example_uses_the_complete_explicit_contract(self):
+        source = (ROOT/'toolkit/PROJECT-CONFIG.md').read_text()
         snippet = source.split('```yaml\n', 1)[1].split('```', 1)[0]
         data = cfg.validate(cfg.yaml.load(snippet, Loader=cfg.UniqueLoader))
         self.assertEqual(data['schema_version'], 2)
@@ -139,16 +126,19 @@ class ProjectConfigTests(unittest.TestCase):
             sections = cfg.markdown_sections((root/'process/how.md').read_text())
             self.assertNotIn('fake-heading', sections)
 
-    def test_unfilled_starter_passes_structure_only_but_not_completeness(self):
-        path = ROOT/'templates/lean-project/project.yaml'
-        with self.assertRaisesRegex(ValueError, 'placeholder'):
-            cfg.load(path)
-        with patch('sys.stdout', new_callable=io.StringIO) as out:
-            self.assertEqual(cfg.main(['--config', str(path), '--structure-only']), 0)
-        self.assertIn('completeness not established', out.getvalue())
-        with patch('sys.stderr', new_callable=io.StringIO) as err:
-            self.assertEqual(cfg.main(['--config', str(path)]), 1)
-        self.assertIn('vision', err.getvalue())
+    def test_unfilled_legacy_manifest_passes_structure_only_but_not_completeness(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            path, _ = self.manifest_fixture(root)
+            (root/'notes/purpose.md').write_text('# Product\n\n## Vision\nTBD\n\n## Boundaries\nLocal fixture only.\n')
+            with self.assertRaisesRegex(ValueError, 'placeholder'):
+                cfg.load(path)
+            with patch('sys.stdout', new_callable=io.StringIO) as out:
+                self.assertEqual(cfg.main(['--config', str(path), '--structure-only']), 0)
+            self.assertIn('completeness not established', out.getvalue())
+            with patch('sys.stderr', new_callable=io.StringIO) as err:
+                self.assertEqual(cfg.main(['--config', str(path)]), 1)
+            self.assertIn('vision', err.getvalue())
 
     def test_manifest_checks_are_read_only_and_never_execute_markdown_commands(self):
         with tempfile.TemporaryDirectory() as folder:

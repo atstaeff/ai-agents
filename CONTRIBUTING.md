@@ -10,8 +10,8 @@ instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 ## Working process and skills
 
 Read [PROJECT.md](PROJECT.md) for vision, goals, boundaries, responsibilities and current
-sources. The [working agreement](workspace/working-agreement.md) defines acceptance
-and action boundaries; the [manifest](project.yaml) maps the authoritative source locations. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
+sources. The [working agreement](knowledge/working-agreement.md) defines acceptance
+and action boundaries; [AGENTS.md](AGENTS.md) and PROJECT.md link the authoritative sources. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
 Keep the live plan in the assigned work home. Clear small corrections need no extra record.
 
 | Need | Load when relevant |
@@ -29,6 +29,19 @@ execute a skill; use the host's installed catalog or read its canonical source e
 Skills provide reusable technique; project rules and current instructions determine
 the assignment, authoritative tools and permissions. Use available integrations for those
 tools. Report missing access and prepare an unsent update; do not create a mirror tracker.
+
+## Team ownership and integration
+
+Keep one assigned issue/current PR with outcome, criteria, live plan, accountable human,
+active writer, bounded scope, dependencies and integration responsibility. Use separate
+branches and working directories for independent writers. Agree shared contracts first;
+coordinate overlapping edits through the adopted claim/handover mechanism. Serialize
+an overlapping scope when no effective shared mechanism exists. Preserve others' work.
+
+Keep increments reviewable and integration order visible. Run checks on the combined
+revision; individual green branches do not establish an integrated feature. Reassess
+required review after material changes. Before handing over, save revisions, result,
+evidence/limits, blockers, pending writes and one next action at the same work home.
 
 ## Agents and skills
 
@@ -55,8 +68,8 @@ tools. Report missing access and prepare an unsent update; do not create a mirro
 
 Use the [repository runbook](toolkit/REPOSITORY-WORKFLOW.md) for setup, startup and
 verification commands. The [CI workflow](.github/workflows/checks.yml) defines required
-catalog/link, test, HTTP replay, manifest, JavaScript/options and documentation checks.
-Keep those commands and action rules in their existing sources, not duplicated in YAML.
+catalog/link, test, HTTP replay, legacy YAML, JavaScript/options and documentation checks.
+Keep those commands and action rules in their existing sources, linked from the project entry.
 
 ## Toolkit and documentation
 

@@ -25,7 +25,9 @@ authoritative sources. Keep this map short; expand detail only when useful.
 ## Key sources and links
 
 - [Contribution process](CONTRIBUTING.md): working method, AI behavior and skill selection.
-- [Tooling map](project.yaml): authoritative work, review and knowledge locations.
+- Work/priority home: [actual issue tracker or assigned work-item location].
+- Code/review home: [actual repositories and review system].
+- Adopted central process version: [source revision/version, or local process at this checkout].
 - Product/architecture/contracts: [link actual current sources here when they exist].
 - Current assignment: resolve it from the request and configured work home; keep its live plan there.
 
@@ -33,11 +35,14 @@ authoritative sources. Keep this map short; expand detail only when useful.
 
 Follow [CONTRIBUTING.md](CONTRIBUTING.md). The default is clarify, short plan, build,
 verify, then required acceptance/integration and knowledge retention. The guide links
-reusable skills and actual commands; the manifest supplies project source locations.
+reusable skills and actual commands; AGENTS.md supplies source navigation and collaboration rules.
 Small fixes need no phase documents. Record an adopted alternative method and its
 authoritative instructions in the contribution guide.
 
 ## Current knowledge and decisions
+
+Knowledge home: [actual local index or accessible wiki URL].
+Decision home: [actual decision index, initially this section].
 
 Link affected current knowledge and accepted decisions here. Mark proposed or unverified
 behavior explicitly. A significant decision can start inline: ID/title, status, owner,

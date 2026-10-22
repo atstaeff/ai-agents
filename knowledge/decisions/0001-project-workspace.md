@@ -2,13 +2,17 @@
 title: ADR-0001 One project workspace
 knowledge_id: ADR-0001
 slug: decisions/adr-0001
-status: proposed
+status: deprecated
 owner: repository-owner
 relations: {}
 sources: []
 ---
 
 # ADR-0001: One project workspace
+
+Historical proposal, deprecated by the requested AGENTS.md direction. The original
+reasoning below is retained; it does not describe the current entry contract. See
+[ADR-0003](0003-agents-first-project-entry.md). Neither proposal is presented as accepted.
 
 ## Context
 

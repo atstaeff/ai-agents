@@ -5,15 +5,19 @@ description: "Establish how to contribute to an unfamiliar repository or after c
 
 # Repository Contribution
 
-1. Read applicable agent instructions and root `project.yaml`, then its declared
-   context, owner and contribution references. For legacy projects, follow the
-   explicitly declared equivalent entry and configuration. Locate the vision, current goal,
-   scope boundaries, decision owners and required working process. Follow current
-   instructions and local policy; do not replace them with a generic catalog workflow.
-2. Read root `project.yaml` (or the explicitly declared legacy configuration). Resolve
-   work, review, knowledge and decision homes from that map.
-   Inspect actual setup/check commands, affected source and CI. Locate existing work
-   before creating records. Keep project facts at their source, not in this skill.
+1. Read applicable AGENTS.md instructions and their project/context/process references.
+   Locate vision/current goals, scope, affected stakeholders, decision/acceptance roles
+   and the adopted workflow. Follow local policy and current host instructions. Existing
+   equivalent entries remain valid; do not create a YAML manifest or project skeleton.
+   Read explicitly adopted web sources when accessible, record their source revision/version
+   when consequential, and name required unavailable URLs and affected work. Use only a
+   declared fallback with known provenance; remembered policy is not a fresh source read.
+2. Resolve actual work, review, knowledge and decision homes from those instructions and
+   linked project pages. Read optional legacy configuration only when the project declares
+   it authoritative. Inspect actual setup/check commands, affected source, CI and existing
+   work before creating records. Identify the accountable owner, active writer, change
+   scope, dependencies and integration responsibility. Coordinate overlapping writes and
+   shared interfaces before parallel implementation; isolate independent working directories.
 3. Select only the expertise needed for the assignment. Use
    [product-discovery](../product-discovery/SKILL.md) for uncertain value/scope,
    [work-management](../work-management/SKILL.md) for a larger assignment,

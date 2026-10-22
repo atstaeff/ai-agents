@@ -6,8 +6,8 @@ on:
     paths:
       - 'website/**'
       - 'PROJECT.md'
-      - 'project.yaml'
-      - 'workspace/**'
+      - 'AGENTS.md'
+      - 'knowledge/**'
       - 'agents/**'
       - 'skills/**'
       - 'toolkit/**'

@@ -1,8 +1,8 @@
 # Repository working agreement
 
 Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
-[shared workflow](../toolkit/WORKFLOW.md). The [project manifest](../project.yaml) maps
-source locations; it does not grant permissions or install integrations.
+[shared workflow](../toolkit/WORKFLOW.md). AGENTS.md and the project map link the
+authoritative work, review, knowledge and decision sources.
 
 Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.
 Keep the existing separate role/agreement pages because this repository already owns
@@ -32,4 +32,4 @@ stay out of website content and public commits unless explicitly reviewed for di
 
 No GitHub Project fields or coordination labels are configured for this repository.
 The extended starter shows those mappings; adopt actual board identifiers and labels
-with the owner before adding them here. YAML declarations do not create them remotely.
+with the owner before adding them here. A documentation link does not create them remotely.

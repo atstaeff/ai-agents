@@ -1,7 +1,6 @@
 # Contributing
 
-Read [AGENTS.md](AGENTS.md), [PROJECT.md](PROJECT.md) and the
-[tooling map](project.yaml). This guide describes the project's working process and agreement
+Read [AGENTS.md](AGENTS.md) and [PROJECT.md](PROJECT.md). This guide describes the project's working process and agreement
 for people and AI. Adapt it to existing project policy rather than adding a second process.
 
 ## Working process and skills
@@ -28,7 +27,7 @@ does not install a skill or start an agent. Do not load the whole catalog for ea
 Use actual commands from the existing contributing instructions or CI; record useful
 project commands in this guide. If
 unknown, discover/report them before dependent work. Resolve integrations from the
-configured information owners and available host tools; report missing access and
+information owners linked from AGENTS.md and PROJECT.md and available host tools; report missing access and
 prepare an unsent update rather than creating a mirror tracker.
 
 Start with one active increment. Preserve intervening edits and human feedback.

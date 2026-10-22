@@ -1,68 +1,118 @@
-# A small project kernel
+# AGENTS.md project kernel: a worked example
 
-The kernel is one filled project.yaml at the repository root. It locates purpose,
-responsibilities, working instructions, tools and durable knowledge. All linked document
-names and folders are project choices. Several fields may point to one document.
+The kernel is an instruction entry linking owned sources. This fictional customer portal
+example shows a complete route; substitute real files, URLs, roles and checks. It asserts
+no actual project access, approval, implementation or published result.
 
-## Complete illustrative manifest
+## AGENTS.md entry
 
-This is a fictional GitHub project. Replace its name, addresses and source references;
-the snippet describes no existing connected project and does not establish source readiness.
+```markdown
+# Customer Portal collaboration contract
 
-```yaml
-schema_version: 2
-project_name: Customer Portal
-vision: product/overview.md#vision-and-goals
-stakeholders: team/stakeholders.md
-scope: product/overview.md#scope-and-boundaries
-process: CONTRIBUTING.md
-work_tracking: https://github.com/example/customer-portal/issues
-code_review: https://github.com/example/customer-portal/pulls
-knowledge_base: knowledge/
-decision_records: architecture/decisions/
+## Read these sources
+
+- Vision and goals: product/overview.md#vision-and-goals
+- Stakeholders and decision rights: team/roles.md
+- Scope and constraints: product/overview.md#scope
+- Process and checks: CONTRIBUTING.md
+- Work: the assigned issue in our actual project tracker
+- Review: the linked pull request in our actual repository
+- Current knowledge: knowledge/README.md
+- Significant decisions: knowledge/decisions/README.md
+
+Read the source bodies and affected contracts before substantial changes.
+Follow CONTRIBUTING.md; load only relevant skill bodies and references.
+
+## Coordinate work
+
+Keep one live plan at the assigned work item. Identify the accountable human,
+active writer, bounded scope, dependencies and integration owner.
+Use separate branches/working directories. Agree shared contracts and coordinate
+any overlapping scopes through the project's adopted claim/handover mechanism.
+Preserve other work and reread shared records before updates.
+
+## Deliver, verify and retain
+
+Proceed with routine reversible work in scope. Resolve consequential conflicts
+with the responsible owner. Use actual project commands and verify behavior
+against observable acceptance. Verify the combined result after integration.
+Record evidence against the tested revision and follow required review/action policy.
+Update affected current knowledge and preserve significant decision reasons.
+Before pausing, save result, revisions, evidence/limits, blockers, pending writes
+and one concrete next action in the same assignment.
 ```
 
-The schema version identifies the manifest format, not the product release.
-The four context entry points are vision, stakeholders, scope and process. Goals stay
-with vision. Work, knowledge and decisions supply the operational and memory locations.
-Each value is one path or URL. code_review is optional; the contribution guide defines
-the method, communication, commands, checks and action boundaries.
-Only project.yaml is a fixed filename. For example, process could instead
-point to ways-of-working/development.md without changing an agent or skill.
+The conventional filename is AGENTS.md. Other document names and directories are choices.
+Use the [remote-documentation variant](../../templates/agent-instructions/remote-docs/AGENTS.md)
+when a web source owns the process or facts; pin the adopted policy revision/version.
+A path or URL neither grants access nor guarantees loading; explicitly read its content.
 
-## What the referenced documents contain
+## Referenced project content
 
 | Source | Smallest useful content |
 | --- | --- |
-| Vision and goals | Intended users, problem, useful long-term change, current observable outcomes and success signals |
-| Stakeholders | Affected users/groups, priority/acceptance owner, technical decision owner and contributor/reviewer roles |
-| Scope | Project responsibility, included work, explicit exclusions and material constraints |
-| Contribution guide | Clarify/plan/build/verify/integrate flow, ready/done rules, required review, relevant skills and verification commands |
-| Knowledge base | Current contracts, architecture and operating knowledge, maintained from evidence |
-| Decision records | Significant choices, alternatives, reasons, status, owner and replacement links |
+| Vision and goals | Users/problem, desired future, current outcome and success signal |
+| Stakeholders | Affected groups, priority owner, technical decision owner, acceptance/review roles |
+| Scope | Included system responsibility, exclusions and material constraints |
+| Process | Clarify/plan/build/verify/integrate, tools/checks, relevant skills and action boundaries |
+| Work item | Outcome/criteria, current plan, owner/writer scope, dependencies, feedback and handoff |
+| Knowledge index | Links to current contracts, architecture, operations and relevant decision records |
 
-## How a team and AI use it
+These sections may share a file. PROJECT.md and CONTRIBUTING.md in the
+[starter](../../templates/project-starter/README.md) are adaptable defaults.
 
-1. The host's agent instructions point to project.yaml. A session reads its required
-   context, responsibilities and contribution guide, then the affected project sources.
-2. The contribution guide selects the narrowest relevant skill: product-discovery for
-   uncertain value/scope, work-management for coordination, a language/engineering skill
-   for implementation, testing and pr-crafting for verification and review.
-3. The assigned issue owns the live plan, acceptance, progress, feedback and handoff.
-   The linked PR owns implementation and review evidence. The manifest stays stable;
-   it does not become a per-session task list.
-4. Each increment has an accountable owner. If several people/sessions work concurrently,
-   give them bounded scopes, effective shared claims and a named integrator. A YAML entry
-   alone provides no lock or delegation capability.
-5. Record significant rationale at decision_records and maintain affected knowledge_base
-   sources. Before a pause, save revisions, evidence/limits, blockers, pending writes
-   and one next action in the same assignment. The next session verifies those sources.
+## Knowledge and decisions in practice
 
-Run the normal [manifest validator](../PROJECT-CONFIG.md#validate-before-adoption) in CI.
-It rejects missing required fields, invalid types, conflicting conventional maps, and
-missing/empty/obviously unfilled required local source sections. Review the content and
-actual tool access separately. For this illustrative snippet, referenced files and remote
-locations still need to be supplied by the adopting project.
+For a change that makes repeated uploads safe, use these example homes:
 
-Use the [lean starter](../../templates/lean-project/README.md) for small adaptable source
-files, or inspect [this repository's filled manifest](../../project.yaml) as a real example.
+| Location | What belongs there |
+| --- | --- |
+| Assigned issue | Acceptance: retry returns the same reference; current plan, progress, feedback and next action |
+| knowledge/decisions/ADR-0001-upload-idempotency.md | Why an idempotency key was chosen, alternatives, concurrency consequences, owner and decision status |
+| knowledge/current/uploads.md | Actual upload contract, key scope/lifetime, failure behavior, operating limits and verified source revision |
+| knowledge/README.md | Links to the upload contract and decision; concise topic navigation |
+| Linked PR | Implementation, criterion-linked checks, tested revision and actual review |
+
+An illustrative decision can start as:
+
+```markdown
+# ADR-0001: Scope upload idempotency by account and key
+
+Status: proposed. Owner: product and technical decision owner.
+Scope: upload retries in the current portal increment.
+
+## Starting situation
+Network retries can create duplicate documents. Concurrent retries must not race.
+
+## Insight
+Client-only deduplication misses concurrent requests and restarts.
+A server-side claim keyed by account and idempotency key can preserve one result,
+but needs atomic acquisition, retention rules and recovery after a partial write.
+
+## Proposed decision and consequences
+Use the server-side claim if the owner accepts its contract and operating cost.
+Define payload-conflict behavior, key lifetime and recovery before implementation.
+Link the work item and current upload contract. Record actual acceptance separately.
+```
+
+After accepted and integrated implementation, update the current upload page from actual
+code/check evidence. Preserve the accepted rationale. A changed key-scope policy gets an
+explicit decision and replacement links; avoid rewriting old reasons to match new code.
+The old plan remains historical in its completed issue. An incident review links owned
+follow-up work and affected current knowledge rather than becoming another task tracker.
+
+## Parallel delivery example
+
+One contributor owns the API implementation; another owns the client behavior. They agree
+the request, response, conflict and retry contract before implementation. Use separate
+working directories and a shared assignment/dependency view. Give a shared contract file
+one coordinated writer at a time. The integrator verifies the API/client interaction and
+failure behavior on the combined revision before claiming the feature complete.
+
+## Publication and recovery
+
+Docusaurus publishes explicitly selected source pages as Project, Ways of Working,
+Knowledge and Decisions. Source Markdown is maintained once; private/local work is
+excluded. The website can lag an unmerged branch. Before a session switch, save the work
+item's bounded handoff and source revisions. A new session checks current sources and
+reads only relevant history. See the [knowledge guide](../PROJECT-KNOWLEDGE.md).

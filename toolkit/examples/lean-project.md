@@ -2,7 +2,7 @@
 
 This is a fictional walkthrough, not an implemented product, actual approval or passing
 test report. It shows where information belongs and what another session should recover.
-Use the [lean project starter](../../templates/lean-project/README.md) and
+Use the [lean project starter](../../templates/project-starter/README.md) and
 [operating model](../OPERATING-MODEL.md); skip steps that add no useful information.
 
 ## 1. Establish the project once
@@ -12,11 +12,11 @@ fewer duplicate documents when an upload is retried. The actual setup/check comm
 already live in the project's contributing guide.
 
 The team merges the agent entry and fills PROJECT.md with that outcome, customer
-isolation boundaries, and the owner who accepts product/technical choices. One YAML map
-selects the existing Jira project, GitHub reviews and repository knowledge. Working rules
-and skill links stay in CONTRIBUTING.md; decision roles stay inline in PROJECT.md.
-No new stakeholder page or second GitHub issue is created.
-The initial lean starter's local work mapping is replaced, not retained as a mirror.
+isolation boundaries, and the owner who accepts product/technical choices. AGENTS.md
+links those facts, the adopted process, existing Jira work, GitHub reviews and repository
+knowledge/decision homes. Working rules and skill selection stay in CONTRIBUTING.md or
+the explicitly adopted central process. No YAML is needed. No second GitHub issue or
+local plan is created for the Jira assignment.
 
 ## 2. Capture an opportunity
 

@@ -1,73 +1,68 @@
 # AI Agents project
 
-This is the project map for contributors and AI sessions. Start here for purpose,
-boundaries and owners; follow [CONTRIBUTING.md](CONTRIBUTING.md) for how to work.
+Start at [AGENTS.md](AGENTS.md) for the collaboration contract and source navigation.
+This document owns project facts. [CONTRIBUTING.md](CONTRIBUTING.md) defines how to work.
 
 ## Vision and goals
 
-Help a small accountable team build and maintain useful products with AI through
-portable expertise, shared project knowledge and verifiable engineering.
+Help accountable teams build and maintain useful products with AI through portable
+expertise, shared project knowledge and verifiable engineering.
 
-- Maintain an English catalog of focused agents and skills across engineering disciplines.
-- Make goals, significant decisions and current knowledge recoverable across sessions.
-- Provide a lean delivery method, reusable templates and optional local tooling.
-- Evaluate changes through working examples and actual checks. Claims about productivity
-  or user benefit require observations in real projects.
+- Maintain an English catalog across product, architecture, engineering, languages and quality.
+- Make significant decisions and current knowledge recoverable by another person or session.
+- Provide practical team collaboration, project templates and optional local tools.
+- Assess results through working examples and actual checks. Observe time to accepted result,
+  review effort, rework and recovery before claiming productivity or staffing improvements.
 
 ## Scope and boundaries
 
 This repository owns reusable expertise, its operating model, runtime exporters,
 the local Markdown workbench and the documentation publisher. Customer facts,
-decisions and live assignments remain in their customer-owned sources.
+decisions and live assignments stay with their customer-owned sources.
 
-The workbench does not run models, synchronize trackers or coordinate distributed
-writers. Preserve the existing stack, exported identifiers and public routes.
+The workbench runs no models, synchronizes no trackers and coordinates no distributed
+writers. Preserve the established stack, exported identifiers and public routes.
 Keep private notes, secrets, local work and generated output outside public commits.
 Merge and deployment require explicit authorization.
 
-## Responsibilities
+## Stakeholders and responsibilities
 
-The [decision-role map](workspace/stakeholders.md) names the repository owner,
-contributor and reviewer. The owner decides priority, consequential design and
-acceptance. The assigned contributor implements and supplies evidence; the reviewer
-assesses the current revision. A role does not grant tool access or action authority.
+The [stakeholder map](knowledge/stakeholders.md) covers intended users and names the
+repository owner, contributor and reviewer. The owner decides priority, consequential
+design and acceptance; contributors supply implementation/evidence; reviewers assess the
+current revision. Roles do not grant access or authorization on another person's behalf.
 
-## Key sources and links
+## Authoritative sources
 
-| Need | Authoritative source |
+| Need | Home |
 | --- | --- |
-| Work, review, knowledge and decision locations | [Project manifest](project.yaml) |
-| Contribution process and skill selection | [Contributing](CONTRIBUTING.md) |
-| Repository acceptance and action boundaries | [Working agreement](workspace/working-agreement.md) |
-| Setup, startup and local process replay | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
-| Reusable delivery method | [Operating model](toolkit/OPERATING-MODEL.md) |
-| Architecture and information ownership | [Detailed project concept](toolkit/WORKSPACE-CONCEPT.md) |
-| Significant repository rationale | [Decision index](workspace/decisions/README.md) |
-| Available expertise | [Skills](skills/README.md) and [agents](agents/README.md) |
+| Current assignments | [GitHub issues](https://github.com/atstaeff/ai-agents/issues), or the current PR already representing a direct request |
+| Implementation, review and checks | [Pull requests](https://github.com/atstaeff/ai-agents/pulls) |
+| Process and skill selection | [Contributing](CONTRIBUTING.md) |
+| Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
+| Setup, checks and local replay | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
+| Shared delivery method | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
+| Source ownership and web documentation | [Project concept](toolkit/PROJECT-CONCEPT.md) |
+| Current knowledge and rationale | [Knowledge index](knowledge/README.md), [decision index](knowledge/decisions/README.md) |
+| Expertise | [Skills](skills/README.md), [agents](agents/README.md) |
 
 ## Working method and AI process
 
-Read [AGENTS.md](AGENTS.md), this map and the
-[contribution process](CONTRIBUTING.md#working-process-and-skills), then the relevant
-project sources. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
-Load only the skills needed for the assignment; the contribution guide maps each
-activity to its reusable procedure. The manifest supplies source locations; the guide
-and runbook supply actual commands. Effective permissions come from the current host and request.
-
-An assigned issue owns its live plan and acceptance; the PR owns implementation and
-checks. Reuse an existing PR for a direct request it already represents. Otherwise,
-a larger direct request may use one ignored `workspace/work/` record. Small corrections
-need no additional process record. Required review and integration determine completion.
+Use Clarify, Plan, Build, Verify, then required integration and knowledge retention.
+Follow the [contribution process](CONTRIBUTING.md#working-process-and-skills), selecting
+only relevant skills. The assignment owns its live plan, feedback and handoff; the PR
+owns implementation and review evidence. Keep writing scopes explicit when working in
+parallel and verify the combined result. Small corrections need no additional plan record.
 
 ## Knowledge and session continuity
 
-Preserve significant rationale at the configured decision home; update affected current
-knowledge from verified behavior. Keep completed plans at their original work home.
-Before a pause, leave result, source revisions, evidence/limits, blockers, pending writes
-and the next action there. Resume using the [recovery contract](toolkit/CONTEXT-RECOVERY.md).
+Update affected current knowledge from verified behavior and retain significant reasons
+at the decision home. Completed plans stay historical at their original work home.
+Before pausing, save revisions, result, check evidence/limits, blockers, pending writes
+and the next action. Resume using the [recovery contract](toolkit/CONTEXT-RECOVERY.md).
 
-`project.yaml` is the required project manifest; it points to this human and AI map.
-This repository keeps optional records and local work in `workspace/`; other projects
-choose their own knowledge and decision directories. The
-[pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) records actual tooling
-results and limits; [iteration reports](workspace/iterations/README.md) are optional.
+Other projects choose their own document names, folders or access-controlled web sources.
+This repository uses knowledge/ for durable facts and decisions. Optional local workbench
+storage remains workspace/work/; it is excluded from publication. The
+[pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) is historical tooling
+evidence; [iteration reports](knowledge/iterations/README.md) are optional.

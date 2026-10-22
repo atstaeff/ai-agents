@@ -7,12 +7,12 @@ description: "Maintain the plan, acceptance criteria, human feedback and verific
 
 1. Inspect the assignment, project rules and existing work. Complete a clear small edit
    directly with appropriate checks; create no process file automatically.
-2. Read the declared project config (normally `project.yaml`) and working
-   agreement. Choose the designated planning home: Jira ticket,
+2. Read applicable AGENTS.md instructions and the referenced project/process sources
+   and working agreement. Read optional tooling configuration only when adopted. Choose the designated planning home: Jira ticket,
    GitHub issue or another work item. Only without an assigned system, reuse or create
    one `workspace/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,
    local record, task CSV or wiki plan. If ownership is unclear, resolve it before writing.
-   Use the [workspace concept](../../../toolkit/WORKSPACE-CONCEPT.md) when adopting the
+   Use the [project concept](../../../toolkit/PROJECT-CONCEPT.md) when adopting the
    layout or migrating legacy records; ordinary tasks do not load the entire concept.
 3. State the user outcome, scope exclusions, observable acceptance and first verifiable
    increment. Reuse the home's task format; local records use stable T1-style IDs and

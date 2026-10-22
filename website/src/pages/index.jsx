@@ -21,7 +21,7 @@ export default function Home() {
               <h1>Build products.<br /><span>Preserve the reasoning.</span></h1>
               <p className="hero-description">Reusable expertise. Clear decisions. Shared project knowledge that another person or session can continue from.</p>
               <div className="hero-actions">
-                <Link className="button button--primary button--lg" to="/getting-started/lean-project/">Start a lean project</Link>
+                <Link className="button button--primary button--lg" to="/getting-started/lean-project/">Start a team project</Link>
                 <Link className="button button--secondary button--lg" to="/catalog/">Explore the catalog</Link>
               </div>
             </div>
@@ -30,7 +30,7 @@ export default function Home() {
               <dl>
                 <div><dt>{counts.agent} agents</dt><dd>Accountable roles and bounded handoffs</dd></div>
                 <div><dt>{counts.skill} skills</dt><dd>Focused procedures and references</dd></div>
-                <div><dt>Your workspace</dt><dd>Project-owned context, decisions and knowledge</dd></div>
+                <div><dt>Your project</dt><dd>Project-owned context, decisions and knowledge</dd></div>
               </dl>
               <p className="note-caption">Portable profiles. Your tools. Your model.</p>
             </aside>

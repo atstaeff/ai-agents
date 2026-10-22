@@ -2,7 +2,7 @@
 
 ## Must my repository use a .claude folder or change for every model?
 
-No. Keep shared rules in `AGENTS.md`, customer knowledge in `workspace/` and reusable
+No. Keep shared rules in `AGENTS.md`, knowledge in project-owned local or web sources and reusable
 expertise in the canonical catalog. A model change within a host needs no folder change.
 Host tools have different discovery paths and permissions; exports generate those
 adapters from the same sources. See [portability](getting-started/portability.md).
@@ -10,7 +10,8 @@ adapters from the same sources. See [portability](getting-started/portability.md
 ## Must every project use GitHub Issues or repository knowledge?
 
 No. Each project defines its tracker, planning home, code review, decision and knowledge
-locations in [`project.yaml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
+locations through [AGENTS.md and its linked sources](workspace-concept.md). No YAML is
+required. Jira can own the plan while GitHub holds only the PR;
 Confluence or a repository can own knowledge. The customer starter uses GitHub as a
 worked example. Missing tool access means an unsent proposed update, not a new tracker.
 

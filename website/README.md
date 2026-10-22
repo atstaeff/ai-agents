@@ -7,7 +7,7 @@ site; the engineering guidance stays in its canonical repository sources.
 | --- | --- |
 | `content/` | Website-only guides and reference introductions |
 | `src/pages/`, `src/css/`, `static/` | Homepage, presentation and local assets |
-| `navigation.json` | The five documentation sections and their order |
+| `navigation.json` | Documentation sections and their order |
 | `generate.py` | Canonical source mapping, link rebasing and catalog navigation |
 | `docusaurus.config.js` | Site behavior, URL base and strict broken-link handling |
 | `.generated/` | Generated Markdown, sidebars and catalog counts; never edit or commit |

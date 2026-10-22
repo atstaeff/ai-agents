@@ -1,138 +1,57 @@
-# Set up a shared workspace for people and AI
+# Set up AGENTS.md collaboration for people and AI
 
-Copy the prompt below into a coding agent working in the target project. Make this
-toolkit checkout available as reference, or provide the current linked schema, guide
-and examples. Replace the bracketed input when known; the agent can discover the rest.
-
-References: [adoption guide](../../toolkit/ADOPT-WORKSPACE.md),
-[config contract](../../toolkit/PROJECT-CONFIG.md),
-[schema](../../toolkit/workspace.schema.json), [lean starter](../lean-project/README.md)
-and [extended example](README.md).
-All are covered by the [repository license](../../LICENSE).
-
----
+Use this prompt in a coding agent working on the target project. Supply a reference
+checkout/revision or accessible source URLs. References:
+[adoption](../../toolkit/ADOPT-PROJECT.md), [project concept](../../toolkit/PROJECT-CONCEPT.md),
+[team starter](../project-starter/README.md), [instruction variants](../agent-instructions/README.md)
+and [repository license](../../LICENSE).
 
 ## Prompt
 
-Set up this project so people and AI can collaborate efficiently using a small shared
-workspace. Inspect the existing project first, then implement the necessary files and
-references. Preserve customer conventions and minimize ongoing documentation work.
-Use English for shared project artifacts and the user's language for conversation.
+Set up this project for several people and AI sessions to collaborate through AGENTS.md
+and authoritative shared sources. Use English for shared artifacts and the user's
+language in conversation. Preserve existing project rules, human wording and source ownership.
 
-**Inputs**
+Inputs: current project and explicitly scoped repositories; AI Agents reference URL or
+checkout/revision; known tracker/board and central documentation URLs if available.
+Use existing authorization for routine work. Do not invent contacts, source links, checks,
+permissions, approvals or successful writes.
 
-- Project: the current checkout, plus any repositories explicitly in scope.
-- AI Agents reference: [local toolkit checkout or repository URL and revision].
-- Known tracker/board: [URL if available; otherwise discover or ask].
-- Existing project instructions and the current user's authorization take precedence.
+1. Inspect applicable instructions, README/project context, source state, CI, architecture,
+   current knowledge and decisions. Locate real work/review homes and the current assignment.
+2. Use the reference toolkit's AGENTS.md project model. Merge a collaboration contract into
+   the project's actual AGENTS.md and verify the selected host discovers it. Choose the
+   team, existing-repository, remote-docs, multi-repository or component template as appropriate.
+3. Link vision/goals/success signals; stakeholders and decision/acceptance roles; scope,
+   exclusions and constraints; the process; actual work/review homes; current knowledge and
+   decision history. Reuse existing pages. PROJECT.md and CONTRIBUTING.md are defaults,
+   not required names. Require no project.yaml, TOML file or workspace hierarchy.
+4. If web documentation owns a source, explicitly instruct the agent to read its content.
+   Pin shared policy to an actual source revision or maintained version. Record the version
+   used. Declare a local fallback only with known provenance; identify required unavailable
+   URLs and blocked work. Continue independent authorized work without pretending access.
+5. Define the adopted workflow, actual setup/check commands, relevant skill selection,
+   review and action boundaries in the process source. Skills supply reusable procedure;
+   a link does not install them or grant tools. Load only relevant bodies and references.
+6. Establish one authoritative work item/live plan per assignment, with an accountable human,
+   writer scope, dependencies and integrator. For parallel delivery, isolate working
+   directories, agree shared contracts and use the project's effective claim/handover
+   mechanism. Serialize overlapping scopes when such coordination is unavailable.
+7. Reuse current knowledge and decision homes. Add only useful ideas, concepts, current
+   contracts, significant rationale or incident records. Preserve accepted reasons and
+   link replacements; completed plans stay historical at their work home. Create no empty
+   folder hierarchy or per-agent knowledge copy.
+8. If documentation is published with Docusaurus, select the canonical Markdown sources and
+   provide Project, Process, Knowledge and Decisions navigation. Keep private/local work,
+   exports and generated previews outside publication. Maintain the original sources once.
+9. Check filled facts/roles and source links; run actual affected checks. Exercise one
+   bounded assignment, a fresh-session recovery and an unavailable-source case. Before
+   expanding concurrency, exercise overlapping-work handover and combined verification.
+   Distinguish structural checks, model observations, host discovery and actual integrations.
+10. Report changed sources, actual evidence, remaining gaps and one next action at the
+    existing work home. Save revisions, result, checks/limits, blockers and pending writes
+    for recovery. Respect current review, merge/deployment and communication authorization.
 
-**1. Understand the project**
-
-Read existing agent instructions, README, tooling configuration, relevant architecture
-and decisions, setup/test commands and CI. Inspect known repositories and tracker links
-with available read access. Determine the product outcome, relevant stakeholders and
-the sources of truth for current work and durable knowledge.
-
-Do not invent URLs, contacts, branch names, command results or permissions. Resolve
-important missing information through a few specific questions; continue independent
-setup work where possible. Preserve human wording and check for intervening edits.
-
-**2. Use the actual configuration contract**
-
-Read the reference toolkit's current `toolkit/PROJECT-CONFIG.md`,
-`toolkit/workspace.schema.json` and matching YAML examples. Record the reference revision
-in the setup report. For adoption, maintain one version-2 project.yaml at the repository
-root. Migrate actual values from an existing map rather than retaining a second config;
-preserve existing content and resolve conflicting maps deliberately. Link project.yaml
-from the host's existing agent entry. It requires vision, stakeholders, scope and process
-references; goals and success signals stay with vision. Stakeholders identifies affected
-groups and decision/acceptance roles; scope covers inclusions, exclusions and constraints.
-Markdown paths and all knowledge/decision directories are project choices.
-
-Use the flat version-2 keys: schema_version, project_name, vision, stakeholders,
-scope, process, work_tracking, knowledge_base
-and decision_records. code_review is optional. All references/locations are strings,
-not system/location objects. Keep method, commands, quality checks and action rules
-in the contribution guide and existing CI. Consult the schema rather than inventing fields.
-
-Map the real GitHub/GitLab repositories and review locations; use verified base branches.
-Map the GitHub Project or Jira project/board to the relevant work and planning ownership.
-If both systems exist, explain their distinct responsibilities and retain one live plan
-per work item. Relative paths resolve from the target project root.
-
-Keep credentials and local account/connector configuration outside the YAML. The file
-declares locations and policy; it does not install an integration or grant authority.
-
-**3. Create only useful entry pages**
-
-Use the lean starter by default. Reuse or adapt root `PROJECT.md` for vision, goals,
-boundaries, owners and current source links. Use `CONTRIBUTING.md` for the project
-working process and links to reusable skills. Map `process` and `stakeholders`
-to these sources in root project.yaml. Fill all four required context/process references
-and validate the referenced source sections; all Markdown names and directories are free. Together with the agent entry and tooling map, this is four
-small entry files. Existing equivalent entries, including the extended example's
-workspace entry, remain valid; preserve them instead of creating duplicate documents.
-Add ideas, concepts/specs, significant decisions, current knowledge and incident reviews
-only when actual work needs them; create no empty folder hierarchy.
-
-Merge a concise pointer into existing agent instructions, such as `AGENTS.md`. Respect
-the host's actual discovery rules. Do not overwrite its instructions or assume that
-an arbitrary Markdown file is loaded automatically.
-
-Do not copy fictional ADRs, reports, customer names or issue numbers into production.
-Create knowledge and decision pages when the work actually warrants them. Keep common
-skills in their central maintained source, with host exports treated as generated output.
-
-**4. Define how collaboration works**
-
-Use lean clarification, short plan, build, verify and knowledge retention by default.
-An existing project method takes precedence. Select BMAD or Spec-Driven Development
-when useful, link their authoritative native artifacts and avoid a second live plan.
-Keep completed execution as history, significant rationale in decisions and the current
-contract/knowledge maintained. Add an actual optional host/session reference to a bounded
-handoff; shared memory must remain usable without it.
-
-Keep the project's chosen method: BMAD, Plan/Build/Review or its established procedure.
-Do not introduce a second mandatory process beside it. A bounded assignment needs a
-specific work-item reference, outcome, acceptance criteria and responsible decision role.
-A board link alone is not authorization to process its backlog.
-
-Document how the agent reads the assignment, keeps one concise current plan, asks
-consequential questions, implements a small complete increment and links actual evidence
-on a known revision. Derive expected checks from requirements and consumer behavior.
-Missing access produces an unsent proposed update, not a mirror issue or invented sync.
-
-If plan approval is required, preserve feedback and approval for the actual revision.
-Use Plannotator only when available and adopted; record any manual review alternative.
-Configure separate Plan/Build models or thinking settings only through supported host
-options. A plan approval does not authorize merge or deployment.
-
-Keep significant rationale in customer-owned ADRs as decisions arise. Update affected
-current knowledge with behavior changes. Iteration reports link verified outcomes and
-open work; they are not another live task list. Save a bounded handoff in the existing
-planning home so a fresh session can resume from current shared sources.
-
-**5. Respect action and publication boundaries**
-
-Record already agreed actions and actual access. Do not infer customer permission from
-a template value. During setup, do not post test comments, change tracker state, create
-boards, merge or deploy without separate authorization for those actions.
-
-Customer knowledge stays in customer-owned systems. A personal PARA vault may keep
-authorized references and generalized learning, without becoming a customer-data mirror.
-Publish only selected durable knowledge. Keep local work, archives, generated bundles
-and private notes outside website content. Preserve an existing generated `docs/` directory.
-
-**6. Validate and report**
-
-Validate the target YAML using the toolkit's actual validator and schema. Check local
-references and documented commands against the project; run appropriate agreed checks.
-Report separately what passed, what was only inspected and what remains unverified.
-Do not execute a command merely because it appears in a copied configuration.
-
-Deliver the changed files, a concise information-ownership map, remaining questions and
-access gaps, and one proposed real pilot assignment. Prepare a reviewable change through
-the existing contribution workflow. Stop at the project's agreed review boundary.
-
-Keep the setup small. No empty folder trees, duplicate trackers, copied chat histories
-or large policy manuals without a concrete need.
+If old tools depend on YAML configuration or workspace/ workbench records, preserve their
+behavior and data. Keep optional compatibility examples separate from the default entry;
+do not silently delete records or leave contradictory sources.

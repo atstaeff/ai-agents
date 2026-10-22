@@ -6,9 +6,9 @@ Separate reusable guidance, live work, durable knowledge and generated views.
 | --- | --- | --- |
 | Agents and skills | This repository's `agents/` and `skills/` | Reusable roles and focused instructions |
 | Operating model | `toolkit/OPERATING-MODEL.md` | Outcomes, ownership, handoffs and knowledge lifecycle |
-| Project configuration | Root `project.yaml` pointing to project-chosen sources | Authoritative tooling and location ownership |
+| Project entry | AGENTS.md linking local or explicitly adopted web sources | Collaboration rules and authoritative source ownership |
 | Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
-| Customer workspace | `workspace/` and project-selected knowledge space | Context, decision rights, knowledge or pointers to its authoritative home |
+| Project knowledge | Project-chosen local Markdown or authorized wiki | Current context, contracts, decision rights and significant rationale |
 | Local work records | Each project's `workspace/work/`, without a board-owned assignment | One record per larger local outcome |
 | Private Second Brain | Existing Obsidian PARA vault | Personal projects, areas, resources and archive |
 | Runtime adapters | `tools/ai_toolkit.py export` | Native profiles, permissions and references |
