@@ -347,7 +347,7 @@
       "type": "string",
       "pattern": ".*\\S.*"
     },
-    "contribution_guide": {
+    "process": {
       "type": "string",
       "pattern": ".*\\S.*"
     },
@@ -405,7 +405,7 @@
           "goals",
           "scope_and_boundaries",
           "responsibilities",
-          "contribution_guide",
+          "process",
           "work_tracking",
           "knowledge_base",
           "decision_records"
@@ -418,7 +418,7 @@
             "goals",
             "scope_and_boundaries",
             "responsibilities",
-            "contribution_guide",
+            "process",
             "work_tracking",
             "knowledge_base",
             "decision_records",

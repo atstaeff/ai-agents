@@ -32,14 +32,14 @@ class ProjectConfigTests(unittest.TestCase):
         data = cfg.load(ROOT / 'project.yaml')
         self.assertEqual(data['project_name'], 'AI Agents')
         self.assertEqual(data['work_tracking'], 'https://github.com/atstaeff/ai-agents/issues')
-        for key in ('contribution_guide', 'responsibilities'):
+        for key in ('process', 'responsibilities'):
             self.assertTrue((ROOT / data[key]).is_file())
 
     def test_lean_starter_resolves_project_contribution_owners_and_knowledge(self):
         starter = ROOT / 'templates/lean-project'
         data = cfg.load(starter/'project.yaml', check_references=False)
         self.assertEqual(data['work_tracking'], 'workspace/work/')
-        for key, expected in (('contribution_guide', 'CONTRIBUTING.md'), ('responsibilities', 'PROJECT.md#responsibilities')):
+        for key, expected in (('process', 'CONTRIBUTING.md'), ('responsibilities', 'PROJECT.md#responsibilities')):
             self.assertEqual(data[key], expected)
             self.assertTrue((starter/data[key].split('#')[0]).is_file())
         for key in ('knowledge_base', 'decision_records'):
@@ -60,7 +60,7 @@ class ProjectConfigTests(unittest.TestCase):
             'schema_version': 2, 'project_name': 'Quota example',
             'vision': 'notes/purpose.md#vision', 'goals': 'notes/purpose.md#goals',
             'scope_and_boundaries': 'notes/purpose.md#boundaries',
-            'responsibilities': 'team/people.md', 'contribution_guide': 'process/how.md',
+            'responsibilities': 'team/people.md', 'process': 'process/how.md',
             'work_tracking': 'Current request',
             'knowledge_base': 'notes/purpose.md',
             'decision_records': 'notes/decisions/',
@@ -74,7 +74,7 @@ class ProjectConfigTests(unittest.TestCase):
         snippet = source.split('```yaml\n', 1)[1].split('```', 1)[0]
         data = cfg.validate(cfg.yaml.load(snippet, Loader=cfg.UniqueLoader))
         self.assertEqual(data['schema_version'], 2)
-        self.assertEqual(data['contribution_guide'], 'CONTRIBUTING.md')
+        self.assertEqual(data['process'], 'CONTRIBUTING.md')
         self.assertEqual(data['decision_records'], 'architecture/decisions/')
         with self.assertRaises(ValueError):
             cfg.validate(dict(data, version=1))
@@ -100,7 +100,8 @@ class ProjectConfigTests(unittest.TestCase):
                 with self.subTest(key=key, value=value), self.assertRaises(ValueError):
                     cfg.validate(dict(data, **{key: value}))
         self.assertEqual(cfg.validate(dict(data, code_review='Current diff'))['code_review'], 'Current diff')
-        for key, value in (('code_review', {}), ('delivery_method', 'lean'), ('commands', {}),
+        for key, value in (('code_review', {}), ('contribution_guide', 'old-process.md'),
+                           ('delivery_method', 'lean'), ('commands', {}),
                            ('context', {'vision': 'notes/purpose.md#vision'})):
             with self.subTest(key=key), self.assertRaises(ValueError):
                 cfg.validate(dict(data, **{key: value}))
@@ -151,7 +152,7 @@ class ProjectConfigTests(unittest.TestCase):
             root = Path(folder)
             path, data = self.manifest_fixture(root)
             sentinel = root/'must-not-exist'
-            guide = root/data['contribution_guide']
+            guide = root/data['process']
             guide.write_text(guide.read_text() + f'\n```sh\ntouch {sentinel}\n```\n')
             before = {p: p.read_bytes() for p in root.rglob('*') if p.is_file()}
             cfg.load(path)

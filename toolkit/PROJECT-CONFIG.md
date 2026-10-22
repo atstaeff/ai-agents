@@ -15,7 +15,7 @@ See the [complete example](examples/project-kernel.md) or
 | `goals` | Markdown file/section for current outcomes and success signals |
 | `scope_and_boundaries` | Markdown file/section for scope, exclusions and constraints |
 | `responsibilities` | Markdown file/section naming accountable roles and decision rights |
-| `contribution_guide` | Markdown file/section defining the process, relevant skills and checks |
+| `process` | Markdown file/section describing the agreed workflow for people and AI, including relevant skills and checks |
 | `work_tracking` | URL, path or named home of assignments and their live plans |
 | `knowledge_base` | URL or path to current project knowledge |
 | `decision_records` | URL or path to significant decisions and their reasons |
@@ -26,8 +26,9 @@ integer schema_version. The five context/role/process references are local Markd
 optionally with heading anchors. Several fields may point to one document. Local entries
 can link authoritative external detail; all relative paths resolve from the project root.
 
-Keep the delivery method, collaboration rules, commands, quality gates and action boundaries
-in contribution_guide and existing CI. They need no parallel YAML configuration. That guide
+The document referenced by process describes the workflow, collaboration rules, commands,
+quality gates and action boundaries, with links to relevant detailed instructions and skills.
+Keep executable checks in existing CI. They need no parallel YAML configuration. That guide
 also explains any integration-specific details, multiple repositories or reporting needs.
 The actual request supplies the selected ticket/PR; transient progress stays in that work item.
 

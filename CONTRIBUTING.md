@@ -1,5 +1,8 @@
 # Contributing
 
+This document is the shared working process for people and AI in this repository.
+Follow linked procedures and skills when relevant to the assignment.
+
 Improve a concrete workflow or verified behavior. Keep changes focused and English
 instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 [shared workflow](toolkit/WORKFLOW.md).

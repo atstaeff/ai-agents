@@ -95,7 +95,7 @@ def check_sources(data, project_root):
     """Check required version-2 pointers, never fetching remote or executing content."""
     root = project_root.resolve()
     references = {key: data[key] for key in
-                  ('vision', 'goals', 'scope_and_boundaries', 'responsibilities', 'contribution_guide')}
+                  ('vision', 'goals', 'scope_and_boundaries', 'responsibilities', 'process')}
     errors = []
     for key, reference in references.items():
         try:

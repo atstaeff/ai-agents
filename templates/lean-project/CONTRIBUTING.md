@@ -1,7 +1,7 @@
 # Contributing
 
 Read [AGENTS.md](AGENTS.md), [PROJECT.md](PROJECT.md) and the
-[tooling map](project.yaml). This guide is the project's working agreement
+[tooling map](project.yaml). This guide describes the project's working process and agreement
 for people and AI. Adapt it to existing project policy rather than adding a second process.
 
 ## Working process and skills

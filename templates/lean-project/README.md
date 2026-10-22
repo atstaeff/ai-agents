@@ -31,7 +31,7 @@ examples and publication options for larger coordination needs.
 
 The four files have separate jobs: `AGENTS.md` starts a session, `PROJECT.md` explains
 this project, `CONTRIBUTING.md` defines how to work and selects reusable skills, and
-`project.yaml` is a flat map of source paths and URLs. The YAML's `contribution_guide`
+`project.yaml` is a flat map of source paths and URLs. The YAML's `process`
 points to CONTRIBUTING.md and `responsibilities` to PROJECT.md. Keep owner roles and small
 decisions inline until separate pages are useful. Existing equivalent entries remain
 valid; adopt the information contract without creating duplicate documents.

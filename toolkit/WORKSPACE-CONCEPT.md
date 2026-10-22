@@ -123,7 +123,7 @@ Use the [GitHub example](../templates/customer-workspace/workspace/workspace.yml
 [JSON Schema](workspace.schema.json) and [validator](../tools/project_config.py).
 
 Version 2 is a flat list: project_name; vision, goals and scope_and_boundaries references;
-responsibilities and contribution_guide; work_tracking, knowledge_base and decision_records.
+responsibilities and process; work_tracking, knowledge_base and decision_records.
 Only code_review is optional. Values are simple paths/URLs or named work/review homes.
 The [manifest contract](PROJECT-CONFIG.md) defines validation and the schema-only setup check.
 

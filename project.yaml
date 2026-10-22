@@ -4,7 +4,7 @@ vision: PROJECT.md#vision-and-goals
 goals: PROJECT.md#vision-and-goals
 scope_and_boundaries: PROJECT.md#scope-and-boundaries
 responsibilities: workspace/stakeholders.md
-contribution_guide: CONTRIBUTING.md
+process: CONTRIBUTING.md
 work_tracking: https://github.com/atstaeff/ai-agents/issues
 code_review: https://github.com/atstaeff/ai-agents/pulls
 knowledge_base: toolkit/

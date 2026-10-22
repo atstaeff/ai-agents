@@ -45,11 +45,11 @@ in the setup report. For adoption, maintain one version-2 project.yaml at the re
 root. Migrate actual values from an existing map rather than retaining a second config;
 preserve existing content and resolve conflicting maps deliberately. Link project.yaml
 from the host's existing agent entry. It requires vision, goals and scope_and_boundaries
-references; responsibilities and contribution_guide point to owners and process. Markdown
+references; responsibilities and process point to owners and process. Markdown
 paths and all knowledge/decision directories are project choices.
 
 Use the flat version-2 keys: schema_version, project_name, vision, goals,
-scope_and_boundaries, responsibilities, contribution_guide, work_tracking, knowledge_base
+scope_and_boundaries, responsibilities, process, work_tracking, knowledge_base
 and decision_records. code_review is optional. All references/locations are strings,
 not system/location objects. Keep method, commands, quality checks and action rules
 in the contribution guide and existing CI. Consult the schema rather than inventing fields.
@@ -66,7 +66,7 @@ declares locations and policy; it does not install an integration or grant autho
 
 Use the lean starter by default. Reuse or adapt root `PROJECT.md` for vision, goals,
 boundaries, owners and current source links. Use `CONTRIBUTING.md` for the project
-working process and links to reusable skills. Map `contribution_guide` and `responsibilities`
+working process and links to reusable skills. Map `process` and `responsibilities`
 to these sources in root project.yaml. Fill its required vision/goals/boundaries references
 and validate the referenced source sections; all Markdown names and directories are free. Together with the agent entry and tooling map, this is four
 small entry files. Existing equivalent entries, including the extended example's

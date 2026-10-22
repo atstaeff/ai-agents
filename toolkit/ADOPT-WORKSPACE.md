@@ -30,7 +30,7 @@ Start with the [lean project starter](../templates/lean-project/README.md), or r
 
 
 Keep decision owners inline in `PROJECT.md` and working rules in `CONTRIBUTING.md`.
-Point the required YAML fields `responsibilities` and `contribution_guide` to those sources.
+Point the required YAML fields `responsibilities` and `process` to those sources.
 Existing equivalent entries remain valid, including a compact entry with inline rules.
 Only project.yaml at the repository root is mandatory. All Markdown filenames and
 folders are choices, and existing entries can be referenced instead of duplicated.
