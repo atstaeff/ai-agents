@@ -887,8 +887,8 @@ OTA_TOPICS = {
 
 ## Related Skills
 
-- [Python Patterns](../../../skills/python-patterns) — For service layer and async patterns
-- [GCP Patterns](../../../skills/gcp-patterns) — For cloud-side IoT integration
+- [Python Patterns](../../../skills/languages/python-patterns/SKILL.md) — For service layer and async patterns
+- [GCP Patterns](../../../skills/engineering/gcp-patterns/SKILL.md) — For cloud-side IoT integration
 - DevOps & CI/CD (reference: `../skills/software-engineering/devops-cicd/`) — For edge deployment pipelines
 - [Architecture Planning](../../../skills/architecture) — For IoT system design
 
