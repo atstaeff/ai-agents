@@ -1,4 +1,8 @@
-# Repository decision roles
+# Repository stakeholders and decision roles
+
+The catalog and operating model serve developers, architects and project managers
+using AI in engineering work. Their needs are clear guidance, maintainable software
+and recoverable project knowledge. Decision and acceptance roles are explicit below.
 
 | Role | Owner | Responsibility |
 | --- | --- | --- |

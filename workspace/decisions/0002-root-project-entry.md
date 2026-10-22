@@ -21,7 +21,9 @@ Reusable procedures copied into every project would drift and grow session conte
 ## Proposed decision and alternatives
 
 Require one project.yaml at the repository root. Version 2 uses one flat list of explicit references
-for vision, goals, boundaries, roles, process, work, knowledge and decisions. Each value
+for vision, stakeholders, scope, process, work, knowledge and decisions. Goals and
+success signals stay with vision. Stakeholders covers affected groups and decision/acceptance
+roles; scope names included responsibilities, exclusions and material constraints. Each value
 is a path, URL or named work/review home; code_review is optional.
 Check required keys, local Markdown files/sections and recognizable unfilled prompts.
 A schema-only setup check must not claim source completeness. Preserve version-1 reading
@@ -37,8 +39,8 @@ optional tool convention, not a required project hierarchy.
 
 ## Consequences and status
 
-Required areas become visible and mechanically checkable without forcing six documents
-or a folder rename. Source checks cannot establish truth, sufficient quality, approval,
+Required areas become visible and mechanically checkable without forcing separate
+documents for each area or a folder rename. Source checks cannot establish truth, sufficient quality, approval,
 implementation or remote access. Required local entries may link authoritative external
 detail. Project review and actual checks still establish those facts.
 

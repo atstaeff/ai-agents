@@ -14,9 +14,9 @@ conventions; do not replace customer content or copy the larger fictional exampl
 | Entry | Maintain here |
 | --- | --- |
 | `AGENTS.md` | Where a session starts and the few rules it must follow |
-| `PROJECT.md` | Vision, goals, boundaries, responsible owners and key source links |
+| `PROJECT.md` | Vision and goals, stakeholders/decision roles, scope and key source links |
 | `CONTRIBUTING.md` | Project working process and links to relevant reusable skills |
-| `project.yaml` | Small flat map to purpose, owners, process, work and knowledge |
+| `project.yaml` | Four entry references: vision, stakeholders, scope and process; work and memory locations |
 
 Only root project.yaml is fixed; other files and folders are project choices.
 The starter keeps owner roles inline in PROJECT.md and the working agreement in

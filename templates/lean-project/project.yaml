@@ -1,9 +1,8 @@
 schema_version: 2
 project_name: Lean project
 vision: PROJECT.md#vision-and-goals
-goals: PROJECT.md#vision-and-goals
-scope_and_boundaries: PROJECT.md#scope-and-boundaries
-responsibilities: PROJECT.md#responsibilities
+stakeholders: PROJECT.md#responsibilities
+scope: PROJECT.md#scope-and-boundaries
 process: CONTRIBUTING.md
 work_tracking: workspace/work/
 knowledge_base: PROJECT.md

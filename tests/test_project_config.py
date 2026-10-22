@@ -32,14 +32,14 @@ class ProjectConfigTests(unittest.TestCase):
         data = cfg.load(ROOT / 'project.yaml')
         self.assertEqual(data['project_name'], 'AI Agents')
         self.assertEqual(data['work_tracking'], 'https://github.com/atstaeff/ai-agents/issues')
-        for key in ('process', 'responsibilities'):
+        for key in ('process', 'stakeholders'):
             self.assertTrue((ROOT / data[key]).is_file())
 
     def test_lean_starter_resolves_project_contribution_owners_and_knowledge(self):
         starter = ROOT / 'templates/lean-project'
         data = cfg.load(starter/'project.yaml', check_references=False)
         self.assertEqual(data['work_tracking'], 'workspace/work/')
-        for key, expected in (('process', 'CONTRIBUTING.md'), ('responsibilities', 'PROJECT.md#responsibilities')):
+        for key, expected in (('process', 'CONTRIBUTING.md'), ('stakeholders', 'PROJECT.md#responsibilities')):
             self.assertEqual(data[key], expected)
             self.assertTrue((starter/data[key].split('#')[0]).is_file())
         for key in ('knowledge_base', 'decision_records'):
@@ -58,9 +58,9 @@ class ProjectConfigTests(unittest.TestCase):
             path.write_text(content)
         data = {
             'schema_version': 2, 'project_name': 'Quota example',
-            'vision': 'notes/purpose.md#vision', 'goals': 'notes/purpose.md#goals',
-            'scope_and_boundaries': 'notes/purpose.md#boundaries',
-            'responsibilities': 'team/people.md', 'process': 'process/how.md',
+            'vision': 'notes/purpose.md#vision',
+            'scope': 'notes/purpose.md#boundaries',
+            'stakeholders': 'team/people.md', 'process': 'process/how.md',
             'work_tracking': 'Current request',
             'knowledge_base': 'notes/purpose.md',
             'decision_records': 'notes/decisions/',
@@ -102,6 +102,9 @@ class ProjectConfigTests(unittest.TestCase):
         self.assertEqual(cfg.validate(dict(data, code_review='Current diff'))['code_review'], 'Current diff')
         for key, value in (('code_review', {}), ('contribution_guide', 'old-process.md'),
                            ('delivery_method', 'lean'), ('commands', {}),
+                           ('goals', 'notes/purpose.md#goals'),
+                           ('scope_and_boundaries', 'notes/purpose.md#boundaries'),
+                           ('responsibilities', 'team/people.md'),
                            ('context', {'vision': 'notes/purpose.md#vision'})):
             with self.subTest(key=key), self.assertRaises(ValueError):
                 cfg.validate(dict(data, **{key: value}))

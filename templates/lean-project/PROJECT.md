@@ -17,6 +17,7 @@ authoritative sources. Keep this map short; expand detail only when useful.
 
 ## Responsibilities
 
+- Affected users/groups: [who uses the result or is affected, and their main need].
 - Outcome/priority owner: [verified person or role].
 - Technical decision owner: [verified person or role; may be the same person].
 - Acceptance/review: [who accepts which result and where approval is recorded].

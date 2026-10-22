@@ -11,10 +11,9 @@ See the [complete example](examples/project-kernel.md) or
 | --- | --- |
 | `schema_version` | Integer `2`; the manifest format, not the product release |
 | `project_name` | Project name |
-| `vision` | Markdown file/section explaining the intended users, problem and direction |
-| `goals` | Markdown file/section for current outcomes and success signals |
-| `scope_and_boundaries` | Markdown file/section for scope, exclusions and constraints |
-| `responsibilities` | Markdown file/section naming accountable roles and decision rights |
+| `vision` | Markdown file/section explaining intended users, problem, direction, current goals and success signals |
+| `stakeholders` | Markdown file/section identifying affected groups, accountable roles, decision rights and acceptance responsibility |
+| `scope` | Markdown file/section defining project responsibility, inclusions, explicit exclusions and material constraints |
 | `process` | Markdown file/section describing the agreed workflow for people and AI, including relevant skills and checks |
 | `work_tracking` | URL, path or named home of assignments and their live plans |
 | `knowledge_base` | URL or path to current project knowledge |
@@ -22,9 +21,17 @@ See the [complete example](examples/project-kernel.md) or
 | `code_review` | Optional URL, path or named review home |
 
 All fields except code_review are required. Values are nonempty strings, apart from the
-integer schema_version. The five context/role/process references are local Markdown,
+integer schema_version. The four context/role/process references are local Markdown,
 optionally with heading anchors. Several fields may point to one document. Local entries
 can link authoritative external detail; all relative paths resolve from the project root.
+
+Vision, stakeholders, scope and process are the four entry points. Goals belong with
+vision; scope explains both what the project owns and where it stops. Stakeholders
+identifies affected users/groups and who sets priority, decides and accepts results.
+A small team can name the same person in several roles. Keep this short and factual.
+The remaining locations make assignments, current knowledge and decision history findable.
+Architecture, ideas, concepts and incident records can be linked from knowledge_base
+when needed; they require no additional manifest fields.
 
 The document referenced by process describes the workflow, collaboration rules, commands,
 quality gates and action boundaries, with links to relevant detailed instructions and skills.
@@ -53,7 +60,7 @@ uv run --locked --group validation python tools/project_config.py --config /path
 ```
 
 The validator checks the [schema](workspace.schema.json), required fields, types, unknown
-fields, duplicate keys and conflicting conventional maps. It also checks the five required
+fields, duplicate keys and conflicting conventional maps. It also checks the four required
 local Markdown references: files/headings must exist, sections must contain content and
 recognizable prompts must be filled. Comments, frontmatter and fenced examples do not
 count as content. Referenced local sources must stay inside the project root.

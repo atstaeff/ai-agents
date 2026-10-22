@@ -44,12 +44,13 @@ Read the reference toolkit's current `toolkit/PROJECT-CONFIG.md`,
 in the setup report. For adoption, maintain one version-2 project.yaml at the repository
 root. Migrate actual values from an existing map rather than retaining a second config;
 preserve existing content and resolve conflicting maps deliberately. Link project.yaml
-from the host's existing agent entry. It requires vision, goals and scope_and_boundaries
-references; responsibilities and process point to owners and process. Markdown
-paths and all knowledge/decision directories are project choices.
+from the host's existing agent entry. It requires vision, stakeholders, scope and process
+references; goals and success signals stay with vision. Stakeholders identifies affected
+groups and decision/acceptance roles; scope covers inclusions, exclusions and constraints.
+Markdown paths and all knowledge/decision directories are project choices.
 
-Use the flat version-2 keys: schema_version, project_name, vision, goals,
-scope_and_boundaries, responsibilities, process, work_tracking, knowledge_base
+Use the flat version-2 keys: schema_version, project_name, vision, stakeholders,
+scope, process, work_tracking, knowledge_base
 and decision_records. code_review is optional. All references/locations are strings,
 not system/location objects. Keep method, commands, quality checks and action rules
 in the contribution guide and existing CI. Consult the schema rather than inventing fields.
@@ -66,8 +67,8 @@ declares locations and policy; it does not install an integration or grant autho
 
 Use the lean starter by default. Reuse or adapt root `PROJECT.md` for vision, goals,
 boundaries, owners and current source links. Use `CONTRIBUTING.md` for the project
-working process and links to reusable skills. Map `process` and `responsibilities`
-to these sources in root project.yaml. Fill its required vision/goals/boundaries references
+working process and links to reusable skills. Map `process` and `stakeholders`
+to these sources in root project.yaml. Fill all four required context/process references
 and validate the referenced source sections; all Markdown names and directories are free. Together with the agent entry and tooling map, this is four
 small entry files. Existing equivalent entries, including the extended example's
 workspace entry, remain valid; preserve them instead of creating duplicate documents.

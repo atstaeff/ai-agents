@@ -122,8 +122,10 @@ Use the [GitHub example](../templates/customer-workspace/workspace/workspace.yml
 [repository's configuration](https://github.com/atstaeff/ai-agents/blob/main/project.yaml). All use the same
 [JSON Schema](workspace.schema.json) and [validator](../tools/project_config.py).
 
-Version 2 is a flat list: project_name; vision, goals and scope_and_boundaries references;
-responsibilities and process; work_tracking, knowledge_base and decision_records.
+Version 2 is a flat list: schema_version and project_name; four entry points, vision,
+stakeholders, scope and process; work_tracking, knowledge_base and decision_records.
+Goals and success signals stay with vision. Stakeholders includes affected groups and
+decision/acceptance roles; scope covers included responsibility, exclusions and constraints.
 Only code_review is optional. Values are simple paths/URLs or named work/review homes.
 The [manifest contract](PROJECT-CONFIG.md) defines validation and the schema-only setup check.
 

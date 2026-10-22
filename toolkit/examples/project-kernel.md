@@ -12,10 +12,9 @@ the snippet describes no existing connected project and does not establish sourc
 ```yaml
 schema_version: 2
 project_name: Customer Portal
-vision: product/overview.md#vision
-goals: product/overview.md#goals
-scope_and_boundaries: product/overview.md#scope-and-boundaries
-responsibilities: team/responsibilities.md
+vision: product/overview.md#vision-and-goals
+stakeholders: team/stakeholders.md
+scope: product/overview.md#scope-and-boundaries
 process: CONTRIBUTING.md
 work_tracking: https://github.com/example/customer-portal/issues
 code_review: https://github.com/example/customer-portal/pulls
@@ -24,6 +23,8 @@ decision_records: architecture/decisions/
 ```
 
 The schema version identifies the manifest format, not the product release.
+The four context entry points are vision, stakeholders, scope and process. Goals stay
+with vision. Work, knowledge and decisions supply the operational and memory locations.
 Each value is one path or URL. code_review is optional; the contribution guide defines
 the method, communication, commands, checks and action boundaries.
 Only project.yaml is a fixed filename. For example, process could instead
@@ -33,10 +34,9 @@ point to ways-of-working/development.md without changing an agent or skill.
 
 | Source | Smallest useful content |
 | --- | --- |
-| Vision | Intended users, problem and useful long-term change |
-| Goals | Current observable outcomes, success signals and acceptance source |
-| Scope and boundaries | Included responsibilities, explicit exclusions and material constraints |
-| Responsibilities | Priority/acceptance owner, technical decision owner, contributor/reviewer responsibilities and conflict route |
+| Vision and goals | Intended users, problem, useful long-term change, current observable outcomes and success signals |
+| Stakeholders | Affected users/groups, priority/acceptance owner, technical decision owner and contributor/reviewer roles |
+| Scope | Project responsibility, included work, explicit exclusions and material constraints |
 | Contribution guide | Clarify/plan/build/verify/integrate flow, ready/done rules, required review, relevant skills and verification commands |
 | Knowledge base | Current contracts, architecture and operating knowledge, maintained from evidence |
 | Decision records | Significant choices, alternatives, reasons, status, owner and replacement links |

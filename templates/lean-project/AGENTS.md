@@ -1,6 +1,6 @@
 # Project instructions
 
-Read [project.yaml](project.yaml) first. Follow its vision, goals, scope, responsibilities
+Read [project.yaml](project.yaml) first. Follow its vision, stakeholders, scope
 and process references. Resolve work/review/knowledge homes from that manifest;
 follow the process document for the workflow, relevant skills and actual commands.
 Read the selected skill explicitly when the host does not discover it automatically.
