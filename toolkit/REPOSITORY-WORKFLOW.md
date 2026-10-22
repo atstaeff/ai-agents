@@ -101,6 +101,6 @@ for actual results and unverified boundaries.
 
 ## Verify and hand off
 
-Run the gates in `project.yaml`; CI also replays the pilot. Keep current
+Run the checks above and the required [CI workflow](../.github/workflows/checks.yml); CI also replays the pilot. Keep current
 revision, evidence, unresolved questions and the next action in the existing assignment.
 Review, acceptance, integration and deployment are distinct states.

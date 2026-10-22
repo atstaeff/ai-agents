@@ -12,39 +12,20 @@ the snippet describes no existing connected project and does not establish sourc
 ```yaml
 schema_version: 2
 project_name: Customer Portal
-
-context:
-  vision: product/overview.md#vision
-  goals: product/overview.md#goals
-  scope_and_boundaries: product/overview.md#scope-and-boundaries
-
+vision: product/overview.md#vision
+goals: product/overview.md#goals
+scope_and_boundaries: product/overview.md#scope-and-boundaries
 responsibilities: team/responsibilities.md
 contribution_guide: CONTRIBUTING.md
-delivery_method: lean
-
-work_tracking:
-  system: github-issues
-  location: https://github.com/example/customer-portal/issues
-
-code_review:
-  system: github-pull-requests
-  location: https://github.com/example/customer-portal/pulls
-
-knowledge_base:
-  system: repository
-  location: knowledge/
-
-decision_records:
-  system: repository
-  location: architecture/decisions/
-
-communication:
-  system: work-item-comments
-  location: Comments on the assigned issue or linked pull request
+work_tracking: https://github.com/example/customer-portal/issues
+code_review: https://github.com/example/customer-portal/pulls
+knowledge_base: knowledge/
+decision_records: architecture/decisions/
 ```
 
 The schema version identifies the manifest format, not the product release.
-`delivery_method` is optional; the contribution guide defines the actual procedure.
+Each value is one path or URL. code_review is optional; the contribution guide defines
+the method, communication, commands, checks and action boundaries.
 Only project.yaml is a fixed filename. For example, contribution_guide could instead
 point to ways-of-working/development.md without changing an agent or skill.
 

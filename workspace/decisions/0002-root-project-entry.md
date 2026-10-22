@@ -20,8 +20,9 @@ Reusable procedures copied into every project would drift and grow session conte
 
 ## Proposed decision and alternatives
 
-Require one project.yaml at the repository root. Version 2 adds explicit references
-for vision, goals and boundaries to the existing role/process and tool-location map.
+Require one project.yaml at the repository root. Version 2 uses one flat list of explicit references
+for vision, goals, boundaries, roles, process, work, knowledge and decisions. Each value
+is a path, URL or named work/review home; code_review is optional.
 Check required keys, local Markdown files/sections and recognizable unfilled prompts.
 A schema-only setup check must not claim source completeness. Preserve version-1 reading
 for existing tooling maps and reject competing conventional configurations.
@@ -30,7 +31,8 @@ All Markdown names and content directories remain project choices. The starter u
 PROJECT.md and CONTRIBUTING.md as small defaults; several required references may point
 to different sections of the same document. Host instructions load the manifest, the
 relevant project sources and selected skills. Skills own reusable technique; the manifest
-owns actual tool locations/commands. Existing workspace/ local-store paths remain an
+owns source locations. Commands, method and action policy stay in the contribution guide
+and existing CI, avoiding a second process configuration. Existing workspace/ local-store paths remain an
 optional tool convention, not a required project hierarchy.
 
 ## Consequences and status

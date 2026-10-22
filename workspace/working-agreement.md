@@ -2,7 +2,7 @@
 
 Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
 [shared workflow](../toolkit/WORKFLOW.md). The [project manifest](../project.yaml) maps
-locations and checks; it does not grant permissions or install integrations.
+source locations; it does not grant permissions or install integrations.
 
 Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.
 Keep the existing separate role/agreement pages because this repository already owns
@@ -20,7 +20,7 @@ do not impose a new mandatory approval on every small change. A draft PR is revi
 work, not accepted integration. Do not merge, deploy, delete remote data or change access
 without explicit authorization.
 
-Run the checks in the configuration. Mark unrun or blocked checks honestly. For code,
+Run the checks linked from CONTRIBUTING.md and the CI workflow. Mark unrun or blocked checks honestly. For code,
 Done requires agreed acceptance evidence, required owner review and authorized merge.
 Investigations may finish with a verified result. Deployment and observed user benefit
 are separate evidence. Cancelled or duplicate work does not count as delivered.

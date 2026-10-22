@@ -51,7 +51,7 @@ entries. In the default starter, PROJECT.md owns project facts and navigation;
 CONTRIBUTING.md owns the
 project's contribution policy and maps activities to reusable skills. A skill explains
 how to perform its focused activity and use the relevant tool contracts; YAML supplies
-the actual project locations, commands and information ownership. Current user/host
+project source locations; the contribution guide supplies commands and working policy. Current user/host
 instructions supply effective authority. A generic skill cannot override project policy.
 
 For example, vision/scope uncertainty selects product-discovery; an ordinary larger
@@ -122,19 +122,15 @@ Use the [GitHub example](../templates/customer-workspace/workspace/workspace.yml
 [repository's configuration](https://github.com/atstaeff/ai-agents/blob/main/project.yaml). All use the same
 [JSON Schema](workspace.schema.json) and [validator](../tools/project_config.py).
 
-Version 2 uses explicit project_name, context, responsibilities, contribution_guide,
-work_tracking, code_review, knowledge_base, decision_records and communication keys. The [manifest contract](PROJECT-CONFIG.md) explains source checks,
-free content paths and the explicit schema-only mode. Existing version-1 maps remain
-readable; they do not establish the new completeness contract. Optional sections add:
+Version 2 is a flat list: project_name; vision, goals and scope_and_boundaries references;
+responsibilities and contribution_guide; work_tracking, knowledge_base and decision_records.
+Only code_review is optional. Values are simple paths/URLs or named work/review homes.
+The [manifest contract](PROJECT-CONFIG.md) defines validation and the schema-only setup check.
 
-- `profile` and `delivery_method`: project arrangement and chosen delivery method.
-- `repositories`: named code repositories, optional local paths and base branches.
-- `planning`: separate priority, iteration and engineering-status ownership when needed.
-- `flow`: actual board-state mapping, blocked property and completion policy.
-- `handoff`: the existing work-item section and a shared template.
-- `labels` and `reviewers`: adopted coordination labels and responsible reviewers.
-- `commands` and `quality_gates`: reproducible project commands and required checks.
-- `actions`: agreed action categories, still subject to real authorization and permissions.
+The contribution guide owns the method, commands, quality checks, communication and action
+boundaries. Link existing CI, role documents, repository lists and reporting conventions
+there instead of duplicating policy in YAML. The richer version-1 examples remain readable
+for existing projects; their nested blocks are not the default kernel.
 
 The YAML is declarative. Validation checks schema and version-2 local source completeness;
 it makes no connection, creates no board or labels, executes no commands and grants no authority. Confirm actual access and adopted policy

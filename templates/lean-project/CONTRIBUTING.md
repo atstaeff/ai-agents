@@ -25,7 +25,8 @@ does not install a skill or start an agent. Do not load the whole catalog for ea
 
 ## Project rules and tools
 
-Use actual commands from the existing contributing instructions or tooling map. If
+Use actual commands from the existing contributing instructions or CI; record useful
+project commands in this guide. If
 unknown, discover/report them before dependent work. Resolve integrations from the
 configured information owners and available host tools; report missing access and
 prepare an unsent update rather than creating a mirror tracker.

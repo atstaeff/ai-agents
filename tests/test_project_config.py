@@ -30,21 +30,20 @@ class ProjectConfigTests(unittest.TestCase):
     def test_schema_and_repository_config_are_valid(self):
         cfg.Draft202012Validator.check_schema(cfg.SCHEMA)
         data = cfg.load(ROOT / 'project.yaml')
-        self.assertEqual(data['repositories'][0]['name'], 'ai-agents')
+        self.assertEqual(data['project_name'], 'AI Agents')
+        self.assertEqual(data['work_tracking'], 'https://github.com/atstaeff/ai-agents/issues')
         for key in ('contribution_guide', 'responsibilities'):
             self.assertTrue((ROOT / data[key]).is_file())
-        self.assertTrue((ROOT / data['handoff']['template']).is_file())
 
     def test_lean_starter_resolves_project_contribution_owners_and_knowledge(self):
         starter = ROOT / 'templates/lean-project'
         data = cfg.load(starter/'project.yaml', check_references=False)
-        self.assertEqual(data['delivery_method'], 'lean')
-        self.assertEqual(data['work_tracking'], {'system': 'local-record', 'location': 'workspace/work/'})
+        self.assertEqual(data['work_tracking'], 'workspace/work/')
         for key, expected in (('contribution_guide', 'CONTRIBUTING.md'), ('responsibilities', 'PROJECT.md#responsibilities')):
             self.assertEqual(data[key], expected)
             self.assertTrue((starter/data[key].split('#')[0]).is_file())
         for key in ('knowledge_base', 'decision_records'):
-            self.assertTrue((starter/data[key]['location']).is_file())
+            self.assertTrue((starter/data[key]).is_file())
         self.assertNotIn('commands', data)  # No fabricated setup/test commands.
 
     def manifest_fixture(self, root):
@@ -59,15 +58,12 @@ class ProjectConfigTests(unittest.TestCase):
             path.write_text(content)
         data = {
             'schema_version': 2, 'project_name': 'Quota example',
-            'context': {'vision': 'notes/purpose.md#vision', 'goals': 'notes/purpose.md#goals',
-                        'scope_and_boundaries': 'notes/purpose.md#boundaries'},
+            'vision': 'notes/purpose.md#vision', 'goals': 'notes/purpose.md#goals',
+            'scope_and_boundaries': 'notes/purpose.md#boundaries',
             'responsibilities': 'team/people.md', 'contribution_guide': 'process/how.md',
-            'work_tracking': copy.deepcopy(self.data['work']),
-            'code_review': copy.deepcopy(self.data['review']),
-            'knowledge_base': copy.deepcopy(self.data['knowledge']),
-            'decision_records': copy.deepcopy(self.data['decisions']),
-            'communication': copy.deepcopy(self.data['communication']),
-            'commands': copy.deepcopy(self.data['commands']),
+            'work_tracking': 'Current request',
+            'knowledge_base': 'notes/purpose.md',
+            'decision_records': 'notes/decisions/',
         }
         path = root/'project.yaml'
         path.write_text(cfg.yaml.safe_dump(data))
@@ -79,7 +75,7 @@ class ProjectConfigTests(unittest.TestCase):
         data = cfg.validate(cfg.yaml.load(snippet, Loader=cfg.UniqueLoader))
         self.assertEqual(data['schema_version'], 2)
         self.assertEqual(data['contribution_guide'], 'CONTRIBUTING.md')
-        self.assertEqual(data['decision_records']['location'], 'architecture/decisions/')
+        self.assertEqual(data['decision_records'], 'architecture/decisions/')
         with self.assertRaises(ValueError):
             cfg.validate(dict(data, version=1))
 
@@ -92,17 +88,22 @@ class ProjectConfigTests(unittest.TestCase):
             self.assertFalse((root/'PROJECT.md').exists())
             self.assertFalse((root/'CONTRIBUTING.md').exists())
 
-    def test_version_two_requires_context_and_all_its_nonempty_keys(self):
+    def test_flat_manifest_requires_filled_keys_and_rejects_nested_tool_configuration(self):
         with tempfile.TemporaryDirectory() as folder:
             _, data = self.manifest_fixture(Path(folder))
-        del data['context']
-        with self.assertRaisesRegex(ValueError, 'context'):
-            cfg.validate(data)
-        for context in ({}, {'vision': '', 'goals': 'goals.md', 'scope_and_boundaries': 'scope.md'},
-                        {'vision': 'vision.md', 'goals': 'goals.md'},
-                        {'vision': 'v.md', 'goals': 'g.md', 'scope_and_boundaries': 's.md', 'extra': 'x.md'}):
-            with self.subTest(context=context), self.assertRaises(ValueError):
-                cfg.validate(dict(data, context=context))
+        for key in data:
+            missing = dict(data)
+            del missing[key]
+            with self.subTest(key=key, value='missing'), self.assertRaises(ValueError):
+                cfg.validate(missing)
+            for value in ('', ' ', None, [], {'system': 'repository', 'location': 'source/'}):
+                with self.subTest(key=key, value=value), self.assertRaises(ValueError):
+                    cfg.validate(dict(data, **{key: value}))
+        self.assertEqual(cfg.validate(dict(data, code_review='Current diff'))['code_review'], 'Current diff')
+        for key, value in (('code_review', {}), ('delivery_method', 'lean'), ('commands', {}),
+                           ('context', {'vision': 'notes/purpose.md#vision'})):
+            with self.subTest(key=key), self.assertRaises(ValueError):
+                cfg.validate(dict(data, **{key: value}))
 
     def test_manifest_rejects_missing_files_anchors_empty_sections_and_placeholders(self):
         cases = [
@@ -118,7 +119,7 @@ class ProjectConfigTests(unittest.TestCase):
             with self.subTest(reference=reference, error=error), tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
                 path, data = self.manifest_fixture(root)
-                data['context']['vision'] = reference
+                data['vision'] = reference
                 path.write_text(cfg.yaml.safe_dump(data))
                 if text is not None:
                     (root/'notes/purpose.md').write_text(text)
@@ -143,15 +144,15 @@ class ProjectConfigTests(unittest.TestCase):
         self.assertIn('completeness not established', out.getvalue())
         with patch('sys.stderr', new_callable=io.StringIO) as err:
             self.assertEqual(cfg.main(['--config', str(path)]), 1)
-        self.assertIn('context.vision', err.getvalue())
+        self.assertIn('vision', err.getvalue())
 
-    def test_manifest_checks_are_read_only_and_never_execute_declared_commands(self):
+    def test_manifest_checks_are_read_only_and_never_execute_markdown_commands(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             path, data = self.manifest_fixture(root)
             sentinel = root/'must-not-exist'
-            data['commands']['check'] = f'touch {sentinel}'
-            path.write_text(cfg.yaml.safe_dump(data))
+            guide = root/data['contribution_guide']
+            guide.write_text(guide.read_text() + f'\n```sh\ntouch {sentinel}\n```\n')
             before = {p: p.read_bytes() for p in root.rglob('*') if p.is_file()}
             cfg.load(path)
             self.assertEqual(before, {p: p.read_bytes() for p in root.rglob('*') if p.is_file()})
@@ -170,7 +171,7 @@ class ProjectConfigTests(unittest.TestCase):
             external = Path(outside)/'external.md'
             external.write_text('External content.')
             (root/'linked.md').symlink_to(external)
-            data['context']['vision'] = 'linked.md'
+            data['vision'] = 'linked.md'
             path.write_text(cfg.yaml.safe_dump(data))
             with self.assertRaisesRegex(ValueError, 'inside the project root'):
                 cfg.load(path)

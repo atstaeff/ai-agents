@@ -16,7 +16,7 @@ conventions; do not replace customer content or copy the larger fictional exampl
 | `AGENTS.md` | Where a session starts and the few rules it must follow |
 | `PROJECT.md` | Vision, goals, boundaries, responsible owners and key source links |
 | `CONTRIBUTING.md` | Project working process and links to relevant reusable skills |
-| `project.yaml` | Authoritative tool locations and optional actual commands |
+| `project.yaml` | Small flat map to purpose, owners, process, work and knowledge |
 
 Only root project.yaml is fixed; other files and folders are project choices.
 The starter keeps owner roles inline in PROJECT.md and the working agreement in
@@ -116,7 +116,7 @@ Use lean Plan/Build/Verify by default. For larger requirements, a project may ch
 Spec-Driven Development; BMAD can support discovery, planning and delivery. Keep their
 required artifacts at their existing homes, link them here and state which source owns
 requirements versus status. Select one primary delivery method per assignment. Choosing
-a `delivery_method` in YAML installs nothing. Never reconcile intent by merely accepting whatever
+a delivery method installs nothing. Never reconcile intent by merely accepting whatever
 code happened to be produced. See the [method selection and retention guide](PROJECT-KNOWLEDGE.md#choose-a-method-without-duplicating-work).
 
 ## Add rigor where it earns its cost

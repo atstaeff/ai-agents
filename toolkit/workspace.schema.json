@@ -323,35 +323,23 @@
       "required": [],
       "additionalProperties": false
     },
-    "context": {
-      "type": "object",
-      "description": "Version 2 requires explicit local Markdown references for project purpose and scope.",
-      "properties": {
-        "vision": {
-          "type": "string",
-          "pattern": ".*\\S.*"
-        },
-        "goals": {
-          "type": "string",
-          "pattern": ".*\\S.*"
-        },
-        "scope_and_boundaries": {
-          "type": "string",
-          "pattern": ".*\\S.*"
-        }
-      },
-      "required": [
-        "vision",
-        "goals",
-        "scope_and_boundaries"
-      ],
-      "additionalProperties": false
-    },
     "schema_version": {
       "type": "integer",
       "const": 2
     },
     "project_name": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "vision": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "goals": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "scope_and_boundaries": {
       "type": "string",
       "pattern": ".*\\S.*"
     },
@@ -363,24 +351,21 @@
       "type": "string",
       "pattern": ".*\\S.*"
     },
-    "delivery_method": {
+    "work_tracking": {
       "type": "string",
       "pattern": ".*\\S.*"
     },
-    "work_tracking": {
-      "$ref": "#/$defs/location"
-    },
-    "code_review": {
-      "$ref": "#/$defs/location"
-    },
     "knowledge_base": {
-      "$ref": "#/$defs/location"
+      "type": "string",
+      "pattern": ".*\\S.*"
     },
     "decision_records": {
-      "$ref": "#/$defs/location"
+      "type": "string",
+      "pattern": ".*\\S.*"
     },
-    "progress_reporting": {
-      "$ref": "#/$defs/location"
+    "code_review": {
+      "type": "string",
+      "pattern": ".*\\S.*"
     }
   },
   "required": [],
@@ -416,39 +401,28 @@
         "required": [
           "schema_version",
           "project_name",
-          "context",
+          "vision",
+          "goals",
+          "scope_and_boundaries",
           "responsibilities",
           "contribution_guide",
           "work_tracking",
-          "code_review",
           "knowledge_base",
-          "decision_records",
-          "communication"
+          "decision_records"
         ],
         "propertyNames": {
           "enum": [
             "schema_version",
             "project_name",
-            "context",
+            "vision",
+            "goals",
+            "scope_and_boundaries",
             "responsibilities",
             "contribution_guide",
-            "delivery_method",
             "work_tracking",
-            "code_review",
             "knowledge_base",
             "decision_records",
-            "progress_reporting",
-            "profile",
-            "repositories",
-            "planning",
-            "flow",
-            "handoff",
-            "labels",
-            "reviewers",
-            "commands",
-            "quality_gates",
-            "actions",
-            "communication"
+            "code_review"
           ]
         }
       },

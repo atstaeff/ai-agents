@@ -1,75 +1,11 @@
-# yaml-language-server: $schema=toolkit/workspace.schema.json
 schema_version: 2
 project_name: AI Agents
-context:
-  vision: PROJECT.md#vision-and-goals
-  goals: PROJECT.md#vision-and-goals
-  scope_and_boundaries: PROJECT.md#scope-and-boundaries
-profile: repository
-delivery_method: lean
-
-work_tracking:
-  system: github
-  location: https://github.com/atstaeff/ai-agents/issues
-code_review:
-  system: github
-  location: https://github.com/atstaeff/ai-agents/pulls
-knowledge_base:
-  system: repository
-  location: toolkit/
-decision_records:
-  system: repository
-  location: workspace/decisions/
-progress_reporting:
-  system: repository
-  location: workspace/iterations/
-communication:
-  system: assigned-work-item-or-current-request
-  location: Assigned issue or PR; current conversation for direct requests
-contribution_guide: CONTRIBUTING.md
+vision: PROJECT.md#vision-and-goals
+goals: PROJECT.md#vision-and-goals
+scope_and_boundaries: PROJECT.md#scope-and-boundaries
 responsibilities: workspace/stakeholders.md
-
-repositories:
-  - name: ai-agents
-    location: https://github.com/atstaeff/ai-agents
-    path: .
-    default_branch: main
-handoff:
-  location: Existing assigned work-item section or local work record
-  template: templates/customer-workspace/workspace/handoff.md
-reviewers: [atstaeff]
-commands:
-  setup: uv sync --locked --group validation
-  start: python3 tools/ai_toolkit.py serve --workspace .
-  check: uv run --locked --group validation python -m unittest discover -s tests -v
-quality_gates:
-  - name: Catalog and links
-    command: python3 tools/ai_toolkit.py check
-    required: true
-  - name: Storage, API, exports and optional helpers
-    command: uv run --locked --group validation python -m unittest discover -s tests -v
-    required: true
-  - name: Workspace process replay
-    command: python3 tools/workspace_smoke.py
-    required: true
-  - name: Repository configuration
-    command: uv run --locked --group validation python tools/project_config.py --config project.yaml
-    required: true
-  - name: Frontend syntax
-    command: node --check tools/web/app.js
-    required: true
-  - name: Workspace publishing options
-    command: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
-    required: true
-  - name: Strict documentation preview
-    command: npm --prefix website run build
-    required: true
-actions:
-  edit_assigned_branch: within_assignment
-  open_draft_pr: within_assignment
-  update_work_item: within_assignment
-  ask_questions: within_assignment
-  merge: separate_authorization
-  deploy: separate_authorization
-  delete: separate_authorization
-  change_access: separate_authorization
+contribution_guide: CONTRIBUTING.md
+work_tracking: https://github.com/atstaeff/ai-agents/issues
+code_review: https://github.com/atstaeff/ai-agents/pulls
+knowledge_base: toolkit/
+decision_records: workspace/decisions/

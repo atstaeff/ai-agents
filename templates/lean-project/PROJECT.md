@@ -32,7 +32,7 @@ authoritative sources. Keep this map short; expand detail only when useful.
 
 Follow [CONTRIBUTING.md](CONTRIBUTING.md). The default is clarify, short plan, build,
 verify, then required acceptance/integration and knowledge retention. The guide links
-reusable skills; the tooling map supplies actual project locations and commands.
+reusable skills and actual commands; the manifest supplies project source locations.
 Small fixes need no phase documents. Record an adopted alternative method and its
 authoritative instructions in the contribution guide.
 

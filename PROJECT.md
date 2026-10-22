@@ -36,7 +36,7 @@ assesses the current revision. A role does not grant tool access or action autho
 
 | Need | Authoritative source |
 | --- | --- |
-| Tools, work/review locations and check commands | [Project manifest](project.yaml) |
+| Work, review, knowledge and decision locations | [Project manifest](project.yaml) |
 | Contribution process and skill selection | [Contributing](CONTRIBUTING.md) |
 | Repository acceptance and action boundaries | [Working agreement](workspace/working-agreement.md) |
 | Setup, startup and local process replay | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
@@ -51,8 +51,8 @@ Read [AGENTS.md](AGENTS.md), this map and the
 [contribution process](CONTRIBUTING.md#working-process-and-skills), then the relevant
 project sources. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
 Load only the skills needed for the assignment; the contribution guide maps each
-activity to its reusable procedure. Tool addresses and actual commands come from
-the configuration, while effective permissions come from the current host and request.
+activity to its reusable procedure. The manifest supplies source locations; the guide
+and runbook supply actual commands. Effective permissions come from the current host and request.
 
 An assigned issue owns its live plan and acceptance; the PR owns implementation and
 checks. Reuse an existing PR for a direct request it already represents. Otherwise,

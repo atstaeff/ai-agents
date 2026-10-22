@@ -94,8 +94,8 @@ def markdown_sections(text):
 def check_sources(data, project_root):
     """Check required version-2 pointers, never fetching remote or executing content."""
     root = project_root.resolve()
-    references = {f'context.{key}': value for key, value in data['context'].items()}
-    references.update({key: data[key] for key in ('responsibilities', 'contribution_guide')})
+    references = {key: data[key] for key in
+                  ('vision', 'goals', 'scope_and_boundaries', 'responsibilities', 'contribution_guide')}
     errors = []
     for key, reference in references.items():
         try:
@@ -165,7 +165,8 @@ def main(argv=None):
         print(f'Invalid project configuration: {exc}', file=sys.stderr)
         return 1
     name = data.get('project_name', data.get('name'))
-    locations = 5 if data.get('schema_version') == 2 else len(LOCATIONS)
+    locations = (sum(key in data for key in ('work_tracking', 'code_review', 'knowledge_base', 'decision_records'))
+                 if data.get('schema_version') == 2 else len(LOCATIONS))
     print(f'Valid project configuration: {name}; {locations} authoritative locations.')
     if data.get('schema_version') == 2 and not args.structure_only:
         print('Required local project sources checked for missing sections and obvious placeholders.')

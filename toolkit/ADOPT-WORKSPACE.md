@@ -89,7 +89,7 @@ the information model.
 
 BMAD, Plan/Build/Review or an existing customer method can operate within this framework.
 The method describes the delivery procedure; the workspace makes its sources and rules
-findable. Record the chosen method in `delivery_method` and explain it in the working agreement.
+findable. Explain the chosen method in the contribution guide; no YAML method label is needed.
 BMAD installation and its own artifacts remain a separate project choice.
 
 If a method uses local specifications, define their relationship to the tracker: for

@@ -44,18 +44,15 @@ Read the reference toolkit's current `toolkit/PROJECT-CONFIG.md`,
 in the setup report. For adoption, maintain one version-2 project.yaml at the repository
 root. Migrate actual values from an existing map rather than retaining a second config;
 preserve existing content and resolve conflicting maps deliberately. Link project.yaml
-from the host's existing agent entry. Its context requires vision, goals and boundaries
+from the host's existing agent entry. It requires vision, goals and scope_and_boundaries
 references; responsibilities and contribution_guide point to owners and process. Markdown
 paths and all knowledge/decision directories are project choices.
 
-The version-2 manifest uses `schema_version: 2`, `project_name`, `context`,
-`responsibilities`, `contribution_guide` and five `system`/`location` mappings:
-`work_tracking`, `code_review`, `knowledge_base`, `decision_records` and `communication`.
-Separate `progress_reporting` is optional. Use supported optional fields such as `delivery_method`, `repositories`, `planning`,
-`flow`, `handoff`, `labels`, `reviewers`, `commands`, `quality_gates` and `actions` only
-when useful. Do not invent a different schema or add unsupported `tools` or `sources`
-sections. If the reference cannot be loaded, describe the gap and continue read-only
-discovery; do not claim a configuration is compatible without its contract.
+Use the flat version-2 keys: schema_version, project_name, vision, goals,
+scope_and_boundaries, responsibilities, contribution_guide, work_tracking, knowledge_base
+and decision_records. code_review is optional. All references/locations are strings,
+not system/location objects. Keep method, commands, quality checks and action rules
+in the contribution guide and existing CI. Consult the schema rather than inventing fields.
 
 Map the real GitHub/GitLab repositories and review locations; use verified base branches.
 Map the GitHub Project or Jira project/board to the relevant work and planning ownership.

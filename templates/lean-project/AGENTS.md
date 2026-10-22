@@ -1,8 +1,8 @@
 # Project instructions
 
-Read [project.yaml](project.yaml) first. Follow its context, stakeholder and working-agreement
-references for goals, boundaries, owners, the working process and relevant skills.
-Resolve actual work/review/knowledge homes and commands from that same manifest.
+Read [project.yaml](project.yaml) first. Follow its vision, goals, scope, responsibilities
+and contribution references. Resolve work/review/knowledge homes from that manifest;
+use the contribution guide for the working process, relevant skills and actual commands.
 Read the selected skill explicitly when the host does not discover it automatically.
 
 Preserve existing project instructions and technology. Keep shared artifacts English

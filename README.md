@@ -80,7 +80,7 @@ Perform the installed-host check before assuming effective discovery or permissi
 
 Use [this repository's PROJECT.md](PROJECT.md) as a concrete example. Start from
 `AGENTS.md`, `PROJECT.md`, `CONTRIBUTING.md` and `project.yaml`. Reuse existing
-equivalents. The YAML maps actual systems, repositories, optional flow fields and quality gates; it grants no access and executes
+equivalents. The flat YAML maps project sources and work/knowledge locations; it grants no access and executes
 nothing. [Minimal, GitHub, Jira and multi-repo examples](toolkit/ADOPT-WORKSPACE.md)
 share one schema.
 

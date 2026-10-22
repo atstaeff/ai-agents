@@ -8,8 +8,7 @@ instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 
 Read [PROJECT.md](PROJECT.md) for vision, goals, boundaries, responsibilities and current
 sources. The [working agreement](workspace/working-agreement.md) defines acceptance
-and action boundaries; the [configuration](project.yaml) owns actual tools,
-locations and commands. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
+and action boundaries; the [manifest](project.yaml) maps the authoritative source locations. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
 Keep the live plan in the assigned work home. Clear small corrections need no extra record.
 
 | Need | Load when relevant |
@@ -48,6 +47,13 @@ tools. Report missing access and prepare an unsent update; do not create a mirro
 - Put substantial examples in `references/`, link from the entry and load on demand.
 - Use [templates/catalog/skill-template.md](templates/catalog/skill-template.md). Remove placeholders,
   keep instructions actionable and verify realistic tasks, including failure cases.
+
+## Checks and tools
+
+Use the [repository runbook](toolkit/REPOSITORY-WORKFLOW.md) for setup, startup and
+verification commands. The [CI workflow](.github/workflows/checks.yml) defines required
+catalog/link, test, HTTP replay, manifest, JavaScript/options and documentation checks.
+Keep those commands and action rules in their existing sources, not duplicated in YAML.
 
 ## Toolkit and documentation
 

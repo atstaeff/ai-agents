@@ -31,7 +31,7 @@ examples and publication options for larger coordination needs.
 
 The four files have separate jobs: `AGENTS.md` starts a session, `PROJECT.md` explains
 this project, `CONTRIBUTING.md` defines how to work and selects reusable skills, and
-`project.yaml` maps real systems/commands. The YAML's `contribution_guide`
+`project.yaml` is a flat map of source paths and URLs. The YAML's `contribution_guide`
 points to CONTRIBUTING.md and `responsibilities` to PROJECT.md. Keep owner roles and small
 decisions inline until separate pages are useful. Existing equivalent entries remain
 valid; adopt the information contract without creating duplicate documents.
@@ -41,7 +41,7 @@ canonical sources; copying these project files neither installs nor updates the 
 Only root `project.yaml` is a fixed file convention. All Markdown names and knowledge,
 decision and process directories are project choices expressed in that manifest. The
 provided PROJECT.md and CONTRIBUTING.md are small defaults, not required filenames.
-Keep actual tooling locations only in YAML. The optional local workbench uses its own
+Keep source locations in YAML and actual commands/rules in the contribution guide. The optional local workbench uses its own
 workspace/work/ store only when selected; no workspace/ folder is needed for adoption.
 
 ## Use it on the next assignment
