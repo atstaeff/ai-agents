@@ -6,6 +6,14 @@ record. These templates are prompts for concrete evidence, not extra mandatory d
 
 | Situation | Template | Home |
 | --- | --- | --- |
+| Start a team project | [Team starter](project-starter/README.md) | AGENTS.md, linked project facts and working process |
+| Choose project instruction scope | [AGENTS.md variants](agent-instructions/README.md) | Team, existing repository, remote docs, multi-repository or component |
+| Capture an opportunity | [Ideas](knowledge/ideas.md) | Existing idea intake or optional workspace list |
+| Develop a concept or feature contract | [Concept/spec](knowledge/concept.md) | Designated specification/knowledge home |
+| Preserve product/process rationale | [General decision](knowledge/decision.md) | Designated decision home; inline initially |
+| Maintain current behavior | [Current knowledge](knowledge/current.md) | Existing project docs or knowledge space |
+| Coordinate a normal increment | [Compact assignment](delivery/assignment.md) | Existing issue or ticket |
+| Learn from a significant/repeated incident | [Incident review](quality/incident-review.md) | Existing incident system or optional incident space |
 | A new product/project request | [Project brief](project/project-brief.md) | Existing intake or assigned work item |
 | Change an existing scope or contract | [Change request](project/change-request.md) | Current assignment and its decision owner |
 | A significant choice needs rationale | [Architecture decision](architecture/decision.md) | Designated ADR space |
@@ -17,7 +25,7 @@ record. These templates are prompts for concrete evidence, not extra mandatory d
 | Record checks and practical gaps | [Verification evidence](quality/verification.md) | Existing PR/check evidence |
 | Prepare an operational release | [Release readiness](quality/release-readiness.md) | Existing release/change process |
 | Resume in a fresh session | [Bounded handoff](customer-workspace/workspace/handoff.md) | Existing work-item section |
-| Adopt the workspace in a project | [Customer starter](customer-workspace/README.md) and [setup prompt](customer-workspace/SETUP-PROMPT.md) | Customer-owned sources |
+| Adopt the collaboration model in a project | [Customer starter](customer-workspace/README.md) and [setup prompt](customer-workspace/SETUP-PROMPT.md) | Customer-owned sources |
 | Add reusable expertise | [Skill](catalog/skill-template.md) or [agent](catalog/agent-template.md) | Canonical catalog |
 
 State unknowns and missing evidence explicitly. Preserve human-owned text and actual

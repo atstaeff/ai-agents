@@ -8,7 +8,7 @@
 - Alternatives: <reuse, process change, smallest software change, larger option>
 - Recommendation and uncertainty: <why this increment; what would disprove it>
 - Constraints: <data meaning, security, cost, operations, compatibility and timing>
-- Sources: <workspace config, affected repos, contracts and relevant decisions>
+- Sources: <AGENTS.md source map, affected repos, contracts and relevant decisions>
 - Acceptance: <observable criteria and verification method>
 - Decision rights: <who resolves scope, design, acceptance and release>
 - Dependencies and capacity: <critical dependency, accountable owner and review capacity>

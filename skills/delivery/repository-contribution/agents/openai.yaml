@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repository Contribution"
+  short_description: "Follow project rules for a reviewable contribution"
+  default_prompt: "Use $repository-contribution to prepare and verify this change using the repository’s own process."

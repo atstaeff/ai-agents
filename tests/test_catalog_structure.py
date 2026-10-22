@@ -54,7 +54,10 @@ class CatalogStructureTests(unittest.TestCase):
             text = pages[path]
             self.assertIn(f'custom_edit_url: "https://github.com/atstaeff/ai-agents/edit/main/{entry.path}"', text)
         for template in ('templates/architecture/decision.md', 'templates/delivery/work-item.md',
-                         'templates/project/project-brief.md', 'templates/quality/verification.md'):
+                         'templates/project/project-brief.md', 'templates/quality/verification.md',
+                         'templates/delivery/assignment.md', 'templates/knowledge/concept.md',
+                         'templates/knowledge/decision.md', 'templates/quality/incident-review.md',
+                         'getting-started/lean-project.md', 'operating-model/lean-example.md'):
             self.assertIn(template, pages)
             self.assertIn(template.removesuffix('.md'), nav)
         self.assertNotIn('index.md', pages)  # Root route is the homepage component.

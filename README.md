@@ -10,12 +10,30 @@ are English and independent of model vendors.
 | You want to… | Start here |
 | --- | --- |
 | Find or maintain engineering expertise | [Agent catalog](agents/README.md), [skill catalog](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
-| Deliver a product with a small accountable team and AI | [Operating model](toolkit/OPERATING-MODEL.md) |
-| Set up a new or existing project | [Adoption guide](toolkit/ADOPT-WORKSPACE.md), [customer starter](templates/customer-workspace/README.md) |
+| Deliver a product with a small accountable team and AI | [Engineering operating model](toolkit/OPERATING-MODEL.md), [team project starter](templates/project-starter/README.md) |
+| Set up a new or existing project | [Team starter](templates/project-starter/README.md), [adoption guide](toolkit/ADOPT-PROJECT.md) |
 | Define a decision, project request or architecture review | [Template chooser](templates/README.md) |
 | Make quality measurable | [Engineering quality standard](toolkit/QUALITY-STANDARD.md) |
 | Continue work across sessions and growing project knowledge | [Knowledge guide](toolkit/PROJECT-KNOWLEDGE.md), [recovery contract](toolkit/CONTEXT-RECOVERY.md) |
 | Run this repository's workflow | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
+
+## Work together through AGENTS.md
+
+Start with [AGENTS.md](AGENTS.md). It links vision/goals, stakeholders, scope, process,
+work/review homes, current knowledge and decisions. The [team starter](templates/project-starter/README.md)
+provides matching project and contribution pages; the [instruction chooser](templates/agent-instructions/README.md)
+adds existing-repository, remote-documentation, multi-repository and component variants.
+
+Use local Markdown or an explicitly adopted central web process. Keep each fact at its
+owner and pin shared policy to a verified source revision or maintained documentation
+version. No YAML manifest or workspace hierarchy is required. Docusaurus publishes the
+same selected Markdown sources as a reading view.
+
+Each assignment has an accountable human, bounded writer scope and integration owner.
+Coordinate overlapping work, agree shared contracts and verify combined changes. Keep
+one live plan in the assigned issue/ticket, update current knowledge and preserve significant
+rationale. Completed plans stay historical; a bounded handoff lets another session continue.
+See the [operating model](toolkit/OPERATING-MODEL.md) and [worked example](toolkit/examples/project-kernel.md).
 
 ## Find expertise by discipline
 
@@ -63,18 +81,17 @@ portable exports, and [plan review](toolkit/PLAN-REVIEW.md) for optional Plannot
 separate models. Re-export after source changes; the manifest protects human edits.
 Perform the installed-host check before assuming effective discovery or permissions.
 
-## Give the project a shared workspace
+## Shared project memory
 
-Start from `AGENTS.md`, `workspace/README.md`, `workspace/workspace.yml`, the working
-agreement and decision roles. Reuse existing equivalents. The YAML maps actual systems,
-repositories, optional flow fields and quality gates; it grants no access and executes
-nothing. [Minimal, GitHub, Jira and multi-repo examples](toolkit/ADOPT-WORKSPACE.md)
-share one schema.
+Use [PROJECT.md](PROJECT.md) and the [knowledge index](knowledge/README.md) as filled
+examples. Project facts and actual work/review links belong in the project; reusable
+methods and skills stay in this catalog. Significant reasons live in
+[decision records](knowledge/decisions/README.md); current knowledge links code/contracts
+and actual evidence. [Project adoption](toolkit/ADOPT-PROJECT.md) explains setup and
+[the detailed concept](toolkit/PROJECT-CONCEPT.md) covers source authority and publication.
 
-Keep the active plan in the assigned issue/ticket, implementation evidence in the PR,
-and significant rationale in customer-owned ADRs. Save a bounded handoff before switching
-sessions. Load current relevant sources instead of carrying the entire conversation.
-The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) covers the complete contract.
+Existing [YAML maps](toolkit/PROJECT-CONFIG.md) and the extended fictional customer
+workspace remain optional compatibility examples. They are not the default project structure.
 
 For a larger local request with no assigned tracker:
 
@@ -97,7 +114,8 @@ records; local work and archives stay outside knowledge publication by default.
 | `skills/<domain>/<name>/` | Native SKILL.md entries, references and optional UI metadata |
 | `toolkit/` | Operating model, quality/knowledge contracts, config schema and usage guides |
 | `templates/` | Project, architecture, delivery, quality and catalog templates |
-| `workspace/` | This repository's actual context, config, decisions and optional local work |
+| `knowledge/` | This repository's current knowledge, stakeholders, agreement and decision history |
+| `workspace/` | Optional ignored local workbench storage; no project context requirement |
 | `tools/`, `tests/` | Local CLI/API/dashboard, exporters, catalog tooling and behavior checks |
 | `website/` | [Docusaurus site, source publisher and preview guide](website/README.md) |
 | `reference-repos/`, `marp-templates/` | Illustrative engineering references and presentation starters |

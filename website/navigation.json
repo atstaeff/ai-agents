@@ -1,26 +1,48 @@
 {
   "start": {
-    "label": "Start here",
+    "label": "Project",
     "items": [
       {
-        "Quick Start": "getting-started/quick-start.md"
+        "Team Project Starter": "getting-started/lean-project.md"
+      },
+      {
+        "AGENTS.md Templates": "getting-started/agents-templates.md"
       },
       {
         "Adopt in a Project": "getting-started/adopt-workspace.md"
       },
       {
-        "Repository Workspace": "repository-workspace.md"
-      },
-      {
-        "Run the Local Workflow": "getting-started/repository-workflow.md"
+        "This Repository": [
+          {
+            "Collaboration Entry": "project/agents.md"
+          },
+          {
+            "Vision, Goals and Scope": "repository-workspace.md"
+          },
+          {
+            "Stakeholders": "project/stakeholders.md"
+          },
+          {
+            "Working Agreement": "project/working-agreement.md"
+          },
+          {
+            "Work in GitHub": "https://github.com/atstaeff/ai-agents/issues"
+          }
+        ]
       }
     ]
   },
   "operating": {
-    "label": "Operating model",
+    "label": "Process",
     "items": [
       {
-        "Delivery and Accountability": "concept.md"
+        "Engineering Operating Model": "concept.md"
+      },
+      {
+        "AGENTS.md Worked Example": "operating-model/project-kernel.md"
+      },
+      {
+        "Lean Worked Example": "operating-model/lean-example.md"
       },
       {
         "Engineering Quality": "operating-model/quality.md"
@@ -29,13 +51,13 @@
         "Knowledge at Project Scale": "operating-model/knowledge.md"
       },
       {
-        "Detailed Workspace Concept": "workspace-concept.md"
+        "Detailed Project Concept": "workspace-concept.md"
       },
       {
         "Working Contract": "getting-started/workflow.md"
       },
       {
-        "Project Configuration": "getting-started/project-config.md"
+        "Optional Legacy YAML": "getting-started/project-config.md"
       },
       {
         "Plan Review": "getting-started/plan-review.md"
@@ -105,6 +127,27 @@
         "Choose an Artifact": "templates/index.md"
       },
       {
+        "AGENTS.md Variants": "getting-started/agents-templates.md"
+      },
+      {
+        "Compact Assignment": "templates/delivery/assignment.md"
+      },
+      {
+        "Ideas List": "templates/knowledge/ideas.md"
+      },
+      {
+        "Concept / Spec": "templates/knowledge/concept.md"
+      },
+      {
+        "General Decision": "templates/knowledge/decision.md"
+      },
+      {
+        "Current Knowledge": "templates/knowledge/current.md"
+      },
+      {
+        "Incident Review": "templates/quality/incident-review.md"
+      },
+      {
         "Project Brief": "templates/project/project-brief.md"
       },
       {
@@ -138,7 +181,7 @@
         "Session Handoff": "customer-workspace/handoff.md"
       },
       {
-        "Workspace Setup Prompt": "customer-workspace/setup-prompt.md"
+        "Project Setup Prompt": "customer-workspace/setup-prompt.md"
       },
       {
         "Agent Source": "templates/catalog/agent-template.md"
@@ -148,8 +191,41 @@
       }
     ]
   },
+  "knowledge": {
+    "label": "Knowledge",
+    "items": [
+      {
+        "Repository Knowledge": "knowledge/index.md"
+      },
+      {
+        "Current Architecture": "knowledge/architecture.md"
+      },
+      {
+        "Decisions": [
+          {
+            "Decision Index": "knowledge/decisions/index.md"
+          },
+          {
+            "AGENTS.md Entry Proposal": "knowledge/decisions/adr-0003.md"
+          },
+          {
+            "Historical YAML Proposal": "knowledge/decisions/adr-0002.md"
+          },
+          {
+            "Historical Workspace Proposal": "knowledge/decisions/adr-0001.md"
+          }
+        ]
+      },
+      {
+        "Knowledge Lifecycle": "operating-model/knowledge.md"
+      },
+      {
+        "Session Recovery": "getting-started/context-recovery.md"
+      }
+    ]
+  },
   "maintenance": {
-    "label": "Tools & guides",
+    "label": "Tools",
     "items": [
       {
         "Runtime Exports": "getting-started/installation.md"
@@ -171,6 +247,9 @@
       },
       {
         "Evidence and Experiments": [
+          {
+            "AGENTS.md Model Observations": "getting-started/agents-observation.md"
+          },
           {
             "Cold-Session Protocol": "customer-workspace/context-recovery-pilot.md"
           },

@@ -1,8 +1,12 @@
 # Repository working agreement
 
 Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
-[shared workflow](../toolkit/WORKFLOW.md). The [configuration](workspace.yml) maps
-locations and checks; it does not grant permissions or install integrations.
+[shared workflow](../toolkit/WORKFLOW.md). AGENTS.md and the project map link the
+authoritative work, review, knowledge and decision sources.
+
+Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.
+Keep the existing separate role/agreement pages because this repository already owns
+them; adopting lean does not require a disruptive consolidation.
 
 Use the assigned issue for tracked work. For a direct larger request without an issue,
 reuse the current PR when it already represents that request; otherwise use one local
@@ -16,7 +20,7 @@ do not impose a new mandatory approval on every small change. A draft PR is revi
 work, not accepted integration. Do not merge, deploy, delete remote data or change access
 without explicit authorization.
 
-Run the checks in the configuration. Mark unrun or blocked checks honestly. For code,
+Run the checks linked from CONTRIBUTING.md and the CI workflow. Mark unrun or blocked checks honestly. For code,
 Done requires agreed acceptance evidence, required owner review and authorized merge.
 Investigations may finish with a verified result. Deployment and observed user benefit
 are separate evidence. Cancelled or duplicate work does not count as delivered.
@@ -28,4 +32,4 @@ stay out of website content and public commits unless explicitly reviewed for di
 
 No GitHub Project fields or coordination labels are configured for this repository.
 The extended starter shows those mappings; adopt actual board identifiers and labels
-with the owner before adding them here. YAML declarations do not create them remotely.
+with the owner before adding them here. A documentation link does not create them remotely.

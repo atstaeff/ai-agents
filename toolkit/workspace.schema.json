@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://atstaeff.github.io/ai-agents/workspace.schema.json",
-  "title": "Project-owned workspace configuration",
+  "title": "Project manifest and legacy tooling configuration",
   "description": "Declarative ownership and process mapping. No connector, command execution or permission grant. Paths are relative to the project root.",
   "type": "object",
   "properties": {
@@ -322,20 +322,45 @@
       },
       "required": [],
       "additionalProperties": false
+    },
+    "schema_version": {
+      "type": "integer",
+      "const": 2
+    },
+    "project_name": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "vision": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "process": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "work_tracking": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "knowledge_base": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "decision_records": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "code_review": {
+      "type": "string",
+      "pattern": ".*\\S.*"
+    },
+    "scope": {
+      "type": "string",
+      "pattern": ".*\\S.*"
     }
   },
-  "required": [
-    "version",
-    "name",
-    "work",
-    "review",
-    "knowledge",
-    "decisions",
-    "iteration_reports",
-    "communication",
-    "working_agreement",
-    "stakeholders"
-  ],
+  "required": [],
   "additionalProperties": false,
   "$defs": {
     "location": {
@@ -356,5 +381,80 @@
       ],
       "additionalProperties": false
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "schema_version"
+        ]
+      },
+      "then": {
+        "required": [
+          "schema_version",
+          "project_name",
+          "vision",
+          "stakeholders",
+          "scope",
+          "process",
+          "work_tracking",
+          "knowledge_base",
+          "decision_records"
+        ],
+        "propertyNames": {
+          "enum": [
+            "schema_version",
+            "project_name",
+            "vision",
+            "stakeholders",
+            "scope",
+            "process",
+            "work_tracking",
+            "knowledge_base",
+            "decision_records",
+            "code_review"
+          ]
+        }
+      },
+      "else": {
+        "required": [
+          "version",
+          "name",
+          "work",
+          "review",
+          "knowledge",
+          "decisions",
+          "iteration_reports",
+          "communication",
+          "working_agreement",
+          "stakeholders"
+        ],
+        "propertyNames": {
+          "enum": [
+            "version",
+            "name",
+            "work",
+            "review",
+            "knowledge",
+            "decisions",
+            "iteration_reports",
+            "communication",
+            "working_agreement",
+            "stakeholders",
+            "commands",
+            "profile",
+            "method",
+            "repositories",
+            "planning",
+            "flow",
+            "handoff",
+            "labels",
+            "reviewers",
+            "quality_gates",
+            "actions"
+          ]
+        }
+      }
+    }
+  ]
 }

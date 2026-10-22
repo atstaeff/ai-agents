@@ -1,116 +1,59 @@
-# Project-owned tooling configuration
+# Optional legacy YAML configuration
 
-Use one `workspace/workspace.yml` to declare where the project works. Link it from
-`AGENTS.md`. If the project already has an equivalent configuration, keep that file
-and declare its location instead; do not introduce a competing configuration.
+New projects use [AGENTS.md](../AGENTS.md) and its linked sources; see
+[project adoption](ADOPT-PROJECT.md). No YAML file is required. This page preserves the
+existing declarative configuration contract for tools/projects that still use it.
+The validator does not discover or validate AGENTS.md and cannot establish prose quality.
 
-The starter now uses `workspace.yml`. A linked existing `project.yaml` or equivalent
-custom configuration remains valid; the format is unchanged. When adopting the new
-name, rename one file and update its links together. Do not maintain both defaults:
-the validator rejects `workspace.yml` and `project.yaml` side by side rather than
-silently selecting one. It never renames or removes a customer's files.
+## Version 2: optional flat manifest
 
-The [GitHub example](../templates/customer-workspace/workspace/workspace.yml) and
-[Jira example](../templates/customer-workspace/examples/workspace-jira.yml) demonstrate
-one contract with different tools. The YAML is the canonical tooling map. Markdown
-explains the process and links to it; avoid manually maintaining the same map twice.
+An existing project may keep one root project.yaml when its tooling needs structured
+references. This illustrative snippet requires real referenced sources before use:
 
-Start smaller with the [minimal example](../templates/customer-workspace/examples/workspace-minimal.yml),
-or use the [Jira/two-repository example](../templates/customer-workspace/examples/workspace-multi-repo.yml).
-The [adoption guide](ADOPT-WORKSPACE.md) and
-[setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) explain how to choose
-and adapt one configuration using this schema.
-
-## Required, backward-compatible contract
-
-| Field | Meaning |
-| --- | --- |
-| `version` | Configuration format version; currently integer `1` |
-| `name` | Human-readable project name |
-| `work` | Tracker/board containing the selected work item; that item owns its live plan and acceptance |
-| `review` | Code review system and location, such as GitHub PRs or GitLab MRs |
-| `knowledge` | Authoritative current domain and operational knowledge |
-| `decisions` | Significant decision records, in a repository or customer knowledge system |
-| `iteration_reports` | Existing home for iteration outcomes |
-| `communication` | Permitted channel location; actual contact and action scope come from project rules |
-| `working_agreement`, `stakeholders` | Project-root-relative paths or authoritative URLs for rules and owners |
-| `commands` | Optional `setup`, `start`, `check` command strings or `null` when unspecified |
-
-Each of the six location fields has a non-empty `system` and `location`. System names
-are open strings, not an enforced vendor list. Locations may be URLs, project-relative
-paths or clearly named dynamic locations such as `Assigned work item`. The actual task
-supplies the selected ticket and linked review URL; do not overwrite the project config
-for every assignment. Relative paths resolve from the project root, not the YAML folder.
-
-Keep credentials, personal vault paths, model API keys and transient progress elsewhere.
-This file describes ownership. It grants no access, configures no connector, sends no
-messages and executes no commands. Host permissions and existing authorization still apply.
-Different projects can use different tools without changing generic skills or agents.
-
-## Agent behavior
-
-1. Read project instructions and the declared config before selecting integrations or
-   creating shared records. Load the working agreement and relevant owner information.
-2. Read the actual assigned work item from `work`. Keep its plan, questions, acceptance
-   and required approval receipt there. Link code review evidence from `review`.
-3. Update only affected authoritative knowledge. If knowledge lives in Confluence,
-   keep a pointer in `workspace/` rather than a separately maintained Markdown mirror.
-4. Preserve project-owned status meanings and action scope. Plannotator is an optional
-   review surface; save its actual approval receipt at the designated planning home.
-5. If config is missing, use already explicit project instructions. If ownership is
-   ambiguous or conflicting, resolve it before shared writes. Use a local record only
-   when no assigned system owns the work; unavailable access is not such an absence.
-6. If access is missing, prepare an unsent update and state the exact gap. Continue
-   independent authorized work; never claim a remote update, approval or synchronization.
-
-Use the [context recovery contract](CONTEXT-RECOVERY.md) to bind a handoff to current
-work-item, code and decision sources. Keep transient progress out of this tooling map.
-
-## Validate before adoption
-
-Run the optional local validator from this toolkit:
-
-```sh
-uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
+```yaml
+schema_version: 2
+project_name: Customer Portal
+vision: product/overview.md#vision-and-goals
+stakeholders: team/stakeholders.md
+scope: product/overview.md#scope-and-boundaries
+process: CONTRIBUTING.md
+work_tracking: https://github.com/example/customer-portal/issues
+code_review: https://github.com/example/customer-portal/pulls
+knowledge_base: knowledge/
+decision_records: architecture/decisions/
 ```
 
-It checks the [JSON Schema](workspace.schema.json), required locations, optional process mappings,
-unknown fields and duplicate YAML keys.
-It does not access URLs, test credentials, execute commands or prove that a location
-exists. PyYAML and jsonschema are isolated to this optional command; the main toolkit remains stdlib-only.
-Replace example placeholders, confirm locations and perform the [host smoke check](PORTABILITY.md#verify-a-new-host-once).
+All fields except code_review are required within this optional format. Values are
+nonempty strings except integer schema_version. The four context/process references
+must be local Markdown, with optional section anchors; they may link remote detail.
+Work/review/knowledge/decision locations are strings. These restrictions belong to the
+legacy YAML validator, not to the AGENTS.md entry: AGENTS.md may directly adopt web sources.
 
-The bundled graph generator reads local Markdown. A remote wiki requires a separately
-authorized integration to generate a website or graph; this config does not implement one.
+## Version 1: existing tooling maps
 
-## Optional operating-model fields
+[GitHub](../templates/customer-workspace/workspace/workspace.yml),
+[Jira](../templates/customer-workspace/examples/workspace-jira.yml) and
+[multi-repository](../templates/customer-workspace/examples/workspace-multi-repo.yml)
+examples remain readable. Their nested system/location and policy blocks are compatibility
+material, not required project structure. The extended fictional example uses workspace/
+so existing graph/adapter behavior and paths remain reproducible.
 
-All examples use the same schema. Existing minimal version-1 configs remain valid.
-See the [complete workspace concept](WORKSPACE-CONCEPT.md) and the richer GitHub/Jira
-examples for the complete flow; the YAML does not implement the described integrations.
+## Validate an existing map
 
-| Section | Content |
-| --- | --- |
-| `profile`, `method` | Tool arrangement and adopted delivery method; open strings |
-| `repositories` | Unique `name`, `location`, optional project-relative `path` and `default_branch` |
-| `planning` | Optional `priority`, `iteration`, `engineering_status`, each with `system` and `location` |
-| `flow` | Distinct `states` mapping for todo/in_progress/in_review/done, `blocked: additional_property`, completion reasons and code-Done requirements |
-| `handoff` | Existing work-item `location` and shared `template` path |
-| `labels`, `reviewers` | Purpose-to-label map and reviewer role/contact references adopted by the project |
-| `quality_gates` | List of `name`, `command` and boolean `required`; commands are never auto-executed |
-| `actions` | Action categories: `within_assignment`, `separate_authorization`, `forbidden` |
+From the toolkit checkout:
 
-Action keys are `edit_assigned_branch`, `open_draft_pr`, `update_work_item`,
-`ask_questions`, `merge`, `deploy`, `delete`, `change_access`. Real permissions and
-existing instructions still apply. A label/reviewer name configures neither the tracker
-nor a notification, claim or approval. A missing optional field is unspecified, not
-permission to guess. Match gate commands to actual project technology.
+```sh
+uv run --locked --group validation python tools/project_config.py --config /path/to/project/project.yaml
+```
 
-`flow` describes tracked delivery; the local task table retains its existing four task
-states and is not a replacement board. Product/capacity and engineering ownership can
-be mapped separately in a split profile, without duplicating the same live assignment.
+The validator checks schema, types, unknown/duplicate keys and conflicting conventional
+maps. Version 2 also checks its four required local Markdown files/sections, emptiness,
+obvious prompts and paths staying inside the declared project root. --structure-only is
+a setup/schema check and does not establish source readiness. No content is executed or
+URLs fetched. Optional PyYAML/jsonschema dependencies belong to the toolkit; customers do
+not need its pyproject.toml to adopt AGENTS.md.
 
-Schema source: `toolkit/workspace.schema.json`. The optional validator reads that exact
-local schema; it does not maintain a second list of accepted fields or fetch remote refs.
-The old standalone concept schema (`schema_version`, `sources`, `paths`) must be mapped
-into this contract, not copied as a second supported format.
+The source schema remains workspace.schema.json for compatibility. Existing YAML tests
+remain in CI; the default repository/starter no longer needs a manifest. When retiring a
+map, preserve real source locations in AGENTS.md or its linked project pages and first
+check for external tools that depend on it. Do not keep contradictory process copies.
