@@ -1,0 +1,5 @@
+# Merge into the target repository's existing ignore rules.
+/workspace/work/
+/workspace/archive/
+/workspace/generated/
+/workspace/exports/

@@ -3,6 +3,9 @@
     "label": "Start here",
     "items": [
       {
+        "Lean Project Starter": "getting-started/lean-project.md"
+      },
+      {
         "Quick Start": "getting-started/quick-start.md"
       },
       {
@@ -20,7 +23,10 @@
     "label": "Operating model",
     "items": [
       {
-        "Delivery and Accountability": "concept.md"
+        "Lean Delivery Loop": "concept.md"
+      },
+      {
+        "Lean Worked Example": "operating-model/lean-example.md"
       },
       {
         "Engineering Quality": "operating-model/quality.md"
@@ -103,6 +109,24 @@
     "items": [
       {
         "Choose an Artifact": "templates/index.md"
+      },
+      {
+        "Compact Assignment": "templates/delivery/assignment.md"
+      },
+      {
+        "Ideas List": "templates/knowledge/ideas.md"
+      },
+      {
+        "Concept / Spec": "templates/knowledge/concept.md"
+      },
+      {
+        "General Decision": "templates/knowledge/decision.md"
+      },
+      {
+        "Current Knowledge": "templates/knowledge/current.md"
+      },
+      {
+        "Incident Review": "templates/quality/incident-review.md"
       },
       {
         "Project Brief": "templates/project/project-brief.md"

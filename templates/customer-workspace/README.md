@@ -13,6 +13,10 @@ uses the same `workspace/` root as knowledge, with an explicit publication bound
 
 ## Start with the minimum
 
+For ordinary adoption, use the [lean starter](../lean-project/README.md): three maintained
+entry files with working agreement and decision owners inline. Continue below when this
+extended fictional example helps explain a real coordination or publication need.
+
 For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).
 To have a coding agent configure an existing project, copy the [English setup prompt](SETUP-PROMPT.md).
 Choose the [minimal YAML](examples/workspace-minimal.yml), the GitHub example below,

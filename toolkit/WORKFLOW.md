@@ -11,6 +11,10 @@ local work, archives, generated previews and exports are outside knowledge publi
 
 ## Choose the shortest complete path
 
+Use the [lean operating model](OPERATING-MODEL.md) as the default. Keep agreement and
+owner roles inline in the workspace entry until separate pages are useful. Add ideas,
+concepts, significant decisions and incident reviews only when actual work needs them.
+
 For a clear, small task: inspect the relevant files, make the change, run appropriate
 checks and report the result. No work record, catalog scan or agent handoff is required.
 
@@ -24,8 +28,8 @@ If no system owns the assignment, use one `workspace/work/<slug>.md` with the
 If ownership is ambiguous, resolve it before creating shared records. If the designated
 system is inaccessible, report the access gap and prepare an unsent update; do not
 silently switch systems. Continue independent authorized work.
-Keep the goal, acceptance criteria, short plan, tasks, feedback, decisions and evidence
-together. Keep `docs/` available for its existing purpose, including GitHub Pages.
+Keep the goal, acceptance criteria, short plan, tasks, feedback, decision references
+and evidence together; preserve significant rationale at its designated decision home. Keep `docs/` available for its existing purpose, including GitHub Pages.
 
 Reuse the project's technology. For new Python work prefer dataclasses, explicit
 validation, uv and unittest; add Typer only for a CLI that merits it. For a modest new
@@ -91,6 +95,11 @@ inspect existing effects after API timeouts rather than blindly repeating them.
 Do not create a second task store or carry an entire transcript as mandatory context.
 
 ## Finish with reusable knowledge
+
+Update affected current knowledge from verified behavior. Keep completed plans at their
+existing work home as history; preserve accepted decisions and replacement links. Before
+replacing a derived plan, retain its still-important rationale. Mark historical concepts
+and obsolete handoffs explicitly. See the [retention rules](PROJECT-KNOWLEDGE.md#choose-what-stays-current-and-what-becomes-history).
 
 For local work records, archive in `workspace/archive/` after acceptance criteria are verified
 and unresolved feedback is reviewed. Close tracked work according to the project agreement. Keep historical records out of routine context. Link reusable knowledge

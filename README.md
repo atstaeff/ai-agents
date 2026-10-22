@@ -10,12 +10,24 @@ are English and independent of model vendors.
 | You want to… | Start here |
 | --- | --- |
 | Find or maintain engineering expertise | [Agent catalog](agents/README.md), [skill catalog](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
-| Deliver a product with a small accountable team and AI | [Operating model](toolkit/OPERATING-MODEL.md) |
-| Set up a new or existing project | [Adoption guide](toolkit/ADOPT-WORKSPACE.md), [customer starter](templates/customer-workspace/README.md) |
+| Deliver a product with a small accountable team and AI | [Lean operating model](toolkit/OPERATING-MODEL.md), [three-file starter](templates/lean-project/README.md) |
+| Set up a new or existing project | [Lean starter](templates/lean-project/README.md), [adoption guide](toolkit/ADOPT-WORKSPACE.md) |
 | Define a decision, project request or architecture review | [Template chooser](templates/README.md) |
 | Make quality measurable | [Engineering quality standard](toolkit/QUALITY-STANDARD.md) |
 | Continue work across sessions and growing project knowledge | [Knowledge guide](toolkit/PROJECT-KNOWLEDGE.md), [recovery contract](toolkit/CONTEXT-RECOVERY.md) |
 | Run this repository's workflow | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
+
+## Run a project with little overhead
+
+Start with `AGENTS.md`, `workspace/README.md` and `workspace/workspace.yml`. Keep rules
+and decision owners inline until separate pages are useful. Work from one assigned
+issue/ticket: clarify, short plan, build, verify, then required integration and knowledge
+maintenance. A small correction needs no additional process documents.
+
+Add ideas, concepts, decisions and incident reviews only when actual work needs them.
+Keep current knowledge current and significant rationale findable; completed plans remain
+history at their work home. BMAD and Spec-Driven Development are optional project choices.
+See the [lean worked example](toolkit/examples/lean-project.md).
 
 ## Find expertise by discipline
 

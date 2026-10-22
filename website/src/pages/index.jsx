@@ -5,7 +5,7 @@ import counts from '../../.generated/catalog.json';
 
 const paths = [
   {number: '01', title: 'Choose expertise', to: '/catalog/', text: 'Find the roles and focused skills your next outcome needs. One catalog, seven disciplines.'},
-  {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Connect requests, decisions, implementation and evidence. Preserve the reasoning as work moves forward.'},
+  {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Start with three project files and one assignment. Add useful knowledge as you deliver.'},
   {number: '03', title: 'Make quality observable', to: '/operating-model/quality/', text: 'Turn maintainability, security and reliability into concrete scenarios and meaningful checks.'},
   {number: '04', title: 'Start with a useful template', to: '/templates/', text: 'Project briefs, architecture reviews, decisions and handoffs. Use only the artifact the assignment needs.'},
 ];
@@ -21,7 +21,7 @@ export default function Home() {
               <h1>Build products.<br /><span>Preserve the reasoning.</span></h1>
               <p className="hero-description">Reusable expertise. Clear decisions. Shared project knowledge that another person or session can continue from.</p>
               <div className="hero-actions">
-                <Link className="button button--primary button--lg" to="/getting-started/adopt-workspace/">Adopt in a project</Link>
+                <Link className="button button--primary button--lg" to="/getting-started/lean-project/">Start a lean project</Link>
                 <Link className="button button--secondary button--lg" to="/catalog/">Explore the catalog</Link>
               </div>
             </div>

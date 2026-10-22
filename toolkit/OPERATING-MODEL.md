@@ -1,146 +1,137 @@
 # Work with AI as a teammate
 
-Use a small accountable team, shared project knowledge and AI for bounded delivery.
-People own product direction, consequential decisions and acceptance. AI helps discover,
-model, implement, verify and explain the result through the project's actual tools.
-The aim is less reconstruction and rework, with useful products that can evolve safely.
+Run a project with one clear outcome, one current assignment and a small shared memory.
+Use AI to explore, plan, build, verify and maintain that memory within actual permissions.
+People own priorities, consequential decisions and acceptance. This is a practical default
+built from established practices, not a claim of universally optimal productivity.
 
-The model has two connected parts: an [expertise catalog](CATALOG-GUIDE.md) maintained
-centrally and a [project workspace](WORKSPACE-CONCEPT.md) owned by each project.
-The catalog says how to do a class of work. The workspace says what this project needs,
-what has been decided and where its authoritative sources live.
+## Start with three entry files
 
-## Start from the outcome
+Use the [lean project starter](../templates/lean-project/README.md). Merge it into existing
+conventions; do not replace customer content or copy the larger fictional example.
 
-Define the user, problem, expected behavior and observable success. Compare an existing
-capability or process improvement with the smallest useful software increment. Name
-assumptions and what evidence could disprove the proposal. A prototype, passing tests,
-accepted code, deployed behavior and demonstrated value are different results.
+| Entry | Maintain here |
+| --- | --- |
+| `AGENTS.md` | Where a session starts and the few rules it must follow |
+| `workspace/README.md` | Product goal, boundaries, decision owner, working rules and links |
+| `workspace/workspace.yml` | Authoritative tool locations and optional actual commands |
 
-Use the [project brief](../templates/project/project-brief.md) inside the existing intake
-or assigned work item when needed. A clear reversible fix can go directly from inspection
-to implementation and appropriate checks.
+The starter keeps working agreement and role ownership inline in the workspace entry.
+Separate pages become useful when ownership or policy outgrows that entry. Its local
+configuration works without a tracker; adapt the map to the project's real GitHub/Jira
+locations before tracked delivery. The YAML is a map, not an orchestrator or permission grant.
 
-## The delivery loop
+An [expertise catalog](CATALOG-GUIDE.md) supplies reusable skills. Project facts stay in
+the project. Load the narrowest useful skill; another profile need not mean another session.
 
-| Activity | Accountable decision | AI contribution | Evidence and existing home |
-| --- | --- | --- | --- |
-| Frame and discover | Product owner chooses outcome and priority | Inspect sources, compare alternatives, test uncertainty | Criteria and bounded increment in the assignment |
-| Decide and plan | Technical/domain owner resolves consequential tradeoffs; review the plan when required | Model boundaries, select quality scenarios and propose the next slice | Current plan, feedback and significant ADRs |
-| Build | Assigned contributor works within scope | Implement, preserve comments and update affected knowledge | Focused change and actual repository revisions |
-| Verify and review | Required reviewer assesses meaning and evidence | Exercise criteria and failure cases; prepare actionable findings | Checks, current diff and acceptance references |
-| Integrate and operate | Authorized owner approves integration/release | Prepare rollout, recovery, diagnostics and observation | Integrated/deployed state and operating evidence |
-| Learn | Product/technical owners choose improvements | Link results, decisions, unresolved work and learning | Iteration report and measured user outcomes |
+## Run one delivery loop
 
-These are activities and accountabilities, not six mandatory agents, meetings or documents.
-One person may hold several roles. Keep one accountable owner for each decision and one
-integrator for the increment. Use the [template chooser](../templates/README.md) only
-where the project lacks an adequate existing format.
+**Clarify → Plan → Build → Verify → Integrate and retain useful knowledge.**
+These activities can happen in one conversation and issue. They require no phase documents.
+
+| Activity | Smallest useful result |
+| --- | --- |
+| Clarify | Who needs what outcome, boundaries and observable acceptance |
+| Plan | Next complete increment, important uncertainty and affected sources |
+| Build | Focused implementation using the existing stack |
+| Verify | Actual criterion-linked checks, relevant failure cases and practical limits |
+| Integrate and retain | Required acceptance/integration, current knowledge and durable rationale |
+
+For a clear reversible correction, inspect, change and check directly. For an ordinary
+feature, use the [compact assignment](../templates/delivery/assignment.md) inside the
+existing issue. For an uncertain or consequential change, add a concept/spec and the
+necessary decisions. Each artifact must resolve an uncertainty or preserve useful knowledge.
+
+Use Todo, In Progress, In Review and Done, or the project's equivalent. Track blocked
+work with its reason, owner and resume condition; keep its flow position visible.
+Cancelled, duplicate and declined work are not delivered. Engineering Done means the
+agreed evidence, required review and authorized integration at the project's completion
+point. A draft PR, passing tests, deployment and measured user benefit are distinct states.
+
+## Control the project without a second management system
+
+Choose one person accountable for priority and acceptance, plus a technical decision owner
+when needed; one person can hold both roles. Select the next increment by value, risk,
+dependencies and review capacity. Default to one active increment per accountable owner;
+expand only when the team can integrate and review the additional work.
+
+Keep priority, assignment, plan, feedback and progress at their designated work home.
+Use a few tasks only when coordination needs them. On material progress or a blocker,
+update the same assignment. At a useful review point, link delivered outcomes, unresolved
+risks and the next choice there; a separate iteration report or recurring meeting is optional.
+
+One session is the default. Add specialists only for a bounded uncertainty and through
+supported, authorized host capabilities. Give disjoint file/action scopes, selected source
+revisions, acceptance and expected evidence; name an integrator. Concurrent writers need
+an effective shared claim and recovery mechanism. This toolkit implements no distributed
+lock, tracker synchronization, model runner or automatic multi-session coordination.
+
+## Keep a small, connected memory
+
+Create only the records needed by actual work. The workspace entry links the current ones.
+
+| Record | Create when | After the work |
+| --- | --- | --- |
+| [Idea](../templates/knowledge/ideas.md) | An opportunity needs capturing | Mark selected, deferred, declined or delivered; link its result |
+| [Concept/spec](../templates/knowledge/concept.md) | A meaningful uncertainty or contract needs explanation | Keep the designated living contract current; otherwise mark it historical and link its current successor |
+| [Decision](../templates/knowledge/decision.md) | A significant choice's reasons will matter later | Preserve accepted rationale and replacement links |
+| [Current knowledge](../templates/knowledge/current.md) | Reusable behavior or operating knowledge would otherwise be lost | Update from verified implementation; show intended/partial states |
+| [Incident review](../templates/quality/incident-review.md) | Impact, recurrence or uncertainty warrants learning | Preserve facts and link owned follow-up issues and knowledge changes |
+
+An idea is not a commitment. An agreed concept is not evidence of delivery. Code changes
+do not revoke accepted decisions. AEK makes rationale compact: starting situation,
+insight from alternatives/evidence, and consequences of the chosen response.
+
+Working plans and tasks remain with the completed assignment as history. Before replacing
+or deleting a derived plan, preserve its still-important decisions. Remove disposable
+generated output and genuine duplicates deliberately. Archive means searchable history
+outside routine context; it does not mean losing the reasons. See the
+[knowledge lifecycle and recovery rules](PROJECT-KNOWLEDGE.md).
+
+## Resume from current sources
+
+A new session reads the current assignment, workspace entry and affected knowledge,
+contracts and decisions, then compares the last bounded handoff with current revisions.
+Search the affected project if links are missing. Load historical plans only to answer a
+specific question; never require the entire chat, catalog or every ADR.
+
+Before interruption, save the current result, relevant revisions, actual check evidence,
+blocker/decision owner, pending writes and one next action in the existing assignment.
+An optional host/session link aids navigation; shared knowledge must remain usable without
+it. Use the [recovery contract](CONTEXT-RECOVERY.md) for conflicts and incomplete writes.
 
 ## Let each project choose its tools
 
-Read `AGENTS.md`, the workspace entry, working agreement and
-[workspace/workspace.yml](PROJECT-CONFIG.md). Preserve existing customer conventions.
-The YAML maps actual repositories, work/review/knowledge homes, optional board fields,
-quality gates and action scope. It grants no permission and runs no workflow.
+Jira can own the assignment and GitHub the code review. Do not create a mirror issue,
+local work record or CSV task list. With no designated system, use one [work record](WORK-RECORDS.md).
+If an authoritative system is unavailable, report the gap and prepare an unsent update;
+continue independent authorized work without silently changing the work home.
 
-| Information | Authoritative home |
-| --- | --- |
-| Priority, iteration and assignment | The adopted board or tracker fields |
-| Active scope, plan, questions and acceptance | One assigned issue/ticket or existing local work record |
-| Implementation and checks | Relevant repository revisions and linked PR/MR |
-| Significant rationale | Customer-owned ADR or decision space |
-| Current domain, architecture and operations | Project-owned contracts, implementation and knowledge |
-| Recovery state | Bounded handoff at the same planning home |
-| Iteration outcomes | Existing project update/report |
-| General reusable expertise | Canonical agents, skills and focused references |
+Use lean Plan/Build/Verify by default. For larger requirements, a project may choose
+Spec-Driven Development; BMAD can support discovery, planning and delivery. Keep their
+required artifacts at their existing homes, link them here and state which source owns
+requirements versus status. Select one primary delivery method per assignment. Choosing
+a `method` in YAML installs nothing. Never reconcile intent by merely accepting whatever
+code happened to be produced. See the [method selection and retention guide](PROJECT-KNOWLEDGE.md#choose-a-method-without-duplicating-work).
 
-A Jira ticket can own the entire plan with a linked GitHub PR and no mirror issue.
-For split product/engineering planning, define stable delivery references and field/item
-ownership; do not duplicate the same live plan. Missing access means an unsent proposed
-update and an explicit gap. Continue independent authorized work.
+## Add rigor where it earns its cost
 
-For a larger direct request without an assigned system, use one [work record](WORK-RECORDS.md).
-Personal Second Brain material stays private; customer facts remain with the customer.
-Docusaurus, indexes and knowledge graphs are optional derived views.
+Make the relevant qualities measurable using the [quality standard](QUALITY-STANDARD.md).
+For significant changes, cover affected consumer contracts, security/privacy boundaries,
+recovery and maintenance cost. Prefer understandable boundaries; new infrastructure,
+frameworks and abstractions need evidence of benefit.
 
-## Make engineering quality concrete
+Plan review is required when the user or project requires it. Preserve the actual approval
+of that revision before dependent work. Material changes reassess affected approvals and
+checks. Merge, deployment, messages and destructive actions follow their actual scope;
+a role label, template or YAML file grants no authorization.
 
-Select the important quality attributes and turn them into observable scenarios.
-Use the [quality standard](QUALITY-STANDARD.md) for correctness, maintainability,
-replaceability, testability, security, reliability, usability, compatibility, operations
-and resource efficiency. Compare realistic alternatives and justify the tradeoffs.
+Start with the [lean worked example](examples/lean-project.md). For more elaborate customer
+coordination, use [the worked assignment](../templates/customer-workspace/examples/issue-42.md)
+and the [detailed workspace concept](WORKSPACE-CONCEPT.md). Observe reconstruction effort,
+rework, review time and useful outcomes on real assignments before adding automation.
 
-Optimize for understandable change boundaries and evidence. The most abstract design,
-largest agent roster or highest coverage number is not automatically best. Small
-complete increments make review and recovery practical. Reuse the existing stack and
-make additional infrastructure or abstraction earn its operating and change cost.
-
-A required plan review concerns the concrete current revision. Preserve actual feedback
-and approval before dependent implementation. Follow the customer's review policy;
-Plannotator is one optional [local review surface](PLAN-REVIEW.md), not a new planning home.
-Routine details within approved scope do not reopen every gate. Material scope or design
-changes reassess affected decisions, approval and checks.
-
-## Preserve decisions while they are available
-
-Record a significant choice when it arises: situation, alternatives/evidence, decision,
-consequences, scope and responsible role. The accountable role accepts or rejects it.
-An accepted decision's substantive rationale remains historical. A later accepted ADR
-can supersede it with explicit links; a proposed replacement cannot revoke it.
-
-Current knowledge describes intended or implemented behavior with that distinction
-visible. Code proves observed implementation, not authorization to ignore architecture.
-Resolve consequential contradictions by scope and authority, not the newest timestamp.
-See [project knowledge](PROJECT-KNOWLEDGE.md) for retrieval, ownership and maintenance.
-
-## Work with a small team and bounded concurrency
-
-Start with one session and the narrowest relevant skills. Use specialists for a clear
-uncertainty or deliverable; delegate only through supported authorized host capabilities.
-Give each worker selected sources, acceptance, action/file scope and expected evidence.
-Keep concurrent writers separate and verify the integrated result.
-
-Review and decision capacity constrain WIP. Adding agents cannot create extra human
-acceptance capacity or remove accountability. Several workers need an effective shared
-claim, expiry/recovery behavior and an integrator; assignment alone is not a lock.
-Multi-repo work records each relevant revision and integration order. Partial integration
-is not a completed cross-repo feature. The toolkit implements no distributed claim or runner.
-
-Use Todo, In Progress, In Review and Done or the project's explicit equivalent. Blocked
-is an additional property with reason, owner and resume condition; retain flow position
-and WIP. Distinguish delivered from cancelled, duplicate and not-implemented closures.
-
-## Continue when people, sessions and models change
-
-The [recovery contract](CONTEXT-RECOVERY.md) starts from current shared sources, relevant
-contracts/code/decisions and the last bounded handoff. Compare assignment revision,
-commits, applicable decisions, approval and tested evidence before following an old plan.
-Save progress after material increments and before a known pause; include unsaved work,
-pending external writes, unresolved questions and one executable next action.
-
-Do not require the full conversation, every ADR or the entire catalog. Search the bounded
-project if a relevant source is missing. Reconcile partial writes before retrying after
-a timeout, and preserve intervening human edits. Grow domain indexes and retrieval only
-when actual project scale requires them.
-
-## Define completion and learn from use
-
-For code, Engineering Done requires the agreed criteria, required review and authorized
-integration at the defined completion point. An investigation may finish with a verified
-answer. Deployment and measured user benefit require their own evidence. A closed issue
-or successful host exit does not prove acceptance.
-
-Observe comparable assignments for time to accepted result, human reconstruction/review,
-rework, escaped defects and intended user impact. Record model/host, process revision,
-actual results and limits. Keep practices that justify their maintenance cost. No staffing
-reduction or universal productivity gain is established by this repository.
-
-## Adopt incrementally
-
-Start with [adoption](ADOPT-WORKSPACE.md) and [the worked assignment](../templates/customer-workspace/examples/issue-42.md).
-Run one authorized real assignment, including a fresh-session handoff, before increasing
-autonomy. Add domain ownership, multi-repo coordination and concurrency controls as the
-need appears. Reuse the [customer starter](../templates/customer-workspace/README.md),
-[runtime setup](RUNTIMES.md), [working contract](WORKFLOW.md) and
-[repository replay](REPOSITORY-WORKFLOW.md) for concrete steps.
+Practices behind this default include [DORA small batches](https://dora.dev/capabilities/working-in-small-batches/),
+[short decision records](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)
+and [SRE incident learning](https://sre.google/sre-book/postmortem-culture/). Their combination
+here is a project convention; its benefit still needs observation in the adopted project.

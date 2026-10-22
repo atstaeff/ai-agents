@@ -6,7 +6,8 @@ and examples. Replace the bracketed input when known; the agent can discover the
 
 References: [adoption guide](../../toolkit/ADOPT-WORKSPACE.md),
 [config contract](../../toolkit/PROJECT-CONFIG.md),
-[schema](../../toolkit/workspace.schema.json) and [starter](README.md).
+[schema](../../toolkit/workspace.schema.json), [lean starter](../lean-project/README.md)
+and [extended example](README.md).
 All are covered by the [repository license](../../LICENSE).
 
 ---
@@ -61,12 +62,13 @@ declares locations and policy; it does not install an integration or grant autho
 
 **3. Create only useful entry pages**
 
-Reuse existing equivalents or adapt these short starter pages:
-
-- `workspace/README.md`: product outcome, scope and important context links.
-- `workspace/working-agreement.md`: chosen method, planning home, quality gates,
-  communication, decision rights and completion evidence.
-- `workspace/stakeholders.md`: accountable roles and permitted, verified contact routes.
+Use the lean starter by default. Reuse or adapt `workspace/README.md` for the outcome,
+boundaries, current sources, short working agreement and accountable decision roles.
+Both required config fields `working_agreement` and `stakeholders` can point to this
+entry. Add separate pages only when existing conventions or complexity justify them.
+Together with the tooling map and agent entry, this is three maintained entry files.
+Add ideas, concepts/specs, significant decisions, current knowledge and incident reviews
+only when actual work needs them; create no empty folder hierarchy.
 
 Merge a concise pointer into existing agent instructions, such as `AGENTS.md`. Respect
 the host's actual discovery rules. Do not overwrite its instructions or assume that
@@ -77,6 +79,13 @@ Create knowledge and decision pages when the work actually warrants them. Keep c
 skills in their central maintained source, with host exports treated as generated output.
 
 **4. Define how collaboration works**
+
+Use lean clarification, short plan, build, verify and knowledge retention by default.
+An existing project method takes precedence. Select BMAD or Spec-Driven Development
+when useful, link their authoritative native artifacts and avoid a second live plan.
+Keep completed execution as history, significant rationale in decisions and the current
+contract/knowledge maintained. Add an actual optional host/session reference to a bounded
+handoff; shared memory must remain usable without it.
 
 Keep the project's chosen method: BMAD, Plan/Build/Review or its established procedure.
 Do not introduce a second mandatory process beside it. A bounded assignment needs a

@@ -19,15 +19,18 @@ repository to change, whom to ask and what counts as complete. Make that informa
 available to a fresh AI session too. Humans retain accountability for consequential
 decisions and acceptance; the agent operates within its actual assignment and access.
 
-Start with a few files, or reuse their existing equivalents:
+Start with the [three-file lean starter](../templates/lean-project/README.md), or reuse existing equivalents:
 
 | File | Question it answers |
 | --- | --- |
 | `AGENTS.md` | Where should this host start, and which project rules apply? |
 | `workspace/README.md` | What outcome matters and which sources explain this project? |
 | `workspace/workspace.yml` | Which systems and repositories own which information? |
-| `workspace/working-agreement.md` | How do we plan, verify, ask questions and finish? |
-| `workspace/stakeholders.md` | Who can resolve the decisions this work needs? |
+
+
+Keep the short working agreement and decision owners inline in `workspace/README.md`.
+The required YAML fields `working_agreement` and `stakeholders` may both point there.
+Use separate pages only when existing conventions or coordination complexity justify them.
 
 The YAML is a map. Markdown explains policy and rationale. Keep actual locations in
 one map and link to it rather than maintaining a second copy in prose.
@@ -38,6 +41,7 @@ All these files use the same [version-1 schema](workspace.schema.json):
 
 | Arrangement | Copy and adapt |
 | --- | --- |
+| Local work with inline rules and owners | [Lean starter configuration](../templates/lean-project/workspace/workspace.yml) |
 | One repository, few rules | [Minimal configuration](../templates/customer-workspace/examples/workspace-minimal.yml) |
 | GitHub Issues and Projects | [GitHub configuration](../templates/customer-workspace/workspace/workspace.yml) |
 | Jira, GitHub reviews and Confluence knowledge | [Jira configuration](../templates/customer-workspace/examples/workspace-jira.yml) |
@@ -61,8 +65,9 @@ local dashboard edits optional work records; it does not operate Jira or GitHub 
 ## Adopt it in an existing project
 
 1. Read existing instructions, architecture, CI, tracker conventions and access rules.
-2. Adapt one YAML example and the three entry pages from the
-   [customer starter](../templates/customer-workspace/README.md). Merge a pointer into the
+2. Adapt one YAML example and the compact entry from the
+   [lean starter](../templates/lean-project/README.md). Use the
+   [extended customer example](../templates/customer-workspace/README.md) when useful. Merge a pointer into the
    existing agent instructions. Preserve human content and existing tool discovery rules.
 3. Identify authoritative owners for tasks, priority, iteration, status, reviews and
    knowledge. Agree action scope with the project owner; YAML does not grant permissions.

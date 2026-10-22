@@ -35,6 +35,18 @@ class ProjectConfigTests(unittest.TestCase):
             self.assertTrue((ROOT / data[key]).is_file())
         self.assertTrue((ROOT / data['handoff']['template']).is_file())
 
+    def test_lean_starter_resolves_inline_agreement_owners_and_knowledge(self):
+        starter = ROOT / 'templates/lean-project'
+        data = cfg.load(starter/'workspace/workspace.yml')
+        self.assertEqual(data['method'], 'lean')
+        self.assertEqual(data['work'], {'system': 'local-record', 'location': 'workspace/work/'})
+        for key in ('working_agreement', 'stakeholders'):
+            self.assertEqual(data[key], 'workspace/README.md')
+            self.assertTrue((starter/data[key]).is_file())
+        for key in ('knowledge', 'decisions'):
+            self.assertTrue((starter/data[key]['location']).is_file())
+        self.assertNotIn('commands', data)  # No fabricated setup/test commands.
+
     def test_minimal_existing_config_does_not_require_new_sections(self):
         minimal = {key: self.data[key] for key in cfg.REQUIRED}
         self.assertEqual(cfg.validate(minimal), minimal)

@@ -4,6 +4,10 @@ Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
 [shared workflow](../toolkit/WORKFLOW.md). The [configuration](workspace.yml) maps
 locations and checks; it does not grant permissions or install integrations.
 
+Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.
+Keep the existing separate role/agreement pages because this repository already owns
+them; adopting lean does not require a disruptive consolidation.
+
 Use the assigned issue for tracked work. For a direct larger request without an issue,
 reuse the current PR when it already represents that request; otherwise use one local
 work record. Preserve human comments, write on a branch and prepare a

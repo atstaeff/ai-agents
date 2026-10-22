@@ -6,6 +6,13 @@ record. These templates are prompts for concrete evidence, not extra mandatory d
 
 | Situation | Template | Home |
 | --- | --- | --- |
+| Start with minimal project overhead | [Lean starter](lean-project/README.md) | Agent entry, workspace entry and one tooling map |
+| Capture an opportunity | [Ideas](knowledge/ideas.md) | Existing idea intake or optional workspace list |
+| Develop a concept or feature contract | [Concept/spec](knowledge/concept.md) | Designated specification/knowledge home |
+| Preserve product/process rationale | [General decision](knowledge/decision.md) | Designated decision home; inline initially |
+| Maintain current behavior | [Current knowledge](knowledge/current.md) | Existing project docs or knowledge space |
+| Coordinate a normal increment | [Compact assignment](delivery/assignment.md) | Existing issue or ticket |
+| Learn from a significant/repeated incident | [Incident review](quality/incident-review.md) | Existing incident system or optional incident space |
 | A new product/project request | [Project brief](project/project-brief.md) | Existing intake or assigned work item |
 | Change an existing scope or contract | [Change request](project/change-request.md) | Current assignment and its decision owner |
 | A significant choice needs rationale | [Architecture decision](architecture/decision.md) | Designated ADR space |

@@ -8,6 +8,8 @@ delivery flow, configuration, migration and publication boundary.
 
 ## Entry points
 
+- [Lean operating model](../toolkit/OPERATING-MODEL.md) and [three-file starter](../templates/lean-project/README.md): default project loop and minimum adoption.
+
 - [Run this repository's workflow](../toolkit/REPOSITORY-WORKFLOW.md): setup, OpenCode startup and a repeatable process replay.
 - [Pilot observation](../toolkit/evaluations/workspace-pilot-20261022.md): actual local results and unverified boundaries.
 - [Workspace configuration](workspace.yml): actual repository locations and checks.

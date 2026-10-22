@@ -2,7 +2,7 @@
 version: 1
 name: AI Agents
 profile: repository
-method: issue-to-pr
+method: lean
 
 work:
   system: github

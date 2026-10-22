@@ -21,6 +21,10 @@ The [adoption guide](ADOPT-WORKSPACE.md) and
 [setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) explain how to choose
 and adapt one configuration using this schema.
 
+The [lean starter](../templates/lean-project/README.md) keeps agreement and owner roles
+inline: `working_agreement` and `stakeholders` both point to `workspace/README.md`.
+These fields identify authoritative content; they do not require separate documents.
+
 ## Required, backward-compatible contract
 
 | Field | Meaning |

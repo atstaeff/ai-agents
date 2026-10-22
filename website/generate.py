@@ -13,6 +13,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'getting-started/lean-project.md': 'templates/lean-project/README.md',
+    'lean-project/workspace.md': 'templates/lean-project/workspace/README.md',
+    'operating-model/lean-example.md': 'toolkit/examples/lean-project.md',
     'getting-started/local-preview.md': 'website/README.md',
     'references/python-golden.md': 'reference-repos/python-golden/README.md',
     'references/event-driven-python.md': 'reference-repos/event-driven-python/README.md',

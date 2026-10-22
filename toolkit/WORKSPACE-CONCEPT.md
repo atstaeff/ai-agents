@@ -30,6 +30,10 @@ system. Existing customer methods remain valid, including their own planning pro
 Plan/Build/Review or another adopted method. Use an existing equivalent entry point
 when the project already has one.
 
+Start with the [lean starter](../templates/lean-project/README.md): agent entry, workspace
+entry and one config. Agreement and owners can stay inline. The following paths are
+optional homes to grow into, not a checklist of files to create.
+
 ## 2. Folder and information ownership
 
 All paths below are relative to the project root. Create only the parts the project needs.
@@ -39,8 +43,11 @@ All paths below are relative to the project root. Create only the parts the proj
 | `AGENTS.md` | Entry instructions, commands and pointer to workspace config | Preserve project rules; keep short |
 | `workspace/README.md` | Outcome, scope and links to authoritative sources | Reviewed project context |
 | `workspace/workspace.yml` | Machine-readable tool and process mapping | One configuration; no credentials |
-| `workspace/working-agreement.md` | Authority, review, flow and completion policy | Adopt with the responsible owner |
-| `workspace/stakeholders.md` | Decision roles and permitted communication | Use verified contacts within scope |
+| `workspace/working-agreement.md` | Optional separate authority, review and completion policy | Keep inline in the entry for small projects |
+| `workspace/stakeholders.md` | Optional separate decision-role map | Keep roles inline initially; use verified contacts within scope |
+| `workspace/ideas.md` | Optional opportunities and hypotheses | Disposition and links, not a second delivery backlog |
+| `workspace/concepts/` | Optional concepts/specifications | Declare a living contract or historical snapshot; link current sources |
+| `workspace/incidents/` | Optional material incident reviews | Preserve facts and link owned follow-up; explicitly review publication scope |
 | `workspace/decisions/` | Significant ADRs and their historical rationale | Preserve accepted reasoning and replacement links |
 | `workspace/knowledge/` | Current domain, architecture and operational knowledge | Update affected pages when behavior changes |
 | `workspace/iterations/` | Outcomes, learning and open follow-up | Link evidence; no duplicate live task list |
@@ -213,7 +220,7 @@ without exclusions would publish local notes. Keep secrets and personal material
 public repositories, and enforce the customer's access requirements on the published site.
 
 `docs/` remains generated Pages output in this repository. Its Docusaurus site reads explicit
-canonical sources through the docs hook; it does not recursively publish the root workspace.
+canonical sources through `website/generate.py`; it does not recursively publish the root workspace.
 The export manifest `.ai-toolkit-manifest.json` remains an adapter-ownership file so existing
 bundles retain protection against overwriting human edits. It is not a project-memory folder.
 
