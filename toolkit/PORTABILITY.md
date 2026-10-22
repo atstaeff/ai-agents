@@ -13,7 +13,8 @@ Switching the model within one host does not require moving repository files.
 | Discovery, tools, permissions and review integration | Generated host configuration | Translate and verify for the target host |
 | Model, effort, credentials and inference location | Host/provider settings | Choose supported capabilities for the task |
 
-`workspace/` is our convention, not a reserved LLM directory. `AGENTS.md` is a useful
+`project.yaml` is the required project manifest; content folders are project choices.
+The optional local workbench uses `workspace/` for its own records. `AGENTS.md` is a useful
 shared entry point, but supported names, precedence and imports vary by host/version.
 A `.claude/` directory is a Claude Code discovery convention, not a requirement to
 use a Claude model in another host. Renaming a discovery directory alone does not
@@ -21,7 +22,7 @@ configure a tool to read it.
 
 ## Use the project’s tooling map
 
-Read the [project configuration](PROJECT-CONFIG.md), normally `workspace/workspace.yml`,
+Read the [project configuration](PROJECT-CONFIG.md), normally root `project.yaml`,
 and the [operating model](OPERATING-MODEL.md#let-each-project-choose-its-tools).
 Resolve authoritative locations and permitted actions from the project, not from the
 model name, the current host, an available connector or this catalog’s examples.
@@ -30,7 +31,7 @@ model name, the current host, an available connector or this catalog’s example
 | --- | --- | --- |
 | Assignment and current plan | GitHub issue, prioritized in Projects | Jira ticket, prioritized in the project’s board |
 | Code and review evidence | Linked GitHub PR | Linked GitHub PR or GitLab MR |
-| Decisions and knowledge | Customer repository `workspace/` | Project-selected Confluence space or repository ADRs |
+| Decisions and knowledge | Project-selected repository paths | Project-selected Confluence space or repository ADRs |
 | Questions and approval | Designated issue/review channel | Designated ticket/review channel |
 
 These are examples, not automatic integrations. Read and write only through available,

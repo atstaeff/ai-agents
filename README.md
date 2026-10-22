@@ -10,7 +10,7 @@ are English and independent of model vendors.
 | You want to… | Start here |
 | --- | --- |
 | Find or maintain engineering expertise | [Agent catalog](agents/README.md), [skill catalog](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
-| Deliver a product with a small accountable team and AI | [Lean operating model](toolkit/OPERATING-MODEL.md), [three-file starter](templates/lean-project/README.md) |
+| Deliver a product with a small accountable team and AI | [Lean operating model](toolkit/OPERATING-MODEL.md), [lean project starter](templates/lean-project/README.md) |
 | Set up a new or existing project | [Lean starter](templates/lean-project/README.md), [adoption guide](toolkit/ADOPT-WORKSPACE.md) |
 | Define a decision, project request or architecture review | [Template chooser](templates/README.md) |
 | Make quality measurable | [Engineering quality standard](toolkit/QUALITY-STANDARD.md) |
@@ -19,8 +19,9 @@ are English and independent of model vendors.
 
 ## Run a project with little overhead
 
-Start with `AGENTS.md`, `workspace/README.md` and `workspace/workspace.yml`. Keep rules
-and decision owners inline until separate pages are useful. Work from one assigned
+Start with required root `project.yaml` and its linked entries. The default PROJECT.md maps vision, goals, boundaries, owners and sources;
+The default CONTRIBUTING.md defines the working process and links reusable skills.
+All Markdown names and content directories are project choices. Work from one assigned
 issue/ticket: clarify, short plan, build, verify, then required integration and knowledge
 maintenance. A small correction needs no additional process documents.
 
@@ -75,18 +76,18 @@ portable exports, and [plan review](toolkit/PLAN-REVIEW.md) for optional Plannot
 separate models. Re-export after source changes; the manifest protects human edits.
 Perform the installed-host check before assuming effective discovery or permissions.
 
-## Give the project a shared workspace
+## Give the project a shared entry and memory
 
-Start from `AGENTS.md`, `workspace/README.md`, `workspace/workspace.yml`, the working
-agreement and decision roles. Reuse existing equivalents. The YAML maps actual systems,
-repositories, optional flow fields and quality gates; it grants no access and executes
+Use [this repository's PROJECT.md](PROJECT.md) as a concrete example. Start from
+`AGENTS.md`, `PROJECT.md`, `CONTRIBUTING.md` and `project.yaml`. Reuse existing
+equivalents. The YAML maps actual systems, repositories, optional flow fields and quality gates; it grants no access and executes
 nothing. [Minimal, GitHub, Jira and multi-repo examples](toolkit/ADOPT-WORKSPACE.md)
 share one schema.
 
 Keep the active plan in the assigned issue/ticket, implementation evidence in the PR,
 and significant rationale in customer-owned ADRs. Save a bounded handoff before switching
 sessions. Load current relevant sources instead of carrying the entire conversation.
-The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) covers the complete contract.
+The [detailed project concept](toolkit/WORKSPACE-CONCEPT.md) covers the complete contract.
 
 For a larger local request with no assigned tracker:
 

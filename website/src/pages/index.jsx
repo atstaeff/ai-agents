@@ -5,7 +5,7 @@ import counts from '../../.generated/catalog.json';
 
 const paths = [
   {number: '01', title: 'Choose expertise', to: '/catalog/', text: 'Find the roles and focused skills your next outcome needs. One catalog, seven disciplines.'},
-  {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Start with three project files and one assignment. Add useful knowledge as you deliver.'},
+  {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Start with a clear project map, contribution guide and one assignment. Add useful knowledge as you deliver.'},
   {number: '03', title: 'Make quality observable', to: '/operating-model/quality/', text: 'Turn maintainability, security and reliability into concrete scenarios and meaningful checks.'},
   {number: '04', title: 'Start with a useful template', to: '/templates/', text: 'Project briefs, architecture reviews, decisions and handoffs. Use only the artifact the assignment needs.'},
 ];

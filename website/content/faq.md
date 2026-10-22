@@ -10,7 +10,7 @@ adapters from the same sources. See [portability](getting-started/portability.md
 ## Must every project use GitHub Issues or repository knowledge?
 
 No. Each project defines its tracker, planning home, code review, decision and knowledge
-locations in [`workspace/workspace.yml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
+locations in [`project.yaml`](getting-started/project-config.md). Jira can own the plan while GitHub holds only the PR;
 Confluence or a repository can own knowledge. The customer starter uses GitHub as a
 worked example. Missing tool access means an unsent proposed update, not a new tracker.
 
@@ -60,7 +60,7 @@ decisions during delivery and link them at iteration close.
 
 ## Must I copy all the starter files?
 
-Start with the project YAML config, workspace entry page, working agreement and stakeholders. Adopt relevant
+Start with the project entry, contribution guide and YAML tooling map; resolve their role/authority links. Adopt relevant
 instructions into the existing AGENTS.md. The worked files illustrate format; create
 real ADRs and knowledge pages when the assignment warrants them.
 

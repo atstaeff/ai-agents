@@ -41,12 +41,17 @@ setup work where possible. Preserve human wording and check for intervening edit
 
 Read the reference toolkit's current `toolkit/PROJECT-CONFIG.md`,
 `toolkit/workspace.schema.json` and matching YAML examples. Record the reference revision
-in the setup report. Reuse a compatible existing project map. Otherwise adapt one example
-as `workspace/workspace.yml` and link it from the project's agent entry point.
+in the setup report. For adoption, maintain one version-2 project.yaml at the repository
+root. Migrate actual values from an existing map rather than retaining a second config;
+preserve existing content and resolve conflicting maps deliberately. Link project.yaml
+from the host's existing agent entry. Its context requires vision, goals and boundaries
+references; responsibilities and contribution_guide point to owners and process. Markdown
+paths and all knowledge/decision directories are project choices.
 
-The version-1 contract uses six `system`/`location` mappings: `work`, `review`, `knowledge`,
-`decisions`, `iteration_reports` and `communication`, plus `working_agreement` and
-`stakeholders`. Use supported optional fields such as `method`, `repositories`, `planning`,
+The version-2 manifest uses `schema_version: 2`, `project_name`, `context`,
+`responsibilities`, `contribution_guide` and five `system`/`location` mappings:
+`work_tracking`, `code_review`, `knowledge_base`, `decision_records` and `communication`.
+Separate `progress_reporting` is optional. Use supported optional fields such as `delivery_method`, `repositories`, `planning`,
 `flow`, `handoff`, `labels`, `reviewers`, `commands`, `quality_gates` and `actions` only
 when useful. Do not invent a different schema or add unsupported `tools` or `sources`
 sections. If the reference cannot be loaded, describe the gap and continue read-only
@@ -62,11 +67,13 @@ declares locations and policy; it does not install an integration or grant autho
 
 **3. Create only useful entry pages**
 
-Use the lean starter by default. Reuse or adapt `workspace/README.md` for the outcome,
-boundaries, current sources, short working agreement and accountable decision roles.
-Both required config fields `working_agreement` and `stakeholders` can point to this
-entry. Add separate pages only when existing conventions or complexity justify them.
-Together with the tooling map and agent entry, this is three maintained entry files.
+Use the lean starter by default. Reuse or adapt root `PROJECT.md` for vision, goals,
+boundaries, owners and current source links. Use `CONTRIBUTING.md` for the project
+working process and links to reusable skills. Map `contribution_guide` and `responsibilities`
+to these sources in root project.yaml. Fill its required vision/goals/boundaries references
+and validate the referenced source sections; all Markdown names and directories are free. Together with the agent entry and tooling map, this is four
+small entry files. Existing equivalent entries, including the extended example's
+workspace entry, remain valid; preserve them instead of creating duplicate documents.
 Add ideas, concepts/specs, significant decisions, current knowledge and incident reviews
 only when actual work needs them; create no empty folder hierarchy.
 

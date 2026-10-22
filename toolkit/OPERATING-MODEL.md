@@ -5,20 +5,25 @@ Use AI to explore, plan, build, verify and maintain that memory within actual pe
 People own priorities, consequential decisions and acceptance. This is a practical default
 built from established practices, not a claim of universally optimal productivity.
 
-## Start with three entry files
+## Start with one manifest and small linked entries
 
-Use the [lean project starter](../templates/lean-project/README.md). Merge it into existing
+Inspect the [project-kernel example](examples/project-kernel.md) and use the
+[lean project starter](../templates/lean-project/README.md). Merge it into existing
 conventions; do not replace customer content or copy the larger fictional example.
 
 | Entry | Maintain here |
 | --- | --- |
 | `AGENTS.md` | Where a session starts and the few rules it must follow |
-| `workspace/README.md` | Product goal, boundaries, decision owner, working rules and links |
-| `workspace/workspace.yml` | Authoritative tool locations and optional actual commands |
+| `PROJECT.md` | Vision, goals, boundaries, responsible owners and key source links |
+| `CONTRIBUTING.md` | Project working process and links to relevant reusable skills |
+| `project.yaml` | Authoritative tool locations and optional actual commands |
 
-The starter keeps working agreement and role ownership inline in the workspace entry.
-Separate pages become useful when ownership or policy outgrows that entry. Its local
-configuration works without a tracker; adapt the map to the project's real GitHub/Jira
+Only root project.yaml is fixed; other files and folders are project choices.
+The starter keeps owner roles inline in PROJECT.md and the working agreement in
+CONTRIBUTING.md. Those guides link details and selected skills; avoid copying reusable
+procedures into every project. Separate role/policy pages become useful when they outgrow
+the entries. Reuse existing equivalent documents rather than adding duplicate ones.
+The starter's local configuration works without a tracker; adapt the map to the project's real GitHub/Jira
 locations before tracked delivery. The YAML is a map, not an orchestrator or permission grant.
 
 An [expertise catalog](CATALOG-GUIDE.md) supplies reusable skills. Project facts stay in
@@ -68,7 +73,7 @@ lock, tracker synchronization, model runner or automatic multi-session coordinat
 
 ## Keep a small, connected memory
 
-Create only the records needed by actual work. The workspace entry links the current ones.
+Create only the records needed by actual work. The project entry links the current ones.
 
 | Record | Create when | After the work |
 | --- | --- | --- |
@@ -90,7 +95,7 @@ outside routine context; it does not mean losing the reasons. See the
 
 ## Resume from current sources
 
-A new session reads the current assignment, workspace entry and affected knowledge,
+A new session reads the current assignment, project entry and affected knowledge,
 contracts and decisions, then compares the last bounded handoff with current revisions.
 Search the affected project if links are missing. Load historical plans only to answer a
 specific question; never require the entire chat, catalog or every ADR.
@@ -111,7 +116,7 @@ Use lean Plan/Build/Verify by default. For larger requirements, a project may ch
 Spec-Driven Development; BMAD can support discovery, planning and delivery. Keep their
 required artifacts at their existing homes, link them here and state which source owns
 requirements versus status. Select one primary delivery method per assignment. Choosing
-a `method` in YAML installs nothing. Never reconcile intent by merely accepting whatever
+a `delivery_method` in YAML installs nothing. Never reconcile intent by merely accepting whatever
 code happened to be produced. See the [method selection and retention guide](PROJECT-KNOWLEDGE.md#choose-a-method-without-duplicating-work).
 
 ## Add rigor where it earns its cost

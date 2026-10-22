@@ -12,7 +12,7 @@
         "Adopt in a Project": "getting-started/adopt-workspace.md"
       },
       {
-        "Repository Workspace": "repository-workspace.md"
+        "Repository Project": "repository-workspace.md"
       },
       {
         "Run the Local Workflow": "getting-started/repository-workflow.md"
@@ -26,6 +26,9 @@
         "Lean Delivery Loop": "concept.md"
       },
       {
+        "Project Kernel Example": "operating-model/project-kernel.md"
+      },
+      {
         "Lean Worked Example": "operating-model/lean-example.md"
       },
       {
@@ -35,7 +38,7 @@
         "Knowledge at Project Scale": "operating-model/knowledge.md"
       },
       {
-        "Detailed Workspace Concept": "workspace-concept.md"
+        "Detailed Project Concept": "workspace-concept.md"
       },
       {
         "Working Contract": "getting-started/workflow.md"

@@ -13,8 +13,8 @@ uses the same `workspace/` root as knowledge, with an explicit publication bound
 
 ## Start with the minimum
 
-For ordinary adoption, use the [lean starter](../lean-project/README.md): three maintained
-entry files with working agreement and decision owners inline. Continue below when this
+For ordinary adoption, use the [lean starter](../lean-project/README.md): AGENTS.md,
+root PROJECT.md, CONTRIBUTING.md and one tooling map. Continue below when this
 extended fictional example helps explain a real coordination or publication need.
 
 For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).

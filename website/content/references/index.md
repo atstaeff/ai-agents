@@ -6,7 +6,7 @@ Reusable templates and focused references for AI Agents. Start with the
 ## Customer Workspace
 
 Keep delivery in the project's chosen tracker and durable knowledge in its
-customer-owned sources. Start with a tooling map and three entry files; add ADRs, process knowledge
+customer-owned sources. Start with the project map, contribution guide, agent entry and tooling map; add ADRs, process knowledge
 and iteration reports when the work warrants them. The worked example includes local
 graph generation and integration with an existing Docusaurus site.
 

@@ -1,7 +1,7 @@
 # Run the workflow in this repository
 
-Start at the actual [workspace](../workspace/README.md) and
-[configuration](../workspace/workspace.yml). New work uses `workspace/`, not a `.ai/`
+Start at the actual [project map](../PROJECT.md) and
+[configuration](../project.yaml). New work uses `workspace/`, not a `.ai/`
 working directory. These commands require a checkout containing the workspace changes;
 an unmerged PR does not update `main` or an older local checkout automatically.
 
@@ -12,7 +12,7 @@ From the repository root:
 ```sh
 python3 tools/ai_toolkit.py check
 uv sync --locked --group validation
-uv run --locked --group validation python tools/project_config.py --config workspace/workspace.yml
+uv run --locked --group validation python tools/project_config.py --config project.yaml
 ```
 
 Python 3.11+ runs the local CLI, dashboard, exports and pilot. The locked environment
@@ -69,7 +69,7 @@ The dashboard at `http://127.0.0.1:4097` manages local Markdown plans, comments 
 It does not update GitHub or invoke models. Use the host's available authorized tools
 for remote writes. A first request in OpenCode can be:
 
-> Read AGENTS.md, workspace/README.md and workspace/workspace.yml. Continue the assigned
+> Read AGENTS.md, PROJECT.md, CONTRIBUTING.md and project.yaml. Continue the assigned
 > issue or current PR from its latest plan and handoff. Inspect affected decisions and
 > code, implement one bounded increment and run its quality gates. Preserve my comments,
 > report actual evidence and follow the agreed merge/deployment authorization.
@@ -101,6 +101,6 @@ for actual results and unverified boundaries.
 
 ## Verify and hand off
 
-Run the gates in `workspace/workspace.yml`; CI also replays the pilot. Keep current
+Run the gates in `project.yaml`; CI also replays the pilot. Keep current
 revision, evidence, unresolved questions and the next action in the existing assignment.
 Review, acceptance, integration and deployment are distinct states.

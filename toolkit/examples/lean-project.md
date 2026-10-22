@@ -2,7 +2,7 @@
 
 This is a fictional walkthrough, not an implemented product, actual approval or passing
 test report. It shows where information belongs and what another session should recover.
-Use the [three-file starter](../../templates/lean-project/README.md) and
+Use the [lean project starter](../../templates/lean-project/README.md) and
 [operating model](../OPERATING-MODEL.md); skip steps that add no useful information.
 
 ## 1. Establish the project once
@@ -11,10 +11,11 @@ A small team maintains an existing document API and SQL database. Its next outco
 fewer duplicate documents when an upload is retried. The actual setup/check commands
 already live in the project's contributing guide.
 
-The team merges the agent entry and fills the workspace entry with that outcome, customer
+The team merges the agent entry and fills PROJECT.md with that outcome, customer
 isolation boundaries, and the owner who accepts product/technical choices. One YAML map
-selects the existing Jira project, GitHub reviews and repository knowledge. Agreement
-and decision roles stay inline. No new stakeholder page or second GitHub issue is created.
+selects the existing Jira project, GitHub reviews and repository knowledge. Working rules
+and skill links stay in CONTRIBUTING.md; decision roles stay inline in PROJECT.md.
+No new stakeholder page or second GitHub issue is created.
 The initial lean starter's local work mapping is replaced, not retained as a mirror.
 
 ## 2. Capture an opportunity
@@ -87,7 +88,7 @@ At completion:
 | DR-001 | Actual accepted rationale retained, or proposed/rejected status preserved |
 | UPLOAD-17 | Closed only at the agreed completion point; plan/tasks remain historical there |
 | PR/checks | Actual revision, findings/results and durable summary if temporary logs expire |
-| Workspace entry | Link CON-001 and the applicable decision; avoid a duplicate contract |
+| Project entry | Link CON-001 and the applicable decision; avoid a duplicate contract |
 
 A runbook is added only if operators need a repeatable recovery procedure. A significant
 incident later gets a factual review and owned follow-up; an ordinary defect can stay in
@@ -99,7 +100,7 @@ Before a pause, UPLOAD-17 holds result, current revisions, actual evidence, unre
 retention decision, pending writes and one next action. An actual host/session link may
 help navigation; the next worker does not depend on the old chat being accessible.
 
-The next session reads UPLOAD-17 and new feedback, the workspace entry, CON-001, applicable
+The next session reads UPLOAD-17 and new feedback, PROJECT.md, CONTRIBUTING.md, CON-001, applicable
 decisions and relevant code/checks. It checks the handoff against those current sources.
 An old plan proposing a global hash is historical context, not authority to bypass DR-001.
 If source access is missing, state the gap; do not invent current status or approval.

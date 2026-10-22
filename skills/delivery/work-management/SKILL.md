@@ -7,7 +7,7 @@ description: "Maintain the plan, acceptance criteria, human feedback and verific
 
 1. Inspect the assignment, project rules and existing work. Complete a clear small edit
    directly with appropriate checks; create no process file automatically.
-2. Read the declared project config (normally `workspace/workspace.yml`) and working
+2. Read the declared project config (normally `project.yaml`) and working
    agreement. Choose the designated planning home: Jira ticket,
    GitHub issue or another work item. Only without an assigned system, reuse or create
    one `workspace/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,

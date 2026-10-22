@@ -6,7 +6,7 @@ record. These templates are prompts for concrete evidence, not extra mandatory d
 
 | Situation | Template | Home |
 | --- | --- | --- |
-| Start with minimal project overhead | [Lean starter](lean-project/README.md) | Agent entry, workspace entry and one tooling map |
+| Start with minimal project overhead | [Lean starter](lean-project/README.md) | Agent entry, project map, contribution guide and one tooling map |
 | Capture an opportunity | [Ideas](knowledge/ideas.md) | Existing idea intake or optional workspace list |
 | Develop a concept or feature contract | [Concept/spec](knowledge/concept.md) | Designated specification/knowledge home |
 | Preserve product/process rationale | [General decision](knowledge/decision.md) | Designated decision home; inline initially |

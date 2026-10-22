@@ -6,7 +6,7 @@ Separate reusable guidance, live work, durable knowledge and generated views.
 | --- | --- | --- |
 | Agents and skills | This repository's `agents/` and `skills/` | Reusable roles and focused instructions |
 | Operating model | `toolkit/OPERATING-MODEL.md` | Outcomes, ownership, handoffs and knowledge lifecycle |
-| Project configuration | Customer `workspace/workspace.yml` or declared equivalent | Authoritative tooling and location ownership |
+| Project configuration | Root `project.yaml` pointing to project-chosen sources | Authoritative tooling and location ownership |
 | Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
 | Customer workspace | `workspace/` and project-selected knowledge space | Context, decision rights, knowledge or pointers to its authoritative home |
 | Local work records | Each project's `workspace/work/`, without a board-owned assignment | One record per larger local outcome |

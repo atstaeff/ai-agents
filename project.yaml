@@ -1,29 +1,33 @@
-# yaml-language-server: $schema=../toolkit/workspace.schema.json
-version: 1
-name: AI Agents
+# yaml-language-server: $schema=toolkit/workspace.schema.json
+schema_version: 2
+project_name: AI Agents
+context:
+  vision: PROJECT.md#vision-and-goals
+  goals: PROJECT.md#vision-and-goals
+  scope_and_boundaries: PROJECT.md#scope-and-boundaries
 profile: repository
-method: lean
+delivery_method: lean
 
-work:
+work_tracking:
   system: github
   location: https://github.com/atstaeff/ai-agents/issues
-review:
+code_review:
   system: github
   location: https://github.com/atstaeff/ai-agents/pulls
-knowledge:
+knowledge_base:
   system: repository
   location: toolkit/
-decisions:
+decision_records:
   system: repository
   location: workspace/decisions/
-iteration_reports:
+progress_reporting:
   system: repository
   location: workspace/iterations/
 communication:
   system: assigned-work-item-or-current-request
   location: Assigned issue or PR; current conversation for direct requests
-working_agreement: workspace/working-agreement.md
-stakeholders: workspace/stakeholders.md
+contribution_guide: CONTRIBUTING.md
+responsibilities: workspace/stakeholders.md
 
 repositories:
   - name: ai-agents
@@ -49,7 +53,7 @@ quality_gates:
     command: python3 tools/workspace_smoke.py
     required: true
   - name: Repository configuration
-    command: uv run --locked --group validation python tools/project_config.py --config workspace/workspace.yml
+    command: uv run --locked --group validation python tools/project_config.py --config project.yaml
     required: true
   - name: Frontend syntax
     command: node --check tools/web/app.js

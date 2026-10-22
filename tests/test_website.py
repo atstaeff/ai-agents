@@ -70,6 +70,21 @@ class WebsitePublishingTests(unittest.TestCase):
         self.assertIn('[the worked assignment](customer-workspace/assignment.md)', rendered)
         self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/toolkit/OPERATING-MODEL.md')
 
+    def test_root_project_entries_keep_routes_links_and_single_canonical_sources(self):
+        site.prepare({})
+        current = page('repository-workspace.md')
+        rendered = site.render('', current, {})
+        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/PROJECT.md')
+        self.assertIn('(contributing/index.md#working-process-and-skills)', rendered)
+        starter = page('lean-project/workspace.md')
+        rendered = site.render('', starter, {})
+        self.assertEqual(starter.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/templates/lean-project/PROJECT.md')
+        self.assertIn('(contributing.md)', rendered)
+        pages, _, _ = site.generate()
+        self.assertIn('lean-project/contributing.md', pages)
+        self.assertNotIn('templates/lean-project/PROJECT.md', pages)
+        self.assertNotIn('templates/lean-project/CONTRIBUTING.md', pages)
+
     def test_decision_frontmatter_is_not_treated_as_a_catalog_profile(self):
         site.prepare({})
         current = page('customer-workspace/decisions/adr-0001.md')

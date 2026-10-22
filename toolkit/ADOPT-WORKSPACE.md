@@ -8,7 +8,7 @@ Someone opens the team chat and starts scrolling.
 Generating code faster has not made the team easier to understand. Adding more agents
 can make the same misunderstanding happen in parallel.
 
-This workspace model gives people and AI a shared starting point: outcomes, real tool
+This project model gives people and AI a shared starting point: outcomes, real tool
 locations, accountable decisions and evidence. It is a proposed working convention,
 not a universal standard or a claim of measured productivity improvement.
 
@@ -19,29 +19,32 @@ repository to change, whom to ask and what counts as complete. Make that informa
 available to a fresh AI session too. Humans retain accountability for consequential
 decisions and acceptance; the agent operates within its actual assignment and access.
 
-Start with the [three-file lean starter](../templates/lean-project/README.md), or reuse existing equivalents:
+Start with the [lean project starter](../templates/lean-project/README.md), or reuse existing equivalents:
 
 | File | Question it answers |
 | --- | --- |
 | `AGENTS.md` | Where should this host start, and which project rules apply? |
-| `workspace/README.md` | What outcome matters and which sources explain this project? |
-| `workspace/workspace.yml` | Which systems and repositories own which information? |
+| `PROJECT.md` | What is the vision, goal, scope, ownership and source map? |
+| `CONTRIBUTING.md` | How should people and AI work, and which skills explain the technique? |
+| `project.yaml` | Which systems and repositories own which information? |
 
 
-Keep the short working agreement and decision owners inline in `workspace/README.md`.
-The required YAML fields `working_agreement` and `stakeholders` may both point there.
-Use separate pages only when existing conventions or coordination complexity justify them.
+Keep decision owners inline in `PROJECT.md` and working rules in `CONTRIBUTING.md`.
+Point the required YAML fields `responsibilities` and `contribution_guide` to those sources.
+Existing equivalent entries remain valid, including a compact entry with inline rules.
+Only project.yaml at the repository root is mandatory. All Markdown filenames and
+folders are choices, and existing entries can be referenced instead of duplicated.
 
 The YAML is a map. Markdown explains policy and rationale. Keep actual locations in
 one map and link to it rather than maintaining a second copy in prose.
 
 ## Choose a small, valid starting point
 
-All these files use the same [version-1 schema](workspace.schema.json):
+The version-2 lean manifest and legacy version-1 tooling examples share one [schema](workspace.schema.json):
 
 | Arrangement | Copy and adapt |
 | --- | --- |
-| Local work with inline rules and owners | [Lean starter configuration](../templates/lean-project/workspace/workspace.yml) |
+| Local work with a root project map and contribution guide | [Lean starter configuration](../templates/lean-project/project.yaml) |
 | One repository, few rules | [Minimal configuration](../templates/customer-workspace/examples/workspace-minimal.yml) |
 | GitHub Issues and Projects | [GitHub configuration](../templates/customer-workspace/workspace/workspace.yml) |
 | Jira, GitHub reviews and Confluence knowledge | [Jira configuration](../templates/customer-workspace/examples/workspace-jira.yml) |
@@ -86,7 +89,7 @@ the information model.
 
 BMAD, Plan/Build/Review or an existing customer method can operate within this framework.
 The method describes the delivery procedure; the workspace makes its sources and rules
-findable. Record the chosen method in `method` and explain it in the working agreement.
+findable. Record the chosen method in `delivery_method` and explain it in the working agreement.
 BMAD installation and its own artifacts remain a separate project choice.
 
 If a method uses local specifications, define their relationship to the tracker: for

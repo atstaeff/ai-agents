@@ -4,6 +4,30 @@ Improve a concrete workflow or verified behavior. Keep changes focused and Engli
 instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 [shared workflow](toolkit/WORKFLOW.md).
 
+## Working process and skills
+
+Read [PROJECT.md](PROJECT.md) for vision, goals, boundaries, responsibilities and current
+sources. The [working agreement](workspace/working-agreement.md) defines acceptance
+and action boundaries; the [configuration](project.yaml) owns actual tools,
+locations and commands. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
+Keep the live plan in the assigned work home. Clear small corrections need no extra record.
+
+| Need | Load when relevant |
+| --- | --- |
+| Establish how to contribute in an unfamiliar repository | [repository-contribution](skills/delivery/repository-contribution/SKILL.md) |
+| Clarify vision, value, boundaries and acceptance | [product-discovery](skills/delivery/product-discovery/SKILL.md) |
+| Coordinate a larger assignment and session handoff | [work-management](skills/delivery/work-management/SKILL.md) |
+| Resolve consequential design choices | [principal-engineer-decisions](skills/architecture/principal-engineer-decisions/SKILL.md) |
+| Implement in the existing stack | Relevant [engineering or language skill](skills/README.md) |
+| Verify behavior and assess a change | [testing](skills/quality/testing/SKILL.md), [code-review](skills/quality/code-review/SKILL.md) |
+| Prepare the contribution for review | [pr-crafting](skills/delivery/pr-crafting/SKILL.md) |
+
+Load only the selected skill body and necessary references. A link does not install or
+execute a skill; use the host's installed catalog or read its canonical source explicitly.
+Skills provide reusable technique; project rules and current instructions determine
+the assignment, authoritative tools and permissions. Use available integrations for those
+tools. Report missing access and prepare an unsent update; do not create a mirror tracker.
+
 ## Agents and skills
 
 - Canonical agents: `agents/<domain>/<slug>.agent.md`.
@@ -16,7 +40,8 @@ instructions concise. Follow [AGENTS.md](AGENTS.md) and the
   Follow the [portability contract](toolkit/PORTABILITY.md); generated copies are never
   an independently maintained source.
 - Give each skill a specific selection situation and observable result. Improve an
-  existing skill before adding overlapping roles; keep shared process in the workflow.
+  existing skill before adding overlapping roles; keep shared policy in the workflow
+  and focused procedures in skills.
 - Evaluate consequential instruction changes on a small realistic task, a missing-tool
   case and a task that should bypass the skill. Report observed behavior separately
   from structural validation; do not claim a model was tested if it was not.

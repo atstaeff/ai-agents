@@ -1,7 +1,7 @@
 # Repository working agreement
 
 Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
-[shared workflow](../toolkit/WORKFLOW.md). The [configuration](workspace.yml) maps
+[shared workflow](../toolkit/WORKFLOW.md). The [project manifest](../project.yaml) maps
 locations and checks; it does not grant permissions or install integrations.
 
 Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.

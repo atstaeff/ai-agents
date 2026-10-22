@@ -5,7 +5,9 @@ on:
     branches: [main]
     paths:
       - 'website/**'
-      - 'workspace/README.md'
+      - 'PROJECT.md'
+      - 'project.yaml'
+      - 'workspace/**'
       - 'agents/**'
       - 'skills/**'
       - 'toolkit/**'

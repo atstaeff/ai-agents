@@ -11,14 +11,15 @@ local work, archives, generated previews and exports are outside knowledge publi
 
 ## Choose the shortest complete path
 
-Use the [lean operating model](OPERATING-MODEL.md) as the default. Keep agreement and
-owner roles inline in the workspace entry until separate pages are useful. Add ideas,
-concepts, significant decisions and incident reviews only when actual work needs them.
+Use the [lean operating model](OPERATING-MODEL.md) as the default. Keep
+owner roles inline in PROJECT.md and working rules in CONTRIBUTING.md, or their
+existing equivalents. Use that contribution guide to select relevant skills; load only
+the required procedures and focused references. Add ideas, concepts, significant decisions and incident reviews only when actual work needs them.
 
 For a clear, small task: inspect the relevant files, make the change, run appropriate
 checks and report the result. No work record, catalog scan or agent handoff is required.
 
-For larger work, read the project’s tooling config (normally `workspace/workspace.yml`,
+For larger work, read the project’s tooling config (normally root `project.yaml`,
 or the equivalent linked from `AGENTS.md`) and working agreement first. See the
 [project configuration contract](PROJECT-CONFIG.md). Use the
 designated work item and planning home, whether Jira, GitHub, another tracker or a file.

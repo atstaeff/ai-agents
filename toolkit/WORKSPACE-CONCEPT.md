@@ -1,12 +1,15 @@
-# Project workspace: the shared memory for people and AI
+# Project context and workspace: shared memory for people and AI
 
 For a short explanation you can share with a team and a practical first setup, start
 with [Adopt the workspace](ADOPT-WORKSPACE.md). Use the
 [project setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) to configure an
 existing project. This page remains the detailed contract behind those entry points.
 
-Use `workspace/` as the project's shared working context. It holds the tooling map,
-entry points, decision rationale and current knowledge, plus optional local work records.
+Use required root `project.yaml` as the manifest pointing to the project map: vision, goals, boundaries, owners, key sources
+and working method. The default PROJECT.md and CONTRIBUTING.md explain context and
+working policy; their names and folders are project choices. The host's entry makes the
+manifest and its sources discoverable. This repository uses workspace/ for selected
+records and optional local work; adoption requires no directory with that name.
 People and AI use the same sources. Another person or a fresh session must be able to
 continue an assignment without the previous conversation.
 
@@ -30,21 +33,54 @@ system. Existing customer methods remain valid, including their own planning pro
 Plan/Build/Review or another adopted method. Use an existing equivalent entry point
 when the project already has one.
 
-Start with the [lean starter](../templates/lean-project/README.md): agent entry, workspace
-entry and one config. Agreement and owners can stay inline. The following paths are
-optional homes to grow into, not a checklist of files to create.
+Start with the [lean starter](../templates/lean-project/README.md): AGENTS.md, PROJECT.md,
+CONTRIBUTING.md and one config. Keep owner roles inline in the project map and working
+rules in the contribution guide. Reuse existing equivalents without duplicate entries.
+Only root project.yaml is a fixed file convention. All other paths below are examples,
+not a mandatory folder hierarchy or checklist of files to create.
+
+## Project facts, process and skills
+
+The project entry answers six questions: what is the vision and goal, what are the
+boundaries, who decides, where are the key sources, how do we work, and how does a
+session resume? Keep short answers inline or link their existing detailed Markdown.
+The same entry works at the main repository root or in a linked project repository.
+
+The host instructions direct the session to root `project.yaml` and its referenced
+entries. In the default starter, PROJECT.md owns project facts and navigation;
+CONTRIBUTING.md owns the
+project's contribution policy and maps activities to reusable skills. A skill explains
+how to perform its focused activity and use the relevant tool contracts; YAML supplies
+the actual project locations, commands and information ownership. Current user/host
+instructions supply effective authority. A generic skill cannot override project policy.
+
+For example, vision/scope uncertainty selects product-discovery; an ordinary larger
+assignment selects work-management; implementation selects the relevant language or
+engineering skill; testing and pr-crafting support verification and review. The
+[repository-contribution skill](../skills/delivery/repository-contribution/SKILL.md)
+resolves this route in an unfamiliar repository. Load only relevant skill bodies and
+references, not every linked page recursively. Hosts must discover the installed skill
+or the session must read it explicitly; Markdown links are navigation, not execution.
+
+Reuse existing entries and a contribution guide. No separate VISION.md, process tree,
+role directory or project/ folder is required. The name Project describes the shared
+context; workspace/ remains the technical area used by the local tooling. Older
+workspace entries and explicitly linked configurations remain valid.
 
 ## 2. Folder and information ownership
 
-All paths below are relative to the project root. Create only the parts the project needs.
+Only project.yaml is fixed. Other paths below illustrate this repository and the optional
+local workbench, relative to the project root. Declare different document names and
+directories in the manifest when they fit the project. Create only useful content.
 
 | Path | Purpose | Update and publication rule |
 | --- | --- | --- |
 | `AGENTS.md` | Entry instructions, commands and pointer to workspace config | Preserve project rules; keep short |
-| `workspace/README.md` | Outcome, scope and links to authoritative sources | Reviewed project context |
-| `workspace/workspace.yml` | Machine-readable tool and process mapping | One configuration; no credentials |
-| `workspace/working-agreement.md` | Optional separate authority, review and completion policy | Keep inline in the entry for small projects |
-| `workspace/stakeholders.md` | Optional separate decision-role map | Keep roles inline initially; use verified contacts within scope |
+| `PROJECT.md` | Vision, goals, scope, owners, key sources and process entry | Root project map; link existing detail |
+| `CONTRIBUTING.md` | Working process, project rules and reusable skill selection | Project-specific policy; link shared technique |
+| `project.yaml` | Required references for vision, goals, boundaries, roles, process and tool ownership | Root manifest; one configuration, no credentials |
+| `workspace/working-agreement.md` | Optional detailed authority, review and completion policy | Link from CONTRIBUTING.md when already useful |
+| `workspace/stakeholders.md` | Optional separate decision-role map | Keep roles in PROJECT.md initially; use verified contacts within scope |
 | `workspace/ideas.md` | Optional opportunities and hypotheses | Disposition and links, not a second delivery backlog |
 | `workspace/concepts/` | Optional concepts/specifications | Declare a living contract or historical snapshot; link current sources |
 | `workspace/incidents/` | Optional material incident reviews | Preserve facts and link owned follow-up; explicitly review publication scope |
@@ -83,13 +119,15 @@ Prepare an unsent proposed update and continue only independent authorized work.
 
 Use the [GitHub example](../templates/customer-workspace/workspace/workspace.yml),
 [Jira example](../templates/customer-workspace/examples/workspace-jira.yml) or this
-[repository's configuration](https://github.com/atstaeff/ai-agents/blob/main/workspace/workspace.yml). All use the same
+[repository's configuration](https://github.com/atstaeff/ai-agents/blob/main/project.yaml). All use the same
 [JSON Schema](workspace.schema.json) and [validator](../tools/project_config.py).
 
-Required version-1 fields retain the six authoritative locations, project name and
-working-agreement/stakeholder pointers. Optional sections add:
+Version 2 uses explicit project_name, context, responsibilities, contribution_guide,
+work_tracking, code_review, knowledge_base, decision_records and communication keys. The [manifest contract](PROJECT-CONFIG.md) explains source checks,
+free content paths and the explicit schema-only mode. Existing version-1 maps remain
+readable; they do not establish the new completeness contract. Optional sections add:
 
-- `profile` and `method`: project arrangement and chosen delivery method.
+- `profile` and `delivery_method`: project arrangement and chosen delivery method.
 - `repositories`: named code repositories, optional local paths and base branches.
 - `planning`: separate priority, iteration and engineering-status ownership when needed.
 - `flow`: actual board-state mapping, blocked property and completion policy.
@@ -98,16 +136,16 @@ working-agreement/stakeholder pointers. Optional sections add:
 - `commands` and `quality_gates`: reproducible project commands and required checks.
 - `actions`: agreed action categories, still subject to real authorization and permissions.
 
-The YAML is declarative. Validation makes no connection, creates no board or labels,
-executes no commands and grants no authority. Confirm actual access and adopted policy
+The YAML is declarative. Validation checks schema and version-2 local source completeness;
+it makes no connection, creates no board or labels, executes no commands and grants no authority. Confirm actual access and adopted policy
 in the chosen host. Do not invent GitHub Project IDs, Jira fields or reviewer approval.
 Relative paths resolve from the project root, not from the configuration directory.
 
 The older standalone v0.2 concept example used `schema_version`, `sources` and `paths`;
 it was explicitly a separate example schema. Map those ownership values into this
 contract rather than copying its YAML verbatim. Existing toolkit version-1 configs
-remain valid without the new optional sections. An explicitly linked `project.yaml`
-is supported; keeping it beside `workspace.yml` is rejected as ambiguous.
+remain readable without the new fields. New projects use one root project.yaml; keeping
+a second conventional workspace map is rejected as ambiguous.
 
 ## 5. Initial project setup
 

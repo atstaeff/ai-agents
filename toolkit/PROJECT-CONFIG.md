@@ -1,120 +1,128 @@
-# Project-owned tooling configuration
+# Project manifest
 
-Use one `workspace/workspace.yml` to declare where the project works. Link it from
-`AGENTS.md`. If the project already has an equivalent configuration, keep that file
-and declare its location instead; do not introduce a competing configuration.
+Use one filled project.yaml at the repository root. It is the required machine-readable
+entry for people and AI. All document names and content directories are project choices.
+Start with the [complete project-kernel example](examples/project-kernel.md) or the
+[lean starter](../templates/lean-project/README.md).
 
-The starter now uses `workspace.yml`. A linked existing `project.yaml` or equivalent
-custom configuration remains valid; the format is unchanged. When adopting the new
-name, rename one file and update its links together. Do not maintain both defaults:
-the validator rejects `workspace.yml` and `project.yaml` side by side rather than
-silently selecting one. It never renames or removes a customer's files.
+## Version 2: explicit required information
 
-The [GitHub example](../templates/customer-workspace/workspace/workspace.yml) and
-[Jira example](../templates/customer-workspace/examples/workspace-jira.yml) demonstrate
-one contract with different tools. The YAML is the canonical tooling map. Markdown
-explains the process and links to it; avoid manually maintaining the same map twice.
+The manifest references project facts and procedures rather than copying their prose.
+Several required fields may point to sections of one Markdown document. The starter's
+PROJECT.md and CONTRIBUTING.md are defaults; neither filename nor a workspace/ folder
+is required. The host's existing entry points the session to project.yaml.
 
-Start smaller with the [minimal example](../templates/customer-workspace/examples/workspace-minimal.yml),
-or use the [Jira/two-repository example](../templates/customer-workspace/examples/workspace-multi-repo.yml).
-The [adoption guide](ADOPT-WORKSPACE.md) and
-[setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) explain how to choose
-and adapt one configuration using this schema.
-
-The [lean starter](../templates/lean-project/README.md) keeps agreement and owner roles
-inline: `working_agreement` and `stakeholders` both point to `workspace/README.md`.
-These fields identify authoritative content; they do not require separate documents.
-
-## Required, backward-compatible contract
-
-| Field | Meaning |
+| Required key | Meaning |
 | --- | --- |
-| `version` | Configuration format version; currently integer `1` |
-| `name` | Human-readable project name |
-| `work` | Tracker/board containing the selected work item; that item owns its live plan and acceptance |
-| `review` | Code review system and location, such as GitHub PRs or GitLab MRs |
-| `knowledge` | Authoritative current domain and operational knowledge |
-| `decisions` | Significant decision records, in a repository or customer knowledge system |
-| `iteration_reports` | Existing home for iteration outcomes |
-| `communication` | Permitted channel location; actual contact and action scope come from project rules |
-| `working_agreement`, `stakeholders` | Project-root-relative paths or authoritative URLs for rules and owners |
-| `commands` | Optional `setup`, `start`, `check` command strings or `null` when unspecified |
+| `schema_version` | Integer `2`; the manifest format, not the product version |
+| `project_name` | Human-readable project name |
+| `context.vision` | Markdown source explaining the intended users, problem and direction |
+| `context.goals` | Markdown source for current observable outcomes and success signals |
+| `context.scope_and_boundaries` | Markdown source for included responsibilities, exclusions and constraints |
+| `responsibilities` | Markdown source naming accountable roles and decision/acceptance responsibilities |
+| `contribution_guide` | Markdown source defining how people/AI work, select skills, verify and complete work |
+| `work_tracking` | System/location owning assignments, live plans, acceptance, status and feedback |
+| `code_review` | System/location owning implementation review and check evidence |
+| `knowledge_base` | System/location owning current domain, architecture and operational knowledge |
+| `decision_records` | System/location preserving significant choices and their reasons |
+| `communication` | Permitted collaboration location; actual contact/action scope follows project rules |
 
-Each of the six location fields has a non-empty `system` and `location`. System names
-are open strings, not an enforced vendor list. Locations may be URLs, project-relative
-paths or clearly named dynamic locations such as `Assigned work item`. The actual task
-supplies the selected ticket and linked review URL; do not overwrite the project config
-for every assignment. Relative paths resolve from the project root, not the YAML folder.
+Each system/location field is an object with nonempty `system` and `location` strings.
+System names are open, not a vendor allowlist. Locations can be URLs, project-relative
+paths or explicit dynamic locations such as comments on the assigned work item.
+Required context/role/process references are local Markdown files, optionally with
+ATX heading anchors. They may link authoritative external detail. Paths resolve from
+the manifest directory, which is the project root.
 
-Keep credentials, personal vault paths, model API keys and transient progress elsewhere.
-This file describes ownership. It grants no access, configures no connector, sends no
-messages and executes no commands. Host permissions and existing authorization still apply.
-Different projects can use different tools without changing generic skills or agents.
+The actual request supplies the selected ticket and review URL. Do not change the
+manifest for each assignment. Keep transient progress, credentials, personal notes and
+model/provider settings outside it. The manifest installs no integration, grants no
+permission and executes no command. Generic skills explain technique and tool contracts;
+project sources supply actual ownership, commands and action boundaries.
 
 ## Agent behavior
 
-1. Read project instructions and the declared config before selecting integrations or
-   creating shared records. Load the working agreement and relevant owner information.
-2. Read the actual assigned work item from `work`. Keep its plan, questions, acceptance
-   and required approval receipt there. Link code review evidence from `review`.
-3. Update only affected authoritative knowledge. If knowledge lives in Confluence,
-   keep a pointer in `workspace/` rather than a separately maintained Markdown mirror.
-4. Preserve project-owned status meanings and action scope. Plannotator is an optional
-   review surface; save its actual approval receipt at the designated planning home.
-5. If config is missing, use already explicit project instructions. If ownership is
-   ambiguous or conflicting, resolve it before shared writes. Use a local record only
-   when no assigned system owns the work; unavailable access is not such an absence.
-6. If access is missing, prepare an unsent update and state the exact gap. Continue
-   independent authorized work; never claim a remote update, approval or synchronization.
-
-Use the [context recovery contract](CONTEXT-RECOVERY.md) to bind a handoff to current
-work-item, code and decision sources. Keep transient progress out of this tooling map.
+1. Read host/project instructions, project.yaml and its required source references.
+   Resolve context, responsible owners and contribution rules before dependent work.
+2. Load only relevant skills and affected knowledge/contracts/decisions. Selecting a
+   skill does not require another session; Markdown links require explicit reads or
+   working installed-host discovery.
+3. Read the actual assigned work item from work_tracking. Keep plan, questions,
+   acceptance, feedback and handoff there; link code_review evidence without mirroring work.
+4. Update affected knowledge_base and decision_records sources at their declared homes.
+   If a wiki owns knowledge, retain a pointer rather than an independently edited copy.
+5. Follow actual permissions and required review of the current revision. If ownership
+   conflicts, resolve it before dependent shared writes. If access is unavailable, name
+   the blocked operation, prepare an unsent update and continue independent authorized work.
+6. Use the [recovery contract](CONTEXT-RECOVERY.md) across interruptions. A manifest,
+   role or method label is not approval, delegation, synchronization or an atomic claim.
 
 ## Validate before adoption
 
-Run the optional local validator from this toolkit:
+From the toolkit checkout, run:
 
 ```sh
-uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
+uv run --locked --group validation python tools/project_config.py --config /path/to/project/project.yaml
 ```
 
-It checks the [JSON Schema](workspace.schema.json), required locations, optional process mappings,
-unknown fields and duplicate YAML keys.
-It does not access URLs, test credentials, execute commands or prove that a location
-exists. PyYAML and jsonschema are isolated to this optional command; the main toolkit remains stdlib-only.
-Replace example placeholders, confirm locations and perform the [host smoke check](PORTABILITY.md#verify-a-new-host-once).
+The validator checks the [JSON Schema](workspace.schema.json), required keys, types,
+unknown/mixed-version fields, duplicate YAML keys and competing conventional maps.
+Version 2 also checks the five required local Markdown references: files and ATX heading
+anchors must exist; referenced sections need content and no recognizable prompt placeholders.
+Frontmatter, comments and fenced examples do not count as content. Sources must stay
+inside the project root; their directory names are unrestricted.
 
-The bundled graph generator reads local Markdown. A remote wiki requires a separately
-authorized integration to generate a website or graph; this config does not implement one.
+The starter intentionally fails source-completeness checks until its prompts are filled.
+Use `--structure-only` during setup to inspect schema compatibility; it does not establish
+source readiness. Run the normal command in the adopted project's CI. The optional
+`--project-root /path/to/project` makes the expected root explicit; a version-2 manifest
+must be that root's project.yaml.
 
-## Optional operating-model fields
+The validator does not fetch URLs, judge prose quality/truth, test credentials or tool
+access, execute commands or prove implementation. Review sources and perform the
+[host smoke check](PORTABILITY.md#verify-a-new-host-once). PyYAML/jsonschema remain optional
+validation dependencies; the main toolkit runtime stays standard-library-only.
 
-All examples use the same schema. Existing minimal version-1 configs remain valid.
-See the [complete workspace concept](WORKSPACE-CONCEPT.md) and the richer GitHub/Jira
-examples for the complete flow; the YAML does not implement the described integrations.
+## Optional fields
 
-| Section | Content |
+Add only the parts actually used by the project. Missing optional values are unspecified,
+not permission to guess or create a board, reviewer notification or automation.
+
+| Key | Content |
 | --- | --- |
-| `profile`, `method` | Tool arrangement and adopted delivery method; open strings |
-| `repositories` | Unique `name`, `location`, optional project-relative `path` and `default_branch` |
-| `planning` | Optional `priority`, `iteration`, `engineering_status`, each with `system` and `location` |
-| `flow` | Distinct `states` mapping for todo/in_progress/in_review/done, `blocked: additional_property`, completion reasons and code-Done requirements |
-| `handoff` | Existing work-item `location` and shared `template` path |
-| `labels`, `reviewers` | Purpose-to-label map and reviewer role/contact references adopted by the project |
-| `quality_gates` | List of `name`, `command` and boolean `required`; commands are never auto-executed |
-| `actions` | Action categories: `within_assignment`, `separate_authorization`, `forbidden` |
+| `delivery_method`, `profile` | Adopted method and arrangement; contribution_guide defines the actual procedure |
+| `progress_reporting` | Existing reporting system/location, only if separate reporting is useful |
+| `repositories` | Unique name, location, optional local path and default_branch |
+| `commands` | Optional setup/start/check strings or null; actual verified commands, never auto-executed |
+| `quality_gates` | Name, command and boolean required for each actual project check |
+| `planning` | Explicit priority/iteration/engineering-status ownership when genuinely split |
+| `flow` | Actual board-state mapping, additional blocked property and completion policy |
+| `handoff` | Existing assignment section and a shared template path |
+| `labels`, `reviewers` | Real adopted coordination values; no implicit notifications or authority |
+| `actions` | within_assignment, separate_authorization or forbidden for supported action categories |
 
-Action keys are `edit_assigned_branch`, `open_draft_pr`, `update_work_item`,
-`ask_questions`, `merge`, `deploy`, `delete`, `change_access`. Real permissions and
-existing instructions still apply. A label/reviewer name configures neither the tracker
-nor a notification, claim or approval. A missing optional field is unspecified, not
-permission to guess. Match gate commands to actual project technology.
+Action categories are edit_assigned_branch, open_draft_pr, update_work_item, ask_questions,
+merge, deploy, delete and change_access. Effective permissions and user authorization
+still apply. The local task table retains its existing four states; flow is a project
+board description, not a tracker implementation. See the
+[detailed project concept](WORKSPACE-CONCEPT.md) for process, storage and publication.
 
-`flow` describes tracked delivery; the local task table retains its existing four task
-states and is not a replacement board. Product/capacity and engineering ownership can
-be mapped separately in a split profile, without duplicating the same live assignment.
+## Existing version-1 tooling maps
 
-Schema source: `toolkit/workspace.schema.json`. The optional validator reads that exact
-local schema; it does not maintain a second list of accepted fields or fetch remote refs.
-The old standalone concept schema (`schema_version`, `sources`, `paths`) must be mapped
-into this contract, not copied as a second supported format.
+The [GitHub](../templates/customer-workspace/workspace/workspace.yml),
+[Jira](../templates/customer-workspace/examples/workspace-jira.yml),
+[minimal](../templates/customer-workspace/examples/workspace-minimal.yml) and
+[multi-repository](../templates/customer-workspace/examples/workspace-multi-repo.yml)
+examples remain readable as legacy contracts. They use version: 1 and the older name,
+work/review/knowledge/decisions/iteration_reports and working_agreement/stakeholders keys.
+Their checks do not establish version-2 completeness.
+
+For adoption, preserve actual values while mapping the old fields to the explicit keys
+above; add the required context references and keep one root project.yaml. Never mix
+old and new key names or keep a second conventional workspace map. Validation detects
+conflicts without deleting or renaming files. The older standalone concept format
+(schema_version with sources/paths) is a separate example, not another accepted contract.
+
+Schema source: toolkit/workspace.schema.json. The validator reads that exact local schema,
+with both version contracts; it neither fetches remote schemas nor maintains a hidden
+second list of permitted fields.

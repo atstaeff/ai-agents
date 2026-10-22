@@ -14,8 +14,10 @@ from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
     'getting-started/lean-project.md': 'templates/lean-project/README.md',
-    'lean-project/workspace.md': 'templates/lean-project/workspace/README.md',
+    'lean-project/workspace.md': 'templates/lean-project/PROJECT.md',
+    'lean-project/contributing.md': 'templates/lean-project/CONTRIBUTING.md',
     'operating-model/lean-example.md': 'toolkit/examples/lean-project.md',
+    'operating-model/project-kernel.md': 'toolkit/examples/project-kernel.md',
     'getting-started/local-preview.md': 'website/README.md',
     'references/python-golden.md': 'reference-repos/python-golden/README.md',
     'references/event-driven-python.md': 'reference-repos/event-driven-python/README.md',
@@ -29,7 +31,7 @@ DOCUMENTS = {
     'customer-workspace/setup-prompt.md': 'templates/customer-workspace/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',
     'workspace-concept.md': 'toolkit/WORKSPACE-CONCEPT.md',
-    'repository-workspace.md': 'workspace/README.md',
+    'repository-workspace.md': 'PROJECT.md',
     'getting-started/workflow.md': 'toolkit/WORKFLOW.md',
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
     'getting-started/portability.md': 'toolkit/PORTABILITY.md',
@@ -80,7 +82,8 @@ def prepare(config):
     SOURCES.update(DOCUMENTS)
     for path in (ROOT / 'templates').rglob('*.md'):
         relative = path.relative_to(ROOT)
-        if 'customer-workspace' not in relative.parts and path.name != 'README.md':
+        if ('customer-workspace' not in relative.parts and path.name != 'README.md'
+                and relative.as_posix() not in SOURCES.values()):
             SOURCES[relative.as_posix()] = relative.as_posix()
     REVERSE = {value: key for key, value in SOURCES.items()}
     KNOWLEDGE_GRAPH = json.loads((ROOT / 'templates/customer-workspace/examples/knowledge-graph.json').read_text(encoding='utf-8'))

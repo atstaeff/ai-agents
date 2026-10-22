@@ -6,8 +6,8 @@ chat history is neither the authoritative record nor a required onboarding packa
 
 ## Start with a small entry
 
-`AGENTS.md` points to the project config, workspace entry and working agreement. The
-entry states the product outcome, important boundaries and relevant source links. The
+`AGENTS.md` points to the project config, PROJECT.md and CONTRIBUTING.md (or existing
+equivalents). The project entry states the product outcome, important boundaries and relevant source links. The
 YAML maps actual repositories, tracker and knowledge homes. Keep these short and current.
 
 Use the [context recovery contract](CONTEXT-RECOVERY.md) for interruptions. This guide
@@ -103,7 +103,7 @@ an observed retrieval need and evaluate its omissions, freshness and access filt
 
 ## Find knowledge and sessions again
 
-The workspace entry links the current topics; each topic links its applicable decisions,
+The project entry links the current topics; each topic links its applicable decisions,
 contract and verification. Add domain indexes only when the entry becomes difficult to
 navigate. Keep history searchable but outside default context. An absent link is a reason
 to search the affected sources, not proof that a constraint does not exist.

@@ -1,0 +1,27 @@
+# Local starter: replace the work/review/communication map when a real tracker owns work.
+# Choose any content paths relative to this manifest. No connector or permission grant.
+schema_version: 2
+project_name: Lean project
+context:
+  vision: PROJECT.md#vision-and-goals
+  goals: PROJECT.md#vision-and-goals
+  scope_and_boundaries: PROJECT.md#scope-and-boundaries
+profile: lean
+delivery_method: lean
+work_tracking:
+  system: local-record
+  location: workspace/work/
+code_review:
+  system: current-review
+  location: Current request and local diff
+knowledge_base:
+  system: repository
+  location: PROJECT.md
+decision_records:
+  system: repository
+  location: PROJECT.md
+communication:
+  system: current-request
+  location: Current authorized conversation
+contribution_guide: CONTRIBUTING.md
+responsibilities: PROJECT.md#responsibilities

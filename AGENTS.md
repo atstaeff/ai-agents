@@ -6,8 +6,8 @@ Canonical agents live in `agents/<domain>/<name>.agent.md`; skills use
 `toolkit/catalog-domains.json`. Keep stable exported names unique. Edit canonical
 sources, not generated bundles. See [catalog management](toolkit/CATALOG-GUIDE.md).
 
-Start project context at [workspace/README.md](workspace/README.md) and the
-[workspace configuration](workspace/workspace.yml). Read the
+Start with the required [project manifest](project.yaml), then its referenced
+[project map](PROJECT.md) and [contribution process](CONTRIBUTING.md). Read the
 [detailed concept](toolkit/WORKSPACE-CONCEPT.md) when changing information ownership,
 workspace layout, migration or knowledge publication.
 
