@@ -18,8 +18,8 @@ class DocsHookTests(unittest.TestCase):
     def test_one_catalog_scan_serves_the_entire_build(self):
         with patch.object(hook, 'catalog', wraps=hook.catalog) as catalog:
             hook.on_pre_build({})
-            for path in (hook.ROOT / 'assets/mkdocs').rglob('*.md'):
-                current = page(path.relative_to(hook.ROOT / 'assets/mkdocs').as_posix())
+            for path in (hook.ROOT / 'website/content').rglob('*.md'):
+                current = page(path.relative_to(hook.ROOT / 'website/content').as_posix())
                 rendered = hook.on_page_markdown(path.read_text(), current, {}, [])
                 self.assertTrue(rendered.strip(), path)
             catalog.assert_called_once()
@@ -45,11 +45,11 @@ class DocsHookTests(unittest.TestCase):
         self.assertIn('(../skills/agent-routing.md)', rendered)
         self.assertIn('(../getting-started/workflow.md)', rendered)
         self.assertIn('personal assistant', current.meta['description'])
-        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/agents/joerg.agent.md')
+        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/agents/general/joerg.agent.md')
         workflow = hook.on_page_markdown('', page('getting-started/workflow.md'), {}, [])
-        self.assertIn('https://github.com/atstaeff/ai-agents/blob/main/templates/work-item.md', workflow)
+        self.assertIn('[work template](../templates/delivery/work-item.md)', workflow)
         alias = hook.on_page_markdown('', page('skills/feature-discovery.md'), {}, [])
-        self.assertIn('Canonical source: [`skills/team-collaboration/feature-discovery-session.md`]', alias)
+        self.assertIn('Canonical source: [`skills/delivery/feature-discovery-session/SKILL.md`]', alias)
 
     def test_customer_template_uses_its_canonical_readme_and_links(self):
         hook.on_pre_build({})

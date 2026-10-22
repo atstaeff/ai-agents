@@ -9,9 +9,13 @@ import sys
 from urllib.parse import quote, unquote, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from ai_toolkit import ROOT, LINK, catalog, metadata
+from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'operating-model/quality.md': 'toolkit/QUALITY-STANDARD.md',
+    'operating-model/knowledge.md': 'toolkit/PROJECT-KNOWLEDGE.md',
+    'catalog/maintain.md': 'toolkit/CATALOG-GUIDE.md',
+    'templates/index.md': 'templates/README.md',
     'getting-started/repository-workflow.md': 'toolkit/REPOSITORY-WORKFLOW.md',
     'getting-started/workspace-pilot.md': 'toolkit/evaluations/workspace-pilot-20261022.md',
     'getting-started/adopt-workspace.md': 'toolkit/ADOPT-WORKSPACE.md',
@@ -60,8 +64,40 @@ def on_pre_build(config):
     ENTRIES = catalog()
     SOURCES = {f'{e.kind}s/{e.name}.md': e.path for e in ENTRIES}
     SOURCES.update(DOCUMENTS)
+    for path in (ROOT / 'templates').rglob('*.md'):
+        relative = path.relative_to(ROOT)
+        if 'customer-workspace' not in relative.parts and path.name != 'README.md':
+            SOURCES[relative.as_posix()] = relative.as_posix()
     REVERSE = {value: key for key, value in SOURCES.items()}
     KNOWLEDGE_GRAPH = json.loads((ROOT / 'templates/customer-workspace/examples/knowledge-graph.json').read_text(encoding='utf-8'))
+    catalog_nav = [{'Choose Expertise': 'catalog/index.md'}, {'All Agents': 'agents/index.md'},
+                   {'All Skills': 'skills/index.md'}, {'Maintain the Catalog': 'catalog/maintain.md'}]
+    for domain, info in domains().items():
+        children = [{'Overview': f'catalog/{domain}.md'}]
+        for kind in ('agent', 'skill'):
+            children.append({kind.title() + 's': [
+                {entry.name: f'{kind}s/{entry.name}.md'} for entry in ENTRIES
+                if entry.domain == domain and entry.kind == kind]})
+        catalog_nav.append({info['title']: children})
+    for section in config.get('nav', []):
+        if 'Catalog' in section:
+            section['Catalog'] = catalog_nav
+
+
+def on_files(files, config):
+    """Generate published pages from the catalog; contributors maintain no page stubs."""
+    from mkdocs.structure.files import File, InclusionLevel
+    paths = [*SOURCES, 'agents/index.md', 'skills/index.md']
+    paths += [f'catalog/{domain}.md' for domain in domains()]
+    paths += ['skills/feature-discovery.md']  # Preserve the previously published alias.
+    for path in paths:
+        previous = files.get_file_from_path(path)
+        if previous:
+            files.remove(previous)
+        files.append(File.generated(config, path, content='# Generated from canonical sources\n',
+                                    inclusion=InclusionLevel.NOT_IN_NAV if path == 'skills/feature-discovery.md'
+                                    else InclusionLevel.INCLUDED))
+    return files
 
 
 def knowledge_diagram(graph, page_uri, directory_urls=True):
@@ -111,22 +147,35 @@ def knowledge_diagram(graph, page_uri, directory_urls=True):
 
 def on_page_markdown(markdown, page, config, files):
     source = SOURCES.get(page.file.src_uri)
+    if page.file.src_uri.startswith('catalog/') and page.file.src_uri not in {'catalog/index.md', 'catalog/maintain.md'}:
+        domain = Path(page.file.src_uri).stem
+        if domain in domains():
+            info = domains()[domain]
+            text = f'# {info["title"]}\n\n{info["description"]}\n'
+            for kind in ('agent', 'skill'):
+                text += f'\n## {kind.title()}s\n\n| Name | Select for |\n| --- | --- |\n'
+                for entry in ENTRIES:
+                    if entry.domain == domain and entry.kind == kind:
+                        text += f'| [{entry.name}](../{kind}s/{entry.name}.md) | {entry.description.replace("|", "&#124;")} |\n'
+            return text
     if page.file.src_uri == 'skills/feature-discovery.md':
-        source = 'skills/team-collaboration/feature-discovery-session.md'
+        source = 'skills/delivery/feature-discovery-session/SKILL.md'
     if page.file.src_uri in {'agents/index.md','skills/index.md'}:
         kind = page.file.src_uri.split('/')[0][:-1]
         title = 'Agents' if kind == 'agent' else 'Skills'
         relevant = [e for e in ENTRIES if e.kind == kind]
         text = f'# {title}\n\n{len(relevant)} English profiles generated from canonical sources. Select by outcome; load focused references only when needed.\n\n'
-        text += '| Name | Use when |\n| --- | --- |\n'
-        for entry in relevant:
-            text += f'| [{entry.name}]({entry.name}.md) | {entry.description.replace("|", "&#124;")} |\n'
+        for domain, info in domains().items():
+            text += f'\n## {info["title"]}\n\n| Name | Use when |\n| --- | --- |\n'
+            for entry in relevant:
+                if entry.domain == domain:
+                    text += f'| [{entry.name}]({entry.name}.md) | {entry.description.replace("|", "&#124;")} |\n'
         return text
     if not source:
         return markdown
     text = (ROOT/source).read_text(encoding='utf-8')
     if text.startswith('---\n'):
-        if source in DOCUMENTS.values():
+        if source in DOCUMENTS.values() or source.startswith('templates/'):
             frontmatter = re.match(r'\A---\n.*?\n---(?:\n|$)', text, re.S)
             if not frontmatter:
                 raise ValueError(f'Unclosed documentation frontmatter: {source}')

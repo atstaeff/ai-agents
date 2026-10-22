@@ -1,0 +1,30 @@
+{
+  "general": {
+    "title": "Foundations & Coordination",
+    "description": "Choose expertise, plan bounded work and coordinate verified results."
+  },
+  "delivery": {
+    "title": "Product & Project Management",
+    "description": "Discover valuable outcomes, manage scope, dependencies, flow and stakeholder decisions."
+  },
+  "architecture": {
+    "title": "Architecture & Systems",
+    "description": "Model domains, contracts, boundaries and consequential design tradeoffs."
+  },
+  "engineering": {
+    "title": "Software & Platform Engineering",
+    "description": "Implement maintainable applications, platforms and specialized products."
+  },
+  "languages": {
+    "title": "Programming Languages",
+    "description": "Apply focused language and framework engineering practices."
+  },
+  "quality": {
+    "title": "Quality, Security & Reliability",
+    "description": "Verify behavior, review changes, protect trust boundaries and recover from failure."
+  },
+  "knowledge": {
+    "title": "Knowledge & Communication",
+    "description": "Preserve project memory and communicate decisions and outcomes."
+  }
+}

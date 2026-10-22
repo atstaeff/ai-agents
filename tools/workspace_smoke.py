@@ -82,8 +82,10 @@ def run() -> dict:
         for path in ('/', '/app.js', '/style.css', '/api/v1/openapi.json'):
             require(request('GET', path)[0] == 200, f'Dashboard resource failed: {path}')
         status, entries = request('GET', '/api/v1/catalog')
-        require(status == 200 and len(entries) == 71, 'Catalog was not served.')
-        passed('Local dashboard', 'Loopback HTTP served HTML, JavaScript, CSS, API contract and 71 catalog entries.')
+        expected = tk.catalog()
+        require(status == 200 and {(e['kind'], e['name']) for e in entries} ==
+                {(e.kind, e.name) for e in expected}, 'Catalog was not served completely.')
+        passed('Local dashboard', f'Loopback HTTP served HTML, JavaScript, CSS, API contract and {len(expected)} catalog entries.')
 
         route = '/api/v1/work/workflow-pilot'
         status, current = request('GET', route)
@@ -102,7 +104,8 @@ def run() -> dict:
         bundle = project / 'workspace/exports/opencode'
         export = cli('export', '--runtime', 'opencode', '--output', str(bundle))
         config = json.loads((bundle / 'opencode.json').read_text())
-        require((export['agents'], export['skills']) == (23, 48), 'Wrong exported catalog size.')
+        require((export['agents'], export['skills']) == tuple(sum(e.kind == k for e in expected) for k in ('agent', 'skill')),
+                'Wrong exported catalog size.')
         require(config['default_agent'] == 'joerg', 'Default agent is not Jörg.')
         require(cli('export', '--runtime', 'opencode', '--output', str(bundle))['changed'] == 0,
                 'Unchanged export rewrote files.')
@@ -115,7 +118,7 @@ def run() -> dict:
                     'A human-edited profile was not protected.')
         finally:
             profile.write_bytes(original)
-        passed('Build and verify', 'OpenCode JSON selects joerg; 23 agents/48 skills; repeat is a no-op; human edit protected.')
+        passed('Build and verify', 'OpenCode JSON selects joerg; complete native catalog; repeat is a no-op; human edit protected.')
 
         for task, evidence in [('T1', 'Native bundle and repeat-export checks passed.'),
                                ('T2', 'HTTP 412 and 428 observed; fixture feedback remains intact.')]:

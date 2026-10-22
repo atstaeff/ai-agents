@@ -1,36 +1,44 @@
-# AI Agents · Local work toolkit
+# AI Agents — an engineering catalog and operating model
 
-Work with AI as a teammate using a shared [operating model](toolkit/OPERATING-MODEL.md),
-an English catalog of **23 agents and 48 skills**, native exporters and a local dashboard.
-Use **Jörg** as the general assistant. Each project defines its tracker, planning home,
-knowledge locations and review tools. Keep larger local work in one Markdown record
-only when no assigned system owns the plan. Load focused expertise as needed.
+Manage reusable AI expertise and use it in real projects with clear outcomes, shared
+knowledge and verifiable results. The repository combines a domain-organized agent and skill catalog, a
+project operating model, reusable templates and a local Python toolkit. Shared sources
+are English and independent of model vendors.
 
-The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
-It does not run models, create chat sessions or access your Obsidian vault automatically.
-Your AI host provides model execution, tools and any native delegation capabilities.
-Keep the same process and customer knowledge when switching models or tools: the
-[portability contract](toolkit/PORTABILITY.md) explains the small host-specific adapters.
+## Choose your starting point
 
-**Share with your team:** start with the [plain-English concept and adoption guide](toolkit/ADOPT-WORKSPACE.md).
-Give a coding agent the [project setup prompt](templates/customer-workspace/SETUP-PROMPT.md)
-to adapt the existing project's tools and rules. Choose a minimal, GitHub, Jira or
-multi-repository example; all use the same validated configuration contract.
+| You want to… | Start here |
+| --- | --- |
+| Find or maintain engineering expertise | [Agent catalog](agents/README.md), [skill catalog](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
+| Deliver a product with a small accountable team and AI | [Operating model](toolkit/OPERATING-MODEL.md) |
+| Set up a new or existing project | [Adoption guide](toolkit/ADOPT-WORKSPACE.md), [customer starter](templates/customer-workspace/README.md) |
+| Define a decision, project request or architecture review | [Template chooser](templates/README.md) |
+| Make quality measurable | [Engineering quality standard](toolkit/QUALITY-STANDARD.md) |
+| Continue work across sessions and growing project knowledge | [Knowledge guide](toolkit/PROJECT-KNOWLEDGE.md), [recovery contract](toolkit/CONTEXT-RECOVERY.md) |
+| Run this repository's workflow | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
 
-The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) connects the folder layout,
-configuration, roles, issue flow, decisions, context loading and session recovery.
-This repository uses its own [workspace](workspace/README.md) and
-[validated YAML](workspace/workspace.yml).
+## Find expertise by discipline
 
-**Use the workflow here:** follow the [repository runbook](toolkit/REPOSITORY-WORKFLOW.md)
-for setup and OpenCode startup. Replay planning, feedback, exports, recovery, archive
-and old-layout migration locally with `python3 tools/workspace_smoke.py`.
-The [pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) records actual
-results and the installed-host/live-tracker checks that still need to happen.
+The same domains organize source files, the website and the local catalog filter:
 
-## Start in WSL with OpenCode 1
+| Discipline | Examples |
+| --- | --- |
+| Foundations & Coordination | Jörg, Plan, Build, routing |
+| Product & Project Management | Discovery, scope, stakeholder decisions, flow and technical debt |
+| Architecture & Systems | Domain boundaries, APIs, system design and architecture review |
+| Software & Platform Engineering | Cohesive code, refactoring, platforms and specialized applications |
+| Programming Languages | Python, Go, Flutter and frontend practices |
+| Quality, Security & Reliability | Tests, reviews, performance, trust boundaries and incident recovery |
+| Knowledge & Communication | Context, project memory, private PARA and presentations |
 
-Run in your WSL terminal:
+Agents define roles and expected handoffs. Skills provide focused procedures and references.
+Select only the expertise needed for the assignment; a skill does not require another chat.
+The [catalog guide](toolkit/CATALOG-GUIDE.md) explains contribution and versioning.
+
+## Use the catalog in OpenCode 1
+
+Python 3.11+ runs the core toolkit with no runtime dependencies. Your AI host supplies
+models, tools, permissions and any native delegation. Export from this checkout:
 
 ```sh
 git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
@@ -40,149 +48,78 @@ python3 tools/ai_toolkit.py export --runtime opencode \
   --output "$HOME/.config/ai-agents/opencode"
 ```
 
-Start OpenCode Web from the project you want to work on:
+Start OpenCode Web from the project root with your installed model/provider configured:
 
 ```sh
-cd /path/to/your/project
+cd /path/to/project
 OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
 OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" \
 opencode web
 ```
 
-The exported configuration selects `joerg` by default. It supplies custom `plan` and
-`build` profiles, specialist subagents, all 48 native skills and `/work-plan`,
-`/work-build` and `/brain` commands. No provider, model or third-party plugin is forced.
-These are OpenCode 1 configuration files; web session navigation depends on your release.
+The bundle selects Jörg and supplies Plan/Build, specialists and native skills. No model
+or plugin is forced. See [runtimes](toolkit/RUNTIMES.md) for Claude Code, Copilot and
+portable exports, and [plan review](toolkit/PLAN-REVIEW.md) for optional Plannotator and
+separate models. Re-export after source changes; the manifest protects human edits.
+Perform the installed-host check before assuming effective discovery or permissions.
 
-For local plan comments and approval before Build, opt in with `--plannotator` when
-exporting. Optional `--plan-model`, `--build-model`, `--plan-variant` and `--build-variant`
-set independent model and thinking settings for the two phases. Follow the [Plannotator guide](toolkit/PLAN-REVIEW.md)
-for WSL startup, review states and the installed-host check; preserve the plan in its
-existing issue or record. Default exports keep their plugin-free behavior.
+## Give the project a shared workspace
 
-Try these requests:
+Start from `AGENTS.md`, `workspace/README.md`, `workspace/workspace.yml`, the working
+agreement and decision roles. Reuse existing equivalents. The YAML maps actual systems,
+repositories, optional flow fields and quality gates; it grants no access and executes
+nothing. [Minimal, GitHub, Jira and multi-repo examples](toolkit/ADOPT-WORKSPACE.md)
+share one schema.
 
-> Jörg, fix this small issue directly and run the relevant check.
+Keep the active plan in the assigned issue/ticket, implementation evidence in the PR,
+and significant rationale in customer-owned ADRs. Save a bounded handoff before switching
+sessions. Load current relevant sources instead of carrying the entire conversation.
+The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) covers the complete contract.
 
-> Jörg, handle this larger local request with no tracker assignment. Keep the plan and my feedback in one
-> `workspace/work/` record, implement the first complete increment and verify it.
-
-> Use the second-brain agent to propose where these notes belong in my existing PARA
-> vault. Preserve my wording, aliases and links.
-
-Re-export after updating the repository; unchanged files are skipped. Edited bundle
-files are protected; change canonical sources here or select another destination.
-See [runtime details](toolkit/RUNTIMES.md).
-
-## Plans, tasks and your comments
-
-Small changes need no process file. The project-designated work item (for example Jira
-or GitHub) remains the planning home for tracked delivery. For a larger outcome without that assignment, create one record:
+For a larger local request with no assigned tracker:
 
 ```sh
-python3 ~/tools/ai-agents/tools/ai_toolkit.py work --workspace . new onboarding \
+python3 tools/ai_toolkit.py work --workspace /path/to/project new onboarding \
   --title "Improve onboarding" --kind product
-python3 ~/tools/ai-agents/tools/ai_toolkit.py serve --workspace .
+python3 tools/ai_toolkit.py serve --workspace /path/to/project
 ```
 
-Open **http://127.0.0.1:4097**. The dashboard searches the catalog, creates records,
-shows plans, appends comments and updates task status/evidence. Edit plans in your
-editor or AI host; the dashboard writes selected task rows and appended feedback.
-Stale updates are rejected so you can reload before retrying.
+Open `http://127.0.0.1:4097`. The dashboard searches expertise and manages Markdown
+records, comments and evidence under `workspace/work/`. It does not run models or
+synchronize trackers. [Legacy migration](toolkit/WORK-RECORDS.md) is explicit and preserves
+records; local work and archives stay outside knowledge publication by default.
 
-The agent instructions ask agents to update the same record while working. There is
-no background session watcher: a model must follow the instructions. The dashboard
-does not start AI sessions or execute shell commands.
+## Repository map
 
-```text
-workspace/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
-workspace/archive/old-outcome.md   # Completed records; load only when needed
-```
+| Directory | Maintained source |
+| --- | --- |
+| `agents/<domain>/` | Bounded role profiles and focused references |
+| `skills/<domain>/<name>/` | Native SKILL.md entries, references and optional UI metadata |
+| `toolkit/` | Operating model, quality/knowledge contracts, config schema and usage guides |
+| `templates/` | Project, architecture, delivery, quality and catalog templates |
+| `workspace/` | This repository's actual context, config, decisions and optional local work |
+| `tools/`, `tests/` | Local CLI/API/dashboard, exporters, documentation hook and behavior checks |
+| `website/` | MkDocs configuration and website-specific content/styles |
+| `docs/` | Generated GitHub Pages output, rebuilt by the existing main workflow |
 
-`docs/` stays available for existing documentation or GitHub Pages. CSV is an optional
-export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
-[work-record guide](toolkit/WORK-RECORDS.md).
-Existing `.ai/work/` and `.ai/archive/` records need the explicit
-[migration](toolkit/WORKSPACE-CONCEPT.md#11-moving-existing-local-work) before using the
-new store. `--workspace` points to the project root, not its `workspace/` subdirectory.
+Profile pages and catalog navigation are generated from canonical metadata. Do not edit
+exported bundles or generated website files. Customer-specific knowledge stays with the
+customer; private vaults and credentials stay outside public repositories.
 
-## Customer-owned workspace and project tooling
-
-Use [templates/customer-workspace](templates/customer-workspace/README.md) to define
-a project’s tool and knowledge ownership. Its worked example uses GitHub; adapt the
-map to Jira, another tracker or the customer’s existing wiki/review system. In the
-GitHub example, the Project owns priority, iteration and status; the issue owns the live plan and questions; `workspace/` keeps durable
-decisions, process knowledge and iteration outcomes in the customer's repository.
-Use that issue instead of a duplicate `workspace/work/` record for the same assignment.
-
-Read the [project YAML config](toolkit/PROJECT-CONFIG.md) before selecting integrations
-or creating records. If an
-authoritative system is unavailable, prepare an unsent update and report the gap.
-
-Start with `workspace/workspace.yml` and three workspace entry pages. Merge the example
-instructions into the customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
-stakeholder questions, linked ADRs, a local knowledge graph generator and integration
-with an existing Docusaurus site. Adopt only what the project needs; this template is
-not an automatic installer or background runner.
-
-Use the [context recovery contract](toolkit/CONTEXT-RECOVERY.md) for session/model handoffs:
-compare current work, decisions and commits with the last bounded summary before resuming.
-The starter includes a handoff template and a cold-session pilot. Significant rationale
-stays with the customer; an old transcript is not required context. The new conventional
-configuration name is `workspace/workspace.yml`; explicitly linked legacy configurations
-remain supported, without keeping two competing defaults.
-
-## Jörg and your Second Brain
-
-Jörg selects relevant skills and specialists from metadata. Delegation uses the host's
-actual tools and permissions; otherwise he works in the current session using the
-selected guidance. OpenCode reviewer profiles are restricted; Build can implement.
-
-Second Brain uses your existing **Projects, Areas, Resources and Archive**, including
-numbered folders. Provide an accessible private vault path to your host when needed.
-Keep notes and local settings outside this public repository. Filesystem moves require
-backlink and relative-link checks.
-
-```sh
-python3 tools/ai_toolkit.py obsidian-uri \
-  --vault "My Second Brain" --file "Projects/Customer portal.md"
-```
-
-Whether an `obsidian://` link is clickable in OpenCode Web depends on its renderer.
-Copy the URI to a Windows application that supports the protocol if needed.
-
-## Other runtimes and APIs
-
-```sh
-# Export into another project; edited/unmanaged files are protected.
-python3 tools/ai_toolkit.py export --runtime copilot --output /path/to/other-project
-# Native Claude Code profiles and one imported shared workflow.
-python3 tools/ai_toolkit.py export --runtime claude --output /path/to/other-project
-# Generic Agent Skills plus portable Markdown profiles.
-python3 tools/ai_toolkit.py export --runtime portable --output /path/to/bundle
-# Metadata only, useful for routing.
-python3 tools/ai_toolkit.py catalog --kind skill
-```
-
-Canonical `agents/` is a source catalog, not an automatically discovered directory in
-every host. The exporter creates native layouts and fields. See
-[compatibility](toolkit/RUNTIMES.md) and the [local API](toolkit/API.md).
-
-## Develop and verify
+## Verify and contribute
 
 ```sh
 python3 tools/ai_toolkit.py check
 python3 -m unittest discover -s tests -v
-uv sync --group docs
-uv run --group docs mkdocs build -f assets/mkdocs.yml --strict
-uv run --group docs mkdocs serve -f assets/mkdocs.yml
+uv sync --locked --group docs
+uv run --locked --group docs python -m unittest discover -s tests -v
+python3 tools/workspace_smoke.py
+uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict \
+  --site-dir "$PWD/workspace/generated/site"
 ```
 
-Open **http://localhost:8000** after starting MkDocs. The
-[local preview guide](assets/mkdocs/getting-started/local-preview.md) also covers static builds.
-The Docusaurus guide integrates customer workspace sources into an existing customer site.
-MkDocs sources for this catalog site are in `assets/mkdocs/`. The existing website is
-[atstaeff.github.io/ai-agents](https://atstaeff.github.io/ai-agents/).
-CI checks catalog, tests and docs on PRs; the main workflow rebuilds tracked `docs/`
-for the existing Pages setup. Contributions: [CONTRIBUTING.md](CONTRIBUTING.md).
+The locked environment supplies optional config/graph and website dependencies. See
+[contributing](CONTRIBUTING.md), the [local API](toolkit/API.md) and the
+[documentation site](https://atstaeff.github.io/ai-agents/). Local/model observations do
+not prove live tracker access, distributed coordination or a particular installed host.
 License: [MIT](LICENSE).

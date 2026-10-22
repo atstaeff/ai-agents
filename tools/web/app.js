@@ -1,6 +1,6 @@
 "use strict";
 const $ = (id) => document.getElementById(id);
-let entries = [], records = [], current = null;
+let entries = [], records = [], current = null, disciplines = {};
 function notice(message, error = false) {
   $("notice").hidden = !message;
   $("notice").textContent = message;
@@ -30,14 +30,14 @@ function switchView(name) {
   }
 }
 function renderCatalog() {
-  const query = $("search").value.toLowerCase().trim(), kind = $("kind-filter").value;
-  const filtered = entries.filter(e => (kind === "all" || kind === e.kind) && `${e.name} ${e.description}`.toLowerCase().includes(query));
+  const query = $("search").value.toLowerCase().trim(), kind = $("kind-filter").value, domain = $("domain-filter").value;
+  const filtered = entries.filter(e => (kind === "all" || kind === e.kind) && (domain === "all" || domain === e.domain) && `${e.name} ${e.description} ${disciplines[e.domain]?.title || e.domain}`.toLowerCase().includes(query));
   $("results-count").textContent = `${filtered.length} entries`;
   $("catalog-cards").replaceChildren();
   if (!filtered.length) $("catalog-cards").append(element("p", "No entries match. Try a broader search.", "muted"));
   for (const entry of filtered.sort((a,b) => (a.name === "joerg" ? -1 : b.name === "joerg" ? 1 : a.name.localeCompare(b.name)))) {
     const card = element("article", undefined, `card${entry.name === "joerg" ? " featured" : ""}`);
-    card.append(element("span", entry.kind.toUpperCase(), "type"), element("h2", entry.name === "joerg" ? "Jörg · Your assistant" : entry.name), element("p", entry.description));
+    card.append(element("span", `${entry.kind.toUpperCase()} · ${disciplines[entry.domain]?.title || entry.domain}`, "type"), element("h2", entry.name === "joerg" ? "Jörg · Your assistant" : entry.name), element("p", entry.description));
     const button = element("button", entry.kind === "skill" ? "Copy skill request" : "Copy agent request", "secondary");
     button.addEventListener("click", () => copy(entry.kind === "skill" ? `Use the ${entry.name} skill for this task.` : `@${entry.name} `));
     card.append(button); $("catalog-cards").append(card);
@@ -106,6 +106,7 @@ $("nav-work").addEventListener("click", () => switchView("work"));
 $("nav-catalog").addEventListener("click", () => switchView("catalog"));
 $("search").addEventListener("input", renderCatalog);
 $("kind-filter").addEventListener("change", renderCatalog);
+$("domain-filter").addEventListener("change", renderCatalog);
 $("refresh").addEventListener("click", () => refresh());
 $("new-button").addEventListener("click", () => { $("new-form").hidden = false; $("new-form").elements.title.focus(); });
 $("cancel-new").addEventListener("click", () => { $("new-form").hidden = true; $("new-button").focus(); });
@@ -127,6 +128,10 @@ $("feedback-form").addEventListener("submit", async event => {
   finally { button.disabled = false; }
 });
 $("copy-path").addEventListener("click", () => current && copy(current.path));
-Promise.all([request("/api/v1/catalog"), refresh()]).then(([catalog]) => {
+Promise.all([request("/api/v1/catalog"), request("/api/v1/catalog/domains"), refresh()]).then(([catalog, domains]) => {
+  disciplines = domains;
+  for (const [id, info] of Object.entries(domains)) {
+    const option = element("option", info.title); option.value = id; $("domain-filter").append(option);
+  }
   entries = catalog; $("catalog-count").textContent = entries.length; renderCatalog();
 }).catch(error => notice(error.message, true));

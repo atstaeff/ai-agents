@@ -19,8 +19,8 @@ import ai_toolkit as tk
 class CatalogTests(unittest.TestCase):
     def test_complete_catalog_and_links(self):
         entries = tk.catalog()
-        self.assertEqual(len([e for e in entries if e.kind == 'agent']), 23)
-        self.assertEqual(len([e for e in entries if e.kind == 'skill']), 48)
+        self.assertTrue({'agent', 'skill'} <= {e.kind for e in entries})
+        self.assertEqual({e.domain for e in entries}, set(tk.domains()))
         self.assertEqual(tk.check(), [])
 
     def test_frontmatter_rejects_duplicate_or_invalid_values(self):
@@ -57,8 +57,10 @@ class ExportTests(unittest.TestCase):
             with self.subTest(runtime=runtime):
                 output = self.output / runtime
                 result = tk.export(runtime, output)
-                self.assertEqual((result['agents'], result['skills']), (23,48))
-                self.assertEqual(len(list((output/skills).glob('*/SKILL.md'))),48)
+                expected = {kind: {e.name for e in tk.catalog() if e.kind == kind} for kind in ('agent', 'skill')}
+                self.assertEqual((result['agents'], result['skills']), tuple(len(expected[k]) for k in ('agent', 'skill')))
+                self.assertEqual({p.parent.name for p in (output/skills).glob('*/SKILL.md')}, expected['skill'])
+                self.assertEqual({p.name.removesuffix('.agent.md').removesuffix('.md') for p in (output/agents).glob('*.md')}, expected['agent'])
                 for path in list((output/skills).rglob('*.md')) + list((output/agents).glob('*.md')):
                     for target in tk.LINK.findall(path.read_text()):
                         if not tk.urlsplit(target).scheme:
@@ -138,7 +140,7 @@ class ExportTests(unittest.TestCase):
         self.assertNotIn("'*.md': allow", plan)
         self.assertIn('  bash: deny\n  task: deny\n', plan)
         self.assertIn('installed tool schema', plan)
-        self.assertNotIn('Plannotator plan review is enabled.', (self.output/'catalog/agents/plan.agent.md').read_text())
+        self.assertNotIn('Plannotator plan review is enabled.', (self.output/'catalog/agents/general/plan.agent.md').read_text())
         with patch.object(tk, 'atomic_write', wraps=tk.atomic_write) as write:
             again = tk.export('opencode', self.output, opencode_options=options)
         write.assert_not_called()
@@ -560,7 +562,10 @@ class APITests(unittest.TestCase):
         self.assertIn('AI Workbench',html)
         self.assertIn("script-src 'self'",headers['Content-Security-Policy'])
         self.assertNotIn('https://',html)
-        self.assertEqual(len(self.request('GET','/api/v1/catalog')[2]),71)
+        served = self.request('GET','/api/v1/catalog')[2]
+        self.assertEqual({(e['kind'], e['name'], e['domain']) for e in served},
+                         {(e.kind, e.name, e.domain) for e in tk.catalog()})
+        self.assertEqual(self.request('GET','/api/v1/catalog/domains')[2], tk.domains())
         self.assertEqual(self.request('GET','/api/v1/openapi.json')[2]['openapi'],'3.1.0')
 
     def test_full_create_comment_complete_flow_with_etags(self):
