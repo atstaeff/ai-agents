@@ -53,7 +53,7 @@ class ExportTests(unittest.TestCase):
         self.output = Path(self.temp.name) / 'bundle'
 
     def test_all_native_layouts_and_rebased_links(self):
-        for runtime, skills, agents in [('opencode','skills','agents'), ('copilot','.github/skills','.github/agents'), ('portable','.agents/skills','agents')]:
+        for runtime, skills, agents in [('opencode','skills','agents'), ('copilot','.github/skills','.github/agents'), ('claude','.claude/skills','.claude/agents'), ('portable','.agents/skills','agents')]:
             with self.subTest(runtime=runtime):
                 output = self.output / runtime
                 result = tk.export(runtime, output)
@@ -75,8 +75,44 @@ class ExportTests(unittest.TestCase):
         self.assertTrue(Path(config['instructions'][0]).is_file())
         self.assertIn('mode: primary', (self.output/'agents/joerg.md').read_text())
         self.assertIn('mode: subagent', (self.output/'agents/python-expert.md').read_text())
-        self.assertIn("'.ai/work/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertIn("'workspace/work/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertIn("'workspace/archive/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertNotIn("'.ai/work/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertNotIn("'workspace/**': allow", (self.output/'agents/plan.md').read_text())
         self.assertIn('bash: deny', (self.output/'agents/code-reviewer.md').read_text())
+
+    def test_claude_import_permissions_and_existing_instructions(self):
+        tk.export('claude', self.output)
+        entrypoint = self.output / 'CLAUDE.md'
+        imported = entrypoint.read_text().strip().removeprefix('@')
+        self.assertTrue((self.output / imported).is_file())
+        self.assertEqual((self.output / imported).read_bytes(), (tk.ROOT / 'toolkit/WORKFLOW.md').read_bytes())
+        for name in ('plan', 'code-reviewer', 'architecture-reviewer'):
+            profile = (self.output / f'.claude/agents/{name}.md').read_text()
+            frontmatter = profile.split('---')[1]
+            self.assertIn('tools: Read, Grep, Glob', frontmatter)
+            self.assertNotIn('Bash', frontmatter)
+            self.assertNotIn('permission:', frontmatter)
+        writer = (self.output / '.claude/agents/build.md').read_text().split('---')[1]
+        self.assertNotIn('tools:', writer)
+        self.assertNotIn('model:', writer)
+        self.assertFalse((self.output / '.claude/settings.json').exists())
+        entrypoint.write_text('Existing customer rules')
+        with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
+            tk.export('claude', self.output)
+        self.assertEqual(entrypoint.read_text(), 'Existing customer rules')
+
+    def test_claude_cli_dry_run_and_unmanaged_file_protection(self):
+        args = ['export', '--runtime', 'claude', '--output', str(self.output)]
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+        self.assertFalse(self.output.exists())
+        self.output.mkdir()
+        (self.output / 'CLAUDE.md').write_text('Customer guidance')
+        with self.assertRaisesRegex(tk.ToolkitError, 'unmanaged or edited'):
+            tk.export('claude', self.output)
+        self.assertFalse((self.output / '.claude').exists())
+        self.assertEqual((self.output / 'CLAUDE.md').read_text(), 'Customer guidance')
 
     def test_update_is_idempotent_and_protects_human_edits(self):
         tk.export('opencode', self.output)
@@ -98,7 +134,7 @@ class ExportTests(unittest.TestCase):
         self.assertNotIn('model', config)
         plan = (self.output/'agents/plan.md').read_text()
         self.assertIn('  submit_plan: allow\n  plan_exit: deny\n', plan)
-        self.assertIn("'.ai/work/**': allow", plan)
+        self.assertIn("'workspace/work/**': allow", plan)
         self.assertNotIn("'*.md': allow", plan)
         self.assertIn('  bash: deny\n  task: deny\n', plan)
         self.assertIn('installed tool schema', plan)
@@ -128,7 +164,7 @@ class ExportTests(unittest.TestCase):
             with self.subTest(options=options), self.assertRaises(tk.ToolkitError):
                 tk.export('opencode', self.output, opencode_options=options)
             self.assertFalse(self.output.exists())
-        for runtime in ('copilot', 'portable'):
+        for runtime in ('copilot', 'claude', 'portable'):
             for options in (tk.OpenCodeOptions(plannotator=True), tk.OpenCodeOptions(build_model='provider/model')):
                 with self.subTest(runtime=runtime, options=options), self.assertRaisesRegex(tk.ToolkitError, 'runtime opencode'):
                     tk.export(runtime, self.output, opencode_options=options)
@@ -153,7 +189,7 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(json.loads(path.read_text())['agent']['build']['model'], 'human/choice')
 
     def test_unchanged_exports_preserve_files_and_write_nothing(self):
-        for runtime in ('opencode', 'copilot', 'portable'):
+        for runtime in ('opencode', 'copilot', 'claude', 'portable'):
             with self.subTest(runtime=runtime):
                 output = self.output / runtime
                 first = tk.export(runtime, output)
@@ -262,6 +298,8 @@ class WorkTests(unittest.TestCase):
 
     def test_create_read_and_duplicate_protection(self):
         self.assertEqual(self.record['title'],'A useful feature')
+        self.assertEqual(self.record['path'], 'workspace/work/feature.md')
+        self.assertFalse((self.workspace / '.ai').exists())
         self.assertEqual(self.record['tasks'][0]['status'],'open')
         self.assertEqual(len(self.store.list()),1)
         with self.assertRaises(tk.Conflict):
@@ -315,6 +353,7 @@ class WorkTests(unittest.TestCase):
         current = self.store.task('feature','T1','done','Acceptance checks passed',self.record['etag'])
         archived = self.store.archive('feature',current['etag'])
         self.assertEqual(archived['status'],'archived')
+        self.assertEqual(archived['path'], 'workspace/archive/feature.md')
         self.assertEqual(len(self.store.list()),0)
         self.assertEqual(len(self.store.list(True)),1)
         self.assertIn('Acceptance checks passed',archived['markdown'])
@@ -341,7 +380,7 @@ class WorkTests(unittest.TestCase):
         target = self.workspace/'private.md'
         target.write_text('private')
         self.store.path('feature').unlink()
-        (self.workspace/'.ai/work/feature.md').symlink_to(target)
+        (self.workspace/'workspace/work/feature.md').symlink_to(target)
         with self.assertRaises(tk.ToolkitError):
             self.store.read('feature')
         self.assertEqual(target.read_text(),'private')
@@ -352,6 +391,140 @@ class WorkTests(unittest.TestCase):
         rows = list(csv.reader(io.StringIO(self.store.csv('feature'))))
         self.assertEqual(rows[0],['id','title','status','evidence'])
         self.assertEqual(rows[1][1],"'=SUM(1,2)")
+
+
+class WorkspaceMigrationTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root = Path(self.temp.name)
+        self.store = tk.WorkStore(self.root)
+        self.record = self.store.create('feature', 'Preserve human context')
+        self.old = self.root / '.ai/work'
+        self.old.parent.mkdir()
+        (self.root / 'workspace/work').rename(self.old)
+
+    def test_legacy_records_are_reported_without_creating_a_second_plan(self):
+        before = (self.old / 'feature.md').read_bytes()
+        for operation in (self.store.list, lambda: self.store.read('feature'),
+                          lambda: self.store.create('feature', 'Another plan')):
+            with self.assertRaisesRegex(tk.ToolkitError, 'Legacy .ai'):
+                operation()
+        self.assertEqual((self.old / 'feature.md').read_bytes(), before)
+        self.assertFalse((self.root / 'workspace/work').exists())
+
+    def test_cli_dry_run_then_migration_preserves_active_archive_and_unknown_content(self):
+        before = (self.old / 'feature.md').read_bytes()
+        modified = (self.old / 'feature.md').stat().st_mtime_ns
+        old_archive = self.root / '.ai/archive'
+        old_archive.mkdir()
+        (old_archive / 'finished.md').write_text('Human history and evidence.\n')
+        (self.root / '.ai/private.txt').write_text('Unrelated content')
+        args = ['work', '--workspace', str(self.root), 'migrate']
+        with patch('sys.stdout', new_callable=io.StringIO) as out:
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+            self.assertEqual(len(json.loads(out.getvalue())['moves']), 2)
+        self.assertTrue((self.old / 'feature.md').exists())
+        self.assertFalse((self.root / 'workspace/work').exists())
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args), 0)
+        current = self.store.read('feature')
+        self.assertEqual(current['etag'], self.record['etag'])
+        path = self.root / current['path']
+        self.assertEqual(path.read_bytes(), before)
+        self.assertEqual(path.stat().st_mtime_ns, modified)
+        self.assertEqual((self.root / 'workspace/archive/finished.md').read_text(), 'Human history and evidence.\n')
+        self.assertEqual((self.root / '.ai/private.txt').read_text(), 'Unrelated content')
+        self.assertTrue(self.store.migrate()['legacy_directory_remaining'])
+        self.assertEqual(self.store.migrate()['moves'], [])
+
+    def test_empty_legacy_parent_is_removed_only_after_actual_migration(self):
+        preview = self.store.migrate(dry_run=True)
+        self.assertFalse(preview['legacy_directory_removed'])
+        self.assertTrue((self.root / '.ai').exists())
+        result = self.store.migrate()
+        self.assertTrue(result['legacy_directory_removed'])
+        self.assertFalse(result['legacy_directory_remaining'])
+        self.assertFalse((self.root / '.ai').exists())
+        self.assertEqual(self.store.read('feature')['etag'], self.record['etag'])
+        self.assertFalse(self.store.migrate()['legacy_directory_removed'])
+        self.store.create('another-feature', 'New work stays in workspace')
+        self.assertFalse((self.root / '.ai').exists())
+
+    def test_empty_legacy_root_without_records_is_removed(self):
+        (self.old / 'feature.md').unlink()
+        self.old.rmdir()
+        result = self.store.migrate()
+        self.assertEqual(result['moves'], [])
+        self.assertTrue(result['legacy_directory_removed'])
+        self.assertFalse((self.root / '.ai').exists())
+
+    def test_unknown_content_added_before_parent_cleanup_is_preserved(self):
+        rmdir = Path.rmdir
+        def intervening_write(path):
+            if path == self.root / '.ai':
+                (path / 'human-note.md').write_text('Keep this new content')
+            return rmdir(path)
+        with patch.object(Path, 'rmdir', intervening_write):
+            result = self.store.migrate()
+        self.assertTrue(result['legacy_directory_remaining'])
+        self.assertFalse(result['legacy_directory_removed'])
+        self.assertEqual((self.root / '.ai/human-note.md').read_text(), 'Keep this new content')
+        self.assertEqual(self.store.read('feature')['etag'], self.record['etag'])
+
+    def test_preflight_conflict_in_second_destination_moves_neither_directory(self):
+        old_archive = self.root / '.ai/archive'
+        old_archive.mkdir()
+        (old_archive / 'old.md').write_text('old')
+        destination = self.root / 'workspace/archive'
+        destination.mkdir()
+        (destination / 'human.md').write_text('preserve')
+        for dry_run in (True, False):
+            with self.subTest(dry_run=dry_run), self.assertRaises(tk.Conflict):
+                self.store.migrate(dry_run)
+        self.assertTrue((self.old / 'feature.md').exists())
+        self.assertTrue((old_archive / 'old.md').exists())
+        self.assertFalse((self.root / 'workspace/work').exists())
+        self.assertEqual((destination / 'human.md').read_text(), 'preserve')
+
+    def test_symlink_in_legacy_records_is_rejected_without_moving(self):
+        target = self.root / 'private.md'
+        target.write_text('private')
+        (self.old / 'link.md').symlink_to(target)
+        with self.assertRaisesRegex(tk.ToolkitError, 'symlinks'):
+            self.store.migrate()
+        self.assertTrue((self.old / 'feature.md').exists())
+        self.assertFalse((self.root / 'workspace/work').exists())
+        self.assertEqual(target.read_text(), 'private')
+
+    def test_interrupted_migration_can_resume_after_one_directory_moved(self):
+        old_archive = self.root / '.ai/archive'
+        old_archive.mkdir()
+        (old_archive / 'old.md').write_text('Preserve historical evidence')
+        rename = Path.rename
+        def interrupted(path, target):
+            if path == old_archive:
+                raise OSError('Interrupted second directory move')
+            return rename(path, target)
+        with patch.object(Path, 'rename', interrupted), self.assertRaises(OSError):
+            self.store.migrate()
+        self.assertTrue((self.root / 'workspace/work/feature.md').is_file())
+        self.assertTrue((old_archive / 'old.md').is_file())
+        with self.assertRaisesRegex(tk.ToolkitError, 'Legacy .ai'):
+            self.store.read('feature')
+        self.assertEqual(len(self.store.migrate()['moves']), 1)
+        self.assertEqual(self.store.read('feature')['etag'], self.record['etag'])
+        self.assertEqual((self.root / 'workspace/archive/old.md').read_text(), 'Preserve historical evidence')
+
+    def test_symlinked_workspace_root_is_rejected_without_touching_target(self):
+        (self.root / 'workspace').rmdir()
+        target = self.root / 'other'
+        target.mkdir()
+        (self.root / 'workspace').symlink_to(target, target_is_directory=True)
+        with self.assertRaises(tk.ToolkitError):
+            self.store.migrate()
+        self.assertEqual(list(target.iterdir()), [])
+        self.assertTrue((self.old / 'feature.md').exists())
 
 
 class APITests(unittest.TestCase):
@@ -393,6 +566,7 @@ class APITests(unittest.TestCase):
     def test_full_create_comment_complete_flow_with_etags(self):
         status,headers,record = self.request('POST','/api/v1/work',{'id':'api-flow','title':'API flow'})
         self.assertEqual(status,201)
+        self.assertEqual(record['path'], 'workspace/work/api-flow.md')
         old_etag = headers['ETag']
         status,_,record = self.request('POST','/api/v1/work/api-flow/feedback',{'text':'Keep this comment.'},{'If-Match':old_etag})
         self.assertEqual(status,200)
@@ -405,6 +579,20 @@ class APITests(unittest.TestCase):
     def test_missing_if_match(self):
         self.request('POST','/api/v1/work',{'id':'missing-match','title':'Missing match'})
         self.assertEqual(self.request('POST','/api/v1/work/missing-match/feedback',{'text':'Hi'})[0],428)
+
+    def test_legacy_records_report_migration_instead_of_an_empty_dashboard(self):
+        old = Path(self.temp.name) / '.ai/work'
+        old.mkdir(parents=True)
+        record = old / 'old.md'
+        record.write_text('Preserve legacy content')
+        try:
+            status, _, value = self.request('GET', '/api/v1/work')
+            self.assertEqual(status, 400)
+            self.assertIn('migrate', value['error'])
+            self.assertEqual(record.read_text(), 'Preserve legacy content')
+        finally:
+            record.unlink()
+            old.rmdir()
 
     def test_untrusted_host_origin_and_cross_site_requests(self):
         for headers in ({'Host':'attacker.example'}, {'Origin':'https://attacker.example'}, {'Sec-Fetch-Site':'cross-site'}):

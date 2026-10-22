@@ -14,8 +14,8 @@ site uses its own existing configuration.
 For a static build without writing to the tracked Pages output:
 
 ```sh
-uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir .ai/generated/site
-python3 -m http.server 8000 --bind 127.0.0.1 --directory .ai/generated/site
+uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
+python3 -m http.server 8000 --bind 127.0.0.1 --directory workspace/generated/site
 ```
 
 Local preview does not deploy a site. Read [the concept](../concept.md), follow

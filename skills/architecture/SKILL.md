@@ -9,7 +9,7 @@ description: "Choose an architecture approach when planning system boundaries, i
 
 1. Start with users, use cases, existing constraints and measurable quality requirements.
 2. Choose the smallest viable architecture; a modular application is a valid default. Compare alternatives by operating cost and change cost.
-3. Select a focused topic below only when the task requires it. Record consequential tradeoffs in the current work record.
+3. Select a focused topic below only when the task requires it. Record consequential tradeoffs at the project-designated planning or decision home.
 
 ## Completion
 

@@ -5,10 +5,6 @@ description: "Develop or troubleshoot Flutter and iOS behavior, lifecycle, acces
 
 # Flutter Ios Expert
 
-## Role
-
-Develop or troubleshoot Flutter and iOS behavior, lifecycle, accessibility and platform integration.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

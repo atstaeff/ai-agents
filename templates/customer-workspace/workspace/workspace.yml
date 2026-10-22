@@ -1,0 +1,82 @@
+# Fictional example: replace locations with the customer's actual systems.
+# Locations are relative to the project root or point to an authoritative URL.
+version: 1
+name: Alpenblick document portal
+
+work:
+  system: github
+  location: https://github.com/orgs/CUSTOMER_ORG/projects/1
+  # The selected issue owns the live plan, acceptance, questions and approval receipt.
+review:
+  system: github
+  location: https://github.com/CUSTOMER_ORG/document-portal/pulls
+knowledge:
+  system: repository
+  location: workspace/knowledge/
+decisions:
+  system: repository
+  location: workspace/decisions/
+iteration_reports:
+  system: repository
+  location: workspace/iterations/
+communication:
+  system: work-item-comments
+  location: Assigned work item
+
+working_agreement: workspace/working-agreement.md
+stakeholders: workspace/stakeholders.md
+
+# Replace null with actual project commands; these are guidance, never auto-executed.
+commands:
+  setup: null
+  start: null
+  check: null
+
+# Optional process mapping. Adopt actual board fields and policy before use.
+profile: github
+method: plan-build-review
+repositories:
+  - name: document-portal
+    location: https://github.com/CUSTOMER_ORG/document-portal
+    path: .
+    default_branch: main
+planning:
+  priority:
+    system: github-project
+    location: https://github.com/orgs/CUSTOMER_ORG/projects/1
+  iteration:
+    system: github-project
+    location: https://github.com/orgs/CUSTOMER_ORG/projects/1
+  engineering_status:
+    system: github-project
+    location: https://github.com/orgs/CUSTOMER_ORG/projects/1
+flow:
+  states:
+    todo: Todo
+    in_progress: In Progress
+    in_review: In Review
+    done: Done
+  blocked: additional_property
+  completion_reasons: [delivered, cancelled, duplicate, not_implemented]
+  code_done_requires: [criteria_evidence, required_review, integrated]
+handoff:
+  location: Assigned work-item AI section
+  template: workspace/handoff.md
+labels:
+  ready: ai-ready
+  blocked: blocked
+reviewers: [technical-owner]
+# Replace illustrative commands with the adopted project's checks.
+quality_gates:
+  - name: Acceptance behavior
+    command: python3 -m unittest discover -s tests -v
+    required: true
+actions:
+  edit_assigned_branch: within_assignment
+  open_draft_pr: within_assignment
+  update_work_item: within_assignment
+  ask_questions: within_assignment
+  merge: separate_authorization
+  deploy: separate_authorization
+  delete: separate_authorization
+  change_access: separate_authorization

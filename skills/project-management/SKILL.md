@@ -7,7 +7,7 @@ description: "Organize delivery, technical debt or release work without excessiv
 
 ## Workflow
 
-1. Use one work record for the outcome, acceptance criteria, tasks, feedback and evidence.
+1. Read the project’s tooling map and use its designated work item for outcome, acceptance, tasks, feedback and evidence. Use a local record only when no assigned system owns the work.
 2. Select agile-methodologies for flow, technical-debt for repayment choices or devops-cicd for release mechanics.
 3. Keep task granularity useful for execution and do not introduce ceremonies or parallel tracking systems without a need.
 

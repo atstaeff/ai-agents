@@ -15,6 +15,19 @@ The starter does not contain a complete website, a deployed portal or a backgrou
 Never point the docs content plugin at a directory that also receives its compiled output.
 Check that an output directory contains only replaceable generated files before building into it.
 
+## Keep local work outside publication
+
+The options fragment allowlists root Markdown plus `knowledge/`, `decisions/` and
+`iterations/`, and excludes local `work/`, `archive/`, `generated/` and `exports/`.
+Merge this boundary with the customer's existing content rules. Do not replace it with
+a recursive all-Markdown include. The graph generator also skips those four local
+directories before reading files. Neither Git ignore rules nor a local folder name
+alone prevent a documentation plugin from publishing files on disk.
+
+Review selected entry pages and derived JSON for the intended audience. This example
+configuration has no installed Docusaurus smoke-test result; verify the actual site
+and its access controls before publication.
+
 ## Enable Mermaid in the existing configuration
 
 Install `@docusaurus/theme-mermaid` at the version matching the website's Docusaurus packages.

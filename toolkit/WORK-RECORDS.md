@@ -1,7 +1,7 @@
 # One record per outcome
 
-Use `.ai/work/<slug>.md` for larger local work without a board-owned assignment.
-For customer delivery on a GitHub Project, the assigned issue owns the live plan;
+Use `workspace/work/<slug>.md` for larger local work without a board-owned assignment.
+For tracked delivery, the project-designated work item (such as Jira or GitHub) owns the live plan;
 follow the [operating model](OPERATING-MODEL.md) and the project's working agreement.
 The dashboard below manages files; Project updates use your host's authorized tools.
 
@@ -33,4 +33,23 @@ not a distributed transaction system for uncoordinated editors or OneDrive.
 Decide per repository whether to commit work records. This toolkit ignores them by
 default; explicitly track sanitized records if useful. Private notes never belong in
 public repositories. Extract only reusable conclusions into existing documentation
-or the private PARA vault. Archive completed records and load history on demand.
+or the private PARA vault for an appropriate personal task. Archive completed records and load history on demand.
+
+## Existing records and the project root
+
+`--workspace` is the project root; the store appends `workspace/work/` or
+`workspace/archive/`. It creates no project config or second tracker automatically.
+Existing `.ai/work/` or `.ai/archive/` content produces an actionable migration error
+instead of an empty dashboard or a duplicate record. Stop writers and use:
+
+```sh
+python3 tools/ai_toolkit.py work --workspace /path/to/project migrate --dry-run
+python3 tools/ai_toolkit.py work --workspace /path/to/project migrate
+```
+
+Both destinations are checked before moves. Existing targets and symlinks stop migration;
+reconcile conflicting directories manually. Contents are unchanged, including feedback,
+evidence and timestamps. Relative links may need review. Unknown `.ai` files, previews
+and exported bundles are left alone. The empty `.ai/` parent is removed after migration;
+`legacy_directory_remaining` reports unknown content left for deliberate review. See the
+[complete migration and publication rules](WORKSPACE-CONCEPT.md#11-moving-existing-local-work).

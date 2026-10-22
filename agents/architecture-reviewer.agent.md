@@ -5,10 +5,6 @@ description: "Review architecture changes for justified boundaries, quality requ
 
 # Architecture Reviewer
 
-## Role
-
-Review architecture changes for justified boundaries, quality requirements and operational tradeoffs.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

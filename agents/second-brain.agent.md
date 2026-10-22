@@ -5,10 +5,6 @@ description: "Maintain a private Obsidian vault using PARA, preserving user note
 
 # Second Brain
 
-## Role
-
-Maintain a private Obsidian vault using PARA, preserving user notes, backlinks and practical retrieval.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

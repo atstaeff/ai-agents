@@ -5,10 +5,6 @@ description: "Implement or improve Python software using dataclasses, explicit b
 
 # Python Expert
 
-## Role
-
-Implement or improve Python software using dataclasses, explicit boundaries, uv and focused verification.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

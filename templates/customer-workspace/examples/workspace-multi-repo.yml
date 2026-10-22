@@ -1,0 +1,60 @@
+# Fictional Jira + GitHub example; use the same version-1 contract as every starter.
+# Copy to workspace/workspace.yml. Paths resolve from the shared project root.
+# Assume that root contains the workspace/ directory and both repository checkouts.
+version: 1
+name: Customer portal across two repositories
+profile: jira-github-multi-repo
+method: bmad
+work:
+  system: jira
+  location: https://CUSTOMER.atlassian.net/jira/software/c/projects/PORTAL/boards/42
+  # The assignment supplies its specific Jira ticket; no mirror GitHub issue.
+review:
+  system: github
+  location: Pull request in the affected repository listed below
+knowledge:
+  system: repository
+  location: workspace/knowledge/
+decisions:
+  system: repository
+  location: workspace/decisions/
+iteration_reports:
+  system: repository
+  location: workspace/iterations/
+communication:
+  system: work-item-comments
+  location: Assigned Jira ticket
+working_agreement: workspace/working-agreement.md
+stakeholders: workspace/stakeholders.md
+repositories:
+  - name: portal-web
+    location: https://github.com/CUSTOMER_ORG/portal-web
+    path: repositories/portal-web
+    default_branch: main
+  - name: portal-api
+    location: https://github.com/CUSTOMER_ORG/portal-api
+    path: repositories/portal-api
+    default_branch: main
+planning:
+  priority:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/jira/software/c/projects/PORTAL/boards/42
+  iteration:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/jira/software/c/projects/PORTAL/boards/42
+  engineering_status:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/jira/software/c/projects/PORTAL/boards/42
+commands:
+  setup: null
+  start: null
+  check: null
+# The working agreement defines BMAD artifacts, per-repo checks and integration order.
+# Confirm actual branches and access. BMAD and connectors are not installed by this file.
+actions:
+  edit_assigned_branch: within_assignment
+  open_draft_pr: within_assignment
+  update_work_item: within_assignment
+  ask_questions: within_assignment
+  merge: separate_authorization
+  deploy: separate_authorization

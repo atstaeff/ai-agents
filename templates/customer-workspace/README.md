@@ -7,22 +7,39 @@ It contains no customer data, application implementation or running automation.
 All CUSTOMER_* accounts, URLs, issue numbers, approvals and results are placeholders.
 Markdown is reusable across GitHub, an AI host and an existing documentation site.
 
+The [detailed workspace concept](../../toolkit/WORKSPACE-CONCEPT.md) describes the full
+folder, configuration, delivery and recovery model. The optional local work store now
+uses the same `workspace/` root as knowledge, with an explicit publication boundary.
+
 ## Start with the minimum
+
+For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).
+To have a coding agent configure an existing project, copy the [English setup prompt](SETUP-PROMPT.md).
+Choose the [minimal YAML](examples/workspace-minimal.yml), the GitHub example below,
+the [Jira variant](examples/workspace-jira.yml) or the
+[Jira/two-repository variant](examples/workspace-multi-repo.yml). All use the same
+schema. The larger examples are references, not a requirement to create every file.
 
 1. Merge the relevant rules from [AGENTS.md](AGENTS.md) into the project's existing
    `AGENTS.md`; preserve local rules and review the action scope with the customer.
 2. Copy and adapt [workspace/README.md](workspace/README.md),
    [working-agreement.md](workspace/working-agreement.md) and
    [stakeholders.md](workspace/stakeholders.md). Replace the fictional context and roles.
-3. Configure one customer-owned GitHub Project using [the board example](examples/github-project.md).
-4. Create a real issue from [the worked assignment](examples/issue-42.md).
-5. Start Jörg manually with that issue in the customer's repository, using your host's
+3. Adapt [workspace/workspace.yml](workspace/workspace.yml), the canonical tooling map.
+   Reuse customer tools; [the Jira variant](examples/workspace-jira.yml) shows a different setup.
+   Link it from `AGENTS.md`; use an existing equivalent config instead when appropriate.
+4. Select the real work item in that system. For GitHub, use [the board example](examples/github-project.md)
+   and [worked assignment](examples/issue-42.md); Jira needs no mirror GitHub issue.
+5. Start Jörg manually with that work item in the customer's repository, using your host's
    installed AI Agents profiles. Adopt [plan comments and approval](examples/plan-review.md)
    before Build when required. Add a local runner only after the manual flow works.
 6. For a documentation site, adopt [the local Docusaurus integration](examples/docusaurus-integration.md)
    and generate the knowledge index before building the existing website.
+7. Merge the local-state entries from [.gitignore](.gitignore) into the existing ignore
+   rules. Keep the Docusaurus allowlist and graph exclusions; Git ignore alone does not
+   protect unpublished local work. Migrate existing records explicitly before using the store.
 
-The Project owns priority, iteration and status. The issue owns the current plan and
+In the fictional GitHub configuration below, the Project owns priority, iteration and status. The issue owns the current plan and
 questions. The repository owns durable knowledge. Documentation sites are generated
 views of that knowledge. General agent skills stay in the toolkit; customer facts stay here.
 
@@ -34,15 +51,25 @@ export bundles this starter as reference material; it does not apply it to a pro
 
 The `workspace/` name covers product context, people, working agreements and durable
 knowledge. If that name already has a technical purpose in the target repository, use
-`context/` and update the entry links and website content path. Keep live plans in issues;
+`context/` and update the entry links and website content path. It may hold only an index
+to authoritative external knowledge. Keep live plans in the designated work items;
 add knowledge pages only when a decision or completed increment warrants them.
-When the customer already uses Jira for product scope and capacity planning, preserve
-that ownership and link engineering issues to the existing delivery object.
+For larger work with no assigned system, optional local records use `workspace/work/`
+and `workspace/archive/`. They are excluded from knowledge publication. This does not
+authorize a duplicate local plan when the project already assigns the work to a tracker.
+When Jira owns delivery, keep the plan and acceptance in the Jira ticket and link the
+code PR/MR directly. Do not create a matching GitHub issue. Decisions may live in a
+designated wiki or repository. Define exact locations, status meanings, owners and
+allowed updates in the project. A missing connector never changes that ownership.
 
-## One place for each kind of information
+## Example ownership: GitHub and repository knowledge
+
+The following table explains the fictional example. Actual tool locations are maintained
+once in `workspace/workspace.yml`; do not maintain a second live configuration here.
 
 | Information | Canonical place | Update when |
 | --- | --- | --- |
+| Tool and location ownership | `workspace/workspace.yml` | Project systems change |
 | Product goal and value chain | [Workspace entry](workspace/README.md) | The outcome or business context changes |
 | Priority, iteration, status and assignment | Customer GitHub Project | Work is selected or changes state |
 | Current plan, acceptance and open questions | Assigned GitHub issue | A material increment, question or answer changes the plan |
@@ -65,6 +92,8 @@ of routine context. The worked files stay drafts until a real project's evidence
 
 ## Optional worked documents
 
+- [Bounded handoff](workspace/handoff.md)
+- [Cold-session pilot](examples/context-recovery-pilot.md)
 - [Question and resumption](examples/discussion-42.md)
 - [Plan comments, revision and approval](examples/plan-review.md)
 - [Proposed PR](examples/pull-request-57.md)

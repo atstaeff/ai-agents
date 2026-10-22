@@ -17,9 +17,21 @@ Success for the worked increment means a retry reuses the same document referenc
 a deliberate new upload can still create a separate document. Production impact needs
 customer measurements; this example provides no measured business result.
 
+## Project tooling configuration
+
+Read [workspace.yml](workspace.yml) before selecting tools or creating shared records.
+It defines the authoritative work, review, knowledge, decision, iteration and communication
+locations. This example selects GitHub. Replace those values on adoption; a Jira ticket
+can own the entire plan with a linked GitHub PR and no mirror issue.
+
+The [working agreement](working-agreement.md) defines ready/review/done and permitted
+actions; [stakeholders](stakeholders.md) names decision makers and contacts. If a wiki
+owns knowledge, this workspace can remain a compact index. Unavailable access means
+an unsent proposed update, never an automatic switch to another system.
+
 ## Working entry points
 
-- [Customer GitHub Project](https://github.com/orgs/CUSTOMER_ORG/projects/1): priority and iteration.
+- [Project configuration](workspace.yml): authoritative tools and locations.
 - [Working agreement](working-agreement.md): delivery, acceptance and communication rules.
 - [Stakeholders](stakeholders.md): who decides and reviews.
 - [Upload process draft](knowledge/upload-retries.md): relevant domain knowledge.
@@ -30,5 +42,7 @@ customer measurements; this example provides no measured business result.
 
 Keep the current project goal here. Keep each live plan in its GitHub issue.
 Load individual decision and process documents only when relevant.
-The docs website reads this directory as source. A reserved compiled `docs/` directory
-contains generated output and is rebuilt from these files; AI work uses the Markdown sources.
+The documentation site publishes selected entry pages and durable knowledge directories.
+Local work, archives, generated previews and exports are excluded by the publication
+allowlist. A reserved compiled `docs/` directory contains generated output; AI work uses
+the Markdown sources. See the Docusaurus integration guide before publishing.

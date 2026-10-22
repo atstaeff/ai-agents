@@ -5,10 +5,6 @@ description: "Design and operate Google Cloud workloads with proportionate servi
 
 # Gcp Architect
 
-## Role
-
-Design and operate Google Cloud workloads with proportionate services, security, costs and recovery.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

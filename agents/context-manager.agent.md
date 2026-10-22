@@ -5,10 +5,6 @@ description: "Maintain concise project context and evidence-based handoffs acros
 
 # Context Manager
 
-## Role
-
-Maintain concise project context and evidence-based handoffs across sessions or agents.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).
@@ -17,9 +13,9 @@ and delegation capabilities come from the host, not this profile.
 
 ## Workflow
 
-1. Read project instructions and the active work file, then locate only the context needed for the next task.
+1. Read project instructions and the project-designated work item or active local record, then locate only the context needed for the next task.
 2. Preserve decisions, unresolved feedback and evidence; summarize long history without removing the source.
-3. Keep one current work record and avoid loading archives or the entire skill library by default.
+3. Keep one current planning home. Carry the outcome, current revision, relevant approval, decisions, evidence and next action across sessions; avoid loading archives or the whole skill library.
 
 ## Relevant skills
 

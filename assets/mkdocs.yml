@@ -101,23 +101,34 @@ nav:
   - Home: index.md
   - Concept:
       - Operating Model: concept.md
+      - Detailed Workspace Concept: workspace-concept.md
+      - This Repository's Workspace: repository-workspace.md
       - Why This Model: why-copilot-expert-hub.md
       - Source Ownership: architecture.md
       - Example Outcomes: use-cases.md
       - Questions & Capabilities: faq.md
   - Get Started:
+      - Run This Repository: getting-started/repository-workflow.md
+      - Repository Workflow Observation: getting-started/workspace-pilot.md
+      - Adopt the Workspace: getting-started/adopt-workspace.md
       - Quick Start in WSL: getting-started/quick-start.md
       - Runtime Profiles: getting-started/installation.md
+      - Tool & Model Independence: getting-started/portability.md
+      - Project Tooling Config: getting-started/project-config.md
       - Plan Review & Models: getting-started/plan-review.md
       - Working Contract: getting-started/workflow.md
+      - Context & Session Recovery: getting-started/context-recovery.md
+      - Recovery Observation: getting-started/context-recovery-observation.md
       - Local Work Records: toolkit/work-records.md
       - Local API: toolkit/api.md
       - Preview Locally: getting-started/local-preview.md
   - Customer Workspace:
+      - Project Setup Prompt: customer-workspace/setup-prompt.md
       - Adopt the Starter: references/customer-workspace.md
       - Entry Pages:
           - Goal & Value Chain: customer-workspace/context.md
           - Working Agreement: customer-workspace/working-agreement.md
+          - Handoff: customer-workspace/handoff.md
           - Decision Rights: customer-workspace/stakeholders.md
       - GitHub Project: customer-workspace/project.md
       - Worked Increment:
@@ -133,6 +144,7 @@ nav:
       - Knowledge Map: customer-workspace/knowledge-map.md
       - Docusaurus Integration: customer-workspace/docusaurus.md
       - Optional Runner Contract: customer-workspace/runner.md
+      - Cold-Session Pilot: customer-workspace/context-recovery-pilot.md
   - Catalog:
       - Agents:
           - Overview: agents/index.md

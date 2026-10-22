@@ -5,10 +5,6 @@ description: "Create a concrete product or technical proposal with value, scope,
 
 # Proposal Pitch
 
-## Role
-
-Create a concrete product or technical proposal with value, scope, costs and verifiable next steps.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

@@ -2,12 +2,31 @@
 
 Work with AI as a teammate using a shared [operating model](toolkit/OPERATING-MODEL.md),
 an English catalog of **23 agents and 48 skills**, native exporters and a local dashboard.
-Use **Jörg** as the general assistant. Keep board-managed plans in the assigned issue
-and larger local work in one Markdown record. Load focused expertise as needed.
+Use **Jörg** as the general assistant. Each project defines its tracker, planning home,
+knowledge locations and review tools. Keep larger local work in one Markdown record
+only when no assigned system owns the plan. Load focused expertise as needed.
 
 The toolkit runs on your computer with **Python 3.11+ and no runtime dependencies**.
 It does not run models, create chat sessions or access your Obsidian vault automatically.
 Your AI host provides model execution, tools and any native delegation capabilities.
+Keep the same process and customer knowledge when switching models or tools: the
+[portability contract](toolkit/PORTABILITY.md) explains the small host-specific adapters.
+
+**Share with your team:** start with the [plain-English concept and adoption guide](toolkit/ADOPT-WORKSPACE.md).
+Give a coding agent the [project setup prompt](templates/customer-workspace/SETUP-PROMPT.md)
+to adapt the existing project's tools and rules. Choose a minimal, GitHub, Jira or
+multi-repository example; all use the same validated configuration contract.
+
+The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) connects the folder layout,
+configuration, roles, issue flow, decisions, context loading and session recovery.
+This repository uses its own [workspace](workspace/README.md) and
+[validated YAML](workspace/workspace.yml).
+
+**Use the workflow here:** follow the [repository runbook](toolkit/REPOSITORY-WORKFLOW.md)
+for setup and OpenCode startup. Replay planning, feedback, exports, recovery, archive
+and old-layout migration locally with `python3 tools/workspace_smoke.py`.
+The [pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) records actual
+results and the installed-host/live-tracker checks that still need to happen.
 
 ## Start in WSL with OpenCode 1
 
@@ -45,8 +64,8 @@ Try these requests:
 
 > Jörg, fix this small issue directly and run the relevant check.
 
-> Jörg, improve this larger feature. Keep the plan and my feedback in one
-> `.ai/work/` record, implement the first complete increment and verify it.
+> Jörg, handle this larger local request with no tracker assignment. Keep the plan and my feedback in one
+> `workspace/work/` record, implement the first complete increment and verify it.
 
 > Use the second-brain agent to propose where these notes belong in my existing PARA
 > vault. Preserve my wording, aliases and links.
@@ -57,7 +76,8 @@ See [runtime details](toolkit/RUNTIMES.md).
 
 ## Plans, tasks and your comments
 
-Small changes need no process file. For a larger outcome, create one record:
+Small changes need no process file. The project-designated work item (for example Jira
+or GitHub) remains the planning home for tracked delivery. For a larger outcome without that assignment, create one record:
 
 ```sh
 python3 ~/tools/ai-agents/tools/ai_toolkit.py work --workspace . new onboarding \
@@ -75,27 +95,42 @@ no background session watcher: a model must follow the instructions. The dashboa
 does not start AI sessions or execute shell commands.
 
 ```text
-.ai/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
-.ai/archive/old-outcome.md   # Completed records; load only when needed
+workspace/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
+workspace/archive/old-outcome.md   # Completed records; load only when needed
 ```
 
 `docs/` stays available for existing documentation or GitHub Pages. CSV is an optional
 export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
 [work-record guide](toolkit/WORK-RECORDS.md).
+Existing `.ai/work/` and `.ai/archive/` records need the explicit
+[migration](toolkit/WORKSPACE-CONCEPT.md#11-moving-existing-local-work) before using the
+new store. `--workspace` points to the project root, not its `workspace/` subdirectory.
 
-## Customer-owned GitHub workspace
+## Customer-owned workspace and project tooling
 
-Use [templates/customer-workspace](templates/customer-workspace/README.md) when a
-customer's GitHub Project coordinates delivery. The Project owns priority, iteration
-and status; the issue owns the live plan and questions; `workspace/` keeps durable
+Use [templates/customer-workspace](templates/customer-workspace/README.md) to define
+a project’s tool and knowledge ownership. Its worked example uses GitHub; adapt the
+map to Jira, another tracker or the customer’s existing wiki/review system. In the
+GitHub example, the Project owns priority, iteration and status; the issue owns the live plan and questions; `workspace/` keeps durable
 decisions, process knowledge and iteration outcomes in the customer's repository.
-Use that issue instead of a duplicate `.ai/work/` record for the same assignment.
+Use that issue instead of a duplicate `workspace/work/` record for the same assignment.
 
-Start with three workspace entry files and merge the example instructions into the
-customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
+Read the [project YAML config](toolkit/PROJECT-CONFIG.md) before selecting integrations
+or creating records. If an
+authoritative system is unavailable, prepare an unsent update and report the gap.
+
+Start with `workspace/workspace.yml` and three workspace entry pages. Merge the example
+instructions into the customer's existing `AGENTS.md`. The fictional worked example includes an issue form,
 stakeholder questions, linked ADRs, a local knowledge graph generator and integration
 with an existing Docusaurus site. Adopt only what the project needs; this template is
 not an automatic installer or background runner.
+
+Use the [context recovery contract](toolkit/CONTEXT-RECOVERY.md) for session/model handoffs:
+compare current work, decisions and commits with the last bounded summary before resuming.
+The starter includes a handoff template and a cold-session pilot. Significant rationale
+stays with the customer; an old transcript is not required context. The new conventional
+configuration name is `workspace/workspace.yml`; explicitly linked legacy configurations
+remain supported, without keeping two competing defaults.
 
 ## Jörg and your Second Brain
 
@@ -121,6 +156,8 @@ Copy the URI to a Windows application that supports the protocol if needed.
 ```sh
 # Export into another project; edited/unmanaged files are protected.
 python3 tools/ai_toolkit.py export --runtime copilot --output /path/to/other-project
+# Native Claude Code profiles and one imported shared workflow.
+python3 tools/ai_toolkit.py export --runtime claude --output /path/to/other-project
 # Generic Agent Skills plus portable Markdown profiles.
 python3 tools/ai_toolkit.py export --runtime portable --output /path/to/bundle
 # Metadata only, useful for routing.

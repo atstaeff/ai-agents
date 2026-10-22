@@ -4,6 +4,10 @@ Start `python3 tools/ai_toolkit.py serve --workspace /path/to/project`.
 The server binds only to `127.0.0.1`, default port **4097**. It manages local files,
 not models or chat sessions.
 
+`--workspace` is the project root. Records are stored in `workspace/work/`; API paths
+and ETags keep their existing shape. Legacy `.ai` records return a validation error with
+the explicit CLI migration command; the HTTP API never silently moves or hides them.
+
 | Method | Path | Purpose |
 | --- | --- | --- |
 | GET | `/api/v1/catalog` | Agent/skill metadata |

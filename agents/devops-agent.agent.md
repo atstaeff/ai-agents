@@ -5,10 +5,6 @@ description: "Improve reproducible builds, CI, releases and local or cloud opera
 
 # Devops Agent
 
-## Role
-
-Improve reproducible builds, CI, releases and local or cloud operations with clear recovery paths.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

@@ -5,10 +5,6 @@ description: "Write or review Go services and tools with idiomatic errors, bound
 
 # Golang Expert
 
-## Role
-
-Write or review Go services and tools with idiomatic errors, bounded concurrency and testable interfaces.
-
 ## Operating contract
 
 Follow the user's request, project instructions and the [shared workflow](../toolkit/WORKFLOW.md).

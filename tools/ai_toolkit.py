@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import errno
 import hashlib
 import io
 import json
@@ -117,6 +118,10 @@ def check(root: Path = ROOT) -> list[str]:
         errors.append(str(exc))
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
     paths += list((root / "toolkit").rglob("*.md")) + list((root / "templates").rglob("*.md"))
+    for directory, folders, filenames in os.walk(root / 'workspace'):
+        if Path(directory) == root / 'workspace':
+            folders[:] = [name for name in folders if name not in {'work', 'archive', 'generated', 'exports'}]
+        paths += [Path(directory) / name for name in filenames if name.endswith('.md')]
     paths += [root / p for p in ("README.md", "AGENTS.md", "CONTRIBUTING.md", "copilot-instructions.md", ".github/copilot-instructions.md")]
     for path in paths:
         if not path.exists():
@@ -172,7 +177,7 @@ class OpenCodeOptions:
 
 def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False,
            *, opencode_options: OpenCodeOptions | None = None) -> dict:
-    if runtime not in {"opencode", "copilot", "portable"}:
+    if runtime not in {"opencode", "copilot", "claude", "portable"}:
         raise ToolkitError("Unknown runtime.")
     options = opencode_options or OpenCodeOptions()
     if runtime != 'opencode' and options != OpenCodeOptions():
@@ -194,14 +199,14 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
     planned['catalog/index.json'] = (json.dumps([asdict(e) for e in entries], indent=2) + '\n').encode()
     for entry in entries:
         if entry.kind == "skill":
-            base = {"opencode": "skills", "copilot": ".github/skills", "portable": ".agents/skills"}[runtime]
+            base = {"opencode": "skills", "copilot": ".github/skills", "claude": ".claude/skills", "portable": ".agents/skills"}[runtime]
             destination = f"{base}/{entry.name}/SKILL.md"
             interface = (root / entry.path).parent / 'agents/openai.yaml'
             if interface.is_file():
                 planned[f'{base}/{entry.name}/agents/openai.yaml'] = interface.read_bytes()
         else:
-            base = {"opencode": "agents", "copilot": ".github/agents", "portable": "agents"}[runtime]
-            suffix = ".md" if runtime == "opencode" else ".agent.md"
+            base = {"opencode": "agents", "copilot": ".github/agents", "claude": ".claude/agents", "portable": "agents"}[runtime]
+            suffix = ".md" if runtime in {"opencode", "claude"} else ".agent.md"
             destination = f"{base}/{entry.name}{suffix}"
         meta, body = metadata((root / entry.path).read_text(encoding="utf-8"))
         def rebase(match):
@@ -226,7 +231,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "permission:\n  edit:\n    '*': deny\n"
                 if entry.name == "plan":
-                    header += "    '.ai/work/**': allow\n    '.ai/archive/**': allow\n"
+                    header += "    'workspace/work/**': allow\n    'workspace/archive/**': allow\n"
                 header += "  bash: deny\n  task: deny\n"
                 if entry.name == 'plan' and options.plannotator:
                     header += "  submit_plan: allow\n  plan_exit: deny\n"
@@ -236,6 +241,10 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "tools: [read, search]\n"
                 body += '\nThis adapter provides read/search tools only. Return a proposed patch or plan; writing a work record requires switching to a writing agent.\n'
+        elif entry.kind == "agent" and runtime == "claude":
+            if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
+                header += "tools: Read, Grep, Glob\n"
+                body += '\nThis adapter permits file reading and search only. Return proposed plans or findings to the coordinating session; it owns required review, record updates and executable verification. Do not claim checks you cannot run.\n'
         planned[destination] = (header + "---\n\n" + body).encode()
     if runtime == "opencode":
         config = {"$schema": "https://opencode.ai/config.json", "default_agent": "joerg",
@@ -261,6 +270,8 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nUse the relevant skills for this request and the shared workflow. $ARGUMENTS\n'.encode()
     elif runtime == "copilot":
         planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/WORKFLOW.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
+    elif runtime == "claude":
+        planned['CLAUDE.md'] = b'@catalog/toolkit/WORKFLOW.md\n'
     manifest_path = output / '.ai-toolkit-manifest.json'
     if manifest_path.is_symlink():
         raise ToolkitError("The export manifest must not be a symlink.")
@@ -328,15 +339,64 @@ class WorkStore:
     def __init__(self, workspace: Path):
         self.workspace = workspace.resolve()
         if not self.workspace.is_dir():
-            raise ToolkitError('Workspace must be an existing directory.')
+            raise ToolkitError('Workspace must be an existing project-root directory.')
         self.lock = threading.RLock()
 
-    def path(self, name: str, archived: bool = False) -> Path:
-        name = slug(name)
-        path = self.workspace / '.ai' / ('archive' if archived else 'work') / f'{name}.md'
+    def _checked_path(self, path: Path) -> Path:
         if not path.resolve().is_relative_to(self.workspace) or any(p.is_symlink() for p in [path, *path.parents] if p != self.workspace):
             raise ToolkitError('Work records must not traverse symlinks or leave the workspace.')
         return path
+
+    def path(self, name: str, archived: bool = False) -> Path:
+        name = slug(name)
+        for folder in ('work', 'archive'):
+            old = self._checked_path(self.workspace / '.ai' / folder)
+            if old.exists() and (not old.is_dir() or any(old.iterdir())):
+                raise ToolkitError('Legacy .ai work records exist. Stop writers and run work --workspace <project-root> migrate --dry-run, then migrate; do not create a parallel plan.')
+        return self._checked_path(self.workspace / 'workspace' / ('archive' if archived else 'work') / f'{name}.md')
+
+    def migrate(self, dry_run: bool = False) -> dict:
+        """Explicitly move legacy record directories, preserving bytes and relative layout."""
+        with self.lock:
+            moves = []
+            for folder in ('work', 'archive'):
+                source = self._checked_path(self.workspace / '.ai' / folder)
+                destination = self._checked_path(self.workspace / 'workspace' / folder)
+                if not source.exists():
+                    continue
+                if not source.is_dir():
+                    raise ToolkitError(f'Legacy work path is not a directory: {source.relative_to(self.workspace)}')
+                if destination.exists():
+                    raise Conflict(f'Migration destination already exists: workspace/{folder}. Reconcile the two directories manually; no automatic merge or overwrite.')
+                for path in source.rglob('*'):
+                    self._checked_path(path)
+                    if not path.is_dir() and not path.is_file():
+                        raise ToolkitError('Migration accepts only regular files and directories.')
+                moves.append((source, destination))
+            if not dry_run:
+                for source, destination in moves:
+                    self._checked_path(destination)
+                    if destination.exists():
+                        raise Conflict('Migration destination changed. Stop all writers and inspect both locations before retrying.')
+                    destination.parent.mkdir(parents=True, exist_ok=True)
+                    source.rename(destination)
+            legacy_root = self._checked_path(self.workspace / '.ai')
+            removed = False
+            if not dry_run and legacy_root.is_dir():
+                try:
+                    legacy_root.rmdir()
+                    removed = True
+                except OSError as exc:
+                    # Preserve unknown files, including anything added after the moves.
+                    if exc.errno not in {errno.ENOTEMPTY, errno.EEXIST}:
+                        raise
+            return {'dry_run': dry_run,
+                    'legacy_directory_removed': removed,
+                    'legacy_directory_remaining': legacy_root.exists(),
+                    'moves': [
+                {'from': source.relative_to(self.workspace).as_posix(),
+                 'to': destination.relative_to(self.workspace).as_posix()}
+                for source, destination in moves]}
 
     def read(self, name: str, archived: bool = False) -> dict:
         path = self.path(name, archived)
@@ -579,7 +639,7 @@ def main(argv: list[str] | None = None) -> int:
     cat = sub.add_parser('catalog', help='Print catalog metadata without loading all prompts')
     cat.add_argument('--kind', choices=['agent','skill'])
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
-    adapter.add_argument('--runtime', choices=['opencode','copilot','portable'], required=True)
+    adapter.add_argument('--runtime', choices=['opencode','copilot','claude','portable'], required=True)
     adapter.add_argument('--output', type=Path, required=True)
     adapter.add_argument('--force', action='store_true')
     adapter.add_argument('--dry-run', action='store_true')
@@ -592,10 +652,10 @@ def main(argv: list[str] | None = None) -> int:
     uri.add_argument('--vault', required=True)
     uri.add_argument('--file', required=True)
     web = sub.add_parser('serve', help='Serve the local catalog and work dashboard on loopback only')
-    web.add_argument('--workspace', type=Path, default=Path.cwd())
+    web.add_argument('--workspace', type=Path, default=Path.cwd(), help='Project root; records live beneath workspace/work/')
     web.add_argument('--port', type=int, default=4097)
     work = sub.add_parser('work', help='Create and maintain one-file work records')
-    work.add_argument('--workspace', type=Path, default=Path.cwd())
+    work.add_argument('--workspace', type=Path, default=Path.cwd(), help='Project root; records live beneath workspace/work/')
     operations = work.add_subparsers(dest='operation', required=True)
     new = operations.add_parser('new')
     new.add_argument('id')
@@ -603,6 +663,8 @@ def main(argv: list[str] | None = None) -> int:
     new.add_argument('--kind', choices=['software','product','general'], default='software')
     listing = operations.add_parser('list')
     listing.add_argument('--archived', action='store_true')
+    migration = operations.add_parser('migrate', help='Move legacy .ai work/archive directories into workspace; stop writers first')
+    migration.add_argument('--dry-run', action='store_true')
     task = operations.add_parser('task')
     task.add_argument('id')
     task.add_argument('task_id')
@@ -649,6 +711,8 @@ def main(argv: list[str] | None = None) -> int:
                 result = store.create(args.id, args.title, args.kind)
             elif args.operation == 'list':
                 result = store.list(args.archived)
+            elif args.operation == 'migrate':
+                result = store.migrate(args.dry_run)
             elif args.operation == 'csv':
                 data = store.csv(args.id)
                 if args.output:
