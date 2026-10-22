@@ -38,9 +38,9 @@ jobs:
       - name: Check customer Docusaurus options syntax
         run: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
       - name: Strict documentation build
-        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir "$PWD/.ai/generated/site"
+        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
       - name: Upload documentation preview
         uses: actions/upload-artifact@v4
         with:
           name: documentation-preview
-          path: .ai/generated/site
+          path: workspace/generated/site

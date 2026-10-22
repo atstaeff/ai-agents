@@ -7,7 +7,18 @@ It contains no customer data, application implementation or running automation.
 All CUSTOMER_* accounts, URLs, issue numbers, approvals and results are placeholders.
 Markdown is reusable across GitHub, an AI host and an existing documentation site.
 
+The [detailed workspace concept](../../toolkit/WORKSPACE-CONCEPT.md) describes the full
+folder, configuration, delivery and recovery model. The optional local work store now
+uses the same `workspace/` root as knowledge, with an explicit publication boundary.
+
 ## Start with the minimum
+
+For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).
+To have a coding agent configure an existing project, copy the [English setup prompt](SETUP-PROMPT.md).
+Choose the [minimal YAML](examples/workspace-minimal.yml), the GitHub example below,
+the [Jira variant](examples/workspace-jira.yml) or the
+[Jira/two-repository variant](examples/workspace-multi-repo.yml). All use the same
+schema. The larger examples are references, not a requirement to create every file.
 
 1. Merge the relevant rules from [AGENTS.md](AGENTS.md) into the project's existing
    `AGENTS.md`; preserve local rules and review the action scope with the customer.
@@ -24,6 +35,9 @@ Markdown is reusable across GitHub, an AI host and an existing documentation sit
    before Build when required. Add a local runner only after the manual flow works.
 6. For a documentation site, adopt [the local Docusaurus integration](examples/docusaurus-integration.md)
    and generate the knowledge index before building the existing website.
+7. Merge the local-state entries from [.gitignore](.gitignore) into the existing ignore
+   rules. Keep the Docusaurus allowlist and graph exclusions; Git ignore alone does not
+   protect unpublished local work. Migrate existing records explicitly before using the store.
 
 In the fictional GitHub configuration below, the Project owns priority, iteration and status. The issue owns the current plan and
 questions. The repository owns durable knowledge. Documentation sites are generated
@@ -40,6 +54,9 @@ knowledge. If that name already has a technical purpose in the target repository
 `context/` and update the entry links and website content path. It may hold only an index
 to authoritative external knowledge. Keep live plans in the designated work items;
 add knowledge pages only when a decision or completed increment warrants them.
+For larger work with no assigned system, optional local records use `workspace/work/`
+and `workspace/archive/`. They are excluded from knowledge publication. This does not
+authorize a duplicate local plan when the project already assigns the work to a tracker.
 When Jira owns delivery, keep the plan and acceptance in the Jira ticket and link the
 code PR/MR directly. Do not create a matching GitHub issue. Decisions may live in a
 designated wiki or repository. Define exact locations, status meanings, owners and

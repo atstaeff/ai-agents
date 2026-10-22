@@ -12,7 +12,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ai_toolkit import ROOT, LINK, catalog, metadata
 
 DOCUMENTS = {
+    'getting-started/adopt-workspace.md': 'toolkit/ADOPT-WORKSPACE.md',
+    'customer-workspace/setup-prompt.md': 'templates/customer-workspace/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',
+    'workspace-concept.md': 'toolkit/WORKSPACE-CONCEPT.md',
+    'repository-workspace.md': 'workspace/README.md',
     'getting-started/workflow.md': 'toolkit/WORKFLOW.md',
     'getting-started/installation.md': 'toolkit/RUNTIMES.md',
     'getting-started/portability.md': 'toolkit/PORTABILITY.md',

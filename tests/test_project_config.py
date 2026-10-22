@@ -10,11 +10,11 @@ import unittest
 from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
-HAS_YAML = find_spec('yaml') is not None
+HAS_YAML = find_spec('yaml') is not None and find_spec('jsonschema') is not None
 cfg = SimpleNamespace(**runpy.run_path(str(ROOT / 'tools/project_config.py'))) if HAS_YAML else None
 
 
-@unittest.skipUnless(HAS_YAML, 'Optional YAML validator: run with uv --group docs')
+@unittest.skipUnless(HAS_YAML, 'Optional YAML/schema validator: run with uv --group docs')
 class ProjectConfigTests(unittest.TestCase):
     def setUp(self):
         self.github = ROOT / 'templates/customer-workspace/workspace/workspace.yml'
@@ -26,6 +26,34 @@ class ProjectConfigTests(unittest.TestCase):
         self.assertEqual((jira['work']['system'], jira['review']['system']), ('jira', 'github'))
         self.assertEqual(jira['knowledge']['system'], 'confluence')
         self.assertEqual(jira['decisions']['system'], 'repository')
+
+    def test_schema_and_repository_config_are_valid(self):
+        cfg.Draft202012Validator.check_schema(cfg.SCHEMA)
+        data = cfg.load(ROOT / 'workspace/workspace.yml')
+        self.assertEqual(data['repositories'][0]['name'], 'ai-agents')
+        for key in ('working_agreement', 'stakeholders'):
+            self.assertTrue((ROOT / data[key]).is_file())
+        self.assertTrue((ROOT / data['handoff']['template']).is_file())
+
+    def test_minimal_existing_config_does_not_require_new_sections(self):
+        minimal = {key: self.data[key] for key in cfg.REQUIRED}
+        self.assertEqual(cfg.validate(minimal), minimal)
+
+    def test_optional_process_fields_reject_ambiguity_and_bad_types(self):
+        changes = [
+            {'repositories': [{'name': 'one', 'location': 'repo'}, {'name': 'one', 'location': 'other'}]},
+            {'repositories': [{'name': 'one', 'location': 'repo', 'token': 'secret'}]},
+            {'quality_gates': [{'name': 'Check', 'command': 'test', 'required': 'yes'}]},
+            {'actions': {'merge': True}}, {'actions': {'send_everywhere': 'within_assignment'}},
+            {'reviewers': 'owner'}, {'labels': {'ready': 1}},
+            {'planning': {'priority': {'system': 'jira'}}},
+        ]
+        duplicate_states = copy.deepcopy(self.data['flow'])
+        duplicate_states['states']['done'] = duplicate_states['states']['todo']
+        changes.append({'flow': duplicate_states})
+        for change in changes:
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                cfg.validate(dict(self.data, **change))
 
     def test_other_tools_are_valid_without_a_vendor_allowlist(self):
         self.data['work'] = {'system': 'customer-tracker', 'location': 'https://tracker.example/project'}
@@ -62,6 +90,7 @@ class ProjectConfigTests(unittest.TestCase):
             path = Path(folder) / 'project.yaml'
             sentinel = Path(folder) / 'must-not-exist'
             self.data['commands']['check'] = f'touch {sentinel}'
+            self.data['quality_gates'][0]['command'] = f'touch {sentinel}'
             path.write_text(cfg.yaml.safe_dump(self.data))
             before = path.read_bytes()
             with patch('sys.stdout', new_callable=io.StringIO):

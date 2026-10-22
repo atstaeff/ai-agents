@@ -42,5 +42,7 @@ an unsent proposed update, never an automatic switch to another system.
 
 Keep the current project goal here. Keep each live plan in its GitHub issue.
 Load individual decision and process documents only when relevant.
-The docs website reads this directory as source. A reserved compiled `docs/` directory
-contains generated output and is rebuilt from these files; AI work uses the Markdown sources.
+The documentation site publishes selected entry pages and durable knowledge directories.
+Local work, archives, generated previews and exports are excluded by the publication
+allowlist. A reserved compiled `docs/` directory contains generated output; AI work uses
+the Markdown sources. See the Docusaurus integration guide before publishing.

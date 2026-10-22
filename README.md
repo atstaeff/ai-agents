@@ -12,6 +12,16 @@ Your AI host provides model execution, tools and any native delegation capabilit
 Keep the same process and customer knowledge when switching models or tools: the
 [portability contract](toolkit/PORTABILITY.md) explains the small host-specific adapters.
 
+**Share with your team:** start with the [plain-English concept and adoption guide](toolkit/ADOPT-WORKSPACE.md).
+Give a coding agent the [project setup prompt](templates/customer-workspace/SETUP-PROMPT.md)
+to adapt the existing project's tools and rules. Choose a minimal, GitHub, Jira or
+multi-repository example; all use the same validated configuration contract.
+
+The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) connects the folder layout,
+configuration, roles, issue flow, decisions, context loading and session recovery.
+This repository uses its own [workspace](workspace/README.md) and
+[validated YAML](workspace/workspace.yml).
+
 ## Start in WSL with OpenCode 1
 
 Run in your WSL terminal:
@@ -48,8 +58,8 @@ Try these requests:
 
 > Jörg, fix this small issue directly and run the relevant check.
 
-> Jörg, improve this larger feature. Keep the plan and my feedback in one
-> `.ai/work/` record, implement the first complete increment and verify it.
+> Jörg, handle this larger local request with no tracker assignment. Keep the plan and my feedback in one
+> `workspace/work/` record, implement the first complete increment and verify it.
 
 > Use the second-brain agent to propose where these notes belong in my existing PARA
 > vault. Preserve my wording, aliases and links.
@@ -79,13 +89,16 @@ no background session watcher: a model must follow the instructions. The dashboa
 does not start AI sessions or execute shell commands.
 
 ```text
-.ai/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
-.ai/archive/old-outcome.md   # Completed records; load only when needed
+workspace/work/onboarding.md       # Goal, plan, tasks, feedback, decisions, evidence
+workspace/archive/old-outcome.md   # Completed records; load only when needed
 ```
 
 `docs/` stays available for existing documentation or GitHub Pages. CSV is an optional
 export, not a second task list. See the [workflow](toolkit/WORKFLOW.md) and
 [work-record guide](toolkit/WORK-RECORDS.md).
+Existing `.ai/work/` and `.ai/archive/` records need the explicit
+[migration](toolkit/WORKSPACE-CONCEPT.md#11-moving-existing-local-work) before using the
+new store. `--workspace` points to the project root, not its `workspace/` subdirectory.
 
 ## Customer-owned workspace and project tooling
 
@@ -94,7 +107,7 @@ a project’s tool and knowledge ownership. Its worked example uses GitHub; adap
 map to Jira, another tracker or the customer’s existing wiki/review system. In the
 GitHub example, the Project owns priority, iteration and status; the issue owns the live plan and questions; `workspace/` keeps durable
 decisions, process knowledge and iteration outcomes in the customer's repository.
-Use that issue instead of a duplicate `.ai/work/` record for the same assignment.
+Use that issue instead of a duplicate `workspace/work/` record for the same assignment.
 
 Read the [project YAML config](toolkit/PROJECT-CONFIG.md) before selecting integrations
 or creating records. If an

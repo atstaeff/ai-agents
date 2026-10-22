@@ -101,11 +101,14 @@ nav:
   - Home: index.md
   - Concept:
       - Operating Model: concept.md
+      - Detailed Workspace Concept: workspace-concept.md
+      - This Repository's Workspace: repository-workspace.md
       - Why This Model: why-copilot-expert-hub.md
       - Source Ownership: architecture.md
       - Example Outcomes: use-cases.md
       - Questions & Capabilities: faq.md
   - Get Started:
+      - Adopt the Workspace: getting-started/adopt-workspace.md
       - Quick Start in WSL: getting-started/quick-start.md
       - Runtime Profiles: getting-started/installation.md
       - Tool & Model Independence: getting-started/portability.md
@@ -118,6 +121,7 @@ nav:
       - Local API: toolkit/api.md
       - Preview Locally: getting-started/local-preview.md
   - Customer Workspace:
+      - Project Setup Prompt: customer-workspace/setup-prompt.md
       - Adopt the Starter: references/customer-workspace.md
       - Entry Pages:
           - Goal & Value Chain: customer-workspace/context.md

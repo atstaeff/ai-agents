@@ -28,3 +28,52 @@ commands:
   setup: null
   start: null
   check: null
+
+# Optional process mapping. Adopt actual board fields and policy before use.
+profile: jira-github
+method: plan-build-review
+repositories:
+  - name: service-portal
+    location: https://github.com/CUSTOMER_ORG/service-portal
+    path: .
+    default_branch: main
+planning:
+  priority:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/browse/PORTAL
+  iteration:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/browse/PORTAL
+  engineering_status:
+    system: jira
+    location: https://CUSTOMER.atlassian.net/browse/PORTAL
+flow:
+  states:
+    todo: Todo
+    in_progress: In Progress
+    in_review: In Review
+    done: Done
+  blocked: additional_property
+  completion_reasons: [delivered, cancelled, duplicate, not_implemented]
+  code_done_requires: [criteria_evidence, required_review, integrated]
+handoff:
+  location: Assigned work-item AI section
+  template: workspace/handoff.md
+labels:
+  ready: ai-ready
+  blocked: blocked
+reviewers: [technical-owner]
+# Replace illustrative commands with the adopted project's checks.
+quality_gates:
+  - name: Acceptance behavior
+    command: python3 -m unittest discover -s tests -v
+    required: true
+actions:
+  edit_assigned_branch: within_assignment
+  open_draft_pr: within_assignment
+  update_work_item: within_assignment
+  ask_questions: within_assignment
+  merge: separate_authorization
+  deploy: separate_authorization
+  delete: separate_authorization
+  change_access: separate_authorization

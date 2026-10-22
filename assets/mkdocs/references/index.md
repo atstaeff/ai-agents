@@ -5,12 +5,16 @@ Reusable templates and focused references for AI Agents. Start with the
 
 ## Customer Workspace
 
-Keep customer delivery in GitHub Projects and issues, and durable knowledge in a
-customer-owned `workspace/`. Start with three entry files; add ADRs, process knowledge
+Keep delivery in the project's chosen tracker and durable knowledge in its
+customer-owned sources. Start with a tooling map and three entry files; add ADRs, process knowledge
 and iteration reports when the work warrants them. The worked example includes local
 graph generation and integration with an existing Docusaurus site.
 
 :material-arrow-right: [Customer workspace template](customer-workspace.md)
+
+:material-arrow-right: [Share the concept and adopt it](../getting-started/adopt-workspace.md)
+
+:material-arrow-right: [Copy the English setup prompt](../customer-workspace/setup-prompt.md)
 
 ---
 

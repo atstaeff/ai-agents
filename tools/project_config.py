@@ -1,18 +1,21 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["PyYAML>=6,<7"]
+# dependencies = ["PyYAML>=6,<7", "jsonschema>=4,<5"]
 # ///
 """Validate declarative project tooling; never connect to systems or execute commands."""
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 import sys
 
 import yaml
+from jsonschema import Draft202012Validator
 
 LOCATIONS = ('work', 'review', 'knowledge', 'decisions', 'iteration_reports', 'communication')
-REQUIRED = {'version', 'name', 'working_agreement', 'stakeholders', *LOCATIONS}
+SCHEMA = json.loads((Path(__file__).resolve().parents[1] / 'toolkit/workspace.schema.json').read_text(encoding='utf-8'))
+REQUIRED = set(SCHEMA['required'])
 
 
 class UniqueLoader(yaml.SafeLoader):
@@ -35,34 +38,18 @@ def unique_mapping(loader, node, deep=False):
 UniqueLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, unique_mapping)
 
 
-def text(value, label):
-    if not isinstance(value, str) or not value.strip():
-        raise ValueError(f'{label} must be a non-empty string.')
-
-
 def validate(data):
-    if not isinstance(data, dict):
-        raise ValueError('Project configuration must be a mapping.')
-    missing = REQUIRED - data.keys()
-    unknown = data.keys() - REQUIRED - {'commands'}
-    if missing or unknown:
-        raise ValueError(f'Invalid fields: missing={sorted(missing)}, unknown={sorted(unknown)}')
-    if type(data['version']) is not int or data['version'] != 1:
-        raise ValueError('Unsupported project configuration version; expected integer 1.')
-    for name in ('name', 'working_agreement', 'stakeholders'):
-        text(data[name], name)
-    for name in LOCATIONS:
-        location = data[name]
-        if not isinstance(location, dict) or set(location) != {'system', 'location'}:
-            raise ValueError(f'{name} requires exactly system and location.')
-        text(location['system'], f'{name}.system')
-        text(location['location'], f'{name}.location')
-    commands = data.get('commands', {})
-    if not isinstance(commands, dict) or commands.keys() - {'setup', 'start', 'check'}:
-        raise ValueError('commands accepts only setup, start and check.')
-    for key, value in commands.items():
-        if value is not None:
-            text(value, f'commands.{key}')
+    errors = sorted(Draft202012Validator(SCHEMA).iter_errors(data), key=lambda error: str(list(error.path)))
+    if errors:
+        error = errors[0]
+        label = '.'.join(str(part) for part in error.path) or 'configuration'
+        raise ValueError(f'{label}: {error.message}')
+    names = [repo['name'] for repo in data.get('repositories', [])]
+    if len(names) != len(set(names)):
+        raise ValueError('repositories names must be unique.')
+    states = list(data.get('flow', {}).get('states', {}).values())
+    if len(states) != len(set(states)):
+        raise ValueError('flow.states must map to distinct board states.')
     return data
 
 

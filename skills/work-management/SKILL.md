@@ -10,8 +10,10 @@ description: "Maintain the plan, acceptance criteria, human feedback and verific
 2. Read the declared project config (normally `workspace/workspace.yml`) and working
    agreement. Choose the designated planning home: Jira ticket,
    GitHub issue or another work item. Only without an assigned system, reuse or create
-   one `.ai/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,
+   one `workspace/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,
    local record, task CSV or wiki plan. If ownership is unclear, resolve it before writing.
+   Use the [workspace concept](../../toolkit/WORKSPACE-CONCEPT.md) when adopting the
+   layout or migrating legacy records; ordinary tasks do not load the entire concept.
 3. State the user outcome, scope exclusions, observable acceptance and first verifiable
    increment. Reuse the home's task format; local records use stable T1-style IDs and
    `open`, `in_progress`, `blocked`, `done` states.

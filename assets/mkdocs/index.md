@@ -7,7 +7,7 @@
 Clear outcomes. Accountable decisions. Verified results.
 Keep useful knowledge where the customer can own and reuse it.
 
-[Understand the concept](concept.md){ .md-button .md-button--primary }
+[Adopt the workspace](getting-started/adopt-workspace.md){ .md-button .md-button--primary }
 [Start in WSL](getting-started/quick-start.md){ .md-button }
 
 </div>
@@ -57,6 +57,10 @@ using the models, tools and permissions available in its host.
 
 ## Choose your starting point
 
+Share the [plain-English concept and adoption guide](getting-started/adopt-workspace.md)
+with your team, then use the [project setup prompt](customer-workspace/setup-prompt.md)
+to configure actual repositories, boards, rules and owners. Start with one real assignment.
+
 For planned work that needs approval, [review the plan locally with Plannotator](getting-started/plan-review.md):
 comment, revise, approve the current version, then Build with its own model and supported
 thinking variant. Keep the receipt in the assignment's existing planning home.
@@ -64,7 +68,7 @@ thinking variant. Keep the receipt in the assignment's existing planning home.
 | Your situation | Start here | Keep the plan in |
 | --- | --- | --- |
 | Customer or team delivery | [Customer workspace starter](references/customer-workspace.md) | The project-designated item: Jira, GitHub or another system |
-| Larger local work without a board assignment | [Local work records](toolkit/work-records.md) | One `.ai/work/` file |
+| Larger local work without a board assignment | [Local work records](toolkit/work-records.md) | One `workspace/work/` file |
 | A small, clear fix | [Quick start](getting-started/quick-start.md) | The current conversation |
 | Personal knowledge work | [Second Brain](agents/second-brain.md) | Your existing private PARA vault |
 

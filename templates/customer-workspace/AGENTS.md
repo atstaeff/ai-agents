@@ -8,7 +8,10 @@ Read [workspace/workspace.yml](workspace/workspace.yml) for the authoritative tr
 planning home, knowledge, decision, review and communication locations before selecting
 an integration or creating records. Its GitHub configuration is a fictional example;
 adapt it to the actual project, including Jira or another tracker. Keep one live plan
-at the designated home. Do not create mirror issues, .ai/work records or task CSVs.
+at the designated home. For tracked assignments, create no mirror issue, local work record or task CSV.
+For a larger direct request with no assigned system, the optional local store uses
+`workspace/work/`. Keep local work, archives, generated output and exports out of the
+knowledge website; adopt the starter's ignore rules and publishing exclusions.
 If access is unavailable, report the gap and prepare an unsent update; continue
 independent work without silently changing tools or claiming synchronization.
 

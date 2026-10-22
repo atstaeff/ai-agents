@@ -7,6 +7,7 @@
 import argparse
 from collections import deque
 import json
+import os
 from pathlib import Path
 import re
 import sys
@@ -16,12 +17,20 @@ import yaml
 MARKER = "<!-- generated-by: knowledge_graph.py; do not edit -->"
 RELATIONS = {"depends_on", "supersedes", "relates_to", "governed_by", "reports_on"}
 STATUSES = {"proposed", "accepted", "rejected", "deprecated", "superseded", "draft"}
+LOCAL_FOLDERS = {"work", "archive", "generated", "exports"}
 
 
 def load_graph(root):
     nodes = {}
     slugs = set()
-    for path in sorted(root.rglob("*.md")):
+    paths = []
+    for directory, folders, filenames in os.walk(root, followlinks=False):
+        if Path(directory) == root:
+            folders[:] = [name for name in folders if name not in LOCAL_FOLDERS]
+        for name in filenames:
+            if name.endswith('.md'):
+                paths.append(Path(directory) / name)
+    for path in sorted(paths):
         if path.is_symlink() or not path.resolve().is_relative_to(root):
             raise ValueError(f"Knowledge source must be inside workspace: {path}")
         text = path.read_text(encoding="utf-8")

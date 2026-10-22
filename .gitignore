@@ -45,6 +45,12 @@ site/
 .venv/
 __pycache__/
 *.py[cod]
+/workspace/work/
+/workspace/archive/
+/workspace/generated/
+/workspace/exports/
+
+# Previous layout stays ignored until explicitly migrated.
 .ai/work/
 .ai/archive/
 .ai/generated/
