@@ -22,6 +22,12 @@ configuration, roles, issue flow, decisions, context loading and session recover
 This repository uses its own [workspace](workspace/README.md) and
 [validated YAML](workspace/workspace.yml).
 
+**Use the workflow here:** follow the [repository runbook](toolkit/REPOSITORY-WORKFLOW.md)
+for setup and OpenCode startup. Replay planning, feedback, exports, recovery, archive
+and old-layout migration locally with `python3 tools/workspace_smoke.py`.
+The [pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) records actual
+results and the installed-host/live-tracker checks that still need to happen.
+
 ## Start in WSL with OpenCode 1
 
 Run in your WSL terminal:

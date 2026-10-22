@@ -108,6 +108,8 @@ nav:
       - Example Outcomes: use-cases.md
       - Questions & Capabilities: faq.md
   - Get Started:
+      - Run This Repository: getting-started/repository-workflow.md
+      - Repository Workflow Observation: getting-started/workspace-pilot.md
       - Adopt the Workspace: getting-started/adopt-workspace.md
       - Quick Start in WSL: getting-started/quick-start.md
       - Runtime Profiles: getting-started/installation.md

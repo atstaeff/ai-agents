@@ -231,7 +231,8 @@ Migration moves `.ai/work/` and `.ai/archive/` into `workspace/` without changin
 contents. It checks both destinations before moving anything, refuses existing target
 directories and rejects symlinks. It does not merge conflicts, rewrite relative links,
 move unknown `.ai` content or grant permission to disclose records. Resolve conflicts
-and update affected links deliberately. Empty old parent directories can remain.
+and update affected links deliberately. The empty old parent directory is removed;
+remaining unknown content is preserved and reported by `legacy_directory_remaining`.
 
 Each directory move is a separate filesystem operation. If interrupted, inspect both
 locations and rerun after stopping writers; already-moved directories are left alone.

@@ -12,6 +12,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from ai_toolkit import ROOT, LINK, catalog, metadata
 
 DOCUMENTS = {
+    'getting-started/repository-workflow.md': 'toolkit/REPOSITORY-WORKFLOW.md',
+    'getting-started/workspace-pilot.md': 'toolkit/evaluations/workspace-pilot-20261022.md',
     'getting-started/adopt-workspace.md': 'toolkit/ADOPT-WORKSPACE.md',
     'customer-workspace/setup-prompt.md': 'templates/customer-workspace/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',

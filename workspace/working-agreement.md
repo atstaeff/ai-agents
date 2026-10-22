@@ -5,7 +5,8 @@ Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
 locations and checks; it does not grant permissions or install integrations.
 
 Use the assigned issue for tracked work. For a direct larger request without an issue,
-reuse one local work record. Preserve human comments, write on a branch and prepare a
+reuse the current PR when it already represents that request; otherwise use one local
+work record. Preserve human comments, write on a branch and prepare a
 reviewable PR. Use the existing current request as authorization for routine work in scope;
 consequential changes and external actions still follow actual user/host permissions.
 

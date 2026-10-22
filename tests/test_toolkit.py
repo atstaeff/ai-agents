@@ -435,7 +435,42 @@ class WorkspaceMigrationTests(unittest.TestCase):
         self.assertEqual(path.stat().st_mtime_ns, modified)
         self.assertEqual((self.root / 'workspace/archive/finished.md').read_text(), 'Human history and evidence.\n')
         self.assertEqual((self.root / '.ai/private.txt').read_text(), 'Unrelated content')
+        self.assertTrue(self.store.migrate()['legacy_directory_remaining'])
         self.assertEqual(self.store.migrate()['moves'], [])
+
+    def test_empty_legacy_parent_is_removed_only_after_actual_migration(self):
+        preview = self.store.migrate(dry_run=True)
+        self.assertFalse(preview['legacy_directory_removed'])
+        self.assertTrue((self.root / '.ai').exists())
+        result = self.store.migrate()
+        self.assertTrue(result['legacy_directory_removed'])
+        self.assertFalse(result['legacy_directory_remaining'])
+        self.assertFalse((self.root / '.ai').exists())
+        self.assertEqual(self.store.read('feature')['etag'], self.record['etag'])
+        self.assertFalse(self.store.migrate()['legacy_directory_removed'])
+        self.store.create('another-feature', 'New work stays in workspace')
+        self.assertFalse((self.root / '.ai').exists())
+
+    def test_empty_legacy_root_without_records_is_removed(self):
+        (self.old / 'feature.md').unlink()
+        self.old.rmdir()
+        result = self.store.migrate()
+        self.assertEqual(result['moves'], [])
+        self.assertTrue(result['legacy_directory_removed'])
+        self.assertFalse((self.root / '.ai').exists())
+
+    def test_unknown_content_added_before_parent_cleanup_is_preserved(self):
+        rmdir = Path.rmdir
+        def intervening_write(path):
+            if path == self.root / '.ai':
+                (path / 'human-note.md').write_text('Keep this new content')
+            return rmdir(path)
+        with patch.object(Path, 'rmdir', intervening_write):
+            result = self.store.migrate()
+        self.assertTrue(result['legacy_directory_remaining'])
+        self.assertFalse(result['legacy_directory_removed'])
+        self.assertEqual((self.root / '.ai/human-note.md').read_text(), 'Keep this new content')
+        self.assertEqual(self.store.read('feature')['etag'], self.record['etag'])
 
     def test_preflight_conflict_in_second_destination_moves_neither_directory(self):
         old_archive = self.root / '.ai/archive'

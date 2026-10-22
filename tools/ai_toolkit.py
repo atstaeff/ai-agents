@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import errno
 import hashlib
 import io
 import json
@@ -379,7 +380,20 @@ class WorkStore:
                         raise Conflict('Migration destination changed. Stop all writers and inspect both locations before retrying.')
                     destination.parent.mkdir(parents=True, exist_ok=True)
                     source.rename(destination)
-            return {'dry_run': dry_run, 'moves': [
+            legacy_root = self._checked_path(self.workspace / '.ai')
+            removed = False
+            if not dry_run and legacy_root.is_dir():
+                try:
+                    legacy_root.rmdir()
+                    removed = True
+                except OSError as exc:
+                    # Preserve unknown files, including anything added after the moves.
+                    if exc.errno not in {errno.ENOTEMPTY, errno.EEXIST}:
+                        raise
+            return {'dry_run': dry_run,
+                    'legacy_directory_removed': removed,
+                    'legacy_directory_remaining': legacy_root.exists(),
+                    'moves': [
                 {'from': source.relative_to(self.workspace).as_posix(),
                  'to': destination.relative_to(self.workspace).as_posix()}
                 for source, destination in moves]}

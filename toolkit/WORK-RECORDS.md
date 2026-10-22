@@ -50,5 +50,6 @@ python3 tools/ai_toolkit.py work --workspace /path/to/project migrate
 Both destinations are checked before moves. Existing targets and symlinks stop migration;
 reconcile conflicting directories manually. Contents are unchanged, including feedback,
 evidence and timestamps. Relative links may need review. Unknown `.ai` files, previews
-and exported bundles are left alone. See the
+and exported bundles are left alone. The empty `.ai/` parent is removed after migration;
+`legacy_directory_remaining` reports unknown content left for deliberate review. See the
 [complete migration and publication rules](WORKSPACE-CONCEPT.md#11-moving-existing-local-work).

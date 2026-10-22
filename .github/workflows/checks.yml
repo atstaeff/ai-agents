@@ -27,6 +27,8 @@ jobs:
         run: python3 tools/ai_toolkit.py check
       - name: Test exports, storage and HTTP contracts
         run: python3 -m unittest discover -s tests -v
+      - name: Replay the local workspace process
+        run: python3 tools/workspace_smoke.py
       - name: Check frontend JavaScript syntax
         run: node --check tools/web/app.js
       - name: Install reproducible docs environment

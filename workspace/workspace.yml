@@ -45,6 +45,12 @@ quality_gates:
   - name: Storage, API, exports and optional helpers
     command: uv run --locked --group docs python -m unittest discover -s tests -v
     required: true
+  - name: Workspace process replay
+    command: python3 tools/workspace_smoke.py
+    required: true
+  - name: Repository configuration
+    command: uv run --locked --group docs python tools/project_config.py --config workspace/workspace.yml
+    required: true
   - name: Frontend syntax
     command: node --check tools/web/app.js
     required: true
