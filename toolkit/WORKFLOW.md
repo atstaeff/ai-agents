@@ -20,7 +20,7 @@ or the equivalent linked from `AGENTS.md`) and working agreement first. See the
 designated work item and planning home, whether Jira, GitHub, another tracker or a file.
 Do not create a second issue, local record or wiki plan for the same assignment.
 If no system owns the assignment, use one `workspace/work/<slug>.md` with the
-[work template](../templates/work-item.md). Reuse existing work for the same outcome.
+[work template](../templates/delivery/work-item.md). Reuse existing work for the same outcome.
 If ownership is ambiguous, resolve it before creating shared records. If the designated
 system is inaccessible, report the access gap and prepare an unsent update; do not
 silently switch systems. Continue independent authorized work.

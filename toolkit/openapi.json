@@ -1316,6 +1316,38 @@
           }
         }
       }
+    },
+    "/api/v1/catalog/domains": {
+      "get": {
+        "operationId": "listCatalogDomains",
+        "responses": {
+          "200": {
+            "description": "Discipline identifiers mapped to their display metadata.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "required": [
+                      "title",
+                      "description"
+                    ],
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1326,7 +1358,8 @@
           "name",
           "description",
           "kind",
-          "path"
+          "path",
+          "domain"
         ],
         "properties": {
           "name": {
@@ -1340,6 +1373,10 @@
           },
           "path": {
             "type": "string"
+          },
+          "domain": {
+            "type": "string",
+            "description": "Catalog discipline identifier; resolve display metadata with /api/v1/catalog/domains."
           }
         }
       },

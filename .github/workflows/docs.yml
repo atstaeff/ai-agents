@@ -4,8 +4,9 @@ on:
   push:
     branches: [main]
     paths:
-      - 'assets/mkdocs/**'
-      - 'assets/mkdocs.yml'
+      - 'website/**'
+      - 'README.md'
+      - 'workspace/README.md'
       - 'agents/**'
       - 'skills/**'
       - 'toolkit/**'
@@ -48,7 +49,7 @@ jobs:
         run: python3 tools/ai_toolkit.py check
 
       - name: Build documentation
-        run: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict
+        run: uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict
 
       - name: Add .nojekyll
         run: touch docs/.nojekyll

@@ -8,7 +8,7 @@ case; they are not customer approvals or commits in this repository.
 
 ## Setup
 
-The updated [work-management skill](../../skills/work-management/SKILL.md) and
+The updated [work-management skill](../../skills/delivery/work-management/SKILL.md) and
 [shared recovery contract](../CONTEXT-RECOVERY.md) were supplied to fresh Work Mode agent
 threads with no inherited conversation. Model choice was inherited from the host, not
 independently version-pinned. Threads received the local assignment and raw project

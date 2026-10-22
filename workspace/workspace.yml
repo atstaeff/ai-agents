@@ -58,7 +58,7 @@ quality_gates:
     command: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
     required: true
   - name: Strict documentation preview
-    command: uv run --locked --group docs mkdocs build -f assets/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
+    command: uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
     required: true
 actions:
   edit_assigned_branch: within_assignment

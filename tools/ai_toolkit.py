@@ -86,13 +86,21 @@ class Entry:
     description: str
     kind: str
     path: str
+    domain: str = 'general'
+
+
+def domains() -> dict:
+    return json.loads((ROOT / 'toolkit/catalog-domains.json').read_text(encoding='utf-8'))
 
 
 def catalog(root: Path = ROOT) -> list[Entry]:
     entries = []
-    paths = [("agent", p) for p in sorted((root / "agents").glob("*.agent.md"))]
+    known_domains = domains()
+    paths = [("agent", p) for p in sorted((root / "agents").rglob("*.agent.md"))
+             if 'references' not in p.relative_to(root / 'agents').parts]
     paths += [("skill", p) for p in sorted((root / "skills").rglob("*.md"))
-              if "references" not in p.relative_to(root / "skills").parts]
+              if "references" not in p.relative_to(root / "skills").parts and p.name != 'README.md'
+              and (p.name == "SKILL.md" or len(p.relative_to(root / "skills").parts) <= 2)]
     seen = set()
     for kind, path in paths:
         meta, _ = metadata(path.read_text(encoding="utf-8"))
@@ -104,16 +112,41 @@ def catalog(root: Path = ROOT) -> list[Entry]:
         if name != expected or (kind, name) in seen:
             raise ToolkitError(f"Mismatched or duplicate name: {path}")
         seen.add((kind, name))
-        entries.append(Entry(name, description, kind, path.relative_to(root).as_posix()))
+        relative = path.relative_to(root / f'{kind}s')
+        domain = relative.parts[0] if len(relative.parts) > (1 if kind == 'agent' else 2) else 'general'
+        if domain not in known_domains:
+            raise ToolkitError(f'Unknown catalog domain: {domain} in {path}')
+        entries.append(Entry(name, description, kind, path.relative_to(root).as_posix(), domain))
     if not any(e.kind == 'agent' for e in entries) or not any(e.kind == 'skill' for e in entries):
         raise ToolkitError('The catalog must contain both agents and skills.')
     return entries
 
 
+def catalog_markdown(entries: list[Entry], kind: str | None = None) -> str:
+    title = {'agent': 'Agents', 'skill': 'Skills', None: 'Agents and skills'}[kind]
+    intro = ('Agents define accountable roles and expected handoffs.' if kind == 'agent' else
+             'Skills provide focused procedures and references; selecting one does not require another session.')
+    text = f'# {title}\n\n{intro}\n\nGenerated from canonical profiles with `catalog --format markdown`; edit the profile sources.\n'
+    for domain, info in domains().items():
+        selected = [e for e in entries if e.domain == domain and (kind is None or e.kind == kind)]
+        if not selected:
+            continue
+        text += f'\n## {info["title"]}\n\n{info["description"]}\n\n| Name | Select for |\n| --- | --- |\n'
+        for entry in selected:
+            path = Path(entry.path).relative_to(f'{kind}s').as_posix() if kind else entry.path
+            text += f'| [{entry.name}]({path}) | {entry.description.replace("|", "&#124;")} |\n'
+    return text
+
+
 def check(root: Path = ROOT) -> list[str]:
     errors = []
     try:
-        catalog(root)
+        entries = catalog(root)
+        for kind in ('agent', 'skill'):
+            index = root / f'{kind}s/README.md'
+            if index.exists() and 'Generated from canonical profiles' in index.read_text(encoding='utf-8'):
+                if index.read_text(encoding='utf-8').strip() != catalog_markdown(entries, kind).strip():
+                    errors.append(f'Stale catalog index: {kind}s/README.md; regenerate with catalog --kind {kind} --format markdown.')
     except ToolkitError as exc:
         errors.append(str(exc))
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
@@ -186,7 +219,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
     output = output.absolute()
     if output.resolve() == root.resolve() or output.resolve() in root.resolve().parents:
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
-    if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets')):
+    if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
         raise ToolkitError('Export outside canonical source folders.')
     planned: dict[str, bytes] = {}
     for folder in ("agents", "skills", "toolkit", "templates", "marp-templates", "reference-repos"):
@@ -430,7 +463,7 @@ class WorkStore:
             path = self.path(name)
             if path.exists() or self.path(name, True).exists():
                 raise Conflict('A work record with this ID already exists.')
-            text = (ROOT/'templates/work-item.md').read_text(encoding='utf-8')
+            text = (ROOT/'templates/delivery/work-item.md').read_text(encoding='utf-8')
             text = text.replace('{{id}}', slug(name)).replace('{{title_json}}', json.dumps(title, ensure_ascii=False)).replace('{{kind}}', kind).replace('{{title}}', title.replace('\n', ' '))
             atomic_write(path, text.encode())
             return self.read(name)
@@ -568,6 +601,8 @@ def serve(workspace: Path, port: int, root: Path = ROOT) -> ThreadingHTTPServer:
                         return self.reply(200, (root/'tools/web'/file).read_bytes(), content_type=kind+'; charset=utf-8')
                     if path == '/api/v1/catalog':
                         return self.reply(200, [asdict(e) for e in entries])
+                    if path == '/api/v1/catalog/domains':
+                        return self.reply(200, domains())
                     if path == '/api/v1/work':
                         return self.reply(200, store.list())
                     if path == '/api/v1/openapi.json':
@@ -638,6 +673,8 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser('check', help='Validate all catalog metadata and local links')
     cat = sub.add_parser('catalog', help='Print catalog metadata without loading all prompts')
     cat.add_argument('--kind', choices=['agent','skill'])
+    cat.add_argument('--domain', choices=list(domains()), help='Select a catalog discipline')
+    cat.add_argument('--format', choices=['json', 'markdown'], default='json')
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
     adapter.add_argument('--runtime', choices=['opencode','copilot','claude','portable'], required=True)
     adapter.add_argument('--output', type=Path, required=True)
@@ -688,7 +725,11 @@ def main(argv: list[str] | None = None) -> int:
             entries = catalog()
             print(f"Valid: {sum(e.kind == 'agent' for e in entries)} agents, {sum(e.kind == 'skill' for e in entries)} skills; local links resolve.")
         elif args.command == 'catalog':
-            print(json.dumps([asdict(e) for e in catalog() if args.kind is None or e.kind == args.kind], indent=2))
+            entries = [e for e in catalog() if (args.kind is None or e.kind == args.kind)
+                       and (args.domain is None or e.domain == args.domain)]
+            print(catalog_markdown(entries, args.kind) if args.format == 'markdown'
+                  else json.dumps([asdict(e) for e in entries], indent=2),
+                  end='' if args.format == 'markdown' else '\n')
         elif args.command == 'export':
             options = OpenCodeOptions(args.plannotator, args.plan_model, args.build_model,
                                       args.plan_variant, args.build_variant)
