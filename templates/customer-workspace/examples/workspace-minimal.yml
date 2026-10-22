@@ -1,0 +1,30 @@
+# Minimal fictional example. Replace placeholders; keep one live config in the project.
+# Copy to workspace/workspace.yml and link it from the existing agent instructions.
+version: 1
+name: Customer product
+work:
+  system: github
+  location: https://github.com/CUSTOMER_ORG/product/issues
+review:
+  system: github
+  location: https://github.com/CUSTOMER_ORG/product/pulls
+knowledge:
+  system: repository
+  location: workspace/README.md
+decisions:
+  system: repository
+  location: workspace/README.md
+# Keep a short decision section there until separate ADRs become useful.
+iteration_reports:
+  system: work-item-summary
+  location: Assigned work item
+communication:
+  system: work-item-comments
+  location: Assigned work item
+working_agreement: workspace/working-agreement.md
+stakeholders: workspace/stakeholders.md
+repositories:
+  - name: product
+    location: https://github.com/CUSTOMER_ORG/product
+    path: .
+# Add default_branch only after verifying it; other optional sections can wait.

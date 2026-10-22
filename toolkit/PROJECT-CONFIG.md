@@ -15,6 +15,12 @@ The [GitHub example](../templates/customer-workspace/workspace/workspace.yml) an
 one contract with different tools. The YAML is the canonical tooling map. Markdown
 explains the process and links to it; avoid manually maintaining the same map twice.
 
+Start smaller with the [minimal example](../templates/customer-workspace/examples/workspace-minimal.yml),
+or use the [Jira/two-repository example](../templates/customer-workspace/examples/workspace-multi-repo.yml).
+The [adoption guide](ADOPT-WORKSPACE.md) and
+[setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) explain how to choose
+and adapt one configuration using this schema.
+
 ## Required, backward-compatible contract
 
 | Field | Meaning |

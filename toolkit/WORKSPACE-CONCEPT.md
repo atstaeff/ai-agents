@@ -1,5 +1,10 @@
 # Project workspace: the shared memory for people and AI
 
+For a short explanation you can share with a team and a practical first setup, start
+with [Adopt the workspace](ADOPT-WORKSPACE.md). Use the
+[project setup prompt](../templates/customer-workspace/SETUP-PROMPT.md) to configure an
+existing project. This page remains the detailed contract behind those entry points.
+
 Use `workspace/` as the project's shared working context. It holds the tooling map,
 entry points, decision rationale and current knowledge, plus optional local work records.
 People and AI use the same sources. Another person or a fresh session must be able to

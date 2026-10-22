@@ -13,6 +13,13 @@ uses the same `workspace/` root as knowledge, with an explicit publication bound
 
 ## Start with the minimum
 
+For a shareable explanation, read [Adopt the workspace](../../toolkit/ADOPT-WORKSPACE.md).
+To have a coding agent configure an existing project, copy the [English setup prompt](SETUP-PROMPT.md).
+Choose the [minimal YAML](examples/workspace-minimal.yml), the GitHub example below,
+the [Jira variant](examples/workspace-jira.yml) or the
+[Jira/two-repository variant](examples/workspace-multi-repo.yml). All use the same
+schema. The larger examples are references, not a requirement to create every file.
+
 1. Merge the relevant rules from [AGENTS.md](AGENTS.md) into the project's existing
    `AGENTS.md`; preserve local rules and review the action scope with the customer.
 2. Copy and adapt [workspace/README.md](workspace/README.md),

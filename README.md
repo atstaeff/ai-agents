@@ -12,6 +12,11 @@ Your AI host provides model execution, tools and any native delegation capabilit
 Keep the same process and customer knowledge when switching models or tools: the
 [portability contract](toolkit/PORTABILITY.md) explains the small host-specific adapters.
 
+**Share with your team:** start with the [plain-English concept and adoption guide](toolkit/ADOPT-WORKSPACE.md).
+Give a coding agent the [project setup prompt](templates/customer-workspace/SETUP-PROMPT.md)
+to adapt the existing project's tools and rules. Choose a minimal, GitHub, Jira or
+multi-repository example; all use the same validated configuration contract.
+
 The [detailed workspace concept](toolkit/WORKSPACE-CONCEPT.md) connects the folder layout,
 configuration, roles, issue flow, decisions, context loading and session recovery.
 This repository uses its own [workspace](workspace/README.md) and
