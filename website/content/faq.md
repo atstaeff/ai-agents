@@ -48,7 +48,7 @@ local work without that assignment. CSV is an export only.
 
 ## Is this website Docusaurus?
 
-The AI Agents catalog site uses MkDocs. The workspace starter integrates with a customer's
+The AI Agents catalog site uses Docusaurus. The workspace starter integrates with a customer's
 existing Docusaurus site. Both publish views of canonical Markdown; compiled `docs/`
 output stays separate from editable workspace sources.
 

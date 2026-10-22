@@ -10,11 +10,11 @@ customer-owned sources. Start with a tooling map and three entry files; add ADRs
 and iteration reports when the work warrants them. The worked example includes local
 graph generation and integration with an existing Docusaurus site.
 
-:material-arrow-right: [Customer workspace template](customer-workspace.md)
+[Customer workspace template](customer-workspace.md)
 
-:material-arrow-right: [Share the concept and adopt it](../getting-started/adopt-workspace.md)
+[Share the concept and adopt it](../getting-started/adopt-workspace.md)
 
-:material-arrow-right: [Copy the English setup prompt](../customer-workspace/setup-prompt.md)
+[Copy the English setup prompt](../customer-workspace/setup-prompt.md)
 
 ---
 
@@ -23,7 +23,7 @@ graph generation and integration with an existing Docusaurus site.
 This reference discusses tasks and tradeoffs. Check current provider documentation
 before relying on model availability or prices.
 
-:material-arrow-right: [Model selection reference](llm-model-guide.md)
+[Model selection reference](llm-model-guide.md)
 
 ---
 
@@ -37,34 +37,24 @@ Ready-to-use presentation templates for various occasions.
 | [Technical Deep-Dive](marp-templates.md#technical-deep-dive) | Developers | Architecture, technical concepts |
 | [Project Review](marp-templates.md#project-review) | Stakeholders | Sprint reviews, status updates |
 
-:material-arrow-right: [All Marp Templates](marp-templates.md)
+[All Marp Templates](marp-templates.md)
 
 ---
 
 ## Reference Repositories
 
-Concrete reference implementations for best-practice project structures.
+Illustrative structures and patterns. Adapt them to the project and verify the behavior before adoption.
 
-<div class="grid" markdown>
+### Python Golden Repo
 
-<div class="card" markdown>
-### :material-language-python: Python Golden Repo
+Illustrative layered Python structure. A reference for evaluating boundaries, not a required stack or runnable starter.
 
-Reference structure for a production-ready Python project with Clean Architecture, FastAPI, SQLAlchemy, and pytest.
-
-[:material-arrow-right: Details](python-golden.md)
-</div>
-
-<div class="card" markdown>
-### :material-lightning-bolt: Event-Driven Python
+[Details](python-golden.md)
+### Event-Driven Python
 
 Reference patterns for event-driven Python architectures on GCP with Pub/Sub, Cloud Functions, and BigQuery.
 
-[:material-arrow-right: Details](event-driven-python.md)
-</div>
-
-</div>
-
+[Details](event-driven-python.md)
 ---
 
 ## Skill Template

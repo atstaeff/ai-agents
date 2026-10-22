@@ -1,4 +1,4 @@
-# Optional shortcuts. Python 3.11+; uv is needed only for documentation commands.
+# Optional shortcuts. Runtime: Python 3.11+. Website: Node.js 22/24 LTS and npm.
 default:
     @just --list
 
@@ -14,22 +14,30 @@ test:
 
 check: validate test
 
+setup:
+    uv sync --locked --group validation
+    npm --prefix website ci
+
+setup-uv:
+    uv sync --locked --group validation
+
 docs:
-    uv run --group docs mkdocs serve -f assets/mkdocs.yml
+    npm --prefix website start
 
 docs-port port="8001":
-    uv run --group docs mkdocs serve -f assets/mkdocs.yml -a "127.0.0.1:{{port}}"
+    npm --prefix website start -- --port {{port}}
+
+docs-generate:
+    npm --prefix website run generate
 
 docs-build:
-    uv run --group docs mkdocs build -f assets/mkdocs.yml --strict
+    npm --prefix website run build
 
 docs-clean:
-    uv run --group docs mkdocs build -f assets/mkdocs.yml --strict --clean
+    npm --prefix website run clear
 
-setup:
-    uv sync --locked --group docs
-
-setup-uv: setup
+docs-preview:
+    npm --prefix website run serve
 
 stats:
     python3 tools/ai_toolkit.py catalog

@@ -1,83 +1,35 @@
-# Marp-Templates
+# Presentation templates
 
-> Fertige Marp-Praesentationsvorlagen fuer Client Pitches, Technical Deep-Dives und Project Reviews.
+Use an existing presentation template when it fits the audience and decision. The
+[presentation agent](../agents/presentation-agent.md) helps structure the narrative;
+verify claims, diagrams and figures against the project's sources.
 
----
+## Client pitch
 
-## Client Pitch
+Explain the customer's problem, proposed approach, intended value, delivery path and
+next decision. Distinguish estimates and assumptions from measured outcomes.
 
-Fuer Kundenpraesentationen mit Fokus auf Business Value und ROI.
+[Client pitch source](https://github.com/atstaeff/ai-agents/blob/main/marp-templates/client-pitch.md)
 
-### Struktur
+## Technical deep-dive
 
-1. **Titelfolie** — Projektname, Logo, Datum
-2. **Problem** — Die Herausforderung des Kunden
-3. **Loesung** — Unser Ansatz und Technologie
-4. **Mehrwert** — Konkrete Business Benefits
-5. **Roadmap** — Phasenplan mit Milestones
-6. **Team** — Unser Expertenteam
-7. **Naechste Schritte** — Call to Action
+Establish context, show the relevant system boundaries and walk through a concrete
+implementation or example. Include actual evidence, tradeoffs and open questions.
 
-### Verwendung
+[Technical deep-dive source](https://github.com/atstaeff/ai-agents/blob/main/marp-templates/technical-deepdive.md)
 
+## Project review
+
+Connect the agreed outcome to delivered behavior, relevant evidence, unresolved risks
+and the next priority. Separate completed engineering from unmeasured business impact.
+
+[Project review source](https://github.com/atstaeff/ai-agents/blob/main/marp-templates/project-review.md)
+
+## Example request
+
+```text
+Use the presentation-agent profile and the project-review template.
+Audience: the project's decision owners.
+Source: the current iteration report and verified changes.
+Outcome: decide the next increment. Keep unknowns and pending decisions visible.
 ```
-@workspace Nutze den Presentation Agent mit dem Client Pitch Template.
-Erstelle eine Praesentationfuer [Kundenname].
-Thema: [Projektbeschreibung].
-```
-
----
-
-## Technical Deep-Dive
-
-Fuer technische Vortraege mit Architekturdiagrammen und Code-Beispielen.
-
-### Struktur
-
-1. **Titelfolie** — Thema und Speaker
-2. **Kontext** — Warum dieses Thema?
-3. **Architektur** — Systemueberblick, C4 Diagramme
-4. **Implementierung** — Code-Beispiele, Patterns
-5. **Demo** — Live oder Screenshots
-6. **Lessons Learned** — Was haben wir gelernt?
-7. **Q&A** — Fragen und Diskussion
-
-### Verwendung
-
-```
-@workspace Nutze den Presentation Agent mit dem Technical Deep-Dive Template.
-Erstelle einen Tech Talk ueber [Thema].
-```
-
----
-
-## Project Review
-
-Fuer Sprint Reviews, Status Updates und Projektuebersichten.
-
-### Struktur
-
-1. **Titelfolie** — Projektname, Sprint/Periode
-2. **Zusammenfassung** — Status auf einen Blick
-3. **Erfolge** — Was wurde erreicht?
-4. **Demo** — Feature-Demonstrationen
-5. **Metriken** — Velocity, Coverage, Performance
-6. **Risiken** — Offene Risiken und Massnahmen
-7. **Naechste Schritte** — Kommende Priorities
-
-### Verwendung
-
-```
-@workspace Nutze den Presentation Agent mit dem Project Review Template.
-Erstelle Sprint Review Slides fuer Sprint [X].
-```
-
----
-
-## Verwandter Agent
-
-- :material-robot: [Presentation Agent](../agents/presentation-agent.md)
-
----
-
-*Quelldateien: [`marp-templates/`](https://github.com/atstaeff/ai-agents/tree/main/marp-templates)*

@@ -16,7 +16,7 @@ HAS_YAML = find_spec('yaml') is not None
 graph = SimpleNamespace(**runpy.run_path(str(TEMPLATE / 'examples/knowledge_graph.py'))) if HAS_YAML else None
 
 
-@unittest.skipUnless(HAS_YAML, 'Optional graph parser: run with uv --group docs')
+@unittest.skipUnless(HAS_YAML, 'Optional graph parser: run with uv --group validation')
 class KnowledgeGraphTests(unittest.TestCase):
     def setUp(self):
         self.temporary = TemporaryDirectory()

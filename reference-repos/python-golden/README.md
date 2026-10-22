@@ -1,6 +1,9 @@
 # Python Golden Repository
 
-This directory contains the reference structure for a production-grade Python project.
+This document sketches a layered Python project. It is an illustrative structure,
+not a runnable implementation or the required stack for this toolkit. Apply only the
+boundaries the project needs; use the [quality standard](../../toolkit/QUALITY-STANDARD.md)
+to evaluate tradeoffs.
 
 ## Structure
 

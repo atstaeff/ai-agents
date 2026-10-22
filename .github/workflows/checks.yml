@@ -23,26 +23,33 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: website/package-lock.json
       - name: Validate catalog and local links
         run: python3 tools/ai_toolkit.py check
-      - name: Test exports, storage and HTTP contracts
+      - name: Test exports, storage, HTTP and website publishing
         run: python3 -m unittest discover -s tests -v
       - name: Replay the local workspace process
         run: python3 tools/workspace_smoke.py
       - name: Check frontend JavaScript syntax
         run: node --check tools/web/app.js
-      - name: Install reproducible docs environment
+      - name: Install reproducible validation environment
         run: |
           python -m pip install uv==0.12.19
-          uv sync --locked --group docs
+          uv sync --locked --group validation
       - name: Validate optional customer workspace helpers
-        run: uv run --locked --group docs python -m unittest discover -s tests -v
+        run: uv run --locked --group validation python -m unittest discover -s tests -v
       - name: Check customer Docusaurus options syntax
         run: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
-      - name: Strict documentation build
-        run: uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict --site-dir "$PWD/workspace/generated/site"
+      - name: Install locked website dependencies
+        run: npm --prefix website ci
+      - name: Build Docusaurus and reject broken links
+        run: npm --prefix website run build
       - name: Upload documentation preview
         uses: actions/upload-artifact@v4
         with:
           name: documentation-preview
-          path: workspace/generated/site
+          path: website/build

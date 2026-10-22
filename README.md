@@ -98,8 +98,9 @@ records; local work and archives stay outside knowledge publication by default.
 | `toolkit/` | Operating model, quality/knowledge contracts, config schema and usage guides |
 | `templates/` | Project, architecture, delivery, quality and catalog templates |
 | `workspace/` | This repository's actual context, config, decisions and optional local work |
-| `tools/`, `tests/` | Local CLI/API/dashboard, exporters, documentation hook and behavior checks |
-| `website/` | MkDocs configuration and website-specific content/styles |
+| `tools/`, `tests/` | Local CLI/API/dashboard, exporters, catalog tooling and behavior checks |
+| `website/` | [Docusaurus site, source publisher and preview guide](website/README.md) |
+| `reference-repos/`, `marp-templates/` | Illustrative engineering references and presentation starters |
 | `docs/` | Generated GitHub Pages output, rebuilt by the existing main workflow |
 
 Profile pages and catalog navigation are generated from canonical metadata. Do not edit
@@ -111,14 +112,14 @@ customer; private vaults and credentials stay outside public repositories.
 ```sh
 python3 tools/ai_toolkit.py check
 python3 -m unittest discover -s tests -v
-uv sync --locked --group docs
-uv run --locked --group docs python -m unittest discover -s tests -v
+uv sync --locked --group validation
+uv run --locked --group validation python -m unittest discover -s tests -v
 python3 tools/workspace_smoke.py
-uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict \
-  --site-dir "$PWD/workspace/generated/site"
+npm --prefix website ci
+npm --prefix website run build
 ```
 
-The locked environment supplies optional config/graph and website dependencies. See
+The uv lock supplies optional config/graph validation; the npm lock supplies website dependencies. See
 [contributing](CONTRIBUTING.md), the [local API](toolkit/API.md) and the
 [documentation site](https://atstaeff.github.io/ai-agents/). Local/model observations do
 not prove live tracker access, distributed coordination or a particular installed host.

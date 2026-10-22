@@ -5,17 +5,13 @@ on:
     branches: [main]
     paths:
       - 'website/**'
-      - 'README.md'
       - 'workspace/README.md'
       - 'agents/**'
       - 'skills/**'
       - 'toolkit/**'
       - 'templates/**'
-      - 'tools/docs_hook.py'
       - 'tools/ai_toolkit.py'
       - 'CONTRIBUTING.md'
-      - 'pyproject.toml'
-      - 'uv.lock'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -30,30 +26,25 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-
-      - name: Install reproducible documentation environment
-        run: |
-          python -m pip install uv==0.12.19
-          uv sync --locked --group docs
-
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: website/package-lock.json
       - name: Validate canonical catalog
         run: python3 tools/ai_toolkit.py check
-
-      - name: Build documentation
-        run: uv run --locked --group docs mkdocs build -f website/mkdocs.yml --strict
-
+      - name: Install locked website dependencies
+        run: npm --prefix website ci
+      - name: Build Docusaurus into the existing Pages directory
+        run: npm --prefix website run build -- --out-dir ../docs
       - name: Add .nojekyll
         run: touch docs/.nojekyll
-
       - name: Commit docs/ to main
         run: |
           git config user.name "github-actions[bot]"
@@ -62,7 +53,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to docs — skipping commit"
           else
-            git commit -m "docs: rebuild documentation site"
+            git commit -m "docs: rebuild Docusaurus site"
             # A newer main commit must be rebuilt by its own run, not overwritten.
             git push
           fi

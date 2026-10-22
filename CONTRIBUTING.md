@@ -29,9 +29,9 @@ instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 Keep the toolkit standard-library-only at runtime. Add meaningful unittest checks for
 persistence, export, API or permission changes. Update the applicable user guide.
 The optional project YAML validator uses PyYAML in the docs environment; test it with
-`uv run --locked --group docs python -m unittest discover -s tests -v`.
-Documentation sources live in `website/content/`; generated `docs/` is maintained by
-the main workflow. Reference examples do not mandate a framework or architecture.
+`uv run --locked --group validation python -m unittest discover -s tests -v`.
+The Docusaurus site and publishing tools live in [website/](website/README.md); generated `docs/` is maintained by
+the main documentation workflow. Reference examples do not mandate a framework or architecture.
 
 ## Pull requests
 

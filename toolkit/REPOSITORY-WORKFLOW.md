@@ -11,8 +11,8 @@ From the repository root:
 
 ```sh
 python3 tools/ai_toolkit.py check
-uv sync --locked --group docs
-uv run --locked --group docs python tools/project_config.py --config workspace/workspace.yml
+uv sync --locked --group validation
+uv run --locked --group validation python tools/project_config.py --config workspace/workspace.yml
 ```
 
 Python 3.11+ runs the local CLI, dashboard, exports and pilot. The locked environment

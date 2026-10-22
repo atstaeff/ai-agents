@@ -14,7 +14,7 @@ HAS_YAML = find_spec('yaml') is not None and find_spec('jsonschema') is not None
 cfg = SimpleNamespace(**runpy.run_path(str(ROOT / 'tools/project_config.py'))) if HAS_YAML else None
 
 
-@unittest.skipUnless(HAS_YAML, 'Optional YAML/schema validator: run with uv --group docs')
+@unittest.skipUnless(HAS_YAML, 'Optional YAML/schema validator: run with uv --group validation')
 class ProjectConfigTests(unittest.TestCase):
     def setUp(self):
         self.github = ROOT / 'templates/customer-workspace/workspace/workspace.yml'

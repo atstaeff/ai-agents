@@ -212,7 +212,7 @@ add local work directories to the site. Configuring `workspace/` as a broad cont
 without exclusions would publish local notes. Keep secrets and personal material outside
 public repositories, and enforce the customer's access requirements on the published site.
 
-`docs/` remains generated Pages output in this repository. Its MkDocs site reads explicit
+`docs/` remains generated Pages output in this repository. Its Docusaurus site reads explicit
 canonical sources through the docs hook; it does not recursively publish the root workspace.
 The export manifest `.ai-toolkit-manifest.json` remains an adapter-ownership file so existing
 bundles retain protection against overwriting human edits. It is not a project-memory folder.

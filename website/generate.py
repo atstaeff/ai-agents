@@ -1,5 +1,6 @@
-"""Render website catalog pages from canonical sources, with no duplicated instructions."""
+"""Publish canonical Markdown for Docusaurus without duplicating maintained guidance."""
 from pathlib import Path
+from dataclasses import dataclass, field
 from html import escape
 import json
 import math
@@ -8,10 +9,13 @@ import re
 import sys
 from urllib.parse import quote, unquote, urlsplit
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'getting-started/local-preview.md': 'website/README.md',
+    'references/python-golden.md': 'reference-repos/python-golden/README.md',
+    'references/event-driven-python.md': 'reference-repos/event-driven-python/README.md',
     'operating-model/quality.md': 'toolkit/QUALITY-STANDARD.md',
     'operating-model/knowledge.md': 'toolkit/PROJECT-KNOWLEDGE.md',
     'catalog/maintain.md': 'toolkit/CATALOG-GUIDE.md',
@@ -52,14 +56,21 @@ DOCUMENTS = {
     'customer-workspace/runner.md': 'templates/customer-workspace/examples/local-runner.md',
     'contributing/index.md': 'CONTRIBUTING.md',
 }
+@dataclass
+class Page:
+    path: str
+    meta: dict = field(default_factory=dict)
+    edit_url: str | None = None
+
+
 ENTRIES = []
 SOURCES = {}
 REVERSE = {}
 KNOWLEDGE_GRAPH = {}
 
 
-def on_pre_build(config):
-    """Refresh once per build, including each rebuild under mkdocs serve."""
+def prepare(config):
+    """Load current canonical sources and build the public navigation once."""
     global ENTRIES, SOURCES, REVERSE, KNOWLEDGE_GRAPH
     ENTRIES = catalog()
     SOURCES = {f'{e.kind}s/{e.name}.md': e.path for e in ENTRIES}
@@ -79,25 +90,8 @@ def on_pre_build(config):
                 {entry.name: f'{kind}s/{entry.name}.md'} for entry in ENTRIES
                 if entry.domain == domain and entry.kind == kind]})
         catalog_nav.append({info['title']: children})
-    for section in config.get('nav', []):
-        if 'Catalog' in section:
-            section['Catalog'] = catalog_nav
-
-
-def on_files(files, config):
-    """Generate published pages from the catalog; contributors maintain no page stubs."""
-    from mkdocs.structure.files import File, InclusionLevel
-    paths = [*SOURCES, 'agents/index.md', 'skills/index.md']
-    paths += [f'catalog/{domain}.md' for domain in domains()]
-    paths += ['skills/feature-discovery.md']  # Preserve the previously published alias.
-    for path in paths:
-        previous = files.get_file_from_path(path)
-        if previous:
-            files.remove(previous)
-        files.append(File.generated(config, path, content='# Generated from canonical sources\n',
-                                    inclusion=InclusionLevel.NOT_IN_NAV if path == 'skills/feature-discovery.md'
-                                    else InclusionLevel.INCLUDED))
-    return files
+    if 'catalog' in config.get('nav', {}):
+        config['nav']['catalog']['items'] = catalog_nav
 
 
 def knowledge_diagram(graph, page_uri, directory_urls=True):
@@ -145,10 +139,10 @@ def knowledge_diagram(graph, page_uri, directory_urls=True):
     return '\n'.join(svg + ['</svg></div>'])
 
 
-def on_page_markdown(markdown, page, config, files):
-    source = SOURCES.get(page.file.src_uri)
-    if page.file.src_uri.startswith('catalog/') and page.file.src_uri not in {'catalog/index.md', 'catalog/maintain.md'}:
-        domain = Path(page.file.src_uri).stem
+def render(markdown, page, config):
+    source = SOURCES.get(page.path)
+    if page.path.startswith('catalog/') and page.path not in {'catalog/index.md', 'catalog/maintain.md'}:
+        domain = Path(page.path).stem
         if domain in domains():
             info = domains()[domain]
             text = f'# {info["title"]}\n\n{info["description"]}\n'
@@ -158,10 +152,10 @@ def on_page_markdown(markdown, page, config, files):
                     if entry.domain == domain and entry.kind == kind:
                         text += f'| [{entry.name}](../{kind}s/{entry.name}.md) | {entry.description.replace("|", "&#124;")} |\n'
             return text
-    if page.file.src_uri == 'skills/feature-discovery.md':
+    if page.path == 'skills/feature-discovery.md':
         source = 'skills/delivery/feature-discovery-session/SKILL.md'
-    if page.file.src_uri in {'agents/index.md','skills/index.md'}:
-        kind = page.file.src_uri.split('/')[0][:-1]
+    if page.path in {'agents/index.md','skills/index.md'}:
+        kind = page.path.split('/')[0][:-1]
         title = 'Agents' if kind == 'agent' else 'Skills'
         relevant = [e for e in ENTRIES if e.kind == kind]
         text = f'# {title}\n\n{len(relevant)} English profiles generated from canonical sources. Select by outcome; load focused references only when needed.\n\n'
@@ -190,7 +184,7 @@ def on_page_markdown(markdown, page, config, files):
             return match[0]
         resolved = ((ROOT/source).parent/unquote(parts.path)).resolve().relative_to(ROOT)
         if resolved.as_posix() in REVERSE:
-            destination = Path(os.path.relpath(REVERSE[resolved.as_posix()],Path(page.file.src_uri).parent)).as_posix()
+            destination = Path(os.path.relpath(REVERSE[resolved.as_posix()],Path(page.path).parent)).as_posix()
             if parts.fragment:
                 destination += '#' + parts.fragment
         else:
@@ -201,8 +195,71 @@ def on_page_markdown(markdown, page, config, files):
         end = match.end(1) - match.start()
         return match[0][:start] + destination + match[0][end:]
     text = LINK.sub(rewrite,text)
-    if page.file.src_uri == 'customer-workspace/knowledge-map.md':
-        diagram = knowledge_diagram(KNOWLEDGE_GRAPH, page.file.src_uri, config.get('use_directory_urls', True))
+    if page.path == 'customer-workspace/knowledge-map.md':
+        diagram = knowledge_diagram(KNOWLEDGE_GRAPH, page.path, config.get('use_directory_urls', True))
         text = re.sub(r'```mermaid\n.*?\n```', lambda match: diagram, text, count=1, flags=re.S)
     page.edit_url = 'https://github.com/atstaeff/ai-agents/edit/main/' + source
     return text + f'\n---\nCanonical source: [`{source}`](https://github.com/atstaeff/ai-agents/blob/main/{source}).\n'
+
+
+def document_id(path):
+    return path.removesuffix('.md')
+
+
+def sidebar_items(items):
+    result = []
+    for item in items:
+        for label, value in item.items():
+            if isinstance(value, list):
+                result.append({'type': 'category', 'label': label, 'collapsed': True,
+                               'items': sidebar_items(value)})
+            else:
+                result.append({'type': 'doc', 'id': document_id(value), 'label': label})
+    return result
+
+
+def generate():
+    """Render a complete source snapshot without writing to the checkout."""
+    config = {'nav': json.loads((ROOT / 'website/navigation.json').read_text())}
+    prepare(config)
+    pages = {}
+    paths = set(SOURCES) | {'agents/index.md', 'skills/index.md', 'skills/feature-discovery.md'}
+    paths |= {f'catalog/{domain}.md' for domain in domains()}
+    manual = ROOT / 'website/content'
+    paths |= {p.relative_to(manual).as_posix() for p in manual.rglob('*.md')}
+    for path in sorted(paths):
+        page = Page(path)
+        text = render((manual/path).read_text() if (manual/path).exists() else '', page, {})
+        # Markdown documents accept literal types/placeholders. JSX is reserved for UI pages.
+        slug = '/' + (path[:-len('index.md')] if path.endswith('/index.md') else path.removesuffix('.md'))
+        fields = {'slug': slug, 'custom_edit_url': page.edit_url or
+                  'https://github.com/atstaeff/ai-agents/edit/main/website/content/' + path}
+        if page.meta.get('description'):
+            fields['description'] = page.meta['description']
+        pages[path] = '---\n' + ''.join(f'{k}: {json.dumps(v)}\n' for k,v in fields.items()) + '---\n\n' + text
+    sidebars = {key: sidebar_items(section['items']) for key, section in config['nav'].items()}
+    counts = {kind: sum(e.kind == kind for e in ENTRIES) for kind in ('agent','skill')}
+    return pages, sidebars, counts
+
+
+def publish(output):
+    """Write the generated snapshot only to the site's dedicated ignored directory."""
+    import shutil
+    output = Path(output).resolve()
+    expected = ROOT / 'website/.generated'
+    if output != expected:
+        raise ValueError(f'Generated pages belong in {expected}')
+    pages, sidebars, counts = generate()
+    if output.exists():
+        shutil.rmtree(output)
+    for path, text in pages.items():
+        target = output / 'docs' / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text, encoding='utf-8')
+    (output/'sidebars.json').write_text(json.dumps(sidebars,indent=2)+'\n', encoding='utf-8')
+    (output/'catalog.json').write_text(json.dumps(counts)+'\n', encoding='utf-8')
+    print(f'Generated {len(pages)} Docusaurus documents from canonical sources.')
+
+
+if __name__ == '__main__':
+    publish(ROOT / 'website/.generated')

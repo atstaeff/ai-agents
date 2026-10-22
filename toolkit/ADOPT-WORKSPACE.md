@@ -128,7 +128,7 @@ Use explicit relationships for the knowledge map. Keep sources separate from gen
 output; an existing `docs/` publication directory can retain that purpose. Local plans,
 archives, exports and private notes stay outside published content. Follow the
 [integration guide](../templates/customer-workspace/examples/docusaurus-integration.md).
-This toolkit's own documentation site uses MkDocs.
+This toolkit's own documentation site uses Docusaurus; see [website development](../website/README.md).
 
 After a few assignments, ask whether the agent found the right requirement and repository,
 preserved the important decisions and delivered evidence reviewers could use. Observe
