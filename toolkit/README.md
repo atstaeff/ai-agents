@@ -14,7 +14,7 @@ page, not this whole directory at the start of each session.
 | toolkit/ | Reusable engineering model, adoption and tool documentation | How any project retains decisions |
 | knowledge/ | Durable facts and decisions about this repository | Why this catalog uses private plans |
 | templates/ | Copyable starting documents | ADR, request or architecture review |
-| examples/ / reference-repos/ | Runnable demonstrations / illustrative code | Decision graph / architecture patterns |
+| examples/ / reference-repos/ | Runnable demonstrations / worked projects / illustrative code | Decision graph / document portal / architecture patterns |
 | tools/ / tests/ | Executable local tooling / behavior checks | Runtime exporter / export protection tests |
 | website/ | Docusaurus source, configuration, navigation and publisher | Source-to-page mapping |
 | docs/ | Compiled GitHub Pages output | Generated HTML and assets |

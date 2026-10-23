@@ -47,7 +47,7 @@ changes so graph data and document sources use the same snapshot.
 
 The existing site also publishes the real catalog/project knowledge. This fictional
 example is clearly labeled and uses separate `/demo-knowledge/` routes. No deployment
-is configured by this change. [Preview image](preview.png).
+is configured by this change.
 
 See the [engineering model](../../toolkit/OPERATING-MODEL.md) and
 [AGENTS.md variants](../../templates/agent-instructions/README.md) to adopt the workflow.

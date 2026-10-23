@@ -37,10 +37,10 @@ no commands. Do not add it to a new project merely to satisfy an AI workflow.
 uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
 ```
 
-The [minimal](../templates/customer-workspace/examples/workspace-minimal.yml),
-[GitHub](../templates/customer-workspace/workspace/workspace.yml),
-[Jira](../templates/customer-workspace/examples/workspace-jira.yml) and
-[multi-repo](../templates/customer-workspace/examples/workspace-multi-repo.yml) examples
+The [minimal](../examples/document-portal/examples/workspace-minimal.yml),
+[GitHub](../examples/document-portal/workspace/workspace.yml),
+[Jira](../examples/document-portal/examples/workspace-jira.yml) and
+[multi-repo](../examples/document-portal/examples/workspace-multi-repo.yml) examples
 retain their existing format. The validator checks required fields, duplicate keys and
 schema, not access or integrations. Do not keep competing default YAML files.
 

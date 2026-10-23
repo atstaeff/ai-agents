@@ -16,8 +16,8 @@ record. These templates are prompts for concrete evidence, not extra mandatory d
 | Close an actual iteration | [Iteration review](delivery/iteration-review.md) | Designated project update |
 | Record checks and practical gaps | [Verification evidence](quality/verification.md) | Existing PR/check evidence |
 | Prepare an operational release | [Release readiness](quality/release-readiness.md) | Existing release/change process |
-| Resume in a fresh session | [Bounded handoff](customer-workspace/workspace/handoff.md) | Existing work-item section |
-| Configure project instructions | [AGENTS.md variants](agent-instructions/README.md), [private planning](agent-instructions/personal-planning.md) and [setup prompt](customer-workspace/SETUP-PROMPT.md) | Existing project root and sources |
+| Resume in a fresh session | [Bounded handoff example](../examples/document-portal/workspace/handoff.md) | Existing work-item section |
+| Configure project instructions | [AGENTS.md variants](agent-instructions/README.md), [private planning](agent-instructions/personal-planning.md) and [setup prompt example](../examples/document-portal/SETUP-PROMPT.md) | Existing project root and sources |
 | Add reusable expertise | [Skill](catalog/skill-template.md) or [agent](catalog/agent-template.md) | Canonical catalog |
 
 State unknowns and missing evidence explicitly. Preserve human-owned text and actual

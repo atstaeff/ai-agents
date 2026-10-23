@@ -57,5 +57,5 @@ These checks are separate from the observed model cases above.
 One recovery example and two controls do not establish broad reliability or productivity.
 No long-context stress test, cross-model comparison, user-installed OpenCode/Claude smoke
 test, live tracker synchronization, API retry/claim integration or production rollout was
-performed. Use the [pilot protocol](../../templates/customer-workspace/examples/context-recovery-pilot.md)
+performed. Use the [pilot protocol](../../examples/document-portal/examples/context-recovery-pilot.md)
 with the actual project to examine those boundaries before expanding autonomy.

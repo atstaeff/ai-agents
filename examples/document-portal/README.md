@@ -1,10 +1,11 @@
-# Customer workspace template
+# Worked document portal example
 
-This older starter retains a fictional document-portal example, YAML configuration and
-graph helpers for existing consumers. It contains no actual customer data, approvals or
-application implementation. Do not copy every file into a new project.
+This compatibility example retains a fictional document portal, optional YAML
+configuration and graph helpers. It contains no actual customer data, approvals or
+application implementation. It is an example, not the recommended project starter; do
+not copy every file into a new project.
 
-For new adoption, prefer the [instruction templates](../agent-instructions/README.md) and
+For new adoption, prefer the [instruction templates](../../templates/agent-instructions/README.md) and
 [setup prompt](SETUP-PROMPT.md). Merge [AGENTS.md](AGENTS.md) into existing instructions;
 link the project's actual vision, owners, process, code, decisions and check commands.
 No mandatory workspace directory or YAML is needed.

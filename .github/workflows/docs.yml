@@ -12,6 +12,7 @@ on:
       - 'skills/**'
       - 'toolkit/**'
       - 'templates/**'
+      - 'examples/**'
       - 'tools/ai_toolkit.py'
       - 'CONTRIBUTING.md'
       - '.github/workflows/docs.yml'

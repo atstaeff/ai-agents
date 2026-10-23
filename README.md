@@ -56,10 +56,12 @@ remains the catalog website; this change does not deploy either site.
 
 ## Maintain and verify
 
-Edit canonical `agents/`, `skills/`, `toolkit/` and `templates/` sources. `tools/` and
-`tests/` contain the optional CLI/API/dashboard and exporters. Existing `workspace/`
-metadata and local records remain compatible; they are optional. `website/` builds the
-catalog website and root `docs/` is generated output.
+Edit canonical `agents/`, `skills/`, `toolkit/` and `templates/` sources. `examples/`
+contains worked examples, including the [optional legacy project
+layout](examples/document-portal/README.md). `tools/` and `tests/` contain the
+CLI/API/dashboard and exporters. `website/` builds the catalog; root `docs/` is its
+generated GitHub Pages output. The local workbench is optional and does not impose a
+workspace directory or YAML configuration on projects.
 
 ```sh
 uv sync --locked --group validation

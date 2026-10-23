@@ -50,16 +50,16 @@ class WebsitePublishingTests(unittest.TestCase):
         alias = site.render('', page('skills/feature-discovery.md'), {})
         self.assertIn('Canonical source: [`skills/delivery/product-discovery/SKILL.md`]', alias)
 
-    def test_customer_template_uses_its_canonical_readme_and_links(self):
+    def test_worked_example_uses_its_canonical_readme_and_links(self):
         site.prepare({})
         current = page('references/customer-workspace.md')
         rendered = site.render('Placeholder', current, {})
-        self.assertIn('# Customer workspace template', rendered)
+        self.assertIn('# Worked document portal example', rendered)
         self.assertNotIn('Placeholder', rendered)
-        self.assertIn('[AGENTS.md](https://github.com/atstaeff/ai-agents/blob/main/templates/customer-workspace/AGENTS.md)', rendered)
+        self.assertIn('[AGENTS.md](https://github.com/atstaeff/ai-agents/blob/main/examples/document-portal/AGENTS.md)', rendered)
         self.assertIn('[workspace/README.md](../customer-workspace/context.md)', rendered)
         self.assertIn('(../customer-workspace/docusaurus.md)', rendered)
-        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/templates/customer-workspace/README.md')
+        self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/examples/document-portal/README.md')
 
     def test_operating_model_uses_canonical_content_and_local_links(self):
         site.prepare({})

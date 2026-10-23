@@ -45,7 +45,7 @@ DOCUMENTS = {
     'getting-started/repository-workflow.md': 'toolkit/REPOSITORY-WORKFLOW.md',
     'getting-started/workspace-pilot.md': 'toolkit/evaluations/workspace-pilot-20261022.md',
     'getting-started/adopt-workspace.md': 'toolkit/ADOPT-PROJECT.md',
-    'customer-workspace/setup-prompt.md': 'templates/customer-workspace/SETUP-PROMPT.md',
+    'customer-workspace/setup-prompt.md': 'examples/document-portal/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',
     'workspace-concept.md': 'toolkit/PROJECT-CONCEPT.md',
     'repository-workspace.md': 'PROJECT.md',
@@ -58,24 +58,25 @@ DOCUMENTS = {
     'getting-started/plan-review.md': 'toolkit/PLAN-REVIEW.md',
     'toolkit/work-records.md': 'toolkit/WORK-RECORDS.md',
     'toolkit/api.md': 'toolkit/API.md',
-    'references/customer-workspace.md': 'templates/customer-workspace/README.md',
-    'customer-workspace/context.md': 'templates/customer-workspace/workspace/README.md',
-    'customer-workspace/working-agreement.md': 'templates/customer-workspace/workspace/working-agreement.md',
-    'customer-workspace/handoff.md': 'templates/customer-workspace/workspace/handoff.md',
-    'customer-workspace/context-recovery-pilot.md': 'templates/customer-workspace/examples/context-recovery-pilot.md',
-    'customer-workspace/stakeholders.md': 'templates/customer-workspace/workspace/stakeholders.md',
-    'customer-workspace/project.md': 'templates/customer-workspace/examples/github-project.md',
-    'customer-workspace/assignment.md': 'templates/customer-workspace/examples/issue-42.md',
-    'customer-workspace/questions.md': 'templates/customer-workspace/examples/discussion-42.md',
-    'customer-workspace/plan-review.md': 'templates/customer-workspace/examples/plan-review.md',
-    'customer-workspace/review.md': 'templates/customer-workspace/examples/pull-request-57.md',
-    'customer-workspace/decisions/adr-0001.md': 'templates/customer-workspace/workspace/decisions/0001-retry-safe-upload.md',
-    'customer-workspace/decisions/adr-0002.md': 'templates/customer-workspace/workspace/decisions/0002-atomic-upload-claim.md',
-    'customer-workspace/knowledge.md': 'templates/customer-workspace/workspace/knowledge/upload-retries.md',
-    'customer-workspace/iteration.md': 'templates/customer-workspace/workspace/iterations/I1.md',
-    'customer-workspace/knowledge-map.md': 'templates/customer-workspace/workspace/knowledge-map.md',
-    'customer-workspace/docusaurus.md': 'templates/customer-workspace/examples/docusaurus-integration.md',
-    'customer-workspace/runner.md': 'templates/customer-workspace/examples/local-runner.md',
+    # Keep existing public routes stable while the source lives under examples/.
+    'references/customer-workspace.md': 'examples/document-portal/README.md',
+    'customer-workspace/context.md': 'examples/document-portal/workspace/README.md',
+    'customer-workspace/working-agreement.md': 'examples/document-portal/workspace/working-agreement.md',
+    'customer-workspace/handoff.md': 'examples/document-portal/workspace/handoff.md',
+    'customer-workspace/context-recovery-pilot.md': 'examples/document-portal/examples/context-recovery-pilot.md',
+    'customer-workspace/stakeholders.md': 'examples/document-portal/workspace/stakeholders.md',
+    'customer-workspace/project.md': 'examples/document-portal/examples/github-project.md',
+    'customer-workspace/assignment.md': 'examples/document-portal/examples/issue-42.md',
+    'customer-workspace/questions.md': 'examples/document-portal/examples/discussion-42.md',
+    'customer-workspace/plan-review.md': 'examples/document-portal/examples/plan-review.md',
+    'customer-workspace/review.md': 'examples/document-portal/examples/pull-request-57.md',
+    'customer-workspace/decisions/adr-0001.md': 'examples/document-portal/workspace/decisions/0001-retry-safe-upload.md',
+    'customer-workspace/decisions/adr-0002.md': 'examples/document-portal/workspace/decisions/0002-atomic-upload-claim.md',
+    'customer-workspace/knowledge.md': 'examples/document-portal/workspace/knowledge/upload-retries.md',
+    'customer-workspace/iteration.md': 'examples/document-portal/workspace/iterations/I1.md',
+    'customer-workspace/knowledge-map.md': 'examples/document-portal/workspace/knowledge-map.md',
+    'customer-workspace/docusaurus.md': 'examples/document-portal/examples/docusaurus-integration.md',
+    'customer-workspace/runner.md': 'examples/document-portal/examples/local-runner.md',
     'contributing/index.md': 'CONTRIBUTING.md',
 }
 @dataclass
@@ -99,11 +100,10 @@ def prepare(config):
     SOURCES.update(DOCUMENTS)
     for path in (ROOT / 'templates').rglob('*.md'):
         relative = path.relative_to(ROOT)
-        if ('customer-workspace' not in relative.parts and path.name != 'README.md'
-                and relative.as_posix() not in SOURCES.values()):
+        if (path.name != 'README.md' and relative.as_posix() not in SOURCES.values()):
             SOURCES[relative.as_posix()] = relative.as_posix()
     REVERSE = {value: key for key, value in SOURCES.items()}
-    KNOWLEDGE_GRAPH = json.loads((ROOT / 'templates/customer-workspace/examples/knowledge-graph.json').read_text(encoding='utf-8'))
+    KNOWLEDGE_GRAPH = json.loads((ROOT / 'examples/document-portal/examples/knowledge-graph.json').read_text(encoding='utf-8'))
     catalog_nav = [{'Choose Expertise': 'catalog/index.md'}, {'All Agents': 'agents/index.md'},
                    {'All Skills': 'skills/index.md'}, {'Maintain the Catalog': 'catalog/maintain.md'}]
     for domain, info in domains().items():
@@ -145,7 +145,7 @@ def knowledge_diagram(graph, page_uri, directory_urls=True):
         labels.append(f'<text class="knowledge-label" text-anchor="middle" x="{(sx + tx)/2:.1f}" y="{(sy + ty)/2 + offset:.1f}">{escape(edge["type"])}</text>')
     svg.extend(labels)
     for node in nodes:
-        source = 'templates/customer-workspace/workspace/' + node['path']
+        source = 'examples/document-portal/workspace/' + node['path']
         destination = Path(REVERSE[source])
         current = Path(page_uri)
         if directory_urls:

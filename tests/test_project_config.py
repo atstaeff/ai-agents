@@ -17,11 +17,11 @@ cfg = SimpleNamespace(**runpy.run_path(str(ROOT / 'tools/project_config.py'))) i
 @unittest.skipUnless(HAS_YAML, 'Optional YAML/schema validator: run with uv --group validation')
 class ProjectConfigTests(unittest.TestCase):
     def setUp(self):
-        self.github = ROOT / 'templates/customer-workspace/workspace/workspace.yml'
+        self.github = ROOT / 'examples/document-portal/workspace/workspace.yml'
         self.data = cfg.load(self.github)
 
     def test_examples_keep_tracker_and_review_independent(self):
-        jira = cfg.load(ROOT / 'templates/customer-workspace/examples/workspace-jira.yml')
+        jira = cfg.load(ROOT / 'examples/document-portal/examples/workspace-jira.yml')
         self.assertEqual(self.data['work']['system'], 'github')
         self.assertEqual((jira['work']['system'], jira['review']['system']), ('jira', 'github'))
         self.assertEqual(jira['knowledge']['system'], 'confluence')
