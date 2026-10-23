@@ -50,7 +50,7 @@ const config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {title: 'Use', items: [
           {label: 'Choose expertise', to: '/catalog/'},
@@ -65,7 +65,7 @@ const config = {
           {label: 'Source repository', href: 'https://github.com/atstaeff/ai-agents'},
         ]},
       ],
-      copyright: 'AI Agents · Reusable expertise and project-owned knowledge.',
+      copyright: 'AI Agents by Stefan Poss · Reusable expertise. Durable knowledge.',
     },
   },
 };
