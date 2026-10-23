@@ -110,7 +110,7 @@ const { chromium } = require("playwright");
       .getByRole("group", { name: "Direct relationships of selected record" })
       .waitFor();
     assert.match(
-      await page.getByLabel("Selected record").innerText(),
+      await page.getByLabel("Selected record", { exact: true }).innerText(),
       /proposed/i,
     );
     assert.ok((await page.locator("g.record-node").count()) <= 9);
@@ -127,12 +127,12 @@ const { chromium } = require("playwright");
 
     await page.goto(origin + "?record=ADR-0003");
     await page
-      .getByLabel("Selected record")
+      .getByLabel("Selected record", { exact: true })
       .getByRole("button", { name: /Context and session continuity/ })
       .click();
     await page.waitForURL("**/?record=TOPIC-CONTEXT");
     await page
-      .getByLabel("Selected record")
+      .getByLabel("Selected record", { exact: true })
       .getByText("TOPIC-CONTEXT", { exact: false })
       .first()
       .waitFor();
@@ -141,7 +141,7 @@ const { chromium } = require("playwright");
       .getByRole("group", { name: "Direct relationships of selected record" })
       .waitFor();
     assert.match(
-      await page.getByLabel("Selected record").innerText(),
+      await page.getByLabel("Selected record", { exact: true }).innerText(),
       /ADR-0003/,
     );
 
@@ -157,7 +157,7 @@ const { chromium } = require("playwright");
     await page.unroute("**/records/ADR-0004/index.json");
     await page.getByRole("button", { name: "Try again", exact: true }).click();
     await page
-      .getByLabel("Selected record")
+      .getByLabel("Selected record", { exact: true })
       .getByRole("heading", { name: "Bound retries for document processing" })
       .waitFor();
     await page.getByLabel("Open record by ID").fill("ADR-MISSING");
