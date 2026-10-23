@@ -17,7 +17,7 @@ export default function Home() {
         <header className="home-hero">
           <div className="container hero-layout">
             <div>
-              <p className="eyebrow">Engineering with AI</p>
+              <p className="eyebrow">Engineering with AI · by Stefan Poss</p>
               <h1>Build products.<br /><span>Preserve the reasoning.</span></h1>
               <p className="hero-description">Reusable expertise. Clear decisions. Shared project knowledge that another person or session can continue from.</p>
               <div className="hero-actions">
@@ -52,7 +52,7 @@ export default function Home() {
         <section className="home-memory" aria-labelledby="memory-heading">
           <div className="container memory-layout">
             <div><p className="eyebrow">Small context. Durable knowledge.</p><h2 id="memory-heading">Make the next session<br />a continuation.</h2></div>
-            <div><p>Keep the live plan in one issue or ticket, significant rationale in decisions, and a bounded handoff at the existing planning home. Load what the assignment needs.</p>
+            <div><p>Keep personal working plans private, shared outcomes in your issue or PR, and significant reasons in project decisions. Load only what the next step needs.</p>
               <Link to="/operating-model/knowledge/">Read the knowledge guide →</Link><br />
               <Link to="/customer-workspace/assignment/">Follow a worked project →</Link>
             </div>

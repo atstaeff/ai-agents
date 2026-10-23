@@ -53,3 +53,14 @@ The main documentation workflow installs the npm lockfile, builds the site and w
 its static output to the existing root `docs/` GitHub Pages directory. A PR only uploads
 a build preview artifact. Keep Pages settings and generated-output changes separate from
 source maintenance. Do not run a local build into `docs/` to prepare a source PR.
+
+## Visual identity
+
+The site follows [Stefan Poss](https://stefanposs.com): navy `#122E53`, white,
+neutral gray surfaces, Heebo body text and Signika headings. The source reference is
+[the website theme](https://github.com/stefanposs/sp-website-blog/blob/main/data/theme.json).
+Pinned Fontsource packages bundle only the selected Latin weights locally; no external
+font service is contacted. Dark mode uses charcoal surfaces and lighter navy accents
+for legibility. Shared tokens in `src/css/custom.css` style the homepage, documentation,
+navigation and graph; `src/css/knowledge-graph.css` owns only the graph's layout/components.
+Keep focus indicators visible, text readable and page overflow contained on mobile.

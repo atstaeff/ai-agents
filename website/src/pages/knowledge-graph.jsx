@@ -10,7 +10,7 @@ const kinds = {
   topic: "AI topic",
   component: "Component",
 };
-const colors = { decision: "#36756b", topic: "#566cb1", component: "#b17c46" };
+const colors = { decision: "var(--ifm-color-primary)", topic: "#7f8bb5", component: "#b17c46" };
 const incomingLabels = {
   depends_on: "required by",
   supersedes: "superseded by",
