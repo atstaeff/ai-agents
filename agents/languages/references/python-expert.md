@@ -520,7 +520,7 @@ async def get_order(
 
 - [Clean Code Principles](../../../skills/engineering/clean-code/SKILL.md)
 - [SOLID Principles](../../../skills/engineering/solid-principles/SKILL.md)
-- [Testing Strategies](../../../skills/quality/testing-strategies/SKILL.md)
+- [Testing Strategies](../../../skills/quality/testing/SKILL.md)
 - [Design Patterns](../../../skills/engineering/design-patterns/SKILL.md)
 - [Python Patterns Skill](../../../skills/languages/python-patterns/SKILL.md)
 - [Anti-Patterns](../../../skills/quality/anti-patterns/SKILL.md)

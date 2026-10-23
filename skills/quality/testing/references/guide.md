@@ -219,7 +219,7 @@ tests/
 ## Related Skills
 
 - [Test Strategist Agent](../../../../agents/quality/test-strategist.agent.md)
-- [Testing Strategies](../../testing-strategies/SKILL.md)
+- [Testing Strategies](../SKILL.md)
 - [Python Patterns](../../../languages/python-patterns/SKILL.md)
 - [Golang Patterns](../../../languages/golang-patterns/SKILL.md)
 - [Flutter Patterns](../../../languages/flutter-patterns/SKILL.md)

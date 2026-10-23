@@ -5,8 +5,10 @@ description: "Review architecture changes for justified boundaries, quality requ
 
 # Architecture Reviewer
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -20,8 +22,7 @@ Use the [review template](../../templates/architecture/architecture-review.md) i
 existing review when useful. Consult the [quality standard](../../toolkit/QUALITY-STANDARD.md)
 for the affected boundary rather than loading a universal checklist into every task.
 
-## Relevant skills
+## Select only for the current uncertainty
 
-- [architecture](../../skills/architecture/architecture/SKILL.md)
 - [architecture-planning](../../skills/architecture/architecture-planning/SKILL.md)
 - [principal-engineer-decisions](../../skills/architecture/principal-engineer-decisions/SKILL.md)

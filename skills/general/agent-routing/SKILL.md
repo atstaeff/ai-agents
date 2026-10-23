@@ -1,45 +1,29 @@
 ---
 name: "agent-routing"
-description: "Choose focused skills or bounded specialist work when expertise, independent review or parallel tasks materially help the current outcome."
+description: "Select the next skill or bounded specialist for a concrete uncertainty. Handle clear small tasks directly; delegate only when authorized capabilities and expected benefit justify coordination."
 ---
 
 # Agent Routing
 
-1. Complete clear small tasks in the current session. When expertise helps, select
-   from existing metadata and load the narrowest relevant skill body. A skill does
-   not require a new agent or chat session.
-2. Use a specialist for a defined uncertainty or deliverable. Split work only where
-   boundaries are clear and expected benefit exceeds setup and integration cost.
-3. Verify the host has the tools and authorization to delegate. Otherwise apply the
-   selected guidance in the current session. Never invent sessions or background work.
-4. Give a bounded outcome, context pointers, allowed files, acceptance, relevant
-   approval and expected evidence. Use isolated branches/worktrees for independent
-   writers when supported; prevent overlapping writes and assign integration ownership.
-5. Inspect returned artifacts and evidence. Test the integrated result at affected
-   boundaries; independently successful branches can still conflict. Preserve feedback
-   in the existing assignment/PR, keeping personal plans private. Resolve tracker/wiki/review tools from the
-   project’s `AGENTS.md` and any existing tooling config; available connectors do not determine information ownership.
+1. Use the current request and available metadata. A clear small task stays in this
+   session. Select one skill for the next unresolved activity; load another only when
+   that skill or the task exposes a different uncertainty. Do not traverse the catalog.
+2. Use a separate specialist only for useful independent review or a bounded deliverable.
+   Confirm supported tools and authorization; otherwise apply the guidance directly.
+   Model/effort choices follow difficulty and observed quality/latency, not a universal maximum.
+3. Give the specialist outcome, relevant source revisions, write scope, acceptance,
+   required approval and expected evidence. Coordinate overlapping work, use isolated
+   working directories for writers and name the integrator. Do not invent sessions.
+4. Inspect artifacts and evidence, then verify the combined behavior. Give a reviewer
+   requirements and the diff; seek counterexamples. A second model is not automatic
+   independent approval. Read-only reviewers return findings, not claimed execution.
+5. Preserve shared feedback/handoff at the assignment; keep personal plans private. Never create a mirror
+   tracker or treat an available connector as the information owner.
 
-## Selection examples
-
-| Outcome | Agent | Initial skills |
+| Uncertainty | First skill | Specialist only when useful |
 | --- | --- | --- |
-| Add a Python API endpoint | python-expert | python-patterns, api-design |
-| Improve a user journey | frontend-expert | frontend-patterns |
-| Resolve product uncertainty | product-manager | product-discovery |
-| File notes in a private vault | second-brain | obsidian-para |
-| Coordinate several deliverables | joerg | work-management, agent-routing |
-| Review a consequential change | code-reviewer | code-review |
-
-## Host and model boundaries
-
-- Exported profiles do not create sessions. Discovery, delegation and child-session
-  interaction depend on the installed host. A model switch alone needs no folder change.
-- Preserve outcome, acceptance, approved revision and evidence across model/host changes.
-  Choose available models and effort from task difficulty and measured quality/latency;
-  do not require the most expensive model or maximum thinking for every task.
-- Give an independent reviewer the requirement, diff and evidence. Ask it to look for
-  counterexamples rather than confirm the author's conclusion. A second model can
-  still share the same mistake; executable checks remain necessary where applicable.
-- Honor effective permissions. Read-only reviewers return findings and proposed checks;
-  an authorized executor performs checks or changes they cannot make.
+| User value or acceptance | product-discovery | product-manager |
+| System boundary or compatibility | architecture-planning | lead-architect |
+| Python implementation | python-patterns | python-expert |
+| Review of a concrete diff | code-review | code-reviewer |
+| Private vault operation | obsidian-para | second-brain |

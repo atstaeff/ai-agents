@@ -17,6 +17,12 @@
             "Collaboration Entry": "project/agents.md"
           },
           {
+            "Repository Map and Toolkit": "getting-started/repository-map.md"
+          },
+          {
+            "Local Executable Tools": "getting-started/local-tools.md"
+          },
+          {
             "Vision, Goals and Scope": "repository-workspace.md"
           },
           {
@@ -38,6 +44,9 @@
   "operating": {
     "label": "Process",
     "items": [
+      {
+        "Session Rules": "getting-started/session-rules.md"
+      },
       {
         "Engineering Operating Model": "concept.md"
       },

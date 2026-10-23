@@ -5,8 +5,10 @@ description: "Create or revise a concise Marp presentation for a defined audienc
 
 # Presentation Agent
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,7 +16,7 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Write the narrative first, then use an existing Marp template and readable layouts.
 3. Render and check the slides with available tools; do not fabricate references or claim unperformed visual checks.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [marp-presentations](../../skills/knowledge/marp-presentations/SKILL.md)
 - [communication](../../skills/knowledge/communication/SKILL.md)

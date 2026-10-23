@@ -443,5 +443,5 @@ describe('UserSearch', () => {
 - [Frontend Patterns Skill](../../../skills/languages/frontend-patterns/SKILL.md)
 - [Clean Code Principles](../../../skills/engineering/clean-code/SKILL.md)
 - [Design Patterns](../../../skills/engineering/design-patterns/SKILL.md)
-- [Testing Strategies](../../../skills/quality/testing-strategies/SKILL.md)
+- [Testing Strategies](../../../skills/quality/testing/SKILL.md)
 - [Anti-Patterns](../../../skills/quality/anti-patterns/SKILL.md)

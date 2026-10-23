@@ -152,7 +152,7 @@ Important Dates
 
 ## Related Skills & Agents
 
-- [Context Manager Agent](../../../../agents/knowledge/context-manager.agent.md)
+- [Context Manager Agent](../../../../agents/delivery/task-orchestrator.agent.md)
 - [Task Orchestrator Agent](../../../../agents/delivery/task-orchestrator.agent.md)
-- [Stakeholder Agent](../../../../agents/delivery/stakeholder-agent.agent.md)
-- [Agile Methodologies](../../agile-methodologies/SKILL.md)
+- [Stakeholder Agent](../../../../agents/delivery/product-manager.agent.md)
+- [Agile Methodologies](../../project-management/SKILL.md)

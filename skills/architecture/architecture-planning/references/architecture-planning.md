@@ -117,7 +117,7 @@ Every decision sacrifices something. Be intentional about what you're trading.
 ## Related Skills & Agents
 
 - [Lead Architect Agent](../../../../agents/architecture/lead-architect.agent.md)
-- [Context Manager Agent](../../../../agents/knowledge/context-manager.agent.md)
+- [Context Manager Agent](../../../../agents/delivery/task-orchestrator.agent.md)
 - [Principal Engineer Decisions](../../principal-engineer-decisions/SKILL.md)
 - [Domain-Driven Design](../../domain-driven-design/SKILL.md)
 - [Cloud-Native Architecture](../../../engineering/cloud-native/SKILL.md)

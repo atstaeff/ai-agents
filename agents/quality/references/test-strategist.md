@@ -256,8 +256,7 @@ async def test_order_checkout_flow(page: Page) -> None:
 
 ## Related Skills
 
-- [Testing Strategies](../../../skills/quality/testing-strategies/SKILL.md)
-- [Testing Patterns Skill](../../../skills/quality/testing/SKILL.md)
+- [Testing Strategies](../../../skills/quality/testing/SKILL.md)
 - [Python Patterns](../../../skills/languages/python-patterns/SKILL.md)
 - [Golang Patterns](../../../skills/languages/golang-patterns/SKILL.md)
 - [Flutter Patterns](../../../skills/languages/flutter-patterns/SKILL.md)

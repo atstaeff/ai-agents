@@ -270,9 +270,9 @@ Income Sources → Player Wallet → Spending Sinks
 
 ## Related Skills
 
-- `game-development/game-mechanics.md` — Physics, AI, procedural generation
-- `game-development/game-architecture.md` — ECS, scene graphs, event systems
-- `game-development/prototyping.md` — Rapid prototyping and playtesting
+- [game-mechanics](../../game-mechanics/SKILL.md) — Physics, AI, procedural generation
+- [game-architecture](../../game-architecture/SKILL.md) — ECS, scene graphs, event systems
+- [prototyping](../../prototyping/SKILL.md) — Rapid prototyping and playtesting
 
 ## References
 

@@ -449,5 +449,5 @@ String result = sb.toString();
 - [Python Expert Agent](../../../../agents/languages/python-expert.agent.md)
 - [Golang Expert Agent](../../../../agents/languages/golang-expert.agent.md)
 - [GCP Patterns](../../../engineering/gcp-patterns/SKILL.md)
-- [Testing Strategies](../../testing-strategies/SKILL.md)
+- [Testing Strategies](../../testing/SKILL.md)
 - [Cloud-Native Architecture](../../../engineering/cloud-native/SKILL.md)

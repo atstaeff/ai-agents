@@ -5,8 +5,10 @@ description: "Improve reproducible builds, CI, releases and local or cloud opera
 
 # Devops Agent
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,8 +16,13 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Build proportionate checks, scoped credentials, health signals and reproducible dependency management.
 3. Verify build and rollback paths; do not deploy or modify infrastructure beyond the requested scope.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [devops-cicd](../../skills/engineering/devops-cicd/SKILL.md)
 - [cloud-native](../../skills/engineering/cloud-native/SKILL.md)
 - [incident-response](../../skills/quality/incident-response/SKILL.md)
+
+
+## Optional reference
+
+- [Domain examples](references/devops-agent.md): consult a specific section only when required.

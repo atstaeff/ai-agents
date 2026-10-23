@@ -1,0 +1,89 @@
+{
+  "all": {
+    "description": "All active native profiles; preserves the existing export default.",
+    "agents": [
+      "*"
+    ],
+    "skills": [
+      "*"
+    ]
+  },
+  "minimal": {
+    "description": "General execution with on-demand expertise.",
+    "agents": [
+      "joerg",
+      "plan",
+      "build"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "work-management",
+      "testing"
+    ]
+  },
+  "engineering": {
+    "description": "Product engineering with Python, architecture, reviews and delivery.",
+    "agents": [
+      "joerg",
+      "plan",
+      "build",
+      "lead-architect",
+      "architecture-reviewer",
+      "code-reviewer",
+      "python-expert",
+      "devops-agent"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "work-management",
+      "architecture-planning",
+      "principal-engineer-decisions",
+      "api-design",
+      "python-patterns",
+      "software-engineering",
+      "clean-code",
+      "practical-refactoring",
+      "testing",
+      "code-review",
+      "security",
+      "devops-cicd",
+      "performance",
+      "frontend-patterns"
+    ]
+  },
+  "product": {
+    "description": "Discovery, proposals and delivery coordination.",
+    "agents": [
+      "joerg",
+      "plan",
+      "product-manager",
+      "task-orchestrator"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "product-discovery",
+      "project-management",
+      "work-management",
+      "communication",
+      "principal-engineer-decisions"
+    ]
+  },
+  "knowledge": {
+    "description": "Private knowledge and presentations.",
+    "agents": [
+      "joerg",
+      "second-brain",
+      "presentation-agent"
+    ],
+    "skills": [
+      "agent-routing",
+      "work-management",
+      "obsidian-para",
+      "communication",
+      "marp-presentations"
+    ]
+  }
+}

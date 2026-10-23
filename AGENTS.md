@@ -1,81 +1,45 @@
-# Engineering collaboration contract
+# Repository instructions
 
-This repository maintains an English engineering agent/skill catalog, a shared operating
-model and a local Python toolkit. Follow current user and host instructions and the
-applicable project rules. Use the user's language in conversation.
+Maintain this English engineering catalog, operating model and local Python toolkit.
+Use the user's language in conversation. Follow current user/host and applicable project rules.
 
-## Project sources
+## Choose the relevant context
 
-Read these entry sources, then only the detail relevant to the assignment:
+For a clear small correction, inspect affected files and apply the rules below; reuse
+instructions already loaded. For substantial or unfamiliar work, read [PROJECT.md](PROJECT.md)
+for outcome, scope, ownership and actual work homes, then [CONTRIBUTING.md](CONTRIBUTING.md)
+for process, skill selection and checks. Read further sources only for the current uncertainty:
 
-| Need | Authoritative source |
+| Need | Source |
 | --- | --- |
-| Vision, goals and success signals | [Project](PROJECT.md#vision-and-goals) |
-| Stakeholders and decision/acceptance roles | [Stakeholders](knowledge/stakeholders.md) |
-| Scope, exclusions and constraints | [Scope](PROJECT.md#scope-and-boundaries) |
-| Process, tools, skills and checks | [Contributing source](CONTRIBUTING.md), [published process](https://atstaeff.github.io/ai-agents/contributing/) |
-| Current knowledge and significant decisions | [Knowledge index](knowledge/README.md) |
-| Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
-| Assignment and acceptance | The current request or its existing shared issue/PR |
-| Personal execution plan | The user's private Second Brain, when available |
+| Concise execution rules | [Session rules](toolkit/SESSION-RULES.md) |
+| Current knowledge and significant reasons | [Knowledge index](knowledge/README.md) |
+| Decision/acceptance or action boundary | [Stakeholders](knowledge/stakeholders.md), [agreement](knowledge/working-agreement.md) |
+| Catalog structure, consolidation or presets | [Catalog guide](toolkit/CATALOG-GUIDE.md) |
+| Information ownership, entry or publication change | [Project concept](toolkit/PROJECT-CONCEPT.md) |
+| Interrupted or conflicting state | [Recovery contract](toolkit/CONTEXT-RECOVERY.md) |
 
-The [documentation website](https://atstaeff.github.io/ai-agents/) publishes the maintained
-sources. This checkout is authoritative for its revision; the published site can lag an
-unmerged change. Read the [project concept](toolkit/PROJECT-CONCEPT.md) when changing the
-operating model, information ownership, knowledge layout or documentation publication.
-No project.yaml or workspace folder is required to adopt this contract.
+The [published process](https://atstaeff.github.io/ai-agents/contributing/) is a reading view;
+this checkout owns its revision. Load the next relevant skill body, not every linked skill,
+role profile, guide or historical ADR. Expand when needed without omitting governing constraints.
 
-## Ownership and parallel work
+## Preserve these boundaries
 
-Keep one authoritative shared work item per assignment. Personal plans stay private and
-are not required for teammates. Identify the accountable human owner, active writer,
-bounded change scope, dependencies and integration owner.
-Use separate branches and working directories for independent writers; agree changes to
-shared contracts before dependent implementation. Coordinate overlapping scopes through
-the project's shared claim/handover mechanism; an assignee or a branch is no atomic lock.
-Preserve other contributors' changes and reread shared records before updating them.
+- Edit canonical agents/<domain>/<name>.agent.md and skills/<domain>/<name>/SKILL.md;
+  keep portable name/description metadata and regenerate catalog indexes after changes.
+- Preserve Python 3.11+, the standard-library core, loopback/local assets, comment
+  persistence and stale-write protection. Export host permissions through adapters.
+- website/ publishes canonical sources; docs/ is generated. Preserve public routes.
+  Keep private content and generated bundles out of commits. No unsolicited messages.
+- Keep shared scope and acceptance in the assignment; personal plans stay private. Preserve other writers' changes, coordinate overlapping
+  scopes and shared contracts, and verify combined changes. Delegate only when supported,
+  authorized and useful. Significant decisions and current knowledge stay at their owners.
+- Before pausing, save result, revisions, evidence/limits, blockers, pending writes and
+  one next action in the appropriate shared or private home. Do not merge or deploy without an explicit request.
 
-Follow the [shared workflow](toolkit/WORKFLOW.md) and
-[recovery contract](toolkit/CONTEXT-RECOVERY.md). Proceed with routine reversible choices
-within the assignment; resolve consequential scope/design conflicts with the named owner.
-Delegate only when supported, authorized and useful. Put shared scope, acceptance,
-feedback and review evidence at the work home; record durable rationale in knowledge.
-
-## Repository navigation and engineering rules
-
-- Maintain canonical profiles in agents/<domain>/<name>.agent.md and skills/<domain>/<name>/SKILL.md.
-  Use [catalog domains](toolkit/catalog-domains.json) and [catalog guidance](toolkit/CATALOG-GUIDE.md).
-  Keep exported names unique and name/description frontmatter present.
-- Read the selected skill body and relevant references; links neither install skills nor
-  start sessions. Keep host-specific discovery and permissions in adapters;
-  see [portability](toolkit/PORTABILITY.md).
-- Preserve Python 3.11+ and the standard-library-only core. Keep the dashboard on loopback,
-  its assets local, and its comment persistence and stale-write protections intact.
-- Edit canonical sources. website/ owns Docusaurus; docs/ is generated GitHub Pages output.
-  Preserve public routes. Keep private data, local work and generated bundles out of commits.
-
-## Verification and completion
+## Verify the change
 
 Use the [runbook](toolkit/REPOSITORY-WORKFLOW.md) and [CI](.github/workflows/checks.yml).
-Run checks appropriate to the change:
-
-```sh
-python3 tools/ai_toolkit.py check
-python3 -m unittest discover -s tests -v
-uv run --locked --group validation python -m unittest discover -s tests -v
-npm --prefix website ci
-npm --prefix website run build
-```
-
-Verify combined changes after integration and associate evidence with the tested revision.
-Report passed, failed, blocked and unrun checks honestly. Required review, acceptance,
-integration and deployment are separate states. Do not merge or deploy without an explicit request.
-
-## Shared memory and handoff
-
-Maintain affected current knowledge and record significant rationale at
-[knowledge/](knowledge/README.md). Preserve accepted reasons and replacement links.
-Before pausing, save result, relevant revisions, evidence/limits, blockers, pending writes
-and one next action at the existing work home. A fresh session checks current sources.
-For otherwise unassigned larger local work, the optional toolkit uses ignored
-workspace/work/ and workspace/archive/; those are storage details, not the project model.
+Run appropriate catalog/link, unittest, export and strict Docusaurus checks once; repeat
+only after a relevant change, failure or unresolved concern. Distinguish actual evidence,
+required acceptance, integration and deployment. Report unrun checks and material limits.

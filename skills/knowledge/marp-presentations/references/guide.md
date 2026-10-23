@@ -206,8 +206,8 @@ Speaker notes:
 ## Related Skills
 
 - [Presentation Agent](../../../../agents/knowledge/presentation-agent.agent.md)
-- [Proposal/Pitch Agent](../../../../agents/delivery/proposal-pitch.agent.md)
-- [Stakeholder Agent](../../../../agents/delivery/stakeholder-agent.agent.md)
+- [Proposal/Pitch Agent](../../../../agents/delivery/product-manager.agent.md)
+- [Stakeholder Agent](../../../../agents/delivery/product-manager.agent.md)
 - [Communication](../../communication/SKILL.md)
 ❌ No clear narrative/flow
 ❌ Missing speaker notes
@@ -242,4 +242,4 @@ npx @marp-team/marp-cli slides.md --preview --watch
 ## Related Skills
 
 - Presentation Agent (reference: `../../.github/agents/knowledge/presentation-agent.agent.md`)
-- Stakeholder Agent (reference: `../../.github/agents/delivery/stakeholder-agent.agent.md`)
+- [Product manager](../../../../agents/delivery/product-manager.agent.md): stakeholder needs and product proposals.

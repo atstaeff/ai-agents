@@ -10,8 +10,7 @@ Choose expertise, plan bounded work and coordinate verified results.
 
 | Name | Select for |
 | --- | --- |
-| [agent-routing](general/agent-routing/SKILL.md) | Choose focused skills or bounded specialist work when expertise, independent review or parallel tasks materially help the current outcome. |
-| [general](general/general/SKILL.md) | Select communication or engineering decision support for work that does not require a language-specific skill. |
+| [agent-routing](general/agent-routing/SKILL.md) | Select the next skill or bounded specialist for a concrete uncertainty. Handle clear small tasks directly; delegate only when authorized capabilities and expected benefit justify coordination. |
 
 ## Product & Project Management
 
@@ -19,16 +18,12 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 
 | Name | Select for |
 | --- | --- |
-| [agile-methodologies](delivery/agile-methodologies/SKILL.md) | Improve delivery flow, break down work or plan a small iteration using proportionate agile practices. |
-| [feature-discovery-session](delivery/feature-discovery-session/SKILL.md) | Turn a stakeholder conversation into a scoped feature, assumptions and verifiable acceptance criteria. |
 | [pr-crafting](delivery/pr-crafting/SKILL.md) | Prepare a reviewable pull request description, scope and validation evidence for a code change. |
 | [product-discovery](delivery/product-discovery/SKILL.md) | Clarify a product or feature with uncertain user value, compare minimal solutions and define a measurable experiment or delivery slice. |
-| [progress-sync](delivery/progress-sync/SKILL.md) | Summarize current work, evidence, blockers and next actions without duplicating project records. |
 | [project-management](delivery/project-management/SKILL.md) | Organize delivery, technical debt or release work without excessive process overhead. |
-| [repository-contribution](delivery/repository-contribution/SKILL.md) | Establish how to contribute to an unfamiliar repository or after contribution rules change: resolve project purpose, local process, relevant skills, tool locations and verification before a substantial code or documentation change. Reuse already-loaded rules for a clear small correction. |
-| [team-collaboration](delivery/team-collaboration/SKILL.md) | Coordinate shared work, reviews, incidents or handoffs with explicit ownership and compact records. |
+| [repository-contribution](delivery/repository-contribution/SKILL.md) | Resolve contribution rules and source ownership for an unfamiliar repository or changed process before substantial work. Reuse known instructions and skip onboarding for a clear small correction. |
 | [technical-debt](delivery/technical-debt/SKILL.md) | Assess a maintainability problem and prioritize a safe, incremental repayment plan. |
-| [work-management](delivery/work-management/SKILL.md) | Manage a substantial assignment with a private working plan, shared acceptance and verified project decisions; use for planning, resuming or closing work. |
+| [work-management](delivery/work-management/SKILL.md) | Coordinate a substantial assignment, progress update or session handoff with a private working plan and shared issue/PR; preserve acceptance, feedback, evidence and ownership. Skip separate planning records for clear small edits. |
 
 ## Architecture & Systems
 
@@ -37,12 +32,10 @@ Model domains, contracts, boundaries and consequential design tradeoffs.
 | Name | Select for |
 | --- | --- |
 | [api-design](architecture/api-design/SKILL.md) | Design or review an HTTP API, consumer contract, errors, authorization, pagination or compatibility changes. |
-| [architecture](architecture/architecture/SKILL.md) | Choose an architecture approach when planning system boundaries, interfaces, deployment or quality requirements. |
 | [architecture-planning](architecture/architecture-planning/SKILL.md) | Produce a concise architecture plan with boundaries, alternatives, delivery steps and verification. |
 | [domain-driven-design](architecture/domain-driven-design/SKILL.md) | Model business rules, aggregates, bounded contexts or domain terminology in an existing or new application. |
 | [microservices](architecture/microservices/SKILL.md) | Evaluate a service split or improve an existing distributed system with explicit ownership and failure handling. |
 | [principal-engineer-decisions](architecture/principal-engineer-decisions/SKILL.md) | Compare consequential technical options and record an architecture or delivery decision. |
-| [system-design](architecture/system-design/SKILL.md) | Plan system-level behavior, data flow, interfaces and operational constraints for a concrete use case. |
 
 ## Software & Platform Engineering
 
@@ -53,18 +46,16 @@ Implement maintainable applications, platforms and specialized products.
 | [clean-code](engineering/clean-code/SKILL.md) | Improve readability and changeability of code while preserving behavior and project conventions. |
 | [cloud-native](engineering/cloud-native/SKILL.md) | Plan or review cloud deployment, managed services, runtime configuration and operational resilience. |
 | [creative-app-patterns](engineering/creative-app-patterns/SKILL.md) | Implement document models, undo/redo, real-time feedback or media processing in a creative application. |
-| [creative-apps](engineering/creative-apps/SKILL.md) | Develop an interactive creative application for music, art, editing or other expressive workflows. |
 | [design-patterns](engineering/design-patterns/SKILL.md) | Choose or simplify a design pattern at a real variation, lifecycle or integration boundary. |
 | [devops-cicd](engineering/devops-cicd/SKILL.md) | Build or repair CI, deployment, release, rollback or reproducible development workflows. |
 | [game-architecture](engineering/game-architecture/SKILL.md) | Structure an existing or new game for clear state ownership, engine integration and testable mechanics. |
 | [game-design](engineering/game-design/SKILL.md) | Clarify a game concept, core loop, player goals, balancing or playtest criteria. |
-| [game-development](engineering/game-development/SKILL.md) | Plan or implement a playable prototype, game loop, mechanics or game architecture. |
 | [game-mechanics](engineering/game-mechanics/SKILL.md) | Implement or tune a specific game mechanic such as movement, combat, inventory or progression. |
 | [gcp-patterns](engineering/gcp-patterns/SKILL.md) | Design, deploy or troubleshoot a workload on Google Cloud with clear cost and operational constraints. |
 | [iot-embedded-patterns](engineering/iot-embedded-patterns/SKILL.md) | Develop or review firmware, embedded protocols, resource-constrained systems or device integration. |
 | [practical-refactoring](engineering/practical-refactoring/SKILL.md) | Refactor existing code incrementally while preserving behavior and keeping changes reviewable. |
 | [prototyping](engineering/prototyping/SKILL.md) | Create a short experiment to reduce uncertainty in a game, interface or technical concept. |
-| [software-engineering](engineering/software-engineering/SKILL.md) | Select focused engineering guidance for code quality, testing, refactoring or design choices. |
+| [software-engineering](engineering/software-engineering/SKILL.md) | Implement a bounded change across modules or languages: trace the existing behavior, preserve contracts and verify the integrated result. Prefer the language skill for language-specific syntax or tooling. |
 | [solid-principles](engineering/solid-principles/SKILL.md) | Evaluate responsibilities and dependencies using SOLID principles without unnecessary abstractions. |
 
 ## Programming Languages
@@ -90,7 +81,6 @@ Verify behavior, review changes, protect trust boundaries and recover from failu
 | [performance](quality/performance/SKILL.md) | Investigate measured latency, throughput, memory or resource problems and validate an optimization. |
 | [security](quality/security/SKILL.md) | Review a concrete trust boundary, authentication, authorization, secret handling or vulnerability fix. |
 | [testing](quality/testing/SKILL.md) | Implement or improve tests that verify acceptance behavior and realistic regressions; report what executed checks establish and what remains unverified. |
-| [testing-strategies](quality/testing-strategies/SKILL.md) | Choose meaningful unit, integration or end-to-end checks proportional to a software change. |
 
 ## Knowledge & Communication
 

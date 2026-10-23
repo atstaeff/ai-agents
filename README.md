@@ -11,6 +11,7 @@ verify a focused change, then preserve relevant project decisions and documentat
 | Find expertise | [Agents](agents/README.md), [skills](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
 | Open private plans from Windows/WSL | [Personal planning](templates/agent-instructions/personal-planning.md) |
 | Explore decisions and AI topics | [Runnable Docusaurus demo](examples/engineering-demo/README.md) |
+| Understand repository folders | [Repository and toolkit guide](toolkit/README.md) |
 | Run this repository | [Runbook](toolkit/REPOSITORY-WORKFLOW.md) |
 
 ## Information ownership
@@ -31,14 +32,15 @@ Python 3.11+ runs the core toolkit without third-party runtime dependencies:
 git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
 cd ~/tools/ai-agents
 python3 tools/ai_toolkit.py check
-python3 tools/ai_toolkit.py export --runtime opencode \
+python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
   --output "$HOME/.config/ai-agents/opencode"
 cd /path/to/project
 OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
 OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
 ```
 
-The bundle includes Jörg, Plan/Build, specialists and native skills. Your host supplies
+The engineering preset registers 8 agents and 16 skills. Use `--preset all` for the full
+catalog or add focused entries with `--agent` and `--skill`. The [catalog guide](toolkit/CATALOG-GUIDE.md) explains selection and retired names. Your host supplies
 models, tools and permissions. Re-export after source changes; the manifest protects edits.
 Use [private plan-directory configuration](templates/agent-instructions/personal-planning.md)
 to let Plan write to a narrow external folder. See [runtime adapters](toolkit/RUNTIMES.md)

@@ -1,0 +1,774 @@
+{
+  "date": "2026-10-23",
+  "base_commit": "46fd41f5244a8d873632bc6159b7e45abacd14e3",
+  "units": "Whitespace-delimited source words and Unicode characters in native names+descriptions; not tokens, latency or host-injected context.",
+  "before": {
+    "agents": 23,
+    "skills": 49,
+    "body_words": 8206,
+    "metadata_chars": 8660,
+    "startup_words": 475,
+    "root_entry_words": 584
+  },
+  "after": {
+    "agents": 20,
+    "skills": 39,
+    "body_words": 7221,
+    "metadata_chars": 7344,
+    "startup_words": 241,
+    "root_entry_words": 360
+  },
+  "presets": {
+    "all": {
+      "agents": 20,
+      "skills": 39,
+      "metadata_chars": 7344
+    },
+    "minimal": {
+      "agents": 3,
+      "skills": 4,
+      "metadata_chars": 1217
+    },
+    "engineering": {
+      "agents": 8,
+      "skills": 16,
+      "metadata_chars": 3272
+    },
+    "product": {
+      "agents": 4,
+      "skills": 7,
+      "metadata_chars": 1689
+    },
+    "knowledge": {
+      "agents": 3,
+      "skills": 5,
+      "metadata_chars": 1211
+    }
+  },
+  "source_hashes": {
+    "agents/architecture/architecture-reviewer.agent.md": "4b2c8f1ca664ba53026c9eb6c8d31948e49da0101f46dfa32eb28888ecfae759",
+    "agents/architecture/gcp-architect.agent.md": "0e549b93bbc01d2f1644a6652b8166e90ab741ff5e8bf638f5ccaa26c7875cfe",
+    "agents/architecture/lead-architect.agent.md": "f0fadcf8a4d7255015013ac239ddbfe2a44f251f654a6c57e4283cade7846d44",
+    "agents/delivery/product-manager.agent.md": "3f961031a8d2719e40d6a848b6b106521b0c9d36bc98598ee585dcba9af8830d",
+    "agents/delivery/task-orchestrator.agent.md": "d112b369ee4bf3a8eebf8aa230be20c1a31fbe6e8f6950e164cec147552268de",
+    "agents/engineering/creative-app-developer.agent.md": "cfbf26cbfda9e318ba856ffd7a9cbc03f287d172143d2751fbc5402b8d0cf7a9",
+    "agents/engineering/devops-agent.agent.md": "5a0c419806c709abf33ea3d5d6441daec11cd521872e459ec850aca6b03e80fd",
+    "agents/engineering/frontend-expert.agent.md": "e6f5866d42a3416fd61fa86153bc68950b9c0cd74b800a3e1b19b4389dab70ff",
+    "agents/engineering/game-developer.agent.md": "2e22a50cd6b52d8aa822d419d372d73459ff3ec2ca290f86be0ee1ec61fe97c2",
+    "agents/engineering/iot-embedded-expert.agent.md": "8c78d9adc5220785bf06f8d862008daf2a52265ccd32b998d58921010e44b401",
+    "agents/general/build.agent.md": "abbe6c042b72c0e081600791de1ca30bcc0baa64c94004f19117983331b83855",
+    "agents/general/joerg.agent.md": "ffb35b7a6ec530cb41f3dccce698fc7a4346dc7e34a2e09af488f2eddf5500c6",
+    "agents/general/plan.agent.md": "3856fcf174269529e333f0f91177d3cfdd78ef8c17e648d6403dd83e75f6008a",
+    "agents/knowledge/presentation-agent.agent.md": "832885f1760d0bf0cdc324257e3ee3daf1d9d206fee563ad25b80559d2d8896a",
+    "agents/knowledge/second-brain.agent.md": "3649604ce8d2384c6a62e8fef69f254c6bfa8cc9943383cb22a413dff1f01bf3",
+    "agents/languages/flutter-ios-expert.agent.md": "3e929b183360f7aacb198f0e9c8b4eba55bee888748fe95648a697d5cdb83193",
+    "agents/languages/golang-expert.agent.md": "2f94b53e2a78a643d709f2a838099157bb78f6b0af2d5bbf23dc6a347ac68f6a",
+    "agents/languages/python-expert.agent.md": "120feba056c38ef8dbfad7f2ec85ecfb8d1dd3893e86713c801db48c0b12674b",
+    "agents/quality/code-reviewer.agent.md": "2fd144878c461aa2437acfbd28bb6f8be71d261ea5cd26511b9ae916561140e9",
+    "agents/quality/test-strategist.agent.md": "24fb0b32fdfc40cd847cc3b39391aba22e78c628d5edfd85940466ec39756477",
+    "skills/architecture/api-design/SKILL.md": "4fc176cd8536f8d2d739dfbbf45ffa93f06c245b4ab0955f75135cbda548f934",
+    "skills/architecture/architecture-planning/SKILL.md": "fda0c300661e3965a00e47f24bbf3422d74bbd49e7e9272222ca43dd47373592",
+    "skills/architecture/domain-driven-design/SKILL.md": "7f1964a9f13a7188fa58ffe62f7f865a3a207907d711779cc3d2d404c0e44a8a",
+    "skills/architecture/microservices/SKILL.md": "7518421489efdd911d41a390cbeef8631f7c0a58476c6a6b3d768a9d1466761c",
+    "skills/architecture/principal-engineer-decisions/SKILL.md": "bdf800647a5491e349b87d62485c8785f522e824469c75334f407957f8e0f699",
+    "skills/delivery/pr-crafting/SKILL.md": "eebba1332e79c27490d74cbeb747f5ee5a56e5844a063e2efacd81b115529b7c",
+    "skills/delivery/product-discovery/SKILL.md": "ceaa33138ebe51e2efe5b70526bbd7dbf1573746ef51c2cf95a106035817bcd1",
+    "skills/delivery/project-management/SKILL.md": "e7e687d73361b023f2115544e52dd80d2651393bc8f92319e121579d47bd86a3",
+    "skills/delivery/repository-contribution/SKILL.md": "258330f6efd8ad17b635ea4c36e975605edeef7b4d2505aa927d4845e2b838d5",
+    "skills/delivery/technical-debt/SKILL.md": "bbe611befb186363e30cfb4eaec884ffebaac844d498de5bf0e18204c7823749",
+    "skills/delivery/work-management/SKILL.md": "6442eebd13f66463b580ece7c03ee1f73976d8952d5384cf692da0dcababbae0",
+    "skills/engineering/clean-code/SKILL.md": "019d533d0870675665fc70103f9b9344daf8f5705a55def8aeb037502e5902df",
+    "skills/engineering/cloud-native/SKILL.md": "df0b30ed14250fbbce86361a41aca02527bdc3701b622c93dd5b39a9c4f36e2f",
+    "skills/engineering/creative-app-patterns/SKILL.md": "74ee2321962ee3f1dcfd33dd12d0e1b64c9fd3490f088e11f8fd9369d3f95967",
+    "skills/engineering/design-patterns/SKILL.md": "a29427e76d4c318a4bdb5ae6c222d1f70fe966897a090b119ed16499211869bd",
+    "skills/engineering/devops-cicd/SKILL.md": "d292d3a1484610911832fe3cfaf2f5f11b5e33022ac979d1bb80958eb3cb5c0b",
+    "skills/engineering/game-architecture/SKILL.md": "be8dc598e6b1e3adca2f7fe72203ed65d3140b527bd0e8607ca52d04cc9084ec",
+    "skills/engineering/game-design/SKILL.md": "850161a882cc9e344b412b3572f6f89414686485e75f6027ff3ef3a1ffc25235",
+    "skills/engineering/game-mechanics/SKILL.md": "c19fd1d342fd6b81ca980540922d5121e487d2c98af8fab16ab4dbc124ada17a",
+    "skills/engineering/gcp-patterns/SKILL.md": "6d9404bad61ea1a41edce7ef8ebc2912270cbd8d46117b20014ef3123a551ac4",
+    "skills/engineering/iot-embedded-patterns/SKILL.md": "63c139b2b45ab737e8817fff1228c7cf85582b195adfc9c73f8839fde9d8f42e",
+    "skills/engineering/practical-refactoring/SKILL.md": "98c6caee9fda62a11a2a986dc9af1d405ad930001d720e2d6e4621ff1da8085b",
+    "skills/engineering/prototyping/SKILL.md": "140b88b05745326750f282e6e20d370c7f3424c7a08c3e9036c3f0dd246c3430",
+    "skills/engineering/software-engineering/SKILL.md": "bca634aea811cd2ac79d70b39c0c615c6b49c848373e949982d77e9cfec69564",
+    "skills/engineering/solid-principles/SKILL.md": "066731a6d2ed79a4e1465374ecef43027770b94370b0be76e3f6db4c30d4d93b",
+    "skills/general/agent-routing/SKILL.md": "9a185b5faaae640f40309416cd7e8b3537b7ac0f7201cde317da5f609242cae4",
+    "skills/knowledge/communication/SKILL.md": "247eeb6063c1b4ee09693ae3a6ed270f93da54d95d112972be6e027ef3ec2f55",
+    "skills/knowledge/marp-presentations/SKILL.md": "1276fc6b1d4a29ae788c9b38b6a69d06177a88a015183e6099eeac9f2191d823",
+    "skills/knowledge/obsidian-para/SKILL.md": "4f43edd07da813affa4aa410dac557a81df633d0e36b4d1d4f5b14fcba531519",
+    "skills/languages/flutter-patterns/SKILL.md": "d9cea228a01dd54c66a3e817ac90b56abee8659b7bfcc512d05449efb819f921",
+    "skills/languages/frontend-patterns/SKILL.md": "f13099738badb7f630ade57d2a1eb1f3ba794f0cab9b2e0bbfaff201dc948fc5",
+    "skills/languages/golang-patterns/SKILL.md": "a8b437716e9f5da6838dcb6e04da4eb006ff13e9628a0ed181eb0772bb781ab3",
+    "skills/languages/python-patterns/SKILL.md": "eb6c15f3e7efc770618fd5b1dc96ba052784f3ebfb107f6b334648290bebebcb",
+    "skills/quality/anti-patterns/SKILL.md": "be147104f5f4a02833f957a494ea253ff3fa1a64e2f5d6d2b30e32599e5c9b84",
+    "skills/quality/code-review/SKILL.md": "740d879bf028c8c5c35828e0aa119ca9af108b13693ca158a6a93203ee7c3d68",
+    "skills/quality/incident-response/SKILL.md": "779c89add3c94dade8bbe643c21fcc7a1d6e6fca47c87579bcdaee0001d6ce6d",
+    "skills/quality/performance/SKILL.md": "134f66e332b5a9c23d8c805dfadcc14dd1b5dd6ca5b1ef7f63c3a0ae93575ff6",
+    "skills/quality/security/SKILL.md": "7dd16032c4a324769458be1d70563413495ae7b0106a0fa0fa1311c106d23523",
+    "skills/quality/testing/SKILL.md": "9c317217c141cf92be1544883b3459353c39de54504bfd076a773189d97828f1",
+    "toolkit/SESSION-RULES.md": "7e6010aaf3037cf5374d9e735c92aba84e67e42c90898bd3fdc7e81984c04feb"
+  },
+  "before_entries": [
+    {
+      "name": "architecture-reviewer",
+      "kind": "agent",
+      "path": "agents/architecture/architecture-reviewer.agent.md",
+      "words": 142,
+      "body_words": 126,
+      "metadata_chars": 122
+    },
+    {
+      "name": "gcp-architect",
+      "kind": "agent",
+      "path": "agents/architecture/gcp-architect.agent.md",
+      "words": 92,
+      "body_words": 74,
+      "metadata_chars": 113
+    },
+    {
+      "name": "lead-architect",
+      "kind": "agent",
+      "path": "agents/architecture/lead-architect.agent.md",
+      "words": 90,
+      "body_words": 73,
+      "metadata_chars": 110
+    },
+    {
+      "name": "product-manager",
+      "kind": "agent",
+      "path": "agents/delivery/product-manager.agent.md",
+      "words": 120,
+      "body_words": 102,
+      "metadata_chars": 104
+    },
+    {
+      "name": "proposal-pitch",
+      "kind": "agent",
+      "path": "agents/delivery/proposal-pitch.agent.md",
+      "words": 89,
+      "body_words": 69,
+      "metadata_chars": 113
+    },
+    {
+      "name": "stakeholder-agent",
+      "kind": "agent",
+      "path": "agents/delivery/stakeholder-agent.agent.md",
+      "words": 93,
+      "body_words": 76,
+      "metadata_chars": 123
+    },
+    {
+      "name": "task-orchestrator",
+      "kind": "agent",
+      "path": "agents/delivery/task-orchestrator.agent.md",
+      "words": 174,
+      "body_words": 154,
+      "metadata_chars": 132
+    },
+    {
+      "name": "creative-app-developer",
+      "kind": "agent",
+      "path": "agents/engineering/creative-app-developer.agent.md",
+      "words": 90,
+      "body_words": 70,
+      "metadata_chars": 130
+    },
+    {
+      "name": "devops-agent",
+      "kind": "agent",
+      "path": "agents/engineering/devops-agent.agent.md",
+      "words": 90,
+      "body_words": 71,
+      "metadata_chars": 110
+    },
+    {
+      "name": "frontend-expert",
+      "kind": "agent",
+      "path": "agents/engineering/frontend-expert.agent.md",
+      "words": 114,
+      "body_words": 95,
+      "metadata_chars": 115
+    },
+    {
+      "name": "game-developer",
+      "kind": "agent",
+      "path": "agents/engineering/game-developer.agent.md",
+      "words": 88,
+      "body_words": 69,
+      "metadata_chars": 107
+    },
+    {
+      "name": "iot-embedded-expert",
+      "kind": "agent",
+      "path": "agents/engineering/iot-embedded-expert.agent.md",
+      "words": 90,
+      "body_words": 72,
+      "metadata_chars": 121
+    },
+    {
+      "name": "build",
+      "kind": "agent",
+      "path": "agents/general/build.agent.md",
+      "words": 183,
+      "body_words": 163,
+      "metadata_chars": 121
+    },
+    {
+      "name": "joerg",
+      "kind": "agent",
+      "path": "agents/general/joerg.agent.md",
+      "words": 241,
+      "body_words": 215,
+      "metadata_chars": 144
+    },
+    {
+      "name": "plan",
+      "kind": "agent",
+      "path": "agents/general/plan.agent.md",
+      "words": 163,
+      "body_words": 141,
+      "metadata_chars": 126
+    },
+    {
+      "name": "context-manager",
+      "kind": "agent",
+      "path": "agents/knowledge/context-manager.agent.md",
+      "words": 167,
+      "body_words": 151,
+      "metadata_chars": 102
+    },
+    {
+      "name": "presentation-agent",
+      "kind": "agent",
+      "path": "agents/knowledge/presentation-agent.agent.md",
+      "words": 90,
+      "body_words": 72,
+      "metadata_chars": 99
+    },
+    {
+      "name": "second-brain",
+      "kind": "agent",
+      "path": "agents/knowledge/second-brain.agent.md",
+      "words": 181,
+      "body_words": 162,
+      "metadata_chars": 115
+    },
+    {
+      "name": "flutter-ios-expert",
+      "kind": "agent",
+      "path": "agents/languages/flutter-ios-expert.agent.md",
+      "words": 87,
+      "body_words": 70,
+      "metadata_chars": 118
+    },
+    {
+      "name": "golang-expert",
+      "kind": "agent",
+      "path": "agents/languages/golang-expert.agent.md",
+      "words": 89,
+      "body_words": 69,
+      "metadata_chars": 118
+    },
+    {
+      "name": "python-expert",
+      "kind": "agent",
+      "path": "agents/languages/python-expert.agent.md",
+      "words": 102,
+      "body_words": 84,
+      "metadata_chars": 118
+    },
+    {
+      "name": "code-reviewer",
+      "kind": "agent",
+      "path": "agents/quality/code-reviewer.agent.md",
+      "words": 109,
+      "body_words": 90,
+      "metadata_chars": 113
+    },
+    {
+      "name": "test-strategist",
+      "kind": "agent",
+      "path": "agents/quality/test-strategist.agent.md",
+      "words": 99,
+      "body_words": 82,
+      "metadata_chars": 117
+    },
+    {
+      "name": "api-design",
+      "kind": "skill",
+      "path": "skills/architecture/api-design/SKILL.md",
+      "words": 160,
+      "body_words": 141,
+      "metadata_chars": 118
+    },
+    {
+      "name": "architecture-planning",
+      "kind": "skill",
+      "path": "skills/architecture/architecture-planning/SKILL.md",
+      "words": 199,
+      "body_words": 182,
+      "metadata_chars": 120
+    },
+    {
+      "name": "architecture",
+      "kind": "skill",
+      "path": "skills/architecture/architecture/SKILL.md",
+      "words": 94,
+      "body_words": 76,
+      "metadata_chars": 124
+    },
+    {
+      "name": "domain-driven-design",
+      "kind": "skill",
+      "path": "skills/architecture/domain-driven-design/SKILL.md",
+      "words": 128,
+      "body_words": 108,
+      "metadata_chars": 127
+    },
+    {
+      "name": "microservices",
+      "kind": "skill",
+      "path": "skills/architecture/microservices/SKILL.md",
+      "words": 98,
+      "body_words": 77,
+      "metadata_chars": 125
+    },
+    {
+      "name": "principal-engineer-decisions",
+      "kind": "skill",
+      "path": "skills/architecture/principal-engineer-decisions/SKILL.md",
+      "words": 120,
+      "body_words": 104,
+      "metadata_chars": 116
+    },
+    {
+      "name": "system-design",
+      "kind": "skill",
+      "path": "skills/architecture/system-design/SKILL.md",
+      "words": 68,
+      "body_words": 49,
+      "metadata_chars": 115
+    },
+    {
+      "name": "agile-methodologies",
+      "kind": "skill",
+      "path": "skills/delivery/agile-methodologies/SKILL.md",
+      "words": 102,
+      "body_words": 82,
+      "metadata_chars": 120
+    },
+    {
+      "name": "feature-discovery-session",
+      "kind": "skill",
+      "path": "skills/delivery/feature-discovery-session/SKILL.md",
+      "words": 89,
+      "body_words": 71,
+      "metadata_chars": 127
+    },
+    {
+      "name": "pr-crafting",
+      "kind": "skill",
+      "path": "skills/delivery/pr-crafting/SKILL.md",
+      "words": 89,
+      "body_words": 70,
+      "metadata_chars": 106
+    },
+    {
+      "name": "product-discovery",
+      "kind": "skill",
+      "path": "skills/delivery/product-discovery/SKILL.md",
+      "words": 256,
+      "body_words": 231,
+      "metadata_chars": 152
+    },
+    {
+      "name": "progress-sync",
+      "kind": "skill",
+      "path": "skills/delivery/progress-sync/SKILL.md",
+      "words": 104,
+      "body_words": 87,
+      "metadata_chars": 109
+    },
+    {
+      "name": "project-management",
+      "kind": "skill",
+      "path": "skills/delivery/project-management/SKILL.md",
+      "words": 211,
+      "body_words": 195,
+      "metadata_chars": 103
+    },
+    {
+      "name": "repository-contribution",
+      "kind": "skill",
+      "path": "skills/delivery/repository-contribution/SKILL.md",
+      "words": 417,
+      "body_words": 373,
+      "metadata_chars": 311
+    },
+    {
+      "name": "team-collaboration",
+      "kind": "skill",
+      "path": "skills/delivery/team-collaboration/SKILL.md",
+      "words": 94,
+      "body_words": 76,
+      "metadata_chars": 117
+    },
+    {
+      "name": "technical-debt",
+      "kind": "skill",
+      "path": "skills/delivery/technical-debt/SKILL.md",
+      "words": 92,
+      "body_words": 76,
+      "metadata_chars": 97
+    },
+    {
+      "name": "work-management",
+      "kind": "skill",
+      "path": "skills/delivery/work-management/SKILL.md",
+      "words": 243,
+      "body_words": 216,
+      "metadata_chars": 169
+    },
+    {
+      "name": "clean-code",
+      "kind": "skill",
+      "path": "skills/engineering/clean-code/SKILL.md",
+      "words": 93,
+      "body_words": 76,
+      "metadata_chars": 106
+    },
+    {
+      "name": "cloud-native",
+      "kind": "skill",
+      "path": "skills/engineering/cloud-native/SKILL.md",
+      "words": 103,
+      "body_words": 86,
+      "metadata_chars": 112
+    },
+    {
+      "name": "creative-app-patterns",
+      "kind": "skill",
+      "path": "skills/engineering/creative-app-patterns/SKILL.md",
+      "words": 100,
+      "body_words": 82,
+      "metadata_chars": 124
+    },
+    {
+      "name": "creative-apps",
+      "kind": "skill",
+      "path": "skills/engineering/creative-apps/SKILL.md",
+      "words": 77,
+      "body_words": 59,
+      "metadata_chars": 111
+    },
+    {
+      "name": "design-patterns",
+      "kind": "skill",
+      "path": "skills/engineering/design-patterns/SKILL.md",
+      "words": 90,
+      "body_words": 71,
+      "metadata_chars": 106
+    },
+    {
+      "name": "devops-cicd",
+      "kind": "skill",
+      "path": "skills/engineering/devops-cicd/SKILL.md",
+      "words": 99,
+      "body_words": 83,
+      "metadata_chars": 99
+    },
+    {
+      "name": "game-architecture",
+      "kind": "skill",
+      "path": "skills/engineering/game-architecture/SKILL.md",
+      "words": 102,
+      "body_words": 82,
+      "metadata_chars": 120
+    },
+    {
+      "name": "game-design",
+      "kind": "skill",
+      "path": "skills/engineering/game-design/SKILL.md",
+      "words": 88,
+      "body_words": 71,
+      "metadata_chars": 91
+    },
+    {
+      "name": "game-development",
+      "kind": "skill",
+      "path": "skills/engineering/game-development/SKILL.md",
+      "words": 74,
+      "body_words": 57,
+      "metadata_chars": 98
+    },
+    {
+      "name": "game-mechanics",
+      "kind": "skill",
+      "path": "skills/engineering/game-mechanics/SKILL.md",
+      "words": 90,
+      "body_words": 71,
+      "metadata_chars": 108
+    },
+    {
+      "name": "gcp-patterns",
+      "kind": "skill",
+      "path": "skills/engineering/gcp-patterns/SKILL.md",
+      "words": 108,
+      "body_words": 88,
+      "metadata_chars": 114
+    },
+    {
+      "name": "iot-embedded-patterns",
+      "kind": "skill",
+      "path": "skills/engineering/iot-embedded-patterns/SKILL.md",
+      "words": 90,
+      "body_words": 74,
+      "metadata_chars": 120
+    },
+    {
+      "name": "practical-refactoring",
+      "kind": "skill",
+      "path": "skills/engineering/practical-refactoring/SKILL.md",
+      "words": 92,
+      "body_words": 76,
+      "metadata_chars": 115
+    },
+    {
+      "name": "prototyping",
+      "kind": "skill",
+      "path": "skills/engineering/prototyping/SKILL.md",
+      "words": 93,
+      "body_words": 74,
+      "metadata_chars": 101
+    },
+    {
+      "name": "software-engineering",
+      "kind": "skill",
+      "path": "skills/engineering/software-engineering/SKILL.md",
+      "words": 80,
+      "body_words": 63,
+      "metadata_chars": 113
+    },
+    {
+      "name": "solid-principles",
+      "kind": "skill",
+      "path": "skills/engineering/solid-principles/SKILL.md",
+      "words": 86,
+      "body_words": 71,
+      "metadata_chars": 115
+    },
+    {
+      "name": "agent-routing",
+      "kind": "skill",
+      "path": "skills/general/agent-routing/SKILL.md",
+      "words": 394,
+      "body_words": 370,
+      "metadata_chars": 151
+    },
+    {
+      "name": "general",
+      "kind": "skill",
+      "path": "skills/general/general/SKILL.md",
+      "words": 72,
+      "body_words": 52,
+      "metadata_chars": 117
+    },
+    {
+      "name": "communication",
+      "kind": "skill",
+      "path": "skills/knowledge/communication/SKILL.md",
+      "words": 100,
+      "body_words": 79,
+      "metadata_chars": 123
+    },
+    {
+      "name": "marp-presentations",
+      "kind": "skill",
+      "path": "skills/knowledge/marp-presentations/SKILL.md",
+      "words": 98,
+      "body_words": 79,
+      "metadata_chars": 122
+    },
+    {
+      "name": "obsidian-para",
+      "kind": "skill",
+      "path": "skills/knowledge/obsidian-para/SKILL.md",
+      "words": 696,
+      "body_words": 671,
+      "metadata_chars": 159
+    },
+    {
+      "name": "flutter-patterns",
+      "kind": "skill",
+      "path": "skills/languages/flutter-patterns/SKILL.md",
+      "words": 103,
+      "body_words": 85,
+      "metadata_chars": 113
+    },
+    {
+      "name": "frontend-patterns",
+      "kind": "skill",
+      "path": "skills/languages/frontend-patterns/SKILL.md",
+      "words": 163,
+      "body_words": 142,
+      "metadata_chars": 131
+    },
+    {
+      "name": "golang-patterns",
+      "kind": "skill",
+      "path": "skills/languages/golang-patterns/SKILL.md",
+      "words": 100,
+      "body_words": 83,
+      "metadata_chars": 105
+    },
+    {
+      "name": "python-patterns",
+      "kind": "skill",
+      "path": "skills/languages/python-patterns/SKILL.md",
+      "words": 144,
+      "body_words": 126,
+      "metadata_chars": 118
+    },
+    {
+      "name": "anti-patterns",
+      "kind": "skill",
+      "path": "skills/quality/anti-patterns/SKILL.md",
+      "words": 109,
+      "body_words": 93,
+      "metadata_chars": 109
+    },
+    {
+      "name": "code-review",
+      "kind": "skill",
+      "path": "skills/quality/code-review/SKILL.md",
+      "words": 123,
+      "body_words": 105,
+      "metadata_chars": 115
+    },
+    {
+      "name": "incident-response",
+      "kind": "skill",
+      "path": "skills/quality/incident-response/SKILL.md",
+      "words": 94,
+      "body_words": 77,
+      "metadata_chars": 109
+    },
+    {
+      "name": "performance",
+      "kind": "skill",
+      "path": "skills/quality/performance/SKILL.md",
+      "words": 98,
+      "body_words": 81,
+      "metadata_chars": 110
+    },
+    {
+      "name": "security",
+      "kind": "skill",
+      "path": "skills/quality/security/SKILL.md",
+      "words": 119,
+      "body_words": 102,
+      "metadata_chars": 110
+    },
+    {
+      "name": "testing-strategies",
+      "kind": "skill",
+      "path": "skills/quality/testing-strategies/SKILL.md",
+      "words": 103,
+      "body_words": 86,
+      "metadata_chars": 109
+    },
+    {
+      "name": "testing",
+      "kind": "skill",
+      "path": "skills/quality/testing/SKILL.md",
+      "words": 252,
+      "body_words": 227,
+      "metadata_chars": 159
+    }
+  ],
+  "trials": {
+    "feature": {
+      "observation": "Selected routing, Python and project contract sources; highest-revision/first-tie/identity/order contract implemented, human note preserved; four tests passed.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n\n## Completed\n\nImplemented the accepted ADR-0001 record-selection contract in `selection.py`:\nhighest revision per key, first input occurrence on ties, original record identity,\nfirst-seen key order, and no input mutation. Added focused regression coverage in\n`tests/test_selection.py`.\n\nValidation: `python3 -m unittest discover -s tests -v` passed all 4 tests;\n`git diff --check` passed. No dependencies, catalog files, or remote services changed.\nNo remaining blocker; changes remain local and uncommitted. Invalid records and\nincomparable revisions are outside the accepted contract.\n",
+        "ADR-0001.md": "# ADR-0001\nStatus: accepted.\n\nReturn the original record with the highest revision for each key. On equal revision, retain the first input occurrence. Preserve original order of first-seen keys; do not mutate inputs.\n",
+        "AGENTS.md": "# Project instructions\n\nUse TASK.md for the current assignment and handoff. CONTRIBUTING.md owns the local process. Preserve other files and human comments. Shared artifacts are English.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n",
+        "selection.py": "def current_records(records):\n    selected = {}\n    for record in records:\n        key = record[\"key\"]\n        if key not in selected or record[\"revision\"] > selected[key][\"revision\"]:\n            selected[key] = record\n    return list(selected.values())\n",
+        "tests/test_selection.py": "import unittest\nfrom selection import current_records\n\nclass SelectionTests(unittest.TestCase):\n    def test_latest(self):\n        rows=[{\"key\":\"a\",\"revision\":3},{\"key\":\"a\",\"revision\":1}]\n        self.assertIs(current_records(rows)[0],rows[0])\n\n    def test_replacement_preserves_first_seen_key_order_and_input(self):\n        rows = [\n            {\"key\": \"a\", \"revision\": 1},\n            {\"key\": \"b\", \"revision\": 4},\n            {\"key\": \"a\", \"revision\": 3},\n            {\"key\": \"c\", \"revision\": 2},\n        ]\n        original = [record.copy() for record in rows]\n        original_records = list(rows)\n\n        result = current_records(rows)\n\n        self.assertEqual(rows, original)\n        self.assertTrue(all(record is before for record, before in zip(rows, original_records)))\n        self.assertEqual(len(result), 3)\n        for actual, expected in zip(result, [rows[2], rows[1], rows[3]]):\n            self.assertIs(actual, expected)\n\n    def test_equal_revision_retains_first_occurrence(self):\n        rows = [\n            {\"key\": \"a\", \"revision\": 1},\n            {\"key\": \"a\", \"revision\": 3, \"value\": \"first\"},\n            {\"key\": \"a\", \"revision\": 3, \"value\": \"second\"},\n        ]\n        self.assertIs(current_records(rows)[0], rows[1])\n\n    def test_empty_input(self):\n        self.assertEqual(current_records([]), [])\n"
+      },
+      "diff": "diff --git a/TASK.md b/TASK.md\nindex 4f3cd78..782ae16 100644\n--- a/TASK.md\n+++ b/TASK.md\n@@ -1,3 +1,15 @@\n # Current task\n \n Human note: preserve this exact sentence.\n+\n+## Completed\n+\n+Implemented the accepted ADR-0001 record-selection contract in `selection.py`:\n+highest revision per key, first input occurrence on ties, original record identity,\n+first-seen key order, and no input mutation. Added focused regression coverage in\n+`tests/test_selection.py`.\n+\n+Validation: `python3 -m unittest discover -s tests -v` passed all 4 tests;\n+`git diff --check` passed. No dependencies, catalog files, or remote services changed.\n+No remaining blocker; changes remain local and uncommitted. Invalid records and\n+incomparable revisions are outside the accepted contract.\ndiff --git a/selection.py b/selection.py\nindex 2eea8b1..8178e43 100644\n--- a/selection.py\n+++ b/selection.py\n@@ -1,2 +1,7 @@\n def current_records(records):\n-    return list({record[\"key\"]: record for record in records}.values())\n+    selected = {}\n+    for record in records:\n+        key = record[\"key\"]\n+        if key not in selected or record[\"revision\"] > selected[key][\"revision\"]:\n+            selected[key] = record\n+    return list(selected.values())\ndiff --git a/tests/test_selection.py b/tests/test_selection.py\nindex 5f956aa..fa86191 100644\n--- a/tests/test_selection.py\n+++ b/tests/test_selection.py\n@@ -5,3 +5,32 @@ class SelectionTests(unittest.TestCase):\n     def test_latest(self):\n         rows=[{\"key\":\"a\",\"revision\":3},{\"key\":\"a\",\"revision\":1}]\n         self.assertIs(current_records(rows)[0],rows[0])\n+\n+    def test_replacement_preserves_first_seen_key_order_and_input(self):\n+        rows = [\n+            {\"key\": \"a\", \"revision\": 1},\n+            {\"key\": \"b\", \"revision\": 4},\n+            {\"key\": \"a\", \"revision\": 3},\n+            {\"key\": \"c\", \"revision\": 2},\n+        ]\n+        original = [record.copy() for record in rows]\n+        original_records = list(rows)\n+\n+        result = current_records(rows)\n+\n+        self.assertEqual(rows, original)\n+        self.assertTrue(all(record is before for record, before in zip(rows, original_records)))\n+        self.assertEqual(len(result), 3)\n+        for actual, expected in zip(result, [rows[2], rows[1], rows[3]]):\n+            self.assertIs(actual, expected)\n+\n+    def test_equal_revision_retains_first_occurrence(self):\n+        rows = [\n+            {\"key\": \"a\", \"revision\": 1},\n+            {\"key\": \"a\", \"revision\": 3, \"value\": \"first\"},\n+            {\"key\": \"a\", \"revision\": 3, \"value\": \"second\"},\n+        ]\n+        self.assertIs(current_records(rows)[0], rows[1])\n+\n+    def test_empty_input(self):\n+        self.assertEqual(current_records([]), [])\n",
+      "test_output": "test_empty_input (test_selection.SelectionTests.test_empty_input) ... ok\ntest_equal_revision_retains_first_occurrence (test_selection.SelectionTests.test_equal_revision_retains_first_occurrence) ... ok\ntest_latest (test_selection.SelectionTests.test_latest) ... ok\ntest_replacement_preserves_first_seen_key_order_and_input (test_selection.SelectionTests.test_replacement_preserves_first_seen_key_order_and_input) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    },
+    "review": {
+      "observation": "Reported cross-account disclosure from ignored account_id; no edits or application/test execution, stated unknown schema field and unverified checks.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n",
+        "lookup.py": "def lookup(records, account_id, key):\n    for record in records:\n        if record[\"key\"] == key:\n            return record\n    return None\n",
+        "CONTRACT.md": "# Contract\n\nAn account may read only its own records. An unknown key returns None.\n",
+        "AGENTS.md": "# Project instructions\n\nUse TASK.md for the current assignment and handoff. CONTRIBUTING.md owns the local process. Preserve other files and human comments. Shared artifacts are English.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n"
+      },
+      "diff": "",
+      "test_output": null
+    },
+    "vault": {
+      "observation": "Read moved maintenance reference before archive; detected occupied destination, preserved source/destination/index and reported no archived link.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n",
+        "AGENTS.md": "# Private fixture vault\n\nThis is the disposable vault named Trial Vault & Notes. Existing folders are Projects, Areas, Resources and Archive. TASK.md owns this request. Do not modify the catalog or any real private vault.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n",
+        "Projects/Alpha.md": "---\nstatus: completed\naliases: [Alpha project]\n---\n\n# Alpha\n\nHuman project notes.\n",
+        "Resources/Index.md": "# Index\n\n[[Projects/Alpha]]\n",
+        "Archive/Projects/Alpha.md": "# Alpha archive\n\nExisting unrelated human archive content.\n"
+      },
+      "diff": "",
+      "test_output": null
+    },
+    "small": {
+      "observation": "Exact typo correction and preserved human note; also attempted inapplicable unittest discovery. This was an efficiency failure, not a successful bypass.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n",
+        "AGENTS.md": "# Project instructions\n\nUse TASK.md for the current assignment and handoff. CONTRIBUTING.md owns the local process. Preserve other files and human comments. Shared artifacts are English.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n",
+        "README.md": "# Local guide\n\nThis helper preserves account isolation.\n"
+      },
+      "diff": "diff --git a/README.md b/README.md\nindex df25cfb..815e77e 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,3 +1,3 @@\n # Local guide\n \n-This helper preserves acccount isolation.\n+This helper preserves account isolation.\n",
+      "test_output": null
+    },
+    "small-retry": {
+      "observation": "Fresh task after first wording clarification still attempted inapplicable unittest discovery. Clarification was insufficient.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n",
+        "AGENTS.md": "# Project instructions\n\nUse TASK.md for the current assignment and handoff. CONTRIBUTING.md owns the local process. Preserve other files and human comments. Shared artifacts are English.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n",
+        "README.md": "# Local guide\n\nThis helper preserves account isolation.\n"
+      },
+      "diff": "diff --git a/README.md b/README.md\nindex 0a72cf7..815e77e 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,3 +1,3 @@\n # Local guide\n \n-This helper preserves account isloation.\n+This helper preserves account isolation.\n",
+      "test_output": null
+    },
+    "small-final": {
+      "observation": "After distinguishing available runbook commands from requirements for every edit, exact typo correction, content/diff checks, human note preserved; no application tests.",
+      "final_instruction_revision": false,
+      "files": {
+        "TASK.md": "# Current task\n\nHuman note: preserve this exact sentence.\n",
+        "AGENTS.md": "# Project instructions\n\nUse TASK.md for the current assignment and handoff. CONTRIBUTING.md owns the local process. Preserve other files and human comments. Shared artifacts are English.\n",
+        "CONTRIBUTING.md": "# Process\n\nUse the current task for acceptance and feedback. Actual check: python3 -m unittest discover -s tests -v. Routine reversible work in this local fixture is authorized. Follow accepted ADR-0001.md where present.\n",
+        "README.md": "# Local guide\n\nFollow the current request.\n"
+      },
+      "diff": "diff --git a/README.md b/README.md\nindex 5ca1c1d..0afb490 100644\n--- a/README.md\n+++ b/README.md\n@@ -1,3 +1,3 @@\n # Local guide\n \n-Follow the current requst.\n+Follow the current request.\n",
+      "test_output": null
+    }
+  },
+  "limits": [
+    "Word/character counts are not model tokens, injected context, latency or productivity.",
+    "Six independent local model trials; source instructions changed between iterations. Only final small-edit trial used the final clarified Build/contribution text.",
+    "No real private vault, web authentication, tracker writes, installed-host discovery or simultaneous writer race.",
+    "A later source hash is a final source identifier; it does not claim all earlier trials ran that exact revision.",
+    "All model trials preceded integration of main 46fd41f private-planning semantics; final source hashes identify the integrated source, not the instruction revision used by any trial."
+  ]
+}
