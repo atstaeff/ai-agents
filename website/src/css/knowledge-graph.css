@@ -1,11 +1,12 @@
 .atlas {
+  width: 100%;
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 32px;
   color: var(--ifm-font-color-base);
 }
 .atlas-heading {
-  padding: 52px 0 36px;
+  padding: 32px 0 28px;
 }
 .atlas .eyebrow {
   color: var(--site-muted);
@@ -15,14 +16,10 @@
   margin-bottom: 12px;
 }
 .atlas-heading h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.08;
   letter-spacing: -0.035em;
   margin: 0 0 22px;
-}
-.atlas-heading em {
-  font-style: normal;
-  color: var(--ifm-color-primary);
 }
 .atlas-heading > p:not(.eyebrow) {
   color: var(--site-muted);

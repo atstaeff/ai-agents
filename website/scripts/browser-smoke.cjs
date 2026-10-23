@@ -64,6 +64,10 @@ const { chromium } = require("playwright");
       .waitFor();
     assert.equal(await page.locator("g.area-node").count(), 3);
     assert.equal(await page.locator("g.record-node").count(), 0);
+    assert.ok(
+      (await page.locator("main.atlas").boundingBox()).width >= 1100,
+      "Desktop map must use its available width",
+    );
     assert.equal(
       dataRequests.length,
       0,

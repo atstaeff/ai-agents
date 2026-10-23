@@ -342,15 +342,8 @@ export default function KnowledgeGraphPage() {
       <main className="atlas">
         <header className="atlas-heading">
           <p className="eyebrow">ENGINEERING ATLAS · FICTIONAL PROJECT DEMO</p>
-          <h1>
-            See the system.
-            <br />
-            <em>Then the decision.</em>
-          </h1>
-          <p>
-            Start with areas. Open a decision only when you need its context.
-            <br />A useful map shows the right detail at the right time.
-          </p>
+          <h1>Project knowledge</h1>
+          <p>Explore shared decisions and their context, one area at a time.</p>
           <Link to={base + "demo-knowledge/intro/"}>
             How this knowledge map works ↗
           </Link>
@@ -657,7 +650,7 @@ export default function KnowledgeGraphPage() {
               <div className="section-heading">
                 <div>
                   <p className="eyebrow">OVERVIEW</p>
-                  <h2>Areas, not a wall of decisions.</h2>
+                  <h2>Explore by area</h2>
                 </div>
                 <p>
                   Open an area to browse its records.
