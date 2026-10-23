@@ -32,8 +32,10 @@ OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
 ```
 
 By default the adapter uses `mode` and singular `permission`, with no fixed model or plugin.
-Reviewers deny edit, shell and task tools. Plan has edit exceptions for `workspace/work/**`
-and `workspace/archive/**`. This is a planning guardrail, not an OS sandbox: consider other
+Reviewers and Plan deny edit, shell and task tools by default. An explicit
+`--plan-directory /absolute/private/project/plans` grants Plan Markdown editing and external
+access only below that existing folder; local instructions record the location. See
+[private planning](../templates/agent-instructions/personal-planning.md). This is a planning guardrail, not an OS sandbox: consider other
 installed tools and project configuration. Build and Jörg use normal host permissions.
 Do not install unrestricted write tools on a profile intended to be read-only.
 

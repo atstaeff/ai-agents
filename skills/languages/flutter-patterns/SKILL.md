@@ -13,10 +13,6 @@ description: "Build, review or debug a Flutter application, including platform i
 4. Check semantics, text scaling, keyboard/focus behavior and platform-specific permissions.
 5. Run relevant Dart analysis, unit/widget tests and the available platform build; report unavailable device validation.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/guide.md): load only the section relevant to the task.

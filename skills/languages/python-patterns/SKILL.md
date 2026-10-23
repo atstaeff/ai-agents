@@ -13,10 +13,6 @@ description: "Write, review or refactor Python using dataclasses, explicit bound
 4. Use small functions and protocols at real substitution boundaries. Avoid unnecessary repository, event-bus or inheritance layers.
 5. Close resources, preserve tracebacks and use timezone-aware timestamps. Test behavior and boundary failures with minimal mocking.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/guide.md): load only the section relevant to the task.

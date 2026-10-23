@@ -26,6 +26,15 @@ Read the destination note and nearby conventions before changing anything. If ac
 4. Keep project status and actionable tasks in the existing project note or linked work record; avoid two manually maintained task lists.
 5. Extract only reusable conclusions from work, including a source link and the date when it affects validity. Do not paste entire chat transcripts by default.
 
+## Personal engineering plans
+
+Keep one working plan per substantial outcome in the vault's existing project folder.
+Store goal, acceptance, steps, actual checks and one resume point. Do not mirror it into
+an issue or repository. Respect customer policy before storing project material privately.
+After implementation, preserve significant decisions and current documentation in the
+shared project, then close/archive the personal plan. If the vault is unavailable, state
+that the plan is unsaved and continue in-session without a substitute repository file.
+
 ## Safe maintenance
 
 Before a move, inspect inbound wikilinks, Markdown links, embeds and relative paths. A plain filesystem move does not trigger Obsidian's automatic link update. Plan and verify link updates, or leave the note in place with an index link. Respect OneDrive synchronization and reread changed files before saving. Do not bulk rename, delete, flatten folders or install community plugins without a specific request.

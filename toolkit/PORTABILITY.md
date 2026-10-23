@@ -24,14 +24,14 @@ configure a tool to read it.
 ## Use the project’s tooling map
 
 Read applicable AGENTS.md instructions and their referenced project/process sources,
-and the [operating model](OPERATING-MODEL.md#let-each-project-choose-its-tools).
+and the [operating model](OPERATING-MODEL.md).
 Use [legacy configuration](PROJECT-CONFIG.md) only when the project still adopts it.
 Resolve authoritative locations and permitted actions from the project, not from the
 model name, the current host, an available connector or this catalog’s examples.
 
 | Purpose | GitHub-oriented project | Jira-oriented project |
 | --- | --- | --- |
-| Assignment and current plan | GitHub issue, prioritized in Projects | Jira ticket, prioritized in the project’s board |
+| Shared assignment and acceptance | GitHub issue, prioritized in Projects | Jira ticket, prioritized in the project’s board |
 | Code and review evidence | Linked GitHub PR | Linked GitHub PR or GitLab MR |
 | Decisions and knowledge | Project-selected repository paths | Project-selected Confluence space or repository ADRs |
 | Questions and approval | Designated issue/review channel | Designated ticket/review channel |
@@ -89,3 +89,5 @@ Reviewed on 2026-10-10; verify against the installed version when adopting an ad
   [skills](https://code.claude.com/docs/en/skills): native layouts and tool allowlists.
 - [VS Code custom agents](https://code.visualstudio.com/docs/agent-customization/custom-agents):
   native profile fields; other Copilot surfaces may differ.
+
+Personal execution plans stay in the privately configured Second Brain, subject to project policy. A teammate resumes from shared project sources without needing that private plan.

@@ -62,7 +62,7 @@ class ProjectConfigTests(unittest.TestCase):
         data = cfg.validate(cfg.yaml.load(snippet, Loader=cfg.UniqueLoader))
         self.assertEqual(data['schema_version'], 2)
         self.assertEqual(data['process'], 'CONTRIBUTING.md')
-        self.assertEqual(data['decision_records'], 'architecture/decisions/')
+        self.assertEqual(data['decision_records'], 'knowledge/decisions/')
         with self.assertRaises(ValueError):
             cfg.validate(dict(data, version=1))
 

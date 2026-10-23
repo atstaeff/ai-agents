@@ -29,6 +29,9 @@
             "Work in GitHub": "https://github.com/atstaeff/ai-agents/issues"
           }
         ]
+      },
+      {
+        "Run the Graph Demo": "references/docusaurus-demo.md"
       }
     ]
   },
@@ -188,6 +191,12 @@
       },
       {
         "Skill Source": "templates/catalog/skill-template.md"
+      },
+      {
+        "Private Planning Setup": "templates/agent-instructions/personal-planning.md"
+      },
+      {
+        "Personal Working Plan": "templates/delivery/personal-plan.md"
       }
     ]
   },
@@ -221,6 +230,9 @@
       },
       {
         "Session Recovery": "getting-started/context-recovery.md"
+      },
+      {
+        "Private Plans and Shared Knowledge": "knowledge/decisions/adr-0004.md"
       }
     ]
   },

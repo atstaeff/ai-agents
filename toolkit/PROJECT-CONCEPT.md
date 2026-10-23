@@ -28,7 +28,7 @@ imports and web access must be verified with the chosen host; see [portability](
 | Stakeholders | Project facts or role map | Identify affected groups, priority, decision and acceptance roles |
 | Scope | Project facts or boundary page | Read included responsibilities, exclusions and constraints |
 | Process | CONTRIBUTING.md or adopted central process | Follow workflow, tools, quality gates and relevant skill routing |
-| Work and review | Assigned issue/ticket and linked PR | Keep one live plan, feedback, evidence and bounded handoff |
+| Work and review | Assigned issue/ticket and linked PR | Keep shared scope, acceptance, feedback, evidence and team handoff |
 | Current knowledge | Project-owned knowledge sources | Read affected contracts and update verified behavior |
 | Significant reasons | Project-owned decision records | Read relevant status/scope and preserve rationale |
 
@@ -65,8 +65,7 @@ override their verified source. Project exceptions belong with the project and i
 
 Use the [operating model](OPERATING-MODEL.md) and [shared working contract](WORKFLOW.md).
 Every assignment has an accountable human, active writer, bounded outcome, acceptance,
-dependencies and integration owner. Roles can be combined. One issue/ticket owns its live
-plan; a linked PR owns code/review evidence. Do not mirror editable plans across tools.
+dependencies and integration owner. Roles can be combined. One issue/ticket owns shared scope and acceptance; a linked PR owns code/review evidence. Personal execution plans stay in the Second Brain unless an explicitly shared plan is needed. Do not mirror editable plans across tools.
 
 For parallel implementation, use separate branches and working directories, explicit write
 scopes and agreed shared interfaces. Reserve overlapping work through the adopted shared
@@ -95,8 +94,8 @@ Keep current facts, historical rationale and execution progress at distinct owne
 | Uncertain behavior or design | Existing concept/spec | One designated living contract or marked historical snapshot |
 | Significant choice | Decision record | Context, alternatives, evidence, decision, consequences, owner and status |
 | Changed implementation | Affected current knowledge | Actual behavior, boundaries, source revision and verification |
-| Pause or writer/model switch | Existing work-item handoff | Result, revisions, evidence/limits, blockers, pending writes and next action |
-| Completed assignment | Close at agreed completion point | Plan and feedback as history; reusable knowledge and reasons remain findable |
+| Pause or writer/model switch | Private resume note, or existing work-item handoff for a teammate | Result, revisions, evidence/limits, blockers, pending writes and next action |
+| Completed assignment | Close at agreed completion point | Personal plan history in the Second Brain; shared feedback, reusable knowledge and reasons remain findable |
 | Significant incident | Existing incident review | Observed facts, recovery and owned follow-up issues |
 
 A proposal does not supersede an accepted ADR. Accepted replacements preserve the old
@@ -148,3 +147,5 @@ Static Markdown checks cannot establish semantic completeness or host discovery.
 Observe time to accepted result, review/reconstruction effort, rework and escaped defects.
 Improve repeated failure causes in their owning document, check or tool. Increasing the
 number of agents or mandatory pages is no evidence of higher throughput.
+
+Personal planning follows the [shared workflow](WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.

@@ -13,10 +13,6 @@ description: "Model business rules, aggregates, bounded contexts or domain termi
 4. Introduce aggregates, repositories or domain events only when they simplify invariants, persistence or a real integration.
 5. Test business behavior without infrastructure; record the few decisions that constrain future changes.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/domain-driven-design.md): load only the section relevant to the task.

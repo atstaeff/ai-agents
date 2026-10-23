@@ -1,59 +1,49 @@
-# Optional legacy YAML configuration
+# Project configuration
 
-New projects use [AGENTS.md](../AGENTS.md) and its linked sources; see
-[project adoption](ADOPT-PROJECT.md). No YAML file is required. This page preserves the
-existing declarative configuration contract for tools/projects that still use it.
-The validator does not discover or validate AGENTS.md and cannot establish prose quality.
+`AGENTS.md` is the shared entry point. Describe the project's purpose, scope, owners,
+process, source locations, commands and review policy there, linking existing documents
+instead of duplicating them. Local Markdown and authoritative web URLs are both valid.
+A project YAML is optional. Do not require both formats to describe the same facts.
 
-## Version 2: optional flat manifest
-
-An existing project may keep one root project.yaml when its tooling needs structured
-references. This illustrative snippet requires real referenced sources before use:
+Minimal legacy `project.yaml` example (optional):
 
 ```yaml
 schema_version: 2
-project_name: Customer Portal
-vision: product/overview.md#vision-and-goals
-stakeholders: team/stakeholders.md
-scope: product/overview.md#scope-and-boundaries
+project_name: Example
+vision: PROJECT.md#vision
+scope: PROJECT.md#scope
+stakeholders: knowledge/stakeholders.md
 process: CONTRIBUTING.md
-work_tracking: https://github.com/example/customer-portal/issues
-code_review: https://github.com/example/customer-portal/pulls
-knowledge_base: knowledge/
-decision_records: architecture/decisions/
+work_tracking: Current request
+knowledge_base: knowledge/README.md
+decision_records: knowledge/decisions/
 ```
 
-All fields except code_review are required within this optional format. Values are
-nonempty strings except integer schema_version. The four context/process references
-must be local Markdown, with optional section anchors; they may link remote detail.
-Work/review/knowledge/decision locations are strings. These restrictions belong to the
-legacy YAML validator, not to the AGENTS.md entry: AGENTS.md may directly adopt web sources.
+## Private plan settings
 
-## Version 1: existing tooling maps
+Keep personal plan paths, vault names, provider settings and credentials in user-local
+host instructions/configuration. See [personal planning](../templates/agent-instructions/personal-planning.md).
+The shared project needs only the policy that personal plans stay private. Respect
+project restrictions before placing customer information outside approved systems.
 
-[GitHub](../templates/customer-workspace/workspace/workspace.yml),
-[Jira](../templates/customer-workspace/examples/workspace-jira.yml) and
-[multi-repository](../templates/customer-workspace/examples/workspace-multi-repo.yml)
-examples remain readable. Their nested system/location and policy blocks are compatibility
-material, not required project structure. The extended fictional example uses workspace/
-so existing graph/adapter behavior and paths remain reproducible.
+## Existing YAML users
 
-## Validate an existing map
-
-From the toolkit checkout:
+The [legacy schema](workspace.schema.json) and [validator](../tools/project_config.py)
+remain supported for current tooling. Existing `workspace/workspace.yml` or linked
+`project.yaml` maps locations; it grants no permission, installs no connector and executes
+no commands. Do not add it to a new project merely to satisfy an AI workflow.
 
 ```sh
-uv run --locked --group validation python tools/project_config.py --config /path/to/project/project.yaml
+uv run tools/project_config.py --config /path/to/project/workspace/workspace.yml
 ```
 
-The validator checks schema, types, unknown/duplicate keys and conflicting conventional
-maps. Version 2 also checks its four required local Markdown files/sections, emptiness,
-obvious prompts and paths staying inside the declared project root. --structure-only is
-a setup/schema check and does not establish source readiness. No content is executed or
-URLs fetched. Optional PyYAML/jsonschema dependencies belong to the toolkit; customers do
-not need its pyproject.toml to adopt AGENTS.md.
+The [minimal](../templates/customer-workspace/examples/workspace-minimal.yml),
+[GitHub](../templates/customer-workspace/workspace/workspace.yml),
+[Jira](../templates/customer-workspace/examples/workspace-jira.yml) and
+[multi-repo](../templates/customer-workspace/examples/workspace-multi-repo.yml) examples
+retain their existing format. The validator checks required fields, duplicate keys and
+schema, not access or integrations. Do not keep competing default YAML files.
 
-The source schema remains workspace.schema.json for compatibility. Existing YAML tests
-remain in CI; the default repository/starter no longer needs a manifest. When retiring a
-map, preserve real source locations in AGENTS.md or its linked project pages and first
-check for external tools that depend on it. Do not keep contradictory process copies.
+When reading an older configuration, interpret its work location as the shared assignment
+home. Personal execution steps can remain in the Second Brain unless the project explicitly
+requires a shared plan. Migrate optional metadata only when a real consumer needs it.

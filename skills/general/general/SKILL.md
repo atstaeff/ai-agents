@@ -11,10 +11,6 @@ description: "Select communication or engineering decision support for work that
 2. Use communication for stakeholder-facing work and principal-engineer-decisions for consequential technical tradeoffs.
 3. Keep the output as short as the decision allows and preserve the user's language.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Select a focused topic
 
 - [communication](../../knowledge/communication/SKILL.md)

@@ -1,105 +1,49 @@
-# Run the workflow in this repository
+# Run this repository
 
-Start at [AGENTS.md](../AGENTS.md), the [project map](../PROJECT.md) and
-[knowledge index](../knowledge/README.md). Optional local tooling uses workspace/ storage;
-it is not the project entry. These commands require the current checkout;
-an unmerged PR does not update `main` or an older local checkout automatically.
+Read [AGENTS.md](../AGENTS.md) first. It links actual context, decisions and commands.
+The repository keeps existing `workspace/` paths for compatibility, without making that
+layout a requirement for projects adopting the catalog.
 
-## Prepare and migrate
-
-From the repository root:
+## Set up and verify
 
 ```sh
-python3 tools/ai_toolkit.py check
 uv sync --locked --group validation
-```
-
-Python 3.11+ runs the local CLI, dashboard, exports and pilot. The locked environment
-supplies optional schema and website dependencies. For existing old-layout records,
-stop writers, back up the project and use the new toolkit revision's migration:
-
-```sh
-python3 tools/ai_toolkit.py work --workspace . migrate --dry-run
-python3 tools/ai_toolkit.py work --workspace . migrate
-```
-
-Record bytes are preserved. The empty old parent is removed; `legacy_directory_remaining:
-true` means content still requires deliberate review. Unknown files and conflicting
-destinations are not silently removed or merged. Historical migration references and
-the export ownership manifest filename remain compatibility details.
-
-## Generate and select the OpenCode bundle
-
-```sh
-python3 tools/ai_toolkit.py export --runtime opencode --output workspace/exports/opencode
-```
-
-The ignored bundle selects Jörg and includes Plan/Build and the specialist catalog.
-Re-export after updating canonical profiles. Unchanged output is skipped; the ownership
-manifest protects human edits. With OpenCode 1 and a provider/model already configured
-on your machine, start from this repository root:
-
-```sh
-OPENCODE_CONFIG_DIR="$PWD/workspace/exports/opencode" \
-OPENCODE_CONFIG="$PWD/workspace/exports/opencode/opencode.json" \
-opencode web
-```
-
-This selects the generated bundle; it does not install OpenCode or configure a model
-account. Perform the [installed-host check](PORTABILITY.md#verify-a-new-host-once).
-Optional Plannotator and separate Plan/Build models follow the [plan-review guide](PLAN-REVIEW.md).
-
-## Use the actual assignment
-
-Tracked work keeps the plan and acceptance in its assigned GitHub issue and links the PR.
-A direct maintenance request already represented by an open PR keeps its bounded plan
-and handoff there. Do not create a second issue or local plan for the same assignment.
-No GitHub Project board or field mapping is currently adopted here.
-
-For a separate larger local outcome without a tracked assignment:
-
-```sh
-python3 tools/ai_toolkit.py work --workspace . new local-outcome \
-  --title "Describe the concrete local outcome" --kind software
-python3 tools/ai_toolkit.py serve --workspace .
-```
-
-The dashboard at `http://127.0.0.1:4097` manages local Markdown plans, comments and evidence.
-It does not update GitHub or invoke models. Use the host's available authorized tools
-for remote writes. A first request in OpenCode can be:
-
-> Read AGENTS.md and its referenced project, process and knowledge sources. Continue the assigned
-> issue or current PR from its latest plan and handoff. Inspect affected decisions and
-> code, implement one bounded increment and run its quality gates. Preserve my comments,
-> report actual evidence and follow the agreed merge/deployment authorization.
-
-## Replay the process locally
-
-```sh
+python3 tools/ai_toolkit.py check
+uv run --locked --group validation python -m unittest discover -s tests -v
 python3 tools/workspace_smoke.py
+npm --prefix website ci
+npm --prefix website run build
 ```
 
-The command performs real local operations in a fresh generated fixture:
+The smoke command exercises the optional local record store, stale writes, export and
+migration in generated fixtures. It does not prove live tracker access or installed-host
+behavior. `workspace/generated/` and exports are ignored and excluded from publication.
 
-1. Create a CLI work record with a bounded plan and three tasks.
-2. Serve the actual dashboard and API over loopback HTTP.
-3. Save marked fixture feedback and reject stale/unversioned writes.
-4. Export the actual OpenCode catalog; verify default Jörg, repeat-export behavior
-   and protection of an edited profile.
-5. Save evidence and handoff, recover them with a fresh store and archive completed work.
-6. Migrate an old-layout fixture without changing bytes or leaving `.ai/`.
+## Export and start OpenCode 1
 
-Each run prints its generated directory and saves `report.json` there. The archived
-fixture is under the run's `project/workspace/archive/`. A fresh directory per run avoids
-overwriting existing work. Reports and bundles stay ignored and outside the knowledge
-website. This local fixture is not another plan for a tracked task.
+```sh
+python3 tools/ai_toolkit.py export --runtime opencode \
+  --output "$HOME/.config/ai-agents/opencode"
+cd /path/to/project
+OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
+OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
+```
 
-Fixture comments are simulated input, not human approval. A fresh store proves file
-recovery, not LLM reasoning. See the [pilot observation](evaluations/workspace-pilot-20261022.md)
-for actual results and unverified boundaries.
+Re-export after canonical source changes. The manifest protects human edits. Configure
+models/providers locally. For private plans, follow [personal planning](../templates/agent-instructions/personal-planning.md);
+for an optional review gate, follow [plan review](PLAN-REVIEW.md).
+Perform the [installed-host check](PORTABILITY.md#verify-a-new-host-once).
 
-## Verify and hand off
+## Deliver
 
-Run the checks above and the required [CI workflow](../.github/workflows/checks.yml); CI also replays the pilot. Keep current
-revision, evidence, unresolved questions and the next action in the existing assignment.
-Review, acceptance, integration and deployment are distinct states.
+Use the current request or assigned issue for scope. Keep personal working steps in the
+configured Second Brain; if unavailable, report unsaved planning and continue in-session.
+Prepare a focused branch and PR with actual checks. Update affected knowledge and relevant
+ADRs after implementation. Do not require the team to access personal plans. Merge and
+deployment remain separately authorized.
+
+## Docusaurus demo
+
+Follow the [demo README](../examples/engineering-demo/README.md) to install, build and open
+the interactive decision graph at `/knowledge-graph/`. It reads only the demo's allowlisted
+shared content and is part of the existing Docusaurus site.

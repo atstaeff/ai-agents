@@ -14,10 +14,6 @@ description: "Design or review an HTTP API, consumer contract, errors, authoriza
 5. Provide an OpenAPI contract when appropriate and test consumer-visible behavior, permissions and failure cases.
 6. For a changed contract, inspect existing consumers and demonstrate compatibility or an explicit migration path. Verify representative requests against the implementation; a schema-valid document alone does not prove the API works.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/api-design.md): load only the section relevant to the task.

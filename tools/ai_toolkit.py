@@ -197,8 +197,16 @@ class OpenCodeOptions:
     build_model: str | None = None
     plan_variant: str | None = None
     build_variant: str | None = None
+    plan_directory: Path | None = None
 
     def validate(self) -> None:
+        if self.plan_directory is not None:
+            directory = self.plan_directory
+            if (not isinstance(directory, Path) or not directory.is_absolute()
+                    or not directory.is_dir() or any(c in str(directory) for c in '*?[]\n\r')):
+                raise ToolkitError('Plan directory must be an existing absolute directory without wildcard characters.')
+            if directory.resolve() in {Path.home().resolve(), *Path.home().resolve().parents}:
+                raise ToolkitError('Choose a dedicated plan directory, not a home directory or filesystem root.')
         for phase in ('plan', 'build'):
             model = getattr(self, f'{phase}_model')
             variant = getattr(self, f'{phase}_variant')
@@ -217,9 +225,16 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         raise ToolkitError("Unknown runtime.")
     options = opencode_options or OpenCodeOptions()
     if runtime != 'opencode' and options != OpenCodeOptions():
-        raise ToolkitError('Plannotator, model and variant options require --runtime opencode.')
+        raise ToolkitError('Plannotator, model, variant and plan-directory options require --runtime opencode.')
     options.validate()
+    plan_directory = options.plan_directory.resolve() if options.plan_directory else None
+    if plan_directory and (root.resolve().is_relative_to(plan_directory)
+                           or plan_directory.is_relative_to(root.resolve())):
+        raise ToolkitError('Keep the personal plan directory outside the source repository.')
     output = output.absolute()
+    if plan_directory and (output.resolve().is_relative_to(plan_directory)
+                           or plan_directory.is_relative_to(output.resolve())):
+        raise ToolkitError('Keep generated bundles separate from personal plan directories.')
     if output.resolve() == root.resolve() or output.resolve() in root.resolve().parents:
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
     if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
@@ -266,8 +281,9 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             header += f"mode: {mode}\n"
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "permission:\n  edit:\n    '*': deny\n"
-                if entry.name == "plan":
-                    header += "    'workspace/work/**': allow\n    'workspace/archive/**': allow\n"
+                if entry.name == "plan" and plan_directory:
+                    header += f'    {json.dumps(str(plan_directory) + "/*.md")}: allow\n'
+                    header += f'  external_directory:\n    {json.dumps(str(plan_directory) + "/*")}: allow\n'
                 header += "  bash: deny\n  task: deny\n"
                 if entry.name == 'plan' and options.plannotator:
                     header += "  submit_plan: allow\n  plan_exit: deny\n"
@@ -287,6 +303,17 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                   "instructions": [str(output / "catalog/toolkit/WORKFLOW.md")],
                   "permission": {"external_directory": {str(output / 'catalog') + '/*': 'allow'},
                                  "edit": {str(output / 'catalog') + '/*': 'deny'}}}
+        if plan_directory:
+            private_name = 'private-planning.md'
+            planned[private_name] = (
+                '# Private planning location\n\n'
+                f'Personal working plans belong in this existing directory: {plan_directory}\n'
+                'Keep one Markdown plan per outcome. Preserve existing notes and comments.\n'
+                'Do not copy personal paths or plan contents into shared project artifacts.\n'
+                'Resolve the exact vault name and vault-relative path from private user instructions\n'
+                'before constructing an Obsidian URI; never invent them.\n'
+            ).encode()
+            config['instructions'].append(str(output / private_name))
         for phase in ('plan', 'build'):
             model = getattr(options, f'{phase}_model')
             variant = getattr(options, f'{phase}_variant')
@@ -687,6 +714,7 @@ def main(argv: list[str] | None = None) -> int:
     adapter.add_argument('--plan-model', help='OpenCode planning model: provider/model-id')
     adapter.add_argument('--build-model', help='OpenCode implementation model: provider/model-id')
     adapter.add_argument('--plan-variant', help='Variant supported by the configured planning model')
+    adapter.add_argument('--plan-directory', type=Path, help='Existing absolute private directory for personal Markdown plans (OpenCode only)')
     adapter.add_argument('--build-variant', help='Variant supported by the configured implementation model')
     uri = sub.add_parser('obsidian-uri', help='Encode a Windows Obsidian URI')
     uri.add_argument('--vault', required=True)
@@ -735,7 +763,7 @@ def main(argv: list[str] | None = None) -> int:
                   end='' if args.format == 'markdown' else '\n')
         elif args.command == 'export':
             options = OpenCodeOptions(args.plannotator, args.plan_model, args.build_model,
-                                      args.plan_variant, args.build_variant)
+                                      args.plan_variant, args.build_variant, args.plan_directory)
             print(json.dumps(export(args.runtime, args.output, force=args.force, dry_run=args.dry_run,
                                     opencode_options=options), indent=2))
         elif args.command == 'obsidian-uri':

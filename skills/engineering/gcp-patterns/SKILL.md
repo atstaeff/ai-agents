@@ -12,10 +12,6 @@ description: "Design, deploy or troubleshoot a workload on Google Cloud with cle
 3. Use least privilege, secret management, infrastructure as code and separate environments where warranted.
 4. Define metrics, budget alerts, rollback and restore; verify current service behavior in official documentation when needed.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/guide.md): load only the section relevant to the task.

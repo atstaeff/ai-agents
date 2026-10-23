@@ -12,10 +12,6 @@ description: "Turn a stakeholder conversation into a scoped feature, assumptions
 3. Separate confirmed facts, assumptions and open questions; sketch a small end-to-end scenario.
 4. Record acceptance criteria and the next experiment or implementation slice in one work file.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/feature-discovery-session.md): load only the section relevant to the task.

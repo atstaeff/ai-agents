@@ -19,10 +19,6 @@ description: "Organize delivery, technical debt or release work without excessiv
 6. Close the real review period with linked outcomes, unresolved work and learning.
    Keep cancelled and duplicate work distinct from delivered outcomes; do not add a second backlog.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Select a focused topic
 
 - [agile-methodologies](../agile-methodologies/SKILL.md)

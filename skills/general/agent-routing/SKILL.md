@@ -17,8 +17,8 @@ description: "Choose focused skills or bounded specialist work when expertise, i
    writers when supported; prevent overlapping writes and assign integration ownership.
 5. Inspect returned artifacts and evidence. Test the integrated result at affected
    boundaries; independently successful branches can still conflict. Preserve feedback
-   in the project-designated planning home. Resolve tracker/wiki/review tools from the
-   project’s declared tooling config; available connectors do not determine information ownership.
+   in the existing assignment/PR, keeping personal plans private. Resolve tracker/wiki/review tools from the
+   project’s `AGENTS.md` and any existing tooling config; available connectors do not determine information ownership.
 
 ## Selection examples
 

@@ -12,10 +12,6 @@ description: "Assess a maintainability problem and prioritize a safe, incrementa
 3. Add a behavioral safety check before restructuring a risky path.
 4. Track only actionable repayment work with an owner and trigger; do not create a speculative debt inventory.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/technical-debt.md): load only the section relevant to the task.

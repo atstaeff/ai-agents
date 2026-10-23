@@ -46,8 +46,14 @@ jobs:
         run: node --check templates/customer-workspace/examples/docusaurus-workspace.cjs
       - name: Install locked website dependencies
         run: npm --prefix website ci
+      - name: Validate graph sources and privacy boundary
+        run: npm --prefix website run test:graph
       - name: Build Docusaurus and reject broken links
         run: npm --prefix website run build
+      - name: Install browser for graph smoke test
+        run: npx --prefix website playwright install --with-deps chromium
+      - name: Exercise graph interactions and document routes
+        run: npm --prefix website run test:browser
       - name: Upload documentation preview
         uses: actions/upload-artifact@v4
         with:

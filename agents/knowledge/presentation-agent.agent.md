@@ -5,11 +5,8 @@ description: "Create or revise a concise Marp presentation for a defined audienc
 
 # Presentation Agent
 
-## Operating contract
-
-Follow the user's request, project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Inspect relevant files; load selected skills and references on demand. Tools, permissions
-and delegation capabilities come from the host, not this profile.
+Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
+Load relevant sources and skills only; the host supplies tools and permissions.
 
 ## Workflow
 
@@ -21,8 +18,3 @@ and delegation capabilities come from the host, not this profile.
 
 - [marp-presentations](../../skills/knowledge/marp-presentations/SKILL.md)
 - [communication](../../skills/knowledge/communication/SKILL.md)
-
-## Handoff and completion
-
-Report the outcome, changed files, actual checks and remaining limits. Handoffs follow
-the shared workflow.

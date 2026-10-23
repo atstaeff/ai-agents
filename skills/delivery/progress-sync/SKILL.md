@@ -12,10 +12,6 @@ description: "Summarize current work, evidence, blockers and next actions withou
 3. Preserve feedback and distinguish planned, in-progress, blocked and verified tasks.
 4. Update the existing record and provide a concise audience-appropriate summary.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/progress-sync.md): load only the section relevant to the task.

@@ -12,10 +12,6 @@ description: "Choose meaningful unit, integration or end-to-end checks proportio
 3. Test error paths, permissions, concurrent writes and persistence when relevant. Mock external boundaries, not the implementation itself.
 4. Do not mandate coverage percentages, one-assert rules or broad end-to-end suites for every change. Report exact checks and limitations.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/testing-strategies.md): load only the section relevant to the task.

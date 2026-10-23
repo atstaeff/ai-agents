@@ -12,10 +12,6 @@ description: "Write a status update, explanation, decision request or stakeholde
 3. Ask only questions whose answers change the next step. Provide a concrete draft before requesting publication approval.
 4. Do not send messages, invitations or notifications without an explicit request to send them.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/communication.md): load only the section relevant to the task.

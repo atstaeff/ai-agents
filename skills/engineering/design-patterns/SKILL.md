@@ -12,10 +12,6 @@ description: "Choose or simplify a design pattern at a real variation, lifecycle
 3. Apply the smallest useful form and keep ownership and dependencies obvious.
 4. Test substitution and behavior; remove the abstraction if it adds indirection without a demonstrated benefit.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/design-patterns.md): load only the section relevant to the task.

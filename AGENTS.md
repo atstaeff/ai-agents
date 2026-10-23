@@ -16,7 +16,8 @@ Read these entry sources, then only the detail relevant to the assignment:
 | Process, tools, skills and checks | [Contributing source](CONTRIBUTING.md), [published process](https://atstaeff.github.io/ai-agents/contributing/) |
 | Current knowledge and significant decisions | [Knowledge index](knowledge/README.md) |
 | Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
-| Assignment and live plan | Assigned GitHub issue or existing PR representing the request |
+| Assignment and acceptance | The current request or its existing shared issue/PR |
+| Personal execution plan | The user's private Second Brain, when available |
 
 The [documentation website](https://atstaeff.github.io/ai-agents/) publishes the maintained
 sources. This checkout is authoritative for its revision; the published site can lag an
@@ -26,8 +27,9 @@ No project.yaml or workspace folder is required to adopt this contract.
 
 ## Ownership and parallel work
 
-Keep one authoritative work item and one live plan per assignment. Identify its accountable
-human owner, active writer, bounded change scope, dependencies and integration owner.
+Keep one authoritative shared work item per assignment. Personal plans stay private and
+are not required for teammates. Identify the accountable human owner, active writer,
+bounded change scope, dependencies and integration owner.
 Use separate branches and working directories for independent writers; agree changes to
 shared contracts before dependent implementation. Coordinate overlapping scopes through
 the project's shared claim/handover mechanism; an assignee or a branch is no atomic lock.
@@ -36,8 +38,8 @@ Preserve other contributors' changes and reread shared records before updating t
 Follow the [shared workflow](toolkit/WORKFLOW.md) and
 [recovery contract](toolkit/CONTEXT-RECOVERY.md). Proceed with routine reversible choices
 within the assignment; resolve consequential scope/design conflicts with the named owner.
-Delegate only when supported, authorized and useful. Keep material progress, feedback,
-check evidence and the next action at the same work home.
+Delegate only when supported, authorized and useful. Put shared scope, acceptance,
+feedback and review evidence at the work home; record durable rationale in knowledge.
 
 ## Repository navigation and engineering rules
 

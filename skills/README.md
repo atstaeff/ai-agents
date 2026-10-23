@@ -28,7 +28,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 | [repository-contribution](delivery/repository-contribution/SKILL.md) | Establish how to contribute to an unfamiliar repository or after contribution rules change: resolve project purpose, local process, relevant skills, tool locations and verification before a substantial code or documentation change. Reuse already-loaded rules for a clear small correction. |
 | [team-collaboration](delivery/team-collaboration/SKILL.md) | Coordinate shared work, reviews, incidents or handoffs with explicit ownership and compact records. |
 | [technical-debt](delivery/technical-debt/SKILL.md) | Assess a maintainability problem and prioritize a safe, incremental repayment plan. |
-| [work-management](delivery/work-management/SKILL.md) | Maintain the plan, acceptance criteria, human feedback and verification for a larger assignment at the project-designated home, such as Jira, GitHub or one local Markdown record. |
+| [work-management](delivery/work-management/SKILL.md) | Manage a substantial assignment with a private working plan, shared acceptance and verified project decisions; use for planning, resuming or closing work. |
 
 ## Architecture & Systems
 
