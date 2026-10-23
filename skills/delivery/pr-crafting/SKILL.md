@@ -12,10 +12,6 @@ description: "Prepare a reviewable pull request description, scope and validatio
 3. Include material limitations, migration steps or rollback needs when present.
 4. Keep title and description aligned with the final diff. Do not merge or publish unless authorized.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/pr-crafting.md): load only the section relevant to the task.

@@ -11,3 +11,5 @@ reasons, consequences, owner, status and actual acceptance evidence. Acceptance,
 implementation and deployment are distinct. Customer decisions stay with their project.
 See the [decision template](../../templates/knowledge/decision.md) and
 [knowledge lifecycle](../../toolkit/PROJECT-KNOWLEDGE.md).
+
+- [ADR-0004: Private plans and shared knowledge](0004-private-plans-shared-knowledge.md) proposes private execution plans and durable shared outcomes.

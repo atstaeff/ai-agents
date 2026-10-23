@@ -12,10 +12,6 @@ description: "Review a change for correctness, regression risk, security and mai
 3. Separate blocking bugs from optional preferences. Avoid hypothetical issues without a plausible path.
 4. Honor read-only tool restrictions. Execute reproductions only when permitted; otherwise give the executor a concrete check. Report checks performed and remaining uncertainty; if no material issues were found, say so plainly.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/code-review.md): load only the section relevant to the task.

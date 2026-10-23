@@ -14,11 +14,10 @@ tasks keep their shorter path unless approval is required for them too.
 
 ## One plan, one approval receipt
 
-Keep the live plan at the project-designated home: Jira ticket, GitHub issue or another
-existing work item; use a local work record only when no assigned system owns the work.
-Plannotator is its review interface; its local history is supporting material. It does
-not synchronize an issue or enforce the customer's decision rights. The authorized host
-must preserve comments and update the planning home after review.
+Keep the personal plan in the configured Second Brain. Share only the review extract
+needed by the reviewer. If project policy explicitly requires a shared execution plan,
+use that designated home. Plannotator is an optional review surface, not another task
+store; preserve actual feedback and approval with the reviewed plan revision.
 
 Record a short receipt with the plan revision, actual reviewer or known user, decision,
 attached notes and available review/message reference. Do not invent identities or
@@ -114,8 +113,8 @@ current UI still checks GitHub for updates on load; the upstream documentation p
 no opt-out. Local operation therefore does not promise zero network requests. OpenCode's
 model provider independently determines where inference runs.
 
-Leave Obsidian auto-save off for customer work: customer issues and repositories own
-that knowledge. Enable it only for authorized personal material in the private PARA vault.
+Personal plans may use the private PARA vault only when project information policy permits
+it. Publish durable project decisions at the shared home; do not copy private plan contents.
 The core plan gate needs no separate CLI in a Bun-hosted OpenCode; wrapped/Node hosts can
 need the Plannotator CLI fallback. Optional slash commands may require the upstream
 installer. The toolkit neither installs that CLI nor launches a review itself.

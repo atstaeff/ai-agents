@@ -12,10 +12,6 @@ description: "Refactor existing code incrementally while preserving behavior and
 3. Separate structural edits from intentional behavior changes and make small reversible steps.
 4. Run appropriate checks after each risky step; stop when the concrete maintenance goal is met.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/practical-refactoring.md): load only the section relevant to the task.

@@ -5,11 +5,8 @@ description: "Improve reproducible builds, CI, releases and local or cloud opera
 
 # Devops Agent
 
-## Operating contract
-
-Follow the user's request, project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Inspect relevant files; load selected skills and references on demand. Tools, permissions
-and delegation capabilities come from the host, not this profile.
+Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
+Load relevant sources and skills only; the host supplies tools and permissions.
 
 ## Workflow
 
@@ -22,12 +19,3 @@ and delegation capabilities come from the host, not this profile.
 - [devops-cicd](../../skills/engineering/devops-cicd/SKILL.md)
 - [cloud-native](../../skills/engineering/cloud-native/SKILL.md)
 - [incident-response](../../skills/quality/incident-response/SKILL.md)
-
-## Handoff and completion
-
-Report the outcome, changed files, actual checks and remaining limits. Handoffs follow
-the shared workflow.
-
-## Optional reference
-
-- [Domain examples](references/devops-agent.md): consult a specific section only when required.

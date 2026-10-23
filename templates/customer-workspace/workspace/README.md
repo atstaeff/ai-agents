@@ -3,6 +3,11 @@ title: Customer workspace
 description: Business purpose and entry points for the document portal example.
 ---
 
+> Compatibility reference. New projects start at `AGENTS.md`. Personal execution plans
+> belong in the configured private Second Brain; the structures below are optional
+> existing-layout or shared-team examples, not requirements.
+
+
 # Alpenblick Services document portal
 
 Fictional customer example. CUSTOMER_* URLs are placeholders.

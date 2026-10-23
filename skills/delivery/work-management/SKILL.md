@@ -1,62 +1,28 @@
 ---
 name: "work-management"
-description: "Maintain the plan, acceptance criteria, human feedback and verification for a larger assignment at the project-designated home, such as Jira, GitHub or one local Markdown record."
+description: "Manage a substantial assignment with a private working plan, shared acceptance and verified project decisions; use for planning, resuming or closing work."
 ---
 
-# Work Management
+# Work management
 
-1. Inspect the assignment, project rules and existing work. Complete a clear small edit
-   directly with appropriate checks; create no process file automatically.
-2. Read applicable AGENTS.md instructions and the referenced project/process sources
-   and working agreement. Read optional tooling configuration only when adopted. Choose the designated planning home: Jira ticket,
-   GitHub issue or another work item. Only without an assigned system, reuse or create
-   one `workspace/work/<slug>.md` per larger outcome. Never create a duplicate tracker item,
-   local record, task CSV or wiki plan. If ownership is unclear, resolve it before writing.
-   Use the [project concept](../../../toolkit/PROJECT-CONCEPT.md) when adopting the
-   layout or migrating legacy records; ordinary tasks do not load the entire concept.
-3. State the user outcome, scope exclusions, observable acceptance and first verifiable
-   increment. Reuse the home's task format; local records use stable T1-style IDs and
-   `open`, `in_progress`, `blocked`, `done` states.
-4. When required, follow [plan review](../../../toolkit/PLAN-REVIEW.md). Preserve the current
-   revision, actual approval and attached feedback. A session/model change carries that
-   handoff forward; a consequential scope/design change returns to review.
-5. Update after material progress, a decision or a blocker. Keep one bounded current
-   summary; preserve human comments verbatim and track their disposition. Link detailed
-   evidence rather than posting tool logs or every intermediate thought.
-6. Distinguish implementation, verification, acceptance, merge, deployment and impact.
-   Close board work by its working agreement. Archive a local record after its outcome
-   is verified and unresolved feedback is reviewed. Update affected customer knowledge
-   at its canonical home; private PARA notes require an explicitly appropriate task.
+Follow the [shared workflow](../../../toolkit/WORKFLOW.md); do not create process records
+for a clear small change.
 
-## Unavailable tools
+1. Read `AGENTS.md`, the actual assignment and relevant current code/decisions. Respect
+   customer information policy. Reuse existing scope, acceptance and review systems.
+2. Keep personal execution steps in one plan in the user's configured Second Brain project
+   folder. Resolve the path privately, preserve comments and existing PARA conventions.
+   If unavailable, report the unsaved state and continue with an in-session plan; do not
+   create `workspace/work/`, an issue or a second tracker as an automatic fallback.
+3. State goal, acceptance, steps and relevant checks. Keep review extracts shared only when
+   needed for actual collaboration. Follow required approval policy without adding a gate.
+4. After material progress, update the private resume point. Put implementation evidence in
+   the PR/current request; publish no private note links or paths. Shared assignment updates
+   describe outcome, blockers and acceptance, not a mirror of the personal task list.
+5. After implementation, update affected documentation and preserve significant decisions
+   at the shared ADR home with reasons and consequences. Check real acceptance/status;
+   close or archive the private plan without requiring a team copy.
 
-The project’s source of truth remains authoritative even if this host lacks access.
-State the missing capability, prepare an unsent update and continue independent work.
-Do not invent current status, approval, assignment, synchronization or a fallback tracker.
-
-## Safe updates and handoffs
-
-- On start or resume, compare the current assignment, relevant decisions, contracts and
-  repository revisions with the previous handoff before following its next action.
-  Follow the [context recovery contract](../../../toolkit/CONTEXT-RECOVERY.md) for larger
-  work or a session/model switch; load only the sources relevant to the assignment.
-- Record significant decisions when they arise, with alternatives, reasons, status,
-  source and responsible role. A proposed replacement does not revoke an accepted ADR.
-  Flag consequential conflicts instead of silently preferring the newest text or code.
-- Reread mutable state before writing. Compare it with the version read, preserve
-  intervening edits and retry or resolve conflicts. Use API version/precondition checks
-  where available; a local reread alone is not an atomic remote lock.
-- The local dashboard uses ETags for the same Markdown record. Filesystem clients
-  must also preserve intervening edits and human feedback.
-- Carry the outcome, planning-home revision, each relevant repository commit, applicable
-  decisions, required approval, criterion-linked evidence, unsaved work, pending writes
-  and next action in one bounded summary. Avoid copying the entire conversation.
-- Reassess affected plans, approvals and checks after material scope, decision, contract
-  or code changes. An old green check does not prove a new revision. After API timeouts,
-  inspect existing effects before retrying; never claim an atomic cross-system update.
-- Follow the project's blocked mapping without losing the underlying flow position or
-  WIP accounting. Closed as cancelled, duplicate or not implemented is not delivered.
-- If a required check cannot run, name the affected criterion, reason and next action.
-  Keep verification outstanding unless other adequate evidence establishes it.
-- Keep customer facts with the customer, `docs/` available for its existing purpose,
-  and private vault paths and secrets out of public records.
+Use [context recovery](../../../toolkit/CONTEXT-RECOVERY.md) for interrupted work and
+[Obsidian guidance](../../knowledge/obsidian-para/SKILL.md) for paths and encoded links.
+Missing access never authorizes a new source of truth or a claim of synchronization.

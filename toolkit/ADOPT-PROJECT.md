@@ -31,7 +31,7 @@ No project.yaml, TOML file or workspace folder is required.
 ## 3. Adopt the process and coordination
 
 Use Clarify, Plan, Build, Verify, Integrate and retain; an existing adopted process takes
-precedence. Keep outcome, criteria, live plan, feedback and handoff at one work item. Name
+precedence. Keep shared outcome, criteria, feedback and team handoff at one work item. Name
 the accountable human, active writer, scope, dependencies and integration owner.
 For parallel work, separate working directories and agree shared interfaces and effective
 claims. Serialize overlapping changes if the project has no shared coordination mechanism.
@@ -50,7 +50,7 @@ for fallback and version handling. Its example.org addresses are fictional place
 
 Use an existing knowledge index or start one when needed. Link current architecture,
 contracts and operations separately from decision history. Store significant reasons as
-they arise. Keep completed plans historical at their work home. Before pausing, save result,
+they arise. Keep personal plans historical in the Second Brain; retain shared outcomes in the project. Before pausing, save result,
 revisions, evidence/limits, blockers, pending writes and one next action in the assignment.
 The [worked example](examples/project-kernel.md) shows record placement and relationships.
 
@@ -72,3 +72,5 @@ Keep a legacy tooling map only if existing tools need it; see
 human/AI navigation into AGENTS.md. Do not leave contradictory process copies.
 The optional local toolkit still uses workspace/work/ storage; --workspace means project
 root. It remains independent of adopting the documentation model.
+
+Personal planning follows the [shared workflow](WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.

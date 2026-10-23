@@ -37,6 +37,8 @@ DOCUMENTS = {
     'operating-model/knowledge.md': 'toolkit/PROJECT-KNOWLEDGE.md',
     'catalog/maintain.md': 'toolkit/CATALOG-GUIDE.md',
     'templates/index.md': 'templates/README.md',
+    'references/docusaurus-demo.md': 'examples/engineering-demo/README.md',
+    'knowledge/decisions/adr-0004.md': 'knowledge/decisions/0004-private-plans-shared-knowledge.md',
     'getting-started/repository-workflow.md': 'toolkit/REPOSITORY-WORKFLOW.md',
     'getting-started/workspace-pilot.md': 'toolkit/evaluations/workspace-pilot-20261022.md',
     'getting-started/adopt-workspace.md': 'toolkit/ADOPT-PROJECT.md',

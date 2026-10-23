@@ -3,13 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "generate": "python3 generate.py",
+    "generate": "python3 generate.py && node scripts/graph.cjs",
     "prestart": "npm run generate",
     "start": "docusaurus start --host 127.0.0.1",
     "prebuild": "npm run generate",
     "build": "docusaurus build",
     "serve": "docusaurus serve --host 127.0.0.1",
-    "clear": "docusaurus clear"
+    "clear": "docusaurus clear",
+    "test:graph": "node --test scripts/graph.test.cjs",
+    "test:browser": "node scripts/browser-smoke.cjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -18,9 +20,13 @@
     "@docusaurus/theme-mermaid": "3.10.2",
     "@mermaid-js/layout-elk": "0.1.9",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "gray-matter": "4.0.3"
   },
   "engines": {
     "node": ">=22"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
   }
 }

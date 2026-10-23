@@ -12,7 +12,7 @@ instructions concise. Follow [AGENTS.md](AGENTS.md) and the
 Read [PROJECT.md](PROJECT.md) for vision, goals, boundaries, responsibilities and current
 sources. The [working agreement](knowledge/working-agreement.md) defines acceptance
 and action boundaries; [AGENTS.md](AGENTS.md) and PROJECT.md link the authoritative sources. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
-Keep the live plan in the assigned work home. Clear small corrections need no extra record.
+Keep personal execution plans in the privately configured Second Brain; use the assigned work home for shared scope, acceptance and coordination. Clear small corrections need no extra record.
 
 | Need | Load when relevant |
 | --- | --- |
@@ -32,7 +32,7 @@ tools. Report missing access and prepare an unsent update; do not create a mirro
 
 ## Team ownership and integration
 
-Keep one assigned issue/current PR with outcome, criteria, live plan, accountable human,
+Keep one assigned issue/current PR with outcome, criteria, accountable human,
 active writer, bounded scope, dependencies and integration responsibility. Use separate
 branches and working directories for independent writers. Agree shared contracts first;
 coordinate overlapping edits through the adopted claim/handover mechanism. Serialize
@@ -99,3 +99,5 @@ Edit the canonical source; maintain website-specific layout and entry pages in `
 Use [catalog management](toolkit/CATALOG-GUIDE.md), the
 [quality standard](toolkit/QUALITY-STANDARD.md) and
 [template chooser](templates/README.md) to keep new expertise specific and evidence-based.
+
+Personal planning follows the [shared workflow](toolkit/WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.

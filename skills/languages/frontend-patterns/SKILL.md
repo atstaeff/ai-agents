@@ -14,10 +14,6 @@ description: "Build or improve a web interface with accessible interaction, clea
 5. Agree on the API contract and test the critical interaction, authorization boundary and failure recovery.
 6. Verify the running interface at relevant viewport sizes and with keyboard navigation. Compare with the existing design or supplied reference; screenshots alone do not prove interaction. State explicitly when browser checks were unavailable.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/guide.md): load only the section relevant to the task.

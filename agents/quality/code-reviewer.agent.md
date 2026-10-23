@@ -5,11 +5,8 @@ description: "Review a code change for concrete defects, regressions and securit
 
 # Code Reviewer
 
-## Operating contract
-
-Follow the user's request, project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Inspect relevant files; load selected skills and references on demand. Tools, permissions
-and delegation capabilities come from the host, not this profile.
+Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
+Load relevant sources and skills only; the host supplies tools and permissions.
 
 ## Workflow
 
@@ -22,8 +19,3 @@ and delegation capabilities come from the host, not this profile.
 - [code-review](../../skills/quality/code-review/SKILL.md)
 - [security](../../skills/quality/security/SKILL.md)
 - [testing-strategies](../../skills/quality/testing-strategies/SKILL.md)
-
-## Handoff and completion
-
-Report the outcome, changed files, actual checks and remaining limits. Handoffs follow
-the shared workflow.

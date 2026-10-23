@@ -1,5 +1,10 @@
 # One record per outcome
 
+> Compatibility reference. New projects start at `AGENTS.md`. Personal execution plans
+> belong in the configured private Second Brain; the structures below are optional
+> existing-layout or shared-team examples, not requirements.
+
+
 Use `workspace/work/<slug>.md` for larger local work without a board-owned assignment.
 For tracked delivery, the project-designated work item (such as Jira or GitHub) owns the live plan;
 follow the [operating model](OPERATING-MODEL.md) and the project's working agreement.
@@ -30,7 +35,8 @@ as text. HTTP writes require the current ETag; in-process writes are serialized 
 the file is rechecked before replacement. This handles normal stale updates but is
 not a distributed transaction system for uncoordinated editors or OneDrive.
 
-Decide per repository whether to commit work records. This toolkit ignores them by
+Existing work records are optional legacy state, not the default personal planning home.
+Decide per repository whether to commit existing work records. This toolkit ignores them by
 default; explicitly track sanitized records if useful. Private notes never belong in
 public repositories. Extract only reusable conclusions into existing documentation
 or the private PARA vault for an appropriate personal task. Archive completed records and load history on demand.
@@ -52,4 +58,4 @@ reconcile conflicting directories manually. Contents are unchanged, including fe
 evidence and timestamps. Relative links may need review. Unknown `.ai` files, previews
 and exported bundles are left alone. The empty `.ai/` parent is removed after migration;
 `legacy_directory_remaining` reports unknown content left for deliberate review. See the
-[migration runbook](REPOSITORY-WORKFLOW.md#prepare-and-migrate).
+[migration runbook](REPOSITORY-WORKFLOW.md).

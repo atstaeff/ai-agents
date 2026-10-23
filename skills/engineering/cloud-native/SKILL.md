@@ -12,10 +12,6 @@ description: "Plan or review cloud deployment, managed services, runtime configu
 3. Externalize configuration and secrets; include health, readiness, graceful shutdown, resource limits and observable failure signals.
 4. Describe deployment, rollback, backup restore and cost monitoring. Test the highest-impact failure path.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/cloud-native.md): load only the section relevant to the task.

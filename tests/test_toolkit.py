@@ -99,11 +99,54 @@ class ExportTests(unittest.TestCase):
         self.assertTrue(Path(config['instructions'][0]).is_file())
         self.assertIn('mode: primary', (self.output/'agents/joerg.md').read_text())
         self.assertIn('mode: subagent', (self.output/'agents/python-expert.md').read_text())
-        self.assertIn("'workspace/work/**': allow", (self.output/'agents/plan.md').read_text())
-        self.assertIn("'workspace/archive/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertNotIn("'workspace/work/**': allow", (self.output/'agents/plan.md').read_text())
+        self.assertNotIn("'workspace/archive/**': allow", (self.output/'agents/plan.md').read_text())
         self.assertNotIn("'.ai/work/**': allow", (self.output/'agents/plan.md').read_text())
         self.assertNotIn("'workspace/**': allow", (self.output/'agents/plan.md').read_text())
         self.assertIn('bash: deny', (self.output/'agents/code-reviewer.md').read_text())
+
+    def test_private_plan_directory_is_explicit_and_scoped_to_markdown(self):
+        plans = Path(self.temp.name) / 'My Second Brain' / 'Project Plans'
+        plans.mkdir(parents=True)
+        options = tk.OpenCodeOptions(plan_directory=plans)
+        tk.export('opencode', self.output, opencode_options=options)
+        plan = (self.output/'agents/plan.md').read_text()
+        self.assertIn("    '*': deny", plan)
+        self.assertIn(f'    {json.dumps(str(plans) + "/*.md")}: allow', plan)
+        self.assertIn(f'  external_directory:\n    {json.dumps(str(plans) + "/*")}: allow', plan)
+        self.assertIn('  bash: deny\n  task: deny', plan)
+        config = json.loads((self.output/'opencode.json').read_text())
+        private = Path(config['instructions'][1])
+        self.assertIn(str(plans), private.read_text())
+        self.assertNotIn(str(plans), (self.output/'catalog/agents/general/plan.agent.md').read_text())
+        self.assertNotIn(str(plans), (self.output/'agents/code-reviewer.md').read_text())
+        self.assertEqual(list(plans.iterdir()), [])  # Export does not create notes in the vault.
+        private.write_text('Human-owned private settings')
+        with self.assertRaisesRegex(tk.ToolkitError, 'edited file'):
+            tk.export('opencode', self.output, opencode_options=options)
+
+    def test_plan_directory_rejects_missing_broad_and_repository_paths(self):
+        for directory in (Path('relative'), Path(self.temp.name)/'missing', Path.home(),
+                          Path('/'), tk.ROOT, tk.ROOT/'agents'):
+            with self.subTest(directory=directory), self.assertRaises(tk.ToolkitError):
+                tk.export('opencode', self.output, opencode_options=tk.OpenCodeOptions(plan_directory=directory))
+        with self.assertRaisesRegex(tk.ToolkitError, 'require --runtime opencode'):
+            tk.export('claude', self.output, opencode_options=tk.OpenCodeOptions(plan_directory=Path(self.temp.name)))
+        plans = Path(self.temp.name)/'plans'
+        plans.mkdir()
+        with self.assertRaisesRegex(tk.ToolkitError, 'separate from personal plan'):
+            tk.export('opencode', plans/'bundle', opencode_options=tk.OpenCodeOptions(plan_directory=plans))
+        self.assertFalse(self.output.exists())
+
+    def test_cli_exports_a_private_plan_location_without_enabling_repo_edits(self):
+        plans = Path(self.temp.name)/'plans'
+        plans.mkdir()
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(['export', '--runtime', 'opencode', '--output', str(self.output),
+                                     '--plan-directory', str(plans)]), 0)
+        plan = (self.output/'agents/plan.md').read_text()
+        self.assertNotIn("'workspace/work/**': allow", plan)
+        self.assertIn(str(plans), plan)
 
     def test_claude_import_permissions_and_existing_instructions(self):
         tk.export('claude', self.output)
@@ -158,7 +201,7 @@ class ExportTests(unittest.TestCase):
         self.assertNotIn('model', config)
         plan = (self.output/'agents/plan.md').read_text()
         self.assertIn('  submit_plan: allow\n  plan_exit: deny\n', plan)
-        self.assertIn("'workspace/work/**': allow", plan)
+        self.assertNotIn("'workspace/work/**': allow", plan)
         self.assertNotIn("'*.md': allow", plan)
         self.assertIn('  bash: deny\n  task: deny\n', plan)
         self.assertIn('installed tool schema', plan)

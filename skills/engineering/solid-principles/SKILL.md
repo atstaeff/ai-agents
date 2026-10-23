@@ -12,10 +12,6 @@ description: "Evaluate responsibilities and dependencies using SOLID principles 
 3. Check substitutability and avoid exposing methods consumers cannot use safely.
 4. Prefer composition and direct implementations when inheritance or interface layers would add only ceremony.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/solid-principles.md): load only the section relevant to the task.

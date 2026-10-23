@@ -3,6 +3,11 @@ title: Working agreement
 description: One assignment, one owner, proportionate checks and customer-owned knowledge.
 ---
 
+> Compatibility reference. New projects start at `AGENTS.md`. Personal execution plans
+> belong in the configured private Second Brain; the structures below are optional
+> existing-layout or shared-team examples, not requirements.
+
+
 # Working agreement
 
 Example policy to review and adopt with the customer before enabling automation.

@@ -21,10 +21,6 @@ description: "Produce a concise architecture plan with boundaries, alternatives,
    decision home while alternatives are known. An accepted ADR and its replacement status
    constrain dependent work; a proposal does not silently revoke them.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/architecture-planning.md): load only the section relevant to the task.

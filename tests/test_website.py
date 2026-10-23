@@ -46,7 +46,7 @@ class WebsitePublishingTests(unittest.TestCase):
         self.assertIn('personal assistant', current.meta['description'])
         self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/agents/general/joerg.agent.md')
         workflow = site.render('', page('getting-started/workflow.md'), {})
-        self.assertIn('[work template](../templates/delivery/work-item.md)', workflow)
+        self.assertIn('[work template](../templates/delivery/personal-plan.md)', workflow)
         alias = site.render('', page('skills/feature-discovery.md'), {})
         self.assertIn('Canonical source: [`skills/delivery/feature-discovery-session/SKILL.md`]', alias)
 

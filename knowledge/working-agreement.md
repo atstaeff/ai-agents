@@ -1,35 +1,15 @@
 # Repository working agreement
 
-Follow [AGENTS.md](../AGENTS.md), [CONTRIBUTING.md](../CONTRIBUTING.md) and the
-[shared workflow](../toolkit/WORKFLOW.md). AGENTS.md and the project map link the
-authoritative work, review, knowledge and decision sources.
+Use [AGENTS.md](../AGENTS.md) and the [shared workflow](../toolkit/WORKFLOW.md).
+The current request authorizes routine work in scope. Preserve human edits, work on a
+branch and prepare a reviewable PR; do not merge or deploy without authorization.
 
-Use the [lean operating model](../toolkit/OPERATING-MODEL.md) for the default loop.
-Keep the existing separate role/agreement pages because this repository already owns
-them; adopting lean does not require a disruptive consolidation.
+Use the current request/issue for scope, the private Second Brain for personal execution
+plans, and the PR for code and checks. If private storage is unavailable, report unsaved
+planning and continue in-session. Do not create a repository plan automatically.
 
-Use the assigned issue for tracked work. For a direct larger request without an issue,
-reuse the current PR when it already represents that request; otherwise use one local
-work record. Preserve human comments, write on a branch and prepare a
-reviewable PR. Use the existing current request as authorization for routine work in scope;
-consequential changes and external actions still follow actual user/host permissions.
-
-The repository owner decides priorities and accepts consequential design changes.
-Plan review is required when the current request or adopted project flow requires it;
-do not impose a new mandatory approval on every small change. A draft PR is reviewable
-work, not accepted integration. Do not merge, deploy, delete remote data or change access
-without explicit authorization.
-
-Run the checks linked from CONTRIBUTING.md and the CI workflow. Mark unrun or blocked checks honestly. For code,
-Done requires agreed acceptance evidence, required owner review and authorized merge.
-Investigations may finish with a verified result. Deployment and observed user benefit
-are separate evidence. Cancelled or duplicate work does not count as delivered.
-
-Keep canonical sources English. Use current source revisions and the bounded handoff
-in the existing assignment when resuming. Preserve accepted decision rationale; update
-affected reusable knowledge when behavior changes. Local work and generated previews
-stay out of website content and public commits unless explicitly reviewed for disclosure.
-
-No GitHub Project fields or coordination labels are configured for this repository.
-The extended starter shows those mappings; adopt actual board identifiers and labels
-with the owner before adding them here. A documentation link does not create them remotely.
+Record significant decisions and affected documentation after implementation. Keep actual
+status visible; a proposed ADR, draft PR or successful test is not merged/deployed behavior.
+Run the applicable commands from `AGENTS.md`. Existing projects may keep using the optional
+[legacy YAML mapping](../templates/customer-workspace/workspace/workspace.yml); new projects
+do not need it. No GitHub Project board or automatic orchestration is configured.

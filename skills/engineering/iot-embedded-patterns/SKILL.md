@@ -12,10 +12,6 @@ description: "Develop or review firmware, embedded protocols, resource-constrain
 3. Specify protocol framing, retries, watchdog behavior, update recovery and safe failure states.
 4. Validate on the available simulator or hardware and distinguish measured device results from desktop-only tests.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/guide.md): load only the section relevant to the task.

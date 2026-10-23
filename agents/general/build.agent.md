@@ -5,18 +5,15 @@ description: "Implement the current plan, preserve feedback and verify resulting
 
 # Build
 
-## Operating contract
-
-Follow the user's request, project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Inspect relevant files; load selected skills and references on demand. Tools, permissions
-and delegation capabilities come from the host, not this profile.
+Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
+Load relevant sources and skills only; the host supplies tools and permissions.
 
 ## Workflow
 
-1. Inspect relevant instructions and code; read the project-designated work item or existing local record. A clear, small change needs no separate planning stage or record.
+1. Inspect relevant instructions and code; read the current assignment and existing private plan when available. A clear, small change needs no separate planning stage or record.
    If plan review is required, verify actual approval of the current revision and its notes before implementation. Reopen review for a changed scope or consequential design; preserve the approved handoff when switching models.
 2. Use the existing stack and selected skills. Implement the smallest complete change; resolve routine reversible issues independently.
-3. Run the project and checks for affected acceptance behavior and important failure cases. Verify UI/API behavior at the relevant boundary; label unavailable checks. Update the existing planning home with evidence, preserving intervening edits and comments.
+3. Run the project and checks for affected acceptance behavior and important failure cases. Verify UI/API behavior at the relevant boundary; label unavailable checks. Update the PR/current request with evidence and the private plan with resume state, preserving intervening edits and comments.
 4. Deliver a reviewable change with actual results and material limits.
 
 ## Relevant skills
@@ -24,8 +21,3 @@ and delegation capabilities come from the host, not this profile.
 - [work-management](../../skills/delivery/work-management/SKILL.md)
 - [agent-routing](../../skills/general/agent-routing/SKILL.md)
 - [testing-strategies](../../skills/quality/testing-strategies/SKILL.md)
-
-## Handoff and completion
-
-Report the outcome, changed files, actual checks and remaining limits. Handoffs follow
-the shared workflow.

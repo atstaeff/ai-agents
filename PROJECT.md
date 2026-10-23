@@ -66,3 +66,5 @@ This repository uses knowledge/ for durable facts and decisions. Optional local 
 storage remains workspace/work/; it is excluded from publication. The
 [pilot observation](toolkit/evaluations/workspace-pilot-20261022.md) is historical tooling
 evidence; [iteration reports](knowledge/iterations/README.md) are optional.
+
+Personal planning follows the [shared workflow](toolkit/WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.

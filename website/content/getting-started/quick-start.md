@@ -21,20 +21,17 @@ Add `--plannotator` when exporting; optional per-phase model and variant flags l
 and Build use different models or supported thinking levels. Review and approve the
 current plan revision before starting `/work-build` for a gated assignment.
 
-## Choose the assignment's planning home
+## Keep personal plans private
 
-For customer delivery on GitHub, adopt the [workspace starter](../references/customer-workspace.md),
-open a bounded issue and ask:
+Start the project from `AGENTS.md`; use the [adoption guide](adopt-workspace.md).
+Keep substantial personal working plans in your configured private Second Brain project
+folder. Issues own shared scope and acceptance; PRs own code and verification. Preserve
+significant decisions and affected project documentation after implementation.
 
-> Jörg, work on this assigned issue using the customer's working agreement. Keep the
-> live plan and questions in its AI section, verify acceptance and prepare a linked PR.
-> Draft significant decisions when they arise and update affected knowledge.
-
-Provide the real issue URL. GitHub updates require authorized tools in your host.
-The issue owns this plan; a duplicate local record is unnecessary.
-
-For a small fix, ask Jörg to inspect, implement and run the relevant check directly.
-For larger local work without a board assignment, use a local Markdown record.
+Configure the private plan directory with the export's `--plan-directory` option; see
+[the private setup example](https://github.com/atstaeff/ai-agents/blob/main/templates/agent-instructions/personal-planning.md).
+If storage is unavailable, report an unsaved session plan and continue authorized work.
+Small changes need no plan file. No mandatory workspace tree or YAML is needed.
 
 ## Optional local dashboard
 
@@ -44,7 +41,7 @@ In another WSL terminal, start the dashboard for the same project:
 python3 ~/tools/ai-agents/tools/ai_toolkit.py serve --workspace /path/to/project
 ```
 
-Open **http://127.0.0.1:4097**. Create a work record, edit the plan in your editor,
+Open **http://127.0.0.1:4097**. For existing local records, edit the plan in your editor,
 append comments and update task evidence in the dashboard. The AI host must follow
 its instructions to update that same file; there is no background session watcher.
 

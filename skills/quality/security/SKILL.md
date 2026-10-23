@@ -13,10 +13,6 @@ description: "Review a concrete trust boundary, authentication, authorization, s
 4. For browser-accessible local services, consider origin checks, DNS rebinding, CSRF, path traversal and unintended network exposure.
 5. Reproduce and test the affected behavior. Distinguish verified findings from assumptions and prioritize by impact and likelihood.
 
-## Completion
-
-Return the concrete result, verification evidence and any material unresolved limitation. Keep documentation proportional to the change and preserve human feedback.
-
 ## Focused references
 
 - [Detailed examples](references/security.md): load only the section relevant to the task.

@@ -29,6 +29,12 @@ const config = {
     blog: false,
     theme: {customCss: require.resolve('./src/css/custom.css')},
   }]],
+  plugins: [['@docusaurus/plugin-content-docs', {
+    id: 'engineering-demo', path: '../examples/engineering-demo/content',
+    routeBasePath: 'demo-knowledge',
+    include: ['intro.md', 'decisions/**/*.md', 'topics/**/*.md', 'components/**/*.md'],
+    sidebarPath: require.resolve('../examples/engineering-demo/sidebars.js'),
+  }]],
   themes: ['@docusaurus/theme-mermaid'],
   themeConfig: {
     colorMode: {defaultMode: 'light', respectPrefersColorScheme: true},
@@ -39,6 +45,7 @@ const config = {
         ...Object.entries(navigation).map(([sidebarId, section]) => ({
           type: 'docSidebar', sidebarId, label: section.label, position: 'left',
         })),
+        {to: '/knowledge-graph/', label: 'Graph demo', position: 'right'},
         {href: 'https://github.com/atstaeff/ai-agents', label: 'GitHub', position: 'right'},
       ],
     },
