@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const matter = require("gray-matter");
+const { writeViewData } = require("./graph-views.cjs");
 
 const SOURCE_KINDS = {
   decisions: "decision",
@@ -45,12 +46,13 @@ function buildGraph(contentRoot) {
         title,
         status,
         owner,
+        area,
         slug,
         relations = {},
       } = data;
       if (
         typeof id !== "string" ||
-        !/^[A-Z][A-Z0-9-]*$/.test(id) ||
+        !/^[A-Z][A-Z0-9-]{0,127}$/.test(id) ||
         ids.has(id)
       ) {
         throw new Error(`Invalid or duplicate ID: ${id}`);
@@ -63,6 +65,11 @@ function buildGraph(contentRoot) {
       ) {
         throw new Error(`Missing title or owner: ${id}`);
       }
+      if (
+        typeof area !== "string" ||
+        !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(area)
+      )
+        throw new Error(`Missing or invalid area: ${id}`);
       if (!STATUSES.has(status)) throw new Error(`Unknown status: ${id}`);
       if (
         typeof slug !== "string" ||
@@ -94,6 +101,7 @@ function buildGraph(contentRoot) {
         title,
         status,
         owner,
+        area,
         kind: SOURCE_KINDS[folder],
         href: `/demo-knowledge${slug}/`,
         path: path.relative(root, file).split(path.sep).join("/"),
@@ -129,36 +137,48 @@ function buildGraph(contentRoot) {
       }
     }
   }
-  for (const type of ["supersedes", "depends_on"]) {
-    const active = new Set(),
-      complete = new Set();
-    function walk(id) {
-      if (active.has(id)) throw new Error(`Cycle in ${type}`);
-      if (complete.has(id)) return;
-      active.add(id);
-      for (const edge of edges.filter(
-        (e) => e.source === id && e.type === type,
-      ))
-        walk(edge.target);
-      active.delete(id);
-      complete.add(id);
-    }
-    for (const node of nodes) walk(node.id);
-  }
+  for (const type of ["supersedes", "depends_on"])
+    assertAcyclic(nodes, edges, type);
   return { nodes, edges };
+}
+
+// Iterative traversal avoids a full edge scan per node and call-stack overflow on long histories.
+function assertAcyclic(nodes, edges, type) {
+  const adjacency = new Map(nodes.map((node) => [node.id, []]));
+  for (const edge of edges)
+    if (edge.type === type) adjacency.get(edge.source).push(edge.target);
+  const state = new Map();
+  for (const node of nodes) {
+    if (state.get(node.id) === 2) continue;
+    const stack = [{ id: node.id, next: 0 }];
+    state.set(node.id, 1);
+    while (stack.length) {
+      const frame = stack.at(-1);
+      const targets = adjacency.get(frame.id);
+      if (frame.next === targets.length) {
+        state.set(frame.id, 2);
+        stack.pop();
+        continue;
+      }
+      const target = targets[frame.next++];
+      if (state.get(target) === 1) throw new Error(`Cycle in ${type}`);
+      if (state.get(target) === 2) continue;
+      state.set(target, 1);
+      stack.push({ id: target, next: 0 });
+    }
+  }
 }
 
 if (require.main === module) {
   const site = path.resolve(__dirname, "..");
-  const graph = buildGraph(path.resolve(site, "../examples/engineering-demo/content"));
+  const graph = buildGraph(
+    path.resolve(site, "../examples/engineering-demo/content"),
+  );
   const output = path.join(site, ".generated");
   fs.mkdirSync(output, { recursive: true });
-  fs.writeFileSync(
-    path.join(output, "knowledge-graph.json"),
-    JSON.stringify(graph, null, 2) + "\n",
-  );
+  writeViewData(graph, output);
   console.log(
     `Knowledge graph: ${graph.nodes.length} records, ${graph.edges.length} relationships`,
   );
 }
-module.exports = { buildGraph };
+module.exports = { buildGraph, assertAcyclic };

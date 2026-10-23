@@ -35,6 +35,13 @@ content allowlist, stable routes and validated references. Exclude private plans
 records and generated exports even if they happen to be inside the repository. Git ignore
 alone does not protect website publication. Never follow source symlinks into a vault.
 
+At larger scale, start with curated domain/system areas and aggregate counts, then fetch
+one area's paginated results and one decision's bounded direct neighborhood. Keep hidden
+result counts visible, preserve direction/type at record level and include historical
+statuses explicitly. Do not load an entire ADR collection into every AI session or browser.
+A million-record estate needs an incremental authorized metadata/search index; a static
+site is a demonstration of navigation, not proof of that storage/query scale.
+
 The [Docusaurus demo](../examples/engineering-demo/README.md) provides a runnable example.
 The older [customer graph](../examples/document-portal/examples/knowledge_graph.py)
 remains available for projects already using that schema.

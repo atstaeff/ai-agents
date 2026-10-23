@@ -13,3 +13,4 @@ See the [decision template](../../templates/knowledge/decision.md) and
 [knowledge lifecycle](../../toolkit/PROJECT-KNOWLEDGE.md).
 
 - [ADR-0004: Private plans and shared knowledge](0004-private-plans-shared-knowledge.md) proposes private execution plans and durable shared outcomes.
+- [ADR-0005: Bounded knowledge views](0005-bounded-knowledge-views.md) proposes aggregate area maps and paginated direct context.

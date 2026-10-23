@@ -4,6 +4,7 @@ knowledge_id: TOPIC-RAG
 slug: /topics/retrieval
 status: current
 owner: ai-owner
+area: retrieval
 relations: {"relates_to": ["TOPIC-EVAL", "COMP-GATEWAY"]}
 ---
 

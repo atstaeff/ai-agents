@@ -4,6 +4,7 @@ knowledge_id: ADR-0004
 slug: /decisions/bounded-retries
 status: proposed
 owner: platform-owner
+area: document-processing
 relations: {"relates_to": ["COMP-PIPELINE", "TOPIC-OBS"], "depends_on": ["ADR-0002"]}
 ---
 
