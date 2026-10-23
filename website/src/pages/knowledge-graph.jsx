@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
+import useIsBrowser from "@docusaurus/useIsBrowser";
 import { useHistory, useLocation } from "@docusaurus/router";
 import overview from "@site/.generated/knowledge-overview.json";
 import "@site/src/css/knowledge-graph.css";
@@ -266,9 +267,11 @@ function Diagram({ nodes, edges, selected, onSelect, mode }) {
 
 export default function KnowledgeGraphPage() {
   const base = useBaseUrl("/");
+  const isBrowser = useIsBrowser();
   const location = useLocation(),
     history = useHistory();
-  const params = new URLSearchParams(location.search);
+  // Static HTML starts at the overview; apply deep links after hydration.
+  const params = new URLSearchParams(isBrowser ? location.search : "");
   const requestedId = params.get("record");
   const recordId = requestedId && validId(requestedId) ? requestedId : null;
   const area = areaById.get(params.get("area"));

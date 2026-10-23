@@ -55,10 +55,12 @@ jobs:
       - name: Exercise graph interactions and document routes
         run: npm --prefix website run test:browser
       - name: Upload knowledge map previews
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: knowledge-map-preview
           path: website/.generated/browser-preview
+          if-no-files-found: ignore
       - name: Upload documentation preview
         uses: actions/upload-artifact@v4
         with:
