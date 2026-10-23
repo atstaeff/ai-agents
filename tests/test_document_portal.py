@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 
 
-TEMPLATE = Path(__file__).resolve().parents[1] / 'templates/customer-workspace'
+TEMPLATE = Path(__file__).resolve().parents[1] / 'examples/document-portal'
 HAS_YAML = find_spec('yaml') is not None
 # Loading a source script this way does not create bytecode inside the copied template.
 graph = SimpleNamespace(**runpy.run_path(str(TEMPLATE / 'examples/knowledge_graph.py'))) if HAS_YAML else None

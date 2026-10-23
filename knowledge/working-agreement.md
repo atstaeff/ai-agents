@@ -11,5 +11,5 @@ planning and continue in-session. Do not create a repository plan automatically.
 Record significant decisions and affected documentation after implementation. Keep actual
 status visible; a proposed ADR, draft PR or successful test is not merged/deployed behavior.
 Run the applicable commands from `AGENTS.md`. Existing projects may keep using the optional
-[legacy YAML mapping](../templates/customer-workspace/workspace/workspace.yml); new projects
+[legacy YAML mapping](../examples/document-portal/workspace/workspace.yml); new projects
 do not need it. No GitHub Project board or automatic orchestration is configured.

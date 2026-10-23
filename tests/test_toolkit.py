@@ -27,7 +27,7 @@ class CatalogTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)
             for name in ('README.md', 'PROJECT.md', 'AGENTS.md', 'CONTRIBUTING.md',
-                         'copilot-instructions.md', '.github/copilot-instructions.md'):
+                         '.github/copilot-instructions.md'):
                 path = root/name
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text('# Entry\n')

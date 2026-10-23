@@ -31,7 +31,7 @@ Customer restrictions still determine whether any project material may enter a p
    Close the personal plan when verified. Review, merge and deployment remain distinct.
 
 See the [working contract](WORKFLOW.md) for execution and [quality standard](QUALITY-STANDARD.md)
-for selecting checks. Use [the worked assignment](../templates/customer-workspace/examples/issue-42.md)
+for selecting checks. Use [the worked assignment](../examples/document-portal/examples/issue-42.md)
 as a fictional team-delivery example; its shared plan is optional for personal execution.
 
 ## Minimal project setup

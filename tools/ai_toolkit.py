@@ -192,6 +192,7 @@ def check(root: Path = ROOT) -> list[str]:
                     errors.append(f'Invalid catalog alias: {kind}/{old} -> {new}')
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
     paths += list((root / "toolkit").rglob("*.md")) + list((root / "templates").rglob("*.md"))
+    paths += list((root / "examples").rglob("*.md"))
     paths += list((root / "knowledge").rglob("*.md"))
     if (root / "PROJECT.md").is_file():
         paths.append(root / "PROJECT.md")
@@ -199,7 +200,7 @@ def check(root: Path = ROOT) -> list[str]:
         if Path(directory) == root / 'workspace':
             folders[:] = [name for name in folders if name not in {'work', 'archive', 'generated', 'exports'}]
         paths += [Path(directory) / name for name in filenames if name.endswith('.md')]
-    paths += [root / p for p in ("README.md", "AGENTS.md", "CONTRIBUTING.md", "copilot-instructions.md", ".github/copilot-instructions.md")]
+    paths += [root / p for p in ("README.md", "AGENTS.md", "CONTRIBUTING.md", ".github/copilot-instructions.md")]
     for path in paths:
         if not path.exists():
             errors.append(f"Missing file: {path.relative_to(root)}")

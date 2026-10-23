@@ -78,7 +78,7 @@
         "Session Recovery": "getting-started/context-recovery.md"
       },
       {
-        "Worked Project": [
+        "Worked Document Portal Example": [
           {
             "Starter and Adoption": "references/customer-workspace.md"
           },
@@ -297,7 +297,7 @@
       {
         "References": [
           {
-            "Background": "why-copilot-expert-hub.md"
+            "Why AI-assisted engineering": "why-copilot-expert-hub.md"
           },
           {
             "Ownership Map": "architecture.md"

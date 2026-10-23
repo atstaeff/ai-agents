@@ -19,4 +19,4 @@ approval; no tool response grants broader action permissions. Do not claim unrun
 
 The [YAML map](workspace/workspace.yml) is optional for tools already using it. A new
 project can use a short `AGENTS.md` and existing document links without this directory
-layout. See the [simpler templates](../agent-instructions/README.md).
+layout. See the [simpler templates](../../templates/agent-instructions/README.md).

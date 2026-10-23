@@ -14,7 +14,7 @@ Keep the outcome, branch/commit, completed checks, blockers, unsaved changes, pe
 external writes and one next action in the personal plan. Include actual required
 approval references when applicable. Do not copy an entire conversation.
 For an actual teammate handoff, provide the same bounded information in the existing
-assignment using the [handoff template](../templates/customer-workspace/workspace/handoff.md).
+assignment using the [handoff template](../examples/document-portal/workspace/handoff.md).
 Publish only what is needed for collaboration, with private context removed.
 
 Preserve intervening edits and human comments. Inspect remote effects before retrying a

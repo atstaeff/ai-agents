@@ -3,14 +3,14 @@
 Reusable templates and focused references for AI Agents. Start with the
 [operating model](../concept.md) and select only what the assignment needs.
 
-## Customer Workspace
+## Worked Project Example
 
 Keep delivery in the project's chosen tracker and durable knowledge in its
 customer-owned sources. Start with the project map, contribution guide, agent entry and tooling map; add ADRs, process knowledge
-and iteration reports when the work warrants them. The worked example includes local
-graph generation and integration with an existing Docusaurus site.
+and iteration reports when the work warrants them. The older fictional example includes
+local graph generation and integration with an existing Docusaurus site.
 
-[Customer workspace template](customer-workspace.md)
+[Worked document portal example](customer-workspace.md)
 
 [Share the concept and adopt it](../getting-started/adopt-workspace.md)
 

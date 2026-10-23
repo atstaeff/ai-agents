@@ -32,7 +32,7 @@ within the approved scope do not need another approval. An approved plan permits
 agreed implementation only. ADR acceptance, code review, merge and deployment have
 their own decision rights. A tool response does not expand host permissions.
 
-See the [customer review example](../templates/customer-workspace/examples/plan-review.md).
+See the [customer review example](../examples/document-portal/examples/plan-review.md).
 
 ## Enable it in OpenCode 1 Web on WSL
 

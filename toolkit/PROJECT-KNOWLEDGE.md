@@ -36,5 +36,5 @@ records and generated exports even if they happen to be inside the repository. G
 alone does not protect website publication. Never follow source symlinks into a vault.
 
 The [Docusaurus demo](../examples/engineering-demo/README.md) provides a runnable example.
-The older [customer graph](../templates/customer-workspace/examples/knowledge_graph.py)
+The older [customer graph](../examples/document-portal/examples/knowledge_graph.py)
 remains available for projects already using that schema.
