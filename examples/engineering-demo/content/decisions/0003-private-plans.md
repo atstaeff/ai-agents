@@ -4,6 +4,7 @@ knowledge_id: ADR-0003
 slug: /decisions/private-plans
 status: accepted
 owner: engineering-owner
+area: engineering
 relations: {"relates_to": ["TOPIC-CONTEXT", "COMP-PIPELINE"]}
 ---
 

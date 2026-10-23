@@ -4,6 +4,7 @@ knowledge_id: COMP-GATEWAY
 slug: /components/ai-gateway
 status: current
 owner: ai-owner
+area: retrieval
 relations: {"governed_by": ["ADR-0002"], "relates_to": ["TOPIC-EVAL"]}
 ---
 

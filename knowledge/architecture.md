@@ -30,6 +30,12 @@ website/generate.py selects canonical Markdown for Docusaurus and rewrites local
 The website is a derived reading view, with edit links to the maintained source. docs/ is
 existing generated Pages output. A public website cannot expose private customer sources.
 
+The example knowledge map starts with aggregate areas. Record lists and one-hop
+neighborhoods use bounded JSON pages fetched on demand, with versioned snapshot URLs,
+explicit result counts and retryable errors. Its build still processes the full published
+Markdown collection. [ADR-0005](decisions/0005-bounded-knowledge-views.md) records the proposed
+retrieval contract and the boundary to an indexed service for larger collections.
+
 The optional workbench still stores records in ignored workspace/work/ and archives in
 workspace/archive/. Its --workspace argument means the project root. Existing YAML
 validation and customer examples remain compatibility tools; neither is required for a

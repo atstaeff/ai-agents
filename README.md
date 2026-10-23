@@ -50,7 +50,7 @@ for other hosts and [optional review](toolkit/PLAN-REVIEW.md) when a plan gate i
 
 The [Docusaurus demo](examples/engineering-demo/README.md) builds a local site with an
 interactive graph from shared Markdown: decisions, system components and AI topics.
-Search, filter, inspect relationships and open the original documentation. Private plans
+Browse areas, filter records, inspect direct relationships and open the original documentation. Private plans
 are excluded by construction. The existing [Docusaurus site](https://atstaeff.github.io/ai-agents/)
 remains the catalog website; this change does not deploy either site.
 

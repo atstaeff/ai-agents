@@ -10,7 +10,7 @@ site; the engineering guidance stays in its canonical repository sources.
 | `navigation.json` | Documentation sections and their order |
 | `generate.py` | Canonical source mapping, link rebasing and catalog navigation |
 | `docusaurus.config.js` | Site behavior, URL base and strict broken-link handling |
-| `.generated/` | Generated Markdown, sidebars and catalog counts; never edit or commit |
+| `.generated/` | Generated Markdown, catalog metadata, area overview and paginated graph JSON; never edit or commit |
 | `.docusaurus/`, `build/` | Framework cache and static output; never edit or commit |
 
 `generate.py` reads the same catalog as the toolkit. Agents, skills, templates, operating
@@ -64,3 +64,11 @@ font service is contacted. Dark mode uses charcoal surfaces and lighter navy acc
 for legibility. Shared tokens in `src/css/custom.css` style the homepage, documentation,
 navigation and graph; `src/css/knowledge-graph.css` owns only the graph's layout/components.
 Keep focus indicators visible, text readable and page overflow contained on mobile.
+
+The knowledge map imports an aggregate overview. Docusaurus copies
+`.generated/static/knowledge-data/` into the build; the browser fetches versioned area
+and direct-neighborhood pages only after navigation. The [demo guide](../examples/engineering-demo/README.md#large-collections)
+describes the data contract and its production indexing boundary. `test:browser` checks
+this navigation, request failures/retry, document links and mobile overflow. It saves
+overview, focused and mobile screenshots to `.generated/browser-preview/`; CI uploads
+them as the `knowledge-map-preview` artifact.

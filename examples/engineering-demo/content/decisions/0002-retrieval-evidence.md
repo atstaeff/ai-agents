@@ -4,6 +4,7 @@ knowledge_id: ADR-0002
 slug: /decisions/retrieval-evidence
 status: accepted
 owner: technical-owner
+area: retrieval
 relations: {"supersedes": ["ADR-0001"], "governed_by": ["TOPIC-EVAL"], "relates_to": ["TOPIC-RAG", "COMP-GATEWAY"]}
 ---
 

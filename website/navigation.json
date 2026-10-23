@@ -242,6 +242,9 @@
       },
       {
         "Private Plans and Shared Knowledge": "knowledge/decisions/adr-0004.md"
+      },
+      {
+        "Bounded Knowledge Views": "knowledge/decisions/adr-0005.md"
       }
     ]
   },

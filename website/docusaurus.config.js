@@ -9,6 +9,7 @@ const config = {
   organizationName: 'atstaeff',
   projectName: 'ai-agents',
   trailingSlash: true,
+  staticDirectories: ['static', '.generated/static'],
   onBrokenLinks: 'throw',
   onBrokenAnchors: 'throw',
   // SWC avoids the observed long JavaScript minification step on this catalog.
@@ -45,7 +46,7 @@ const config = {
         ...Object.entries(navigation).map(([sidebarId, section]) => ({
           type: 'docSidebar', sidebarId, label: section.label, position: 'left',
         })),
-        {to: '/knowledge-graph/', label: 'Graph demo', position: 'right'},
+        {to: '/knowledge-graph/', label: 'Knowledge map', position: 'right'},
         {href: 'https://github.com/atstaeff/ai-agents', label: 'GitHub', position: 'right'},
       ],
     },
