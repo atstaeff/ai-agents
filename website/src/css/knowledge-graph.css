@@ -509,9 +509,6 @@
   .atlas .graph-canvas {
     overflow-x: auto;
   }
-  .atlas .knowledge-svg {
-    min-width: 650px;
-  }
   .atlas .graph-caption {
     min-width: 0;
   }
@@ -526,7 +523,35 @@
   .atlas .relationship-list {
     grid-template-columns: 1fr;
   }
+}
+
+.mobile-area-list {
+  display: none;
+}
+@media (max-width: 760px) {
+  .atlas .overview-canvas,
+  .atlas .desktop-area-list,
+  .atlas .graph-workspace .knowledge-svg,
+  .atlas .diagram-description {
+    display: none;
+  }
+  .atlas .mobile-area-list {
+    display: block;
+  }
+  .atlas .mobile-area-list .area-directory {
+    padding: 0;
+  }
   .atlas .record-table-wrap table {
-    min-width: 660px;
+    min-width: 0;
+  }
+  .atlas .record-table-wrap th:nth-child(2),
+  .atlas .record-table-wrap td:nth-child(2),
+  .atlas .record-table-wrap th:nth-child(4),
+  .atlas .record-table-wrap td:nth-child(4) {
+    display: none;
+  }
+  .atlas .record-table-wrap td,
+  .atlas .record-table-wrap th {
+    padding: 12px;
   }
 }

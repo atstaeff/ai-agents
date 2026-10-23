@@ -183,9 +183,12 @@ const { chromium } = require("playwright");
     }
     await page.setViewportSize({ width: 390, height: 844 });
     await page.goto(origin);
-    await page
-      .getByRole("group", { name: "Knowledge area overview" })
-      .waitFor();
+    const mobileAreas = page.getByRole("region", {
+      name: "Areas as a list",
+      exact: true,
+    });
+    await mobileAreas.waitFor();
+    assert.equal(await mobileAreas.getByRole("button").count(), 3);
     assert.ok(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
@@ -196,16 +199,40 @@ const { chromium } = require("playwright");
       path: path.join(previews, "mobile.png"),
       fullPage: true,
     });
-    await page.goto(origin + "?record=ADR-0002");
+    await mobileAreas
+      .getByRole("button", { name: /Document processing/ })
+      .click();
     await page
-      .getByRole("group", { name: "Direct relationships of selected record" })
+      .getByRole("button", {
+        name: "Bound retries for document processing",
+        exact: true,
+      })
       .waitFor();
+    assert.ok(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= window.innerWidth,
+      ),
+      "Mobile record list must not overflow",
+    );
+    await page.goto(origin + "?record=ADR-0002");
+    await page.getByLabel("Selected record", { exact: true }).waitFor();
+    await page.locator(".relationship-list button").first().waitFor();
+    assert.ok((await page.locator(".relationship-list button").count()) <= 8);
+    assert.equal(
+      await page.locator("svg.knowledge-svg:visible").count(),
+      0,
+      "Mobile uses readable lists instead of a clipped diagram",
+    );
     assert.ok(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= window.innerWidth,
       ),
       "Mobile detail must not overflow",
     );
+    await page.screenshot({
+      path: path.join(previews, "mobile-decision.png"),
+      fullPage: true,
+    });
     assert.deepEqual(
       errors,
       [],

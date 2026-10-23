@@ -49,6 +49,10 @@ regenerates the graph automatically. Only the named shared folders are read; pla
 archives and symlinked files are excluded or rejected. The graph stores no embeddings,
 calls no model and imports no Obsidian vault.
 
+On small screens, area cards and relationship lists replace the diagram so that all
+choices remain readable without horizontal panning. The same filters and source links
+remain available.
+
 ## Large collections
 
 Do not draw every ADR at once. Use a few curated domains/system areas for orientation,

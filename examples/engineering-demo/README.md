@@ -59,6 +59,10 @@ is configured by this change.
 See the [engineering model](../../toolkit/OPERATING-MODEL.md) and
 [AGENTS.md variants](../../templates/agent-instructions/README.md) to adopt the workflow.
 
+On small screens, area cards and relationship lists replace the diagram so that all
+choices remain readable without horizontal panning. The same filters and source links
+remain available.
+
 ## Large collections
 
 The default view contains areas, rather than one node per ADR. Use a small governed set

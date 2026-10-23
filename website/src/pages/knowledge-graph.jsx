@@ -265,6 +265,36 @@ function Diagram({ nodes, edges, selected, onSelect, mode }) {
   );
 }
 
+function AreaDirectory({ areas, onSelect }) {
+  return (
+    <div className="area-directory" role="region" aria-label="Areas as a list">
+      {areas.map((area) => (
+        <button type="button" key={area.id} onClick={() => onSelect(area.id)}>
+          <strong>{area.title}</strong>
+          <span>
+            {number(area.counts["all-all"])} records ·{" "}
+            {number(area.counts["all-proposed"] || 0)} proposed ·{" "}
+            {number(area.counts["all-superseded"] || 0)} superseded
+          </span>
+          <span>
+            {number(
+              overview.links.reduce(
+                (total, link) =>
+                  total +
+                  (link.source === area.id || link.target === area.id
+                    ? link.count
+                    : 0),
+                0,
+              ),
+            )}{" "}
+            cross-area relationships
+          </span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function KnowledgeGraphPage() {
   const base = useBaseUrl("/");
   const isBrowser = useIsBrowser();
@@ -654,8 +684,10 @@ export default function KnowledgeGraphPage() {
                 </div>
                 <p>
                   Open an area to browse its records.
-                  <br />
-                  Lines combine explicit relationships across areas.
+                  <span className="diagram-description">
+                    <br />
+                    Lines combine explicit relationships across areas.
+                  </span>
                 </p>
               </div>
               <div className="graph-canvas overview-canvas">
@@ -682,24 +714,12 @@ export default function KnowledgeGraphPage() {
                 label="Area pages"
                 onChange={(page) => navigate({ page: String(page) })}
               />
-              <details className="area-list">
+              <div className="mobile-area-list">
+                <AreaDirectory areas={visibleAreas} onSelect={openArea} />
+              </div>
+              <details className="area-list desktop-area-list">
                 <summary>Browse areas as a list</summary>
-                <div className="area-directory" aria-label="Areas as a list">
-                  {visibleAreas.map((item) => (
-                    <button
-                      type="button"
-                      key={item.id}
-                      onClick={() => openArea(item.id)}
-                    >
-                      <strong>{item.title}</strong>
-                      <span>
-                        {number(item.counts["all-all"])} records ·{" "}
-                        {number(item.counts["all-proposed"] || 0)} proposed ·{" "}
-                        {number(item.counts["all-superseded"] || 0)} superseded
-                      </span>
-                    </button>
-                  ))}
-                </div>
+                <AreaDirectory areas={visibleAreas} onSelect={openArea} />
               </details>
             </>
           )}
