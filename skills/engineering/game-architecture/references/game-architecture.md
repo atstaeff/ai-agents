@@ -494,9 +494,9 @@ class AssetManager {
 
 ## Related Skills
 
-- `game-development/game-design.md` — Design principles
-- `game-development/game-mechanics.md` — Physics, AI, procedural generation
-- `game-development/prototyping.md` — Rapid prototyping
+- [game-design](../../game-design/SKILL.md) — Design principles
+- [game-mechanics](../../game-mechanics/SKILL.md) — Physics, AI, procedural generation
+- [prototyping](../../prototyping/SKILL.md) — Rapid prototyping
 
 ## References
 

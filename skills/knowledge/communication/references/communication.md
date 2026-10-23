@@ -379,8 +379,8 @@ Date: YYYY-MM-DD
 
 ## Related Skills & Agents
 
-- [Stakeholder Agent](../../../../agents/delivery/stakeholder-agent.agent.md)
+- [Stakeholder Agent](../../../../agents/delivery/product-manager.agent.md)
 - [Presentation Agent](../../../../agents/knowledge/presentation-agent.agent.md)
 - [PR Crafting](../../../delivery/pr-crafting/SKILL.md)
-- [Progress Sync](../../../delivery/progress-sync/SKILL.md)
+- [Progress Sync](../../../delivery/work-management/SKILL.md)
 - [Principal Engineer Decisions](../../../architecture/principal-engineer-decisions/SKILL.md)

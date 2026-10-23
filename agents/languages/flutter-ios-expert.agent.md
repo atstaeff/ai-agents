@@ -5,8 +5,10 @@ description: "Develop or troubleshoot Flutter and iOS behavior, lifecycle, acces
 
 # Flutter Ios Expert
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,7 +16,12 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Keep business logic testable; handle lifecycle, permissions, navigation and accessible widget states.
 3. Run analysis and relevant tests/builds; distinguish simulator, device and unavailable platform checks.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [flutter-patterns](../../skills/languages/flutter-patterns/SKILL.md)
 - [testing](../../skills/quality/testing/SKILL.md)
+
+
+## Optional reference
+
+- [Domain examples](references/flutter-ios-expert.md): consult a specific section only when required.

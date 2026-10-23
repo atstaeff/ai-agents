@@ -13,7 +13,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'getting-started/repository-map.md': 'toolkit/README.md',
+    'getting-started/local-tools.md': 'tools/README.md',
     'getting-started/agents-observation.md': 'toolkit/evaluations/agents-entry-20261022.md',
+    'getting-started/session-rules.md': 'toolkit/SESSION-RULES.md',
     'project/agents.md': 'AGENTS.md',
     'project/stakeholders.md': 'knowledge/stakeholders.md',
     'project/working-agreement.md': 'knowledge/working-agreement.md',
@@ -172,8 +175,18 @@ def render(markdown, page, config):
                     if entry.domain == domain and entry.kind == kind:
                         text += f'| [{entry.name}](../{kind}s/{entry.name}.md) | {entry.description.replace("|", "&#124;")} |\n'
             return text
+    aliases = json.loads((ROOT / 'toolkit/catalog-aliases.json').read_text())
+    group = page.path.split('/')[0]
+    name = Path(page.path).stem
+    replacement = aliases.get(group, {}).get(name)
     if page.path == 'skills/feature-discovery.md':
-        source = 'skills/delivery/feature-discovery-session/SKILL.md'
+        replacement, group = 'product-discovery', 'skills'
+    if replacement:
+        target = next(e for e in ENTRIES if e.kind + 's' == group and e.name == replacement)
+        page.edit_url = 'https://github.com/atstaeff/ai-agents/edit/main/' + target.path
+        return (f'# {name}: consolidated\n\nUse [{replacement}]({replacement}.md). '
+                'This compatibility page preserves the old public URL; the retired name is no longer a native profile.\n\n'
+                f'Canonical source: [`{target.path}`](https://github.com/atstaeff/ai-agents/blob/main/{target.path}).\n')
     if page.path in {'agents/index.md','skills/index.md'}:
         kind = page.path.split('/')[0][:-1]
         title = 'Agents' if kind == 'agent' else 'Skills'
@@ -247,6 +260,8 @@ def generate():
     pages = {}
     paths = set(SOURCES) | {'agents/index.md', 'skills/index.md', 'skills/feature-discovery.md'}
     paths |= {f'catalog/{domain}.md' for domain in domains()}
+    aliases = json.loads((ROOT / 'toolkit/catalog-aliases.json').read_text())
+    paths |= {f'{kind}/{name}.md' for kind, names in aliases.items() for name in names}
     manual = ROOT / 'website/content'
     paths |= {p.relative_to(manual).as_posix() for p in manual.rglob('*.md')}
     for path in sorted(paths):

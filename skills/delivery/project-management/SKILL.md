@@ -8,7 +8,9 @@ description: "Organize delivery, technical debt or release work without excessiv
 ## Workflow
 
 1. Read the project’s tooling map and use its designated work item for outcome, acceptance, tasks, feedback and evidence. Use a local record only when no assigned system owns the work.
-2. Select agile-methodologies for flow, technical-debt for repayment choices or devops-cicd for release mechanics.
+2. Slice outcomes into independently verifiable increments. Limit WIP, expose blockers
+   and improve the observed bottleneck. Use technical-debt for repayment or devops-cicd
+   for release mechanics; add a cadence only when it helps actual coordination.
 3. Keep task granularity useful for execution and do not introduce ceremonies or parallel tracking systems without a need.
 4. Make dependencies, accountable decision roles, WIP and review capacity visible. Pull
    the next bounded outcome when capacity exists; more AI sessions do not create more
@@ -21,8 +23,9 @@ description: "Organize delivery, technical debt or release work without excessiv
 
 ## Select a focused topic
 
-- [agile-methodologies](../agile-methodologies/SKILL.md)
 - [devops-cicd](../../engineering/devops-cicd/SKILL.md)
 - [technical-debt](../technical-debt/SKILL.md)
 - [Project brief](../../../templates/project/project-brief.md) and
   [iteration review](../../../templates/delivery/iteration-review.md): use only when the existing home lacks the needed structure.
+
+[Flow examples](references/agile-methodologies.md): consult for a demonstrated delivery bottleneck.

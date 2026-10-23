@@ -1,5 +1,9 @@
 # Repository knowledge
 
+This is durable memory about the ai-agents repository itself: current architecture,
+responsibilities and significant decisions. Reusable methods belong in toolkit/ or
+skills/; customer knowledge stays with the customer. Personal plans stay private.
+
 Start at [AGENTS.md](../AGENTS.md) for the collaboration contract and
 [PROJECT.md](../PROJECT.md) for vision, scope and project navigation.
 
@@ -10,7 +14,7 @@ Start at [AGENTS.md](../AGENTS.md) for the collaboration contract and
 | Why was a significant approach proposed or chosen? | [Decision index](decisions/README.md) | Preserve reasons, status and replacement links |
 | What currently works and how is it organized? | [Architecture and knowledge layout](architecture.md), linked source and tests | Update with affected implementation/process changes |
 | What happened in an actual review period? | [Iteration index](iterations/README.md) | Optional historical summary, no second live plan |
-| What work is next? | Assigned GitHub issue or current PR | Acceptance, live plan, feedback, evidence and handoff stay together |
+| What work is next? | Assigned GitHub issue or current PR | Shared scope, acceptance, feedback and evidence; personal steps stay private |
 
 Use [current knowledge](../templates/knowledge/current.md),
 [decision](../templates/knowledge/decision.md) and

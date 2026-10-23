@@ -519,5 +519,5 @@ testWidgets('OrderCard renders correctly', (tester) async {
 - [Flutter & iOS Expert Agent](../../../../agents/languages/flutter-ios-expert.agent.md)
 - [Clean Code](../../../engineering/clean-code/SKILL.md)
 - [Design Patterns](../../../engineering/design-patterns/SKILL.md)
-- [Testing Strategies](../../../quality/testing-strategies/SKILL.md)
+- [Testing Strategies](../../../quality/testing/SKILL.md)
 - [Anti-Patterns](../../../quality/anti-patterns/SKILL.md)

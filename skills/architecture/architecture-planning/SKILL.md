@@ -7,7 +7,8 @@ description: "Produce a concise architecture plan with boundaries, alternatives,
 
 ## Workflow
 
-1. Read the actual assignment, current architecture, relevant decisions and affected consumers.
+1. Read the actual assignment, use cases, current architecture, data flow/lifecycle,
+   relevant decisions and affected consumers. Establish scale and operational constraints.
    Distinguish intended behavior, implemented behavior and unresolved assumptions.
 2. Identify the outcome and the few quality attributes that determine the choice. Use
    stimulus/response/measure scenarios instead of unsupported claims such as scalable or clean.
@@ -22,6 +23,10 @@ description: "Produce a concise architecture plan with boundaries, alternatives,
    constrain dependent work; a proposal does not silently revoke them.
 
 ## Focused references
+
+Choose a specific boundary skill directly when no system-level plan is needed: API design,
+security, performance, domain modeling or cloud deployment. Do not chain umbrella skills.
+
 
 - [Detailed examples](references/architecture-planning.md): load only the section relevant to the task.
 - [Quality standard](../../../toolkit/QUALITY-STANDARD.md) and

@@ -1,5 +1,7 @@
 # Shared working contract
 
+Read this for process uncertainty; routine sessions start with [session rules](SESSION-RULES.md).
+
 Follow the current user and host instructions, then project rules. Use English for
 shared repository artifacts and the user's language in conversation. Load only relevant
 sources and selected skills; do not scan the entire catalog for a routine task.

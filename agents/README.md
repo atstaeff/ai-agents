@@ -20,9 +20,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 
 | Name | Select for |
 | --- | --- |
-| [product-manager](delivery/product-manager.agent.md) | Turn a product need into evidence, a scoped increment and measurable acceptance criteria. |
-| [proposal-pitch](delivery/proposal-pitch.agent.md) | Create a concrete product or technical proposal with value, scope, costs and verifiable next steps. |
-| [stakeholder-agent](delivery/stakeholder-agent.agent.md) | Clarify stakeholder needs, acceptance criteria and feedback without unnecessary meetings or documentation. |
+| [product-manager](delivery/product-manager.agent.md) | Define product scope, stakeholder acceptance or a proposal from evidence; choose the next measurable increment. |
 | [task-orchestrator](delivery/task-orchestrator.agent.md) | Coordinate a scoped outcome, select specialists and integrate verified results into the existing shared assignment. |
 
 ## Architecture & Systems
@@ -72,6 +70,5 @@ Preserve project memory and communicate decisions and outcomes.
 
 | Name | Select for |
 | --- | --- |
-| [context-manager](knowledge/context-manager.agent.md) | Maintain concise project context and evidence-based handoffs across sessions or agents. |
 | [presentation-agent](knowledge/presentation-agent.agent.md) | Create or revise a concise Marp presentation for a defined audience and decision. |
 | [second-brain](knowledge/second-brain.agent.md) | Maintain a private Obsidian vault using PARA, preserving user notes, backlinks and practical retrieval. |

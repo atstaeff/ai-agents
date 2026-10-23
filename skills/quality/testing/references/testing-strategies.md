@@ -212,7 +212,7 @@ def make_order(**overrides: Any) -> Order:
 ## Related Skills & Agents
 
 - [Test Strategist Agent](../../../../agents/quality/test-strategist.agent.md)
-- [Testing Patterns Skill](../../testing/SKILL.md)
+- [Testing Patterns Skill](../SKILL.md)
 - [Python Patterns](../../../languages/python-patterns/SKILL.md)
 - [Golang Patterns](../../../languages/golang-patterns/SKILL.md)
 - [Flutter Patterns](../../../languages/flutter-patterns/SKILL.md)

@@ -501,10 +501,10 @@ Hour 44-48: Build final version, submit, write description
 
 ## Related Skills
 
-- `game-development/game-design.md` — Design principles and core loops
-- `game-development/game-mechanics.md` — Physics, AI, collision patterns
-- `game-development/game-architecture.md` — ECS, scene management
-- `creative-apps/creative-app-patterns.md` — Creative app prototyping
+- [game-design](../../game-design/SKILL.md) — Design principles and core loops
+- [game-mechanics](../../game-mechanics/SKILL.md) — Physics, AI, collision patterns
+- [game-architecture](../../game-architecture/SKILL.md) — ECS, scene management
+- [creative-app-patterns](../../creative-app-patterns/SKILL.md) — Creative app prototyping
 
 ## References
 

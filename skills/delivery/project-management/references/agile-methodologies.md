@@ -310,7 +310,7 @@ Then the item appears in my wishlist
 ## Related Skills & Agents
 
 - [Task Orchestrator Agent](../../../../agents/delivery/task-orchestrator.agent.md)
-- [Context Manager Agent](../../../../agents/knowledge/context-manager.agent.md)
-- [Progress Sync](../../progress-sync/SKILL.md)
-- [Feature Discovery Session](../../feature-discovery-session/SKILL.md)
+- [Context Manager Agent](../../../../agents/delivery/task-orchestrator.agent.md)
+- [Progress Sync](../../work-management/SKILL.md)
+- [Feature Discovery Session](../../product-discovery/SKILL.md)
 - [Technical Debt Management](../../technical-debt/SKILL.md)

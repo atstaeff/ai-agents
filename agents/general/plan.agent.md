@@ -5,7 +5,7 @@ description: "Plan a substantial change in the user's private Second Brain; comp
 
 # Plan
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
+Follow project instructions and the [session rules](../../toolkit/SESSION-RULES.md).
 
 1. Inspect relevant code and decisions. Define the outcome, boundaries and observable acceptance.
 2. For substantial work, reuse one private plan at the user-configured Second Brain project
@@ -17,7 +17,7 @@ Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md)
    revision; a failed tool or answered question is not approval. Hand the current plan and
    relevant source pointers to Build. Label proposed checks as unrun.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [work-management](../../skills/delivery/work-management/SKILL.md)
 - [architecture-planning](../../skills/architecture/architecture-planning/SKILL.md)

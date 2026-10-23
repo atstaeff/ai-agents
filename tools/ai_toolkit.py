@@ -122,6 +122,33 @@ def catalog(root: Path = ROOT) -> list[Entry]:
     return entries
 
 
+def catalog_presets() -> dict:
+    return json.loads((ROOT / 'toolkit/catalog-presets.json').read_text(encoding='utf-8'))
+
+
+def select_entries(entries: list[Entry], preset: str = 'all',
+                   agent_names: tuple[str, ...] = (), skill_names: tuple[str, ...] = ()) -> list[Entry]:
+    """Select native registrations; canonical references remain available on demand."""
+    presets = catalog_presets()
+    if preset not in presets:
+        raise ToolkitError(f'Unknown catalog preset: {preset}')
+    requested = {'agent': set(agent_names), 'skill': set(skill_names)}
+    for kind, names in requested.items():
+        known = {e.name for e in entries if e.kind == kind}
+        declared = set(presets[preset][kind + 's']) if preset != 'all' else set()
+        unknown = (names | declared) - known
+        if unknown:
+            aliases = json.loads((ROOT / 'toolkit/catalog-aliases.json').read_text()).get(kind + 's', {})
+            migrated = [f'{name} -> {aliases[name]}' for name in sorted(unknown) if name in aliases]
+            hint = '; retired names: ' + ', '.join(migrated) if migrated else ''
+            raise ToolkitError(f'Unknown {kind} selection: {", ".join(sorted(unknown))}{hint}')
+        names.update(declared)
+    selected = [e for e in entries if preset == 'all' or e.name in requested[e.kind]]
+    if not any(e.kind == 'agent' for e in selected) or not any(e.kind == 'skill' for e in selected):
+        raise ToolkitError('Select at least one agent and one skill.')
+    return selected
+
+
 def catalog_markdown(entries: list[Entry], kind: str | None = None) -> str:
     title = {'agent': 'Agents', 'skill': 'Skills', None: 'Agents and skills'}[kind]
     intro = ('Agents define accountable roles and expected handoffs.' if kind == 'agent' else
@@ -140,6 +167,7 @@ def catalog_markdown(entries: list[Entry], kind: str | None = None) -> str:
 
 def check(root: Path = ROOT) -> list[str]:
     errors = []
+    entries = []
     try:
         entries = catalog(root)
         for kind in ('agent', 'skill'):
@@ -149,6 +177,19 @@ def check(root: Path = ROOT) -> list[str]:
                     errors.append(f'Stale catalog index: {kind}s/README.md; regenerate with catalog --kind {kind} --format markdown.')
     except ToolkitError as exc:
         errors.append(str(exc))
+    if (root / 'toolkit/catalog-presets.json').is_file():
+        for preset in catalog_presets():
+            try:
+                select_entries(entries, preset)
+            except ToolkitError as exc:
+                errors.append(str(exc))
+    alias_path = root / 'toolkit/catalog-aliases.json'
+    if alias_path.is_file():
+        active = {(e.kind + 's', e.name) for e in entries}
+        for kind, aliases in json.loads(alias_path.read_text()).items():
+            for old, new in aliases.items():
+                if (kind, old) in active or (kind, new) not in active:
+                    errors.append(f'Invalid catalog alias: {kind}/{old} -> {new}')
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
     paths += list((root / "toolkit").rglob("*.md")) + list((root / "templates").rglob("*.md"))
     paths += list((root / "knowledge").rglob("*.md"))
@@ -220,7 +261,8 @@ class OpenCodeOptions:
 
 
 def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False,
-           *, opencode_options: OpenCodeOptions | None = None) -> dict:
+           *, opencode_options: OpenCodeOptions | None = None, preset: str = 'all',
+           agent_names: tuple[str, ...] = (), skill_names: tuple[str, ...] = ()) -> dict:
     if runtime not in {"opencode", "copilot", "claude", "portable"}:
         raise ToolkitError("Unknown runtime.")
     options = opencode_options or OpenCodeOptions()
@@ -239,6 +281,12 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
     if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
         raise ToolkitError('Export outside canonical source folders.')
+    entries = select_entries(catalog(root), preset, agent_names, skill_names)
+    selected_agents = {e.name for e in entries if e.kind == 'agent'}
+    for phase in ('plan', 'build'):
+        if (getattr(options, f'{phase}_model') or getattr(options, f'{phase}_variant')
+                or (phase == 'plan' and (options.plannotator or options.plan_directory))) and phase not in selected_agents:
+            raise ToolkitError(f'{phase} options require selecting the {phase} agent.')
     planned: dict[str, bytes] = {}
     for folder in ("agents", "skills", "toolkit", "templates", "marp-templates", "reference-repos"):
         for path in sorted((root / folder).rglob("*")):
@@ -246,7 +294,6 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 if path.is_symlink():
                     raise ToolkitError(f"Cannot export a symlink: {path}")
                 planned[f"catalog/{path.relative_to(root).as_posix()}"] = path.read_bytes()
-    entries = catalog(root)
     planned['catalog/index.json'] = (json.dumps([asdict(e) for e in entries], indent=2) + '\n').encode()
     for entry in entries:
         if entry.kind == "skill":
@@ -299,8 +346,8 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 body += '\nThis adapter permits file reading and search only. Return proposed plans or findings to the coordinating session; it owns required review, record updates and executable verification. Do not claim checks you cannot run.\n'
         planned[destination] = (header + "---\n\n" + body).encode()
     if runtime == "opencode":
-        config = {"$schema": "https://opencode.ai/config.json", "default_agent": "joerg",
-                  "instructions": [str(output / "catalog/toolkit/WORKFLOW.md")],
+        config = {"$schema": "https://opencode.ai/config.json", "default_agent": "joerg" if "joerg" in selected_agents else next(e.name for e in entries if e.kind == "agent"),
+                  "instructions": [str(output / "catalog/toolkit/SESSION-RULES.md")],
                   "permission": {"external_directory": {str(output / 'catalog') + '/*': 'allow'},
                                  "edit": {str(output / 'catalog') + '/*': 'deny'}}}
         if plan_directory:
@@ -330,11 +377,13 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             config['permission']['submit_plan'] = 'deny'
         planned['opencode.json'] = (json.dumps(config, indent=2) + '\n').encode()
         for name, agent, description in (("work-plan", "plan", "Plan an outcome in its existing planning home"), ("work-build", "build", "Implement and verify the current authorized plan"), ("brain", "second-brain", "Maintain the private PARA vault")):
-            planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nUse the relevant skills for this request and the shared workflow. $ARGUMENTS\n'.encode()
+            if agent not in selected_agents:
+                continue
+            planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nFollow project instructions and load the next relevant skill only when needed. $ARGUMENTS\n'.encode()
     elif runtime == "copilot":
-        planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/WORKFLOW.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
+        planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/SESSION-RULES.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
     elif runtime == "claude":
-        planned['CLAUDE.md'] = b'@catalog/toolkit/WORKFLOW.md\n'
+        planned['CLAUDE.md'] = b'@catalog/toolkit/SESSION-RULES.md\n'
     manifest_path = output / '.ai-toolkit-manifest.json'
     if manifest_path.is_symlink():
         raise ToolkitError("The export manifest must not be a symlink.")
@@ -375,7 +424,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         manifest = (json.dumps({'runtime': runtime, 'files': hashes}, indent=2) + '\n').encode()
         if not manifest_path.exists() or manifest_path.read_bytes() != manifest:
             atomic_write(manifest_path, manifest)
-    return {'runtime': runtime, 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), 'changed': len(changed), 'unchanged': len(planned) - len(changed), 'removed': len(removed), 'dry_run': dry_run}
+    return {'runtime': runtime, 'preset': preset, 'metadata_characters': sum(len(e.name) + len(e.description) for e in entries), 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), 'changed': len(changed), 'unchanged': len(planned) - len(changed), 'removed': len(removed), 'dry_run': dry_run}
 
 
 TASK_ROW = re.compile(r"^\| (?P<id>T[1-9][0-9]*) \| (?P<title>[^|]*) \| (?P<status>open|in_progress|blocked|done) \| (?P<evidence>[^|]*) \|$", re.M)
@@ -702,12 +751,16 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('check', help='Validate all catalog metadata and local links')
     cat = sub.add_parser('catalog', help='Print catalog metadata without loading all prompts')
+    cat.add_argument('--preset', choices=list(catalog_presets()), default='all')
     cat.add_argument('--kind', choices=['agent','skill'])
     cat.add_argument('--domain', choices=list(domains()), help='Select a catalog discipline')
     cat.add_argument('--format', choices=['json', 'markdown'], default='json')
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
     adapter.add_argument('--runtime', choices=['opencode','copilot','claude','portable'], required=True)
     adapter.add_argument('--output', type=Path, required=True)
+    adapter.add_argument('--preset', choices=list(catalog_presets()), default='all', help='Native profile selection; all preserves existing behavior')
+    adapter.add_argument('--agent', action='append', default=[], help='Add a named agent to the preset')
+    adapter.add_argument('--skill', action='append', default=[], help='Add a named skill to the preset')
     adapter.add_argument('--force', action='store_true')
     adapter.add_argument('--dry-run', action='store_true')
     adapter.add_argument('--plannotator', action='store_true', help='Enable local Plannotator plan review in OpenCode 1')
@@ -756,7 +809,7 @@ def main(argv: list[str] | None = None) -> int:
             entries = catalog()
             print(f"Valid: {sum(e.kind == 'agent' for e in entries)} agents, {sum(e.kind == 'skill' for e in entries)} skills; local links resolve.")
         elif args.command == 'catalog':
-            entries = [e for e in catalog() if (args.kind is None or e.kind == args.kind)
+            entries = [e for e in select_entries(catalog(), args.preset) if (args.kind is None or e.kind == args.kind)
                        and (args.domain is None or e.domain == args.domain)]
             print(catalog_markdown(entries, args.kind) if args.format == 'markdown'
                   else json.dumps([asdict(e) for e in entries], indent=2),
@@ -765,7 +818,8 @@ def main(argv: list[str] | None = None) -> int:
             options = OpenCodeOptions(args.plannotator, args.plan_model, args.build_model,
                                       args.plan_variant, args.build_variant, args.plan_directory)
             print(json.dumps(export(args.runtime, args.output, force=args.force, dry_run=args.dry_run,
-                                    opencode_options=options), indent=2))
+                                    opencode_options=options, preset=args.preset,
+                                    agent_names=tuple(args.agent), skill_names=tuple(args.skill)), indent=2))
         elif args.command == 'obsidian-uri':
             print(obsidian_uri(args.vault, args.file))
         elif args.command == 'serve':

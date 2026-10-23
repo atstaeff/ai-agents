@@ -7,7 +7,7 @@ Python's standard library; website development additionally uses Node.js and Doc
 git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
 cd ~/tools/ai-agents
 python3 tools/ai_toolkit.py check
-python3 tools/ai_toolkit.py export --runtime opencode --output "$HOME/.config/ai-agents/opencode"
+python3 tools/ai_toolkit.py export --runtime opencode --preset engineering --output "$HOME/.config/ai-agents/opencode"
 cd /path/to/project
 OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
 OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web

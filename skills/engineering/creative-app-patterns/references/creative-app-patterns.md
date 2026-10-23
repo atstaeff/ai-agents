@@ -648,8 +648,8 @@ class ExportManager {
 
 ## Related Skills
 
-- `game-development/game-design.md` — Gamification principles
-- `game-development/prototyping.md` — Rapid prototyping techniques
+- [game-design](../../game-design/SKILL.md) — Gamification principles
+- [prototyping](../../prototyping/SKILL.md) — Rapid prototyping techniques
 - `frontend-patterns/SKILL.md` — Core frontend patterns
 
 ## References

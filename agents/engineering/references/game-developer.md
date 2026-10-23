@@ -503,10 +503,10 @@ Every game needs a compelling **core loop**:
 
 ## Related Skills
 
-- `game-development/game-design.md` — Core design principles, GDD templates
-- `game-development/game-mechanics.md` — Physics, AI, procedural generation
-- `game-development/game-architecture.md` — ECS, scene management, event systems
-- `game-development/prototyping.md` — Rapid prototyping and playtesting
+- [game-design](../../../skills/engineering/game-design/SKILL.md) — Core design principles, GDD templates
+- [game-mechanics](../../../skills/engineering/game-mechanics/SKILL.md) — Physics, AI, procedural generation
+- [game-architecture](../../../skills/engineering/game-architecture/SKILL.md) — ECS, scene management, event systems
+- [prototyping](../../../skills/engineering/prototyping/SKILL.md) — Rapid prototyping and playtesting
 
 ## References
 

@@ -25,20 +25,77 @@ Roles and disciplines overlap in real work. Choose one primary home and link rel
 expertise rather than maintaining copies under several categories. Keep runtime-specific
 tools and permissions in exporters; a Python skill does not require a Python-only agent.
 
-## Select by uncertainty and outcome
+## Select a bounded runtime catalog
 
-Start with the assignment and its quality constraints. Load the narrowest useful skill.
-Use a specialist for a bounded uncertainty or deliverable; add a separate session only
-when the host supports it, authorization permits it and coordination is worthwhile.
+Use a preset to register only useful native agents/skills in the host:
+
+| Preset | Native agents | Native skills | Use |
+| --- | --- | --- | --- |
+| minimal | 3 | 4 | General execution with explicit on-demand expertise |
+| engineering | 8 | 16 | Python, architecture, implementation, quality and delivery |
+| product | 4 | 7 | Discovery, stakeholder proposals and coordination |
+| knowledge | 3 | 5 | Private notes and presentations |
+| all | 20 | 39 | Complete active catalog; compatibility default |
+
+The source of these selections is [catalog-presets.json](catalog-presets.json).
+Presets are selections, not security boundaries or separate copies of expertise.
+Add a needed specialty explicitly; installing more native profiles increases discovery
+metadata, even if their bodies are loaded later. Actual host injection differs by version.
 
 ```sh
-python3 tools/ai_toolkit.py catalog --kind skill --domain architecture
-python3 tools/ai_toolkit.py catalog --kind agent --format markdown
+python3 tools/ai_toolkit.py catalog --preset engineering
+python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
+  --agent golang-expert --skill golang-patterns --output /path/to/export --dry-run
 ```
 
-The local catalog can filter by type, discipline and search text. Public profile URLs
-and exported names remain stable even when source directories are reorganized. The
-website creates profile pages and navigation from the catalog; do not add page stubs.
+Remove --dry-run after inspecting the selection. Without --preset, export preserves
+all active entries for existing users. Commands are generated only for selected agents;
+for example /brain requires second-brain. Phase/model/review options require the phase
+agent. A narrower re-export removes only unchanged owned profiles; edited files stop the
+update before writes. Prefer a new output directory when protecting local customizations.
+
+The bundle retains the canonical reference catalog for on-demand reading and stable
+relative links. This is not text automatically injected into every prompt. The native
+catalog/index.json lists only the selection; use this checkout for a complete catalog query.
+
+## Select by uncertainty and outcome
+
+Reuse applicable instructions already loaded. Handle clear small tasks directly. For
+substantial work, read the project entry and current assignment once, then only relevant
+contract/decision sections and the next useful skill body. A skill or profile link is not
+a checklist to recursively load every target. Expand when a real uncertainty requires it;
+never discard a governing constraint for a fixed context budget.
+
+Runtime adapters use [session rules](SESSION-RULES.md) as the compact shared startup
+contract. [The detailed workflow](WORKFLOW.md), recovery and project-concept guides stay
+available for their specific uncertainty. Roles supply a viewpoint/authority boundary;
+skills supply procedure. Another skill does not require another session.
+
+## Consolidated names and migration
+
+Three roles were consolidated: context-manager into task-orchestrator; stakeholder-agent
+and proposal-pitch into product-manager. Context retention remains every contributor's
+responsibility; it does not require a separate memory session. Product proposals and
+stakeholder acceptance share the evidence and scope of product discovery.
+
+Ten shallow/overlapping skill entries now point directly to their owner:
+
+| Retired skill | Active owner |
+| --- | --- |
+| general | agent-routing |
+| architecture, system-design | architecture-planning |
+| team-collaboration, progress-sync | work-management |
+| feature-discovery-session | product-discovery |
+| agile-methodologies | project-management |
+| testing-strategies | testing |
+| game-development | game-architecture |
+| creative-apps | creative-app-patterns |
+
+[Alias metadata](catalog-aliases.json) keeps old public website profile URLs available
+as migration pointers. Retired native IDs and old source paths are no longer installed:
+update personal commands/configuration to the active names before re-exporting. Focused
+examples moved into the surviving skill's references; no second active procedure is maintained.
+Historical observations keep their original names/counts as dated evidence.
 
 ## Add or improve expertise
 
@@ -50,7 +107,7 @@ website creates profile pages and navigation from the catalog; do not add page s
 3. Write a concrete selection description. Specify useful inputs, actions, output and
    evidence. Give an agent its role/authority boundary; give a skill its procedure.
 4. Put long examples in that skill's `references/`, or its agent domain's `references/`.
-   Link focused sections from the entry. Keep private project facts in the customer workspace.
+   Link focused sections from the entry. Keep private project facts in the project-owned knowledge space.
 5. Run catalog/link checks, export tests and strict docs build. For consequential
    behavior, forward-test a realistic assignment, missing-tool case and small bypass.
 6. Review the diff, actual observations and limitations. Version the canonical source
@@ -85,3 +142,6 @@ expertise. Remove demonstrated duplication deliberately, preserving compatibilit
 documenting a migration for stable names. Avoid speculative role inflation.
 
 See the [bounded forward observations](evaluations/catalog-restructure-20261022.md) for the current restructure and their limitations.
+
+[2026-10-23 efficiency audit](evaluations/catalog-efficiency-20261023.md) records measured
+source/metadata sizes, bounded behavior trials and unverified runtime claims.

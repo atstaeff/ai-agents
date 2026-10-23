@@ -495,9 +495,9 @@ function ActivityHeatmap({ data, weeks = 52 }: { data: Activity[]; weeks?: numbe
 
 ## Related Skills
 
-- `creative-apps/creative-app-patterns.md` — Patterns for interactive, delightful apps
-- `creative-apps/prototyping.md` — Rapid creative prototyping techniques
-- `game-development/game-design.md` — Game design principles (for gamification)
+- [creative-app-patterns](../../../skills/engineering/creative-app-patterns/SKILL.md) — Patterns for interactive, delightful apps
+- [prototyping](../../../skills/engineering/prototyping/SKILL.md) — Rapid creative prototyping techniques
+- [game-design](../../../skills/engineering/game-design/SKILL.md) — Game design principles (for gamification)
 - `frontend-patterns/SKILL.md` — Core frontend patterns
 
 ## References

@@ -153,7 +153,7 @@ class ExportTests(unittest.TestCase):
         entrypoint = self.output / 'CLAUDE.md'
         imported = entrypoint.read_text().strip().removeprefix('@')
         self.assertTrue((self.output / imported).is_file())
-        self.assertEqual((self.output / imported).read_bytes(), (tk.ROOT / 'toolkit/WORKFLOW.md').read_bytes())
+        self.assertEqual((self.output / imported).read_bytes(), (tk.ROOT / 'toolkit/SESSION-RULES.md').read_bytes())
         for name in ('plan', 'code-reviewer', 'architecture-reviewer'):
             profile = (self.output / f'.claude/agents/{name}.md').read_text()
             frontmatter = profile.split('---')[1]

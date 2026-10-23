@@ -1,0 +1,19 @@
+{
+  "agents": {
+    "context-manager": "task-orchestrator",
+    "stakeholder-agent": "product-manager",
+    "proposal-pitch": "product-manager"
+  },
+  "skills": {
+    "general": "agent-routing",
+    "architecture": "architecture-planning",
+    "system-design": "architecture-planning",
+    "team-collaboration": "work-management",
+    "testing-strategies": "testing",
+    "feature-discovery-session": "product-discovery",
+    "game-development": "game-architecture",
+    "creative-apps": "creative-app-patterns",
+    "agile-methodologies": "project-management",
+    "progress-sync": "work-management"
+  }
+}

@@ -5,8 +5,10 @@ description: "Write or review Go services and tools with idiomatic errors, bound
 
 # Golang Expert
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,8 +16,13 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Handle errors, context cancellation, resources and goroutine ownership explicitly.
 3. Run gofmt and relevant go test checks; use race checks when concurrency is affected.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [golang-patterns](../../skills/languages/golang-patterns/SKILL.md)
 - [api-design](../../skills/architecture/api-design/SKILL.md)
 - [testing](../../skills/quality/testing/SKILL.md)
+
+
+## Optional reference
+
+- [Domain examples](references/golang-expert.md): consult a specific section only when required.

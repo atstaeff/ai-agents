@@ -27,3 +27,8 @@ description: "Clarify a product or feature with uncertain user value, compare mi
 Return the problem, evidence/assumptions, chosen increment, exclusions, acceptance
 scenarios, success signal and next decision in a compact form. Include alternatives
 only when they explain a real tradeoff; create no extra roadmap or proposal by default.
+
+## Optional example
+
+[Stakeholder conversation](references/feature-discovery-session.md): use when interview
+structure or acceptance extraction is the unresolved problem.

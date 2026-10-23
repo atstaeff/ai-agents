@@ -658,9 +658,9 @@ def astar(
 
 ## Related Skills
 
-- `game-development/game-design.md` — Design principles and balancing
-- `game-development/game-architecture.md` — ECS, event systems, scene management
-- `game-development/prototyping.md` — Rapid prototyping patterns
+- [game-design](../../game-design/SKILL.md) — Design principles and balancing
+- [game-architecture](../../game-architecture/SKILL.md) — ECS, event systems, scene management
+- [prototyping](../../prototyping/SKILL.md) — Rapid prototyping patterns
 
 ## References
 

@@ -24,7 +24,8 @@ description: "Implement or improve tests that verify acceptance behavior and rea
 
 ## Focused references
 
-- [Testing strategy](../testing-strategies/SKILL.md): choose test levels when coverage is unclear.
 - [Detailed examples](references/guide.md): load only the relevant section.
 - [Verification evidence](../../../templates/quality/verification.md): link criteria,
   actual results and tested revisions where the project's existing format needs it.
+
+[Strategy examples](references/testing-strategies.md): consult the affected test-boundary section only.

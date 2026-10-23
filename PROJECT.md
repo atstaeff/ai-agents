@@ -50,7 +50,7 @@ current revision. Roles do not grant access or authorization on another person's
 
 Use Clarify, Plan, Build, Verify, then required integration and knowledge retention.
 Follow the [contribution process](CONTRIBUTING.md#working-process-and-skills), selecting
-only relevant skills. The assignment owns its live plan, feedback and handoff; the PR
+only relevant skills. The assignment owns shared scope, acceptance and coordination; personal plans stay private. The PR
 owns implementation and review evidence. Keep writing scopes explicit when working in
 parallel and verify the combined result. Small corrections need no additional plan record.
 

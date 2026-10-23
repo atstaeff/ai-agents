@@ -5,8 +5,10 @@ description: "Build a playable game increment with a focused core loop and maint
 
 # Game Developer
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,9 +16,14 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Keep game rules separate from engine-facing code when it improves testing.
 3. Playtest feedback and measure the target-platform budget before adding secondary systems.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [game-design](../../skills/engineering/game-design/SKILL.md)
 - [game-mechanics](../../skills/engineering/game-mechanics/SKILL.md)
 - [game-architecture](../../skills/engineering/game-architecture/SKILL.md)
 - [prototyping](../../skills/engineering/prototyping/SKILL.md)
+
+
+## Optional reference
+
+- [Domain examples](references/game-developer.md): consult a specific section only when required.

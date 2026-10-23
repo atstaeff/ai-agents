@@ -705,6 +705,6 @@ func (h *Handler) GetOrder(ctx context.Context, req *orderv1.GetOrderRequest) (*
 - [Clean Code Principles](../../../skills/engineering/clean-code/SKILL.md)
 - [SOLID Principles](../../../skills/engineering/solid-principles/SKILL.md)
 - [Microservices Architecture](../../../skills/architecture/microservices/SKILL.md)
-- [Testing Strategies](../../../skills/quality/testing-strategies/SKILL.md)
+- [Testing Strategies](../../../skills/quality/testing/SKILL.md)
 - [Anti-Patterns](../../../skills/quality/anti-patterns/SKILL.md)
 - [GCP Patterns](../../../skills/engineering/gcp-patterns/SKILL.md)

@@ -24,7 +24,7 @@ project and denies editing that catalog. It does not grant access to other exter
 directories or a private vault. Configure those separately in your host when needed.
 
 ```sh
-python3 tools/ai_toolkit.py export --runtime opencode \
+python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
   --output "$HOME/.config/ai-agents/opencode"
 cd /path/to/project
 OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
@@ -39,7 +39,8 @@ access only below that existing folder; local instructions record the location. 
 installed tools and project configuration. Build and Jörg use normal host permissions.
 Do not install unrestricted write tools on a profile intended to be read-only.
 
-Use `/work-plan`, `/work-build` or `/brain`. Native delegation and interaction with
+Use /work-plan and /work-build when their agents are selected. /brain is available
+with --preset knowledge or --agent second-brain. See [preset selection](CATALOG-GUIDE.md#select-a-bounded-runtime-catalog). Native delegation and interaction with
 child sessions in OpenCode Web depend on your release. The toolkit adds no session
 orchestration plugin.
 
@@ -70,7 +71,7 @@ claude --agent joerg
 ```
 
 The adapter generates native `.claude/agents/` and `.claude/skills/` from the same
-canonical entries. `CLAUDE.md` imports `catalog/toolkit/WORKFLOW.md`. Existing
+canonical entries. `CLAUDE.md` imports `catalog/toolkit/SESSION-RULES.md`. Existing
 `CLAUDE.md`, profiles and edited generated files are protected: export to staging
 and integrate the import into existing instructions deliberately when necessary.
 Keep the shared `catalog/` in the project. No model, effort, plugins, MCP servers or

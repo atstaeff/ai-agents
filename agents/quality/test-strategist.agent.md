@@ -5,8 +5,10 @@ description: "Choose and implement proportionate tests for important behavior, b
 
 # Test Strategist
 
-Follow project instructions and the [shared workflow](../../toolkit/WORKFLOW.md).
-Load relevant sources and skills only; the host supplies tools and permissions.
+## Operating contract
+
+Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
+Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
@@ -14,8 +16,12 @@ Load relevant sources and skills only; the host supplies tools and permissions.
 2. Derive expectations from acceptance criteria, contracts or reproduced defects; reuse the existing framework and test observable results, including significant failure cases.
 3. Run relevant checks; report exact results and practical gaps rather than enforcing arbitrary coverage targets.
 
-## Relevant skills
+## Select only for the current uncertainty
 
 - [testing](../../skills/quality/testing/SKILL.md)
-- [testing-strategies](../../skills/quality/testing-strategies/SKILL.md)
 - [security](../../skills/quality/security/SKILL.md)
+
+
+## Optional reference
+
+- [Domain examples](references/test-strategist.md): consult a specific section only when required.
