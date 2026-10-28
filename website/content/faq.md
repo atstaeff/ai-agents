@@ -2,6 +2,9 @@
 
 ## What do I need to adopt?
 
+Try the [disposable first task](getting-started/quick-start.md) before adopting anything:
+export a small catalog locally, then use your host for a supplied documentation exercise.
+
 Start with root `AGENTS.md`, `PROJECT.md` and `CONTRIBUTING.md`, or link their existing
 equivalents. Name the project's actual work, review, knowledge and decision sources.
 Merge the [project starter](getting-started/lean-project.md) into existing instructions;
@@ -24,10 +27,19 @@ or a claim that synchronization occurred.
 
 ## Which hosts can use the catalog?
 
-Native exports support Herd, OpenCode, VS Code/Copilot and Claude Code. The portable
+Adapters generate layouts for Herd, OpenCode, VS Code/Copilot and Claude Code. The portable
 export provides Agent Skills and generic profiles. Herd has a commander package and
 v2 import bundles; follow [runtime setup](getting-started/installation.md) for the actual
-formats and commands. Discovery, tools and permissions still need a check in your host.
+formats and commands. Discovery, model/effort, tools and permissions still need a check in
+your installed version. Use the [runtime and capacity record](templates/delivery/runtime-check.md)
+for observed evidence and limits; no exported layout alone qualifies a host.
+
+## Does linking the catalog adopt its process?
+
+No. The starter's local contribution guide owns binding process. Its live catalog links
+are evolving techniques and references. To adopt external policy, record the immutable
+source URL and an explicit adopted SHA/version in the project process, read the body and
+state any approved fallback. See the [starter policy fields](lean-project/contributing.md#policy-adoption).
 
 ## Does the toolkit run a team of agents?
 
@@ -87,5 +99,5 @@ reference catalog with the profiles and repeat the relevant host check after cha
 Yes, when its selected server and tools are usable within current permissions. Follow
 [Herdr execution](getting-started/herdr.md): reuse sessions, select strong/high reasoning
 for complex judgment and economical models for bounded work, keep labelled tabs and
-fill available capacity with independent ready tasks. Native commands handle routine
+fill free slots with independent ready tasks only while measured resource, provider, budget and review limits permit. Native commands handle routine
 coordination. Report the exact availability/access gap before using a fallback.

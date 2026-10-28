@@ -6,7 +6,7 @@ Use focused sections only when needed. The current skill entry, project conventi
 
 ## Instructions for AI
 
-Apply these patterns when building interactive, creative, and delightful applications. Focus on user engagement through micro-interactions, generative design, gamification, and sensory feedback. Every interaction should feel satisfying. Use these patterns for apps that go beyond utility — apps that spark joy, creativity, and "wow" moments.
+Use a focused rendering or feedback example only when it supports the primary creative action. Preserve document/command ownership, undo and recovery from the skill workflow; decorative motion, gamification and social sharing are optional product choices. Fragments omit application setup and require adaptation to the installed APIs.
 
 ## Animation & Motion Design
 
@@ -446,6 +446,10 @@ class LevelSystem {
 
 ## Audio Design for Apps
 
+The fragment illustrates tone scheduling, not a complete audio lifecycle. Handle browser
+autoplay/suspended-context behavior, user mute/volume, node cleanup and owned-context
+shutdown. Keep non-audio feedback for the action and measure the actual processing path.
+
 ```typescript
 // Minimal sound system for UI feedback
 class UIAudio {
@@ -528,6 +532,10 @@ class UIAudio {
 
 ## Export & Sharing
 
+These image fragments need bounded dimensions/memory, cross-origin asset handling and
+error/cancellation cleanup in the real application. For animated export, use the installed
+encoder API and handle worker failure; keep the original document intact on failed export.
+
 ```typescript
 // Export user creations to shareable formats
 class ExportManager {
@@ -539,35 +547,6 @@ class ExportManager {
     link.download = filename;
     link.href = canvas.toDataURL('image/png');
     link.click();
-  }
-
-  /**
-   * Export canvas to animated GIF (requires gif.js library).
-   */
-  static async canvasToGIF(
-    renderFrame: (ctx: CanvasRenderingContext2D, frame: number) => void,
-    width: number,
-    height: number,
-    frames: number = 60,
-    delay: number = 33
-  ): Promise<Blob> {
-    const { default: GIF } = await import('gif.js');
-    const gif = new GIF({ width, height, quality: 10, workers: 2 });
-    const canvas = document.createElement('canvas');
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext('2d')!;
-
-    for (let i = 0; i < frames; i++) {
-      ctx.clearRect(0, 0, width, height);
-      renderFrame(ctx, i);
-      gif.addFrame(ctx, { delay, copy: true });
-    }
-
-    return new Promise((resolve) => {
-      gif.on('finished', (blob: Blob) => resolve(blob));
-      gif.render();
-    });
   }
 
   /**
@@ -614,13 +593,13 @@ class ExportManager {
 ## Best Practices
 
 ✅ Respect `prefers-reduced-motion` — provide toggle for animations
-✅ Use spring physics for natural-feeling motion, not linear tweens
+✅ Choose motion for the action and respect reduced motion; springs are one option
 ✅ Layer feedback: visual + audio + haptic = satisfying interaction
-✅ Make exported creations shareable (include branding subtly)
-✅ Use procedural audio for UI sounds — no loading, always available
-✅ Celebrate user milestones (first creation, streaks, achievements)
-✅ Let users undo EVERYTHING — generous undo history
-✅ Auto-save frequently and silently
+✅ Export the user-selected format/quality; add branding only when required
+✅ Make audio optional and handle unavailable or suspended playback
+✅ Add milestone feedback only for an accepted product need
+✅ Define reversible document edits, history limits and external effects explicitly
+✅ Preserve a valid saved document, surface save failures and test recovery
 
 ## Anti-Patterns
 
@@ -650,7 +629,7 @@ class ExportManager {
 
 - [game-design](../../game-design/SKILL.md) — Gamification principles
 - [prototyping](../../prototyping/SKILL.md) — Rapid prototyping techniques
-- `frontend-patterns/SKILL.md` — Core frontend patterns
+- [Frontend patterns](../../../languages/frontend-patterns/SKILL.md) — Core frontend patterns
 
 ## References
 

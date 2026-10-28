@@ -5,6 +5,8 @@
 Apply this file to [component path] according to the selected host's instruction-scoping
 rules. Read applicable root instructions first; this file adds component-specific detail.
 Check the host's precedence/import behavior rather than assuming every tool loads nested files.
+Inherit the root's binding process and explicit adopted policy SHA/version. A component
+technique/reference link does not silently replace that process.
 
 ## Component sources
 

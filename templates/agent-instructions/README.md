@@ -4,6 +4,8 @@ Use the plural uppercase filename AGENTS.md for project instructions. A catalog
 *.agent.md file is a reusable role profile, created from the separate
 [agent profile template](../catalog/agent-template.md). Do not rename one into the other.
 Host discovery, nested scope and imports vary; verify the selected host's behavior.
+Use the [runtime and capacity check](../delivery/runtime-check.md) to record observed
+discovery, effective permissions, model/effort and handoff before depending on them.
 
 | Situation | Template | Adapt before use |
 | --- | --- | --- |
@@ -18,6 +20,12 @@ and scoped additions, not five files required in each project. Fill every prompt
 example.org URLs. The [project starter](../project-starter/README.md) supplies matching
 context/process pages. Link an existing owning section for each concern; keep detailed
 policy and commands there. [Adoption](../../toolkit/ADOPT-PROJECT.md) explains the checks.
+
+Distinguish binding project process from evolving technique/reference links. For binding
+external policy, record both its immutable source URL and an explicit adopted SHA/version
+in the project's contribution guide. A `main` branch link or current documentation page
+is a reference until deliberately adopted. Use the [starter policy fields](../project-starter/CONTRIBUTING.md#policy-adoption)
+and replace the literal URL pattern with the verified revision; create no extra manifest.
 
 AGENTS.md links project facts and the working process. Keep current knowledge and decisions
 in project-owned sources; use the [worked example](../../toolkit/examples/project-kernel.md)

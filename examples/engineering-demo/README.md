@@ -22,11 +22,16 @@ alternative to pointer navigation. The server binds to loopback.
 ## Verify
 
 ```sh
+uv sync --locked --group validation
 npm --prefix website run test:graph
 npm --prefix website run build
 npx --prefix website playwright install chromium
 npm --prefix website run test:browser
 ```
+
+The graph tests also copy the actual ADR template through the legacy Python publisher.
+They use the existing validation environment's Python and PyYAML; this adds no application
+runtime dependency.
 
 Package downloads require network access; the built graph calls no model, remote graph
 service, font provider or CDN. All examples and statuses are fictional, not claims about
@@ -38,6 +43,8 @@ production quality, owner approval or deployed software.
 - `content/topics/`: retrieval, evaluation, observability and session context.
 - `content/components/`: system responsibilities and interfaces.
 - Each record has one curated `area` slug, such as `document-processing` or `retrieval`.
+- Portable source `slug` values are relative, such as `decisions/adr-0042`. Existing values
+  with one leading slash remain supported and resolve to the same route.
 - Metadata links records by stable ID, route, status and explicit relationship.
 
 The main site's `scripts/graph.cjs` generates disposable JSON before start/build.
@@ -51,6 +58,29 @@ Only these three shared directories and `content/intro.md` are published by the 
 content plugin. Private plans, work records and vault content are outside that allowlist.
 Git ignore alone is not a publication boundary. Restart the dev server after metadata
 changes so graph data and document sources use the same snapshot.
+
+### Use a customer-owned publication source
+
+Edit `website/knowledge.config.cjs` deliberately to select the curated publication root,
+route prefix and sidebar file together. The graph CLI and Docusaurus read this same
+configuration; there is no environment-variable source override. Update its stable source
+ID, title, description and `example` flag to match the actual source. The repository
+default remains this fictional demo.
+
+Keep only approved shared content in a dedicated publication directory with `intro.md`
+and the three allowlisted subdirectories. Use `intro` as the introduction's slug and put
+its sidebar definition in the configured file. The fixed allowlist also applies to a
+customer source: it does not import the rest of a repository or a raw vault. Symlinks,
+nested private/work/plans/archive directories and Markdown marked `private: true`,
+`draft: true` or `visibility: private`/`internal` fail validation. A raw Obsidian vault
+root is rejected. Export reviewed shared material into the publication directory first;
+the configuration cannot determine whether ordinary prose contains confidential facts.
+Keep private source paths out of shared configuration and logs. Source-configuration
+validation reports availability without printing absolute customer paths.
+
+Copy [the ADR template](../../templates/architecture/decision.md) into `decisions/`, replace
+its ID/title/slug with unique values, and choose one existing curated area. Its relative
+slug and proposed status work in both this graph and the legacy document-portal publisher.
 
 The existing site also publishes the real catalog/project knowledge. This fictional
 example is clearly labeled and uses separate `/demo-knowledge/` routes. No deployment

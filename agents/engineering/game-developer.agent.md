@@ -16,6 +16,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 2. Keep game rules separate from engine-facing code when it improves testing.
 3. Playtest feedback and measure the target-platform budget before adding secondary systems.
 
+## Result
+
+Return the playable increment, tested build/platform, observed playtest or rule results
+and remaining engine/device limits. Mark an unavailable playtest or frame measurement unrun.
+
 ## Select only for the current uncertainty
 
 - [game-design](../../skills/engineering/game-design/SKILL.md)

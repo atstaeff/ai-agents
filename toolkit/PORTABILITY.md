@@ -65,6 +65,10 @@ Do not replace customer rules with the toolkit's generic workflow.
 
 ## Verify a new host once
 
+Use [runtime qualification](RUNTIME-QUALIFICATION.md) and its compact record for actual
+host/version/model evidence and a capacity observation. Generated structure is not live
+compatibility; record passed, blocked and untested states separately.
+
 Use a disposable project and a harmless task:
 
 - Confirm the expected instructions, selected skill and profile are discovered.

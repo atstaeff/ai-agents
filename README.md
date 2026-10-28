@@ -1,84 +1,85 @@
 # AI Agents
 
-**Build useful software with AI. Keep the reasoning your team needs to maintain it.**
+**Build useful software with AI. Keep the context and evidence your team needs to continue.**
 
-An English engineering catalog and operating model for developers, product owners and
-small teams: reusable skills, accountable AI roles, practical templates and durable
-project knowledge. Use your existing GitHub/Jira workflow and choose the models and
-hosts that fit the work.
+An English catalog of reusable AI roles, focused skills and project templates, with a
+practical engineering process and optional local Python tools. Use your existing stack,
+tracker and review workflow. Your host runs the models and controls tools and permissions.
 
+[Try the first task](website/content/getting-started/quick-start.md) ·
 [Documentation](https://atstaeff.github.io/ai-agents/) ·
-[Operating model](toolkit/OPERATING-MODEL.md) ·
-[Project starter](templates/project-starter/README.md) ·
+[Catalog](toolkit/CATALOG-GUIDE.md) ·
 [Templates](templates/README.md)
+
+## Start with a small result
+
+The [quick start](website/content/getting-started/quick-start.md) gives you a disposable
+portable export and a supplied note-to-runbook exercise. The local export needs only Git,
+Python 3.11+ and a Bash shell; the AI task uses a host and model access you already have.
+It separates local file checks from an actual host result and shows what success looks like.
+No project manifest, server or agent team is needed.
+
+Already have a checkout? Inspect a focused selection without installing anything:
+
+```sh
+python3 tools/ai_toolkit.py check
+python3 tools/ai_toolkit.py catalog --preset minimal
+```
+
+For native installation, follow the [runtime guide](toolkit/RUNTIMES.md). Adapters emit
+OpenCode, Claude Code, VS Code/Copilot and Herd layouts, plus portable Agent Skills and
+profiles. An export is not an installed-host validation: record observed discovery,
+model/effort, permissions and limits with the [runtime check](templates/delivery/runtime-check.md).
+Configure providers and credentials in the host; generated profiles install no host or model.
 
 ## Adopt in one project
 
-1. Add or adapt [AGENTS.md](templates/agent-instructions/README.md). Link vision,
-   boundaries, responsible people, actual tools, process, commands and knowledge.
-2. Keep outcome and acceptance in the existing issue/ticket; deliver one reviewable increment.
-3. Load the relevant [skills](skills/README.md) and [roles](agents/README.md).
-   Verify the combined result and retain significant decisions at the project's own home.
-4. Add [native orchestration](toolkit/ORCHESTRATION.md) and published knowledge views
-   when they help the team.
+After the first task, merge the [project starter](templates/project-starter/README.md)
+or an [AGENTS.md variant](templates/agent-instructions/README.md) into existing instructions.
+Begin with what the next assignment needs:
 
-A clear small change needs no separate plan, phase documents or agent team. Personal
-execution notes stay private, subject to customer policy; the team can continue from
-shared sources. Projects choose their own folders and accessible web documentation.
+1. Identify its outcome, acceptance, accountable human and real work/review homes.
+2. Link relevant project facts, rules and actual check commands. Keep existing owners.
+3. Read only the relevant [skills](skills/README.md) and [role profiles](agents/README.md).
+   Make one reviewable change, run its checks and preserve significant reasons.
+4. Add coordination, knowledge views or more templates when a concrete need appears.
 
-## Choose your starting point
+A clear small change needs no separate plan or additional agent. Personal execution notes
+stay private, subject to project policy; shared sources must let a teammate continue.
+Projects choose their own folders or authorized web documentation. Adopt binding external
+policy at an explicit revision; evolving technique links do not silently change project rules.
+
+## Choose your next step
 
 | Goal | Use |
 | --- | --- |
-| Understand the value stream and responsibilities | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
-| Python/FastAPI, React/JavaScript, GCP and Terraform | [Engineering and platform expertise](toolkit/CATALOG-GUIDE.md) |
-| Product discovery, PO work and stakeholders | [Catalog selection](toolkit/CATALOG-GUIDE.md) with `--preset product`; [templates](templates/README.md) |
-| Several leads and economical specialists | [Preferred Herdr execution, model tiers and tabs](toolkit/HERDR.md) |
-| Ponytail, Herdr and Graphify | [Native integration guide](toolkit/INTEGRATIONS.md) |
-| Human-readable decisions and dependency views | [Docusaurus knowledge map](examples/engineering-demo/README.md) |
-| Repository folders, optional tools and compatibility | [Repository map](toolkit/README.md) |
+| Find expertise for Python/FastAPI, React/JavaScript, GCP or Terraform | [Catalog selection](toolkit/CATALOG-GUIDE.md) |
+| Clarify a product problem, acceptance or stakeholder decision | [Product preset](toolkit/CATALOG-GUIDE.md) and [templates](templates/README.md) |
+| Understand delivery roles and information ownership | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
+| Coordinate leads and bounded specialists | [Orchestration](toolkit/ORCHESTRATION.md) and [runtime/capacity check](templates/delivery/runtime-check.md) |
+| Use Herdr, Ponytail or Graphify | [Native integrations](toolkit/INTEGRATIONS.md) |
+| Explore decisions and relationships in Docusaurus | [Knowledge map example](examples/engineering-demo/README.md) |
+| Inspect optional local tools and repository structure | [Repository map](toolkit/README.md) |
 
-Use Herdr whenever its executable and selected server are usable. Complex decisions
-use strong approved models with high reasoning; bounded specialists use economical
-routes. Native commands handle mechanical coordination. Fill free capacity with
-independent ready work, using labelled tabs and isolated checkouts. See the
-[Herdr policy](toolkit/HERDR.md) for readiness, limits and fallback behavior.
-
-## Install a focused catalog
-
-The core toolkit runs on Python 3.11+ with the standard library. Export only the expertise
-needed by the project; supported hosts include OpenCode, Claude Code, Copilot and Herd,
-with a portable Agent Skills layout as well.
-
-```sh
-git clone https://github.com/atstaeff/ai-agents.git
-cd ai-agents
-python3 tools/ai_toolkit.py check
-python3 tools/ai_toolkit.py catalog --preset engineering
-python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
-  --output /path/to/ai-agents-export --dry-run
-```
-
-Inspect the selection, repeat without `--dry-run`, then follow the
-[runtime guide](toolkit/RUNTIMES.md) for discovery and an installed-host check. Use
-`--agent` and `--skill` to add a specialty, or `--preset all` deliberately. Configure actual
-models, effort, tools and permissions in the host. Re-export after source changes.
-Existing edited and unmanaged files are protected; keep generated bundles separate from
-canonical sources and customer knowledge.
+Use Herdr whenever its executable and selected server are usable. Complex judgment uses
+strong approved models with high reasoning; bounded work uses proven economical routes;
+mechanical coordination uses native tools. Reuse labelled project tabs and isolate
+concurrent writers. Fill available capacity only within measured machine, provider,
+budget and review limits. See the [Herdr policy](toolkit/HERDR.md) for readiness and fallback.
 
 ## Knowledge that survives a session
 
 | Source | Owns |
 | --- | --- |
-| AGENTS.md and linked project map | Context navigation, responsibilities and real tooling |
+| AGENTS.md and linked project sources | Context navigation, responsibilities, process and real tooling |
 | Issue/ticket and PR/MR | Shared scope, acceptance, coordination and review evidence |
 | Current Markdown and ADRs | Implemented behavior, operating knowledge and significant reasons |
 | Docusaurus and scoped graph views | Derived reading and retrieval views of selected shared sources |
 
 The [knowledge map demo](examples/engineering-demo/README.md) starts with areas, then
-loads filtered records and direct relationships. It provides a bounded static example;
-a million-record installation needs an incremental index service. Graphify is an optional
-source of dependency evidence; canonical decisions remain reviewed project knowledge.
+loads filtered records and direct relationships. It is a bounded static example; a
+million-record installation needs an incremental index service. Graphify can supply
+dependency evidence; reviewed project knowledge remains authoritative.
 
 ## Maintain this repository
 
@@ -98,7 +99,7 @@ npm --prefix website run build
 ```
 
 See [contributing](CONTRIBUTING.md), the [runbook](toolkit/REPOSITORY-WORKFLOW.md) and
-[quality standard](toolkit/QUALITY-STANDARD.md). Test results and bounded observations
-establish specific behavior; they do not promise a staffing reduction or defect-free delivery.
+[quality standard](toolkit/QUALITY-STANDARD.md). Checks and bounded observations establish
+specific behavior; they do not establish productivity gains or staffing reductions.
 The catalog and toolkit are [MIT licensed](LICENSE). Third-party hosts and integrations
 retain their own licenses and configuration requirements.

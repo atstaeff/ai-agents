@@ -103,33 +103,20 @@ class OrderStatus(StrEnum):
 
 ### 1. Distributed Monolith
 
-**Problem:** Microservices that must be deployed together, share databases, or have synchronous call chains.
+**Problem:** A service cannot change or recover independently because shared contracts,
+write ownership or synchronous dependencies are tightly coupled.
 
-**Symptoms:**
-- Cannot deploy one service without deploying others
-- Shared database between services
-- Cascading failures across services
-- High coupling between services
+**Check:** Reproduce the deployment/failure constraint. Compare a local module boundary,
+a smaller contract change and a service/data split; choose the smallest adequate repair.
 
-**Fix:**
-- Clear bounded context boundaries
-- Async communication via events
-- Database per service
-- API versioning
+### 2. Competing Data Ownership
 
-### 2. Shared Database
+**Problem:** Several writers change the same invariant without an explicit transaction,
+compatibility or concurrency contract. Sharing a database alone is not proof of a defect.
 
-**Problem:** Multiple services reading/writing the same database.
-
-```
-# ❌ Anti-pattern
-Service A ─┐
-Service B ──┤──▶ Shared PostgreSQL
-Service C ─┘
-
-# ✅ Fix: Database per service + events
-Service A ──▶ DB A ──▶ Events ──▶ Service B ──▶ DB B
-```
+**Repair:** Clarify the invariant's owner and permitted reads/writes. A physical database
+split needs migration, consistency and operating evidence; asynchronous events do not
+automatically remove coupling.
 
 ### 3. Big Ball of Mud
 
@@ -144,19 +131,15 @@ Service A ──▶ DB A ──▶ Events ──▶ Service B ──▶ DB B
 **Fix:**
 - YAGNI (You Aren't Gonna Need It)
 - Start simple, refactor when complexity justifies it
-- "Three strikes" rule: abstract after 3 repetitions
+- Extract shared meaning only when stable behavior and actual consumers justify it
 
 ### 5. Chatty Communication
 
-**Problem:** Services making many synchronous calls to each other.
+**Problem:** Repeated remote calls add measured latency or coupled failure to a user path.
 
-```
-# ❌ Anti-pattern: 5 sync calls for one operation
-Order Service → User Service → Inventory Service → Payment Service → Notification Service
-
-# ✅ Fix: Aggregate + async events
-Order Service → Order Created Event → [User, Inventory, Payment, Notification] (parallel)
-```
+**Repair:** Inspect the critical path and data ownership first. Batch, cache, aggregate
+or move a boundary only when it preserves freshness and business semantics. Making all
+steps asynchronous changes the completion contract and is not an automatic repair.
 
 ## Event-Driven Anti-Patterns
 
@@ -183,23 +166,21 @@ Order Service → Order Created Event → [User, Inventory, Payment, Notificatio
 async def handle_payment(event: PaymentReceived):
     await credit_account(event.amount)  # Doubles on retry!
 
-# ✅ Fix: Idempotent handler
-async def handle_payment(event: PaymentReceived):
-    if await is_already_processed(event.id):
-        return
-    await credit_account(event.amount)
-    await mark_processed(event.id)
 ```
 
-### 3. Missing Dead Letter Queue
+A check-then-credit-then-mark sequence can race or crash between writes. For a local
+business effect, claim a unique operation identity and apply the effect atomically in
+one transaction where storage permits. For external effects, use a stable idempotency
+key and a durable outcome/reconciliation contract; marking locally cannot roll back a
+remote charge. Exercise duplicate, concurrent and interrupted processing.
 
-**Problem:** Failed messages are silently dropped or retry forever.
+### 3. Unbounded or Lost Failed Work
 
-**Fix:** Always configure:
-- Dead letter topic/queue
-- Max retry attempts (typically 5)
-- Exponential backoff
-- Alerting on DLQ messages
+**Problem:** Failed messages disappear silently or retry forever.
+
+**Repair:** Bound attempts, backoff, queue size and message age. Use a dead-letter or
+other durable failure/replay mechanism when required, with an owner and alert. Select
+limits from the actual contract; do not prescribe a universal retry count.
 
 ### 4. Event Schema Coupling
 
@@ -207,7 +188,7 @@ async def handle_payment(event: PaymentReceived):
 
 **Fix:**
 - Schema registry / versioning
-- Backwards-compatible changes only
+- Compatibility during rollout, with an explicit migration for a breaking change
 - Consumer-driven contract tests
 
 ### 5. Temporal Coupling in Events
@@ -215,19 +196,19 @@ async def handle_payment(event: PaymentReceived):
 **Problem:** Assuming events arrive in a specific order.
 
 **Fix:**
-- Design handlers to be order-independent
-- Use correlation IDs and timestamps
-- Implement saga pattern for multi-step processes
+- Define the required ordering scope and handle late/duplicate input
+- Use sequence or causal identity where the invariant needs it; timestamps alone may not establish order
+- Persist multi-step workflow state and recovery when required
 
 ## Detection Checklist
 
 | Anti-Pattern | How to Detect | Action |
 |--------------|--------------|--------|
-| God Object | Class > 200 lines, 10+ methods | Split by responsibility |
-| Distributed Monolith | Services deployed together | Define boundaries, use events |
-| Missing Idempotency | Duplicate processing on retry | Add idempotency key check |
-| Shared Database | Multiple services, one DB | Database per service |
-| Chatty Services | > 3 sync calls per request | Aggregate, use events |
+| God Object | Unrelated changes repeatedly affect one module | Separate the demonstrated responsibilities |
+| Distributed Monolith | Coupled deployment or cascading failure | Repair the responsible contract or ownership boundary |
+| Missing Idempotency | Retry duplicates a business effect | Atomic local effect/deduplication or recoverable external operation |
+| Competing Data Ownership | Writers violate a shared invariant | Define write/transaction ownership; justify any migration |
+| Chatty Services | Remote calls dominate the measured critical path | Reduce waits while preserving completion/data semantics |
 | Over-Engineering | Unused abstractions | Remove, simplify |
 
 ## Best Practices

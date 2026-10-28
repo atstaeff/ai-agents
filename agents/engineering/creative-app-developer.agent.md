@@ -16,6 +16,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 2. Separate document state, commands, rendering and media processing; include undo/redo, autosave and recovery.
 3. Verify the critical interaction with representative media and measure real-time performance.
 
+## Result
+
+Return the working creative action, affected undo/save/recovery evidence and measured
+interaction or media-processing limits. Label missing representative media or runtime checks.
+
 ## Select only for the current uncertainty
 
 - [creative-app-patterns](../../skills/engineering/creative-app-patterns/SKILL.md)

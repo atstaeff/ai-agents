@@ -1,7 +1,8 @@
 # Project map
 
-Replace bracketed prompts with verified project facts or links to their existing
-authoritative sources. Keep this map short; expand detail only when useful.
+Replace bracketed prompts needed for the current assignment with verified project facts
+or links to their existing authoritative sources; remove unused prompts. Keep this map
+short and expand it when the next assignment needs more context.
 
 ## Vision and goals
 
@@ -30,7 +31,7 @@ authoritative sources. Keep this map short; expand detail only when useful.
 - Code/review home: [actual repositories and review system].
 - Project locations: [repository/component paths, generated-file boundaries and any repository map].
 - [Tools and access](CONTRIBUTING.md#tools-and-access), [setup and checks](CONTRIBUTING.md#setup-and-checks): actual integrations and commands.
-- Adopted central process version: [source revision/version, or local process at this checkout].
+- Binding process and adopted external SHA/version: [policy adoption in CONTRIBUTING.md](CONTRIBUTING.md#policy-adoption).
 - Product/architecture/contracts: [link actual current sources here when they exist].
 - Current assignment: resolve it from the request and configured work home; keep shared scope, acceptance, dependencies and progress there.
 

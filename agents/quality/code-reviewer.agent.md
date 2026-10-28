@@ -16,6 +16,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 2. Give each finding a location, trigger, impact and suggested repair.
 3. Separate material defects from optional preferences; state the checks performed and remaining risks.
 
+## Result
+
+Return prioritized findings with the reviewed revision and actual evidence. If no
+material issue is found, say so and identify unverified boundaries; the review is not self-approval.
+
 ## Select only for the current uncertainty
 
 - [code-review](../../skills/quality/code-review/SKILL.md)

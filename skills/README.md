@@ -20,10 +20,10 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 | --- | --- |
 | [pr-crafting](delivery/pr-crafting/SKILL.md) | Prepare a reviewable pull request description, scope and validation evidence for a code change. |
 | [product-discovery](delivery/product-discovery/SKILL.md) | Clarify uncertain product value, refine a product-owner backlog item or resolve stakeholder scope; compare minimal solutions and define a measurable experiment or delivery slice. |
-| [project-management](delivery/project-management/SKILL.md) | Organize delivery, technical debt or release work without excessive process overhead. |
+| [project-management](delivery/project-management/SKILL.md) | Improve delivery flow across related assignments: manage WIP, dependencies, review capacity and evidence-based forecasts. Use work-management for one assignment or handoff and technical-debt for a maintenance investment. |
 | [repository-contribution](delivery/repository-contribution/SKILL.md) | Resolve contribution rules and source ownership for an unfamiliar repository or changed process before substantial work. Reuse known instructions and skip onboarding for a clear small correction. |
 | [technical-debt](delivery/technical-debt/SKILL.md) | Assess a maintainability problem and prioritize a safe, incremental repayment plan. |
-| [work-management](delivery/work-management/SKILL.md) | Coordinate a substantial assignment, progress update or session handoff with a private working plan and shared issue/PR; preserve acceptance, feedback, evidence and ownership. Skip separate planning records for clear small edits. |
+| [work-management](delivery/work-management/SKILL.md) | Coordinate one substantial assignment, progress update or session handoff at its shared work home; preserve acceptance, dependencies, feedback and evidence. Keep optional personal planning private; skip extra records for clear small edits. |
 
 ## Architecture & Systems
 
@@ -32,10 +32,10 @@ Model domains, contracts, boundaries and consequential design tradeoffs.
 | Name | Select for |
 | --- | --- |
 | [api-design](architecture/api-design/SKILL.md) | Design or review an HTTP API, consumer contract, errors, authorization, pagination or compatibility changes. |
-| [architecture-planning](architecture/architecture-planning/SKILL.md) | Produce a concise architecture plan with boundaries, alternatives, delivery steps and verification. |
+| [architecture-planning](architecture/architecture-planning/SKILL.md) | Shape a substantial change across system or data boundaries: compare alternatives, define contracts and sequence verified increments. Use a focused boundary skill for a local change. |
 | [domain-driven-design](architecture/domain-driven-design/SKILL.md) | Model business rules, aggregates, bounded contexts or domain terminology in an existing or new application. |
 | [microservices](architecture/microservices/SKILL.md) | Evaluate a service split or improve an existing distributed system with explicit ownership and failure handling. |
-| [principal-engineer-decisions](architecture/principal-engineer-decisions/SKILL.md) | Compare consequential technical options and record an architecture or delivery decision. |
+| [principal-engineer-decisions](architecture/principal-engineer-decisions/SKILL.md) | Resolve a consequential technical tradeoff with viable alternatives, evidence, decision authority and a recoverable rationale. Use architecture-planning to shape a broader implementation. |
 
 ## Software & Platform Engineering
 
@@ -43,8 +43,8 @@ Implement maintainable applications, platforms and specialized products.
 
 | Name | Select for |
 | --- | --- |
-| [clean-code](engineering/clean-code/SKILL.md) | Improve readability and changeability of code while preserving behavior and project conventions. |
-| [cloud-native](engineering/cloud-native/SKILL.md) | Plan or review cloud deployment, managed services, runtime configuration and operational resilience. |
+| [clean-code](engineering/clean-code/SKILL.md) | Improve local names, control flow and readability while preserving behavior and conventions. Use practical-refactoring for a structural migration and design-patterns for a real variation boundary. |
+| [cloud-native](engineering/cloud-native/SKILL.md) | Define or review a cloud runtime contract: configuration, workload identity, scaling, health, failure handling and recovery. Use provider skills for service-specific behavior and devops-cicd for pipeline mechanics. |
 | [creative-app-patterns](engineering/creative-app-patterns/SKILL.md) | Implement document models, undo/redo, real-time feedback or media processing in a creative application. |
 | [design-patterns](engineering/design-patterns/SKILL.md) | Choose or simplify a design pattern at a real variation, lifecycle or integration boundary. |
 | [devops-cicd](engineering/devops-cicd/SKILL.md) | Build or repair CI, deployment, release, rollback or reproducible development workflows. |
@@ -56,7 +56,7 @@ Implement maintainable applications, platforms and specialized products.
 | [practical-refactoring](engineering/practical-refactoring/SKILL.md) | Refactor existing code incrementally while preserving behavior and keeping changes reviewable. |
 | [prototyping](engineering/prototyping/SKILL.md) | Create a short experiment to reduce uncertainty in a game, interface or technical concept. |
 | [software-engineering](engineering/software-engineering/SKILL.md) | Implement a bounded change across modules or languages: trace the existing behavior, preserve contracts and verify the integrated result. Prefer the language skill for language-specific syntax or tooling. |
-| [solid-principles](engineering/solid-principles/SKILL.md) | Evaluate responsibilities and dependencies using SOLID principles without unnecessary abstractions. |
+| [solid-principles](engineering/solid-principles/SKILL.md) | Review a concrete responsibility, inheritance or interface contract using SOLID principles; identify substitutability and coupling problems without adding speculative abstractions. |
 | [terraform-iac](engineering/terraform-iac/SKILL.md) | Create, review or refactor Terraform infrastructure with explicit state ownership, provider/module compatibility, IAM scope and plan evidence. Select for drift, imports, moves or replacement risk. |
 
 ## Programming Languages
@@ -76,7 +76,7 @@ Verify behavior, review changes, protect trust boundaries and recover from failu
 
 | Name | Select for |
 | --- | --- |
-| [anti-patterns](quality/anti-patterns/SKILL.md) | Spot avoidable complexity when reviewing architecture, code, processes or proposed dependencies. |
+| [anti-patterns](quality/anti-patterns/SKILL.md) | Diagnose observed coupling, duplicated state or speculative complexity in code, architecture or a proposed dependency. Require a plausible failure and a small remedy; use code-review for general diff review. |
 | [code-review](quality/code-review/SKILL.md) | Review a change for correctness, regression risk, security and maintainability with actionable findings. |
 | [incident-response](quality/incident-response/SKILL.md) | Investigate an outage or regression, restore service and record an evidence-based follow-up. |
 | [performance](quality/performance/SKILL.md) | Investigate measured latency, throughput, memory or resource problems and validate an optimization. |

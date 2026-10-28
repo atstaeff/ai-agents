@@ -10,7 +10,7 @@ description: "Implement document models, undo/redo, real-time feedback or media 
 1. Define the editable document model, commands and reversible operations independently of the UI.
 2. Make autosave and recovery explicit. Use versioned formats and do not corrupt the previous valid document on write failure.
 3. Budget real-time work, move expensive computation off the interaction path and measure the critical loop.
-4. Prototype with representative media; test undo/redo, recovery, accessibility and empty/error states.
+4. Return the working edit and relevant undo/redo, recovery, accessibility and failure checks with representative media. Name unavailable runtime/media measurements rather than assuming responsiveness.
 
 ## Focused references
 

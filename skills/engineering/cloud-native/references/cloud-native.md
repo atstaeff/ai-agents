@@ -1,322 +1,63 @@
-# Background examples
-
-Use focused sections only when needed. The current skill entry, project conventions and user constraints govern the work. Examples illustrate particular choices; they do not mandate a framework, test library or architecture.
-
-# Cloud-Native Architecture
-
-## Instructions for AI
-
-Design applications optimized for cloud environments following these principles:
-
-## Core Principles
-
-### 12-Factor App Methodology
-
-1. **Codebase**: One codebase tracked in version control, many deploys
-2. **Dependencies**: Explicitly declare and isolate dependencies
-3. **Config**: Store config in environment variables
-4. **Backing Services**: Treat as attached resources
-5. **Build, Release, Run**: Strictly separate stages
-6. **Processes**: Execute as stateless processes
-7. **Port Binding**: Export services via port binding
-8. **Concurrency**: Scale out via process model
-9. **Disposability**: Fast startup and graceful shutdown
-10. **Dev/Prod Parity**: Keep development and production similar
-11. **Logs**: Treat logs as event streams
-12. **Admin Processes**: Run as one-off processes
-
-### Cloud Design Patterns
-
-#### Scalability Patterns
-
-**Auto-Scaling**
-- Scale horizontally based on metrics (CPU, memory, requests)
-- Use cloud provider auto-scaling (AWS Auto Scaling, Azure VMSS)
-- Scale services independently
-- Design for elastic scale-out and scale-in
-
-**Load Balancing**
-- Distribute traffic across instances
-- Health checks and automatic removal of unhealthy instances
-- Multiple levels: external, internal, service mesh
-- Session affinity when needed
-
-**Queue-Based Load Leveling**
-- Use message queues to smooth out load spikes
-- Decouple producers from consumers
-- Process messages asynchronously at steady rate
-- Prevent service overload
-
-**Throttling**
-- Limit resource consumption per user/tenant
-- Prevent resource exhaustion
-- Graceful degradation under high load
-- Return 429 (Too Many Requests) when exceeded
-
-#### Resilience Patterns
-
-**Circuit Breaker**
-- Detect failures and prevent cascading
-- Fail fast instead of waiting for timeout
-- Automatic recovery attempts
-
-```python
-# Python — tenacity retry with circuit breaker
-from tenacity import retry, stop_after_attempt, wait_exponential
-
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(min=1, max=10))
-async def call_downstream(client: httpx.AsyncClient, url: str) -> dict:
-    response = await client.get(url, timeout=5.0)
-    response.raise_for_status()
-    return response.json()
-```
-
-```go
-// Go — errgroup with retry
-func fetchWithRetry(ctx context.Context, url string) ([]byte, error) {
-	var body []byte
-	err := retry.Do(
-		func() error {
-			resp, err := http.Get(url)
-			if err != nil { return err }
-			defer resp.Body.Close()
-			body, err = io.ReadAll(resp.Body)
-			return err
-		},
-		retry.Attempts(3),
-		retry.Delay(time.Second),
-		retry.Context(ctx),
-	)
-	return body, err
-}
-```
-
-**Retry Pattern**
-- Transient fault handling
-- Exponential backoff
-- Maximum retry attempts
-- Idempotent operations
-
-**Bulkhead**
-- Isolate resources for different workloads
-- Prevent one failing component from taking down entire system
-- Separate thread pools, connection pools
-- Example: Critical vs non-critical operations
-
-**Health Endpoint Monitoring**
-- Expose health check endpoints
-- Monitor service availability
-- Automated remediation (restart, replace)
-- Detailed health status (dependencies, database)
-
-#### Data Patterns
-
-**Database per Service**
-- Each microservice owns its data
-- Prevents tight coupling
-- Allows independent scaling
-- Choose appropriate database type per service
-
-**CQRS (Command Query Responsibility Segregation)**
-- Separate read and write models
-- Optimize reads and writes independently
-- Use different data stores
-- Handle eventual consistency
-
-**Event Sourcing**
-- Store events instead of current state
-- Replay events to rebuild state
-- Complete audit trail
-- Enables temporal queries
-
-**Cache-Aside**
-- Application manages cache
-- Load from cache if present
-- Load from database and cache if not
-- Set expiration policies
-
-**Sharding**
-- Partition data across multiple databases
-- Distribute load
-- Scale beyond single database limits
-- Consider shard key carefully
-
-#### Messaging Patterns
-
-**Publisher/Subscriber**
-- Decouple producers from consumers
-- Multiple subscribers per message
-- Topics and subscriptions
-- Filter messages at subscription level
-
-**Competing Consumers**
-- Multiple consumers process from same queue
-- Parallel processing
-- Load distribution
-- Idempotent message handling
-
-**Priority Queue**
-- Process high-priority messages first
-- Separate queues by priority
-- Ensure critical operations complete quickly
-
-## Cloud-Native Technologies
-
-### Containerization
-- Docker for packaging applications
-- Container images with all dependencies
-- Immutable deployments
-- Fast startup times
-
-### Container Orchestration
-- **Kubernetes**: Industry standard
-  - Pods, Deployments, Services
-  - ConfigMaps and Secrets
-  - Horizontal Pod Autoscaler
-  - Ingress controllers
-- **Docker Swarm**: Simpler alternative
-- **Cloud-specific**: ECS, AKS, GKE
-
-### Service Mesh
-- **Istio**, **Linkerd**, **Consul Connect**
-- Service-to-service communication
-- Traffic management and routing
-- Security (mTLS)
-- Observability (tracing, metrics)
-
-### Serverless/Functions
-- AWS Lambda, Azure Functions, Google Cloud Functions
-- Event-driven execution
-- Pay per execution
-- Auto-scaling
-- Suitable for event processing, webhooks, scheduled tasks
-
-## Infrastructure as Code (IaC)
-
-### Tools
-- **Terraform**: Multi-cloud, declarative
-- **AWS CloudFormation**: AWS-specific
-- **Azure ARM Templates/Bicep**: Azure-specific
-- **Pulumi**: Code-based (TypeScript, Python, Go)
-
-### Best Practices
-- Version control infrastructure code
-- Separate environments (dev, staging, prod)
-- Use modules for reusability
-- Implement proper state management
-- Apply infrastructure through CI/CD
-
-## Observability
-
-### Three Pillars
-
-**Logging**
-- Centralized logging (ELK, Splunk, CloudWatch)
-- Structured logging (JSON format)
-- Correlation IDs across services
-- Different log levels (DEBUG, INFO, WARN, ERROR)
-
-**Metrics**
-- Application metrics (Prometheus, CloudWatch)
-- Infrastructure metrics
-- Business metrics
-- RED method: Rate, Errors, Duration
-- USE method: Utilization, Saturation, Errors
-
-**Tracing**
-- Distributed tracing (Jaeger, Zipkin, X-Ray)
-- Track requests across services
-- Identify bottlenecks
-- Understand dependencies
-
-### Monitoring & Alerting
-- Set up dashboards (Grafana, CloudWatch)
-- Define SLIs, SLOs, SLAs
-- Alert on actionable issues
-- Avoid alert fatigue
-- Runbooks for common issues
-
-## Security in Cloud
-
-### Identity & Access Management
-- Principle of least privilege
-- Use IAM roles, not access keys
-- Service accounts for applications
-- Multi-factor authentication
-- Regular access reviews
-
-### Network Security
-- Virtual Private Cloud (VPC)
-- Security groups and network ACLs
-- Private subnets for backend services
-- VPN or Direct Connect for hybrid
-- WAF for web applications
-
-### Data Security
-- Encryption at rest and in transit
-- Key management (AWS KMS, Azure Key Vault)
-- Secrets management (HashiCorp Vault)
-- Data classification and compliance
-- Backup and disaster recovery
-
-### Security Best Practices
-- Regular security audits
-- Vulnerability scanning
-- Penetration testing
-- Security monitoring and SIEM
-- Incident response plan
-
-## CI/CD for Cloud-Native
-
-### Pipeline Stages
-1. **Source**: Git trigger
-2. **Build**: Compile, run unit tests
-3. **Test**: Integration and E2E tests
-4. **Package**: Create container image
-5. **Deploy**: Deploy to environment
-6. **Monitor**: Health checks and metrics
-
-### Deployment Strategies
-- **Rolling Update**: Gradual replacement
-- **Blue-Green**: Switch between environments
-- **Canary**: Test with small percentage
-- **A/B Testing**: Compare versions
-
-### Tools
-- Jenkins, GitLab CI, GitHub Actions
-- AWS CodePipeline, Azure DevOps
-- ArgoCD, Flux for GitOps
-- Spinnaker for multi-cloud
-
-## Cost Optimization
-
-- Right-size resources
-- Use auto-scaling
-- Leverage spot/preemptible instances
-- Reserved instances for stable workloads
-- Optimize storage (lifecycle policies)
-- Monitor and analyze costs regularly
-- Use cost allocation tags
-
-## Example Prompts
-
-"Design a cloud-native architecture for a SaaS application"
-
-"Implement auto-scaling with health checks for a microservice"
-
-"Set up distributed tracing with correlation IDs"
-
-"Create infrastructure as code for a multi-tier application"
-
-"Design a resilient system with circuit breakers and retries"
-
-"Implement CQRS pattern with separate read/write databases"
-
-## Related Skills & Agents
-
-- [GCP Architect Agent](../../../../agents/architecture/gcp-architect.agent.md)
-- [DevOps Agent](../../../../agents/engineering/devops-agent.agent.md)
-- [GCP Patterns](../../gcp-patterns/SKILL.md)
-- [Microservices Architecture](../../../architecture/microservices/SKILL.md)
-- [Security Best Practices](../../../quality/security/SKILL.md)
-- [DevOps & CI/CD](../../devops-cicd/SKILL.md)
+# Runtime resilience and delivery boundaries
+
+Use the relevant section for a deployment or recovery decision. Start from the actual
+host and workload; containers, Kubernetes, a service mesh and distributed services each
+need a concrete reason.
+
+## Deployment unit and identity
+
+Identify the artifact digest, configuration revision, runtime identity, secret delivery
+and operating owner. Keep builds separate from environment configuration and promote
+the tested artifact. Confirm where state lives and what happens when an instance is
+replaced; a stateful workload needs explicit durability, scheduling and recovery.
+
+Separate startup, readiness and liveness semantics. A temporary downstream failure may
+warrant removing traffic or degrading a feature rather than restarting every instance.
+Drain accepted work on shutdown within the platform's actual deadline; decide how
+unfinished jobs are recovered after forced termination.
+
+## Timeouts, retries and isolation
+
+| Mechanism | Purpose | Failure case to check |
+| --- | --- | --- |
+| Deadline/cancellation | Bound waiting and abandoned work | Caller leaves while downstream work is active |
+| Retry with backoff/jitter | Recover from a transient failure | Duplicate side effect or synchronized retry storm |
+| Circuit breaker | Stop repeatedly calling a failing dependency | Open/half-open transition and recovery |
+| Concurrency/queue limit | Bound memory and downstream demand | Full queue, overload response and drain |
+| Resource isolation | Protect important work from another workload | One pool exhausts while the protected path remains useful |
+
+Choose limits from the workload and service contract. Account for multiplied connection
+pools when instances scale. A retry library is not automatically a circuit breaker;
+check the chosen library's actual API and avoid retrying non-idempotent side effects.
+
+## Messages and data
+
+Define acknowledgment, durable state, duplicate handling, ordering scope and replay.
+Acknowledge only at the durability point promised to the producer. Retrying a message
+must not blindly repeat an external charge or command. Bound backlog size, message age
+and poison-message handling; assign the owner who can replay or repair failures.
+
+Choose consistency from the user rule. Keep each invariant's write ownership clear;
+introduce event sourcing, CQRS or an extra database only for a demonstrated requirement.
+
+## Observe, release and restore
+
+Use signals that reveal the user's outcome: errors, latency distributions, completed
+jobs and data freshness, with resource saturation for diagnosis. Correlate requests
+without exposing secrets or private payloads. An alert needs an owner and useful action.
+
+Define rollout scope, stop condition, rollback/forward-repair path and compatible
+schema versions. Exercise backup restoration against the stated recovery objective;
+a successful backup job alone does not demonstrate that recovery works. Review compute,
+storage, logging, idle capacity and egress using representative usage.
+
+## Select a focused procedure
+
+- [GCP patterns](../../gcp-patterns/SKILL.md): actual Google Cloud workload and service limits.
+- [Terraform IaC](../../terraform-iac/SKILL.md): state, resource ownership and reviewed plans.
+- [CI/CD](../../devops-cicd/SKILL.md): trusted artifact flow and release automation.
+- [Performance](../../../quality/performance/SKILL.md): a measured capacity bottleneck.
+
+Return the changed runtime contract, actual rollout/failure/restore evidence and gaps.
+Use current provider documentation for affected limits and pricing. Without access,
+label deployment and recovery unverified; local validation cannot establish live state.

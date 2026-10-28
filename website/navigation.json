@@ -3,6 +3,9 @@
     "label": "Project",
     "items": [
       {
+        "First Useful Task": "getting-started/quick-start.md"
+      },
+      {
         "Team Project Starter": "getting-started/lean-project.md"
       },
       {
@@ -148,6 +151,9 @@
         "Compact Assignment": "templates/delivery/assignment.md"
       },
       {
+        "Runtime Qualification": "templates/delivery/runtime-check.md"
+      },
+      {
         "Ideas List": "templates/knowledge/ideas.md"
       },
       {
@@ -265,6 +271,9 @@
     "items": [
       {
         "Runtime Exports": "getting-started/installation.md"
+      },
+      {
+        "Runtime Evidence and Capacity": "getting-started/runtime-qualification.md"
       },
       {
         "Ponytail, Graphify and Herdr": "getting-started/integrations.md"

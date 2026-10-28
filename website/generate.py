@@ -1,7 +1,7 @@
 """Publish canonical Markdown for Docusaurus without duplicating maintained guidance."""
 from pathlib import Path
 from dataclasses import dataclass, field
-from html import escape
+from html import escape, unescape
 import json
 import math
 import os
@@ -51,6 +51,7 @@ DOCUMENTS = {
     'concept.md': 'toolkit/OPERATING-MODEL.md',
     'getting-started/orchestration.md': 'toolkit/ORCHESTRATION.md',
     'getting-started/herdr.md': 'toolkit/HERDR.md',
+    'getting-started/runtime-qualification.md': 'toolkit/RUNTIME-QUALIFICATION.md',
     'getting-started/integrations.md': 'toolkit/INTEGRATIONS.md',
     'workspace-concept.md': 'toolkit/PROJECT-CONCEPT.md',
     'repository-workspace.md': 'PROJECT.md',
@@ -284,6 +285,39 @@ def generate():
     return pages, sidebars, counts
 
 
+
+def search_index(pages):
+    """Index only selected public documents; no additional filesystem discovery."""
+    aliases = json.loads((ROOT / 'toolkit/catalog-aliases.json').read_text())
+    retired = {f'{kind}/{name}.md' for kind, names in aliases.items() for name in names}
+    retired.add('skills/feature-discovery.md')
+    entries = {f'{entry.kind}s/{entry.name}.md': entry for entry in ENTRIES}
+    records = []
+    for path, text in sorted(pages.items()):
+        if path in retired:
+            continue
+        header, body = text.split('\n---\n', 1)
+        slug_line = next(line for line in header.splitlines() if line.startswith('slug: '))
+        route = json.loads(slug_line.removeprefix('slug: '))
+        if not re.fullmatch(r'/[A-Za-z0-9][A-Za-z0-9/_-]*', route):
+            raise ValueError(f'Invalid documentation search route: {path}')
+        title_match = re.search(r'^# (.+)$', body, re.M)
+        title = title_match[1].strip() if title_match else Path(path).stem.replace('-', ' ').title()
+        content = body.split('\nCanonical source:', 1)[0]
+        content = re.sub(r'^```[^\n]*\n.*?^```[^\n]*$', ' ', content, flags=re.M | re.S)
+        content = re.sub(r'!?\[([^\]]*)\]\([^)]*\)', r'\1', content)
+        content = unescape(re.sub(r'<[^>]+>|[#*`|]', ' ', content))
+        content = ' '.join(content.split())
+        entry = entries.get(path)
+        source = SOURCES.get(path, '')
+        kind = entry.kind if entry else 'template' if source.startswith('templates/') or path.startswith('templates/') else 'guide'
+        records.append({'title': title, 'href': route.rstrip('/') + '/', 'kind': kind,
+                        'domain': entry.domain if entry else '',
+                        'description': entry.description if entry else content.removeprefix(title).strip()[:220],
+                        'text': content})
+    return records
+
+
 def publish(output):
     """Write the generated snapshot only to the site's dedicated ignored directory."""
     import shutil
@@ -300,6 +334,7 @@ def publish(output):
         target.write_text(text, encoding='utf-8')
     (output/'sidebars.json').write_text(json.dumps(sidebars,indent=2)+'\n', encoding='utf-8')
     (output/'catalog.json').write_text(json.dumps(counts)+'\n', encoding='utf-8')
+    (output/'search-index.json').write_text(json.dumps(search_index(pages), ensure_ascii=False)+'\n', encoding='utf-8')
     print(f'Generated {len(pages)} Docusaurus documents from canonical sources.')
 
 

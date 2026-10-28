@@ -233,13 +233,43 @@ const { chromium } = require("playwright");
       path: path.join(previews, "mobile-decision.png"),
       fullPage: true,
     });
+    // The first-use path and local search work without a hosted search service.
+    const siteBase = `http://127.0.0.1:${port}/ai-agents/`;
+    await page.setViewportSize({width: 1440, height: 1100});
+    await page.goto(siteBase);
+    await page.getByRole('link', {name: 'Try the first task', exact: true}).click();
+    await page.waitForURL('**/getting-started/quick-start/');
+    await page.locator('article').waitFor();
+    assert.match(await page.locator('article').innerText(), /NOTES\.md/);
+    await page.screenshot({path: path.join(previews, 'first-task.png'), fullPage: true});
+    await page.goto(siteBase + 'search/?q=FastAPI&kind=skill');
+    const pythonResult = page.locator('main a[href$="/skills/python-patterns/"]');
+    await pythonResult.waitFor();
+    assert.equal(await page.getByLabel('What do you need?').inputValue(), 'FastAPI');
+    assert.equal(await page.getByLabel('Document type').inputValue(), 'skill');
+    assert.ok(await page.locator('.docs-search-results li').count() <= 20);
+    await page.screenshot({path: path.join(previews, 'search.png'), fullPage: true});
+    await page.getByLabel('What do you need?').fill('qzxn-no-matching-document');
+    await page.getByText('No matching documents. Try fewer words or another document type.').waitFor();
+    await page.getByLabel('Document type').selectOption('all');
+    await page.getByLabel('What do you need?').fill('jorg');
+    await page.locator('main a[href$="/agents/joerg/"]').waitFor();
+    await page.reload();
+    await page.locator('main a[href$="/agents/joerg/"]').click();
+    await page.waitForURL('**/agents/joerg/');
+    await page.locator('article').waitFor();
+    await page.setViewportSize({width: 390, height: 844});
+    await page.goto(siteBase + 'search/?q=Terraform+state&kind=skill');
+    await page.locator('main a[href$="/skills/terraform-iac/"]').waitFor();
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), 'Mobile search must not overflow');
+    await page.screenshot({path: path.join(previews, 'mobile-search.png'), fullPage: true});
     assert.deepEqual(
       errors,
       [],
       "Browser must not emit uncaught JavaScript errors",
     );
     console.log(
-      "Browser smoke passed: aggregate overview, lazy data, area/status filters, direct ID lookup, error/retry, keyboard, history, source routes and mobile layout.",
+      "Browser smoke passed: first-use onboarding, local documentation search, aggregate overview, lazy data, area/status filters, direct ID lookup, error/retry, keyboard, history, source routes and mobile layout.",
     );
   } finally {
     if (browser) await browser.close();

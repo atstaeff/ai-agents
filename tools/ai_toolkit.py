@@ -32,6 +32,31 @@ RUNTIMES = {'opencode', 'copilot', 'claude', 'portable', 'herd'}
 EXPORT_MANIFEST = '.ai-toolkit-manifest.json'
 EXPORT_JOURNAL = '.ai-toolkit-transaction.json'
 EXPORT_LOCK = '.ai-toolkit-export.lock'
+EXPORT_SOURCE_FOLDERS = ('agents', 'skills', 'toolkit', 'templates', 'marp-templates', 'reference-repos')
+# A source archive and a checkout use the same publication policy. Git tracking
+# and ignore rules are deliberately not the boundary for reading export sources.
+EXPORT_SOURCE_SUFFIXES = {
+    '.md', '.txt', '.rst', '.json', '.yaml', '.yml', '.toml', '.ini', '.cfg',
+    '.csv', '.tsv', '.xml', '.html', '.css', '.scss', '.js', '.mjs', '.cjs',
+    '.jsx', '.ts', '.tsx', '.py', '.sh', '.bash', '.ps1', '.sql', '.r', '.go',
+    '.rs', '.java', '.kt', '.kts', '.c', '.h', '.cpp', '.hpp', '.cs', '.swift',
+    '.dart', '.rb', '.php', '.lua', '.ipynb', '.svg', '.png', '.jpg', '.jpeg',
+    '.gif', '.webp', '.ico', '.pdf', '.docx', '.pptx', '.xlsx', '.woff', '.woff2',
+    '.ttf', '.otf',
+}
+EXPORT_SOURCE_NAMES = {'license', 'notice', 'copying', 'makefile', 'dockerfile',
+                       '.gitignore', '.dockerignore', '.editorconfig'}
+EXPORT_PRIVATE_DIRECTORIES = {
+    '__pycache__', 'node_modules', 'venv', 'site-packages', 'dist', 'build',
+    'target', 'coverage', 'htmlcov', 'generated', 'exports', 'graphify-out',
+    'cache', 'logs', 'tmp', 'temp', 'private', 'secrets', 'credentials',
+    'local', 'local-state',
+}
+EXPORT_PRIVATE_SUFFIXES = {'.env', '.pem', '.key', '.p12', '.pfx', '.jks', '.keystore',
+                           '.kdbx', '.tfstate', '.tfplan', '.sqlite', '.sqlite3', '.db'}
+EXPORT_PRIVATE_NAME = re.compile(
+    r'(^|[._-])(?:secrets?|credentials?|tokens?|passwords?|api[._-]?keys?|'
+    r'private[._-]?keys?|service[._-]?accounts?)(?=[._-]|$)')
 _UNCHECKED = object()
 
 
@@ -101,17 +126,25 @@ def domains() -> dict:
     return json.loads((ROOT / 'toolkit/catalog-domains.json').read_text(encoding='utf-8'))
 
 
-def catalog(root: Path = ROOT) -> list[Entry]:
+def catalog(root: Path = ROOT, *, source_files: dict[str, bytes] | None = None) -> list[Entry]:
     entries = []
     known_domains = domains()
-    paths = [("agent", p) for p in sorted((root / "agents").rglob("*.agent.md"))
+    # Export parses only the bytes approved by its source policy, including in a
+    # non-Git source archive. Do not reopen omitted files for their metadata.
+    agents = (sorted((root / 'agents').rglob('*.agent.md')) if source_files is None else
+              [root / name for name in sorted(source_files) if name.startswith('agents/') and name.endswith('.agent.md')])
+    skills = (sorted((root / 'skills').rglob('*.md')) if source_files is None else
+              [root / name for name in sorted(source_files) if name.startswith('skills/') and name.endswith('.md')])
+    paths = [("agent", p) for p in agents
              if 'references' not in p.relative_to(root / 'agents').parts]
-    paths += [("skill", p) for p in sorted((root / "skills").rglob("*.md"))
+    paths += [("skill", p) for p in skills
               if "references" not in p.relative_to(root / "skills").parts and p.name != 'README.md'
               and (p.name == "SKILL.md" or len(p.relative_to(root / "skills").parts) <= 2)]
     seen = set()
     for kind, path in paths:
-        meta, _ = metadata(path.read_text(encoding="utf-8"))
+        text = (path.read_text(encoding='utf-8') if source_files is None else
+                source_files[path.relative_to(root).as_posix()].decode('utf-8'))
+        meta, _ = metadata(text)
         name = slug(meta.get("name", ""))
         description = meta.get("description", "")
         if not 1 <= len(description) <= 1024:
@@ -236,14 +269,66 @@ def _atomic_write_file(path: Path, data: bytes, expected_hash=_UNCHECKED) -> Non
             os.fsync(stream.fileno())
             stream.close()
             if expected_hash is not _UNCHECKED and _export_file_hash(path) != expected_hash:
-                raise Conflict(f'Export target changed while preparing the update: {path.name}. Reload and retry.')
-            os.replace(temporary, path)
+                raise Conflict(f'File changed while preparing the update: {path.name}. Reload and retry.')
+            if expected_hash is None:
+                # Installing the prepared inode must fail if another creator won
+                # after the absence check. replace() would overwrite that file.
+                try:
+                    os.link(temporary, path)
+                except FileExistsError as exc:
+                    raise Conflict(f'File already exists: {path.name}. Reload and retry.') from exc
+            else:
+                os.replace(temporary, path)
         finally:
             temporary.unlink(missing_ok=True)
 
 
 def atomic_write(path: Path, data: bytes, *, expected_hash=_UNCHECKED) -> None:
     _atomic_write_file(path, data, expected_hash)
+
+
+def _export_private_path(relative: Path, *, directory: bool = False) -> bool:
+    parts = tuple(part.casefold() for part in relative.parts)
+    if not parts:
+        return False
+    directories = parts if directory else parts[:-1]
+    if any(part.startswith('.') or part in EXPORT_PRIVATE_DIRECTORIES
+           or EXPORT_PRIVATE_NAME.search(part) is not None for part in directories):
+        return True
+    if any(parts[index] == 'workspace' and parts[index + 1] in {'work', 'archive', 'generated', 'exports'}
+           for index in range(len(parts) - 1)):
+        return True
+    name = parts[-1]
+    return (not directory and (
+        (name.startswith('.') and name not in EXPORT_SOURCE_NAMES)
+        or EXPORT_PRIVATE_NAME.search(name) is not None
+        or name in {'id_rsa', 'id_dsa', 'id_ecdsa', 'id_ed25519', 'auth.json', 'auth.yaml', 'auth.yml',
+                    'session.json', 'sessions.json', 'memory.json', 'package-lock.json', 'npm-shrinkwrap.json', 'pnpm-lock.yaml'}
+        or '.local.' in name or name.endswith(('.local', '~'))
+        or Path(name).suffix in EXPORT_PRIVATE_SUFFIXES))
+
+
+def _export_source_files(root: Path) -> dict[str, bytes]:
+    """Read only publishable source types, pruning local state at every depth."""
+    sources = {}
+    for folder in EXPORT_SOURCE_FOLDERS:
+        source_directory = root / folder
+        if source_directory.is_symlink():
+            raise ToolkitError(f'Cannot export a symlink: {source_directory}')
+        for directory, folders, filenames in os.walk(source_directory, followlinks=False):
+            parent = Path(directory)
+            for name in sorted(folders + filenames):
+                if (parent / name).is_symlink():
+                    raise ToolkitError(f'Cannot export a symlink: {parent / name}')
+            folders[:] = sorted(name for name in folders
+                                if not _export_private_path((parent / name).relative_to(root), directory=True))
+            for name in sorted(filenames):
+                path = parent / name
+                relative = path.relative_to(root)
+                if (not _export_private_path(relative) and path.is_file()
+                        and (path.suffix.casefold() in EXPORT_SOURCE_SUFFIXES or name.casefold() in EXPORT_SOURCE_NAMES)):
+                    sources[relative.as_posix()] = path.read_bytes()
+    return sources
 
 
 def _export_relative(relative: str) -> str:
@@ -498,16 +583,15 @@ def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
             if not original.is_relative_to(root.resolve()):
                 raise ToolkitError(f'Catalog reference leaves the source repository: {source.relative_to(root)} -> {match[1]}')
             relative = original.relative_to(root.resolve())
-            if (relative.parts[:2] in {('workspace', 'work'), ('workspace', 'archive'),
-                                       ('workspace', 'generated'), ('workspace', 'exports')}
-                    or (relative.parts and relative.parts[0] in {'.ai', '.git', '.venv'})
-                    or any(part in {'.env', '.env.local', '__pycache__'} for part in relative.parts)):
+            if _export_private_path(relative, directory=original.is_dir()):
                 raise ToolkitError(f'Catalog references private or generated state: {source.relative_to(root)}')
             copied = 'catalog/' + relative.as_posix()
             if copied in planned or (original.is_dir() and any(path.startswith(copied + '/') for path in planned)):
                 return match[0]
             if not original.exists():
                 raise ToolkitError(f'Catalog reference does not exist: {source.relative_to(root)} -> {match[1]}')
+            if relative.parts and relative.parts[0] in EXPORT_SOURCE_FOLDERS:
+                raise ToolkitError(f'Catalog reference is excluded from export: {source.relative_to(root)} -> {match[1]}')
             view = 'tree' if original.is_dir() else 'blob'
             target = f'https://github.com/atstaeff/ai-agents/{view}/main/{quote(relative.as_posix(), safe="/")}'
             if parts.query:
@@ -680,23 +764,15 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
     if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
         raise ToolkitError('Export outside canonical source folders.')
-    planned: dict[str, bytes] = {}
-    for folder in ("agents", "skills", "toolkit", "templates", "marp-templates", "reference-repos"):
-        source_directory = root / folder
-        if source_directory.is_symlink():
-            raise ToolkitError(f'Cannot export a symlink: {source_directory}')
-        for path in sorted(source_directory.rglob("*")):
-            if path.is_symlink():
-                raise ToolkitError(f"Cannot export a symlink: {path}")
-            if path.is_file():
-                planned[f"catalog/{path.relative_to(root).as_posix()}"] = path.read_bytes()
+    source_files = _export_source_files(root)
+    planned = {'catalog/' + name: data for name, data in source_files.items()}
     license_path = root / 'LICENSE'
     if license_path.is_symlink():
         raise ToolkitError('Cannot export a symlinked license.')
     if license_path.is_file():
         planned['catalog/LICENSE'] = license_path.read_bytes()
     _catalog_reading_links(planned, root)
-    entries = select_entries(catalog(root), preset, agent_names, skill_names)
+    entries = select_entries(catalog(root, source_files=source_files), preset, agent_names, skill_names)
     selected_agents = {e.name for e in entries if e.kind == 'agent'}
     for phase in ('plan', 'build'):
         if (getattr(options, f'{phase}_model') or getattr(options, f'{phase}_variant')
@@ -915,7 +991,7 @@ class WorkStore:
                 raise Conflict('A work record with this ID already exists.')
             text = (ROOT/'templates/delivery/work-item.md').read_text(encoding='utf-8')
             text = text.replace('{{id}}', slug(name)).replace('{{title_json}}', json.dumps(title, ensure_ascii=False)).replace('{{kind}}', kind).replace('{{title}}', title.replace('\n', ' '))
-            atomic_write(path, text.encode())
+            atomic_write(path, text.encode(), expected_hash=None)
             return self.read(name)
 
     def update(self, name: str, etag: str, transform) -> dict:
@@ -924,12 +1000,13 @@ class WorkStore:
             if etag != current['etag']:
                 raise Conflict('This record changed. Reload it before saving; your feedback has not been discarded.')
             text = transform(current['markdown'])
-            # Check again immediately before replacing a file another editor may have touched.
+            # Catch edits made by the transform; atomic_write checks again after
+            # preparing and flushing its temporary file.
             if self.read(name)['etag'] != etag:
                 raise Conflict('The file changed while preparing the update. Reload and retry.')
             if len(text.encode()) > MAX_RECORD:
                 raise ToolkitError('Work record exceeds the size limit.')
-            atomic_write(self.path(name), text.encode())
+            atomic_write(self.path(name), text.encode(), expected_hash=current['etag'][1:-1])
             return self.read(name)
 
     def task(self, name: str, task_id: str, status: str, evidence: str, etag: str) -> dict:
@@ -979,9 +1056,28 @@ class WorkStore:
             destination = self.path(name, True)
             if destination.exists():
                 raise Conflict('Archive destination already exists.')
-            self.update(name, etag, lambda text: re.sub(r'^status:.*$', 'status: archived', text, count=1, flags=re.M))
-            destination.parent.mkdir(parents=True, exist_ok=True)
-            self.path(name).rename(destination)
+            source = self.path(name)
+            data = re.sub(r'^status:.*$', 'status: archived', current['markdown'], count=1, flags=re.M).encode()
+            atomic_write(destination, data, expected_hash=None)
+            archive_hash = digest(data)
+            # Prepare the archive without changing the active record. If an
+            # editor saved or removal fails, retain the active file and clean up
+            # only the unedited archive created above. Failed creation never
+            # enters this cleanup. This is a local check, not filesystem CAS.
+            try:
+                if _export_file_hash(source) != current['etag'][1:-1]:
+                    raise Conflict('Record changed while preparing the archive. Reload and retry.')
+                if _export_file_hash(destination) != archive_hash:
+                    raise Conflict('Archive changed while preparing the move; the active record was retained.')
+                source.unlink()
+            except (ToolkitError, OSError) as exc:
+                try:
+                    if (_export_file_hash(source) is not None
+                            and _export_file_hash(destination) == archive_hash):
+                        destination.unlink()
+                except (ToolkitError, OSError) as cleanup_error:
+                    raise ToolkitError(f'Archive cleanup is pending: {cleanup_error}. Inspect active and archive copies before retrying.') from exc
+                raise
             return self.read(name, True)
 
     def csv(self, name: str) -> str:

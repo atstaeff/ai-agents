@@ -10,7 +10,7 @@ description: "Clarify a game concept, core loop, player goals, balancing or play
 1. Describe the player fantasy, actions, feedback and tension in concrete terms.
 2. Choose a small playable loop and identify the riskiest design assumption.
 3. Build a playtest with observable questions; distinguish player behavior from opinion.
-4. Adjust mechanics or scope from evidence and record only decisions needed for the next iteration.
+4. Return the proposed loop or tuning, actual playtest observations, limitations and next decision. Adjust from evidence; do not invent player feedback when a playtest is unavailable.
 
 ## Focused references
 

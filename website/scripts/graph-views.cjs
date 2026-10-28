@@ -9,7 +9,7 @@ const STATUSES = ["all", "accepted", "proposed", "superseded", "current"];
 const compare = (a, b) => (a < b ? -1 : a > b ? 1 : 0);
 const publicNode = ({ relations, ...node }) => node;
 
-function createViewIndex(graph) {
+function createViewIndex(graph, { source } = {}) {
   const byId = new Map(graph.nodes.map((node) => [node.id, publicNode(node)]));
   const adjacent = new Map(graph.nodes.map((node) => [node.id, []]));
   const areas = new Map();
@@ -64,11 +64,13 @@ function createViewIndex(graph) {
           schemaVersion: SCHEMA_VERSION,
           limits: LIMITS,
           graph,
+          ...(source ? { source } : {}),
         }),
       )
       .digest("hex")
       .slice(0, 16),
     limits: LIMITS,
+    ...(source ? { source } : {}),
     totals: {
       records: graph.nodes.length,
       relationships: graph.edges.length,
@@ -82,8 +84,8 @@ function createViewIndex(graph) {
   return { overview, byId, adjacent, areas: sortedAreas };
 }
 
-function writeViewData(graph, output) {
-  const index = createViewIndex(graph);
+function writeViewData(graph, output, options) {
+  const index = createViewIndex(graph, options);
   const { overview, byId, adjacent, areas } = index;
   const dataRoot = path.join(output, "static/knowledge-data");
   fs.rmSync(dataRoot, { recursive: true, force: true });

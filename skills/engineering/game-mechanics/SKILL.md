@@ -10,7 +10,7 @@ description: "Implement or tune a specific game mechanic such as movement, comba
 1. Specify inputs, state transitions, timing and observable player feedback for the mechanic.
 2. Separate parameters from rule logic so tuning remains easy. Prefer deterministic tests for rules where possible.
 3. Handle boundaries, interrupts, invalid actions and save/load behavior.
-4. Test in the core loop and measure feel/performance on the intended platform.
+4. Return the implemented rule or tuned parameters and actual core-loop checks. Separate observed player feedback from measured timing; identify untested platform behavior.
 
 ## Focused references
 

@@ -4,35 +4,35 @@ import Layout from '@theme/Layout';
 import counts from '../../.generated/catalog.json';
 
 const paths = [
-  {number: '01', title: 'Choose expertise', to: '/catalog/', text: 'Find the roles and focused skills your next outcome needs. One catalog, seven disciplines.'},
-  {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Start with a clear project map, contribution guide and one assignment. Add useful knowledge as you deliver.'},
-  {number: '03', title: 'Coordinate useful specialists', to: '/getting-started/orchestration/', text: 'Give leads clear responsibilities and specialists bounded work. Verify one integrated result.'},
+  {number: '01', title: 'Try one small task', to: '/getting-started/quick-start/', text: 'Export a small catalog into a temporary directory, then use your host for a harmless documentation exercise.'},
+  {number: '02', title: 'Choose focused expertise', to: '/catalog/', text: 'Find the roles and procedures your next outcome needs. Load a selected skill without starting another agent.'},
+  {number: '03', title: 'Adopt in your project', to: '/getting-started/lean-project/', text: 'Merge a short project entry into your existing rules. Keep assignments, decisions and evidence at their owners.'},
   {number: '04', title: 'Start with a useful template', to: '/templates/', text: 'Project briefs, architecture reviews, decisions and handoffs. Use only the artifact the assignment needs.'},
 ];
 
 export default function Home() {
   return (
-    <Layout title="Engineering with AI" description="A portable engineering catalog and a practical operating model for teams working with AI.">
+    <Layout title="Engineering with AI" description="Try a focused AI engineering catalog, then adopt reusable skills, project instructions and templates in your own workflow.">
       <main>
         <header className="home-hero">
           <div className="container hero-layout">
             <div>
               <p className="eyebrow">Engineering with AI · by Stefan Poss</p>
               <h1>Build products.<br /><span>Preserve the reasoning.</span></h1>
-              <p className="hero-description">Product intent, focused engineering expertise and clear decisions. A shared process your next person or AI session can continue from.</p>
+              <p className="hero-description">Reusable AI roles, focused skills and practical project templates. Start with one small task, then keep the context and evidence your team needs to continue.</p>
               <div className="hero-actions">
-                <Link className="button button--primary button--lg" to="/getting-started/lean-project/">Start a team project</Link>
+                <Link className="button button--primary button--lg" to="/getting-started/quick-start/">Try the first task</Link>
                 <Link className="button button--secondary button--lg" to="/catalog/">Explore the catalog</Link>
               </div>
             </div>
             <aside className="hero-note" aria-label="What the repository provides">
-              <p className="eyebrow">One connected system</p>
+              <p className="eyebrow">Use what the task needs</p>
               <dl>
-                <div><dt>{counts.agent} agents</dt><dd>Accountable roles and bounded handoffs</dd></div>
+                <div><dt>{counts.agent} agents</dt><dd>Role profiles and handoff guidance</dd></div>
                 <div><dt>{counts.skill} skills</dt><dd>Focused procedures and references</dd></div>
                 <div><dt>Your project</dt><dd>Project-owned context, decisions and knowledge</dd></div>
               </dl>
-              <p className="note-caption">Portable profiles. Your tools. Your model.</p>
+              <p className="note-caption">Your host runs the work. Check its capabilities before relying on them.</p>
             </aside>
           </div>
         </header>

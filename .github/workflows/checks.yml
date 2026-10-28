@@ -48,11 +48,13 @@ jobs:
         run: npm --prefix website ci
       - name: Validate graph sources and privacy boundary
         run: npm --prefix website run test:graph
+      - name: Validate documentation search
+        run: npm --prefix website run test:search
       - name: Build Docusaurus and reject broken links
         run: npm --prefix website run build
       - name: Install browser for graph smoke test
         run: npx --prefix website playwright install --with-deps chromium
-      - name: Exercise graph interactions and document routes
+      - name: Exercise onboarding, search and knowledge views
         run: npm --prefix website run test:browser
       - name: Upload knowledge map previews
         if: always()

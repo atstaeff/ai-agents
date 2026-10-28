@@ -175,11 +175,11 @@ func NewHandler(repo OrderRepository) *Handler {
 
 When designing systems:
 1. Start by identifying responsibilities
-2. Define abstractions (interfaces) before implementations
-3. Use dependency injection containers
+2. Define small interfaces where an actual consumer or substitution needs them
+3. Prefer explicit construction; add a dependency container only for a demonstrated need
 4. Apply SOLID at the appropriate level (class, module, service)
 5. Balance purity with pragmatism
-6. **Always show before/after** to demonstrate the improvement
+6. Show a focused before/after only when it helps explain the concrete contract improvement
 
 ## Reference
 

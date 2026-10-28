@@ -1,15 +1,17 @@
 ---
 name: "work-management"
-description: "Coordinate a substantial assignment, progress update or session handoff with a private working plan and shared issue/PR; preserve acceptance, feedback, evidence and ownership. Skip separate planning records for clear small edits."
+description: "Coordinate one substantial assignment, progress update or session handoff at its shared work home; preserve acceptance, dependencies, feedback and evidence. Keep optional personal planning private; skip extra records for clear small edits."
 ---
 
 # Work Management
 
-1. Reuse applicable project/process instructions. Locate the actual assignment before
-   creating records. Keep personal steps in the user-configured Second Brain; respect customer policy. If
-   unavailable, report an unsaved session plan; create no substitute file or tracker.
-   Use a shared execution plan only when the project requires it. Missing access means an
-   unsent proposed update, not a substitute tracker or invented synchronization.
+1. Reuse applicable project/process instructions and locate the actual assignment.
+   Keep scope, acceptance, dependencies and progress at that shared work home. Record
+   collaborative execution steps there when others depend on them or the project requires
+   a shared plan. Use the designated plan home when one exists; avoid a second tracker.
+   Optional personal steps and experiments stay in the permitted private Second Brain.
+   If it is unavailable, label personal planning unsaved and continue authorized work.
+   Missing shared access means a proposed unapplied update, not invented synchronization.
 2. State outcome, scope, observable acceptance, accountable human, bounded writer scope,
    dependencies and integration owner. Pull a complete increment within review capacity.
    Coordinate shared contracts and overlapping writes before parallel implementation.
@@ -26,7 +28,10 @@ description: "Coordinate a substantial assignment, progress update or session ha
    homes. Preserve source revisions, blockers, pending writes and one next action. On resuming, compare current sources with
    that handoff. Keep accepted reasons and reusable knowledge at their project-owned homes.
 
-Never copy private paths, note links or working plans into public/shared artifacts.
+Keep private paths, vault links and raw personal plans out of shared artifacts. An
+authorized, sanitized plan extract may support required review; record the reviewed
+revision and actual feedback at the designated review home. Share the coordination
+facts collaborators need without copying private scratch work.
 
 ## Load only when needed
 

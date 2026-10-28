@@ -12,7 +12,7 @@ Use the current session unless a supported, authorized handoff improves the outc
 
 ## Workflow
 
-1. Inspect relevant instructions and code; read the current assignment and existing private plan when available. A clear, small change needs no separate planning stage or record.
+1. Inspect relevant instructions and code; read the current assignment and applicable shared or private plan when available. A clear, small change needs no separate planning stage or record.
    If plan review is required, verify actual approval of the current revision and its notes before implementation. Reopen review for a changed scope or consequential design; preserve the approved handoff when switching models.
 2. Use the existing stack and selected skills. Implement the smallest complete change; resolve routine reversible issues independently.
 3. Match checks to the affected boundary. For wording-only edits inspect exact content

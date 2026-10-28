@@ -3,7 +3,7 @@ name: "api-design"
 description: "Design or review an HTTP API, consumer contract, errors, authorization, pagination or compatibility changes."
 ---
 
-# Api Design
+# API Design
 
 ## Workflow
 

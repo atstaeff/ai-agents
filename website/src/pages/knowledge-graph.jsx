@@ -7,6 +7,8 @@ import { useHistory, useLocation } from "@docusaurus/router";
 import overview from "@site/.generated/knowledge-overview.json";
 import "@site/src/css/knowledge-graph.css";
 
+const source = overview.source;
+
 const kinds = {
   decision: "Decision",
   topic: "AI topic",
@@ -371,10 +373,10 @@ export default function KnowledgeGraphPage() {
     >
       <main className="atlas">
         <header className="atlas-heading">
-          <p className="eyebrow">ENGINEERING ATLAS · FICTIONAL PROJECT DEMO</p>
-          <h1>Project knowledge</h1>
-          <p>Explore shared decisions and their context, one area at a time.</p>
-          <Link to={base + "demo-knowledge/intro/"}>
+          <p className="eyebrow">{source.example ? "FICTIONAL PROJECT DEMO" : "PROJECT KNOWLEDGE"}</p>
+          <h1>{source.title}</h1>
+          <p>{source.description}</p>
+          <Link to={base + source.introHref.slice(1)}>
             How this knowledge map works ↗
           </Link>
         </header>
@@ -729,8 +731,8 @@ export default function KnowledgeGraphPage() {
             Shared decisions and current knowledge. Personal plans stay in your
             Second Brain.
           </p>
-          <Link to={base + "demo-knowledge/intro/#large-collections"}>
-            Working with large decision collections ↗
+          <Link to={base + source.introHref.slice(1) + (source.example ? "#large-collections" : "")}>
+            {source.example ? "Working with large decision collections" : "Knowledge source and publication scope"} ↗
           </Link>
         </footer>
       </main>

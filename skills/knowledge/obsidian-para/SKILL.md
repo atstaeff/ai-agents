@@ -3,7 +3,7 @@ name: "obsidian-para"
 description: "Capture, retrieve and maintain notes in a private Obsidian vault organized as Projects, Areas, Resources and Archive, including Windows/WSL links."
 ---
 
-# Obsidian Para
+# Obsidian PARA
 
 ## Discover before writing
 
@@ -28,12 +28,16 @@ Read the destination note and nearby conventions before changing anything. If ac
 
 ## Personal engineering plans
 
-Keep one working plan per substantial outcome in the vault's existing project folder.
-Store goal, acceptance, steps, actual checks and one resume point. Do not mirror it into
-an issue or repository. Respect customer policy before storing project material privately.
+When personal planning is useful, reuse one plan in the vault's existing project folder.
+Store goal, personal steps, actual checks and one resume point. Respect customer policy
+before storing project material privately. Keep collaborative scope, acceptance,
+dependencies and needed execution steps at the shared assignment; do not mirror a private
+task list. For required review, share only an authorized sanitized extract and identify
+its revision at the designated review home.
 After implementation, preserve significant decisions and current documentation in the
 shared project, then close/archive the personal plan. If the vault is unavailable, state
-that the plan is unsaved and continue in-session without a substitute repository file.
+that the personal plan is unsaved and continue in-session. An unavailable private vault
+does not prevent updates to the project's existing shared coordination records.
 
 ## Load for the requested operation
 

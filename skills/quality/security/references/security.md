@@ -1,470 +1,75 @@
-# Background examples
-
-Use focused sections only when needed. The current skill entry, project conventions and user constraints govern the work. Examples illustrate particular choices; they do not mandate a framework, test library or architecture.
-
-# Security Best Practices
-
-## Instructions for AI
-
-Implement comprehensive security measures following industry standards:
-
-## Security Principles
-
-### Defense in Depth
-- Multiple layers of security
-- No single point of failure
-- Assume breach mentality
-- Reduce blast radius
-
-### Least Privilege
-- Minimum necessary access
-- Time-limited permissions
-- Regular access reviews
-- Just-in-time access
-
-### Zero Trust
-- Never trust, always verify
-- Verify identity and device
-- Micro-segmentation
-- Continuous monitoring
-
-### Security by Design
-- Consider security from start
-- Threat modeling
-- Secure defaults
-- Fail securely
-
-## OWASP Top 10
-
-### A01: Broken Access Control
-**Risk:** Unauthorized access to resources
-
-**Prevention:**
-- Implement proper authorization checks
-- Deny by default
-- Validate permissions server-side
-- Use framework security features
-- Log access control failures
-
-### A02: Cryptographic Failures
-**Risk:** Sensitive data exposure
-
-**Prevention:**
-- Encrypt data at rest and in transit
-- Use TLS 1.2+ for transport
-- Strong encryption algorithms (AES-256)
-- Proper key management
-- Don't store unnecessary sensitive data
-
-### A03: Injection
-**Risk:** SQL injection, command injection, LDAP injection
-
-**Prevention:**
-- Use parameterized queries/prepared statements
-- ORM frameworks
-- Input validation and sanitization
-- Whitelist allowed values
-- Least privilege database accounts
-
-**Example (SQL Injection Prevention):**
-```csharp
-// ❌ Vulnerable
-string query = $"SELECT * FROM Users WHERE Id = {userId}";
-
-// ✅ Secure
-string query = "SELECT * FROM Users WHERE Id = @UserId";
-command.Parameters.AddWithValue("@UserId", userId);
-```
-
-### A04: Insecure Design
-**Risk:** Architectural flaws
-
-**Prevention:**
-- Threat modeling in design phase
-- Security architecture review
-- Secure design patterns
-- Security requirements
-- Defense in depth
-
-### A05: Security Misconfiguration
-**Risk:** Unnecessary features, default credentials
-
-**Prevention:**
-- Minimal platform installations
-- Remove unused features/accounts
-- Secure defaults
-- Regular security updates
-- Configuration management
-
-### A06: Vulnerable Components
-**Risk:** Using components with known vulnerabilities
-
-**Prevention:**
-- Inventory dependencies
-- Regular updates
-- Monitor security advisories
-- Automated dependency scanning
-- Remove unused dependencies
-
-### A07: Authentication Failures
-**Risk:** Weak authentication
-
-**Prevention:**
-- Multi-factor authentication (MFA)
-- Strong password policies
-- Account lockout mechanisms
-- No default credentials
-- Secure session management
-- Rate limiting on login
-
-### A08: Software and Data Integrity Failures
-**Risk:** Insecure CI/CD, unsigned updates
-
-**Prevention:**
-- Digital signatures for code
-- Verify integrity of dependencies
-- Secure CI/CD pipeline
-- Code signing
-- Review code changes
-
-### A09: Logging & Monitoring Failures
-**Risk:** Delayed breach detection
-
-**Prevention:**
-- Log security events
-- Centralized logging
-- Alerting on suspicious activity
-- Regular log reviews
-- Tamper-proof logs
-- Incident response plan
-
-### A10: Server-Side Request Forgery (SSRF)
-**Risk:** Application fetches remote resources without validation
-
-**Prevention:**
-- Validate and sanitize URLs
-- Whitelist allowed domains
-- Disable HTTP redirections
-- Use network segmentation
-- Don't return raw responses
-
-## Authentication & Authorization
-
-### Authentication Best Practices
-- Use industry-standard protocols (OAuth 2.0, OpenID Connect)
-- Implement MFA
-- Secure password storage (bcrypt, Argon2)
-- Account lockout after failed attempts
-- Password reset security
-- Session timeout
-
-### JWT Security
-
-```python
-# Python — FastAPI JWT authentication dependency
-from fastapi import Depends, HTTPException, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-import jwt
-
-security = HTTPBearer()
-
-async def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-) -> User:
-    try:
-        payload = jwt.decode(
-            credentials.credentials,
-            settings.jwt_secret,
-            algorithms=["HS256"],
-        )
-        return await user_repo.find_by_id(payload["sub"])
-    except jwt.ExpiredSignatureError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token expired")
-    except jwt.InvalidTokenError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid token")
-```
-
-```go
-// Go — JWT middleware
-func AuthMiddleware(secret []byte) func(http.Handler) http.Handler {
-	return func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
-			claims, err := jwt.Parse(token, func(t *jwt.Token) (any, error) {
-				return secret, nil
-			})
-			if err != nil {
-				http.Error(w, "unauthorized", http.StatusUnauthorized)
-				return
-			}
-			ctx := context.WithValue(r.Context(), userKey, claims)
-			next.ServeHTTP(w, r.WithContext(ctx))
-		})
-	}
-}
-```
-
-**Best Practices:**
-- Short expiration (15-30 minutes)
-- Refresh token pattern
-- Don't store sensitive data in payload
-- Use HTTPS only
-
-### Authorization Patterns
-- **RBAC** (Role-Based Access Control): Permissions via roles
-- **ABAC** (Attribute-Based Access Control): Policy-based
-- **ACL** (Access Control Lists): Per-resource permissions
-
-## Secure Coding Practices
-
-### Input Validation
-
-```python
-# Python — Pydantic model with validation
-from pydantic import BaseModel, EmailStr, Field, field_validator
-
-class CreateUserRequest(BaseModel):
-    name: str = Field(min_length=1, max_length=100)
-    email: EmailStr
-    age: int = Field(ge=18, le=120)
-
-    @field_validator("name")
-    @classmethod
-    def sanitize_name(cls, v: str) -> str:
-        return html.escape(v.strip())
-```
-
-```go
-// Go — Input validation with go-playground/validator
-type CreateUserRequest struct {
-	Name  string `json:"name" validate:"required,min=1,max=100"`
-	Email string `json:"email" validate:"required,email"`
-	Age   int    `json:"age" validate:"gte=18,lte=120"`
-}
-
-func (h *Handler) CreateUser(w http.ResponseWriter, r *http.Request) {
-	var req CreateUserRequest
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		http.Error(w, "invalid request", http.StatusBadRequest)
-		return
-	}
-	if err := h.validator.Struct(req); err != nil {
-		http.Error(w, err.Error(), http.StatusUnprocessableEntity)
-		return
-	}
-}
-```
-
-### Output Encoding
-- HTML encoding for web output
-- URL encoding for URLs
-- JSON encoding for APIs
-- Context-specific encoding
-
-### Secrets Management
-- Never commit secrets to git
-- Use secret management tools (Vault, AWS Secrets Manager)
-- Environment variables for configuration
-- Rotate secrets regularly
-- Encrypt secrets at rest
-
-### Error Handling
-```javascript
-// ❌ Exposes internal details
-catch (error) {
-  res.status(500).send(error.stack);
-}
-
-// ✅ Generic error message
-catch (error) {
-  logger.error('Database error', error);
-  res.status(500).send('Internal server error');
-}
-```
-
-## API Security
-
-### Rate Limiting
-- Prevent brute force attacks
-- Protect against DoS
-- Per user/IP limits
-- Different limits per endpoint
-
-### CORS Configuration
-```javascript
-// ❌ Insecure
-Access-Control-Allow-Origin: *
-
-// ✅ Specific origins
-Access-Control-Allow-Origin: https://trusted-domain.com
-```
-
-### API Keys
-- Don't pass in URL
-- Use headers (Authorization: Bearer)
-- Rotate regularly
-- Scope to minimal permissions
-- Monitor usage
-
-## Database Security
-
-### Practices
-- Principle of least privilege
-- Separate accounts for read/write
-- Encrypt sensitive fields
-- Regular backups (encrypted)
-- Audit trail for changes
-- Network isolation
-
-### SQL Injection Prevention
-```python
-# ❌ Vulnerable
-cursor.execute(f"SELECT * FROM users WHERE id = {user_id}")
-
-# ✅ Parameterized
-cursor.execute("SELECT * FROM users WHERE id = %s", (user_id,))
-```
-
-## Cloud Security
-
-### AWS
-- IAM roles, not access keys
-- Enable MFA
-- CloudTrail for audit logs
-- Security groups (least privilege)
-- Encrypt EBS volumes and S3 buckets
-- VPC for network isolation
-
-### Azure
-- Managed identities
-- Azure AD for authentication
-- Key Vault for secrets
-- Network Security Groups
-- Azure Security Center
-
-### GCP
-- Service accounts with minimal permissions
-- Cloud IAM
-- VPC Service Controls
-- Security Command Center
-
-## Container Security
-
-### Docker
-- Use minimal base images (Alpine)
-- Don't run as root
-- Scan images for vulnerabilities
-- Multi-stage builds
-- Sign images
-- Regularly update base images
-
-### Kubernetes
-- RBAC for access control
-- Network policies
-- Pod Security Policies
-- Secrets management
-- Regular updates
-- Runtime security (Falco)
-
-## Compliance & Standards
-
-### Common Standards
-- **PCI DSS**: Payment card data
-- **HIPAA**: Healthcare data (US)
-- **GDPR**: Privacy (EU)
-- **SOC 2**: Service organization controls
-- **ISO 27001**: Information security management
-
-### Compliance Practices
-- Data classification
-- Privacy by design
-- Data retention policies
-- Right to deletion
-- Breach notification procedures
-- Regular audits
-
-## Security Testing
-
-### Types
-- **SAST** (Static): Analyze source code
-- **DAST** (Dynamic): Test running application
-- **IAST** (Interactive): Combine SAST and DAST
-- **SCA** (Software Composition): Dependency vulnerabilities
-- **Penetration Testing**: Simulated attacks
-
-### Tools
-- SonarQube, Checkmarx (SAST)
-- OWASP ZAP, Burp Suite (DAST)
-- Snyk, WhiteSource (SCA)
-- Nessus, Qualys (Vulnerability scanning)
-
-## Incident Response
-
-### Preparation
-- Incident response plan
-- Define roles and responsibilities
-- Contact lists
-- Communication templates
-- Runbooks for common scenarios
-
-### Detection & Analysis
-- Monitor security logs
-- SIEM (Security Information and Event Management)
-- Alert triage
-- Determine scope and impact
-
-### Containment & Recovery
-- Isolate affected systems
-- Preserve evidence
-- Apply fixes
-- Restore from backups
-- Verify security
-
-### Post-Incident
-- Root cause analysis
-- Document lessons learned
-- Update security measures
-- Train team
-- Improve detection
-
-## Security Checklist
-
-✅ Authentication and authorization implemented
-✅ Input validation on all endpoints
-✅ Output encoding for context
-✅ SQL injection prevention
-✅ XSS prevention
-✅ CSRF protection
-✅ Secure session management
-✅ HTTPS everywhere
-✅ Security headers configured
-✅ Secrets not in code
-✅ Dependencies regularly updated
-✅ Security logging enabled
-✅ Regular security testing
-✅ Incident response plan
-✅ Access control reviewed regularly
-
-## Example Prompts
-
-"Review this code for security vulnerabilities"
-
-"Implement input validation for this API endpoint"
-
-"Design an authentication system with MFA"
-
-"Create a secrets management strategy"
-
-"Set up security headers for a web application"
-
-"Implement rate limiting to prevent brute force"
-
-"Design an incident response plan for a data breach"
-
-## Related Skills & Agents
-
-- [Architecture Reviewer Agent](../../../../agents/architecture/architecture-reviewer.agent.md)
-- [GCP Architect Agent](../../../../agents/architecture/gcp-architect.agent.md)
-- [Cloud-Native Architecture](../../../engineering/cloud-native/SKILL.md)
-- [GCP Patterns](../../../engineering/gcp-patterns/SKILL.md)
-- [API Design](../../../architecture/api-design/SKILL.md)
+# Focused security review
+
+Use the section that matches a concrete trust boundary. Project policy and the affected
+product determine required controls; this reference is not a certification checklist.
+
+## Frame the finding
+
+Identify the asset, attacker capability, entry point and unauthorized effect. Trace a
+plausible path in the current revision. Return location, preconditions, impact, evidence
+and a minimal repair; label an untested hypothesis separately from a reproduced defect.
+
+## Identity and resource authorization
+
+Use the established authentication library and token/session profile. Verify identity
+and permission for the requested resource and action on the server, including tenant
+scope. A valid login, role name or hidden UI button does not authorize every resource.
+Test another user's identifier, a denied action and absent/expired credentials.
+
+For JWT access tokens, verify the signature using configured trusted keys and allowed
+algorithms. Validate required issuer, audience and time claims for the actual token
+profile, and reject malformed/missing claims. Define key rotation and revoked/disabled
+identity behavior. Do not copy a partial decode snippet as a complete auth system.
+See [OWASP REST security](https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html).
+
+For browser sessions, check cookie attributes, session lifetime and state-changing
+request protection. CORS controls browser response access; it does not authenticate a
+caller or replace CSRF protection. Match allowed origins and credential handling to the
+actual client. Keep session/token contents out of URLs, logs and error messages.
+
+## Input, output and resource access
+
+- Validate type, size, range and business constraints at the relevant boundary. Keep
+  validation distinct from context-specific output encoding; HTML-escaping stored data
+  is not a universal injection defense.
+- Parameterize data queries. Pass structured arguments to subprocess tools rather than
+  building shell commands from untrusted strings. A library or ORM does not make its
+  raw query/command escape hatches safe.
+- Render user content as text or use the product's trusted sanitizer for permitted
+  markup. Use context-appropriate encoding for HTML, URL and script boundaries.
+- For files, constrain the resolved path and allowed operation. Check traversal,
+  symlinks where relevant, collisions, upload size/type and archive expansion limits.
+- For outbound fetches, review allowed destinations, schemes, redirects, DNS resolution
+  and network egress controls. Validate each effective destination; a hostname string
+  check alone does not establish protection against SSRF.
+- Bound expensive requests, queues and retained data. Verify the failure response and
+  isolation between callers; do not present a rate limiter as complete denial-of-service protection.
+
+## Local browser-accessible services
+
+Binding to loopback reduces exposure but does not make browser-originated input
+trusted. Check Host/Origin handling, DNS rebinding, state-changing requests, websocket
+origins and file access against the product's actual trust model. Verify denied-origin
+and unintended-network-access cases when those boundaries are affected.
+
+## Secrets, dependencies and deployment
+
+Keep secrets in the established secret mechanism with scoped access and rotation.
+Inspect log/error/artifact paths and CI trust boundaries; untrusted contributions must
+not run with release credentials. Lock and review dependencies according to project
+policy, check relevant advisories and verify the deployed artifact's source identity.
+Never infer absence of vulnerabilities from a clean scanner result.
+
+Use [OWASP authorization guidance](https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html),
+[SSRF guidance](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html)
+and the affected framework's official security documentation for the specific control.
+Verify current standards or advisory details when they affect the assignment rather
+than keeping an undated Top 10 list or fixed cryptographic parameters here.
+
+## Evidence and limits
+
+Exercise the allowed path and the plausible denied/abuse path within authorized scope.
+Without the application, identity provider or test environment, return a static finding
+or proposed reproduction and name that limit. Do not claim exploitation, remediation,
+compliance or production verification that did not occur. Use
+[incident response](../../incident-response/SKILL.md) for an active exposure or outage.

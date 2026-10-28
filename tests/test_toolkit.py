@@ -408,6 +408,48 @@ class WorkTests(unittest.TestCase):
             self.store.feedback('feature','comment',self.record['etag'])
         self.assertIn('Human note',path.read_text())
 
+    def test_editor_save_during_temporary_file_flush_is_preserved(self):
+        path = self.store.path('feature')
+        edited = self.record['markdown'] + '\nEditor save during preparation.\n'
+        fsync = tk.os.fsync
+
+        def save_from_editor(descriptor):
+            editor_file = path.with_suffix('.editor')
+            editor_file.write_text(edited)
+            editor_file.replace(path)
+            return fsync(descriptor)
+
+        with patch.object(tk.os, 'fsync', side_effect=save_from_editor):
+            with self.assertRaisesRegex(tk.Conflict, 'changed'):
+                self.store.feedback('feature', 'Pending feedback', self.record['etag'])
+        self.assertEqual(path.read_text(), edited)
+        self.assertEqual(list(path.parent.glob('.feature.md.*')), [])
+
+    def test_independent_stores_cannot_overwrite_concurrent_creation(self):
+        path = self.store.path('simultaneous')
+        ready = threading.Barrier(2)
+        file_hash = tk._export_file_hash
+
+        def observe_absence(target):
+            observed = file_hash(target)
+            if target == path:
+                ready.wait(timeout=5)
+            return observed
+
+        def create(title):
+            try:
+                return tk.WorkStore(self.workspace).create('simultaneous', title)['title']
+            except tk.Conflict:
+                return 'conflict'
+
+        with patch.object(tk, '_export_file_hash', side_effect=observe_absence):
+            with ThreadPoolExecutor(max_workers=2) as pool:
+                outcomes = list(pool.map(create, ['First creator', 'Second creator']))
+        self.assertEqual(outcomes.count('conflict'), 1)
+        saved = [outcome for outcome in outcomes if outcome != 'conflict']
+        self.assertEqual(self.store.read('simultaneous')['title'], saved[0])
+        self.assertEqual(list(path.parent.glob('.simultaneous.md.*')), [])
+
     def test_completed_task_needs_evidence_and_known_id(self):
         with self.assertRaises(tk.ToolkitError):
             self.store.task('feature','T1','done','',self.record['etag'])
@@ -424,6 +466,92 @@ class WorkTests(unittest.TestCase):
         self.assertEqual(len(self.store.list()),0)
         self.assertEqual(len(self.store.list(True)),1)
         self.assertIn('Acceptance checks passed',archived['markdown'])
+
+    def test_archive_never_overwrites_a_destination_created_during_flush(self):
+        current = self.store.task('feature', 'T1', 'done', 'Verified', self.record['etag'])
+        destination = self.store.path('feature', True)
+        fsync = tk.os.fsync
+
+        def create_other_archive(descriptor):
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            destination.write_text('Archive created by another writer.\n')
+            return fsync(descriptor)
+
+        with patch.object(tk.os, 'fsync', side_effect=create_other_archive):
+            with self.assertRaises(tk.Conflict):
+                self.store.archive('feature', current['etag'])
+        self.assertEqual(destination.read_text(), 'Archive created by another writer.\n')
+        self.assertEqual(self.store.read('feature')['markdown'], current['markdown'])
+
+    def test_archive_preserves_an_editor_save_during_flush(self):
+        current = self.store.task('feature', 'T1', 'done', 'Verified', self.record['etag'])
+        source = self.store.path('feature')
+        edited = current['markdown'] + '\nEditor save before archiving.\n'
+        fsync = tk.os.fsync
+
+        def save_from_editor(descriptor):
+            source.write_text(edited)
+            return fsync(descriptor)
+
+        with patch.object(tk.os, 'fsync', side_effect=save_from_editor):
+            with self.assertRaisesRegex(tk.Conflict, 'changed'):
+                self.store.archive('feature', current['etag'])
+        self.assertEqual(source.read_text(), edited)
+        self.assertFalse(self.store.path('feature', True).exists())
+
+    def test_archive_retains_active_record_if_prepared_archive_is_edited(self):
+        current = self.store.task('feature', 'T1', 'done', 'Verified', self.record['etag'])
+        destination = self.store.path('feature', True)
+        atomic_write = tk.atomic_write
+
+        def edit_prepared_archive(path, data, **kwargs):
+            atomic_write(path, data, **kwargs)
+            if path == destination:
+                path.write_text('Another writer edited the archive.\n')
+
+        with patch.object(tk, 'atomic_write', side_effect=edit_prepared_archive):
+            with self.assertRaisesRegex(tk.Conflict, 'Archive changed'):
+                self.store.archive('feature', current['etag'])
+        self.assertEqual(self.store.read('feature')['markdown'], current['markdown'])
+        self.assertEqual(destination.read_text(), 'Another writer edited the archive.\n')
+
+    def test_failed_active_removal_cleans_own_archive_and_allows_retry(self):
+        current = self.store.task('feature', 'T1', 'done', 'Verified', self.record['etag'])
+        source = self.store.path('feature')
+        destination = self.store.path('feature', True)
+        unlink = Path.unlink
+
+        def refuse_active_removal(path, *args, **kwargs):
+            if path == source:
+                raise PermissionError('Active record cannot be removed')
+            return unlink(path, *args, **kwargs)
+
+        with patch.object(Path, 'unlink', refuse_active_removal):
+            with self.assertRaisesRegex(PermissionError, 'Active record cannot be removed'):
+                self.store.archive('feature', current['etag'])
+        self.assertEqual(self.store.read('feature')['markdown'], current['markdown'])
+        self.assertFalse(destination.exists())
+        archived = self.store.archive('feature', current['etag'])
+        self.assertEqual(archived['status'], 'archived')
+        self.assertFalse(source.exists())
+
+    def test_failed_active_removal_preserves_an_archive_edited_after_preflight(self):
+        current = self.store.task('feature', 'T1', 'done', 'Verified', self.record['etag'])
+        source = self.store.path('feature')
+        destination = self.store.path('feature', True)
+        unlink = Path.unlink
+
+        def edit_archive_and_refuse_removal(path, *args, **kwargs):
+            if path == source:
+                destination.write_text('Archive edit made during active removal.\n')
+                raise PermissionError('Active record cannot be removed')
+            return unlink(path, *args, **kwargs)
+
+        with patch.object(Path, 'unlink', edit_archive_and_refuse_removal):
+            with self.assertRaisesRegex(PermissionError, 'Active record cannot be removed'):
+                self.store.archive('feature', current['etag'])
+        self.assertEqual(self.store.read('feature')['markdown'], current['markdown'])
+        self.assertEqual(destination.read_text(), 'Archive edit made during active removal.\n')
 
     def test_malformed_or_duplicate_task_rows_are_not_silently_ignored(self):
         for replacement in ('| T1 | A task | unknown |  |','| T1 | A task | open |  |\n| T1 | Duplicate | done | test |'):

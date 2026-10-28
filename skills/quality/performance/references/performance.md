@@ -1,453 +1,65 @@
-# Background examples
-
-Use focused sections only when needed. The current skill entry, project conventions and user constraints govern the work. Examples illustrate particular choices; they do not mandate a framework, test library or architecture.
-
-# Performance Optimization
-
-## Instructions for AI
-
-Optimize application performance across multiple layers:
-
-## General Principles
-
-### Measure First
-- Profile before optimizing
-- Use profiling tools
-- Identify bottlenecks
-- Set performance budgets
-- Monitor in production
-
-### Premature Optimization
-- "Premature optimization is the root of all evil" - Donald Knuth
-- Optimize when it matters
-- Focus on bottlenecks (80/20 rule)
-- Don't sacrifice readability for minor gains
-
-## Application Layer
-
-### Algorithm Optimization
-- Choose appropriate data structures
-- Time complexity (Big O notation)
-- Space complexity trade-offs
-- Example: O(n²) → O(n log n) sorting
-
-### Caching Strategies
-
-**In-Memory Cache**
-- Redis, Memcached
-- Cache frequently accessed data
-- Set appropriate TTL
-- Cache invalidation strategy
-
-**Application Cache**
-- Local memory cache
-- HTTP response cache
-- Computed results cache
-- Cache aside pattern
-
-**CDN Caching**
-- Static assets (images, CSS, JS)
-- Edge locations
-- Reduce latency globally
-- CloudFront, CloudFlare, Akamai
-
-### Lazy Loading
-- Load data only when needed
-- Defer non-critical resources
-- Pagination for large lists
-- Infinite scroll pattern
-
-### Connection Pooling
-- Database connection pools
-- HTTP connection reuse
-- Thread pools
-- Prevent connection overhead
-
-## Database Optimization
-
-### Query Optimization
-
-**Use Indexes**
-```sql
--- Add index on frequently queried columns
-CREATE INDEX idx_user_email ON users(email);
-CREATE INDEX idx_order_date ON orders(created_at);
-
--- Composite indexes for multiple columns
-CREATE INDEX idx_user_name_email ON users(last_name, first_name);
-```
-
-**Avoid N+1 Queries**
-```csharp
-// ❌ N+1 Problem
-foreach (var order in orders) {
-    var customer = db.Customers.Find(order.CustomerId); // N queries
-}
-
-// ✅ Eager Loading
-var orders = db.Orders
-    .Include(o => o.Customer) // 1 query with JOIN
-    .ToList();
-```
-
-**Select Only Needed Columns**
-```sql
--- ❌ Fetch all columns
-SELECT * FROM users WHERE id = 123;
-
--- ✅ Fetch specific columns
-SELECT id, name, email FROM users WHERE id = 123;
-```
-
-**Optimize Joins**
-- Index join columns
-- Avoid unnecessary joins
-- Consider denormalization for reads
-- Use appropriate join types
-
-**Query Analysis**
-```sql
--- PostgreSQL
-EXPLAIN ANALYZE SELECT * FROM orders WHERE status = 'pending';
-
--- MySQL
-EXPLAIN SELECT * FROM orders WHERE status = 'pending';
-```
-
-### Database Design
-
-**Normalization vs Denormalization**
-- Normalize for write-heavy workloads
-- Denormalize for read-heavy workloads
-- Consider materialized views
-- Balance consistency and performance
-
-**Partitioning**
-- Horizontal partitioning (sharding)
-- Vertical partitioning
-- Range partitioning
-- Hash partitioning
-
-**Read Replicas**
-- Separate read and write loads
-- Route reads to replicas
-- Eventual consistency
-- Geographic distribution
-
-## Network Optimization
-
-### Reduce Payload Size
-
-**Compression**
-- gzip/brotli for HTTP responses
-- Minify CSS, JavaScript
-- Image compression
-- Use WebP for images
-
-**Data Transfer**
-- Send only necessary data
-- Pagination instead of full lists
-- Field selection in APIs
-- Delta updates
-
-### Reduce Round Trips
-
-**Batch Requests**
-- Combine multiple requests
-- GraphQL for flexible queries
-- Bulk APIs
-- WebSocket for real-time
-
-**HTTP/2 Benefits**
-- Multiplexing
-- Server push
-- Header compression
-- Single connection
-
-### Content Delivery
-
-**CDN Usage**
-- Serve static assets from CDN
-- Edge caching
-- Reduced latency
-- Geographic distribution
-
-**Asset Optimization**
-- Code splitting
-- Tree shaking (remove unused code)
-- Lazy load images
-- Responsive images
-
-## Frontend Optimization
-
-### JavaScript Performance
-
-**Avoid Memory Leaks**
-```javascript
-// ❌ Memory leak
-element.addEventListener('click', handler);
-
-// ✅ Clean up
-element.removeEventListener('click', handler);
-```
-
-**Debouncing and Throttling**
-```javascript
-// Debounce: Execute after delay
-const debouncedSearch = debounce(search, 300);
-
-// Throttle: Execute at most once per interval
-const throttledScroll = throttle(handleScroll, 100);
-```
-
-**Optimize Loops**
-```javascript
-// ❌ Inefficient
-for (let i = 0; i < arr.length; i++) {
-    // length calculated each iteration
-}
-
-// ✅ Cache length
-const len = arr.length;
-for (let i = 0; i < len; i++) {
-    // ...
-}
-
-// ✅ Even better: use appropriate method
-arr.forEach(item => { /* ... */ });
-```
-
-### Rendering Performance
-
-**Virtual DOM**
-- React, Vue use virtual DOM
-- Minimize re-renders
-- Use keys in lists
-- Memoization (React.memo, useMemo)
-
-**CSS Optimization**
-- Minimize reflows/repaints
-- Use CSS transforms for animations
-- Avoid expensive selectors
-- Critical CSS inlining
-
-**Image Optimization**
-- Appropriate format (JPEG, PNG, WebP)
-- Responsive images (srcset)
-- Lazy loading
-- Image compression
-- Use SVG for icons
-
-## Backend Optimization
-
-### Asynchronous Processing
-
-**Background Jobs**
-- Use queues for long-running tasks
-- Don't block request/response
-- Retry failed jobs
-
-**Parallel Processing**
-```python
-# Python — asyncio for I/O-bound parallelism
-async def fetch_all_products(product_ids: list[str]) -> list[Product]:
-    async with httpx.AsyncClient() as client:
-        tasks = [client.get(f"{API_URL}/products/{pid}") for pid in product_ids]
-        responses = await asyncio.gather(*tasks)
-        return [Product.model_validate(r.json()) for r in responses]
-```
-
-```go
-// Go — errgroup for concurrent processing
-func fetchAllProducts(ctx context.Context, ids []string) ([]Product, error) {
-	g, ctx := errgroup.WithContext(ctx)
-	products := make([]Product, len(ids))
-
-	for i, id := range ids {
-		g.Go(func() error {
-			p, err := client.GetProduct(ctx, id)
-			if err != nil { return err }
-			products[i] = p
-			return nil
-		})
-	}
-	if err := g.Wait(); err != nil { return nil, err }
-	return products, nil
-}
-```
-
-### Caching Layers
-
-**Application Cache**
-```csharp
-// Cache expensive computation
-if (cache.TryGetValue(key, out var result)) {
-    return result;
-}
-result = ExpensiveOperation();
-cache.Set(key, result, TimeSpan.FromMinutes(10));
-return result;
-```
-
-**HTTP Caching**
-```
-Cache-Control: public, max-age=3600
-ETag: "abc123"
-```
-
-### Code-Level Optimizations
-
-**Avoid Premature Object Creation**
-```java
-// ❌ Creates unnecessary objects
-String result = "";
-for (String s : strings) {
-    result += s; // Creates new string each time
-}
-
-// ✅ Use StringBuilder
-StringBuilder sb = new StringBuilder();
-for (String s : strings) {
-    sb.append(s);
-}
-String result = sb.toString();
-```
-
-**Use Appropriate Data Structures**
-- HashMap for O(1) lookups
-- TreeMap for sorted data
-- ArrayList vs LinkedList
-- HashSet for uniqueness
-
-## Monitoring & Profiling
-
-### Application Performance Monitoring (APM)
-- New Relic, Datadog, AppDynamics
-- Track response times
-- Identify slow endpoints
-- Database query performance
-- Error rates
-
-### Profiling Tools
-
-**Backend**
-- Java: JProfiler, YourKit
-- .NET: dotTrace, PerfView
-- Python: cProfile, py-spy
-- Node.js: Chrome DevTools, clinic.js
-
-**Frontend**
-- Chrome DevTools Performance tab
-- Lighthouse
-- WebPageTest
-- Real User Monitoring (RUM)
-
-### Key Metrics
-
-**Response Time**
-- p50, p95, p99 percentiles
-- Average can be misleading
-- Track over time
-
-**Throughput**
-- Requests per second
-- Transactions per second
-- Capacity planning
-
-**Resource Utilization**
-- CPU usage
-- Memory usage
-- Disk I/O
-- Network bandwidth
-
-**Error Rate**
-- 4xx and 5xx errors
-- Application exceptions
-- Timeout rates
-
-## Load Testing
-
-### Tools
-- Apache JMeter
-- Gatling
-- k6
-- Locust
-- Artillery
-
-### Test Types
-
-**Load Testing**
-- Expected peak load
-- Identify breaking point
-- Response time under load
-
-**Stress Testing**
-- Beyond expected load
-- Find system limits
-- Recovery behavior
-
-**Soak Testing**
-- Extended duration
-- Identify memory leaks
-- Resource exhaustion
-
-**Spike Testing**
-- Sudden load increases
-- Auto-scaling behavior
-- System resilience
-
-## Performance Budgets
-
-### Define Budgets
-- Page load time < 3 seconds
-- Time to Interactive < 5 seconds
-- Bundle size < 200KB
-- API response time p95 < 100ms
-
-### Enforcement
-- CI/CD integration
-- Fail build if exceeded
-- Lighthouse CI
-- Bundlesize package
-
-## Best Practices Checklist
-
-✅ Profile before optimizing
-✅ Implement caching at multiple layers
-✅ Use database indexes appropriately
-✅ Optimize database queries
-✅ Minimize network round trips
-✅ Compress responses
-✅ Use CDN for static assets
-✅ Implement lazy loading
-✅ Use connection pooling
-✅ Monitor performance in production
-✅ Set performance budgets
-✅ Regular load testing
-✅ Optimize images and assets
-✅ Use async processing for long tasks
-✅ Implement proper error handling
-
-## Example Prompts
-
-"Identify performance bottlenecks in this code"
-
-"Optimize this database query"
-
-"Implement caching strategy for this API"
-
-"Reduce page load time for this web application"
-
-"Design a load testing strategy for this system"
-
-"Optimize this N+1 query problem"
-
-"Set up performance monitoring for a microservice"
-
-## Related Skills & Agents
-
-- [Python Expert Agent](../../../../agents/languages/python-expert.agent.md)
-- [Golang Expert Agent](../../../../agents/languages/golang-expert.agent.md)
-- [GCP Patterns](../../../engineering/gcp-patterns/SKILL.md)
-- [Testing Strategies](../../testing/SKILL.md)
-- [Cloud-Native Architecture](../../../engineering/cloud-native/SKILL.md)
+# Performance investigation and evidence
+
+Read the affected boundary after a concrete latency, throughput, memory or capacity
+problem is identified. Keep the current architecture until evidence justifies a change.
+
+## Reproduce a representative workload
+
+Record revision, hardware/runtime, data size/distribution, concurrency or arrival rate,
+cache state, warm-up, duration and relevant dependency limits. Choose metrics that
+represent the user's wait or failed work, including tail latency and errors where useful.
+A lower average can hide a slower critical path or rejected requests.
+
+Capture a baseline and profile the same workload. Separate CPU work, allocation/GC,
+I/O wait, lock contention, database time and queueing. Follow the request's critical path;
+a slow span or hot function is a lead, not proof of the root cause.
+
+## Inspect the expensive boundary
+
+| Observation | Inspect first | Verify after a change |
+| --- | --- | --- |
+| CPU grows with input | Algorithm, duplicate work and data structure | Representative small and large inputs; same result |
+| Memory keeps growing | Retained references, queues, cache cardinality and lifecycle | Steady-state and post-work cleanup |
+| Database wait dominates | Query plan, row counts, lock/pool wait and round trips | Read/write cost, cardinality and concurrent behavior |
+| Tail latency rises with load | Saturation, queue length, downstream limits and retries | Latency plus throughput/errors at the same offered load |
+| Browser interaction stalls | Main-thread work, layout, payload and rendering | Running interaction on a representative device |
+
+## Queries and caches
+
+Inspect the actual query plan and workload before adding an index. Account for write
+cost, disk use, selectivity and the database's online-migration behavior. Fetch only
+needed data and address demonstrated N+1 paths; eager loading can also overfetch.
+
+For PostgreSQL, [EXPLAIN documentation](https://www.postgresql.org/docs/current/using-explain.html)
+explains plan interpretation. EXPLAIN ANALYZE executes the statement: use a safe
+environment and account for writes and nontransactional external effects. Select the
+documentation version matching the deployed database.
+
+A cache needs key scope, size/eviction, freshness and invalidation rules. Include tenant
+or authorization context where results differ. Test stale values, failure recovery,
+concurrent misses and cold start. A hit-rate improvement is insufficient if it serves
+the wrong user's data or overloads the source after expiry.
+
+## Concurrency and background work
+
+Parallel I/O may reduce waiting, but unbounded fan-out can exhaust connection pools,
+memory and downstream capacity. Define cancellation, deadlines, concurrency and queue
+limits. Async syntax does not make blocking work nonblocking or CPU work free.
+
+Moving work to a queue changes the completion contract. Measure time to the user's
+actual outcome, backlog age and error/retry behavior rather than only enqueue latency.
+Preserve ordering and idempotency where the business rule depends on them.
+
+## Compare and report
+
+1. Change one demonstrated bottleneck at a time; retain the correctness checks.
+2. Repeat comparable runs with the same offered workload and measurement method.
+   Report variability and warm/cold conditions; avoid attributing noise to the change.
+3. Include absolute values, units, workload/revision and resource tradeoffs alongside
+   any percentage. Distinguish a microbenchmark from end-to-end performance.
+4. Check overload, recovery and compatibility when affected. Stop optimizing when the
+   agreed target is met or another bottleneck makes the next change unhelpful.
+
+Without a reproducible environment or profiler, return an investigation plan or bounded
+hypothesis and the exact missing measurement. Do not invent baseline numbers, savings,
+scalability or environmental impact from a smaller source file or faster local build.

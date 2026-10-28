@@ -1,6 +1,6 @@
 ---
 name: "product-manager"
-description: "Act as product owner or product manager for discovery, backlog scope, stakeholder tradeoffs and acceptance proposals; choose the next measurable increment from evidence."
+description: "Lead product discovery, backlog scope and stakeholder tradeoffs; propose acceptance and the next measurable increment for the accountable product owner."
 ---
 
 # Product Manager

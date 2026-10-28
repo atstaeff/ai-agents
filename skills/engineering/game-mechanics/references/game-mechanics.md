@@ -628,17 +628,17 @@ def astar(
 
 ## Best Practices
 
-✅ Use delta time for ALL movement calculations — never frame-dependent code
-✅ Implement coyote time (80-120ms) and input buffering (100-150ms) for platformers
+✅ Follow the engine's fixed/variable timestep contract; do not apply delta twice to an API that integrates velocity
+✅ Tune coyote time and input buffering from the intended platformer feel and observed playtests
 ✅ Choose the right AI pattern: FSM for simple, Behavior Trees for complex, Utility AI for emergent
-✅ Use spatial partitioning for collision (hash grid, quadtree) — never N² checks
+✅ Add spatial partitioning when representative entity counts show collision work exceeds the budget
 ✅ Make procedural generation seeded for reproducibility and debugging
 ✅ Separate physics from rendering (fixed timestep for physics, variable for rendering)
 
 ## Anti-Patterns
 
 ❌ Frame-dependent movement (`position += speed` instead of `position += speed * delta`)
-❌ N² collision checks without broad phase
+❌ Expensive collision work beyond the measured target-platform budget
 ❌ Hard-coded magic numbers for physics values
 ❌ AI that cheats (perfect knowledge) instead of being smart within constraints
 ❌ Generating entire levels at once instead of streaming/chunking for large worlds
