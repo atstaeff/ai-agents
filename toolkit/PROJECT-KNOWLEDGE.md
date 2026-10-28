@@ -24,6 +24,14 @@ links and inspect current code/tests. Search the bounded project when a relevant
 is missing; an absent link is not proof that no decision exists. Do not load every ADR,
 archive or conversation by default. Teammates must not need a private vault to continue.
 
+## Dependency evidence
+
+When Graphify is adopted, query the affected components and verify returned source
+locations and snapshot freshness. Extracted and inferred relationships are evidence,
+not approval. Promote useful reviewed relationships into the canonical project record;
+retain significant reasons in ADRs. See [native integration](INTEGRATIONS.md) for the
+source-to-graph-to-documentation path and provider/publication boundaries.
+
 ## Graph and documentation
 
 Use stable IDs and a few meaningful relationships: `depends_on`, `supersedes`, `relates_to`

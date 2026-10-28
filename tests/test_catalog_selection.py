@@ -22,7 +22,7 @@ class CatalogSelectionTests(unittest.TestCase):
             with self.subTest(runtime=runtime), tempfile.TemporaryDirectory() as folder:
                 root = Path(folder)
                 result = tk.export(runtime, root, preset='engineering')
-                self.assertEqual((result['agents'], result['skills']), (8, 16))
+                self.assertEqual((result['agents'], result['skills']), (9, 16))
                 self.assertTrue((root/agents/('python-expert'+suffix)).is_file())
                 self.assertFalse((root/agents/('game-developer'+suffix)).exists())
                 self.assertFalse((root/skills/'obsidian-para/SKILL.md').exists())

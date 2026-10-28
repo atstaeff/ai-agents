@@ -1,19 +1,23 @@
-# Example outcomes
+# Choose a first outcome
 
-| Outcome | Start with | Keep the result in |
+Start with one bounded assignment and the existing project's acceptance criteria.
+Select expertise for the uncertainty that needs resolving.
+
+| Team and outcome | Useful lead and expertise | Evidence and result |
 | --- | --- | --- |
-| Implement a Python API | Jörg or Python Expert | Existing code and one work record if useful |
-| Improve a frontend flow | Frontend Expert | Existing interface, contract and verification |
-| Reduce product uncertainty | Product Manager | One scoped experiment and acceptance criteria |
-| Maintain personal knowledge | Second Brain | The existing private PARA vault |
-| Review a risky change | Code Reviewer | Actionable findings with evidence |
-| Prepare a presentation | Presentation Agent | A rendered Marp deck when tooling is available |
-| Deliver a customer increment from a board | Jörg with the customer's working agreement | Assigned issue, linked PR and affected workspace knowledge |
-| Close an iteration | Product Manager with decision owners | One concise report linking outcomes, evidence and existing ADRs |
+| Engineering: fix a defect or add a small API behavior | [Jörg, the general engineering coordinator](agents/joerg.md) or the relevant language specialist; Code Reviewer when useful | Changed behavior, representative tests and linked review |
+| Product: decide whether to pursue a user problem | Product Manager with focused discovery expertise | Source observations, assumptions, a bounded experiment and a decision |
+| Architecture: resolve a consequential interface choice | Lead Architect with relevant specialists and review | Alternatives, agreed contract, significant rationale and implementation evidence |
+| Platform: improve deployment or recovery | Delivery coordinator with DevOps and reliability expertise | An exercised deployment or recovery path, constraints and owned follow-up |
+| Quality: assess a risky change | Code Reviewer or Architecture Reviewer | Reproducible findings tied to the current revision |
+| Knowledge: preserve an outcome for the next session | The assignment's owner with communication expertise | Updated current knowledge, significant decisions and a concise resume point |
 
-For board-managed work, the issue owns the current plan. Use a local record when no
-existing assignment owns it. Follow the [worked example](customer-workspace/assignment.md)
-through questions, review, decisions and iteration closeout.
+The issue or ticket owns shared scope, acceptance and evidence links; the linked PR owns
+implementation and review details. Personal execution plans stay private or explicitly
+unsaved in-session. Follow the [adoption guide](getting-started/adopt-workspace.md) to name
+these sources in `AGENTS.md`, `PROJECT.md` and `CONTRIBUTING.md`.
 
-Profiles do not imply access to accounts, devices or sessions. Configure tools in your
-host and keep public project artifacts separate from private knowledge.
+Use one session for a small clear change. For useful parallel work, agree interfaces,
+give each writer a bounded scope and verify the combined result. Choose the relevant
+leader and host-configured specialists using the [orchestration guide](getting-started/orchestration.md).
+Profiles supply expertise; the host and project determine available tools and permissions.

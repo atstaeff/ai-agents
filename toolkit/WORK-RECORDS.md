@@ -4,15 +4,17 @@
 > belong in the configured private Second Brain; the structures below are optional
 > existing-layout or shared-team examples, not requirements.
 
+Use `workspace/work/<slug>.md` only when the project explicitly adopts this shared local
+work home. A missing private vault or tracker connection does not select it automatically.
+For tracked delivery, the project-designated work item (such as Jira or GitHub) owns shared
+scope, acceptance, coordination and feedback; the PR owns implementation/check evidence.
+Personal steps stay private. Follow the [operating model](OPERATING-MODEL.md) and the
+project's working agreement. The dashboard manages local files; external updates use the
+host's authorized tools.
 
-Use `workspace/work/<slug>.md` for larger local work without a board-owned assignment.
-For tracked delivery, the project-designated work item (such as Jira or GitHub) owns the live plan;
-follow the [operating model](OPERATING-MODEL.md) and the project's working agreement.
-The dashboard below manages files; Project updates use your host's authorized tools.
-
-Keep acceptance criteria, plan, tasks,
-feedback, decisions and evidence together. Small fixes need no record. Avoid separate
-proposal, spreadsheet and decision logs unless the project already requires them.
+An adopted shared record can hold acceptance, bounded ownership, feedback, evidence and
+a shared sequence/tasks when collaborators need them. Link significant decisions at their
+durable project home. Small fixes need no record.
 
 ```sh
 python3 tools/ai_toolkit.py work --workspace /path/to/project new customer-portal \

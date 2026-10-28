@@ -15,6 +15,8 @@ for process, skill selection and checks. Read further sources only for the curre
 | Concise execution rules | [Session rules](toolkit/SESSION-RULES.md) |
 | Current knowledge and significant reasons | [Knowledge index](knowledge/README.md) |
 | Decision/acceptance or action boundary | [Stakeholders](knowledge/stakeholders.md), [agreement](knowledge/working-agreement.md) |
+| Lead/specialist coordination and model choices | [Orchestration](toolkit/ORCHESTRATION.md) |
+| Native Herd, Herdr, Ponytail or Graphify | [Integrations](toolkit/INTEGRATIONS.md) |
 | Catalog structure, consolidation or presets | [Catalog guide](toolkit/CATALOG-GUIDE.md) |
 | Information ownership, entry or publication change | [Project concept](toolkit/PROJECT-CONCEPT.md) |
 | Interrupted or conflicting state | [Recovery contract](toolkit/CONTEXT-RECOVERY.md) |

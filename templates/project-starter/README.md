@@ -9,9 +9,10 @@ No project.yaml or workspace folder is required. Shared artifacts are English.
 1. Inspect existing instructions, ownership, tracker, code, CI, architecture and decisions.
    Preserve existing human text and use its authoritative homes.
 2. Merge [AGENTS.md](AGENTS.md) into the host's project instructions. Fill its source links.
-   Adapt [PROJECT.md](PROJECT.md): vision/goals, stakeholders, scope, actual work/review homes,
-   current knowledge and decisions. Adapt [CONTRIBUTING.md](CONTRIBUTING.md): workflow,
-   skills, setup/check commands, review and action boundaries.
+   Adapt [PROJECT.md](PROJECT.md): vision/goals, stakeholders, scope, repository/code locations,
+   actual work/review homes, current knowledge and decisions. Adapt
+   [CONTRIBUTING.md](CONTRIBUTING.md): workflow, skills, tools/access, setup/check commands,
+   review and action boundaries.
 3. For a centrally maintained process or project wiki, replace the relevant source with
    its adopted URL and revision/version. Use the [instruction variants](../agent-instructions/README.md)
    for remote documentation, existing repositories, multiple repositories or a component.
@@ -29,7 +30,9 @@ No project.yaml or workspace folder is required. Shared artifacts are English.
 | --- | --- |
 | Stable product context and roles | PROJECT.md or existing project pages |
 | Workflow, tools, commands and skill selection | CONTRIBUTING.md or adopted central process |
-| Assignment, live plan, feedback and handoff | Actual issue/ticket or explicitly chosen local work record |
+| Personal steps, experiments and resume notes | User-configured private Second Brain, subject to project policy; unsaved session plan if unavailable |
+| Shared scope, acceptance, feedback and handoff | Actual issue/ticket or explicitly adopted shared local work record |
+| Shared execution plan when collaborators need one | One agreed home linked from the assignment |
 | Current architecture, contracts and operations | Linked project knowledge |
 | Significant rationale | Linked decision records with status and acceptance evidence |
 | Implementation and verification | PR and actual checks on the tested revision |
@@ -53,7 +56,8 @@ Choose any equivalent existing paths or wiki sources. Use these focused template
 | Material failure learning | [Incident review](../quality/incident-review.md) |
 | Bounded delivery | [Assignment](../delivery/assignment.md) |
 
-Keep completed plans historical. Preserve accepted reasons and replacement links. A
+Keep completed personal plans private; shared coordination history stays at its work home.
+Preserve accepted reasons and replacement links. A
 significant decision can begin in PROJECT.md's decision section; move it to a separate
 record only when useful and update references together. Docusaurus publishes the selected
 canonical sources as a reading view, excluding private/local work and generated exports.
@@ -62,7 +66,8 @@ canonical sources as a reading view, excluding private/local work and generated 
 
 Ask your host to read AGENTS.md, follow its referenced project sources and process, and
 work on the assigned issue/outcome. A clear small correction needs no extra plan record.
-For otherwise unassigned larger local work, the optional CLI still uses workspace/work/:
+When the project explicitly chooses a shared local work record, the optional CLI uses
+workspace/work/:
 
 ```sh
 python3 /path/to/ai-agents/tools/ai_toolkit.py work --workspace /path/to/project new upload-retries \

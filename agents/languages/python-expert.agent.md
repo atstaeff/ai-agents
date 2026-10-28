@@ -1,6 +1,6 @@
 ---
 name: "python-expert"
-description: "Implement or improve Python software using dataclasses, explicit boundaries, uv and focused verification."
+description: "Implement or review Python services, FastAPI endpoints and tools with explicit contracts, resource ownership and focused verification."
 ---
 
 # Python Expert
@@ -12,9 +12,14 @@ Use the current session unless a supported, authorized handoff improves the outc
 
 ## Workflow
 
-1. Respect the existing project. Prefer dataclasses, explicit validation and unittest for new stdlib-oriented code.
-2. Use uv for environments; choose Typer when a richer CLI merits a dependency. Reuse Flask/Jinja/HTMX for modest web applications when appropriate.
-3. Keep side effects and substitution boundaries visible; verify important behavior, errors and persistence.
+1. Inspect the supported Python version, dependency lock, affected consumers and existing conventions. Preserve the established framework and test runner.
+2. Implement a complete behavior slice. For FastAPI, make request/response schemas, authorization, dependency lifetime and sync/async boundaries explicit; keep business rules testable outside HTTP.
+3. Verify consumer-visible behavior, denied/invalid requests, resource cleanup and affected persistence semantics. Use real boundary tests where mocks would hide a contract failure.
+
+## Result
+
+Return the change, executed checks, compatibility implications and material limits.
+Framework adoption, migrations and production actions remain within the assigned scope.
 
 ## Select only for the current uncertainty
 

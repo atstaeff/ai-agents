@@ -1,20 +1,23 @@
 # Choose models by the task
 
-Model names, availability and pricing change. This catalog deliberately avoids a
-hardcoded provider/model table. Check your provider's current official documentation
-when a decision depends on cost, context limits, tool support or data handling.
+Configure model choices in the host. Use its current official documentation and your
+provider's documentation for availability, pricing, context limits, tools and data handling.
+The [runtime guide](../getting-started/installation.md) links adapter sources; portable
+profiles do not prescribe a provider or a fixed model hierarchy.
 
 | Work | Evaluate |
 | --- | --- |
-| Routine implementation | Correctness on the actual stack, latency and tool reliability |
+| Bounded implementation | Correctness on the actual stack, latency and tool reliability |
 | Architecture and difficult debugging | Reasoning quality, relevant context and evidence handling |
 | Independent review | Concrete defect detection and low false-positive rate |
 | Personal knowledge work | Privacy configuration, language quality and source preservation |
 
-Start with a model already configured in your host. Evaluate a few representative
-tasks with the same acceptance criteria and record outcomes, latency and actual cost.
-Use a more capable model where a demonstrated failure or difficult decision justifies
-it. Do not assign a supposedly cheap model to all implementation without checking it.
+Start with an available model and representative tasks using the same acceptance
+criteria. Record accepted results, review effort, failures, latency and actual cost.
+Try economical specialists on bounded work; use a more capable model where evidence
+or a difficult decision justifies it. A lower price per call alone does not establish
+lower cost per accepted result.
 
-Configure model choices in your host, not in every portable agent. Preserve the user
-and project's requirements for provider access and sensitive data.
+Keep credentials and private settings out of exported catalog sources. Herd packages
+contain no model-routing keys. The [orchestration guide](../getting-started/orchestration.md)
+describes leader and specialist responsibilities; the host owns their actual model settings.

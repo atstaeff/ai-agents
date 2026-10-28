@@ -65,9 +65,9 @@ class WebsitePublishingTests(unittest.TestCase):
         site.prepare({})
         current = page('concept.md')
         rendered = site.render('Placeholder', current, {})
-        self.assertIn('# Work with AI as a teammate', rendered)
-        self.assertIn('[work record](toolkit/work-records.md)', rendered)
-        self.assertIn('[the worked assignment](customer-workspace/assignment.md)', rendered)
+        self.assertIn('# Engineering with AI', rendered)
+        self.assertIn('[local workbench](toolkit/work-records.md)', rendered)
+        self.assertIn('[orchestration](getting-started/orchestration.md)', rendered)
         self.assertEqual(current.edit_url, 'https://github.com/atstaeff/ai-agents/edit/main/toolkit/OPERATING-MODEL.md')
 
     def test_root_project_entries_keep_routes_links_and_single_canonical_sources(self):

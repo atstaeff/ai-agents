@@ -1,49 +1,49 @@
-# Quick start in WSL
+# Start with one real assignment
 
-Requirements: Python 3.11+ and your installed OpenCode 1. The companion uses only
-Python's standard library; website development additionally uses Node.js and Docusaurus.
+Adopt the project entry, choose a host and complete one bounded outcome before adding
+more roles or tools. The catalog works with your existing stack and delivery systems.
 
-```sh
-git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
-cd ~/tools/ai-agents
-python3 tools/ai_toolkit.py check
-python3 tools/ai_toolkit.py export --runtime opencode --preset engineering --output "$HOME/.config/ai-agents/opencode"
-cd /path/to/project
-OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
-OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
-```
+## 1. Establish the project sources
 
-Jörg is the default agent. Use `/work-plan` to plan and `/work-build` to implement,
-or ask Jörg to coordinate the whole outcome. Specialists and skills load as needed.
+Merge the [starter](lean-project.md) into the repository's existing root instructions:
 
-For comments and approval before Build, use the [local Plannotator setup](plan-review.md).
-Add `--plannotator` when exporting; optional per-phase model and variant flags let Plan
-and Build use different models or supported thinking levels. Review and approve the
-current plan revision before starting `/work-build` for a gated assignment.
+- `AGENTS.md` identifies collaboration rules and authoritative sources.
+- `PROJECT.md` describes goals, scope, stakeholders and ownership.
+- `CONTRIBUTING.md` describes the process, tools, checks and action boundaries.
 
-## Keep personal plans private
+Link existing equivalent pages where they already own these facts. Fill in real issue,
+review, knowledge and decision locations. No YAML file or `workspace/` tree is required.
+The [adoption guide](adopt-workspace.md) covers existing repositories and central web policy.
 
-Start the project from `AGENTS.md`; use the [adoption guide](adopt-workspace.md).
-Keep substantial personal working plans in your configured private Second Brain project
-folder. Issues own shared scope and acceptance; PRs own code and verification. Preserve
-significant decisions and affected project documentation after implementation.
+## 2. Choose the runtime and a bounded catalog
 
-Configure the private plan directory with the export's `--plan-directory` option; see
-[the private setup example](https://github.com/atstaeff/ai-agents/blob/main/templates/agent-instructions/personal-planning.md).
-If storage is unavailable, report an unsaved session plan and continue authorized work.
-Small changes need no plan file. No mandatory workspace tree or YAML is needed.
+Follow [runtime exports](installation.md) for Herd, OpenCode, Copilot, Claude Code or
+portable profiles. That guide owns current commands, layouts and options. Use a dedicated
+export destination, preserve existing host instructions and verify discovery and effective
+permissions with the [host check](portability.md#verify-a-new-host-once).
 
-## Optional local dashboard
+Start with a small preset or explicitly selected profiles. Configure providers, credentials
+and model choices in the host. For a coordinated assignment, choose the relevant product,
+architecture or delivery leader and bounded specialists; see [orchestration](orchestration.md).
 
-In another WSL terminal, start the dashboard for the same project:
+## 3. Run one useful outcome
 
-```sh
-python3 ~/tools/ai-agents/tools/ai_toolkit.py serve --workspace /path/to/project
-```
+| Team | First assignment | Evidence to retain |
+| --- | --- | --- |
+| Engineering | Fix a reproducible defect or deliver a small feature in the existing stack | Behavior checks, review findings and the linked change |
+| Product | Resolve one uncertain user problem or prioritize a bounded experiment | Source observations, assumptions, acceptance and the next decision |
+| Platform | Improve a deployment, service boundary or operational recovery path | The changed contract, a representative check and recovery evidence |
 
-Open **http://127.0.0.1:4097**. For existing local records, edit the plan in your editor,
-append comments and update task evidence in the dashboard. The AI host must follow
-its instructions to update that same file; there is no background session watcher.
+Use the designated issue or ticket for shared scope, acceptance and evidence links.
+For code changes, keep implementation and review details in the linked PR. For an
+outcome without a code change, retain its result and review at the assignment and linked
+knowledge source. Personal working plans stay
+private; if configured storage is unavailable, mark the session plan as unsaved. A small
+clear correction needs no plan file.
 
-See the [concept](../concept.md), [runtime adapters](installation.md),
-[working contract](workflow.md) and [local website preview](local-preview.md).
+Run the project's actual checks, update affected knowledge and preserve significant
+decisions. Try resuming from the shared sources in a fresh session. Report what was
+verified and what remains unknown before expanding concurrency.
+
+The [working contract](workflow.md) defines the process. Add the optional
+[local workbench](local-tools.md) or [integrations](integrations.md) only for a concrete need.

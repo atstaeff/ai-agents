@@ -19,10 +19,23 @@ catalog, export and work-record behavior.
 
 knowledge/ owns this repository's current project knowledge and rationale.
 Decisions remain in decisions/ with status, owner, context, alternatives, consequences and
-source links. Accepted replacements link both records. Work-item plans and feedback stay
-at the assigned issue or PR; a bounded handoff points to the relevant revisions.
+source links. Accepted replacements link both records. Shared scope, acceptance and feedback stay
+at the assigned issue or PR; personal execution steps stay private, subject to customer policy; a bounded handoff points to the relevant revisions.
 See [ADR-0003](decisions/0003-agents-first-project-entry.md) for this proposed arrangement
 and [knowledge lifecycle](../toolkit/PROJECT-KNOWLEDGE.md) for retention and retrieval.
+
+## Native expertise and orchestration
+
+Focused presets register only the selected native profiles. The Herd adapter emits
+commander packages and portable schema-v2 import files, carrying selected skill bindings
+and an on-demand catalog reference. Host configuration owns providers, worker routing,
+permissions and execution; the toolkit is an exporter, not a fleet runtime.
+
+The [orchestration guide](../toolkit/ORCHESTRATION.md) defines bounded task packets,
+multiple lead responsibilities, integration and installed-host checks. The
+[integration guide](../toolkit/INTEGRATIONS.md) separates native Ponytail/Graphify use
+from curated Docusaurus publication. [ADR-0006](decisions/0006-native-orchestration-and-focused-expertise.md)
+records the proposed adapter and expertise approach.
 
 ## Documentation and optional local tools
 

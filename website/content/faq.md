@@ -1,88 +1,83 @@
 # Frequently asked questions
 
-## Must my repository use a .claude folder or change for every model?
+## What do I need to adopt?
 
-No. Keep shared rules in `AGENTS.md`, knowledge in project-owned local or web sources and reusable
-expertise in the canonical catalog. A model change within a host needs no folder change.
-Host tools have different discovery paths and permissions; exports generate those
-adapters from the same sources. See [portability](getting-started/portability.md).
+Start with root `AGENTS.md`, `PROJECT.md` and `CONTRIBUTING.md`, or link their existing
+equivalents. Name the project's actual work, review, knowledge and decision sources.
+Merge the [project starter](getting-started/lean-project.md) into existing instructions;
+no YAML file or `workspace/` directory is required.
 
-## Must every project use GitHub Issues or repository knowledge?
+## Where do plans and delivery evidence belong?
 
-No. Each project defines its tracker, planning home, code review, decision and knowledge
-locations through [AGENTS.md and its linked sources](workspace-concept.md). No YAML is
-required. Jira can own the plan while GitHub holds only the PR;
-Confluence or a repository can own knowledge. The customer starter uses GitHub as a
-worked example. Missing tool access means an unsent proposed update, not a new tracker.
+The designated issue or ticket owns shared scope, acceptance and evidence links. A linked
+PR holds implementation, review and check details. Personal execution plans stay in the
+privately configured Second Brain, subject to project policy. If it is unavailable, keep
+an explicitly unsaved session plan and continue authorized work. Small changes need no
+plan file. See the [working contract](getting-started/workflow.md).
 
-## Which hosts have native exports?
+## Must we use GitHub or keep knowledge in the repository?
 
-OpenCode 1, VS Code/Copilot and Claude Code. A portable export also provides Agent
-Skills and generic agent profiles; generic profile discovery remains host-specific.
-Permissions and review UI are not equivalent across hosts. See
-[runtime setup](getting-started/installation.md) and perform a local discovery check.
+Use the project's existing systems. A Jira ticket can link a GitHub PR; knowledge can
+live in an authorized wiki or local Markdown. `AGENTS.md` identifies each authoritative
+source. Missing access means a clearly marked proposed update, not a replacement tracker
+or a claim that synchronization occurred.
 
-## Is it an OpenCode session orchestration plugin?
+## Which hosts can use the catalog?
 
-No. It exports native agents, skills and commands. Delegation and session interaction
-come from the installed host. The dashboard manages files and does not launch agents.
+Native exports support Herd, OpenCode, VS Code/Copilot and Claude Code. The portable
+export provides Agent Skills and generic profiles. Herd has a commander package and
+v2 import bundles; follow [runtime setup](getting-started/installation.md) for the actual
+formats and commands. Discovery, tools and permissions still need a check in your host.
 
-## Can Plan and Build be customized?
+## Does the toolkit run a team of agents?
 
-Yes. Edit their canonical profiles and re-export. OpenCode Plan has scoped edit
-permissions for work records; its shell/task tools are denied. Review the final merged
-host configuration and other installed tools before relying on a read-only boundary.
+The host runs sessions and delegation. The toolkit exports guidance and adapters; its
+local dashboard manages files. A product, architecture or delivery leader can coordinate
+bounded specialists when the host supports it and the assignment authorizes delegation.
+See [orchestration](getting-started/orchestration.md).
 
-## Can I comment on and approve a plan before using another model for Build?
+## Where are specialist models configured?
 
-Use the optional [Plannotator plan review](getting-started/plan-review.md) in OpenCode 1.
-Plan submits a concrete revision, receives comments and resubmits after requested changes.
-Build starts after actual approval. Separate model and supported variant fields configure
-the two phases; verify their selection in your installed Web version. The toolkit configures
-the external plugin; it neither proves runtime switching nor synchronizes GitHub issues.
+In the host. Choose economical models for bounded work only after checking their results
+on representative tasks. Use more capable models where observed failures or difficult
+decisions justify them. Herd packages contain no model-routing keys. See
+[model selection](references/llm-model-guide.md) and the host's current documentation.
 
-## Must every task create a document?
+## Can Plan and Build use different permissions or models?
 
-No. Small changes use the conversation and existing checks. Larger outcomes use one
-planning home: the project-designated work item for tracked delivery, or `workspace/work/` for larger
-local work without that assignment. CSV is an export only.
+Yes, where the host supports it. Permission fields and approval interfaces differ across
+adapters. OpenCode has optional phase settings and
+[Plannotator review](getting-started/plan-review.md). Review the effective host configuration
+and verify an actual handoff before relying on either restrictions or model selection.
 
-## Is this website Docusaurus?
+## Do Graphify and Ponytail run automatically?
 
-The AI Agents catalog site uses Docusaurus. The workspace starter integrates with a customer's
-existing Docusaurus site. Both publish views of canonical Markdown; compiled `docs/`
-output stays separate from editable workspace sources.
+No. They are optional integrations. Choose an authorized local source set and inspect
+the proposed operation before running it. The toolkit does not install them or start
+remote scans automatically. See [integrations](getting-started/integrations.md).
 
-## Does an accepted ADR prove delivery?
+## What is maintained in this website?
 
-It records the authorized decision maker's agreement. Implementation, verification,
-review, merge, deployment and observed impact each need evidence. Write significant
-decisions during delivery and link them at iteration close.
+Website-specific introductions live in `website/content/`. Catalog profiles, templates
+and process guides are published from their canonical Markdown sources. Root `docs/`
+is compiled website output. Edit the source linked by the page; see the
+[ownership map](architecture.md).
 
-## Must I copy all the starter files?
+## Does an accepted decision record prove delivery?
 
-Start with the project entry, contribution guide and YAML tooling map; resolve their role/authority links. Adopt relevant
-instructions into the existing AGENTS.md. The worked files illustrate format; create
-real ADRs and knowledge pages when the assignment warrants them.
+It records an authorized choice. Implementation, verification, required review,
+integration, deployment and observed impact each need their own evidence. Preserve
+significant reasons when they arise; update current knowledge against actual behavior.
 
-## Is the recurring local worker implemented?
+## Does this upload private notes or synchronize our tracker?
 
-The manual host workflow, profile exports, dashboard and graph generator are available.
-The runner page is a design contract. Recurring processing needs an implementation and
-authorized tools for the customer's Project, issues and repositories.
+The local toolkit has no remote vault or tracker synchronization service. A host can
+use explicitly accessible tools under its own permissions and provider settings. Keep
+private notes, credentials and vault paths outside public sources. The optional
+[runner page](customer-workspace/runner.md) is a design contract, not an implemented worker.
 
-## Does it upload my Obsidian vault?
+## How do I update exported profiles?
 
-The toolkit has no remote vault service. An AI host can read an explicitly accessible
-vault using its own tools and provider configuration. Keep private notes and paths
-outside this public repository.
-
-## Do Obsidian links open from OpenCode Web?
-
-The URI helper produces correctly encoded `obsidian://` links. Clickability depends
-on the web renderer and Windows protocol registration. Copy the URI if it is filtered.
-
-## How do I update profiles?
-
-Update the repository and re-export to the same dedicated destination. Edited or
-unmanaged files cause a clear error; integrate deliberately or choose another output.
+Update canonical sources and re-export to the same dedicated destination. The manifest
+protects edited and unmanaged files; resolve conflicts deliberately. Keep the exported
+reference catalog with the profiles and repeat the relevant host check after changes.

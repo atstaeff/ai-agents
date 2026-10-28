@@ -44,6 +44,8 @@ current revision. Roles do not grant access or authorization on another person's
 | Shared delivery method | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
 | Source ownership and web documentation | [Project concept](toolkit/PROJECT-CONCEPT.md) |
 | Current knowledge and rationale | [Knowledge index](knowledge/README.md), [decision index](knowledge/decisions/README.md) |
+| Native orchestration and specialist assignment | [Orchestration](toolkit/ORCHESTRATION.md) |
+| Optional native tools and dependency retrieval | [Integrations](toolkit/INTEGRATIONS.md) |
 | Expertise | [Skills](skills/README.md), [agents](agents/README.md) |
 
 ## Working method and AI process

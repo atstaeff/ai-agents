@@ -1,6 +1,6 @@
 ---
 name: "product-discovery"
-description: "Clarify a product or feature with uncertain user value, compare minimal solutions and define a measurable experiment or delivery slice."
+description: "Clarify uncertain product value, refine a product-owner backlog item or resolve stakeholder scope; compare minimal solutions and define a measurable experiment or delivery slice."
 ---
 
 # Product Discovery
@@ -16,11 +16,14 @@ description: "Clarify a product or feature with uncertain user value, compare mi
 4. Define scope and exclusions, the primary user journey, material error/recovery
    behavior and consumer-visible API needs. Separate usability, feasibility and demand
    questions; a working prototype establishes neither adoption nor business value.
+   Name the product decision/acceptance owner and constraints from affected stakeholders.
 5. Put acceptance scenarios and the next action at the project-designated planning
    home (for example, the assigned Jira ticket or GitHub issue). Link research/designs at their source. Ask only for information that
    changes a consequential decision; resolve routine reversible details independently.
 6. Deliver a small increment, collect actual feedback and compare it with the success
    signal before expanding scope. Keep technical completion and observed impact separate.
+   Propose priority from value, uncertainty, effort and dependencies; preserve conflicting
+   feedback and the owner's actual decision rather than inventing consensus.
 
 ## Output
 

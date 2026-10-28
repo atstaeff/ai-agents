@@ -32,10 +32,12 @@ Use a preset to register only useful native agents/skills in the host:
 | Preset | Native agents | Native skills | Use |
 | --- | --- | --- | --- |
 | minimal | 3 | 4 | General execution with explicit on-demand expertise |
-| engineering | 8 | 16 | Python, architecture, implementation, quality and delivery |
+| engineering | 9 | 16 | Python, architecture, implementation, quality and delivery |
 | product | 4 | 7 | Discovery, stakeholder proposals and coordination |
 | knowledge | 3 | 5 | Private notes and presentations |
-| all | 20 | 39 | Complete active catalog; compatibility default |
+| platform | 6 | 10 | Google Cloud, Terraform, delivery and security |
+| documentation | 2 | 5 | Focused technical authoring and editing |
+| all | 22 | 41 | Complete active catalog; compatibility default |
 
 The source of these selections is [catalog-presets.json](catalog-presets.json).
 Presets are selections, not security boundaries or separate copies of expertise.
@@ -70,6 +72,18 @@ Runtime adapters use [session rules](SESSION-RULES.md) as the compact shared sta
 contract. [The detailed workflow](WORKFLOW.md), recovery and project-concept guides stay
 available for their specific uncertainty. Roles supply a viewpoint/authority boundary;
 skills supply procedure. Another skill does not require another session.
+
+## Focused stack and documentation expertise
+
+Use python-patterns for Python/FastAPI boundaries, frontend-patterns for React and
+JavaScript application behavior, gcp-patterns for Google Cloud and terraform-iac for
+state-aware infrastructure changes. Existing specialists own these capabilities; no
+separate agent is needed for every library. Technical-writing and documentation-editor
+cover source-verified procedures, narrative and independent editing.
+
+The platform and documentation presets keep these additional capabilities opt-in.
+The engineering preset includes frontend-expert alongside Python and review roles.
+[Native orchestration](ORCHESTRATION.md) combines lead viewpoints and selected specialists.
 
 ## Consolidated names and migration
 

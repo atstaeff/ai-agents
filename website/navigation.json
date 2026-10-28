@@ -51,6 +51,9 @@
         "Engineering Operating Model": "concept.md"
       },
       {
+        "Leads, Specialists and Models": "getting-started/orchestration.md"
+      },
+      {
         "AGENTS.md Worked Example": "operating-model/project-kernel.md"
       },
       {
@@ -67,9 +70,6 @@
       },
       {
         "Working Contract": "getting-started/workflow.md"
-      },
-      {
-        "Optional Legacy YAML": "getting-started/project-config.md"
       },
       {
         "Plan Review": "getting-started/plan-review.md"
@@ -163,6 +163,12 @@
         "Project Brief": "templates/project/project-brief.md"
       },
       {
+        "Stakeholder Update": "templates/project/stakeholder-update.md"
+      },
+      {
+        "Pull Request": "templates/delivery/pull-request.md"
+      },
+      {
         "Change Request": "templates/project/change-request.md"
       },
       {
@@ -224,6 +230,9 @@
             "Decision Index": "knowledge/decisions/index.md"
           },
           {
+            "Native Orchestration": "knowledge/decisions/adr-0006.md"
+          },
+          {
             "AGENTS.md Entry Proposal": "knowledge/decisions/adr-0003.md"
           },
           {
@@ -253,6 +262,9 @@
     "items": [
       {
         "Runtime Exports": "getting-started/installation.md"
+      },
+      {
+        "Ponytail, Graphify and Herdr": "getting-started/integrations.md"
       },
       {
         "Tool and Model Independence": "getting-started/portability.md"
@@ -325,6 +337,13 @@
           },
           {
             "Event-Driven Example": "references/event-driven-python.md"
+          }
+        ]
+      },
+      {
+        "Compatibility": [
+          {
+            "Optional Legacy YAML": "getting-started/project-config.md"
           }
         ]
       }

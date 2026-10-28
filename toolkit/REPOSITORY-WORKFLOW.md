@@ -34,6 +34,12 @@ models/providers locally. For private plans, follow [personal planning](../templ
 for an optional review gate, follow [plan review](PLAN-REVIEW.md).
 Perform the [installed-host check](PORTABILITY.md#verify-a-new-host-once).
 
+## Export native Herd leads
+
+Use the [orchestration guide](ORCHESTRATION.md) for the selected export, schema-v2 import
+and live host check. Export tests verify file contracts and update recovery, not a
+running Herd server or provider performance.
+
 ## Deliver
 
 Use the current request or assigned issue for scope. Keep personal working steps in the

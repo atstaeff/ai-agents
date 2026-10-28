@@ -5,7 +5,10 @@
 Project context: [existing local project file or accessible URL].
 Stakeholders and decision rights: [existing source].
 Scope and constraints: [existing source].
-Process and actual setup/check commands: [existing contribution guide or adopted URL/version].
+Process and relevant skills: [existing contribution guide or adopted URL/version].
+Project locations: [repository/component map and editing/generated-file boundaries].
+Tools, integrations and access: [existing project tooling source].
+Setup, build and verification commands: [actual runbook/CI source].
 Work and review: [actual tracker, repositories and review homes].
 Current knowledge and decisions: [existing indexes].
 
@@ -15,8 +18,10 @@ relevant installed skill or canonical body; a link does not install skills or gr
 
 ## Coordinate and deliver
 
-Use the existing work item for acceptance, one live plan, feedback and handoff. Identify
-its accountable human, writer scope, dependencies and integration responsibility.
+Use the existing work item for shared scope, acceptance, feedback and handoff. Keep personal
+steps in the configured private Second Brain, subject to project policy; use an unsaved
+session plan if unavailable. Share an execution plan only when collaborators need one.
+Identify the accountable human, writer scope, dependencies and integration responsibility.
 Use isolated branches/work directories for parallel writers; coordinate shared interfaces
 and overlapping scopes before changes. Serialize overlap without an effective shared claim.
 
@@ -29,5 +34,6 @@ Verify combined changes after integration and follow required review/action perm
 
 Maintain affected current knowledge and significant decision rationale at the existing
 homes. Preserve accepted reasons and replacement links. Before a pause, save result,
-revisions, evidence/limits, blockers, pending writes and one next action in the same work
-item. On returning, check current sources rather than relying only on the previous summary.
+revisions, evidence/limits, blockers, pending writes and one next action at the appropriate
+private or shared home. The shared handoff must let a teammate continue without a private
+plan. On returning, check current sources against the previous summary.

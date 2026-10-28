@@ -10,6 +10,7 @@ and model selection; keep customer knowledge independent of all three.
 | OpenCode 1 | `agents/*.md`, `skills/<name>/SKILL.md`, `commands/`, `opencode.json` | Jörg, Plan and Build are primary; specialists are subagents |
 | VS Code / Copilot | `.github/agents/*.agent.md`, `.github/skills/<name>/SKILL.md` | Project-native profiles; select in the host |
 | Claude Code | `.claude/agents/*.md`, `.claude/skills/<name>/SKILL.md`, `CLAUDE.md` | Native profiles; select Jörg explicitly; Plan/reviewers are read/search-only |
+| Herd (NickGuAI) | `herd/commanders/`, `herd/imports/*.bundle.json` | Native lead packages and portable schema-v2 imports; workers run in the adopted harness |
 | Portable | `.agents/skills/<name>/SKILL.md`, `agents/*.agent.md` | Agent Skills plus portable profiles; agent discovery is host-specific |
 
 ## OpenCode in WSL
@@ -89,15 +90,36 @@ loaded instructions. Run the [host smoke check](PORTABILITY.md#verify-a-new-host
 Adapter tests cover file formats, links, restrictions and safe updates; they do not
 establish behavior in your installed Claude Code version.
 
+## Herd fleet imports
+
+Export selected lead commanders and skill bindings with `--runtime herd`. Import a
+portable bundle through Herd Marketplace's **Install from file** action. Actual worker
+execution, models, effort, budgets and permission policy remain configured in Herd and
+its underlying harnesses. No running fleet, customer memory or scheduled automation is
+created by export. Follow the [native orchestration guide](ORCHESTRATION.md) for commands,
+pinned schema sources and an installed-host exercise.
+
+Ponytail, Graphify and terminal-based Herdr are separate optional integrations; see the
+[integration guide](INTEGRATIONS.md). A generated profile does not install a third-party tool.
+
 ## Updates and privacy
 
 Re-export after source updates. `.ai-toolkit-manifest.json` tracks owned paths and
 hashes. Edited or unmanaged files are not silently overwritten. `--dry-run` checks
 without writing; `--force` explicitly permits replacing files at planned paths.
-Updates write only changed files and remove obsolete owned files. Identical files,
+Updates validate manifest paths and content hashes, serialize cooperating exporters and
+keep a recovery journal for a multi-file update. They write only changed files and
+remove obsolete owned files. Identical files,
 including the manifest, keep their timestamps. JSON output reports `changed`,
 `unchanged` and `removed` file counts; the manifest is excluded. With `--dry-run`,
 these counts describe the proposed update. Use a dedicated destination.
+
+If a process was killed, preserve the destination and transaction journal. Check the PID
+in `.ai-toolkit-export.lock` and confirm the owning exporter has stopped before removing
+that lock. Rerun the same export to recover the unfinished transaction; preserve and
+reconcile any reported intervening edit. Do not use `--force` as a recovery shortcut.
+The lock coordinates toolkit exporters, not arbitrary editors or distributed hosts.
+
 Re-export with the same optional phase settings; omitted options restore the defaults.
 
 Keep model keys and private vault paths in local configuration. The catalog/dashboard

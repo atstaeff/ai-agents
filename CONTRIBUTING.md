@@ -38,6 +38,11 @@ branches and working directories for independent writers. Agree shared contracts
 coordinate overlapping edits through the adopted claim/handover mechanism. Serialize
 an overlapping scope when no effective shared mechanism exists. Preserve others' work.
 
+For substantial parallel work, use the [lead/specialist contract](toolkit/ORCHESTRATION.md).
+Share bounded source packets, choose host-configured models by task uncertainty and
+inspect returned evidence. Independent documentation authoring and editing apply when
+changes alter the product narrative or procedures.
+
 Keep increments reviewable and integration order visible. Run checks on the combined
 revision; individual green branches do not establish an integrated feature. Reassess
 required review after material changes. Before handing over, save revisions, result,

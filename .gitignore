@@ -55,3 +55,9 @@ __pycache__/
 /website/.generated/
 /website/.docusaurus/
 /website/build/
+
+# Local dependency index; publish reviewed project knowledge separately.
+/graphify-out/
+.graphify-cache/
+.ai-toolkit-transaction.json
+.ai-toolkit-export.lock

@@ -1,8 +1,8 @@
 # Choose expertise by outcome
 
-Agents define roles and expected handoffs. Skills provide focused procedures. Start with
-the current assignment and its uncertainty, then select the narrowest useful expertise.
-A large catalog is available on demand; it is not mandatory context for every request.
+Agents define responsibilities and handoffs; skills provide focused procedures. Start
+with the assignment's uncertainty and load the narrowest useful expertise. Metadata
+helps select an entry; read the selected body before using its procedure.
 
 | Discipline | Typical outcome |
 | --- | --- |
@@ -16,7 +16,12 @@ A large catalog is available on demand; it is not mandatory context for every re
 
 [All agents](../agents/index.md) · [All skills](../skills/index.md) · [Manage the catalog](maintain.md)
 
-Use Jörg when selection or coordination is useful. A small clear correction needs no
-extra agent. A consequential architecture decision may benefit from a bounded architect
-and independent review, while the existing owner retains decision authority. Native
-session delegation depends on the actual host and authorization.
+Use Jörg for general coordination, Product Manager for discovery and priority, Lead
+Architect for consequential system choices, or a delivery coordinator for dependencies
+and integration. A small clear correction needs no additional agent.
+
+For parallel work, give specialists bounded scopes and agreed interfaces, then verify
+the combined result. The host configures their models, tools and permissions; project
+owners retain decision and acceptance authority. See
+[orchestration](../getting-started/orchestration.md) and
+[runtime exports](../getting-started/installation.md).

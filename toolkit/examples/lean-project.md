@@ -13,10 +13,11 @@ already live in the project's contributing guide.
 
 The team merges the agent entry and fills PROJECT.md with that outcome, customer
 isolation boundaries, and the owner who accepts product/technical choices. AGENTS.md
-links those facts, the adopted process, existing Jira work, GitHub reviews and repository
-knowledge/decision homes. Working rules and skill selection stay in CONTRIBUTING.md or
-the explicitly adopted central process. No YAML is needed. No second GitHub issue or
-local plan is created for the Jira assignment.
+links those facts, the repository/component map, existing Jira work, GitHub reviews and
+knowledge/decision homes. Process, tools/access and setup/check commands stay in
+CONTRIBUTING.md or their explicitly linked sources. The contributor keeps personal
+steps in a privately configured Second Brain when project policy permits. If unavailable,
+the personal plan stays in-session. Jira remains the shared assignment.
 
 ## 2. Capture an opportunity
 
@@ -55,17 +56,22 @@ from payload equality. SQL uniqueness/concurrency and recovery behavior require 
 If an accepted existing ADR conflicts, resolve that scope/authority conflict first;
 proposing CON-001 or DR-001 cannot silently supersede it.
 
-## 5. Plan and build in one assignment
+## 5. Build a bounded increment
 
-Jira UPLOAD-17 owns acceptance, short plan, status, feedback and the bounded handoff.
-It links CON-001, the decision and the code repository. The next increment covers attempt
-identity using the existing API/database; no workload evidence currently justifies new
-services or a queue. One contributor session is enough to start.
+Jira UPLOAD-17 owns acceptance, shared status, feedback, ownership and the bounded handoff.
+It links CON-001, the decision and the code repository. The product owner resolves scope
+and acceptance; the assigned contributor owns the bounded API/database changes and local
+integration. The next increment covers attempt identity using the existing API/database.
+One contributor session is enough to start.
 
-The plan identifies affected interfaces, persistence and criterion-derived checks:
+Acceptance and verification cover affected interfaces, persistence and meaningful cases:
 same-customer retry, cross-customer isolation, new attempts, simultaneous requests,
 interruption/recovery and agreed retention boundaries. Unknown retention semantics block
 only the dependent part; independent authorized investigation can continue.
+
+The contributor's working checklist stays private. If a client specialist joins, the
+contributors put only their agreed contract, dependent sequence and integration owner
+at the shared assignment. A teammate can continue from that shared context.
 
 A specialist is optional for a concrete concurrency uncertainty. Its scope, source
 revisions, expected evidence and integration owner must be explicit. No session can claim
@@ -86,7 +92,8 @@ At completion:
 | IDEA-001 | Disposition and link to the accepted outcome, or an honest partial/deferred result |
 | CON-001 | The maintained intended contract; implementation state and evidence recorded separately |
 | DR-001 | Actual accepted rationale retained, or proposed/rejected status preserved |
-| UPLOAD-17 | Closed only at the agreed completion point; plan/tasks remain historical there |
+| UPLOAD-17 | Closed only at the agreed completion point; shared coordination and feedback remain historical there |
+| Personal working plan | Marked complete privately, with result links; no team dependency on this note |
 | PR/checks | Actual revision, findings/results and durable summary if temporary logs expire |
 | Project entry | Link CON-001 and the applicable decision; avoid a duplicate contract |
 
@@ -100,15 +107,17 @@ Before a pause, UPLOAD-17 holds result, current revisions, actual evidence, unre
 retention decision, pending writes and one next action. An actual host/session link may
 help navigation; the next worker does not depend on the old chat being accessible.
 
-The next session reads UPLOAD-17 and new feedback, PROJECT.md, CONTRIBUTING.md, CON-001, applicable
-decisions and relevant code/checks. It checks the handoff against those current sources.
+The next session reads UPLOAD-17 and new feedback, PROJECT.md, CONTRIBUTING.md, CON-001,
+applicable decisions and relevant code/checks. The same contributor may also use its
+private resume note. It checks the handoff against current sources.
 An old plan proposing a global hash is historical context, not authority to bypass DR-001.
 If source access is missing, state the gap; do not invent current status or approval.
 
 For a later agreed change, update the living contract, open/use the next assigned work
-item and preserve any significant new rationale in a related decision. Keep the old
-execution plan historical. Tiny documentation corrections still go directly to editing
-and relevant checks, with no obligatory concept or local work record.
+item and preserve any significant new rationale in a related decision. Keep personal
+plan history private and shared coordination at its existing home. Tiny documentation
+corrections go directly to editing and relevant checks, with no obligatory concept or
+local work record.
 
 ## What this walkthrough does not prove
 

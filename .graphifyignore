@@ -1,0 +1,15 @@
+# Generated views, environments, private work and exported catalogs
+docs/
+website/.generated/
+website/.docusaurus/
+website/build/
+node_modules/
+.venv/
+__pycache__/
+workspace/work/
+workspace/archive/
+workspace/generated/
+workspace/exports/
+.ai/
+graphify-out/
+tests/fixtures/
