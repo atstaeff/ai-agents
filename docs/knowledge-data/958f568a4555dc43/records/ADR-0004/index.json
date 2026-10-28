@@ -1,0 +1,1 @@
+{"node":{"id":"ADR-0004","title":"Bound retries for document processing","status":"proposed","owner":"platform-owner","area":"document-processing","kind":"decision","href":"/demo-knowledge/decisions/bounded-retries/","path":"decisions/0004-bounded-retries.md"},"totalRelationships":3}
