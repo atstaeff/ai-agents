@@ -19,6 +19,13 @@ The smoke command exercises the optional local record store, stale writes, expor
 migration in generated fixtures. It does not prove live tracker access or installed-host
 behavior. `workspace/generated/` and exports are ignored and excluded from publication.
 
+## Prefer the available Herdr session
+
+Follow [Herdr execution](HERDR.md): check readiness, reuse the matching project session,
+select verified model/effort routes and organize labelled tabs. Use independent worktrees
+for writers and scale dispatch to actual resource/provider/budget/review capacity.
+If Herdr is absent or unusable, report the exact gap and use the authorized host.
+
 ## Export and start OpenCode 1
 
 ```sh

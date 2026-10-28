@@ -81,3 +81,11 @@ private notes, credentials and vault paths outside public sources. The optional
 Update canonical sources and re-export to the same dedicated destination. The manifest
 protects edited and unmanaged files; resolve conflicts deliberately. Keep the exported
 reference catalog with the profiles and repeat the relevant host check after changes.
+
+## Should an available Herdr installation be used?
+
+Yes, when its selected server and tools are usable within current permissions. Follow
+[Herdr execution](getting-started/herdr.md): reuse sessions, select strong/high reasoning
+for complex judgment and economical models for bounded work, keep labelled tabs and
+fill available capacity with independent ready tasks. Native commands handle routine
+coordination. Report the exact availability/access gap before using a fallback.

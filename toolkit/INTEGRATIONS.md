@@ -9,7 +9,7 @@ connectors do not establish a project's source of truth or permission to publish
 | Scope, priorities and acceptance | GitHub Issues/Projects or Jira | One authoritative assignment; PR/MR links it |
 | Code, checks and review | Existing Git host and CI | Evidence refers to the tested revision |
 | Fleet orchestration | Herd (NickGuAI) | Native commanders and host-managed workers; [adapter](ORCHESTRATION.md) |
-| Terminal agent control | Herdr, if adopted | Native terminal lifecycle commands; no duplicate scheduler |
+| Preferred terminal execution | Herdr when available and usable | [Readiness, tiers, tabs and resource-aware dispatch](HERDR.md) |
 | Reduce unnecessary implementation | Ponytail, if installed | Native host rules alongside project acceptance and quality requirements |
 | Dependency discovery | Graphify, if adopted | Scoped derived context with source/provenance checks |
 | Decisions for people | Docusaurus | Published view of selected maintained Markdown |
@@ -21,22 +21,13 @@ The `herd` runtime exporter targets [NickGuAI/Herd](https://github.com/NickGuAI/
 which imports commanders and coordinates workers. Export/import is described in
 [orchestration](ORCHESTRATION.md); provider readiness and action policies belong in Herd.
 
-[Herdr](https://herdr.dev/docs/agent-automation/) controls coding agents in terminal panes.
-It can organize several leads and specialists without replacing their harnesses. Create
-layout first, capture the returned pane IDs, then start named agents in available shell
-panes. Check native help for the installed release:
-
-```sh
-herdr --help
-herdr agent --help
-herdr agent list
-```
-
-Use `agent start` with the chosen `--kind` and model arguments supported by that harness.
-Use `agent prompt`, `agent read` and bounded `agent wait` to control the lifecycle. An
-idle terminal does not prove a successful task: inspect the result, revision and checks.
-For live names, pane creation, blocked prompts and state semantics, use the
-[official CLI reference](https://herdr.dev/docs/cli-reference/).
+[Herdr](https://herdr.dev/docs/agent-automation/) is the preferred available terminal
+execution surface. Follow the [Herdr execution policy](HERDR.md) for discovery/readiness,
+model and effort routes, labelled tabs, independent worktrees, lifecycle control and
+resource-aware parallel work. Native commands handle routine coordination; complex
+judgment uses strong approved models with high reasoning. Report a concrete availability
+or access gap before using a fallback. Do not create duplicate workers if another adopted
+fleet tool already owns dispatch.
 
 [HerdOS](https://github.com/Herd-OS/herd) coordinates GitHub Actions workers, and
 [herd-ag/herd-core](https://github.com/herd-ag/herd-core) supplies team governance.

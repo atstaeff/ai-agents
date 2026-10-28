@@ -33,6 +33,7 @@ when it already owns this information.
 | Purpose | Authoritative project location | Integration and access |
 | --- | --- | --- |
 | Work, priority and acceptance | [Work home in PROJECT.md](PROJECT.md#key-sources-and-links) | [available connector/CLI and permitted updates] |
+| Agent execution and model routes | [adopted Herdr session/machine and local host configuration] | [readiness, model/effort, capacity and budget limits] |
 | Code and review | [Repository/review home in PROJECT.md](PROJECT.md#key-sources-and-links) | [available connector/CLI and review policy] |
 | Current knowledge and decisions | [Knowledge homes in PROJECT.md](PROJECT.md#current-knowledge-and-decisions) | [local sources or authorized wiki; publication owner if applicable] |
 
@@ -51,6 +52,21 @@ dependent work.
 | Setup and local run | [actual command/source] |
 | Affected behavior, tests and static checks | [actual command/source] |
 | Build and integration checks | [actual command/source] |
+
+## Herdr and model routing
+
+Use Herdr when its executable and selected server are available within project/host
+permissions. Reuse matching sessions, use labelled lead/specialist tabs and isolate
+concurrent writers in Git worktrees. Fill free capacity with independent ready work
+within machine, provider, cost and review limits. If unavailable, state the concrete gap
+and continue independent work through the authorized host.
+
+Use strong approved models with high reasoning for complex judgment, architecture,
+decomposition, integration conflicts and consequential review. Use economical proven
+models for bounded specialist work and native commands for mechanical coordination.
+Verify effective model/effort in the harness; report a missing required route instead
+of silently downgrading complex work. Resolve actual routes from local host settings.
+See the [Herdr policy](https://github.com/atstaeff/ai-agents/blob/main/toolkit/HERDR.md).
 
 ## Coordination and review
 

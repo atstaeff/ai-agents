@@ -15,6 +15,7 @@ for process, skill selection and checks. Read further sources only for the curre
 | Concise execution rules | [Session rules](toolkit/SESSION-RULES.md) |
 | Current knowledge and significant reasons | [Knowledge index](knowledge/README.md) |
 | Decision/acceptance or action boundary | [Stakeholders](knowledge/stakeholders.md), [agreement](knowledge/working-agreement.md) |
+| Preferred Herdr execution, model tiers and tabs | [Herdr policy](toolkit/HERDR.md) |
 | Lead/specialist coordination and model choices | [Orchestration](toolkit/ORCHESTRATION.md) |
 | Native Herd, Herdr, Ponytail or Graphify | [Integrations](toolkit/INTEGRATIONS.md) |
 | Catalog structure, consolidation or presets | [Catalog guide](toolkit/CATALOG-GUIDE.md) |
@@ -33,6 +34,9 @@ role profile, guide or historical ADR. Expand when needed without omitting gover
   persistence and stale-write protection. Export host permissions through adapters.
 - website/ publishes canonical sources; docs/ is generated. Preserve public routes.
   Keep private content and generated bundles out of commits. No unsolicited messages.
+- Use Herdr when available and usable; follow its [execution policy](toolkit/HERDR.md).
+  Route complex judgment to strong models with high reasoning, bounded work to economical
+  models, and mechanical coordination to native tools. Scale parallel work within real capacity.
 - Keep shared scope and acceptance in the assignment; personal plans stay private. Preserve other writers' changes, coordinate overlapping
   scopes and shared contracts, and verify combined changes. Delegate only when supported,
   authorized and useful. Significant decisions and current knowledge stay at their owners.

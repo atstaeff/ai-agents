@@ -34,6 +34,13 @@ Express optional product, engineering and delivery leads with one integration ow
 Give specialists bounded task packets and test the integrated result. Add focused
 Terraform and technical-writing procedures while improving existing stack guidance.
 
+Prefer the installed usable Herdr execution surface, with labelled tabs and isolated
+writers. Route complex judgment to strong/high reasoning models, bounded execution to
+economical models and mechanical coordination to native commands. Fill available
+capacity using independent ready work within resource/provider/budget/review limits.
+Actual model and effort settings must be verified; report a concrete readiness gap
+before using a fallback. See the [Herdr policy](../../toolkit/HERDR.md).
+
 Provide native packages and schema-v2 import bundles for NickGuAI/Herd, pinned to its
 observed upstream schema. Name Herdr and other Herd projects separately. Actual model,
 worker routing and access policies remain host configuration. Ponytail and Graphify

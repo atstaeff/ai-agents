@@ -11,6 +11,10 @@ rules are a fallback; project facts and permissions come from the project and ho
 - Keep shared acceptance/evidence at the assignment; personal plans stay in the configured
   private Second Brain, or unsaved in-session if unavailable. Proceed with
   routine reversible choices in scope; resolve consequential conflicts with the owner.
+- Discover and use Herdr when available and usable; see [Herdr policy](HERDR.md) for
+  readiness, labelled tabs and resource-aware dispatch. Complex judgment uses a strong
+  approved model with high reasoning; bounded work uses an economical proven route.
+  Use native commands for mechanical coordination and report concrete fallback gaps.
 - Preserve others' edits. Coordinate overlapping scopes, isolate independent writers
   and verify the combined result. Delegate only when supported, authorized and useful.
 - Match verification to the affected boundary. For wording-only edits inspect content

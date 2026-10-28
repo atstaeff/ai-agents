@@ -33,10 +33,16 @@ shared sources. Projects choose their own folders and accessible web documentati
 | Understand the value stream and responsibilities | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
 | Python/FastAPI, React/JavaScript, GCP and Terraform | [Engineering and platform expertise](toolkit/CATALOG-GUIDE.md) |
 | Product discovery, PO work and stakeholders | [Catalog selection](toolkit/CATALOG-GUIDE.md) with `--preset product`; [templates](templates/README.md) |
-| Several leads and economical specialists | [Orchestration and native Herd export](toolkit/ORCHESTRATION.md) |
+| Several leads and economical specialists | [Preferred Herdr execution, model tiers and tabs](toolkit/HERDR.md) |
 | Ponytail, Herdr and Graphify | [Native integration guide](toolkit/INTEGRATIONS.md) |
 | Human-readable decisions and dependency views | [Docusaurus knowledge map](examples/engineering-demo/README.md) |
 | Repository folders, optional tools and compatibility | [Repository map](toolkit/README.md) |
+
+Use Herdr whenever its executable and selected server are usable. Complex decisions
+use strong approved models with high reasoning; bounded specialists use economical
+routes. Native commands handle mechanical coordination. Fill free capacity with
+independent ready work, using labelled tabs and isolated checkouts. See the
+[Herdr policy](toolkit/HERDR.md) for readiness, limits and fallback behavior.
 
 ## Install a focused catalog
 

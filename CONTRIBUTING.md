@@ -38,6 +38,10 @@ branches and working directories for independent writers. Agree shared contracts
 coordinate overlapping edits through the adopted claim/handover mechanism. Serialize
 an overlapping scope when no effective shared mechanism exists. Preserve others' work.
 
+Use [Herdr when available and usable](toolkit/HERDR.md). Verify actual model/effort
+settings, use strong/high reasoning for complex judgment and economical models for
+bounded execution, and organize labelled tabs with resource-aware concurrency.
+
 For substantial parallel work, use the [lead/specialist contract](toolkit/ORCHESTRATION.md).
 Share bounded source packets, choose host-configured models by task uncertainty and
 inspect returned evidence. Independent documentation authoring and editing apply when

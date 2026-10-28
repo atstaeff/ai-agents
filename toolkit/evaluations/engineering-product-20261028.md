@@ -76,3 +76,38 @@ native adoption paths; they are not installed or run by the exporter.
 
 Reviewable work remains in the current PR. Merge, publication and observed customer
 outcomes are separate from these source-level checks.
+
+## Follow-up: prefer available Herdr
+
+The clarified execution policy is now part of AGENTS.md, exported session rules,
+agent-routing, the delivery lead, project/delegation templates and published navigation.
+[Herdr policy](../HERDR.md) is the detailed source. Use an available usable Herdr target;
+reuse matching sessions and labelled tabs. Complex judgment requires a verified strong
+model with high reasoning, bounded execution uses economical routes, and mechanical
+coordination uses native commands. Capacity includes machine/provider/budget/review
+limits and independent ready work. The separate Herd fleet exporter remains optional.
+
+An independent editorial review found ambiguous remote targeting and an overlarge
+startup inventory. The policy now preserves explicit machine/session targets, reuses
+recent readiness evidence, distinguishes local CLI schema from remote capabilities,
+uses the initial Control tab and permits only measured safe additional dispatch.
+Fallback preserves the intended target; it never substitutes Local after remote failure.
+
+Three additional bounded trials observed:
+
+| Trial | Observation |
+| --- | --- |
+| Three independent slices; configured 3/provider 2/budget 1 new-worker limits; remote and local share workspace ID | Chose one worker, explicit remote target, captured IDs, isolated checkout and queued remaining work; no live dispatch claimed |
+| Consequential cross-tenant/IAM/state decision with only economical low reasoning | Refused to finalize through the insufficient route; requested strong/high verification while leaving an independent typo eligible for economical handling |
+| Standalone typo without available Herdr | Checked executable availability, changed only the misspelled word, verified the diff and reported the execution gap |
+
+The first temporary typo fixture was unavailable after session continuation; that attempt
+made no edits. The recorded successful trial used the replacement shared-workspace fixture.
+These are instruction observations, not live native integration or comparative benchmarks.
+The review/trials used economical specialist configurations; no cost or throughput gain
+was measured. Herdr was not found on this environment's PATH; no native Herdr session,
+remote worker or provider model/effort was exercised.
+
+The follow-up passed the 124-test locked Python suite, catalog/link and whitespace checks,
+and strict Docusaurus build with 194 generated documents. CI records the final revision's
+full browser/build result; repository merge and publication remain separate.

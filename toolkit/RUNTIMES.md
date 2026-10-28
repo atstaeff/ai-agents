@@ -13,6 +13,15 @@ and model selection; keep customer knowledge independent of all three.
 | Herd (NickGuAI) | `herd/commanders/`, `herd/imports/*.bundle.json` | Native lead packages and portable schema-v2 imports; workers run in the adopted harness |
 | Portable | `.agents/skills/<name>/SKILL.md`, `agents/*.agent.md` | Agent Skills plus portable profiles; agent discovery is host-specific |
 
+## Use available Herdr
+
+Herdr is the preferred terminal execution surface when installed and usable; it runs
+the selected harness rather than replacing its discovery layout. Follow the
+[Herdr policy](HERDR.md) for readiness, strong/high reasoning for complex work, economical
+specialists, labelled tabs and resource-aware parallel dispatch. Export the catalog for
+the underlying harness, then verify discovery and effective model/effort in that session.
+The `herd` exporter below targets a separate optional fleet product.
+
 ## OpenCode in WSL
 
 Export into a dedicated directory, then set both variables when starting from a project.
@@ -99,8 +108,9 @@ its underlying harnesses. No running fleet, customer memory or scheduled automat
 created by export. Follow the [native orchestration guide](ORCHESTRATION.md) for commands,
 pinned schema sources and an installed-host exercise.
 
-Ponytail, Graphify and terminal-based Herdr are separate optional integrations; see the
-[integration guide](INTEGRATIONS.md). A generated profile does not install a third-party tool.
+Ponytail and Graphify are optional native integrations; [Herdr](HERDR.md) is the
+preferred terminal surface when available and usable. See the
+[integration guide](INTEGRATIONS.md) for their distinct responsibilities. A generated profile does not install a third-party tool.
 
 ## Updates and privacy
 

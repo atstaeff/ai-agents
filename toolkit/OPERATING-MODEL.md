@@ -67,8 +67,10 @@ concurrency and model selection. A role description alone starts no process and 
 
 Load the project entry, current assignment and next relevant skill. Search a scoped area
 and expand for a concrete uncertainty. Keep large examples and reference guides on demand.
-Use an economical evaluated model for a well-defined specialty; reserve stronger reasoning
-for ambiguity, architecture, integration and consequential review. Escalate a failed approach
+Use [Herdr](HERDR.md) whenever available and usable, with labelled tabs and isolated
+writers. Use an economical evaluated model for a well-defined specialty; complex
+judgment, architecture, integration and consequential review require a strong approved
+model with high reasoning. Native commands handle mechanical coordination. Escalate a failed approach
 with its evidence rather than repeating blind retries or increasing the whole team's context.
 
 Parallelize independent slices with clear contracts and isolated writers. Account for
@@ -80,7 +82,8 @@ defects, model cost and resource use. Model price and token counts alone do not 
 
 1. Link the project's real sources from its [AGENTS.md](../templates/agent-instructions/README.md).
 2. Deliver one assignment with the relevant [catalog preset](CATALOG-GUIDE.md).
-3. Add [Herd or another supported host](RUNTIMES.md) when parallel work justifies it.
+3. Use available [Herdr](HERDR.md); add a team when independent work justifies it.
+   [Other host/fleet integrations](RUNTIMES.md) remain available for the adopted environment.
 4. Publish selected shared knowledge through Docusaurus; use bounded graph views for dependencies.
 5. Inspect one completed change and remove friction before expanding the process.
 

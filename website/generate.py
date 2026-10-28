@@ -50,6 +50,7 @@ DOCUMENTS = {
     'customer-workspace/setup-prompt.md': 'examples/document-portal/SETUP-PROMPT.md',
     'concept.md': 'toolkit/OPERATING-MODEL.md',
     'getting-started/orchestration.md': 'toolkit/ORCHESTRATION.md',
+    'getting-started/herdr.md': 'toolkit/HERDR.md',
     'getting-started/integrations.md': 'toolkit/INTEGRATIONS.md',
     'workspace-concept.md': 'toolkit/PROJECT-CONCEPT.md',
     'repository-workspace.md': 'PROJECT.md',

@@ -24,6 +24,15 @@ at the assigned issue or PR; personal execution steps stay private, subject to c
 See [ADR-0003](decisions/0003-agents-first-project-entry.md) for this proposed arrangement
 and [knowledge lifecycle](../toolkit/PROJECT-KNOWLEDGE.md) for retention and retrieval.
 
+## Preferred execution surface
+
+Sessions discover and use Herdr whenever its executable and selected server are usable.
+The [Herdr policy](../toolkit/HERDR.md) defines verified model/effort routes, labelled
+tabs, isolated writers and adaptive capacity. Complex judgment uses strong approved
+models with high reasoning; bounded work uses economical routes and mechanical
+coordination uses native commands. An unavailable tool is reported concretely. This is
+a session execution policy, not an automatic provider benchmark or a new scheduler.
+
 ## Native expertise and orchestration
 
 Focused presets register only the selected native profiles. The Herd adapter emits

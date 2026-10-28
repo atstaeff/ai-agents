@@ -22,6 +22,12 @@ portable profiles. That guide owns current commands, layouts and options. Use a 
 export destination, preserve existing host instructions and verify discovery and effective
 permissions with the [host check](portability.md#verify-a-new-host-once).
 
+Use [Herdr](herdr.md) whenever installed and usable; reuse the matching project session
+and organize labelled lead/specialist tabs. Complex judgment uses strong/high reasoning,
+bounded execution uses economical models and mechanical coordination uses native tools.
+Scale parallel work to actual resource, provider, budget and review capacity. Report
+a concrete gap when falling back.
+
 Start with a small preset or explicitly selected profiles. Configure providers, credentials
 and model choices in the host. For a coordinated assignment, choose the relevant product,
 architecture or delivery leader and bounded specialists; see [orchestration](orchestration.md).

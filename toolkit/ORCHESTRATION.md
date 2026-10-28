@@ -4,6 +4,17 @@ Use this guide when independent slices or independent review justify multiple ag
 One session is sufficient for a routine correction. The [operating model](OPERATING-MODEL.md)
 owns the delivery process; the issue or Jira ticket owns this assignment.
 
+## Prefer available Herdr
+
+Discover and use [Herdr](HERDR.md) when its executable and selected server are usable.
+The policy owns readiness, high-reasoning complex work, economical specialists, native
+mechanical coordination, labelled tabs and adaptive capacity. Reuse matching sessions;
+report a concrete gap before falling back. Routine work can stay in the current pane.
+
+For each assignment, keep one owner of dispatch and integration. If another adopted
+fleet tool owns worker creation, use Herdr for its terminal surface without duplicating
+workers or task queues. The Herd exporter below is a separate optional integration.
+
 ## A team has one integrated outcome
 
 Activate product, engineering and delivery leadership as needed. Give each lead a distinct
@@ -27,8 +38,9 @@ summary rather than the entire leader conversation.
 
 1. Agree interfaces before starting dependent writers. Use isolated worktrees/branches.
 2. Run independent bounded tasks concurrently within the configured capacity and cost budget.
-3. Give stronger reasoning configurations to unresolved architecture, decomposition,
-   integration and consequential review. Use a proven economical configuration for a clear specialty.
+3. Use strong approved models with high reasoning for unresolved architecture, decomposition,
+   integration and consequential review. Use a proven economical configuration for a clear
+   specialty; native commands or the smallest capable model handle mechanical coordination.
 4. Inspect failed outputs. Correct the task packet or escalate the specific uncertainty;
    stop repeated failures at the assignment's retry/budget limit.
 5. Review returned work and test the combined revision. Task completion or an idle agent
