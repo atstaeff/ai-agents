@@ -4,6 +4,7 @@ knowledge_id: TOPIC-EVAL
 slug: /topics/evaluation
 status: current
 owner: quality-owner
+area: retrieval
 relations: {"relates_to": ["COMP-GATEWAY"]}
 ---
 

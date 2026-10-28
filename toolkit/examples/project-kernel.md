@@ -14,7 +14,10 @@ no actual project access, approval, implementation or published result.
 - Vision and goals: product/overview.md#vision-and-goals
 - Stakeholders and decision rights: team/roles.md
 - Scope and constraints: product/overview.md#scope
-- Process and checks: CONTRIBUTING.md
+- Process and relevant skills: CONTRIBUTING.md#working-process-and-skills
+- Project locations: architecture/repositories.md
+- Tools and access: CONTRIBUTING.md#tools-and-access
+- Setup, build and checks: CONTRIBUTING.md#setup-and-checks
 - Work: the assigned issue in our actual project tracker
 - Review: the linked pull request in our actual repository
 - Current knowledge: knowledge/README.md
@@ -25,8 +28,11 @@ Follow CONTRIBUTING.md; load only relevant skill bodies and references.
 
 ## Coordinate work
 
-Keep one live plan at the assigned work item. Identify the accountable human,
-active writer, bounded scope, dependencies and integration owner.
+Keep shared scope, acceptance, progress and coordination at the assigned work item.
+Keep personal steps in the configured private Second Brain, subject to project policy;
+use an unsaved session plan if unavailable. Share a sequence only when collaborators
+need one. Identify the accountable human, active writer, bounded scope, dependencies
+and integration owner.
 Use separate branches/working directories. Agree shared contracts and coordinate
 any overlapping scopes through the project's adopted claim/handover mechanism.
 Preserve other work and reread shared records before updates.
@@ -39,7 +45,8 @@ against observable acceptance. Verify the combined result after integration.
 Record evidence against the tested revision and follow required review/action policy.
 Update affected current knowledge and preserve significant decision reasons.
 Before pausing, save result, revisions, evidence/limits, blockers, pending writes
-and one concrete next action in the same assignment.
+and one concrete next action at the appropriate private or shared home.
+Keep the shared handoff sufficient for a teammate to continue without private notes.
 ```
 
 The conventional filename is AGENTS.md. Other document names and directories are choices.
@@ -55,7 +62,9 @@ A path or URL neither grants access nor guarantees loading; explicitly read its 
 | Stakeholders | Affected groups, priority owner, technical decision owner, acceptance/review roles |
 | Scope | Included system responsibility, exclusions and material constraints |
 | Process | Clarify/plan/build/verify/integrate, tools/checks, relevant skills and action boundaries |
-| Work item | Outcome/criteria, current plan, owner/writer scope, dependencies, feedback and handoff |
+| Project locations | Repository/component paths, source/test locations and generated-file boundaries |
+| Tools and commands | Actual tracker/review/knowledge locations, available integrations, setup and verification |
+| Work item | Outcome/criteria, owner/writer scope, dependencies, shared progress, feedback and handoff |
 | Knowledge index | Links to current contracts, architecture, operations and relevant decision records |
 
 These sections may share a file. PROJECT.md and CONTRIBUTING.md in the
@@ -67,7 +76,8 @@ For a change that makes repeated uploads safe, use these example homes:
 
 | Location | What belongs there |
 | --- | --- |
-| Assigned issue | Acceptance: retry returns the same reference; current plan, progress, feedback and next action |
+| Assigned issue | Acceptance: retry returns the same reference; shared ownership/dependencies, progress, feedback and next action |
+| Private planning home | Personal execution checklist and resume note when configured and permitted |
 | knowledge/decisions/ADR-0001-upload-idempotency.md | Why an idempotency key was chosen, alternatives, concurrency consequences, owner and decision status |
 | knowledge/current/uploads.md | Actual upload contract, key scope/lifetime, failure behavior, operating limits and verified source revision |
 | knowledge/README.md | Links to the upload contract and decision; concise topic navigation |
@@ -98,14 +108,15 @@ Link the work item and current upload contract. Record actual acceptance separat
 After accepted and integrated implementation, update the current upload page from actual
 code/check evidence. Preserve the accepted rationale. A changed key-scope policy gets an
 explicit decision and replacement links; avoid rewriting old reasons to match new code.
-The old plan remains historical in its completed issue. An incident review links owned
-follow-up work and affected current knowledge rather than becoming another task tracker.
+Personal plans remain private; shared coordination history stays in the completed issue.
+An incident review links owned follow-up work and affected current knowledge.
 
 ## Parallel delivery example
 
 One contributor owns the API implementation; another owns the client behavior. They agree
 the request, response, conflict and retry contract before implementation. Use separate
-working directories and a shared assignment/dependency view. Give a shared contract file
+working directories and a shared assignment/dependency view. Keep only the execution
+sequence both contributors need at the shared work home. Give a shared contract file
 one coordinated writer at a time. The integrator verifies the API/client interaction and
 failure behavior on the combined revision before claiming the feature complete.
 

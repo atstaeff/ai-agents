@@ -1,38 +1,39 @@
 # Source ownership and capabilities
 
-Separate reusable guidance, live work, durable knowledge and generated views.
+Each source has one editing home. `AGENTS.md` makes those homes discoverable to people
+and AI; runtime exports and the website publish selected views.
 
 | Component | Canonical source | Responsibility |
 | --- | --- | --- |
-| Agents and skills | This repository's `agents/` and `skills/` | Reusable roles and focused instructions |
-| Operating model | `toolkit/OPERATING-MODEL.md` | Outcomes, ownership, handoffs and knowledge lifecycle |
-| Project entry | AGENTS.md linking local or explicitly adopted web sources | Collaboration rules and authoritative source ownership |
-| Customer work | Project-selected tracker and code review system | Priority, live plans, questions, implementation and evidence |
-| Project knowledge | Project-chosen local Markdown or authorized wiki | Current context, contracts, decision rights and significant rationale |
-| Local work records | Each project's `workspace/work/`, without a board-owned assignment | One record per larger local outcome |
-| Private Second Brain | Existing Obsidian PARA vault | Personal projects, areas, resources and archive |
-| Runtime adapters | `tools/ai_toolkit.py export` | Native profiles, permissions and references |
-| Local dashboard/API | `tools/web/` and Python loopback server | Markdown records, task evidence and comments |
-| This website | `website/content/` and `website/generate.py` | Docusaurus views of canonical guidance and examples |
-| Customer documentation site | Existing Docusaurus configuration and workspace sources | Customer-controlled publishing |
+| Project collaboration | Root `AGENTS.md` | Rules and links to the authoritative project sources |
+| Project facts | `PROJECT.md` or the project's existing equivalent | Goals, scope, stakeholders and ownership |
+| Contribution process | `CONTRIBUTING.md` or an explicitly adopted process | Workflow, tools, checks and action boundaries |
+| Shared assignment | Designated issue or ticket, with linked review | Scope, acceptance, questions, team handoff and evidence links |
+| Implementation and review | Linked PR or equivalent | Changes, findings and actual check results |
+| Current knowledge and decisions | Project-owned Markdown or authorized wiki | Behavior, contracts and significant reasons |
+| Personal execution plan | Privately configured Second Brain | Personal steps and resume notes; an unavailable store means an unsaved session plan |
+| Reusable expertise | This repository's `agents/` and `skills/` | Roles, handoffs and focused procedures |
+| Shared guidance | This repository's `toolkit/` | Operating model, adoption and integration guides |
+| Runtime adapters | `tools/ai_toolkit.py export` | Generated host layouts and references |
+| Optional local workbench | Python loopback server and `tools/web/` | Local Markdown records, task evidence and comments |
+| Website | `website/content/`, mapped canonical sources and `website/generate.py` | Published reading views; root `docs/` is compiled output |
 
 ## Execution belongs to your host
 
-Jörg selects relevant expertise. Delegation depends on host capabilities and permissions;
-the current session can otherwise use selected guidance directly. Inference may be
-local or remote according to your provider configuration.
-
-The toolkit exports profiles and manages files. Its dashboard does not run models or
-synchronize project trackers or wikis. Recurring work needs an implemented runner and authorized host
-tools; the [runner contract](customer-workspace/runner.md) describes the requirements.
+Relevant leads select expertise; one named integrator assembles and verifies the outcome.
+Bounded specialists can use host-configured models suited to their work. Delegation,
+session interaction, tools and inference belong to the host; see
+[orchestration](getting-started/orchestration.md) and
+[runtime setup](getting-started/installation.md).
 
 ## Sources and published views
 
-Edit canonical Markdown, then regenerate the index, relationships and website. This
-catalog site uses Docusaurus with generated canonical content. The
-[customer publishing guide](customer-workspace/docusaurus.md) covers adoption in an existing site. A root `docs/` used for compiled Pages output stays generated.
-See the [website source guide](https://github.com/atstaeff/ai-agents/blob/main/website/README.md) for build ownership and commands.
+Edit canonical Markdown, then regenerate affected indexes and the Docusaurus website.
+Website-only introductions live in `website/content/`; generated profile pages are not
+independent copies to maintain. The [website source guide](https://github.com/atstaeff/ai-agents/blob/main/website/README.md)
+owns build and publication commands. The [customer publishing example](customer-workspace/docusaurus.md)
+shows how a project can publish selected sources through an existing site.
 
-The site renders profiles, the operating model and worked examples from canonical sources.
-The [knowledge map](customer-workspace/knowledge-map.md) uses explicit metadata and local links.
-Customer facts and private vault paths do not belong in this public toolkit.
+A public site publishes only authorized sources. Private plans, customer facts, secrets,
+exports and local work records stay outside its selected content. Projects can adopt the
+three-file starter without adopting a particular knowledge folder, YAML map or workbench.

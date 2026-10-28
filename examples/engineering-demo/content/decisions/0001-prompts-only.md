@@ -4,6 +4,7 @@ knowledge_id: ADR-0001
 slug: /decisions/prompts-only
 status: superseded
 owner: technical-owner
+area: retrieval
 relations: {}
 ---
 

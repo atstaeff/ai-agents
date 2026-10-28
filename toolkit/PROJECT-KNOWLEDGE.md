@@ -24,6 +24,14 @@ links and inspect current code/tests. Search the bounded project when a relevant
 is missing; an absent link is not proof that no decision exists. Do not load every ADR,
 archive or conversation by default. Teammates must not need a private vault to continue.
 
+## Dependency evidence
+
+When Graphify is adopted, query the affected components and verify returned source
+locations and snapshot freshness. Extracted and inferred relationships are evidence,
+not approval. Promote useful reviewed relationships into the canonical project record;
+retain significant reasons in ADRs. See [native integration](INTEGRATIONS.md) for the
+source-to-graph-to-documentation path and provider/publication boundaries.
+
 ## Graph and documentation
 
 Use stable IDs and a few meaningful relationships: `depends_on`, `supersedes`, `relates_to`
@@ -34,6 +42,13 @@ Generate website pages and graph data only from approved shared Markdown. Use an
 content allowlist, stable routes and validated references. Exclude private plans, work
 records and generated exports even if they happen to be inside the repository. Git ignore
 alone does not protect website publication. Never follow source symlinks into a vault.
+
+At larger scale, start with curated domain/system areas and aggregate counts, then fetch
+one area's paginated results and one decision's bounded direct neighborhood. Keep hidden
+result counts visible, preserve direction/type at record level and include historical
+statuses explicitly. Do not load an entire ADR collection into every AI session or browser.
+A million-record estate needs an incremental authorized metadata/search index; a static
+site is a demonstration of navigation, not proof of that storage/query scale.
 
 The [Docusaurus demo](../examples/engineering-demo/README.md) provides a runnable example.
 The older [customer graph](../examples/document-portal/examples/knowledge_graph.py)

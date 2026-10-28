@@ -19,7 +19,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 | Name | Select for |
 | --- | --- |
 | [pr-crafting](delivery/pr-crafting/SKILL.md) | Prepare a reviewable pull request description, scope and validation evidence for a code change. |
-| [product-discovery](delivery/product-discovery/SKILL.md) | Clarify a product or feature with uncertain user value, compare minimal solutions and define a measurable experiment or delivery slice. |
+| [product-discovery](delivery/product-discovery/SKILL.md) | Clarify uncertain product value, refine a product-owner backlog item or resolve stakeholder scope; compare minimal solutions and define a measurable experiment or delivery slice. |
 | [project-management](delivery/project-management/SKILL.md) | Organize delivery, technical debt or release work without excessive process overhead. |
 | [repository-contribution](delivery/repository-contribution/SKILL.md) | Resolve contribution rules and source ownership for an unfamiliar repository or changed process before substantial work. Reuse known instructions and skip onboarding for a clear small correction. |
 | [technical-debt](delivery/technical-debt/SKILL.md) | Assess a maintainability problem and prioritize a safe, incremental repayment plan. |
@@ -51,12 +51,13 @@ Implement maintainable applications, platforms and specialized products.
 | [game-architecture](engineering/game-architecture/SKILL.md) | Structure an existing or new game for clear state ownership, engine integration and testable mechanics. |
 | [game-design](engineering/game-design/SKILL.md) | Clarify a game concept, core loop, player goals, balancing or playtest criteria. |
 | [game-mechanics](engineering/game-mechanics/SKILL.md) | Implement or tune a specific game mechanic such as movement, combat, inventory or progression. |
-| [gcp-patterns](engineering/gcp-patterns/SKILL.md) | Design, deploy or troubleshoot a workload on Google Cloud with clear cost and operational constraints. |
+| [gcp-patterns](engineering/gcp-patterns/SKILL.md) | Design, review or troubleshoot Google Cloud workloads: service choice, IAM, Cloud Run, Pub/Sub, data, cost and recovery. Use terraform-iac for infrastructure state and plan mechanics. |
 | [iot-embedded-patterns](engineering/iot-embedded-patterns/SKILL.md) | Develop or review firmware, embedded protocols, resource-constrained systems or device integration. |
 | [practical-refactoring](engineering/practical-refactoring/SKILL.md) | Refactor existing code incrementally while preserving behavior and keeping changes reviewable. |
 | [prototyping](engineering/prototyping/SKILL.md) | Create a short experiment to reduce uncertainty in a game, interface or technical concept. |
 | [software-engineering](engineering/software-engineering/SKILL.md) | Implement a bounded change across modules or languages: trace the existing behavior, preserve contracts and verify the integrated result. Prefer the language skill for language-specific syntax or tooling. |
 | [solid-principles](engineering/solid-principles/SKILL.md) | Evaluate responsibilities and dependencies using SOLID principles without unnecessary abstractions. |
+| [terraform-iac](engineering/terraform-iac/SKILL.md) | Create, review or refactor Terraform infrastructure with explicit state ownership, provider/module compatibility, IAM scope and plan evidence. Select for drift, imports, moves or replacement risk. |
 
 ## Programming Languages
 
@@ -65,9 +66,9 @@ Apply focused language and framework engineering practices.
 | Name | Select for |
 | --- | --- |
 | [flutter-patterns](languages/flutter-patterns/SKILL.md) | Build, review or debug a Flutter application, including platform integration and widget behavior. |
-| [frontend-patterns](languages/frontend-patterns/SKILL.md) | Build or improve a web interface with accessible interaction, clear states, reusable components and API contracts. |
+| [frontend-patterns](languages/frontend-patterns/SKILL.md) | Implement or debug React, JavaScript and web UI behavior: state ownership, effects, forms, accessible interaction and API failure recovery. |
 | [golang-patterns](languages/golang-patterns/SKILL.md) | Write, review or debug idiomatic Go code, concurrency, interfaces and resource management. |
-| [python-patterns](languages/python-patterns/SKILL.md) | Write, review or refactor Python using dataclasses, explicit boundaries, uv and behavior-focused tests. |
+| [python-patterns](languages/python-patterns/SKILL.md) | Write, review or debug Python and FastAPI code with typed boundaries, safe async/resource lifetimes and behavior-focused tests. |
 
 ## Quality, Security & Reliability
 
@@ -88,6 +89,7 @@ Preserve project memory and communicate decisions and outcomes.
 
 | Name | Select for |
 | --- | --- |
-| [communication](knowledge/communication/SKILL.md) | Write a status update, explanation, decision request or stakeholder message with a clear audience and purpose. |
+| [communication](knowledge/communication/SKILL.md) | Draft a concise status update, explanation, proposal or stakeholder decision request with clear evidence and next action. Use technical-writing for a maintained guide or runbook. |
 | [marp-presentations](knowledge/marp-presentations/SKILL.md) | Create or revise a Marp presentation with concise narrative, readable slides and compatible frontmatter. |
 | [obsidian-para](knowledge/obsidian-para/SKILL.md) | Capture, retrieve and maintain notes in a private Obsidian vault organized as Projects, Areas, Resources and Archive, including Windows/WSL links. |
+| [technical-writing](knowledge/technical-writing/SKILL.md) | Author or edit technical guides, runbooks, architecture explanations and reference documentation from verified sources; check reader tasks, links and source ownership. Use communication for a short message. |

@@ -1,8 +1,8 @@
 # Presentation templates
 
-Use an existing presentation template when it fits the audience and decision. The
-[presentation agent](../agents/presentation-agent.md) helps structure the narrative;
-verify claims, diagrams and figures against the project's sources.
+Choose a maintained Marp source for the audience's next decision. Use the
+[presentation agent](../agents/presentation-agent.md) for structure when useful; verify
+claims, diagrams and figures against the project's sources and inspect the rendered deck.
 
 ## Client pitch
 
@@ -25,11 +25,5 @@ and the next priority. Separate completed engineering from unmeasured business i
 
 [Project review source](https://github.com/atstaeff/ai-agents/blob/main/marp-templates/project-review.md)
 
-## Example request
-
-```text
-Use the presentation-agent profile and the project-review template.
-Audience: the project's decision owners.
-Source: the current iteration report and verified changes.
-Outcome: decide the next increment. Keep unknowns and pending decisions visible.
-```
+Keep the audience, source evidence, intended decision and unknowns explicit in the
+request. Use the project's actual presentation tooling and output format.

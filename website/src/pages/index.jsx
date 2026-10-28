@@ -6,7 +6,7 @@ import counts from '../../.generated/catalog.json';
 const paths = [
   {number: '01', title: 'Choose expertise', to: '/catalog/', text: 'Find the roles and focused skills your next outcome needs. One catalog, seven disciplines.'},
   {number: '02', title: 'Work from a shared model', to: '/concept/', text: 'Start with a clear project map, contribution guide and one assignment. Add useful knowledge as you deliver.'},
-  {number: '03', title: 'Make quality observable', to: '/operating-model/quality/', text: 'Turn maintainability, security and reliability into concrete scenarios and meaningful checks.'},
+  {number: '03', title: 'Coordinate useful specialists', to: '/getting-started/orchestration/', text: 'Give leads clear responsibilities and specialists bounded work. Verify one integrated result.'},
   {number: '04', title: 'Start with a useful template', to: '/templates/', text: 'Project briefs, architecture reviews, decisions and handoffs. Use only the artifact the assignment needs.'},
 ];
 
@@ -19,7 +19,7 @@ export default function Home() {
             <div>
               <p className="eyebrow">Engineering with AI · by Stefan Poss</p>
               <h1>Build products.<br /><span>Preserve the reasoning.</span></h1>
-              <p className="hero-description">Reusable expertise. Clear decisions. Shared project knowledge that another person or session can continue from.</p>
+              <p className="hero-description">Product intent, focused engineering expertise and clear decisions. A shared process your next person or AI session can continue from.</p>
               <div className="hero-actions">
                 <Link className="button button--primary button--lg" to="/getting-started/lean-project/">Start a team project</Link>
                 <Link className="button button--secondary button--lg" to="/catalog/">Explore the catalog</Link>

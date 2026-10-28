@@ -1,17 +1,20 @@
 ---
 name: "gcp-patterns"
-description: "Design, deploy or troubleshoot a workload on Google Cloud with clear cost and operational constraints."
+description: "Design, review or troubleshoot Google Cloud workloads: service choice, IAM, Cloud Run, Pub/Sub, data, cost and recovery. Use terraform-iac for infrastructure state and plan mechanics."
 ---
 
-# Gcp Patterns
+# GCP Patterns
 
 ## Workflow
 
-1. Confirm existing projects, IAM, regions, data restrictions and workload needs before selecting services.
-2. Prefer the least complex managed option that meets the requirements; Cloud Run may suit a containerized application, while Kubernetes requires a concrete need.
-3. Use least privilege, secret management, infrastructure as code and separate environments where warranted.
-4. Define metrics, budget alerts, rollback and restore; verify current service behavior in official documentation when needed.
+1. Confirm actual projects/environments, data residency, callers, workload shape, budget and recovery targets. Inspect existing resources and ownership when access permits; label unverified assumptions.
+2. Compare the current deployment with the simplest adequate service. For Cloud Run, account for ingress, authentication, concurrency, scaling limits, cold starts and downstream connection capacity. Choose Kubernetes only for a concrete requirement.
+3. Separate deployer, runtime and service-agent identities. Scope IAM to the needed action/resource, use managed secret delivery and prefer short-lived workload credentials. Verify denied access as well as the allowed path.
+4. For Pub/Sub or asynchronous work, define durable idempotency, acknowledgment, retry/backoff, poison-message handling and replay. Make deduplication plus the business write atomic when possible; external side effects need their own idempotency or recovery contract.
+5. Match storage/query design to data access, retention and compatibility. Estimate compute, storage and egress from a representative workload; define actionable alerts, operating owner and rollout/restore checks.
+6. Verify affected service/provider limits and pricing in current official documentation. Report actual plan/deployment/access/restore evidence separately; a local validation cannot establish live cloud behavior.
 
 ## Focused references
 
-- [Detailed examples](references/guide.md): load only the section relevant to the task.
+- [Workload guide](references/guide.md): read the relevant Cloud Run, Pub/Sub or data section.
+- [Terraform IaC](../terraform-iac/SKILL.md): state, module, IAM ownership or plan review.

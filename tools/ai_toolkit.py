@@ -3,20 +3,23 @@
 from __future__ import annotations
 
 import argparse
+import base64
 import csv
 import errno
 import hashlib
 import io
 import json
 import os
+import posixpath
 import re
 import sys
 import tempfile
 import threading
+from contextlib import contextmanager
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from urllib.parse import quote, unquote, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +28,11 @@ TASK_STATES = {"open", "in_progress", "blocked", "done"}
 MAX_RECORD = 1024 * 1024
 LINK = re.compile(r"\[[^\]]*\]\(([^\s)]+)\)")
 FENCE = re.compile(r"^```[^\n]*\n.*?^```[^\n]*$", re.M | re.S)
+RUNTIMES = {'opencode', 'copilot', 'claude', 'portable', 'herd'}
+EXPORT_MANIFEST = '.ai-toolkit-manifest.json'
+EXPORT_JOURNAL = '.ai-toolkit-transaction.json'
+EXPORT_LOCK = '.ai-toolkit-export.lock'
+_UNCHECKED = object()
 
 
 class ToolkitError(ValueError):
@@ -218,7 +226,7 @@ def check(root: Path = ROOT) -> list[str]:
     return errors
 
 
-def atomic_write(path: Path, data: bytes) -> None:
+def _atomic_write_file(path: Path, data: bytes, expected_hash=_UNCHECKED) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(dir=path.parent, prefix=f".{path.name}.", delete=False) as stream:
         temporary = Path(stream.name)
@@ -227,9 +235,215 @@ def atomic_write(path: Path, data: bytes) -> None:
             stream.flush()
             os.fsync(stream.fileno())
             stream.close()
+            if expected_hash is not _UNCHECKED and _export_file_hash(path) != expected_hash:
+                raise Conflict(f'Export target changed while preparing the update: {path.name}. Reload and retry.')
             os.replace(temporary, path)
         finally:
             temporary.unlink(missing_ok=True)
+
+
+def atomic_write(path: Path, data: bytes, *, expected_hash=_UNCHECKED) -> None:
+    _atomic_write_file(path, data, expected_hash)
+
+
+def _export_relative(relative: str) -> str:
+    if (not isinstance(relative, str) or not relative or '\\' in relative
+            or any(ord(c) < 32 for c in relative)
+            or PurePosixPath(relative).is_absolute()
+            or PurePosixPath(relative).as_posix() != relative
+            or any(part in {'', '.', '..'} for part in relative.split('/'))
+            or re.match(r'^[A-Za-z]:', relative)
+            or relative in {EXPORT_MANIFEST, EXPORT_JOURNAL, EXPORT_LOCK}):
+        raise ToolkitError('Invalid export manifest path; use normalized relative file paths.')
+    return relative
+
+
+def _export_target(output: Path, relative: str) -> Path:
+    target = output / _export_relative(relative)
+    if not target.resolve().is_relative_to(output.resolve()):
+        raise ToolkitError('Export path escapes its destination.')
+    _export_file_hash(target)
+    return target
+
+
+def _export_file_hash(path: Path) -> str | None:
+    if path.is_symlink() or any(parent.is_symlink() for parent in path.parents):
+        raise ToolkitError('Export destination must not contain symlinks.')
+    if not path.exists():
+        return None
+    if not path.is_file():
+        raise ToolkitError(f'Export target is not a file: {path.name}')
+    return digest(path.read_bytes())
+
+
+def _export_manifest(path: Path) -> dict[str, str]:
+    if _export_file_hash(path) is None:
+        return {}
+    try:
+        old = json.loads(path.read_text(encoding='utf-8'))['files']
+        if not isinstance(old, dict):
+            raise ValueError('files must be an object')
+        for relative, checksum in old.items():
+            _export_relative(relative)
+            if not isinstance(checksum, str) or not re.fullmatch(r'[0-9a-f]{64}', checksum):
+                raise ValueError('invalid content digest')
+        return old
+    except (ValueError, KeyError, TypeError) as exc:
+        raise ToolkitError('Invalid export manifest; select another output directory.') from exc
+
+
+@contextmanager
+def _export_writer(output: Path):
+    # Cooperative exporters serialize; arbitrary editors still require coordination.
+    lock = output / EXPORT_LOCK
+    output.mkdir(parents=True, exist_ok=True)
+    try:
+        descriptor = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    except FileExistsError as exc:
+        raise Conflict(f'Another export owns {lock}. If interrupted, verify its owner has stopped before removing this lock and retrying.') from exc
+    try:
+        with os.fdopen(descriptor, 'w', encoding='utf-8') as stream:
+            json.dump({'pid': os.getpid()}, stream)
+            stream.flush()
+            os.fsync(stream.fileno())
+        yield
+    finally:
+        lock.unlink(missing_ok=True)
+
+
+def _recover_export(output: Path) -> None:
+    """Roll back an uncommitted journal without replacing intervening edits."""
+    journal_path = output / EXPORT_JOURNAL
+    if _export_file_hash(journal_path) is None:
+        return
+    try:
+        journal = json.loads(journal_path.read_text(encoding='utf-8'))
+        if (journal['schemaVersion'] != 1 or journal['state'] not in {'pending', 'complete'}
+                or not isinstance(journal['files'], dict)):
+            raise ValueError('invalid transaction shape')
+        before_manifest = journal['manifestBefore']
+        if before_manifest is not None:
+            before_manifest = base64.b64decode(before_manifest, validate=True)
+        after_manifest = journal['manifestAfter']
+        if not isinstance(after_manifest, str) or not re.fullmatch(r'[0-9a-f]{64}', after_manifest):
+            raise ValueError('invalid manifest digest')
+        recover = []
+        for relative, record in journal['files'].items():
+            target = _export_target(output, relative)
+            before = record['before']
+            if before is not None:
+                before = base64.b64decode(before, validate=True)
+            after = record['after']
+            if after is not None and (not isinstance(after, str) or not re.fullmatch(r'[0-9a-f]{64}', after)):
+                raise ValueError('invalid file digest')
+            recover.append((target, before, after))
+    except (ValueError, KeyError, TypeError) as exc:
+        raise ToolkitError('Invalid interrupted export journal; preserve it and inspect the destination before retrying.') from exc
+    manifest_path = output / EXPORT_MANIFEST
+    current_manifest = _export_file_hash(manifest_path)
+    if journal['state'] == 'complete':
+        if current_manifest != after_manifest:
+            raise Conflict('The manifest changed after an interrupted export committed; preserve the journal and reconcile the edit.')
+        journal_path.unlink()
+        return
+    previous_manifest = digest(before_manifest) if before_manifest is not None else None
+    if current_manifest not in {previous_manifest, after_manifest}:
+        raise Conflict('The manifest changed during an interrupted export; preserve the journal and reconcile the edit.')
+    for target, before, after in recover:
+        current = _export_file_hash(target)
+        previous = digest(before) if before is not None else None
+        if current not in {previous, after}:
+            raise Conflict(f'An interrupted export target was edited: {target.name}. Preserve the journal and reconcile the edit.')
+    for target, before, after in recover:
+        current = _export_file_hash(target)
+        previous = digest(before) if before is not None else None
+        if current == previous:
+            continue
+        if current != after:
+            raise Conflict(f'Export recovery target changed: {target.name}. Preserve the journal and retry after reconciliation.')
+        if before is None:
+            target.unlink()
+        else:
+            _atomic_write_file(target, before, current)
+    current_manifest = _export_file_hash(manifest_path)
+    if current_manifest != previous_manifest:
+        if current_manifest != after_manifest:
+            raise Conflict('The manifest changed during export recovery; preserve the journal and reconcile the edit.')
+        if before_manifest is None:
+            manifest_path.unlink()
+        else:
+            _atomic_write_file(manifest_path, before_manifest, current_manifest)
+    journal_path.unlink()
+
+
+def _write_export(output: Path, planned: dict[str, bytes], runtime: str,
+                  force: bool, dry_run: bool) -> dict[str, int]:
+    manifest_path = output / EXPORT_MANIFEST
+
+    def prepare():
+        old = _export_manifest(manifest_path)
+        hashes = {relative: digest(data) for relative, data in planned.items()}
+        expected = {}
+        changed, removed = [], []
+        for relative in sorted(set(planned) | set(old)):
+            target = _export_target(output, relative)
+            current = _export_file_hash(target)
+            expected[relative] = current
+            if current is not None and not force and (relative not in old or current != old[relative]):
+                raise ToolkitError(f'Refusing to overwrite an unmanaged or edited file: {relative}. Use a separate output or explicitly pass --force.')
+            if relative in planned:
+                if current != hashes[relative]:
+                    changed.append(relative)
+            elif current is not None:
+                removed.append(relative)
+        manifest = (json.dumps({'runtime': runtime, 'files': hashes}, indent=2) + '\n').encode()
+        return changed, removed, expected, manifest
+
+    if dry_run:
+        if (output / EXPORT_LOCK).exists() or (output / EXPORT_JOURNAL).exists():
+            raise Conflict('The export has an active writer or interrupted transaction; recover it before previewing.')
+        changed, removed, _, _ = prepare()
+    else:
+        # Reject symlinked destinations before creating the writer lock.
+        _export_file_hash(manifest_path)
+        with _export_writer(output):
+            _recover_export(output)
+            changed, removed, expected, manifest = prepare()
+            before_manifest = manifest_path.read_bytes() if manifest_path.exists() else None
+            if changed or removed or before_manifest != manifest:
+                journal = {
+                    'schemaVersion': 1,
+                    'state': 'pending',
+                    'manifestBefore': base64.b64encode(before_manifest).decode() if before_manifest is not None else None,
+                    'manifestAfter': digest(manifest),
+                    'files': {relative: {
+                        'before': base64.b64encode((output / relative).read_bytes()).decode() if expected[relative] is not None else None,
+                        'after': digest(planned[relative]) if relative in planned else None,
+                    } for relative in changed + removed},
+                }
+                journal_path = output / EXPORT_JOURNAL
+                _atomic_write_file(journal_path, (json.dumps(journal, indent=2) + '\n').encode(), None)
+                try:
+                    for relative in changed:
+                        atomic_write(output / relative, planned[relative], expected_hash=expected[relative])
+                    for relative in removed:
+                        target = output / relative
+                        if _export_file_hash(target) != expected[relative]:
+                            raise Conflict(f'Export target changed before removal: {relative}. Reload and retry.')
+                        target.unlink()
+                    if before_manifest != manifest:
+                        atomic_write(manifest_path, manifest, expected_hash=digest(before_manifest) if before_manifest is not None else None)
+                    pending_hash = _export_file_hash(journal_path)
+                    journal['state'] = 'complete'
+                    _atomic_write_file(journal_path, (json.dumps(journal, indent=2) + '\n').encode(), pending_hash)
+                    journal_path.unlink()
+                except BaseException as exc:
+                    try:
+                        _recover_export(output)
+                    except (ToolkitError, OSError) as recovery_error:
+                        raise ToolkitError(f'Export interrupted: {exc}. Recovery is pending: {recovery_error}') from exc
+                    raise
+    return {'changed': len(changed), 'unchanged': len(planned) - len(changed), 'removed': len(removed)}
 
 
 @dataclass(frozen=True)
@@ -261,10 +475,194 @@ class OpenCodeOptions:
                     raise ToolkitError(f'{phase.title()} variant must be a model-supported variant name.')
 
 
+HERD_UPSTREAM_REVISION = 'fbda6618c7b53524faddbed070e4fbc14970e412'
+HERD_LEADS = {'joerg', 'product-manager', 'lead-architect', 'task-orchestrator'}
+
+
+def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
+    """Keep copied references local; point omitted public sources at their reading view."""
+    for name, data in list(planned.items()):
+        if not name.startswith('catalog/') or not name.endswith('.md'):
+            continue
+        source = root / name.removeprefix('catalog/')
+        content = data.decode('utf-8')
+        fences = [(match.start(), match.end()) for match in FENCE.finditer(content)]
+
+        def rebase(match):
+            if any(start <= match.start() < end for start, end in fences):
+                return match[0]
+            parts = urlsplit(match[1])
+            if parts.scheme or parts.netloc or not parts.path:
+                return match[0]
+            original = (source.parent / unquote(parts.path)).resolve()
+            if not original.is_relative_to(root.resolve()):
+                raise ToolkitError(f'Catalog reference leaves the source repository: {source.relative_to(root)} -> {match[1]}')
+            relative = original.relative_to(root.resolve())
+            if (relative.parts[:2] in {('workspace', 'work'), ('workspace', 'archive'),
+                                       ('workspace', 'generated'), ('workspace', 'exports')}
+                    or (relative.parts and relative.parts[0] in {'.ai', '.git', '.venv'})
+                    or any(part in {'.env', '.env.local', '__pycache__'} for part in relative.parts)):
+                raise ToolkitError(f'Catalog references private or generated state: {source.relative_to(root)}')
+            copied = 'catalog/' + relative.as_posix()
+            if copied in planned or (original.is_dir() and any(path.startswith(copied + '/') for path in planned)):
+                return match[0]
+            if not original.exists():
+                raise ToolkitError(f'Catalog reference does not exist: {source.relative_to(root)} -> {match[1]}')
+            view = 'tree' if original.is_dir() else 'blob'
+            target = f'https://github.com/atstaeff/ai-agents/{view}/main/{quote(relative.as_posix(), safe="/")}'
+            if parts.query:
+                target += '?' + parts.query
+            if parts.fragment:
+                target += '#' + parts.fragment
+            start, end = match.start(1) - match.start(), match.end(1) - match.start()
+            return match[0][:start] + target + match[0][end:]
+
+        planned[name] = LINK.sub(rebase, content).encode('utf-8')
+
+
+def _herd_installed_markdown(text: str, exported_path: str, installed_path: str) -> str:
+    """Convert workspace links to the reference skill installed by Herd's importer."""
+    def rebase(match):
+        parts = urlsplit(match.group(1))
+        if parts.scheme or parts.netloc or not parts.path:
+            return match[0]
+        target = posixpath.normpath(posixpath.join(posixpath.dirname(exported_path), unquote(parts.path)))
+        if not target.startswith('catalog/'):
+            raise ToolkitError(f'Herd reference is outside the catalog: {target}')
+        installed = 'skills/ai-agents-catalog/references/' + target
+        relative = posixpath.relpath(installed, posixpath.dirname(installed_path))
+        if parts.fragment:
+            relative += '#' + parts.fragment
+        return match[0].replace(match.group(1), relative)
+    return LINK.sub(rebase, text)
+
+
+def herd_files(entries: list[Entry], planned: dict[str, bytes], output: Path) -> dict[str, bytes]:
+    """NickGuAI/Herd package v1 and portable import v2; no invented runtime fields.
+
+    Source contract: apps/herd/modules/commanders/{packages/registry.ts,
+    template-bundle.ts,routes/register-core.ts} at HERD_UPSTREAM_REVISION.
+    Providers, models, effort and effective worker tools remain local settings.
+    """
+    if any(e.kind == 'skill' and e.name == 'ai-agents-catalog' for e in entries):
+        raise ToolkitError('The ai-agents-catalog skill name is reserved by the Herd adapter.')
+    agents = [e for e in entries if e.kind == 'agent']
+    leads = [e for e in agents if e.name in HERD_LEADS] or agents[:1]
+    skills = [e for e in entries if e.kind == 'skill']
+    catalog_skill = (
+        '---\nname: ai-agents-catalog\n'
+        'description: Locate selected specialist profiles and shared references for a bounded Herd worker task.\n---\n\n'
+        '# AI Agents catalog\n\n'
+        'Read [selected specialists](references/SPECIALISTS.md) and '
+        '[catalog metadata](references/catalog/index.json) before loading one relevant profile. '
+        'Load only the instructions needed for the current task. '
+        'Use the project\'s actual assignment and knowledge sources.\n\n'
+        'Give each worker its role, bounded write scope, acceptance checks, context paths and '
+        'expected evidence. Plan and reviewer workers require read-only tools configured '
+        'in their execution host. These catalog instructions do not enforce tool permissions.\n'
+    ).encode()
+    specialist_index = '# Selected specialists\n\n| Role | Select for |\n| --- | --- |\n'
+    for entry in agents:
+        specialist_index += f'| [{entry.name}](catalog/{entry.path}) | {entry.description.replace("|", "&#124;")} |\n'
+    reference_files = {'SKILL.md': catalog_skill, 'references/SPECIALISTS.md': specialist_index.encode()}
+    reference_files.update({'references/' + name: data for name, data in planned.items() if name.startswith('catalog/')})
+
+    def binding(skill_id: str, files: dict[str, bytes], required: bool) -> dict:
+        # Herd's v2 parser requires nonempty base64 content for each bundled file.
+        if any(not data for data in files.values()):
+            raise ToolkitError(f'Herd cannot import an empty skill file: {skill_id}')
+        return {'skillId': skill_id, 'source': 'commander-local', 'required': required,
+                'bundle': {'dirName': skill_id, 'files': [
+                    {'path': path, 'contentBase64': base64.b64encode(data).decode()}
+                    for path, data in sorted(files.items())]}}
+
+    native_skills = {}
+    for entry in skills:
+        source = f'herd/skills/{entry.name}/SKILL.md'
+        body = _herd_installed_markdown(planned[source].decode(), source, f'skills/{entry.name}/SKILL.md')
+        native_skills[entry.name] = {'SKILL.md': body.encode()}
+        interface = f'herd/skills/{entry.name}/agents/openai.yaml'
+        if interface in planned:
+            native_skills[entry.name]['agents/openai.yaml'] = planned[interface]
+
+    result = {}
+    for lead in leads:
+        directory = f'herd/commanders/{lead.name}'
+        source = f'herd/specialists/{lead.name}.md'
+        _, body = metadata(planned[source].decode())
+        commander_md = _herd_installed_markdown(body, source, 'COMMANDER.md')
+        commander_md += ('\n## Herd handoff\n\n'
+                         'Use the installed ai-agents-catalog skill to select a specialist. '
+                         'Dispatch only authorized work with a bounded scope and expected evidence; '
+                         'verify the combined result before completion. Configure provider, model, '
+                         'effort and worker tool restrictions in Herd and the worker host.\n')
+        required = {'agent-routing', 'repository-contribution', 'work-management'}
+        canonical = planned[f'catalog/{lead.path}'].decode()
+        required.update(entry.name for entry in skills if f'/{entry.name}/SKILL.md' in canonical)
+        skill_metadata = [{'id': 'ai-agents-catalog', 'label': 'AI Agents catalog',
+                           'purpose': 'Load selected specialist instructions and shared references on demand.', 'required': True}]
+        skill_metadata += [{'id': entry.name, 'label': entry.name, 'purpose': entry.description,
+                            'required': entry.name in required} for entry in skills]
+        manifest = {key: [{k: v for k, v in item.items() if k != 'required'}
+                          for item in skill_metadata if item['required'] == is_required]
+                    for key, is_required in (('required', True), ('optional', False))}
+        package = {'schemaVersion': 1, 'id': lead.name, 'version': '1.0.0',
+                   'displayName': lead.name.replace('-', ' ').title(), 'host': lead.name,
+                   'role': lead.name.replace('-', ' ').title(), 'summary': lead.description,
+                   'description': lead.description}
+        result[directory + '/package.json'] = (json.dumps(package, indent=2) + '\n').encode()
+        result[directory + '/COMMANDER.md'] = commander_md.encode()
+        result[directory + '/skills.manifest.json'] = (json.dumps(manifest, indent=2) + '\n').encode()
+        result[directory + '/memory-seed.md'] = b'# Memory\n\nNo operator memory is included. Read the assigned project sources.\n'
+        result[directory + '/onboarding.md'] = (
+            '# Install\n\nImport the corresponding `.bundle.json` from `herd/imports/` '
+            'with Herd Marketplace\'s Install from file action. Select the execution '
+            'machine, project directory, provider, model and effort locally before dispatching work. '
+            'Package manifests describe dependencies; the portable bundle embeds them.\n'
+        ).encode()
+        if 'catalog/LICENSE' in planned:
+            result[directory + '/LICENSE'] = planned['catalog/LICENSE']
+        bindings = [binding('ai-agents-catalog', reference_files, True)]
+        bindings += [binding(entry.name, native_skills[entry.name], entry.name in required) for entry in skills]
+        bundle = {'schemaVersion': 2, 'exportedAt': datetime.now(UTC).isoformat(),
+                  'commander': {'displayName': package['displayName'], 'host': lead.name},
+                  'commanderMd': commander_md, 'memorySnapshot': {'memoryMd': '', 'syncRevision': 0},
+                  'skills': skill_metadata, 'skillBindings': bindings, 'automations': []}
+        destination = f'herd/imports/{lead.name}.bundle.json'
+        existing = output / destination
+        if _export_file_hash(existing) is not None:
+            try:
+                previous = json.loads(existing.read_text(encoding='utf-8'))
+                comparison = {**bundle, 'exportedAt': previous['exportedAt']}
+                if isinstance(previous['exportedAt'], str) and comparison == previous:
+                    bundle = comparison
+            except (ValueError, KeyError, TypeError):
+                pass  # Normal ownership validation reports edited files before writing.
+        result[destination] = (json.dumps(bundle, indent=2) + '\n').encode()
+    result['herd/README.md'] = (
+        '# Herd export\n\n'
+        'Target: NickGuAI/Herd, not HerdOS or Herdr. Import each selected leader from '
+        '`imports/*.bundle.json` using Marketplace → Install from file. `commanders/` contains '
+        'inspectable package-v1 sources; `skills/` and `specialists/` are workspace references. '
+        'The v2 import installs selected skills and an on-demand reference catalog.\n\n'
+        'Choose project directory, machine, provider, model, effort and worker permissions in '
+        'the local Herd installation. Imports inherit its default provider. Backend package-v1 '
+        'loading defaults an omitted provider to Claude. This adapter supplies no automatic '
+        'model-tier routing, enforced tool restrictions, credentials, automations or private memory. '
+        'Validate discovery, references and effective permissions on your installed version.\n\n'
+        f'Upstream schema reviewed at https://github.com/NickGuAI/Herd/tree/{HERD_UPSTREAM_REVISION}: '
+        '`docs/guides/commander-packages.md`, `docs/guides/commander-bundles.md`, '
+        '`apps/herd/modules/commanders/packages/registry.ts`, '
+        '`apps/herd/modules/commanders/template-bundle.ts` and '
+        '`apps/herd/modules/commanders/routes/register-core.ts`.\n'
+    ).encode()
+    return result
+
+
 def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, dry_run: bool = False,
            *, opencode_options: OpenCodeOptions | None = None, preset: str = 'all',
            agent_names: tuple[str, ...] = (), skill_names: tuple[str, ...] = ()) -> dict:
-    if runtime not in {"opencode", "copilot", "claude", "portable"}:
+    if runtime not in RUNTIMES:
         raise ToolkitError("Unknown runtime.")
     options = opencode_options or OpenCodeOptions()
     if runtime != 'opencode' and options != OpenCodeOptions():
@@ -282,32 +680,41 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
     if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
         raise ToolkitError('Export outside canonical source folders.')
+    planned: dict[str, bytes] = {}
+    for folder in ("agents", "skills", "toolkit", "templates", "marp-templates", "reference-repos"):
+        source_directory = root / folder
+        if source_directory.is_symlink():
+            raise ToolkitError(f'Cannot export a symlink: {source_directory}')
+        for path in sorted(source_directory.rglob("*")):
+            if path.is_symlink():
+                raise ToolkitError(f"Cannot export a symlink: {path}")
+            if path.is_file():
+                planned[f"catalog/{path.relative_to(root).as_posix()}"] = path.read_bytes()
+    license_path = root / 'LICENSE'
+    if license_path.is_symlink():
+        raise ToolkitError('Cannot export a symlinked license.')
+    if license_path.is_file():
+        planned['catalog/LICENSE'] = license_path.read_bytes()
+    _catalog_reading_links(planned, root)
     entries = select_entries(catalog(root), preset, agent_names, skill_names)
     selected_agents = {e.name for e in entries if e.kind == 'agent'}
     for phase in ('plan', 'build'):
         if (getattr(options, f'{phase}_model') or getattr(options, f'{phase}_variant')
                 or (phase == 'plan' and (options.plannotator or options.plan_directory))) and phase not in selected_agents:
             raise ToolkitError(f'{phase} options require selecting the {phase} agent.')
-    planned: dict[str, bytes] = {}
-    for folder in ("agents", "skills", "toolkit", "templates", "marp-templates", "reference-repos"):
-        for path in sorted((root / folder).rglob("*")):
-            if path.is_file():
-                if path.is_symlink():
-                    raise ToolkitError(f"Cannot export a symlink: {path}")
-                planned[f"catalog/{path.relative_to(root).as_posix()}"] = path.read_bytes()
     planned['catalog/index.json'] = (json.dumps([asdict(e) for e in entries], indent=2) + '\n').encode()
     for entry in entries:
         if entry.kind == "skill":
-            base = {"opencode": "skills", "copilot": ".github/skills", "claude": ".claude/skills", "portable": ".agents/skills"}[runtime]
+            base = {"opencode": "skills", "copilot": ".github/skills", "claude": ".claude/skills", "portable": ".agents/skills", "herd": "herd/skills"}[runtime]
             destination = f"{base}/{entry.name}/SKILL.md"
-            interface = (root / entry.path).parent / 'agents/openai.yaml'
-            if interface.is_file():
-                planned[f'{base}/{entry.name}/agents/openai.yaml'] = interface.read_bytes()
+            interface = 'catalog/' + (Path(entry.path).parent / 'agents/openai.yaml').as_posix()
+            if interface in planned:
+                planned[f'{base}/{entry.name}/agents/openai.yaml'] = planned[interface]
         else:
-            base = {"opencode": "agents", "copilot": ".github/agents", "claude": ".claude/agents", "portable": "agents"}[runtime]
-            suffix = ".md" if runtime in {"opencode", "claude"} else ".agent.md"
+            base = {"opencode": "agents", "copilot": ".github/agents", "claude": ".claude/agents", "portable": "agents", "herd": "herd/specialists"}[runtime]
+            suffix = ".md" if runtime in {"opencode", "claude", "herd"} else ".agent.md"
             destination = f"{base}/{entry.name}{suffix}"
-        meta, body = metadata((root / entry.path).read_text(encoding="utf-8"))
+        meta, body = metadata(planned[f'catalog/{entry.path}'].decode('utf-8'))
         def rebase(match):
             target = match.group(1)
             parts = urlsplit(target)
@@ -385,47 +792,10 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/SESSION-RULES.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
     elif runtime == "claude":
         planned['CLAUDE.md'] = b'@catalog/toolkit/SESSION-RULES.md\n'
-    manifest_path = output / '.ai-toolkit-manifest.json'
-    if manifest_path.is_symlink():
-        raise ToolkitError("The export manifest must not be a symlink.")
-    old = {}
-    if manifest_path.exists():
-        try:
-            old = json.loads(manifest_path.read_text(encoding='utf-8'))['files']
-        except (ValueError, KeyError, TypeError) as exc:
-            raise ToolkitError("Invalid export manifest; select another output directory.") from exc
-        if not isinstance(old, dict) or any(not isinstance(k, str) or not isinstance(v, str) for k, v in old.items()):
-            raise ToolkitError("Invalid export manifest.")
-    hashes = {relative: digest(data) for relative, data in planned.items()}
-    changed = []
-    removed = []
-    for relative in sorted(set(planned) | set(old)):
-        target = output / relative
-        if Path(relative).is_absolute() or not target.resolve().is_relative_to(output.resolve()):
-            raise ToolkitError("Export path escapes its destination.")
-        if target.is_symlink() or any(parent.is_symlink() for parent in target.parents):
-            raise ToolkitError("Export destination must not contain symlinks.")
-        current_hash = None
-        if target.exists():
-            if not target.is_file():
-                raise ToolkitError(f"Export target is not a file: {relative}")
-            current_hash = digest(target.read_bytes())
-            if not force and (relative not in old or current_hash != old[relative]):
-                raise ToolkitError(f"Refusing to overwrite an unmanaged or edited file: {relative}. Use a separate output or explicitly pass --force.")
-        if relative in planned:
-            if current_hash != hashes[relative]:
-                changed.append(relative)
-        elif current_hash is not None:
-            removed.append(relative)
-    if not dry_run:
-        for relative in changed:
-            atomic_write(output / relative, planned[relative])
-        for relative in removed:
-            (output / relative).unlink()
-        manifest = (json.dumps({'runtime': runtime, 'files': hashes}, indent=2) + '\n').encode()
-        if not manifest_path.exists() or manifest_path.read_bytes() != manifest:
-            atomic_write(manifest_path, manifest)
-    return {'runtime': runtime, 'preset': preset, 'metadata_characters': sum(len(e.name) + len(e.description) for e in entries), 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), 'changed': len(changed), 'unchanged': len(planned) - len(changed), 'removed': len(removed), 'dry_run': dry_run}
+    elif runtime == 'herd':
+        planned.update(herd_files(entries, planned, output))
+    changes = _write_export(output, planned, runtime, force, dry_run)
+    return {'runtime': runtime, 'preset': preset, 'metadata_characters': sum(len(e.name) + len(e.description) for e in entries), 'output': str(output), 'agents': sum(e.kind == 'agent' for e in entries), 'skills': sum(e.kind == 'skill' for e in entries), 'files': len(planned), **changes, 'dry_run': dry_run}
 
 
 TASK_ROW = re.compile(r"^\| (?P<id>T[1-9][0-9]*) \| (?P<title>[^|]*) \| (?P<status>open|in_progress|blocked|done) \| (?P<evidence>[^|]*) \|$", re.M)
@@ -757,7 +1127,7 @@ def main(argv: list[str] | None = None) -> int:
     cat.add_argument('--domain', choices=list(domains()), help='Select a catalog discipline')
     cat.add_argument('--format', choices=['json', 'markdown'], default='json')
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
-    adapter.add_argument('--runtime', choices=['opencode','copilot','claude','portable'], required=True)
+    adapter.add_argument('--runtime', choices=sorted(RUNTIMES), required=True)
     adapter.add_argument('--output', type=Path, required=True)
     adapter.add_argument('--preset', choices=list(catalog_presets()), default='all', help='Native profile selection; all preserves existing behavior')
     adapter.add_argument('--agent', action='append', default=[], help='Add a named agent to the preset')

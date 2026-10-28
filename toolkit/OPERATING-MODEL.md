@@ -1,60 +1,93 @@
-# Work with AI as a teammate
+# Engineering with AI
 
-Start from `AGENTS.md`, implement a small complete change, verify it, and preserve the
-knowledge needed to maintain the result. People own priorities and consequential choices.
-Agents are optional roles; skills are reusable procedures, loaded only when useful.
+Turn a product need into a verified change, then retain the knowledge needed to operate
+and improve it. People own priorities, acceptance and consequential decisions. AI leads
+coordinate bounded work; specialists contribute implementation and evidence.
 
-## Keep three kinds of information separate
+## Start with a project map
 
-| Information | Home | Shared with the team? |
+Every adopted project has an `AGENTS.md` entry linking its purpose, boundaries, responsible
+people, delivery process, tools, commands and knowledge. Keep facts in their existing homes:
+`PROJECT.md`, `CONTRIBUTING.md`, repository Markdown or an accessible adopted web source.
+The [starter](../templates/project-starter/README.md) provides a complete example.
+Record which version of a central process applies. Read relevant linked content explicitly.
+
+| Information | Authoritative home | Update when |
 | --- | --- | --- |
-| Personal working plan, experiments and resume notes | The user's private Second Brain project folder | No, unless collaboration requires it |
-| Scope, acceptance, assignment and review feedback | Existing issue/ticket and PR | Yes |
-| Implemented behavior, relevant decisions and operating knowledge | Project code, ADRs and documentation | Yes |
+| Vision, users, scope and decision rights | Project map and stakeholder sources | Product intent or responsibilities change |
+| Outcome, acceptance, ownership, dependencies and progress | Existing GitHub issue, Jira ticket or current assignment | Shared coordination changes |
+| Implementation and review evidence | Code and linked PR/MR | A reviewable increment is ready |
+| Current architecture, operations and significant reasons | Project knowledge and decision home | Behavior or a consequential choice changes |
+| Personal experiments, execution steps and resume notes | Permitted private Second Brain; otherwise unsaved in-session | Useful for personal continuity |
+| Documentation and dependency map | Docusaurus and selected graph views | Regenerated from their maintained sources |
 
-The team needs the result and its rationale. Do not copy a private plan into an issue,
-PR or repository simply to complete a process. A shared execution plan is appropriate
-when several contributors actually depend on its steps; agree one home for that plan.
-Customer restrictions still determine whether any project material may enter a personal vault.
+The team can continue from shared sources without accessing a personal vault. Use a shared
+execution plan only when collaborators depend on its steps. Customer data policy governs
+all storage and model use. No particular folder name, YAML manifest or extra tracker is required.
 
-## The delivery loop
+## The value stream
 
-1. **Understand.** Read the request, applicable rules, relevant code and decisions.
-   Define observable acceptance. A clear small fix can proceed directly.
-2. **Plan when useful.** Keep one personal plan in the configured Second Brain. Capture
-   the outcome, next steps and verification. Obtain plan review only when the user or
-   project actually requires it; share only the necessary review extract.
-3. **Build and check.** Reuse the stack, make the smallest complete change and exercise
-   relevant behavior and failure cases. Record actual results in the change/PR.
-4. **Preserve and finish.** Update affected project knowledge. Record significant
-   decisions with context, alternatives and consequences; a routine edit needs no ADR.
-   Close the personal plan when verified. Review, merge and deployment remain distinct.
+Use the smallest complete increment. A routine correction can move directly from the
+request to implementation and relevant checks; it needs no new planning document.
 
-See the [working contract](WORKFLOW.md) for execution and [quality standard](QUALITY-STANDARD.md)
-for selecting checks. Use [the worked assignment](../examples/document-portal/examples/issue-42.md)
-as a fictional team-delivery example; its shared plan is optional for personal execution.
+| Stage | Work and accountable viewpoint | Evidence to continue |
+| --- | --- | --- |
+| Frame | Product: understand users, value, constraints and stakeholders | Observable acceptance and scope at the assignment |
+| Shape | Engineering: inspect existing behavior, compare material options and agree interfaces | Bounded approach; significant choices recorded as proposed decisions |
+| Build | Delivery coordinates; specialists implement independent slices | Reviewable changes, explicit ownership and executable checks |
+| Verify | Check behavior, security and maintainability; use independent review when required or consequential | Criteria linked to actual results on the combined revision |
+| Integrate and release | Integrator assembles changes; authorized owner controls release | Required acceptance, rollout and recovery evidence |
+| Learn and retain | Contributors update current knowledge and decision status | Next session can recover the result; product outcome observed when available |
 
-## Minimal project setup
+The assignment is the coordination home throughout. The PR links its evidence. Decisions
+are captured when they arise and reconciled against the implemented result. Completed
+plans remain historical at their original home; accepted decisions retain replacement links.
+See the [working contract](WORKFLOW.md), [quality standard](QUALITY-STANDARD.md) and
+[knowledge lifecycle](PROJECT-KNOWLEDGE.md) for the relevant detail.
 
-A short `AGENTS.md` names the outcome/scope, owners, process, code and knowledge homes,
-commands and existing review policy. Link real Markdown documents or authoritative URLs,
-including Docusaurus pages. Load a linked page when it is relevant; links do not imply
-that a host reads every page automatically. Use local source Markdown while editing.
-No mandatory `workspace/`, YAML manifest, extra tracker or agent team is needed.
-Choose one of the [instruction templates](../templates/agent-instructions/README.md).
+## Leads and specialists
 
-## Continue and scale
+These are responsibilities, not a required headcount. A small task can use one session.
+For substantial work, activate the lead viewpoints needed by the outcome and name one integrator.
 
-Resume personal work from its private plan plus current code and decisions. A teammate
-continues from the issue, PR, code and shared knowledge; the private plan is not a dependency.
-Save only current progress, tested revision, blockers and one next action. Follow the
-[recovery guide](CONTEXT-RECOVERY.md) for an interrupted change.
+| Viewpoint | Catalog role | Owns | Delegates for |
+| --- | --- | --- | --- |
+| Product lead | product-manager | User value, scope, stakeholder questions and acceptance proposal | Discovery, domain research and product uncertainty |
+| Engineering lead | lead-architect | Technical approach, contracts and architectural tradeoffs | Python/FastAPI, React/JavaScript, GCP, Terraform and security |
+| Delivery lead | task-orchestrator | Dependency order, writer scopes, blockers and integration coordination | Independent implementation slices and evidence collection |
+| Independent review | code-reviewer, architecture-reviewer | Findings and assessment of the current revision | Tests, focused risk analysis and documentation review |
+| Documentation | documentation-editor | Clear narrative, accurate instructions and useful navigation | A focused authoring pass followed by an independent editorial pass |
 
-Start with one session. Add a specialist or independent review only when the task and
-host justify it. Keep writers separate and verify integrated changes. Multiple tools
-or agents do not require multiple task lists.
+AI roles propose; the project's accountable humans retain decision rights. Leaders share
+the assignment, interfaces and durable knowledge rather than their entire conversations.
+Use [orchestration](ORCHESTRATION.md) for native Herd commanders, specialist packets,
+concurrency and model selection. A role description alone starts no process and grants no tools.
 
-Docusaurus and a knowledge graph are derived views of selected shared Markdown. The
-[runnable demo](../examples/engineering-demo/README.md) links decisions, components and
-AI topics without importing personal plans. The legacy local [work record](WORK-RECORDS.md)
-remains available by explicit choice; it is not a required step.
+## Work efficiently
+
+Load the project entry, current assignment and next relevant skill. Search a scoped area
+and expand for a concrete uncertainty. Keep large examples and reference guides on demand.
+Use [Herdr](HERDR.md) whenever available and usable, with labelled tabs and isolated
+writers. Use an economical evaluated model for a well-defined specialty; complex
+judgment, architecture, integration and consequential review require a strong approved
+model with high reasoning. Native commands handle mechanical coordination. Escalate a failed approach
+with its evidence rather than repeating blind retries or increasing the whole team's context.
+
+Parallelize independent slices with clear contracts and isolated writers. Account for
+coordination cost and provider limits; a larger team is useful only when accepted results
+arrive sooner without excessive rework. Observe time to accepted change, review effort,
+defects, model cost and resource use. Model price and token counts alone do not measure value.
+
+## Adopt incrementally
+
+1. Link the project's real sources from its [AGENTS.md](../templates/agent-instructions/README.md).
+2. Deliver one assignment with the relevant [catalog preset](CATALOG-GUIDE.md).
+3. Use available [Herdr](HERDR.md); add a team when independent work justifies it.
+   [Other host/fleet integrations](RUNTIMES.md) remain available for the adopted environment.
+4. Publish selected shared knowledge through Docusaurus; use bounded graph views for dependencies.
+5. Inspect one completed change and remove friction before expanding the process.
+
+[Ponytail and Graphify](INTEGRATIONS.md) are optional native tools with distinct jobs:
+reduce unnecessary implementation and retrieve useful dependency context. The repository's
+[knowledge map](../examples/engineering-demo/README.md) publishes curated project records.
+The optional [local workbench](WORK-RECORDS.md) manages files; it runs no models or team scheduler.

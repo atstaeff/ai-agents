@@ -15,6 +15,9 @@ Read and follow the adopted shared engineering process:
 https://docs.example.org/engineering/v1/process
 Adopted policy source revision: [verified source commit or governed version].
 Project-specific additions and actual commands: [local contribution guide or exact URL].
+Project locations: [repository/component map, code paths and editing boundaries].
+Tools, integrations and access: [exact project tooling page or local source].
+Setup, build and verification: [actual command/runbook/CI source].
 Work/review homes: [actual tracker and repository/review URLs].
 Current knowledge index: https://docs.example.org/projects/product/knowledge
 Decision history: https://docs.example.org/projects/product/decisions
@@ -37,6 +40,10 @@ Keep one assigned work item with an accountable human, active writer, bounded ch
 scope, dependencies and integration owner. Isolate parallel writers, agree shared
 interfaces and coordinate overlapping scopes through the adopted shared claim mechanism.
 Verify the combined result; an assignee or branch is no distributed lock.
+
+Keep personal steps in the configured private Second Brain when project policy permits;
+use an unsaved session plan if unavailable. Share an execution plan only when collaborators
+need one, at one agreed work home. Keep private paths and notes out of shared sources.
 
 Use actual checks, record evidence by revision and follow required review/action policy.
 Maintain current knowledge and significant reasons in the declared project sources.

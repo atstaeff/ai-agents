@@ -207,7 +207,7 @@ Speaker notes:
 
 - [Presentation Agent](../../../../agents/knowledge/presentation-agent.agent.md)
 - [Proposal/Pitch Agent](../../../../agents/delivery/product-manager.agent.md)
-- [Stakeholder Agent](../../../../agents/delivery/product-manager.agent.md)
+- [Product Manager Agent](../../../../agents/delivery/product-manager.agent.md)
 - [Communication](../../communication/SKILL.md)
 ❌ No clear narrative/flow
 ❌ Missing speaker notes

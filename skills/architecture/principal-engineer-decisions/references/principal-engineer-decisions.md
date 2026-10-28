@@ -172,7 +172,7 @@ Try: "What factors are you considering? [Listen] Those are good points. Have you
 ## Related Skills & Agents
 
 - [Lead Architect Agent](../../../../agents/architecture/lead-architect.agent.md)
-- [Context Manager Agent](../../../../agents/delivery/task-orchestrator.agent.md)
+- [Task Orchestrator Agent](../../../../agents/delivery/task-orchestrator.agent.md)
 - [Architecture Planning](../../architecture-planning/SKILL.md)
 - [Domain-Driven Design](../../domain-driven-design/SKILL.md)
 - [Communication](../../../knowledge/communication/SKILL.md)

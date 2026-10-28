@@ -1,15 +1,15 @@
 # Preview this website locally
 
-Use Python 3.11+, Node.js 22 or 24 LTS and npm. From the repository checkout in WSL:
+The [website source guide](https://github.com/atstaeff/ai-agents/blob/main/website/README.md)
+owns supported prerequisites, build commands and publication details. From the repository root:
 
 ```sh
 npm --prefix website ci
 npm --prefix website start
 ```
 
-Open **http://localhost:3000/ai-agents/** in your Windows browser. Stop with Ctrl+C.
-Docusaurus reloads website files. After editing canonical agent, skill or toolkit sources,
-run `npm --prefix website run generate` again and restart after navigation changes.
+Open **http://localhost:3000/ai-agents/**. Stop with Ctrl+C. After editing canonical
+sources or navigation, regenerate the pages and restart after configuration changes.
 
 For a production preview, including the GitHub Pages base path:
 
@@ -18,8 +18,7 @@ npm --prefix website run build
 npm --prefix website run serve
 ```
 
-The build generates current content automatically and rejects broken links. Its output
-stays in ignored `website/build/`; previewing does not publish it. Edit canonical sources,
-not `.generated/` Markdown. See the [ownership map](../architecture.md), follow
-[the assignment](../customer-workspace/assignment.md), then explore
-[the knowledge map](../customer-workspace/knowledge-map.md).
+The build generates current pages and rejects broken links. Edit `website/content/`
+for website-specific introductions and the page's linked canonical source for process,
+catalog or template changes. `.generated/`, `website/build/` and root `docs/` are generated
+output. See the [ownership map](../architecture.md). A local preview does not publish the site.

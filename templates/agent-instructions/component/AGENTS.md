@@ -10,6 +10,10 @@ Check the host's precedence/import behavior rather than assuming every tool load
 
 Responsibility and exclusions: [component contract or knowledge source].
 Owner and consumers: [actual accountable role and consumer map].
+Project process and work/review tools: [applicable root source entries].
+Project locations: [component source/test paths and repository map].
+Tool integrations and access: [applicable project tooling source].
+Current knowledge: [component knowledge index or contract].
 Applicable decisions: [decision index or relevant records].
 Setup and affected checks: [actual runbook/CI source and verified commands].
 Shared interfaces and generated files: [ownership and editing boundaries].
@@ -28,5 +32,7 @@ report unrun checks and limitations. Follow existing review and action permissio
 ## Knowledge and handoff
 
 Update affected component knowledge and preserve significant rationale at its decision
-home. Keep progress and handoff in the assigned work item: result, revisions, evidence,
-blockers, pending writes and one next action. Do not create a separate per-agent memory tree.
+home. Keep personal steps in the project's configured private planning home; use an
+unsaved session plan if unavailable. Keep shared progress and handoff in the assigned
+work item: result, revisions, evidence, blockers, pending writes and one next action.
+Share an execution plan only when collaborators need one; retain the parent's planning policy.

@@ -1,16 +1,20 @@
 # Add or improve an agent
 
-An agent owns a bounded role and handoff. Inspect the existing catalog before adding a
-new role. Prefer improving an existing profile when the responsibility is already covered.
+An agent defines a bounded responsibility, procedure and handoff. Read the
+[contribution process](index.md) and inspect existing metadata before adding a role.
+Improve the current profile when it already owns that responsibility.
 
-Create `agents/<domain>/<name>.agent.md` from the
+Create `agents/<domain>/<name>.agent.md` using the
 [agent template](../templates/catalog/agent-template.md). Choose a discipline from the
-[catalog guide](../catalog/maintain.md). Keep portable name/description metadata, project
-and authority boundaries, a short procedure, selected skills and expected evidence.
-Runtime tools and permissions belong in exporters.
+[catalog guide](../catalog/maintain.md). Include portable `name` and `description`
+metadata, selection situations, authority boundaries, relevant skills and completion
+evidence. Configure host tools, permissions and models through the appropriate adapter
+or host settings.
 
-Validate metadata and links, regenerate the agent index, exercise native exports and
-build the docs. Consequential instruction changes need realistic behavior observations,
-including failure and small-task bypass. Record limits and open a reviewable PR.
+Follow the catalog guide and [repository runbook](../getting-started/repository-workflow.md)
+for the applicable metadata, link, export and website checks. For consequential instruction
+changes, observe a realistic task, missing access and a small task that should bypass the
+role. Distinguish structural checks from behavior actually observed.
 
-No website profile stub is needed: the build generates its page and catalog navigation.
+Open a focused PR with the result and evidence. The website generates the profile page
+and navigation from its canonical source; add no website profile stub.

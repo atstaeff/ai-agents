@@ -4,6 +4,7 @@ knowledge_id: TOPIC-OBS
 slug: /topics/observability
 status: current
 owner: platform-owner
+area: document-processing
 relations: {"relates_to": ["COMP-PIPELINE", "COMP-GATEWAY"]}
 ---
 

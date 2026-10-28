@@ -33,6 +33,9 @@ unavailable. The shared result remains understandable without access to those pl
 | How do I adopt this in a project? | [Adoption](ADOPT-PROJECT.md), [project concept](PROJECT-CONCEPT.md) |
 | How are knowledge and decisions retained? | [Project knowledge](PROJECT-KNOWLEDGE.md), [recovery](CONTEXT-RECOVERY.md) |
 | How do I select or maintain expertise? | [Catalog guide](CATALOG-GUIDE.md) |
+| How do available Herdr, model tiers, tabs and capacity work? | [Herdr policy](HERDR.md) |
+| How do several leads and specialists work together? | [Orchestration](ORCHESTRATION.md) |
+| How do Ponytail, Graphify and Herdr fit? | [Integrations](INTEGRATIONS.md) |
 | How do I export to my AI host? | [Runtime adapters](RUNTIMES.md), [portability](PORTABILITY.md) |
 | What quality or approval applies? | [Quality standard](QUALITY-STANDARD.md), [optional plan review](PLAN-REVIEW.md) |
 | How do I develop this repository? | [Repository runbook](REPOSITORY-WORKFLOW.md) |

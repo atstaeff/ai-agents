@@ -4,6 +4,7 @@ knowledge_id: COMP-PIPELINE
 slug: /components/document-pipeline
 status: current
 owner: platform-owner
+area: document-processing
 relations: {"governed_by": ["ADR-0003"], "relates_to": ["COMP-GATEWAY", "TOPIC-OBS"]}
 ---
 

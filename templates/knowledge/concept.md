@@ -16,7 +16,7 @@ Delivery: not started; no implementation or approval evidence recorded.
 ## Next proof and ownership
 
 [Experiment/check or bounded increment; expected observable result; decision owner.]
-[Link the actual assigned work item for plan, progress and feedback.]
+[Link the actual assigned work item for shared scope, progress and feedback.]
 
 ## Current result and relationships
 

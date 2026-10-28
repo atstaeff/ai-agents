@@ -33,6 +33,12 @@ For required plan review, present the current concrete revision, preserve actual
 and approval, and reopen review only for material scope/design changes. An unavailable
 review tool is not approval. See [optional plan review](PLAN-REVIEW.md).
 
+Use [Herdr](HERDR.md) when available and usable. Check existing sessions, select actual
+model/effort routes, organize labelled tabs and isolated writers, and fill available
+capacity with independent ready work. Use native commands for mechanical dispatch;
+reserve strong/high reasoning for complex judgment and consequential review. Report
+a concrete readiness gap before using an available fallback.
+
 Use the existing stack and the smallest complete increment. Delegate only when the host
 supports and authorizes it and coordination is useful. Give each writer a bounded scope;
 inspect returned work and verify the integrated result.

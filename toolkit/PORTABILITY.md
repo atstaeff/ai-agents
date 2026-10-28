@@ -57,9 +57,9 @@ rebased links. This is generated duplication, not another source to maintain. Ke
 `catalog/` beside the exported profiles. Switching hosts preserves the customer
 workspace; permissions, tool names, model support and approval UX need a fresh check.
 
-See [runtime setup](RUNTIMES.md) for supported exports. This repository's `CLAUDE.md`
-imports `AGENTS.md`; it does not maintain a second set of repository rules. A generated
-Claude bundle imports the shared workflow from its own `catalog/`. If a customer already
+See [runtime setup](RUNTIMES.md) for supported exports. This repository's
+`CLAUDE.md` imports `AGENTS.md`; a generated Claude bundle imports the compact shared
+workflow from its own `catalog/`. If a customer already
 has `CLAUDE.md`, export separately and deliberately add the import to the existing file.
 Do not replace customer rules with the toolkit's generic workflow.
 
@@ -79,7 +79,7 @@ local plugins also do not imply local inference: the provider controls that sepa
 
 ## Compatibility references
 
-Reviewed on 2026-10-10; verify against the installed version when adopting an adapter.
+Baseline references reviewed on 2026-10-10; the [Herd adapter](ORCHESTRATION.md) pins its separate upstream contract. Verify against the installed version when adopting an adapter.
 
 - [OpenCode rules](https://opencode.ai/docs/rules/) and
   [skills](https://opencode.ai/docs/skills/): rule precedence and discovery paths.

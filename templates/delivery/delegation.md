@@ -1,6 +1,10 @@
 # Bounded delegation
 
+Use the existing assignment or host handoff. One lead can apply several disciplines;
+create separate sessions only for useful bounded delivery or independent assessment.
+
 - Parent assignment and revision: <authoritative link>
+- Accountable human and acting lead: <existing decision owner; lead responsible for this delegated result>
 - Outcome and acceptance: <one independently verifiable deliverable>
 - Relevant context: <selected sources, contracts and decisions>
 - Allowed files/worktree and action scope: <explicit boundary>
@@ -12,3 +16,21 @@
 Give raw requirements and sources rather than a desired diagnosis. Use a different scope
 for an independent reviewer and ask for counterexamples. Child sessions do not acquire
 new authority, and separately green branches still need integration verification.
+
+## Several specialists, when useful
+
+Keep this optional routing table in the same parent brief. Add only roles needed for the
+current increment; one person/session may cover several roles.
+
+| Lead or specialist | Bounded outcome and write scope | Dependency, return point and integrator |
+| --- | --- | --- |
+| <selected role> | <deliverable or read-only finding> | <contract/input, expected evidence and integration owner> |
+
+Execution: <Herdr agent name, tab/pane, owned checkout and source revision; concrete
+fallback reason if Herdr is unavailable>.
+
+Model/effort: <verified strong/high route for complex judgment, economical route for
+bounded work, native tools for mechanical coordination; escalation trigger and cost/time
+bound>. Capacity: <ready dependencies and available machine/provider/budget/review slot>.
+
+Evaluate cost with review and rework included. A model choice belongs in host configuration; delegation does not change access or authority.

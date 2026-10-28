@@ -1,67 +1,91 @@
-# AI Agents — less process, durable knowledge
+# AI Agents
 
-A portable English catalog of agents and skills for practical AI-assisted engineering.
-Start from `AGENTS.md`, keep personal working plans in your Second Brain, implement and
-verify a focused change, then preserve relevant project decisions and documentation.
+**Build useful software with AI. Keep the reasoning your team needs to maintain it.**
 
-| Need | Start here |
+An English engineering catalog and operating model for developers, product owners and
+small teams: reusable skills, accountable AI roles, practical templates and durable
+project knowledge. Use your existing GitHub/Jira workflow and choose the models and
+hosts that fit the work.
+
+[Documentation](https://atstaeff.github.io/ai-agents/) ·
+[Operating model](toolkit/OPERATING-MODEL.md) ·
+[Project starter](templates/project-starter/README.md) ·
+[Templates](templates/README.md)
+
+## Adopt in one project
+
+1. Add or adapt [AGENTS.md](templates/agent-instructions/README.md). Link vision,
+   boundaries, responsible people, actual tools, process, commands and knowledge.
+2. Keep outcome and acceptance in the existing issue/ticket; deliver one reviewable increment.
+3. Load the relevant [skills](skills/README.md) and [roles](agents/README.md).
+   Verify the combined result and retain significant decisions at the project's own home.
+4. Add [native orchestration](toolkit/ORCHESTRATION.md) and published knowledge views
+   when they help the team.
+
+A clear small change needs no separate plan, phase documents or agent team. Personal
+execution notes stay private, subject to customer policy; the team can continue from
+shared sources. Projects choose their own folders and accessible web documentation.
+
+## Choose your starting point
+
+| Goal | Use |
 | --- | --- |
-| Understand the engineering model | [Operating model](toolkit/OPERATING-MODEL.md) |
-| Set up a project | [AGENTS.md templates](templates/agent-instructions/README.md) and [adoption](toolkit/ADOPT-PROJECT.md) |
-| Find expertise | [Agents](agents/README.md), [skills](skills/README.md), [catalog guide](toolkit/CATALOG-GUIDE.md) |
-| Open private plans from Windows/WSL | [Personal planning](templates/agent-instructions/personal-planning.md) |
-| Explore decisions and AI topics | [Runnable Docusaurus demo](examples/engineering-demo/README.md) |
-| Understand repository folders | [Repository and toolkit guide](toolkit/README.md) |
-| Run this repository | [Runbook](toolkit/REPOSITORY-WORKFLOW.md) |
+| Understand the value stream and responsibilities | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
+| Python/FastAPI, React/JavaScript, GCP and Terraform | [Engineering and platform expertise](toolkit/CATALOG-GUIDE.md) |
+| Product discovery, PO work and stakeholders | [Catalog selection](toolkit/CATALOG-GUIDE.md) with `--preset product`; [templates](templates/README.md) |
+| Several leads and economical specialists | [Preferred Herdr execution, model tiers and tabs](toolkit/HERDR.md) |
+| Ponytail, Herdr and Graphify | [Native integration guide](toolkit/INTEGRATIONS.md) |
+| Human-readable decisions and dependency views | [Docusaurus knowledge map](examples/engineering-demo/README.md) |
+| Repository folders, optional tools and compatibility | [Repository map](toolkit/README.md) |
 
-## Information ownership
+Use Herdr whenever its executable and selected server are usable. Complex decisions
+use strong approved models with high reasoning; bounded specialists use economical
+routes. Native commands handle mechanical coordination. Fill free capacity with
+independent ready work, using labelled tabs and isolated checkouts. See the
+[Herdr policy](toolkit/HERDR.md) for readiness, limits and fallback behavior.
 
-| Personal | Shared delivery | Durable project knowledge |
-| --- | --- | --- |
-| Second Brain: working plan, experiments, resume point | Issue: scope/acceptance; PR: changes and actual checks | Code, relevant ADRs, architecture and operations |
+## Install a focused catalog
 
-The team can maintain the result without your private plan. Share a joint execution plan
-only when collaboration needs it. Customer policy determines permitted storage. No mandatory
-workspace directory, YAML configuration, extra tracker, agent team or ADR for every edit.
-
-## Use with OpenCode 1
-
-Python 3.11+ runs the core toolkit without third-party runtime dependencies:
+The core toolkit runs on Python 3.11+ with the standard library. Export only the expertise
+needed by the project; supported hosts include OpenCode, Claude Code, Copilot and Herd,
+with a portable Agent Skills layout as well.
 
 ```sh
-git clone https://github.com/atstaeff/ai-agents.git ~/tools/ai-agents
-cd ~/tools/ai-agents
+git clone https://github.com/atstaeff/ai-agents.git
+cd ai-agents
 python3 tools/ai_toolkit.py check
+python3 tools/ai_toolkit.py catalog --preset engineering
 python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
-  --output "$HOME/.config/ai-agents/opencode"
-cd /path/to/project
-OPENCODE_CONFIG_DIR="$HOME/.config/ai-agents/opencode" \
-OPENCODE_CONFIG="$HOME/.config/ai-agents/opencode/opencode.json" opencode web
+  --output /path/to/ai-agents-export --dry-run
 ```
 
-The engineering preset registers 8 agents and 16 skills. Use `--preset all` for the full
-catalog or add focused entries with `--agent` and `--skill`. The [catalog guide](toolkit/CATALOG-GUIDE.md) explains selection and retired names. Your host supplies
-models, tools and permissions. Re-export after source changes; the manifest protects edits.
-Use [private plan-directory configuration](templates/agent-instructions/personal-planning.md)
-to let Plan write to a narrow external folder. See [runtime adapters](toolkit/RUNTIMES.md)
-for other hosts and [optional review](toolkit/PLAN-REVIEW.md) when a plan gate is required.
+Inspect the selection, repeat without `--dry-run`, then follow the
+[runtime guide](toolkit/RUNTIMES.md) for discovery and an installed-host check. Use
+`--agent` and `--skill` to add a specialty, or `--preset all` deliberately. Configure actual
+models, effort, tools and permissions in the host. Re-export after source changes.
+Existing edited and unmanaged files are protected; keep generated bundles separate from
+canonical sources and customer knowledge.
 
-## Decisions you can explore
+## Knowledge that survives a session
 
-The [Docusaurus demo](examples/engineering-demo/README.md) builds a local site with an
-interactive graph from shared Markdown: decisions, system components and AI topics.
-Search, filter, inspect relationships and open the original documentation. Private plans
-are excluded by construction. The existing [Docusaurus site](https://atstaeff.github.io/ai-agents/)
-remains the catalog website; this change does not deploy either site.
+| Source | Owns |
+| --- | --- |
+| AGENTS.md and linked project map | Context navigation, responsibilities and real tooling |
+| Issue/ticket and PR/MR | Shared scope, acceptance, coordination and review evidence |
+| Current Markdown and ADRs | Implemented behavior, operating knowledge and significant reasons |
+| Docusaurus and scoped graph views | Derived reading and retrieval views of selected shared sources |
 
-## Maintain and verify
+The [knowledge map demo](examples/engineering-demo/README.md) starts with areas, then
+loads filtered records and direct relationships. It provides a bounded static example;
+a million-record installation needs an incremental index service. Graphify is an optional
+source of dependency evidence; canonical decisions remain reviewed project knowledge.
 
-Edit canonical `agents/`, `skills/`, `toolkit/` and `templates/` sources. `examples/`
-contains worked examples, including the [optional legacy project
-layout](examples/document-portal/README.md). `tools/` and `tests/` contain the
-CLI/API/dashboard and exporters. `website/` builds the catalog; root `docs/` is its
-generated GitHub Pages output. The local workbench is optional and does not impose a
-workspace directory or YAML configuration on projects.
+## Maintain this repository
+
+`agents/` and `skills/` own reusable expertise; `templates/` supplies copyable artifacts.
+`toolkit/` explains the method. `knowledge/` records this repository's own facts and decisions.
+`examples/` and `reference-repos/` illustrate adoption. `tools/` and `tests/` implement and
+verify the optional toolkit. `website/` owns Docusaurus sources; root `docs/` is generated.
 
 ```sh
 uv sync --locked --group validation
@@ -69,8 +93,12 @@ python3 tools/ai_toolkit.py check
 uv run --locked --group validation python -m unittest discover -s tests -v
 python3 tools/workspace_smoke.py
 npm --prefix website ci
+npm --prefix website run test:graph
 npm --prefix website run build
 ```
 
-See [contributing](CONTRIBUTING.md), [templates](templates/README.md) and
-[quality](toolkit/QUALITY-STANDARD.md). License: [MIT](LICENSE).
+See [contributing](CONTRIBUTING.md), the [runbook](toolkit/REPOSITORY-WORKFLOW.md) and
+[quality standard](toolkit/QUALITY-STANDARD.md). Test results and bounded observations
+establish specific behavior; they do not promise a staffing reduction or defect-free delivery.
+The catalog and toolkit are [MIT licensed](LICENSE). Third-party hosts and integrations
+retain their own licenses and configuration requirements.

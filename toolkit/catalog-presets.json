@@ -23,7 +23,7 @@
     ]
   },
   "engineering": {
-    "description": "Product engineering with Python, architecture, reviews and delivery.",
+    "description": "Python/FastAPI and React/JavaScript product engineering, architecture, review and delivery.",
     "agents": [
       "joerg",
       "plan",
@@ -32,6 +32,7 @@
       "architecture-reviewer",
       "code-reviewer",
       "python-expert",
+      "frontend-expert",
       "devops-agent"
     ],
     "skills": [
@@ -54,7 +55,7 @@
     ]
   },
   "product": {
-    "description": "Discovery, proposals and delivery coordination.",
+    "description": "Product-owner discovery, stakeholder proposals, acceptance and delivery coordination.",
     "agents": [
       "joerg",
       "plan",
@@ -69,6 +70,43 @@
       "work-management",
       "communication",
       "principal-engineer-decisions"
+    ]
+  },
+  "platform": {
+    "description": "Google Cloud and Terraform delivery with state ownership, CI, security and recovery.",
+    "agents": [
+      "joerg",
+      "plan",
+      "build",
+      "gcp-architect",
+      "terraform-engineer",
+      "devops-agent"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "work-management",
+      "gcp-patterns",
+      "terraform-iac",
+      "cloud-native",
+      "devops-cicd",
+      "security",
+      "testing",
+      "incident-response"
+    ]
+  },
+  "documentation": {
+    "description": "Focused technical authoring and editorial review of canonical guides, runbooks and references.",
+    "agents": [
+      "joerg",
+      "documentation-editor"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "work-management",
+      "technical-writing",
+      "communication"
     ]
   },
   "knowledge": {
