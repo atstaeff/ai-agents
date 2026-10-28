@@ -252,7 +252,7 @@ function Diagram({ nodes, edges, selected, onSelect, mode }) {
             ))}
             <text x="16" y="91" className={`node-status ${node.status || ""}`}>
               {summary
-                ? `${node.counts["decision-all"] || 0} decisions · ${node.counts["all-proposed"] || 0} proposed`
+                ? `${node.counts["decision-all"] || 0} ${node.counts["decision-all"] === 1 ? "decision" : "decisions"} · ${node.counts["all-proposed"] || 0} proposed`
                 : node.status.toUpperCase()}
             </text>
             <text x="213" y="91" textAnchor="end" className="node-open">
