@@ -16,9 +16,11 @@ detail relevant to the assignment. A clear small change can proceed from affecte
 | Setup, build and verification commands | [Commands](CONTRIBUTING.md#setup-and-checks) |
 | Current knowledge and decision history | [Knowledge](PROJECT.md#current-knowledge-and-decisions) |
 
-Use existing equivalent files or adopted web URLs when they own the information. Pin
-central policy to its adopted revision/version and read the source body. If unavailable,
-report the exact gap and continue independent authorized work. Links do not grant access.
+Use existing equivalent files when they own the information. Binding process is local
+CONTRIBUTING.md unless its policy adoption section names an external source and explicit
+adopted SHA/version. Read that adopted body; a link to an evolving technique or reference
+does not adopt its policy. If a required source is unavailable, report the exact gap and
+continue independent authorized work. Links do not grant access.
 
 ## Work and retain
 

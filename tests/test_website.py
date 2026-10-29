@@ -133,6 +133,28 @@ class WebsitePublishingTests(unittest.TestCase):
         self.assertIn('href="decisions/adr-0001.html"', rendered)
         self.assertIn('href="iteration.html"', rendered)
 
+    def test_search_uses_only_published_sources_and_keeps_local_routes(self):
+        pages, _, _ = site.generate()
+        records = site.search_index(pages)
+        python = next(item for item in records if item['href'] == '/skills/python-patterns/')
+        self.assertEqual(python['kind'], 'skill')
+        self.assertEqual(python['domain'], 'languages')
+        self.assertIn('Python', python['text'])
+        self.assertTrue(all(item['href'].startswith('/') and not item['href'].startswith('//') for item in records))
+        self.assertFalse(any('workspace/work/' in item['href'] for item in records))
+        self.assertFalse(any(item['href'] == '/skills/testing-strategies/' for item in records))
+        self.assertEqual(len({item['href'] for item in records}), len(records))
+
+    def test_search_indexes_visible_words_without_scripts_code_or_source_footer(self):
+        site.prepare({})
+        pages = {'example.md': '---\nslug: "/example"\n---\n\n# Example\n\nRead [tenant scope](https://example.com).\n\n```python\nprivate_placeholder=1\n```\n\n<script>text</script>\n\nCanonical source: should not be searchable'}
+        result = site.search_index(pages)[0]
+        self.assertIn('tenant scope', result['text'])
+        self.assertNotIn('private_placeholder', result['text'])
+        self.assertNotIn('should not be searchable', result['text'])
+        self.assertNotIn('<script>', result['text'])
+        self.assertEqual(result['href'], '/example/')
+
     def test_graph_metadata_is_escaped_in_html(self):
         site.prepare({})
         data = deepcopy(site.KNOWLEDGE_GRAPH)

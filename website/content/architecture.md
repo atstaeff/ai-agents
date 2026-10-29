@@ -17,6 +17,7 @@ and AI; runtime exports and the website publish selected views.
 | Runtime adapters | `tools/ai_toolkit.py export` | Generated host layouts and references |
 | Optional local workbench | Python loopback server and `tools/web/` | Local Markdown records, task evidence and comments |
 | Website | `website/content/`, mapped canonical sources and `website/generate.py` | Published reading views; root `docs/` is compiled output |
+| Knowledge publication selection | `website/knowledge.config.cjs` | One trusted, curated source set shared by document publication and graph generation |
 
 ## Execution belongs to your host
 

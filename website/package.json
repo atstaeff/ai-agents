@@ -11,7 +11,8 @@
     "serve": "docusaurus serve --host 127.0.0.1",
     "clear": "docusaurus clear",
     "test:graph": "node --test scripts/graph.test.cjs",
-    "test:browser": "node scripts/browser-smoke.cjs"
+    "test:browser": "node scripts/browser-smoke.cjs",
+    "test:search": "node --test scripts/search.test.cjs"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",

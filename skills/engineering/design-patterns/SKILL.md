@@ -10,7 +10,7 @@ description: "Choose or simplify a design pattern at a real variation, lifecycle
 1. Identify the repeated problem and the actual consumers before choosing a pattern.
 2. Compare a direct function or module with the proposed abstraction.
 3. Apply the smallest useful form and keep ownership and dependencies obvious.
-4. Test substitution and behavior; remove the abstraction if it adds indirection without a demonstrated benefit.
+4. Return the chosen boundary, focused implementation and behavior/substitution checks. Remove the abstraction if it adds indirection without a demonstrated benefit.
 
 ## Focused references
 

@@ -1,6 +1,6 @@
 ---
 name: "project-management"
-description: "Organize delivery, technical debt or release work without excessive process overhead."
+description: "Improve delivery flow across related assignments: manage WIP, dependencies, review capacity and evidence-based forecasts. Use work-management for one assignment or handoff and technical-debt for a maintenance investment."
 ---
 
 # Project Management

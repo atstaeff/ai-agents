@@ -32,6 +32,7 @@ plans stay private; shared outcomes and coordination stay at the assignment.
 | Situation | Template | Home |
 | --- | --- | --- |
 | Plan a substantial personal change | [Working plan](delivery/personal-plan.md) | Private Second Brain project folder |
+| Qualify a host and set observed parallel capacity | [Runtime and capacity check](delivery/runtime-check.md) | Existing work/review or host-adoption record |
 | Coordinate specialists or hand off a bounded scope | [Delegation brief](delivery/delegation.md) | Existing assignment or host handoff |
 | Close an actual iteration | [Iteration review](delivery/iteration-review.md) | Designated project update |
 | Prepare an operational release | [Release readiness](quality/release-readiness.md) | Existing release/change process |

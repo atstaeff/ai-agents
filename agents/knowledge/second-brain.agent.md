@@ -19,6 +19,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 5. Keep working plans in the existing private project folder. Save a resume point and output an encoded Obsidian URI; share durable decisions and needed outcomes with the project.
 6. Capture reusable conclusions and next actions from work, with source pointers. Keep private contents outside this public catalog.
 
+## Result
+
+Return applied note changes and checked links, or a concrete unapplied proposal when
+vault access is unavailable. Do not imply that shared coordination requires a private vault.
+
 ## Select only for the current uncertainty
 
 - [obsidian-para](../../skills/knowledge/obsidian-para/SKILL.md)

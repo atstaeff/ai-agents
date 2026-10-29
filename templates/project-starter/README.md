@@ -4,6 +4,10 @@ Use AGENTS.md as the collaboration entry, PROJECT.md for project facts and CONTR
 for the working process, tools and relevant skills. Reuse equivalent existing sources.
 No project.yaml or workspace folder is required. Shared artifacts are English.
 
+New to the catalog? Try the [disposable first task](https://atstaeff.github.io/ai-agents/getting-started/quick-start/)
+before configuring a project. For adoption, resolve the facts needed by the next assignment
+first; extend the map when more context becomes useful.
+
 ## Adopt
 
 1. Inspect existing instructions, ownership, tracker, code, CI, architecture and decisions.
@@ -13,16 +17,20 @@ No project.yaml or workspace folder is required. Shared artifacts are English.
    actual work/review homes, current knowledge and decisions. Adapt
    [CONTRIBUTING.md](CONTRIBUTING.md): workflow, skills, tools/access, setup/check commands,
    review and action boundaries.
-3. For a centrally maintained process or project wiki, replace the relevant source with
-   its adopted URL and revision/version. Use the [instruction variants](../agent-instructions/README.md)
+3. Keep binding process in the local contribution guide, or record a deliberately adopted
+   immutable source URL and its full SHA/governed version. The starter's catalog links are
+   evolving technique/reference links, not automatically adopted external policy. Use the [instruction variants](../agent-instructions/README.md)
    for remote documentation, existing repositories, multiple repositories or a component.
 4. Merge [.gitignore](.gitignore) only when using the optional local workbench. Create no
    empty knowledge tree, fictional work items or duplicate plan. Do not copy this README
    as the customer's project facts.
-5. Resolve source links, fill prompts and review the content. Run actual project checks.
-   Verify host discovery and required web access; no Markdown check proves source quality.
+5. Resolve the source links and prompts needed for this assignment; remove unused prompts.
+   Review the content and run actual project checks. Verify host discovery and required
+   web access with the [runtime check](../delivery/runtime-check.md); a Markdown check
+   proves neither source quality nor host behavior.
 6. Take one bounded real assignment through the process and try fresh-session recovery.
-   Before parallel delivery, exercise ownership, overlapping-work recovery and integration.
+   Before parallel delivery, record observed capacity and exercise ownership,
+   overlapping-work recovery and integration. Use the same runtime check; no new manifest is needed.
 
 ## Keep information at its owner
 

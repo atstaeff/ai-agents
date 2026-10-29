@@ -4,6 +4,7 @@ knowledge_id: ADR-0000
 slug: decisions/adr-0000
 status: proposed
 owner: decision-role
+area: engineering
 relations: {}
 sources: []
 ---
@@ -32,7 +33,10 @@ Link implementation and verification evidence separately as it becomes available
 
 ## Status and relationships
 
-Set a stable unique ID/slug and actual status. To replace an accepted decision, preserve
-its rationale and create a new ADR with `supersedes`; mark the old one superseded after
+Set a stable unique ID/slug, a curated `area` slug and actual status. Keep the source
+`slug` relative (for example `decisions/adr-0042`); the publishing site supplies its route
+prefix. Change the placeholder ID, title and slug together when copying this template.
+To replace an accepted decision, preserve its rationale and create a new ADR with
+`supersedes`; mark the old one superseded after
 authorized acceptance. A proposed replacement uses `relates_to` until agreed. Record
 source links in `sources`. This template contains no actual approval or test result.

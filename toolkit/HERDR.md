@@ -42,6 +42,10 @@ usable Herdr installation. Do not install another orchestrator just to work arou
 unavailable binary. A small task uses the current Herdr pane when applicable; it does
 not require a new lead, tab or specialist.
 
+Use the [runtime qualification record](RUNTIME-QUALIFICATION.md) to retain verified
+host/route evidence and capacity. Reuse matching evidence; recheck after material changes
+or failures rather than repeating setup for every prompt.
+
 ## Route work by complexity
 
 Resolve these routes to actual installed provider/model settings before dispatch. Keep
@@ -122,7 +126,7 @@ is the smallest relevant limit: approved worker cap, provider request/token limi
 budget, measured machine headroom, independent ready work and integration/review capacity.
 Count active leads, workers and expensive build/test processes against the resources they use.
 
-If no measured capacity exists, start with a small wave and increase as work completes
+If no measured capacity exists, start with one bounded worker and increase in small waves as work completes
 without pressure. Fill newly free slots only while measured resource, provider, budget
 and review limits still permit it. Reduce new dispatch when RAM/CPU or local model memory is under pressure, rate limits occur, spend approaches
 the cap or review waits grow. Provider-hosted inference and local inference have different

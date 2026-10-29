@@ -4,6 +4,8 @@
 
 Product vision, stakeholders and scope: [authoritative product context].
 Shared process: [local source or adopted URL and source revision/version].
+Adopted external policy SHA/version: `none` unless the process owner records a pinned
+source URL and explicit revision. Evolving technique/reference links do not adopt policy.
 Repository map and contract owners: [authoritative repo/interface map].
 Project locations: [repository URLs, component/code paths and editing boundaries].
 Tools, integrations and access: [product/project tooling source].
@@ -29,6 +31,8 @@ Agree interface revisions, compatibility, rollout and recovery before dependent 
 Use separate branches/working directories. Coordinate overlapping scopes through an
 actual shared claim/handover mechanism; serialize overlap when no mechanism exists.
 Delegate only through supported authorized host capabilities. Preserve others' work.
+Use Herdr when its executable and selected server are usable; report a concrete gap
+before using the authorized fallback. Qualify host capabilities and capacity before dispatch.
 
 ## Verify the product result
 

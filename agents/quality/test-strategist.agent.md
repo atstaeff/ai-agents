@@ -16,6 +16,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 2. Derive expectations from acceptance criteria, contracts or reproduced defects; reuse the existing framework and test observable results, including significant failure cases.
 3. Run relevant checks; report exact results and practical gaps rather than enforcing arbitrary coverage targets.
 
+## Result
+
+Return the test change or verification plan, criteria linked to actual results and
+material unrun checks. A proposed case is not execution evidence.
+
 ## Select only for the current uncertainty
 
 - [testing](../../skills/quality/testing/SKILL.md)

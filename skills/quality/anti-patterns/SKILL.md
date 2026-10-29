@@ -1,9 +1,9 @@
 ---
 name: "anti-patterns"
-description: "Spot avoidable complexity when reviewing architecture, code, processes or proposed dependencies."
+description: "Diagnose observed coupling, duplicated state or speculative complexity in code, architecture or a proposed dependency. Require a plausible failure and a small remedy; use code-review for general diff review."
 ---
 
-# Anti Patterns
+# Anti-Patterns
 
 ## Workflow
 

@@ -1,225 +1,75 @@
-# Background examples
+# Focused test design
 
-Use focused sections only when needed. The current skill entry, project conventions and user constraints govern the work. Examples illustrate particular choices; they do not mandate a framework, test library or architecture.
+Read the section that matches the affected boundary. Reuse the project's runner,
+fixtures and required gates; a sample framework or coverage target is not a mandate.
 
-# Testing Patterns Skill
+## Expectations and test scope
 
-## Instructions for AI
+Derive the expected result from acceptance, a consumer contract or a reproduced fault.
+Choose representative equivalence classes and important boundaries, then exercise the
+actual failure/recovery behavior. A concise test should make the condition, action and
+observable result obvious without reproducing the implementation.
 
-Apply comprehensive testing best practices. Use this skill when designing test strategies, writing tests, or setting up testing infrastructure.
+| Need | Useful boundary | Limit |
+| --- | --- | --- |
+| Business rule | Pure unit case with explicit inputs/results | Does not establish storage or transport behavior |
+| Request/response contract | Actual routing, validation and authorization | In-process transport may omit network/server behavior |
+| Transaction or stale write | Real persistence and competing operation | An in-memory fake may have different locking/constraints |
+| Critical user interaction | Running browser/app journey and recovery | One environment does not establish every device/layout |
+| Crash or restart recovery | Durable state plus interrupted workflow | A normal exception test may not exercise process loss |
 
-## Test Pyramid
+## Doubles, data and cleanup
 
-```
-         /\
-        / E2E \          ~5%  — Critical user journeys
-       /--------\
-      / Contract  \      ~10% — API contracts
-     /--------------\
-    /  Integration    \  ~25% — DB, queues, external APIs
-   /--------------------\
-  /     Unit Tests       \ ~60% — Business logic, pure functions
- /------------------------\
-```
+Use a fake for a boundary whose relevant behavior it can faithfully represent. Preserve
+error, identity and mutable-data ownership contracts; avoid a fake that silently shares
+objects when production returns independent records. Use real integration checks where
+transaction, schema, authorization or library behavior is the risk.
 
-## Unit Testing Patterns
+Keep fixtures small and readable. Override only fields relevant to the scenario, avoid
+hidden shared mutable defaults and give each test isolated state. Use explicit clocks,
+seeds or IDs when nondeterminism obscures the rule. Clean up resources on assertion
+failure as well as success; distinguish per-test and process/application lifetimes.
 
-### Arrange-Act-Assert
+For async checks, use the runner's supported async integration and await started work.
+Bound waits on observable conditions rather than arbitrary sleeps. Restore dependency
+overrides, environment changes and subscriptions so order does not determine the result.
 
-```python
-class TestPriceCalculator:
-    def test_applies_percentage_discount(self):
-        # Arrange
-        calculator = PriceCalculator()
-        product = Product(price=100.0)
-        discount = PercentageDiscount(rate=0.2)
+## HTTP and UI evidence
 
-        # Act
-        result = calculator.calculate(product, discount)
+Exercise allowed, denied and invalid requests at the consumer-visible boundary. Assert
+meaningful status/error/data behavior and side effects. Inspect relevant identity and
+resource scope; a successful happy-path request does not prove authorization.
 
-        # Assert
-        assert result == 80.0
-```
+With an in-process ASGI transport, explicitly manage the application's expected lifespan
+and dependencies according to the installed libraries. Distinguish that result from a
+live server, real database and deployed integration. Use the project's established setup
+rather than copying deprecated client arguments.
 
-### Parameterized Tests
+For UI behavior, check the actual action and visible recovery: loading/empty state,
+validation, duplicate submission, failed mutation, navigation or stale request as affected.
+Use stable semantic locators and controlled dependencies where practical. A screenshot
+or successful build does not establish keyboard operation, focus or a completed journey.
 
-```python
-import pytest
+## Failures, coverage and reporting
 
-@pytest.mark.parametrize("input_price,discount_rate,expected", [
-    (100.0, 0.0, 100.0),
-    (100.0, 0.1, 90.0),
-    (100.0, 0.5, 50.0),
-    (100.0, 1.0, 0.0),
-    (0.0, 0.5, 0.0),
-])
-def test_discount_calculation(input_price, discount_rate, expected):
-    result = calculate_discount(input_price, discount_rate)
-    assert result == expected
-```
+When a check fails, inspect the cause. Preserve the failure, fix a defective assumption
+or implementation and rerun the affected check; do not weaken the expected result merely
+to get green. If it is flaky, preserve a reproduction and isolate the nondeterminism.
+Record unrelated pre-existing failures separately instead of claiming the suite passed.
 
-### Fakes over Mocks
+Coverage identifies unexecuted code, not whether assertions are meaningful. Select
+additional cases from risk and project gates; fixed test-type ratios and blanket
+coverage percentages are not evidence of correctness. Property or mutation tests can
+probe a consequential rule when they answer a real uncertainty.
 
-```python
-class FakeEmailSender:
-    """In-memory fake — captures sent emails for verification."""
+Return the command, actual result, tested revision, linked criterion and material gap.
+Mark blocked/unrun checks explicitly and give a concrete next verification action.
+Stop expanding once required evidence is sufficient unless a new change, failure or
+unresolved risk justifies more.
 
-    def __init__(self):
-        self.sent_emails: list[Email] = []
+## Primary tool references
 
-    async def send(self, email: Email) -> None:
-        self.sent_emails.append(email)
-
-# In tests
-async def test_order_confirmation_sends_email(fake_email_sender):
-    service = OrderService(email_sender=fake_email_sender)
-    await service.place_order(sample_order)
-
-    assert len(fake_email_sender.sent_emails) == 1
-    assert fake_email_sender.sent_emails[0].subject == "Order Confirmation"
-```
-
-### Factory Pattern for Test Data
-
-```python
-from polyfactory.factories.pydantic_factory import ModelFactory
-
-class UserFactory(ModelFactory):
-    __model__ = User
-
-    @classmethod
-    def admin(cls) -> User:
-        return cls.build(role=UserRole.ADMIN)
-
-    @classmethod
-    def with_orders(cls, count: int = 3) -> User:
-        user = cls.build()
-        user.orders = OrderFactory.batch(count)
-        return user
-```
-
-## Integration Testing Patterns
-
-### Testcontainers
-
-```python
-import pytest
-from testcontainers.postgres import PostgresContainer
-
-@pytest.fixture(scope="session")
-def db_container():
-    with PostgresContainer("postgres:16-alpine") as pg:
-        yield pg
-
-@pytest.fixture
-async def db_session(db_container):
-    engine = create_async_engine(db_container.get_connection_url())
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
-    async with AsyncSession(engine) as session:
-        yield session
-        await session.rollback()
-```
-
-### API Testing (httpx)
-
-```python
-from httpx import AsyncClient, ASGITransport
-
-@pytest.fixture
-async def api_client(app):
-    transport = ASGITransport(app=app)
-    async with AsyncClient(transport=transport, base_url="http://test") as client:
-        yield client
-
-async def test_create_user_returns_201(api_client):
-    response = await api_client.post("/users", json={"name": "Alice", "email": "alice@test.com"})
-    assert response.status_code == 201
-    data = response.json()
-    assert data["name"] == "Alice"
-    assert "id" in data
-```
-
-## Quality Gates
-
-```yaml
-quality_gates:
-  unit_tests:
-    coverage: ">= 80%"
-    max_duration: "120s"
-    blocking: true
-
-  integration_tests:
-    coverage: ">= 60%"
-    max_duration: "300s"
-    blocking: true
-
-  security_scan:
-    tool: "bandit"
-    severity: "medium"
-    blocking: true
-
-  type_checking:
-    tool: "mypy --strict"
-    blocking: true
-
-  linting:
-    tool: "ruff check"
-    blocking: true
-```
-
-## Test Fixture Organization
-
-```
-tests/
-├── conftest.py           # Shared fixtures
-├── factories.py          # Test data factories
-├── fakes.py              # Fake implementations
-├── unit/
-│   ├── conftest.py       # Unit-specific fixtures
-│   ├── test_models.py
-│   ├── test_services.py
-│   └── test_validators.py
-├── integration/
-│   ├── conftest.py       # DB, containers
-│   ├── test_repositories.py
-│   └── test_api.py
-└── e2e/
-    ├── conftest.py       # Full stack setup
-    └── test_user_journey.py
-```
-
-## Best Practices
-
-✅ Name tests: `test_<action>_<scenario>_<expected>`
-✅ One logical assertion per test
-✅ Use `conftest.py` for shared fixtures
-✅ Prefer fakes over mocks for domain dependencies
-✅ Run unit tests in parallel (`pytest-xdist`)
-✅ Tag slow tests: `@pytest.mark.slow`
-✅ Keep test code clean — it's production code too
-
-## Anti-Patterns
-
-❌ Testing implementation details instead of behavior
-❌ Shared mutable state between tests
-❌ Ignoring flaky tests
-❌ Over-mocking (if everything is mocked, what are you testing?)
-❌ Missing error path tests
-❌ Hard-coded test data (use factories)
-❌ Skipping tests that "take too long"
-
-## Example Prompts
-
-- "Write unit tests for this OrderService using fakes and factories"
-- "Set up integration tests with testcontainers and PostgreSQL"
-- "Design a quality gate configuration for our CI/CD pipeline"
-- "Refactor these tests to eliminate shared state and improve isolation"
-
-## Related Skills
-
-- [Test Strategist Agent](../../../../agents/quality/test-strategist.agent.md)
-- [Testing Strategies](../SKILL.md)
-- [Python Patterns](../../../languages/python-patterns/SKILL.md)
-- [Golang Patterns](../../../languages/golang-patterns/SKILL.md)
-- [Flutter Patterns](../../../languages/flutter-patterns/SKILL.md)
+Use the installed version's [unittest](https://docs.python.org/3/library/unittest.html),
+[pytest](https://docs.pytest.org/), [HTTPX transports](https://www.python-httpx.org/advanced/transports/),
+[Flutter testing](https://docs.flutter.dev/testing/overview) or
+[Playwright](https://playwright.dev/docs/intro) documentation only for the selected tool.

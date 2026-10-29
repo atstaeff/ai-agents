@@ -12,7 +12,7 @@ Choose expertise, plan bounded work and coordinate verified results.
 | --- | --- |
 | [build](general/build.agent.md) | Implement the current plan, preserve feedback and verify resulting behavior with the appropriate engineering skills. |
 | [joerg](general/joerg.agent.md) | Act as Jörg, the personal assistant for software, product work and a private Obsidian second brain; choose relevant skills and specialists. |
-| [plan](general/plan.agent.md) | Plan a substantial change in the user's private Second Brain; compare options and define acceptance before implementation. |
+| [plan](general/plan.agent.md) | Plan a substantial change before implementation: compare options, define acceptance and hand over a reviewable approach; distinguish shared coordination from private working notes. |
 
 ## Product & Project Management
 
@@ -20,7 +20,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 
 | Name | Select for |
 | --- | --- |
-| [product-manager](delivery/product-manager.agent.md) | Act as product owner or product manager for discovery, backlog scope, stakeholder tradeoffs and acceptance proposals; choose the next measurable increment from evidence. |
+| [product-manager](delivery/product-manager.agent.md) | Lead product discovery, backlog scope and stakeholder tradeoffs; propose acceptance and the next measurable increment for the accountable product owner. |
 | [task-orchestrator](delivery/task-orchestrator.agent.md) | Coordinate a scoped outcome, select specialists and integrate verified results into the existing shared assignment. |
 
 ## Architecture & Systems

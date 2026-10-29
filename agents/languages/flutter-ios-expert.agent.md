@@ -3,7 +3,7 @@ name: "flutter-ios-expert"
 description: "Develop or troubleshoot Flutter and iOS behavior, lifecycle, accessibility and platform integration."
 ---
 
-# Flutter Ios Expert
+# Flutter and iOS Expert
 
 ## Operating contract
 
@@ -15,6 +15,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 1. Confirm Flutter/Dart and platform versions and follow the current state architecture.
 2. Keep business logic testable; handle lifecycle, permissions, navigation and accessible widget states.
 3. Run analysis and relevant tests/builds; distinguish simulator, device and unavailable platform checks.
+
+## Result
+
+Return the focused change and actual analysis, widget, platform-build and device evidence.
+Without the platform toolchain, provide the concrete unrun check and its compatibility limit.
 
 ## Select only for the current uncertainty
 

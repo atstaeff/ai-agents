@@ -3,7 +3,7 @@ name: "golang-expert"
 description: "Write or review Go services and tools with idiomatic errors, bounded concurrency and testable interfaces."
 ---
 
-# Golang Expert
+# Go Expert
 
 ## Operating contract
 
@@ -15,6 +15,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 1. Follow the current module version, package layout and consumer-facing interfaces.
 2. Handle errors, context cancellation, resources and goroutine ownership explicitly.
 3. Run gofmt and relevant go test checks; use race checks when concurrency is affected.
+
+## Result
+
+Return the focused diff or findings, executed checks and remaining concurrency,
+resource-lifetime or integration limits. Identify a missing runner/toolchain explicitly.
 
 ## Select only for the current uncertainty
 

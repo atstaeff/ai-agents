@@ -3,7 +3,7 @@ name: "pr-crafting"
 description: "Prepare a reviewable pull request description, scope and validation evidence for a code change."
 ---
 
-# Pr Crafting
+# PR Crafting
 
 ## Workflow
 

@@ -211,6 +211,108 @@ class HerdExportTests(ExportFixture):
 
 
 class ExportSafetyTests(ExportFixture):
+    def test_private_and_generated_files_are_omitted_before_reading(self):
+        excluded = [
+            'skills/work-management/.env',
+            'skills/work-management/.env.production',
+            'skills/work-management/credentials.json',
+            'skills/work-management/assets/access-token.txt',
+            'skills/work-management/assets/api-keys.json',
+            'skills/work-management/assets/private-keys.json',
+            'skills/work-management/references/tokens/production.json',
+            'skills/work-management/references/passwords/config.json',
+            'skills/work-management/references/secret/config.json',
+            'skills/work-management/references/api-keys/config.json',
+            'skills/work-management/references/private-keys/config.json',
+            'skills/credentials/SKILL.md',
+            'toolkit/nested/secrets.json',
+            'reference-repos/demo/id_rsa',
+            'marp-templates/slides/private-key.pem',
+            'templates/project-starter/config/service-account.json',
+            'skills/work-management/references/.aws/credentials',
+            'skills/work-management/references/node_modules/dependency/package.json',
+            'skills/work-management/references/__pycache__/module.py',
+            'skills/work-management/references/workspace/work/private.md',
+            'skills/work-management/references/workspace/archive/history.md',
+            'skills/work-management/references/.ai/work/private.md',
+            'skills/work-management/references/generated/output.md',
+            'skills/work-management/references/dist/output.json',
+            'skills/work-management/references/build/output.json',
+            'skills/work-management/references/.cache/snapshot.json',
+            'skills/work-management/references/private/notes.md',
+            'skills/work-management/references/local-state/session.json',
+            'skills/work-management/references/terraform.tfstate',
+            'skills/work-management/assets/unknown.payload',
+        ]
+        forbidden = {self.write(name, 'Synthetic private fixture; never export.\n') for name in excluded}
+        read_bytes, read_text = Path.read_bytes, Path.read_text
+
+        def guarded_bytes(path):
+            self.assertNotIn(path, forbidden, f'Read excluded export source: {path}')
+            return read_bytes(path)
+
+        def guarded_text(path, *args, **kwargs):
+            self.assertNotIn(path, forbidden, f'Read excluded export source: {path}')
+            return read_text(path, *args, **kwargs)
+
+        for runtime in ('portable', 'herd'):
+            with self.subTest(runtime=runtime):
+                output = self.base / runtime
+                with patch.object(Path, 'read_bytes', guarded_bytes), patch.object(Path, 'read_text', guarded_text):
+                    tk.export(runtime, output, self.source)
+                for name in excluded:
+                    self.assertFalse((output / 'catalog' / name).exists(), name)
+                for path in output.rglob('*'):
+                    if path.is_file():
+                        self.assertNotIn(b'Synthetic private fixture', path.read_bytes(), path)
+
+    def test_skill_assets_scripts_and_fixtures_export_without_git_metadata(self):
+        assets = {
+            'assets/icon.png': b'\x89PNG\r\n\x1a\nSynthetic public image asset',
+            'assets/diagram.svg': b'<svg xmlns="http://www.w3.org/2000/svg"/>',
+            'assets/template.docx': b'Synthetic public document template',
+            'scripts/run.py': b'print("public example")\n',
+            'scripts/run.sh': b'#!/bin/sh\nprintf "public example\\n"\n',
+            'tests/fixtures/response.json': b'{"example": true}\n',
+        }
+        for name, data in assets.items():
+            path = self.source / 'skills/work-management' / name
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        self.write('skills/work-management/references/detail.md',
+                   '# Details\n\n[Image](../assets/icon.png), [script](../scripts/run.py), '
+                   '[fixture](../tests/fixtures/response.json).\n')
+        self.assertFalse((self.source / '.git').exists())
+        for runtime in ('portable', 'herd'):
+            with self.subTest(runtime=runtime):
+                output = self.base / runtime
+                tk.export(runtime, output, self.source)
+                for name, data in assets.items():
+                    self.assertEqual((output / 'catalog/skills/work-management' / name).read_bytes(), data)
+                if runtime == 'herd':
+                    bundle = json.loads((output / 'herd/imports/product-manager.bundle.json').read_text())
+                    binding = next(item for item in bundle['skillBindings'] if item['skillId'] == 'ai-agents-catalog')
+                    embedded = {item['path']: base64.b64decode(item['contentBase64'], validate=True)
+                                for item in binding['bundle']['files']}
+                    for name, data in assets.items():
+                        self.assertEqual(embedded['references/catalog/skills/work-management/' + name], data)
+
+    def test_links_to_excluded_secrets_and_nested_state_fail_before_writing(self):
+        for index, relative in enumerate((
+                '.env.production', 'credentials.json', 'assets/api-keys.json', 'assets/private-keys.json',
+                'references/tokens/production.json', 'references/passwords/config.json',
+                'references/secret/config.json', 'references/api-keys/config.json',
+                'references/private-keys/config.json', 'references/local-state/session.json',
+                'references/workspace/work/private.md', 'assets/unknown.payload')):
+            self.write('skills/work-management/' + relative, 'Synthetic private fixture.\n')
+            self.write('skills/work-management/references/detail.md', f'# Details\n\n[Hidden](../{relative})\n')
+            for runtime in ('portable', 'herd'):
+                with self.subTest(relative=relative, runtime=runtime):
+                    output = self.base / runtime / f'excluded-{index}'
+                    with self.assertRaises(tk.ToolkitError):
+                        tk.export(runtime, output, self.source)
+                    self.assertFalse(output.exists())
+
     def test_source_directory_and_native_interface_symlinks_are_rejected(self):
         external = self.base / 'external-agents'
         (self.source / 'agents').rename(external)

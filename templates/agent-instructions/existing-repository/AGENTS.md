@@ -6,6 +6,8 @@ Project context: [existing local project file or accessible URL].
 Stakeholders and decision rights: [existing source].
 Scope and constraints: [existing source].
 Process and relevant skills: [existing contribution guide or adopted URL/version].
+Adopted external policy SHA/version: `none` unless explicitly recorded with a pinned
+source URL in that contribution guide. Evolving technique/reference links do not adopt policy.
 Project locations: [repository/component map and editing/generated-file boundaries].
 Tools, integrations and access: [existing project tooling source].
 Setup, build and verification commands: [actual runbook/CI source].
@@ -15,6 +17,8 @@ Current knowledge and decisions: [existing indexes].
 Read these sources and the current assignment before substantial changes. Preserve
 applicable existing instructions, established architecture and human edits. Load the
 relevant installed skill or canonical body; a link does not install skills or grant tools.
+Use Herdr when its executable and selected server are usable; otherwise report the
+concrete gap and continue through the authorized host. Verify its effective capabilities.
 
 ## Coordinate and deliver
 

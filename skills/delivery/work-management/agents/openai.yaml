@@ -1,4 +1,4 @@
 interface:
   display_name: "Work Management"
-  short_description: "Keep plans, feedback and evidence in one issue or local record"
+  short_description: "Keep shared scope, feedback and evidence at the assignment"
   default_prompt: "Use $work-management to help with this task."

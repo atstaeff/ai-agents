@@ -1,55 +1,110 @@
-# Start with one real assignment
+# Try one small task
 
-Adopt the project entry, choose a host and complete one bounded outcome before adding
-more roles or tools. The catalog works with your existing stack and delivery systems.
+First export a small catalog into a temporary directory. Then use an installed AI host
+to turn a supplied note into a short runbook. No project adoption, server or API key is
+needed for the export; the AI task uses your host's own model access.
 
-## 1. Establish the project sources
+## 1. Check the local catalog
 
-Merge the [starter](lean-project.md) into the repository's existing root instructions:
+Use Bash on Linux, macOS or WSL with Git and Python 3.11+. Run these commands in one
+shell; keep it open for the next step.
 
-- `AGENTS.md` identifies collaboration rules and authoritative sources.
-- `PROJECT.md` describes goals, scope, stakeholders and ownership.
-- `CONTRIBUTING.md` describes the process, tools, checks and action boundaries.
+```sh
+set -eu
+git clone https://github.com/atstaeff/ai-agents.git
+cd ai-agents
+python3 tools/ai_toolkit.py check
+trial_dir="$(mktemp -d "${TMPDIR:-/tmp}/ai-agents-first-XXXXXX")"
+python3 tools/ai_toolkit.py export --runtime portable --preset minimal \
+  --skill technical-writing --output "$trial_dir"
+python3 - "$trial_dir" <<'PY'
+from pathlib import Path
+import sys
 
-Link existing equivalent pages where they already own these facts. Fill in real issue,
-review, knowledge and decision locations. No YAML file or `workspace/` tree is required.
-The [adoption guide](adopt-workspace.md) covers existing repositories and central web policy.
+root = Path(sys.argv[1])
+for relative in (
+    "agents/build.agent.md",
+    ".agents/skills/technical-writing/SKILL.md",
+    "catalog/toolkit/SESSION-RULES.md",
+):
+    assert (root / relative).is_file(), relative
+print(f"Portable catalog ready: {root}")
+print("No AI host was started.")
+PY
+cat > "$trial_dir/NOTES.md" <<'MD'
+# Upload retry notes
 
-## 2. Choose the runtime and a bounded catalog
+Endpoint: POST /uploads.
+An upload ID can be retried for 24 hours.
+A retry with the same ID and body returns the original result.
+A retry with the same ID and a different body returns HTTP 409.
+No service, automated test, review or deployment is supplied by this exercise.
+MD
+```
 
-Follow [runtime exports](installation.md) for Herd, OpenCode, Copilot, Claude Code or
-portable profiles. That guide owns current commands, layouts and options. Use a dedicated
-export destination, preserve existing host instructions and verify discovery and effective
-permissions with the [host check](portability.md#verify-a-new-host-once).
+Success is `Portable catalog ready:` followed by a path, with no catalog errors. This
+checks local files and export structure. It does not test a host, model or live service.
+If Python is too old, use a Python 3.11+ installation. If the catalog check fails, resolve
+the reported source error before continuing; do not use `--force` to bypass it.
 
-Use [Herdr](herdr.md) whenever installed and usable; reuse the matching project session
-and organize labelled lead/specialist tabs. Complex judgment uses strong/high reasoning,
-bounded execution uses economical models and mechanical coordination uses native tools.
-Scale parallel work to actual resource, provider, budget and review capacity. Report
-a concrete gap when falling back.
+## 2. Open the disposable project in your host
 
-Start with a small preset or explicitly selected profiles. Configure providers, credentials
-and model choices in the host. For a coordinated assignment, choose the relevant product,
-architecture or delivery leader and bounded specialists; see [orchestration](orchestration.md).
+Use [Herdr](herdr.md) when its executable and selected server are usable. Reuse the
+matching project session and start its supported interactive CLI in the temporary
+directory through Herdr's native agent commands. The host's desktop/web UI can also
+serve as your control surface; qualify its actual Herdr integration before relying on it.
+If Herdr is unavailable, state that gap and use your authorized host directly. Herdr
+is distinct from the optional Herd fleet exporter.
 
-## 3. Run one useful outcome
+The portable files can be read explicitly without claiming native discovery. Choose
+the row for a host you already have; these commands do not install or configure it.
 
-| Team | First assignment | Evidence to retain |
+| Host | Open the exercise | Native installation and discovery |
 | --- | --- | --- |
-| Engineering | Fix a reproducible defect or deliver a small feature in the existing stack | Behavior checks, review findings and the linked change |
-| Product | Resolve one uncertain user problem or prioritize a bounded experiment | Source observations, assumptions, acceptance and the next decision |
-| Platform | Improve a deployment, service boundary or operational recovery path | The changed contract, a representative check and recovery evidence |
+| OpenCode | In the same shell, run `cd "$trial_dir"`, then `opencode web`; open its displayed local URL | [OpenCode setup](installation.md#opencode-in-wsl) supplies the native export and both configuration variables |
+| Claude Code | Run `cd "$trial_dir"`, then `claude` | [Claude Code setup](installation.md#claude-code) supplies native agents, skills and instruction imports |
+| VS Code / Copilot | Run `code "$trial_dir"`; open Copilot Chat in Agent mode | [Copilot setup](installation.md#copilot) explains the project-native layout and tool limits |
+| Herd fleet | Export and import a selected native bundle, then assign the exercise to a worker with access to this directory | [Herd imports](installation.md#herd-fleet-imports) explains the actual import path and worker requirements |
+| Another host | Open the printed directory and ask the session to read the files named below | [Portable layout](portability.md) requires an explicit check of that host's discovery and tools |
 
-Use the designated issue or ticket for shared scope, acceptance and evidence links.
-For code changes, keep implementation and review details in the linked PR. For an
-outcome without a code change, retain its result and review at the assignment and linked
-knowledge source. Personal working plans stay
-private; if configured storage is unavailable, mark the session plan as unsaved. A small
-clear correction needs no plan file.
+Configure credentials, model, effort and permissions in the host. If it cannot read or
+write the exercise directory, resolve that access gap before continuing. Adapter format
+checks do not establish compatibility with your installed host version.
 
-Run the project's actual checks, update affected knowledge and preserve significant
-decisions. Try resuming from the shared sources in a fresh session. Report what was
-verified and what remains unknown before expanding concurrency.
+## 3. Run the first task
 
-The [working contract](workflow.md) defines the process. Add the optional
-[local workbench](local-tools.md) or [integrations](integrations.md) only for a concrete need.
+Paste this into the host session opened at the temporary directory:
+
+```text
+Read catalog/skills/knowledge/technical-writing/SKILL.md and NOTES.md.
+Create RUNBOOK.md with three sections: Behavior, Operator check, Evidence limits.
+Use only the supplied facts. Describe proposed manual checks for a retry with the
+same ID and body, and a retry with the same ID and a different body.
+Mark those checks as unrun. Do not make network calls, install tools, or edit
+other files. Report the file created and the limits of the evidence.
+```
+
+Review `RUNBOOK.md`. A successful result preserves the endpoint, 24-hour window,
+original-result behavior and HTTP 409 conflict, and labels the proposed checks as
+unrun. It must not claim a service was tested or deployed. This is a small documentation
+result; native skill discovery, reviewer restrictions and delegation remain separate
+host capabilities to qualify.
+
+Keep the temporary directory for inspection or remove it when finished.
+
+## 4. Adopt only what your next assignment needs
+
+Merge the [project starter](lean-project.md) or an [AGENTS.md variant](agents-templates.md)
+into existing instructions. Identify the assignment, acceptance, real checks and required
+sources before the work depends on them. Add context and knowledge as the work produces it;
+no YAML manifest, empty knowledge tree or full agent team is required.
+
+Before relying on a host for real delivery, record its observed discovery, model/effort,
+permissions, handoff and limits with the [runtime check template](../templates/delivery/runtime-check.md).
+Before parallel work, record capacity and bounded writer scopes there and follow
+[orchestration](orchestration.md). Use strong/high reasoning for complex judgment,
+economical proven routes for bounded work and native tools for mechanical coordination.
+
+Keep shared scope and acceptance in the actual issue or ticket, implementation evidence
+in the linked PR, and current knowledge at the project's chosen home. Personal plans
+stay private or explicitly unsaved in-session. See the [working contract](workflow.md).

@@ -16,6 +16,11 @@ Use the current session unless a supported, authorized handoff improves the outc
 2. Write the narrative first, then use an existing Marp template and readable layouts.
 3. Render and check the slides with available tools; do not fabricate references or claim unperformed visual checks.
 
+## Result
+
+Return the Marp source, rendered deliverable when available and actual layout checks.
+If rendering is unavailable, label the deck unrendered and provide the exact remaining check.
+
 ## Select only for the current uncertainty
 
 - [marp-presentations](../../skills/knowledge/marp-presentations/SKILL.md)

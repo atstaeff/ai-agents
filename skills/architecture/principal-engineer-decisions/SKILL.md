@@ -1,6 +1,6 @@
 ---
 name: "principal-engineer-decisions"
-description: "Compare consequential technical options and record an architecture or delivery decision."
+description: "Resolve a consequential technical tradeoff with viable alternatives, evidence, decision authority and a recoverable rationale. Use architecture-planning to shape a broader implementation."
 ---
 
 # Principal Engineer Decisions

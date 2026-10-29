@@ -1,6 +1,6 @@
 ---
 name: "architecture-planning"
-description: "Produce a concise architecture plan with boundaries, alternatives, delivery steps and verification."
+description: "Shape a substantial change across system or data boundaries: compare alternatives, define contracts and sequence verified increments. Use a focused boundary skill for a local change."
 ---
 
 # Architecture Planning

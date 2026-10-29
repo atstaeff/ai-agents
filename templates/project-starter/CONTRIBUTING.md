@@ -3,6 +3,23 @@
 Read [AGENTS.md](AGENTS.md) and [PROJECT.md](PROJECT.md). This guide describes the project's
 working process for people and AI. Adapt it to existing project policy.
 
+## Policy adoption
+
+Binding process: this local CONTRIBUTING.md and applicable project instructions.
+External binding policy source: `none`.
+Adopted external policy SHA/version: `none — no external policy adopted by this template`.
+
+The catalog links below are evolving technique/reference sources. Read a selected skill
+for its procedure; a `main` branch or live website link does not silently adopt external
+process obligations. Project rules, current instructions and effective host permissions govern.
+
+If the process owner adopts external policy, replace both `none` fields with the verified
+immutable source URL and full commit SHA or governed documentation version. For example,
+construct a URL using `https://github.com/atstaeff/ai-agents/blob/COMMIT_SHA/toolkit/WORKFLOW.md`,
+replace `COMMIT_SHA` with the actual 40-character revision and verify the body before use.
+Record which local sections it replaces and any approved fallback. Keep this pattern
+literal until adoption; it is not an active policy link.
+
 ## Working process and skills
 
 Use **Clarify → Plan → Build → Verify → Integrate and retain**. A clear small correction
@@ -16,7 +33,7 @@ Select only relevant skills from the installed catalog or its canonical linked s
 Load the skill body explicitly when the host does not discover it; a Markdown link
 does not install a skill or start an agent. Do not load the whole catalog for each task.
 
-| Need | Reusable procedure |
+| Need | Evolving technique/reference |
 | --- | --- |
 | Establish contribution rules in an unfamiliar project | [repository-contribution](https://github.com/atstaeff/ai-agents/blob/main/skills/delivery/repository-contribution/SKILL.md) |
 | Clarify vision, value, scope and acceptance | [product-discovery](https://github.com/atstaeff/ai-agents/blob/main/skills/delivery/product-discovery/SKILL.md) |
@@ -40,6 +57,12 @@ when it already owns this information.
 Discover available host integrations for these tools. Report missing access and prepare
 an unsent update in the response or handoff, naming its intended destination. Check existing effects after a timeout before
 retrying a write. Keep credentials and personal filesystem paths in local configuration.
+
+Qualify the installed host's discovery, effective model/effort, tools and handoff before
+depending on them. The [runtime check template](../delivery/runtime-check.md) records
+observations, limits and capacity at the existing work/review home; export format checks
+alone do not qualify a host. When copying this guide, replace this template link with
+your adopted local copy or an intentional catalog reference.
 
 ## Setup and checks
 
@@ -66,7 +89,9 @@ decomposition, integration conflicts and consequential review. Use economical pr
 models for bounded specialist work and native commands for mechanical coordination.
 Verify effective model/effort in the harness; report a missing required route instead
 of silently downgrading complex work. Resolve actual routes from local host settings.
-See the [Herdr policy](https://github.com/atstaeff/ai-agents/blob/main/toolkit/HERDR.md).
+The [Herdr guide](https://github.com/atstaeff/ai-agents/blob/main/toolkit/HERDR.md)
+is an evolving reference; the local rules in this section define this project's preference
+unless a different pinned policy is explicitly recorded above.
 
 ## Coordination and review
 

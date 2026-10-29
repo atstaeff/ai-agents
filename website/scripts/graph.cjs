@@ -1,13 +1,15 @@
 const fs = require("node:fs");
 const path = require("node:path");
-const matter = require("gray-matter");
 const { writeViewData } = require("./graph-views.cjs");
-
-const SOURCE_KINDS = {
-  decisions: "decision",
-  topics: "topic",
-  components: "component",
-};
+const {
+  SOURCE_KINDS,
+  DEFAULT_ROUTE_BASE_PATH,
+  listKnowledgeFiles,
+  readPublishedMatter,
+  routeBasePath: validateRouteBasePath,
+  loadKnowledgeSource,
+  publicKnowledgeSource,
+} = require("../knowledge.config.cjs");
 const RELATIONS = new Set([
   "depends_on",
   "supersedes",
@@ -16,103 +18,83 @@ const RELATIONS = new Set([
 ]);
 const STATUSES = new Set(["accepted", "proposed", "superseded", "current"]);
 
-function buildGraph(contentRoot) {
-  if (fs.lstatSync(contentRoot).isSymbolicLink())
-    throw new Error("Knowledge root must not be a symlink");
-  const root = fs.realpathSync(contentRoot);
-  const intro = path.join(root, "intro.md");
-  if (fs.existsSync(intro) && fs.lstatSync(intro).isSymbolicLink())
-    throw new Error("Knowledge sources must not be symlinks");
+function buildGraph(contentRoot, { routeBasePath = DEFAULT_ROUTE_BASE_PATH } = {}) {
+  validateRouteBasePath(routeBasePath);
+  const { root, files } = listKnowledgeFiles(contentRoot);
   const nodes = [];
   const ids = new Set();
   const slugs = new Set();
-  function visit(directory, folder) {
-    const stat = fs.lstatSync(directory);
-    if (stat.isSymbolicLink())
-      throw new Error("Knowledge sources must not be symlinks");
-    for (const name of fs.readdirSync(directory).sort()) {
-      const file = path.join(directory, name);
-      const stat = fs.lstatSync(file);
-      if (stat.isSymbolicLink())
-        throw new Error("Knowledge sources must not be symlinks");
-      if (stat.isDirectory()) {
-        visit(file, folder);
-        continue;
-      }
-      if (!name.endsWith(".md")) continue;
-      const { data } = matter(fs.readFileSync(file, "utf8"));
-      const {
-        knowledge_id: id,
-        title,
-        status,
-        owner,
-        area,
-        slug,
-        relations = {},
-      } = data;
-      if (
-        typeof id !== "string" ||
-        !/^[A-Z][A-Z0-9-]{0,127}$/.test(id) ||
-        ids.has(id)
-      ) {
-        throw new Error(`Invalid or duplicate ID: ${id}`);
-      }
-      if (
-        typeof title !== "string" ||
-        !title.trim() ||
-        typeof owner !== "string" ||
-        !owner.trim()
-      ) {
-        throw new Error(`Missing title or owner: ${id}`);
-      }
-      if (
-        typeof area !== "string" ||
-        !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(area)
-      )
-        throw new Error(`Missing or invalid area: ${id}`);
-      if (!STATUSES.has(status)) throw new Error(`Unknown status: ${id}`);
-      if (
-        typeof slug !== "string" ||
-        !new RegExp(`^/${folder}/[a-z0-9-]+$`).test(slug) ||
-        slugs.has(slug)
-      ) {
-        throw new Error(`Invalid or duplicate route: ${id}`);
-      }
-      if (
-        !relations ||
-        typeof relations !== "object" ||
-        Array.isArray(relations)
-      ) {
-        throw new Error(`Invalid relations: ${id}`);
-      }
-      for (const [type, targets] of Object.entries(relations)) {
-        if (
-          !RELATIONS.has(type) ||
-          !Array.isArray(targets) ||
-          targets.some((t) => typeof t !== "string")
-        ) {
-          throw new Error(`Invalid relation: ${id}`);
-        }
-      }
-      ids.add(id);
-      slugs.add(slug);
-      nodes.push({
-        id,
-        title,
-        status,
-        owner,
-        area,
-        kind: SOURCE_KINDS[folder],
-        href: `/demo-knowledge${slug}/`,
-        path: path.relative(root, file).split(path.sep).join("/"),
-        relations,
-      });
+  for (const { file, folder } of files) {
+    const { data } = readPublishedMatter(file);
+    if (folder === null) continue;
+    const {
+      knowledge_id: id,
+      title,
+      status,
+      owner,
+      area,
+      slug: sourceSlug,
+      relations = {},
+    } = data;
+    if (typeof id !== "string" || !/^[A-Z][A-Z0-9-]{0,127}$/.test(id)) {
+      throw new Error("Invalid knowledge ID");
     }
-  }
-  // This is a publication allowlist, not a recursive scan of a repository or vault.
-  for (const folder of Object.keys(SOURCE_KINDS)) {
-    const directory = path.join(root, folder);
-    if (fs.existsSync(directory)) visit(directory, folder);
+    if (ids.has(id)) throw new Error(`Duplicate knowledge ID: ${id}`);
+    if (
+      typeof title !== "string" ||
+      !title.trim() ||
+      typeof owner !== "string" ||
+      !owner.trim()
+    ) {
+      throw new Error(`Missing title or owner: ${id}`);
+    }
+    if (
+      typeof area !== "string" ||
+      !/^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$/.test(area)
+    )
+      throw new Error(`Missing or invalid area: ${id}`);
+    if (!STATUSES.has(status)) throw new Error(`Unknown status: ${id}`);
+    // Portable source slugs are relative; retain the existing leading-slash spelling.
+    const slug =
+      typeof sourceSlug === "string"
+        ? sourceSlug.replace(/^\//, "")
+        : sourceSlug;
+    if (
+      typeof slug !== "string" ||
+      !new RegExp(`^${folder}/[a-z0-9-]+$`).test(slug) ||
+      slugs.has(slug)
+    ) {
+      throw new Error(`Invalid or duplicate route: ${id}`);
+    }
+    if (
+      !relations ||
+      typeof relations !== "object" ||
+      Array.isArray(relations)
+    ) {
+      throw new Error(`Invalid relations: ${id}`);
+    }
+    for (const [type, targets] of Object.entries(relations)) {
+      if (
+        !RELATIONS.has(type) ||
+        !Array.isArray(targets) ||
+        targets.some((t) => typeof t !== "string")
+      ) {
+        throw new Error(`Invalid relation: ${id}`);
+      }
+    }
+    ids.add(id);
+    slugs.add(slug);
+    nodes.push({
+      id,
+      title,
+      status,
+      owner,
+      area,
+      kind: SOURCE_KINDS[folder],
+      href: `/${routeBasePath}/${slug}/`,
+      path: path.relative(root, file).split(path.sep).join("/"),
+      relations,
+    });
   }
   const byId = new Map(nodes.map((n) => [n.id, n]));
   const edges = [];
@@ -171,12 +153,11 @@ function assertAcyclic(nodes, edges, type) {
 
 if (require.main === module) {
   const site = path.resolve(__dirname, "..");
-  const graph = buildGraph(
-    path.resolve(site, "../examples/engineering-demo/content"),
-  );
+  const source = loadKnowledgeSource();
+  const graph = buildGraph(source.root, source);
   const output = path.join(site, ".generated");
   fs.mkdirSync(output, { recursive: true });
-  writeViewData(graph, output);
+  writeViewData(graph, output, { source: publicKnowledgeSource(source) });
   console.log(
     `Knowledge graph: ${graph.nodes.length} records, ${graph.edges.length} relationships`,
   );

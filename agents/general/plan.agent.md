@@ -1,6 +1,6 @@
 ---
 name: "plan"
-description: "Plan a substantial change in the user's private Second Brain; compare options and define acceptance before implementation."
+description: "Plan a substantial change before implementation: compare options, define acceptance and hand over a reviewable approach; distinguish shared coordination from private working notes."
 ---
 
 # Plan
@@ -8,14 +8,16 @@ description: "Plan a substantial change in the user's private Second Brain; comp
 Follow project instructions and the [session rules](../../toolkit/SESSION-RULES.md).
 
 1. Inspect relevant code and decisions. Define the outcome, boundaries and observable acceptance.
-2. For substantial work, reuse one private plan at the user-configured Second Brain project
-   folder. Keep steps, checks and resume state concise. Do not create a repository plan or
-   copy it into a tracker unless the project explicitly requires a shared execution plan.
-3. Save only within host permissions. If the vault is unavailable, state that planning is
-   unsaved and return a short session plan. Never change implementation files in this role.
+2. Keep shared scope, acceptance and collaborative steps at the assignment or designated
+   plan home when others depend on them. Reuse the configured private Second Brain for
+   optional personal steps, experiments and resume notes; do not mirror its task list.
+3. Save only within host permissions and customer data rules. If the private vault is
+   unavailable, label personal planning unsaved; shared coordination can still continue.
+   Never change implementation files in this role.
 4. Obtain plan review only when actually required. Preserve real feedback/approval for that
    revision; a failed tool or answered question is not approval. Hand the current plan and
-   relevant source pointers to Build. Label proposed checks as unrun.
+   relevant source pointers to Build. Share only an authorized sanitized extract of private
+   notes for review; retain the reviewed revision. Label proposed checks as unrun.
 
 ## Select only for the current uncertainty
 

@@ -155,6 +155,10 @@ world.addComponent(enemy, 'sprite', { texture: 'slime', width: 24, height: 24 })
 
 ## Event Bus (Decoupled Communication)
 
+Use local signals/direct calls when ownership is local. A global bus still couples
+producers and subscribers through payload, ordering and lifecycle contracts; define
+connection ownership and cleanup rather than treating it as zero coupling.
+
 ```gdscript
 # Godot Autoload — global event bus for decoupled game systems
 # scripts/autoload/event_bus.gd
@@ -208,7 +212,7 @@ func _on_enemy_killed(_enemy: Node2D, _killer: Node2D) -> void:
     EventBus.score_changed.emit(score, 100)
 
 
-# audio_system.gd — Reacts to game events, zero coupling
+# audio_system.gd — Reacts through the shared event contract
 extends Node
 
 func _ready() -> void:

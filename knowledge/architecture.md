@@ -52,6 +52,15 @@ website/generate.py selects canonical Markdown for Docusaurus and rewrites local
 The website is a derived reading view, with edit links to the maintained source. docs/ is
 existing generated Pages output. A public website cannot expose private customer sources.
 
+The [trusted publication configuration](../website/knowledge.config.cjs) selects a curated
+knowledge source, public route and sidebar for both the graph CLI and Docusaurus.
+Relative source slugs are portable; existing leading-slash slugs normalize to the same
+route. The actual ADR template is checked against both current and legacy publishers.
+
+Local documentation search indexes only generated public documentation/catalog pages;
+it does not discover private files or load the customer graph corpus into the browser.
+Its results link back to the maintained reading views.
+
 The example knowledge map starts with aggregate areas. Record lists and one-hop
 neighborhoods use bounded JSON pages fetched on demand, with versioned snapshot URLs,
 explicit result counts and retryable errors. Its build still processes the full published
@@ -62,6 +71,12 @@ The optional workbench still stores records in ignored workspace/work/ and archi
 workspace/archive/. Its --workspace argument means the project root. Existing YAML
 validation and customer examples remain compatibility tools; neither is required for a
 new AGENTS.md project. The toolkit runs no models and provides no distributed work lock.
+
+Export inclusion uses an explicit supported source-type policy and excludes recognized
+credential/private/local-state paths before reading their contents. This is not content
+secret scanning; review otherwise publishable sources. Work-record writes recheck hashes
+after temporary-file preparation, and create operations cannot replace a competing creator.
+These local guards narrow races without supplying cross-process compare-and-swap.
 
 Update this page when source ownership, runtime storage, publication or entry behavior changes.
 Validate using the [runbook](../toolkit/REPOSITORY-WORKFLOW.md) and CI on the affected revision.
