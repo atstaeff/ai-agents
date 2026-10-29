@@ -1,0 +1,88 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "task-orchestrator",
+  "instructions": [
+    "toolkit/SESSION-RULES.md"
+  ],
+  "agent": {
+    "architecture-reviewer": {
+      "description": "Review architecture changes for justified boundaries, quality requirements and operational tradeoffs.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/architecture/architecture-reviewer.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/architecture/architecture-reviewer.agent.md}",
+      "permission": {
+        "edit": {
+          "*": "deny"
+        },
+        "bash": "deny",
+        "task": "deny"
+      }
+    },
+    "gcp-architect": {
+      "description": "Design or review Google Cloud workloads, service identities, data boundaries and operating tradeoffs; guide Terraform delivery with explicit recovery evidence.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/architecture/gcp-architect.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/architecture/gcp-architect.agent.md}"
+    },
+    "lead-architect": {
+      "description": "Autonomously lead consequential technical decisions across Python, frontend and platform boundaries; coordinate specialists, reviewed contracts, quality evidence and owner handoffs.",
+      "mode": "all",
+      "prompt": "Canonical role source: agents/architecture/lead-architect.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/architecture/lead-architect.agent.md}"
+    },
+    "product-manager": {
+      "description": "Autonomously lead product discovery, backlog scope and stakeholder tradeoffs with bounded specialists; propose acceptance and the next measurable increment for the accountable product owner.",
+      "mode": "all",
+      "prompt": "Canonical role source: agents/delivery/product-manager.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/delivery/product-manager.agent.md}"
+    },
+    "task-orchestrator": {
+      "description": "Autonomously deliver a scoped outcome with Herdr-coordinated specialists, qualified model routes, review and combined verification at the existing shared assignment.",
+      "mode": "all",
+      "prompt": "Canonical role source: agents/delivery/task-orchestrator.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/delivery/task-orchestrator.agent.md}"
+    },
+    "devops-agent": {
+      "description": "Improve reproducible builds, CI, releases and local or cloud operations with clear recovery paths.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/engineering/devops-agent.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/engineering/devops-agent.agent.md}"
+    },
+    "frontend-expert": {
+      "description": "Build or review React, JavaScript or existing web interfaces with clear state ownership, accessible interactions and reliable API integration.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/engineering/frontend-expert.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/engineering/frontend-expert.agent.md}"
+    },
+    "terraform-engineer": {
+      "description": "Implement or review a bounded Terraform change, drift fix, import or module migration with clear state ownership and plan/recovery evidence.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/engineering/terraform-engineer.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/engineering/terraform-engineer.agent.md}"
+    },
+    "joerg": {
+      "description": "Act as J\u00f6rg, the personal assistant for software, product work and a private Obsidian second brain; choose relevant skills and specialists.",
+      "mode": "primary",
+      "prompt": "Canonical role source: agents/general/joerg.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/general/joerg.agent.md}"
+    },
+    "documentation-editor": {
+      "description": "Author or edit engineering guides, runbooks and architecture documentation; verify factual claims, reader paths and canonical source ownership.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/knowledge/documentation-editor.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/knowledge/documentation-editor.agent.md}"
+    },
+    "python-expert": {
+      "description": "Implement or review Python services, FastAPI endpoints and tools with explicit contracts, resource ownership and focused verification.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/languages/python-expert.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/languages/python-expert.agent.md}"
+    },
+    "code-reviewer": {
+      "description": "Review a code change for concrete defects, regressions and security issues with actionable findings.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/quality/code-reviewer.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/quality/code-reviewer.agent.md}",
+      "permission": {
+        "edit": {
+          "*": "deny"
+        },
+        "bash": "deny",
+        "task": "deny"
+      }
+    },
+    "test-strategist": {
+      "description": "Choose and implement proportionate tests for important behavior, boundaries and realistic regressions.",
+      "mode": "subagent",
+      "prompt": "Canonical role source: agents/quality/test-strategist.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/quality/test-strategist.agent.md}"
+    }
+  }
+}

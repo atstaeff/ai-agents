@@ -48,6 +48,7 @@ class CatalogSelectionTests(unittest.TestCase):
                     self.assertIn('bash: deny', reviewer)
                     self.assertFalse((root/'commands/brain.md').exists())
                     config = json.loads((root/'opencode.json').read_text())
+                    self.assertEqual(config['default_agent'], 'joerg')
                     self.assertEqual(Path(config['instructions'][0]).name, 'SESSION-RULES.md')
                 elif runtime == 'claude':
                     self.assertIn('tools: Read, Grep, Glob', reviewer)

@@ -21,12 +21,21 @@ behavior. `workspace/generated/` and exports are ignored and excluded from publi
 
 ## Prefer the available Herdr session
 
+The checked-in `opencode.json` already selects Delivery and loads the curated team's
+canonical profiles and shared startup rules. Start installed OpenCode normally from the
+checkout in the intended Herdr pane; no export or extra delegation prompt is required here.
+Keep provider/model routes in private host settings. Canonical skills remain available
+for explicit reading; this native entry is not a skill installation.
+
 Follow [Herdr execution](HERDR.md): check readiness, reuse the matching project session,
 select verified model/effort routes and organize labelled tabs. Use independent worktrees
 for writers and scale dispatch to actual resource/provider/budget/review capacity.
 If Herdr is absent or unusable, report the exact gap and use the authorized host.
 
 ## Export and start OpenCode 1
+
+For another project, export the chosen profiles. A normal export keeps the full catalog
+and selects task-orchestrator; smaller presets keep their focused entry.
 
 ```sh
 python3 tools/ai_toolkit.py export --runtime opencode \

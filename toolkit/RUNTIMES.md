@@ -22,6 +22,33 @@ specialists, labelled tabs and resource-aware parallel dispatch. Export the cata
 the underlying harness, then verify discovery and effective model/effort in that session.
 The `herd` exporter below targets a separate optional fleet product.
 
+## Native startup in this checkout
+
+The checked-in `opencode.json` selects `task-orchestrator`, automatically loads session
+rules and registers the curated team's 13 agent profiles through canonical file references.
+Start installed OpenCode from this repository in the intended Herdr pane. The lead discovers
+Herdr once, uses its native skill/policy when available and usable, and coordinates useful
+parallel work without another delegation instruction. Other hosts load the same startup
+contract through AGENTS.md or their exported entry.
+
+This configuration supplies no model, provider credentials, permission allowances or
+installation. Nonconflicting private per-agent model routes remain in the merged host
+settings; inspect the effective result once. Reviewers retain native edit/bash/task denies.
+Canonical skills can be read explicitly from the project; native skill-menu discovery
+still needs the installed host's discovery paths or an export.
+
+Maintain this thin native adapter from canonical metadata:
+
+```sh
+python3 tools/ai_toolkit.py opencode-config > opencode.json
+python3 tools/ai_toolkit.py check
+```
+
+The check rejects stale configuration; the generator prints deterministic JSON and changes
+no files itself. Do not store personal routes in this generated project file. Use normal
+host model settings or the exported routes below. A running session may need a supported
+refresh/new session to load a changed project configuration.
+
 ## OpenCode in WSL
 
 Export into a dedicated directory, then set both variables when starting from a project.
@@ -64,7 +91,8 @@ guide](PLAN-REVIEW.md) for WSL startup, privacy, review states and model handoff
 Use `--preset team` for the Product (`product-manager`), Engineering (`lead-architect`)
 and Delivery (`task-orchestrator`) leads plus Python/React/GCP/Terraform, test, review and
 documentation expertise. Delivery is this preset's default conversation; all three leads
-are directly selectable and callable. Other presets keep their existing defaults.
+are directly selectable and callable. The normal `all` export also starts with Delivery;
+smaller focused presets retain their existing entry when that lead is not selected.
 An ordinary authorized assignment activates their coordination loop without another
 "use Herdr", "delegate" or model-selection prompt.
 

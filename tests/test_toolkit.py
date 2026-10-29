@@ -10,6 +10,7 @@ import tempfile
 import threading
 import unittest
 from concurrent.futures import ThreadPoolExecutor
+from dataclasses import replace
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
@@ -17,6 +18,64 @@ import ai_toolkit as tk
 
 
 class CatalogTests(unittest.TestCase):
+    def test_checkout_starts_the_delivery_team_from_canonical_profiles(self):
+        path = tk.ROOT/'opencode.json'
+        config = json.loads(path.read_text())
+        self.assertEqual(config, tk.repository_opencode_config())
+        self.assertEqual(config['default_agent'], 'task-orchestrator')
+        self.assertEqual(config['instructions'], ['toolkit/SESSION-RULES.md'])
+        entries = {e.name: e for e in tk.select_entries(tk.catalog(), 'team') if e.kind == 'agent'}
+        self.assertEqual(set(config['agent']), set(entries))
+        for name, settings in config['agent'].items():
+            source = entries[name].path
+            self.assertTrue((tk.ROOT/source).is_file())
+            self.assertIn(f'{{file:./{source}}}', settings['prompt'])
+            self.assertIn(f'Canonical role source: {source}', settings['prompt'])
+            self.assertEqual(settings['description'], entries[name].description)
+            self.assertNotIn('model', settings)
+            self.assertNotIn('variant', settings)
+            if name in tk.TEAM_LEADS:
+                self.assertEqual(settings['mode'], 'all')
+            if name in tk.OPENCODE_REVIEW_ROUTE:
+                self.assertEqual(settings['permission'], {'edit': {'*': 'deny'}, 'bash': 'deny', 'task': 'deny'})
+            else:
+                self.assertNotIn('permission', settings)
+        self.assertNotIn('model', config)
+        self.assertNotIn('permission', config)
+
+    def test_checkout_configuration_drift_is_reported_without_overwriting_it(self):
+        original = tk.catalog()
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            for name in ('README.md', 'AGENTS.md', 'CONTRIBUTING.md', '.github/copilot-instructions.md'):
+                required = root/name
+                required.parent.mkdir(parents=True, exist_ok=True)
+                required.write_text('# Fixture instructions\n')
+            path = root/'opencode.json'
+            path.write_bytes((tk.ROOT/'opencode.json').read_bytes())
+            before = path.read_bytes()
+            with patch.object(tk, 'catalog', return_value=original):
+                self.assertEqual(tk.check(root), [])
+            changed = [replace(e, description=e.description+' Updated role.') if e.name == 'task-orchestrator' else e for e in original]
+            with patch.object(tk, 'catalog', return_value=changed):
+                self.assertTrue(any('Stale opencode.json' in e for e in tk.check(root)))
+            self.assertEqual(path.read_bytes(), before)
+            path.write_text('{broken')
+            with patch.object(tk, 'catalog', return_value=original):
+                self.assertTrue(any('Invalid repository OpenCode' in e for e in tk.check(root)))
+            self.assertEqual(path.read_text(), '{broken')
+
+    def test_native_configuration_cli_is_deterministic_and_read_only(self):
+        before = (tk.ROOT/'opencode.json').read_bytes()
+        with patch('sys.stdout', new_callable=io.StringIO) as output:
+            self.assertEqual(tk.main(['opencode-config']), 0)
+            first = output.getvalue()
+        with patch('sys.stdout', new_callable=io.StringIO) as output:
+            self.assertEqual(tk.main(['opencode-config']), 0)
+            self.assertEqual(output.getvalue(), first)
+        self.assertEqual(json.loads(first), json.loads(before))
+        self.assertEqual((tk.ROOT/'opencode.json').read_bytes(), before)
+
     def test_complete_catalog_and_links(self):
         entries = tk.catalog()
         self.assertTrue({'agent', 'skill'} <= {e.kind for e in entries})
@@ -93,7 +152,7 @@ class ExportTests(unittest.TestCase):
     def test_opencode_primary_profiles_permissions_and_no_model_forcing(self):
         tk.export('opencode', self.output)
         config = json.loads((self.output/'opencode.json').read_text())
-        self.assertEqual(config['default_agent'], 'joerg')
+        self.assertEqual(config['default_agent'], 'task-orchestrator')
         self.assertNotIn('model', config)
         self.assertNotIn('plugin', config)
         self.assertTrue(Path(config['instructions'][0]).is_file())
@@ -411,7 +470,7 @@ class ExportTests(unittest.TestCase):
             tk.export('opencode', self.output)
         self.assertFalse((self.output/'catalog').exists())
         tk.export('opencode', self.output, force=True)
-        self.assertEqual(json.loads((self.output/'opencode.json').read_text())['default_agent'], 'joerg')
+        self.assertEqual(json.loads((self.output/'opencode.json').read_text())['default_agent'], 'task-orchestrator')
 
     def test_dry_run_writes_nothing(self):
         tk.export('portable',self.output,dry_run=True)

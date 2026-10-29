@@ -113,6 +113,8 @@ The catalog check detects stale indexes.
 Profile pages, template pages and catalog navigation are generated at documentation
 build time. Add no profile page stubs or copied instructions under `website/content/`.
 Edit the canonical source; maintain website-specific layout and entry pages in `website/`.
+After changing team profile metadata, regenerate the native checkout adapter with
+`python3 tools/ai_toolkit.py opencode-config > opencode.json`; the catalog check detects drift.
 
 Use [catalog management](toolkit/CATALOG-GUIDE.md), the
 [quality standard](toolkit/QUALITY-STANDARD.md) and

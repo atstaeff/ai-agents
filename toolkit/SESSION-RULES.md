@@ -5,6 +5,12 @@ rules are a fallback; project facts and permissions come from the project and ho
 
 ## Autonomous team default
 
+At session startup, reuse matching host evidence or discover Herdr once through normal
+PATH/configured-target lookup. When available and usable, load its release-matched native
+skill and [execution policy](HERDR.md), then control the team through Herdr by default.
+Do not wait for a "use Herdr" instruction. Reuse known setup/gaps until the target or
+environment materially changes; keep small tasks in the current pane.
+
 An authorized assignment activates routine internal team coordination: select the lead,
 relevant skills, qualified model routes, useful specialists, parallel execution and review
 without asking the user to repeat a delegation instruction. Reuse the adopted host setup;

@@ -1,6 +1,7 @@
 {
   "all": {
-    "description": "All active native profiles; preserves the existing export default.",
+    "description": "All active native profiles with autonomous Delivery as the default OpenCode lead.",
+    "default_agent": "task-orchestrator",
     "agents": [
       "*"
     ],

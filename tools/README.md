@@ -5,7 +5,7 @@ require running a server or installing a model framework.
 
 | Source | Responsibility |
 | --- | --- |
-| ai_toolkit.py | Catalog metadata/link checks, selected runtime exports (including native Herd imports), local work-record CLI, loopback HTTP API and Obsidian URI encoding |
+| ai_toolkit.py | Catalog/startup checks, native checkout configuration generation, selected runtime exports (including native Herd imports), local work-record CLI, loopback HTTP API and Obsidian URI encoding |
 | project_config.py | Validate optional existing project/workspace YAML configuration |
 | workspace_smoke.py | Exercise the real local HTTP and record flow, including comments and stale-write handling |
 | web/ | Browser assets for the local catalog and Markdown workbench |

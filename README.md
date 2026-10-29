@@ -44,6 +44,12 @@ test, review and documentation expertise. [Configure the host and model routes o
 then reuse that setup. Current host permissions, project scope and human decision rights govern.
 Existing installed bundles/sessions need a deliberate update to load changed instructions.
 
+In this checkout, the native `opencode.json` already selects Delivery and registers the
+team from canonical profile files. Start your installed OpenCode from the repository in
+the intended Herdr pane; startup rules discover/use Herdr automatically when available
+and usable. No export or delegation prompt is needed to activate this repository's lead.
+Private model routes and host permissions still come from your local configuration.
+
 ## Adopt in one project
 
 After the first task, merge the [project starter](templates/project-starter/README.md)

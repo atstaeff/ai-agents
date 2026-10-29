@@ -2,6 +2,9 @@
 
 Maintain this English engineering catalog, operating model and local Python toolkit.
 Use the user's language in conversation. Follow current user/host and applicable project rules.
+At session startup, load and apply [session rules](toolkit/SESSION-RULES.md), reusing a
+matching loaded copy. Herdr discovery and autonomous team coordination are the default;
+the user does not need to request them again.
 
 ## Choose the relevant context
 

@@ -218,6 +218,16 @@ def check(root: Path = ROOT) -> list[str]:
                     errors.append(f'Stale catalog index: {kind}s/README.md; regenerate with catalog --kind {kind} --format markdown.')
     except ToolkitError as exc:
         errors.append(str(exc))
+    native_config = root / 'opencode.json'
+    if root.resolve() == ROOT.resolve() or native_config.exists() or native_config.is_symlink():
+        if native_config.is_symlink() or not native_config.is_file():
+            errors.append('Missing or symlinked opencode.json; regenerate the repository startup configuration.')
+        else:
+            try:
+                if json.loads(native_config.read_text(encoding='utf-8')) != repository_opencode_config(root):
+                    errors.append('Stale opencode.json; regenerate with: python3 tools/ai_toolkit.py opencode-config > opencode.json')
+            except (ValueError, OSError) as exc:
+                errors.append(f'Invalid repository OpenCode startup configuration: {exc}')
     if (root / 'toolkit/catalog-presets.json').is_file():
         for preset in catalog_presets():
             try:
@@ -573,6 +583,31 @@ OPENCODE_LEAD_ROUTE = HERD_LEADS | {'plan', 'build', 'gcp-architect', 'test-stra
 OPENCODE_REVIEW_ROUTE = {'code-reviewer', 'architecture-reviewer'}
 
 
+def opencode_agent_mode(name: str) -> str:
+    return ('all' if name in TEAM_LEADS else
+            'primary' if name in {'joerg', 'plan', 'build'} else 'subagent')
+
+
+def repository_opencode_config(root: Path = ROOT) -> dict:
+    """Native checkout entry; canonical prompts stay single-source and models stay private."""
+    profiles = {}
+    for entry in select_entries(catalog(root), 'team'):
+        if entry.kind != 'agent':
+            continue
+        settings = {
+            'description': entry.description,
+            'mode': opencode_agent_mode(entry.name),
+            'prompt': (f'Canonical role source: {entry.path}. Resolve its relative links from that file\'s directory.\n\n'
+                       f'{{file:./{entry.path}}}'),
+        }
+        if entry.name in OPENCODE_REVIEW_ROUTE:
+            settings['permission'] = {'edit': {'*': 'deny'}, 'bash': 'deny', 'task': 'deny'}
+        profiles[entry.name] = settings
+    return {'$schema': 'https://opencode.ai/config.json',
+            'default_agent': catalog_presets()['team']['default_agent'],
+            'instructions': ['toolkit/SESSION-RULES.md'], 'agent': profiles}
+
+
 def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
     """Keep copied references local; point omitted public sources at their reading view."""
     for name, data in list(planned.items()):
@@ -817,8 +852,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         body = LINK.sub(rebase, body)
         header = f'---\nname: {json.dumps(meta["name"])}\ndescription: {json.dumps(meta["description"])}\n'
         if entry.kind == "agent" and runtime == "opencode":
-            mode = ('all' if entry.name in TEAM_LEADS else
-                    'primary' if entry.name in {'joerg', 'plan', 'build'} else 'subagent')
+            mode = opencode_agent_mode(entry.name)
             header += f"mode: {mode}\n"
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "permission:\n  edit:\n    '*': deny\n"
@@ -1248,6 +1282,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest='command', required=True)
     sub.add_parser('check', help='Validate all catalog metadata and local links')
+    sub.add_parser('opencode-config', help='Print the native repository startup config from canonical team profiles')
     cat = sub.add_parser('catalog', help='Print catalog metadata without loading all prompts')
     cat.add_argument('--preset', choices=list(catalog_presets()), default='all')
     cat.add_argument('--kind', choices=['agent','skill'])
@@ -1256,7 +1291,7 @@ def main(argv: list[str] | None = None) -> int:
     adapter = sub.add_parser('export', help='Export isolated native runtime profiles')
     adapter.add_argument('--runtime', choices=sorted(RUNTIMES), required=True)
     adapter.add_argument('--output', type=Path, required=True)
-    adapter.add_argument('--preset', choices=list(catalog_presets()), default='all', help='Native profile selection; all preserves existing behavior')
+    adapter.add_argument('--preset', choices=list(catalog_presets()), default='all', help='Native selection; all registers the complete catalog with Delivery as the default OpenCode lead')
     adapter.add_argument('--agent', action='append', default=[], help='Add a named agent to the preset')
     adapter.add_argument('--skill', action='append', default=[], help='Add a named skill to the preset')
     adapter.add_argument('--force', action='store_true')
@@ -1309,6 +1344,8 @@ def main(argv: list[str] | None = None) -> int:
                 return 1
             entries = catalog()
             print(f"Valid: {sum(e.kind == 'agent' for e in entries)} agents, {sum(e.kind == 'skill' for e in entries)} skills; local links resolve.")
+        elif args.command == 'opencode-config':
+            print(json.dumps(repository_opencode_config(), indent=2))
         elif args.command == 'catalog':
             entries = [e for e in select_entries(catalog(), args.preset) if (args.kind is None or e.kind == args.kind)
                        and (args.domain is None or e.domain == args.domain)]
