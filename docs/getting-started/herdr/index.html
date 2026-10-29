@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Herdr execution policy | AI Agents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://atstaeff.github.io/ai-agents/getting-started/herdr/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Herdr execution policy | AI Agents"><meta data-rh="true" name="description" content="Use Herdr as the preferred execution surface whenever its executable is available and"><meta data-rh="true" property="og:description" content="Use Herdr as the preferred execution surface whenever its executable is available and"><link data-rh="true" rel="icon" href="/ai-agents/img/mark.svg"><link data-rh="true" rel="canonical" href="https://atstaeff.github.io/ai-agents/getting-started/herdr/"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/herdr/" hreflang="en"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/herdr/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Herdr: Models, Tabs and Capacity","item":"https://atstaeff.github.io/ai-agents/getting-started/herdr"}]}</script><link rel="stylesheet" href="/ai-agents/assets/css/styles.39e65234.css">
-<script src="/ai-agents/assets/js/runtime~main.84ac55a7.js" defer="defer"></script>
+<script src="/ai-agents/assets/js/runtime~main.f1c58fd8.js" defer="defer"></script>
 <script src="/ai-agents/assets/js/main.dbbe3202.js" defer="defer"></script>
 </head>
 <body>
@@ -17,6 +17,22 @@ its selected server is usable within the current host/project permissions. Apply
 policy to the current session as well as delegated work. Reuse an existing matching
 session before creating another one. Herdr organizes execution; the assignment and
 project knowledge remain authoritative.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="default-behavior">Default behavior<a href="#default-behavior" class="hash-link" aria-label="Direct link to Default behavior" title="Direct link to Default behavior" translate="no">​</a></h2>
+<p>For a substantial assignment, the lead delegates useful independent ready slices through
+Herdr as the normal execution path. Keep the lead focused on unresolved judgment, contracts,
+blockers and integration while economical specialists deliver bounded results. Dispatch
+ready work together within the observed limits; do not serialize it merely because one
+coordinator submits the tasks. Keep dependent or overlapping work queued. A small correction
+stays in the current pane. Delegate when expected delivery/review benefit covers setup and
+integration effort; reduce the team when that benefit disappears.</p>
+<p>The authorized assignment is standing authorization for routine internal coordination
+within host/project limits. The lead chooses expertise, qualified routes, layout and
+dispatch without another &quot;use Herdr&quot; or &quot;start subagents&quot; instruction. Use the
+<a class="" href="/ai-agents/getting-started/session-rules/#autonomous-team-default">autonomous team startup</a> and
+<a class="" href="/ai-agents/getting-started/installation/#configure-the-autonomous-team-once">one-time host setup</a>. The receiving lead
+keeps ownership through the stages required by the requested scope, including review,
+correction and combined evidence. A real user decision or exhausted authorized capacity
+can block work; routine coordination should not be returned to the user as a task list.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="discover-connect-and-use">Discover, connect and use<a href="#discover-connect-and-use" class="hash-link" aria-label="Direct link to Discover, connect and use" title="Direct link to Discover, connect and use" translate="no">​</a></h2>
 <p>At session start, reuse a known matching Herdr context and its recent readiness evidence.
 Otherwise check executable discovery through normal PATH lookup or an explicitly configured
@@ -25,6 +41,15 @@ calling the API. The examples below target the local session; a selected remote 
 requires the same explicit <code>--machine MACHINE_ID</code> prefix on every supported API command.
 Selecting a machine in the UI does not retarget existing shell commands. Never reuse
 local IDs for a remote server or fall back to Local after a failed remote operation.</p>
+<p>Inside a Herdr pane, use the release-matched native skill printed by <code>herdr --skill</code>
+when supported; reuse an already loaded matching copy. Follow its operating guard:
+<code>HERDR_ENV=1</code> identifies a managed caller, and <code>HERDR_PANE_ID</code> supplies its pane context.
+An installed executable alone does not identify a session the caller owns. Outside a
+managed pane, discover availability without assuming <code>--current</code>; control a session only
+through explicitly selected, authorized external automation. Otherwise report the missing
+attachment/target and continue independent work in the authorized host. Do not fabricate
+Herdr environment variables. The <a href="https://herdr.dev/docs/agent-skill/" target="_blank" rel="noopener noreferrer" class="">official skill guide</a>
+explains installation/discovery; this repository does not maintain a copied fork.</p>
 <p>For a new available context, the small read-only readiness check is:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr status server</span><br></div></code></pre></div></div>
 <p>Inspect <code>herdr --version</code> and the local CLI&#x27;s <code>herdr api schema --json</code> when compatibility
@@ -86,6 +111,11 @@ provider-supported effort settings; there is no universal <code>thinking</code> 
 a specialist facing an unresolved architectural problem needs the complex route. Keep
 expensive reasoning on the decisions that need it, then return bounded execution to the
 economical route. Do not resend the full leader conversation to every worker.</p>
+<p>Reuse a qualified route for its task class. Do not buy a strong-model turn to rename a
+pane, poll state or relay unchanged output. When a specialist exposes a new complex
+decision, return that decision and its evidence to the lead; resume bounded implementation
+on the economical route after the contract is resolved. Change model/session only after
+saving the small handoff needed to continue without replaying the full conversation.</p>
 <p>Verify effective model and effort in the harness&#x27;s session settings or launch output.
 Record unavailable verification explicitly. A declared model alias alone proves neither
 its capability nor the active effort. If the required strong/high route is unavailable or cannot be verified,
@@ -93,9 +123,11 @@ report the configuration gap and continue only work that does not depend on it; 
 silently downgrade a complex decision. Escalate a struggling specialist with its concrete
 failure, relevant sources and attempted checks; avoid repeated blind retries.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="keep-the-project-visible">Keep the project visible<a href="#keep-the-project-visible" class="hash-link" aria-label="Direct link to Keep the project visible" title="Direct link to Keep the project visible" translate="no">​</a></h2>
-<p>Use a project workspace and labelled tabs. The labels below are examples; one useful
-control/lead view is sufficient when it covers the outcome. This is a UI convention;
-it does not require a <code>workspace/</code> repository directory. Create only the lead viewpoints needed by the outcome.</p>
+<p>Use one primary workspace for the project and group its writer worktree workspaces under
+it. A tab is a view inside one workspace; a pane (sometimes called a panel) is one terminal.
+Separate writer worktrees are workspaces, not extra tabs sharing the primary checkout.
+This is a UI convention, not a required <code>workspace/</code> repository directory. Reuse the
+initial tab/root pane for Control and create only the lead viewpoints needed by the outcome.</p>
 
 
 
@@ -129,18 +161,29 @@ it does not require a <code>workspace/</code> repository directory. Create only 
 
 
 
-<table><thead><tr><th>Tab or grouped workspace label</th><th>Purpose</th></tr></thead><tbody><tr><td><code>00 Control</code></td><td>Integration owner, assignment link, active capacity and short handoff</td></tr><tr><td><code>10 Product</code></td><td>Product lead when user value, stakeholder alignment or acceptance is unresolved</td></tr><tr><td><code>20 Engineering</code></td><td>Technical lead for contracts and consequential choices</td></tr><tr><td><code>30 Delivery</code></td><td>Delivery lead when several work streams need sequencing</td></tr><tr><td><code>40 Review</code></td><td>Independent review of a named revision</td></tr><tr><td><code>ISSUE-ID / api</code>, <code>ISSUE-ID / web</code>, <code>ISSUE-ID / infra</code></td><td>Active specialist scope and its owned checkout</td></tr></tbody></table>
-<p>Reuse and rename tabs rather than generating a new tab for every prompt. Separate
-terminal layout from writer isolation: every concurrent writer owns an isolated Git
-worktree/branch, and its terminal starts in that checkout. Use Herdr&#x27;s native worktree
-workspaces grouped with the project. Multiple tabs pointing at one checkout do not
-isolate file writes. Read-only leads may share sources; shared contracts still need one owner.</p>
+
+
+
+
+
+
+
+<table><thead><tr><th>Location</th><th>Suggested label</th><th>Contents</th></tr></thead><tbody><tr><td>Primary workspace, first tab</td><td><code>00 Control</code></td><td>Integration lead; assignment, ready queue and remaining capacity</td></tr><tr><td>Optional primary tabs</td><td><code>10 Product</code>, <code>20 Engineering</code>, <code>30 Delivery</code></td><td>Only unresolved lead viewpoints requiring a separate session</td></tr><tr><td>Grouped writer workspaces</td><td><code>ISSUE-ID / api</code>, <code>ISSUE-ID / web</code>, <code>ISSUE-ID / infra</code></td><td>One owned checkout/branch per concurrent writer</td></tr><tr><td>Writer workspace, work tab</td><td><code>10 Work</code></td><td><code>api-agent</code> pane plus a <code>checks</code> pane when it helps</td></tr><tr><td>Workspace running the relevant service</td><td><code>20 Runtime</code></td><td>Labelled <code>server</code> and <code>logs</code> panes, only while needed</td></tr><tr><td>Review workspace/tab</td><td><code>40 Review</code></td><td>Independent reviewer at the specified combined revision; no implementation edits</td></tr></tbody></table>
+<p>Use a pane for a tightly related test/log process and a tab for a different view; grow
+the layout only while it stays readable on the actual screen. Prefer another tab or zoom
+to a grid of tiny panes. Reuse and rename existing locations. Create background layout
+with <code>--no-focus</code> and keep the user&#x27;s focus unless a requested interaction needs it.
+Use the sidebar&#x27;s rolled-up agent state to attend to blockers and returned work instead
+of opening every transcript. State is an attention signal, not approval or acceptance.</p>
+<p>Every concurrent writer owns an isolated Git worktree/branch, and its terminal starts in
+that checkout. Multiple tabs/panes pointing at one checkout do not isolate file writes.
+Read-only leads may share sources; shared contracts still need one owner. A checks pane
+can run concurrently only if it does not rewrite the writer&#x27;s files; serialize formatters,
+autofixes and generators or give them their own isolated scope. Prevent service/port clashes.</p>
 <p>Native creation examples use placeholders; replace paths, revisions and IDs with verified
 values. Capture returned IDs instead of predicting them:</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr workspace create --cwd /absolute/project --label project-name --no-focus</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr tab create --workspace WORKSPACE_ID --cwd /absolute/project --label &quot;20 Engineering&quot; --no-focus</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr worktree create --workspace WORKSPACE_ID --branch work/ISSUE-ID-api --base SOURCE_REVISION --label &quot;ISSUE-ID / api&quot; --no-focus</span><br></div></code></pre></div></div>
-<p>Reuse the initial tab and root pane created with the project workspace for Control;
-add a separate tab only for another needed view. Workspace and tab creation return a
-root pane under <code>.result.root_pane.pane_id</code>.
+<p>Workspace and tab creation return a root pane under <code>.result.root_pane.pane_id</code>.
 Inspect the installed schema for the worktree response. Start an agent only in its
 available shell pane. <code>HOST_KIND</code> is a placeholder for an installed supported kind
 such as <code>opencode</code>, <code>codex</code> or <code>claude</code>; pass that harness&#x27;s verified launch arguments
@@ -150,23 +193,54 @@ after <code>--</code>:</p>
 Inspect returned state and effective settings before sending the task. Keep the mapping
 from live agent name to task, pane, checkout and route at the existing coordination home.
 Never resume work by guessing that a reused name still identifies the old session.</p>
+<p>Use short stable live names such as <code>shop42-api-01</code>, <code>shop42-web-01</code> and <code>shop42-review-01</code>;
+follow the installed name rules (currently lowercase first letter, letters/digits/underscore/
+hyphen, at most 32 characters) and resolve collisions before launch. Label panes for their
+role and keep their actual IDs/checkouts in the control mapping. Before each new harness
+starts, establish its catalog, local model-route configuration and bounded tool access;
+the lead&#x27;s launch-only environment is not evidence that another pane inherited them.</p>
+<p>For an extra checks pane in the already verified writer checkout:</p>
+<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr pane split WRITER_PANE_ID --direction down --cwd /absolute/writer-checkout --no-focus</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">herdr pane rename RETURNED_PANE_ID checks</span><br></div></code></pre></div></div>
+<p>Capture the new ID from <code>.result.pane.pane_id</code>. Use <code>pane run</code> / <code>pane wait-output</code> for
+ordinary processes and <code>agent start</code> / <code>agent prompt</code> / <code>agent wait</code> for recognized agents;
+creating a pane does not start an agent or select its model. Shell commands still need
+correct quoting and the project&#x27;s verified runbook.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="fill-available-capacity-without-overload">Fill available capacity without overload<a href="#fill-available-capacity-without-overload" class="hash-link" aria-label="Direct link to Fill available capacity without overload" title="Direct link to Fill available capacity without overload" translate="no">​</a></h2>
 <p>The lead keeps a small ready queue at the existing assignment. Only dispatch tasks whose
 inputs/contracts are ready and whose write scopes do not conflict. Effective concurrency
 is the smallest relevant limit: approved worker cap, provider request/token limits, cost
 budget, measured machine headroom, independent ready work and integration/review capacity.
 Count active leads, workers and expensive build/test processes against the resources they use.</p>
+<p>Use one dispatcher per assignment. Product/engineering leads can request specialists;
+the dispatcher allocates them from the same remaining allowance. A worker must request
+extra capacity before starting children. Nested agents do not get a fresh budget or
+worker cap. Track agent/task, scope, checkout, model/effort, status and next return in the
+existing assignment/host control surface; do not build another scheduler or mirror tracker.</p>
 <p>If no measured capacity exists, start with one bounded worker and increase in small waves as work completes
 without pressure. Fill newly free slots only while measured resource, provider, budget
 and review limits still permit it. Reduce new dispatch when RAM/CPU or local model memory is under pressure, rate limits occur, spend approaches
 the cap or review waits grow. Provider-hosted inference and local inference have different
 resource costs; CPU count alone is not a universal worker limit. Queue dependent tasks;
 keep the native scheduler/control surface rather than adding a polling daemon.</p>
-<p>Observe lifecycle through <code>agent get</code>, bounded <code>agent read</code>, <code>agent prompt</code> and <code>agent wait</code>.
-Use short bounded waits so the coordinator can update the user and inspect other workers.
-After a timeout or uncertain prompt delivery, inspect the live agent before retrying.
-A blocked prompt requires the actual requested input; idle/unknown states are not acceptance.
-Avoid large repeated terminal dumps and repeated model calls just to poll state.</p>
+<p>Dispatch ready siblings before waiting on one. While workers run, resolve blockers, review
+returns and prepare integration; refill free capacity when another useful task becomes ready.
+Observe lifecycle through native state, bounded reads/waits and supported notifications or
+events. Wait in short intervals so the coordinator can update the user and inspect other work;
+avoid repeated model calls and full transcript dumps just to poll state.</p>
+<p>Send a new task to a ready agent after capturing its prior result. <code>agent prompt</code> success
+acknowledges input delivery; <code>--wait</code> on an already working agent can settle on its previous
+turn. A standalone wait can return immediately on an existing idle/done state. Match the
+returned artifact, source revision and checks to the delegated task before treating it as
+finished. Inspect live state/output after a timeout or uncertain delivery before retrying.
+A blocked agent needs the actual requested input under existing action permissions; never
+auto-approve a dialog or infer completion/permission from idle, done or unknown state.</p>
+<p>Exchange compact internal handoffs: task/source revision, contract or blocker, requested
+action and return evidence. A specialist reports a contract change to its owner before
+dependent work proceeds; a reviewer sends findings on the named revision back through the
+integrator to the writer. Peers can exchange permitted source facts using verified live
+targets, but one owner updates each shared contract/queue. Reuse the assignment and native
+agent channels; avoid duplicate chat histories, trackers and full-conversation broadcasts.
+The lead handles bounded corrections and rechecks affected evidence before reporting completion.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="integrate-retain-and-release-resources">Integrate, retain and release resources<a href="#integrate-retain-and-release-resources" class="hash-link" aria-label="Direct link to Integrate, retain and release resources" title="Direct link to Integrate, retain and release resources" translate="no">​</a></h2>
 <p>Inspect each returned diff and actual check evidence, then verify the combined revision.
 Retain significant decisions and current knowledge in their project homes; link them from
@@ -177,7 +251,15 @@ useful state; keep dirty worktrees and unresolved review evidence until safe int
 <p>Measure time to accepted result, cost, rework and review effort. Tab count, simultaneous
 agents and expensive model usage are not success measures. See <a class="" href="/ai-agents/getting-started/orchestration/">orchestration</a>
 for bounded task packets and <a class="" href="/ai-agents/operating-model/quality/">quality</a> for acceptance evidence.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="basis-and-limits">Basis and limits<a href="#basis-and-limits" class="hash-link" aria-label="Direct link to Basis and limits" title="Direct link to Basis and limits" translate="no">​</a></h2>
+<p>Native behavior was checked against Herdr&#x27;s <a href="https://herdr.dev/docs/concepts/" target="_blank" rel="noopener noreferrer" class="">concepts</a>,
+<a href="https://herdr.dev/docs/agent-automation/" target="_blank" rel="noopener noreferrer" class="">agent automation</a>,
+<a href="https://herdr.dev/docs/agents/" target="_blank" rel="noopener noreferrer" class="">agent state</a> and
+<a href="https://herdr.dev/docs/cli-reference/" target="_blank" rel="noopener noreferrer" class="">CLI reference</a> on 2026-10-29. Use the installed
+release&#x27;s skill/schema for exact support. The numbered layout, model routes and shared
+budget are this repository&#x27;s engineering conventions built on those primitives; Herdr
+does not automatically enforce the chosen model, file isolation, quality or spend.</p>
 <hr>
-<p>Canonical source: <a href="https://github.com/atstaeff/ai-agents/blob/main/toolkit/HERDR.md" target="_blank" rel="noopener noreferrer" class=""><code>toolkit/HERDR.md</code></a>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/atstaeff/ai-agents/edit/main/toolkit/HERDR.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/ai-agents/concept/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Engineering Operating Model</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/ai-agents/getting-started/orchestration/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Leads, Specialists and Models</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#discover-connect-and-use" class="table-of-contents__link toc-highlight">Discover, connect and use</a></li><li><a href="#route-work-by-complexity" class="table-of-contents__link toc-highlight">Route work by complexity</a></li><li><a href="#keep-the-project-visible" class="table-of-contents__link toc-highlight">Keep the project visible</a></li><li><a href="#fill-available-capacity-without-overload" class="table-of-contents__link toc-highlight">Fill available capacity without overload</a></li><li><a href="#integrate-retain-and-release-resources" class="table-of-contents__link toc-highlight">Integrate, retain and release resources</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Use</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/catalog/">Choose expertise</a></li><li class="footer__item"><a class="footer__link-item" href="/ai-agents/getting-started/adopt-workspace/">Adopt in a project</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Understand</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/concept/">Operating model</a></li><li class="footer__item"><a class="footer__link-item" href="/ai-agents/operating-model/knowledge/">Project knowledge</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Contribute</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/catalog/maintain/">Maintain the catalog</a></li><li class="footer__item"><a href="https://github.com/atstaeff/ai-agents" target="_blank" rel="noopener noreferrer" class="footer__link-item">Source repository<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">AI Agents by Stefan Poss · Reusable expertise. Durable knowledge.</div></div></div></footer></div>
+<p>Canonical source: <a href="https://github.com/atstaeff/ai-agents/blob/main/toolkit/HERDR.md" target="_blank" rel="noopener noreferrer" class=""><code>toolkit/HERDR.md</code></a>.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/atstaeff/ai-agents/edit/main/toolkit/HERDR.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/ai-agents/concept/"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Engineering Operating Model</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/ai-agents/getting-started/orchestration/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Leads, Specialists and Models</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#default-behavior" class="table-of-contents__link toc-highlight">Default behavior</a></li><li><a href="#discover-connect-and-use" class="table-of-contents__link toc-highlight">Discover, connect and use</a></li><li><a href="#route-work-by-complexity" class="table-of-contents__link toc-highlight">Route work by complexity</a></li><li><a href="#keep-the-project-visible" class="table-of-contents__link toc-highlight">Keep the project visible</a></li><li><a href="#fill-available-capacity-without-overload" class="table-of-contents__link toc-highlight">Fill available capacity without overload</a></li><li><a href="#integrate-retain-and-release-resources" class="table-of-contents__link toc-highlight">Integrate, retain and release resources</a></li><li><a href="#basis-and-limits" class="table-of-contents__link toc-highlight">Basis and limits</a></li></ul></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Use</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/catalog/">Choose expertise</a></li><li class="footer__item"><a class="footer__link-item" href="/ai-agents/getting-started/adopt-workspace/">Adopt in a project</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Understand</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/concept/">Operating model</a></li><li class="footer__item"><a class="footer__link-item" href="/ai-agents/operating-model/knowledge/">Project knowledge</a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Contribute</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/ai-agents/catalog/maintain/">Maintain the catalog</a></li><li class="footer__item"><a href="https://github.com/atstaeff/ai-agents" target="_blank" rel="noopener noreferrer" class="footer__link-item">Source repository<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">AI Agents by Stefan Poss · Reusable expertise. Durable knowledge.</div></div></div></footer></div>
 </body>
 </html>
