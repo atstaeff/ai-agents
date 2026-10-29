@@ -47,7 +47,7 @@ def run() -> dict:
         'Verify a generated OpenCode bundle, preserve fixture feedback and resume from a saved handoff.')
     text = text.replace('- Describe observable success before implementation and how it can be checked.\n'
                         '- Distinguish delivered behavior from any business impact that needs later observation.',
-        '- Exported OpenCode configuration selects joerg and contains the complete catalog.\n'
+        '- Exported OpenCode configuration selects task-orchestrator and contains the complete catalog.\n'
         '- Fixture feedback survives rejected stale writes.\n'
         '- A fresh store recovers task evidence and the next action before CLI archive.')
     text = text.replace('1. Inspect the relevant context and choose the smallest complete increment.\n2. Implement it and verify the acceptance criteria.',
@@ -106,7 +106,7 @@ def run() -> dict:
         config = json.loads((bundle / 'opencode.json').read_text())
         require((export['agents'], export['skills']) == tuple(sum(e.kind == k for e in expected) for k in ('agent', 'skill')),
                 'Wrong exported catalog size.')
-        require(config['default_agent'] == 'joerg', 'Default agent is not Jörg.')
+        require(config['default_agent'] == 'task-orchestrator', 'Default agent is not the Delivery lead.')
         require(cli('export', '--runtime', 'opencode', '--output', str(bundle))['changed'] == 0,
                 'Unchanged export rewrote files.')
         profile = bundle / 'agents/joerg.md'
@@ -118,7 +118,7 @@ def run() -> dict:
                     'A human-edited profile was not protected.')
         finally:
             profile.write_bytes(original)
-        passed('Build and verify', 'OpenCode JSON selects joerg; complete native catalog; repeat is a no-op; human edit protected.')
+        passed('Build and verify', 'OpenCode JSON selects task-orchestrator; complete native catalog; repeat is a no-op; human edit protected.')
 
         for task, evidence in [('T1', 'Native bundle and repeat-export checks passed.'),
                                ('T2', 'HTTP 412 and 428 observed; fixture feedback remains intact.')]:

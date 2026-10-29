@@ -38,7 +38,7 @@ Use a preset to register only useful native agents/skills in the host:
 | knowledge | 3 | 5 | Private notes and presentations |
 | platform | 6 | 10 | Google Cloud, Terraform, delivery and security |
 | documentation | 2 | 5 | Focused technical authoring and editing |
-| all | 22 | 41 | Complete active catalog; compatibility default |
+| all | 22 | 41 | Complete active catalog; default export with Delivery as the OpenCode entry |
 
 The source of these selections is [catalog-presets.json](catalog-presets.json).
 Presets are selections, not security boundaries or separate copies of expertise.
