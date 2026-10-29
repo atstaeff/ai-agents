@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Run this repository | AI Agents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://atstaeff.github.io/ai-agents/getting-started/repository-workflow/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Run this repository | AI Agents"><meta data-rh="true" name="description" content="Read AGENTS.md first. It links actual context, decisions and commands."><meta data-rh="true" property="og:description" content="Read AGENTS.md first. It links actual context, decisions and commands."><link data-rh="true" rel="icon" href="/ai-agents/img/mark.svg"><link data-rh="true" rel="canonical" href="https://atstaeff.github.io/ai-agents/getting-started/repository-workflow/"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/repository-workflow/" hreflang="en"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/repository-workflow/" hreflang="x-default"><link rel="stylesheet" href="/ai-agents/assets/css/styles.39e65234.css">
-<script src="/ai-agents/assets/js/runtime~main.f1c58fd8.js" defer="defer"></script>
+<script src="/ai-agents/assets/js/runtime~main.efa6518f.js" defer="defer"></script>
 <script src="/ai-agents/assets/js/main.dbbe3202.js" defer="defer"></script>
 </head>
 <body>
@@ -21,11 +21,18 @@ layout a requirement for projects adopting the catalog.</p>
 migration in generated fixtures. It does not prove live tracker access or installed-host
 behavior. <code>workspace/generated/</code> and exports are ignored and excluded from publication.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="prefer-the-available-herdr-session">Prefer the available Herdr session<a href="#prefer-the-available-herdr-session" class="hash-link" aria-label="Direct link to Prefer the available Herdr session" title="Direct link to Prefer the available Herdr session" translate="no">​</a></h2>
+<p>The checked-in <code>opencode.json</code> already selects Delivery and loads the curated team&#x27;s
+canonical profiles and shared startup rules. Start installed OpenCode normally from the
+checkout in the intended Herdr pane; no export or extra delegation prompt is required here.
+Keep provider/model routes in private host settings. Canonical skills remain available
+for explicit reading; this native entry is not a skill installation.</p>
 <p>Follow <a class="" href="/ai-agents/getting-started/herdr/">Herdr execution</a>: check readiness, reuse the matching project session,
 select verified model/effort routes and organize labelled tabs. Use independent worktrees
 for writers and scale dispatch to actual resource/provider/budget/review capacity.
 If Herdr is absent or unusable, report the exact gap and use the authorized host.</p>
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="export-and-start-opencode-1">Export and start OpenCode 1<a href="#export-and-start-opencode-1" class="hash-link" aria-label="Direct link to Export and start OpenCode 1" title="Direct link to Export and start OpenCode 1" translate="no">​</a></h2>
+<p>For another project, export the chosen profiles. A normal export keeps the full catalog
+and selects task-orchestrator; smaller presets keep their focused entry.</p>
 <div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token plain">python3 tools/ai_toolkit.py export --runtime opencode \</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">  --output &quot;$HOME/.config/ai-agents/opencode&quot;</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">cd /path/to/project</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">OPENCODE_CONFIG_DIR=&quot;$HOME/.config/ai-agents/opencode&quot; \</span><br></div><div class="token-line" style="color:#bfc7d5"><span class="token plain">OPENCODE_CONFIG=&quot;$HOME/.config/ai-agents/opencode/opencode.json&quot; opencode web</span><br></div></code></pre></div></div>
 <p>Re-export after canonical source changes. The manifest protects human edits. Configure
 models/providers locally. For private plans, follow <a class="" href="/ai-agents/templates/agent-instructions/personal-planning/">personal planning</a>;

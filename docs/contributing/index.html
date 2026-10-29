@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Contributing | AI Agents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://atstaeff.github.io/ai-agents/contributing/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Contributing | AI Agents"><meta data-rh="true" name="description" content="This document is the shared working process for people and AI in this repository."><meta data-rh="true" property="og:description" content="This document is the shared working process for people and AI in this repository."><link data-rh="true" rel="icon" href="/ai-agents/img/mark.svg"><link data-rh="true" rel="canonical" href="https://atstaeff.github.io/ai-agents/contributing/"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/contributing/" hreflang="en"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/contributing/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Contributing","item":"https://atstaeff.github.io/ai-agents/contributing/"}]}</script><link rel="stylesheet" href="/ai-agents/assets/css/styles.39e65234.css">
-<script src="/ai-agents/assets/js/runtime~main.f1c58fd8.js" defer="defer"></script>
+<script src="/ai-agents/assets/js/runtime~main.efa6518f.js" defer="defer"></script>
 <script src="/ai-agents/assets/js/main.dbbe3202.js" defer="defer"></script>
 </head>
 <body>
@@ -134,7 +134,9 @@ commands in <a class="" href="/ai-agents/catalog/maintain/#generated-indexes-and
 The catalog check detects stale indexes.
 Profile pages, template pages and catalog navigation are generated at documentation
 build time. Add no profile page stubs or copied instructions under <code>website/content/</code>.
-Edit the canonical source; maintain website-specific layout and entry pages in <code>website/</code>.</p>
+Edit the canonical source; maintain website-specific layout and entry pages in <code>website/</code>.
+After changing team profile metadata, regenerate the native checkout adapter with
+<code>python3 tools/ai_toolkit.py opencode-config &gt; opencode.json</code>; the catalog check detects drift.</p>
 <p>Use <a class="" href="/ai-agents/catalog/maintain/">catalog management</a>, the
 <a class="" href="/ai-agents/operating-model/quality/">quality standard</a> and
 <a class="" href="/ai-agents/templates/">template chooser</a> to keep new expertise specific and evidence-based.</p>
