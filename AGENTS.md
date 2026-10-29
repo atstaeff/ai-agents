@@ -28,6 +28,10 @@ role profile, guide or historical ADR. Expand when needed without omitting gover
 
 ## Preserve these boundaries
 
+- Treat the assigned outcome as standing authorization for routine internal team coordination
+  within host/project limits; apply the [autonomous default](toolkit/SESSION-RULES.md#autonomous-team-default).
+  Choose leads, specialists and qualified models, then carry work through review and checks
+  without requiring the user to repeat orchestration instructions.
 - Edit canonical agents/<domain>/<name>.agent.md and skills/<domain>/<name>/SKILL.md;
   keep portable name/description metadata and regenerate catalog indexes after changes.
 - Preserve Python 3.11+, the standard-library core, loopback/local assets, comment
@@ -36,7 +40,8 @@ role profile, guide or historical ADR. Expand when needed without omitting gover
   Keep private content and generated bundles out of commits. No unsolicited messages.
 - Use Herdr when available and usable; follow its [execution policy](toolkit/HERDR.md).
   Route complex judgment to strong models with high reasoning, bounded work to economical
-  models, and mechanical coordination to native tools. Scale parallel work within real capacity.
+  models, and mechanical coordination to native tools. Delegate useful independent ready
+  slices by default within one shared capacity/budget; keep tabs and panes labelled.
 - Keep shared scope and acceptance in the assignment; personal plans stay private. Preserve other writers' changes, coordinate overlapping
   scopes and shared contracts, and verify combined changes. Delegate only when supported,
   authorized and useful. Significant decisions and current knowledge stay at their owners.

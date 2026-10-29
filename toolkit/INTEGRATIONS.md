@@ -8,8 +8,8 @@ connectors do not establish a project's source of truth or permission to publish
 | --- | --- | --- |
 | Scope, priorities and acceptance | GitHub Issues/Projects or Jira | One authoritative assignment; PR/MR links it |
 | Code, checks and review | Existing Git host and CI | Evidence refers to the tested revision |
-| Fleet orchestration | Herd (NickGuAI) | Native commanders and host-managed workers; [adapter](ORCHESTRATION.md) |
-| Preferred terminal execution | Herdr when available and usable | [Readiness, tiers, tabs and resource-aware dispatch](HERDR.md) |
+| Preferred agent orchestration and terminal execution | Herdr when available and usable | Native dispatch/lifecycle, grouped worktrees, tabs and panes; [execution policy](HERDR.md) |
+| Optional commander package host | Herd (NickGuAI), only if adopted | Separate native import/worker integration; [adapter](ORCHESTRATION.md) |
 | Reduce unnecessary implementation | Ponytail, if installed | Native host rules alongside project acceptance and quality requirements |
 | Dependency discovery | Graphify, if adopted | Scoped derived context with source/provenance checks |
 | Decisions for people | Docusaurus | Published view of selected maintained Markdown |
@@ -22,7 +22,8 @@ which imports commanders and coordinates workers. Export/import is described in
 [orchestration](ORCHESTRATION.md); provider readiness and action policies belong in Herd.
 
 [Herdr](https://herdr.dev/docs/agent-automation/) is the preferred available terminal
-execution surface. Follow the [Herdr execution policy](HERDR.md) for discovery/readiness,
+and agent automation surface; it can dispatch and observe agents natively without Herd.
+Follow the [Herdr execution policy](HERDR.md) for discovery/readiness,
 model and effort routes, labelled tabs, independent worktrees, lifecycle control and
 resource-aware parallel work. Native commands handle routine coordination; complex
 judgment uses strong approved models with high reasoning. Report a concrete availability

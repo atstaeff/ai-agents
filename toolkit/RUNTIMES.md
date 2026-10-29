@@ -7,11 +7,11 @@ and model selection; keep customer knowledge independent of all three.
 
 | Runtime | Exported layout | Behavior |
 | --- | --- | --- |
-| OpenCode 1 | `agents/*.md`, `skills/<name>/SKILL.md`, `commands/`, `opencode.json` | Jörg, Plan and Build are primary; specialists are subagents |
+| OpenCode 1 | `agents/*.md`, `skills/<name>/SKILL.md`, `commands/`, `opencode.json` | Jörg/Plan/Build are primary; Product/Engineering/Delivery leads use `all`; other specialists are subagents |
 | VS Code / Copilot | `.github/agents/*.agent.md`, `.github/skills/<name>/SKILL.md` | Project-native profiles; select in the host |
 | Claude Code | `.claude/agents/*.md`, `.claude/skills/<name>/SKILL.md`, `CLAUDE.md` | Native profiles; select Jörg explicitly; Plan/reviewers are read/search-only |
 | Herd (NickGuAI) | `herd/commanders/`, `herd/imports/*.bundle.json` | Native lead packages and portable schema-v2 imports; workers run in the adopted harness |
-| Portable | `.agents/skills/<name>/SKILL.md`, `agents/*.agent.md` | Agent Skills plus portable profiles; agent discovery is host-specific |
+| Portable | `AGENTS.md`, `.agents/skills/<name>/SKILL.md`, `agents/*.agent.md` | Startup entry plus portable profiles; native agent discovery is host-specific |
 
 ## Use available Herdr
 
@@ -58,6 +58,49 @@ For plan comments and approval before implementation, add `--plannotator` to the
 Use `--plan-model`, `--build-model`, `--plan-variant` and `--build-variant` for independent
 phase settings. These are optional and OpenCode-specific. See [the local plan review
 guide](PLAN-REVIEW.md) for WSL startup, privacy, review states and model handoff.
+
+### Configure the autonomous team once
+
+Use `--preset team` for the Product (`product-manager`), Engineering (`lead-architect`)
+and Delivery (`task-orchestrator`) leads plus Python/React/GCP/Terraform, test, review and
+documentation expertise. Delivery is this preset's default conversation; all three leads
+are directly selectable and callable. Other presets keep their existing defaults.
+An ordinary authorized assignment activates their coordination loop without another
+"use Herdr", "delegate" or model-selection prompt.
+
+Set qualified routes once in private host configuration, or export native OpenCode
+per-agent settings with the optional flags below. Replace example model IDs and variants
+with approved installed values before use; a variant named `high` is not universal.
+
+```sh
+python3 tools/ai_toolkit.py export --runtime opencode --preset team \
+  --lead-model provider/strong-model --lead-variant high \
+  --worker-model provider/economical-model \
+  --review-model provider/review-model --review-variant high \
+  --output "$HOME/.config/ai-agents/opencode"
+```
+
+The lead route covers Jörg, the three leads, Plan/Build when selected, GCP architecture
+and test strategy. The worker route covers other selected specialists; the review route
+covers code-reviewer and architecture-reviewer. These are initial role defaults: an
+unexpected complex worker task returns to the lead/strong route. Profile permissions stay
+intact. `--plan-model`/`--build-model` override their route and replace its variant; an
+omitted phase variant uses the new model's default. Without route flags, no model is forced.
+OpenCode otherwise inherits the caller's model for subagents, so delegation alone does not
+establish a cheaper route. See its [agent reference](https://opencode.ai/docs/agents/).
+
+Ensure every Herdr worker harness discovers the same authorized catalog and local route
+settings. A variable set only for the lead's launch does not automatically configure shells
+created by an already running Herdr server. Prepare each worker's actual environment with
+the established host setup and verify profile/model/effort before dispatch; remote workers
+need reachable copies and their own valid paths. The lead performs this routine setup.
+
+After changing canonical profiles, re-export with the same local route options, restart
+or refresh affected host sessions using the installed version's supported flow, and verify
+the loaded instructions and effective settings once. An existing bundle or active prompt
+does not update merely because Git changed. Preserve edited files; export to staging and
+integrate local changes when ownership checks stop an update. Host permissions can still
+block automation; report that exact setup gap instead of repeatedly requesting orchestration.
 
 ## Copilot
 

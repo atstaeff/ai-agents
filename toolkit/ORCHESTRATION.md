@@ -11,11 +11,24 @@ The policy owns readiness, high-reasoning complex work, economical specialists, 
 mechanical coordination, labelled tabs and adaptive capacity. Reuse matching sessions;
 report a concrete gap before falling back. Routine work can stay in the current pane.
 
+Use Herdr's native agent dispatch/lifecycle as the preferred path; no Herd installation
+or `herd` export is required. Load the installed release's native Herdr skill when supported.
+For substantial work, delegate useful independent ready slices by default, submit siblings
+before waiting and refill free capacity. One dispatcher allocates the shared worker/spend
+allowance across all leads and nested specialists; no worker starts children outside it.
+
 For each assignment, keep one owner of dispatch and integration. If another adopted
 fleet tool owns worker creation, use Herdr for its terminal surface without duplicating
 workers or task queues. The Herd exporter below is a separate optional integration.
 
 ## A team has one integrated outcome
+
+The user supplies the outcome. Routine internal orchestration within its authority and
+the approved setup is already authorized: select the lead viewpoints, request specialists,
+choose routes, parallelize, review and correct without another delegation prompt. A scoped
+analysis/design request stays scoped. Leads coordinate their handoffs internally and name
+one dispatcher/integrator; only required user decisions or material unresolved blockers
+need user input. Apply the [autonomous startup contract](SESSION-RULES.md#autonomous-team-default).
 
 Activate product, engineering and delivery leadership as needed. Give each lead a distinct
 question and retain one named integration owner. Several commanders can own separate work
@@ -37,7 +50,9 @@ summary rather than the entire leader conversation.
 ## Parallelism and model choices
 
 1. Agree interfaces before starting dependent writers. Use isolated worktrees/branches.
-2. Run independent bounded tasks concurrently within the configured capacity and cost budget.
+2. Run independent bounded tasks concurrently within the shared capacity and cost budget,
+   including nested workers. Keep one agent pane per worker, related checks/logs in labelled
+   panes, isolated writer workspaces grouped with the project and the user's focus intact.
 3. Use strong approved models with high reasoning for unresolved architecture, decomposition,
    integration and consequential review. Use a proven economical configuration for a clear
    specialty; native commands or the smallest capable model handle mechanical coordination.
@@ -130,7 +145,13 @@ recording an ADR only for a consequential choice. The delivery lead delegates:
 | Infrastructure | Relevant Terraform module and environment config | Runtime requirements agreed | Formatting/validation and reviewed plan where authorized |
 | Documentation | Affected concept/runbook/decision pages | Implemented behavior available | Source-linked instructions and explicit gaps |
 
-The first three slices can overlap when their write scopes are independent. A reviewer
+Keep the integrator in `00 Control`. Group `ISSUE-ID / api`, `/ web` and `/ infra` writer
+workspaces under the project, each with its own branch and `10 Work` tab. Its specialist
+pane uses the qualified economical route; a separate checks pane runs only nonconflicting
+commands. Product/engineering leads use the strong/high route only for complex decisions.
+Add `20 Runtime` or `40 Review` views when needed; these labels are repository conventions.
+
+The first three slices can overlap when their write scopes and capacity permit. A reviewer
 assesses the integrated diff and real checks. The documentation editor checks the narrative
 against the final behavior. The release owner controls deployment and observes the product
 outcome; the team retains current knowledge and significant rationale in the project.

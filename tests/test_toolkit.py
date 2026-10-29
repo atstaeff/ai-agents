@@ -222,6 +222,88 @@ class ExportTests(unittest.TestCase):
         self.assertNotIn('model', config)
         self.assertIn('bash: deny', (self.output/'agents/plan.md').read_text())
 
+    def test_team_routes_are_native_selected_settings_and_preserve_review_permissions(self):
+        options = tk.OpenCodeOptions(lead_model='approved/strong', lead_variant='high',
+                                     worker_model='approved/economical',
+                                     review_model='approved/reviewer', review_variant='high')
+        tk.export('opencode', self.output, preset='team', opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['default_agent'], 'task-orchestrator')
+        for name in ('joerg', 'product-manager', 'lead-architect', 'task-orchestrator', 'gcp-architect', 'test-strategist'):
+            self.assertEqual(config['agent'][name], {'model': 'approved/strong', 'variant': 'high'})
+        for name in ('python-expert', 'frontend-expert', 'terraform-engineer', 'devops-agent', 'documentation-editor'):
+            self.assertEqual(config['agent'][name], {'model': 'approved/economical'})
+        for name in ('code-reviewer', 'architecture-reviewer'):
+            self.assertEqual(config['agent'][name], {'model': 'approved/reviewer', 'variant': 'high'})
+            profile = (self.output/f'agents/{name}.md').read_text()
+            self.assertIn("    '*': deny", profile)
+            self.assertIn('  bash: deny\n  task: deny', profile)
+        self.assertNotIn('game-developer', config['agent'])
+        self.assertNotIn('model', config)
+        self.assertNotIn('plugin', config)
+        self.assertNotIn('permission', config['agent']['task-orchestrator'])
+        for name in tk.TEAM_LEADS:
+            self.assertIn('mode: all', (self.output/f'agents/{name}.md').read_text())
+        self.assertNotIn('approved/strong', (self.output/'catalog/agents/delivery/product-manager.agent.md').read_text())
+        self.assertEqual(tk.export('opencode', self.output, preset='team', opencode_options=options)['changed'], 0)
+
+    def test_explicit_phase_model_replaces_tier_variant_without_stale_inheritance(self):
+        options = tk.OpenCodeOptions(lead_model='approved/strong', lead_variant='high',
+                                     worker_model='approved/economical', worker_variant='low',
+                                     plan_model='local/planner',
+                                     build_model='local/coder', build_variant='medium')
+        tk.export('opencode', self.output, opencode_options=options)
+        config = json.loads((self.output/'opencode.json').read_text())
+        self.assertEqual(config['agent']['plan'], {'model': 'local/planner'})
+        self.assertEqual(config['agent']['build'], {'model': 'local/coder', 'variant': 'medium'})
+        self.assertEqual(config['agent']['joerg'], {'model': 'approved/strong', 'variant': 'high'})
+        self.assertEqual(config['agent']['python-expert'], {'model': 'approved/economical', 'variant': 'low'})
+        self.assertIn('  bash: deny\n  task: deny', (self.output/'agents/plan.md').read_text())
+
+    def test_team_route_cli_validates_before_writes_and_preserves_local_configuration(self):
+        args = ['export', '--runtime', 'opencode', '--preset', 'team', '--output', str(self.output),
+                '--lead-model', 'approved/strong', '--lead-variant', 'high',
+                '--worker-model', 'approved/economical',
+                '--review-model', 'approved/reviewer', '--review-variant', 'high']
+        with patch('sys.stdout', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args + ['--dry-run']), 0)
+            self.assertFalse(self.output.exists())
+            self.assertEqual(tk.main(args), 0)
+        config_path = self.output/'opencode.json'
+        config = json.loads(config_path.read_text())
+        self.assertEqual(config['agent']['python-expert']['model'], 'approved/economical')
+        config_path.write_text('Human-owned model configuration')
+        with patch('sys.stderr', new_callable=io.StringIO):
+            self.assertEqual(tk.main(args), 1)
+        self.assertEqual(config_path.read_text(), 'Human-owned model configuration')
+        for route in ('lead', 'worker', 'review'):
+            output = self.output/route
+            for settings in ({f'{route}_variant': 'high'}, {f'{route}_model': 'invalid'},
+                             {f'{route}_model': 'approved/model', f'{route}_variant': 'bad name'}):
+                with self.subTest(route=route, settings=settings), self.assertRaises(tk.ToolkitError):
+                    tk.export('opencode', output, opencode_options=tk.OpenCodeOptions(**settings))
+                self.assertFalse(output.exists())
+            with self.assertRaisesRegex(tk.ToolkitError, 'runtime opencode'):
+                tk.export('portable', output, opencode_options=tk.OpenCodeOptions(**{f'{route}_model': 'approved/model'}))
+            self.assertFalse(output.exists())
+
+    def test_portable_startup_entry_resolves_and_preserves_customer_instructions(self):
+        self.output.mkdir()
+        entry = self.output/'AGENTS.md'
+        entry.write_text('Customer project instructions')
+        with self.assertRaisesRegex(tk.ToolkitError, 'unmanaged or edited'):
+            tk.export('portable', self.output, preset='team')
+        self.assertEqual(entry.read_text(), 'Customer project instructions')
+        self.assertFalse((self.output/'catalog').exists())
+        entry.unlink()
+        tk.export('portable', self.output, preset='team')
+        target = tk.LINK.findall(entry.read_text())[0]
+        self.assertEqual((entry.parent/target).read_bytes(), (tk.ROOT/'toolkit/SESSION-RULES.md').read_bytes())
+        entry.write_text('Customer additions')
+        with self.assertRaisesRegex(tk.ToolkitError, 'unmanaged or edited'):
+            tk.export('portable', self.output, preset='team')
+        self.assertEqual(entry.read_text(), 'Customer additions')
+
     def test_opencode_options_reject_invalid_input_before_writing(self):
         for options in (tk.OpenCodeOptions(plan_variant='high'), tk.OpenCodeOptions(build_variant='medium'),
                         tk.OpenCodeOptions(plan_model='no-provider'), tk.OpenCodeOptions(build_model='provider/'),
