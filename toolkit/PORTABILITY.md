@@ -21,6 +21,11 @@ A `.claude/` directory is a Claude Code discovery convention, not a requirement 
 use a Claude model in another host. Renaming a discovery directory alone does not
 configure a tool to read it.
 
+OpenCode loads the exported session rules through its instructions configuration; Claude
+imports them; Copilot's startup instruction requires reading them; portable exports supply
+an `AGENTS.md` entry. Preserve a customer's existing entry and integrate through staging
+when ownership checks stop replacement. Verify actual discovery once for the adopted host.
+
 ## Use the project’s tooling map
 
 Read applicable AGENTS.md instructions and their referenced project/process sources,

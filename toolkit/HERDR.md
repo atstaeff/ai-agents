@@ -16,6 +16,15 @@ coordinator submits the tasks. Keep dependent or overlapping work queued. A smal
 stays in the current pane. Delegate when expected delivery/review benefit covers setup and
 integration effort; reduce the team when that benefit disappears.
 
+The authorized assignment is standing authorization for routine internal coordination
+within host/project limits. The lead chooses expertise, qualified routes, layout and
+dispatch without another "use Herdr" or "start subagents" instruction. Use the
+[autonomous team startup](SESSION-RULES.md#autonomous-team-default) and
+[one-time host setup](RUNTIMES.md#configure-the-autonomous-team-once). The receiving lead
+keeps ownership through the stages required by the requested scope, including review,
+correction and combined evidence. A real user decision or exhausted authorized capacity
+can block work; routine coordination should not be returned to the user as a task list.
+
 ## Discover, connect and use
 
 At session start, reuse a known matching Herdr context and its recent readiness evidence.
@@ -151,6 +160,13 @@ Inspect returned state and effective settings before sending the task. Keep the 
 from live agent name to task, pane, checkout and route at the existing coordination home.
 Never resume work by guessing that a reused name still identifies the old session.
 
+Use short stable live names such as `shop42-api-01`, `shop42-web-01` and `shop42-review-01`;
+follow the installed name rules (currently lowercase first letter, letters/digits/underscore/
+hyphen, at most 32 characters) and resolve collisions before launch. Label panes for their
+role and keep their actual IDs/checkouts in the control mapping. Before each new harness
+starts, establish its catalog, local model-route configuration and bounded tool access;
+the lead's launch-only environment is not evidence that another pane inherited them.
+
 For an extra checks pane in the already verified writer checkout:
 
 ```sh
@@ -197,6 +213,14 @@ returned artifact, source revision and checks to the delegated task before treat
 finished. Inspect live state/output after a timeout or uncertain delivery before retrying.
 A blocked agent needs the actual requested input under existing action permissions; never
 auto-approve a dialog or infer completion/permission from idle, done or unknown state.
+
+Exchange compact internal handoffs: task/source revision, contract or blocker, requested
+action and return evidence. A specialist reports a contract change to its owner before
+dependent work proceeds; a reviewer sends findings on the named revision back through the
+integrator to the writer. Peers can exchange permitted source facts using verified live
+targets, but one owner updates each shared contract/queue. Reuse the assignment and native
+agent channels; avoid duplicate chat histories, trackers and full-conversation broadcasts.
+The lead handles bounded corrections and rechecks affected evidence before reporting completion.
 
 ## Integrate, retain and release resources
 

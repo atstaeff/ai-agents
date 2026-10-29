@@ -32,6 +32,7 @@ Use a preset to register only useful native agents/skills in the host:
 | Preset | Native agents | Native skills | Use |
 | --- | --- | --- | --- |
 | minimal | 3 | 4 | General execution with explicit on-demand expertise |
+| team | 13 | 20 | Autonomous Product/Engineering/Delivery leads, Python/React/GCP/Terraform, checks and review |
 | engineering | 9 | 16 | Python, architecture, implementation, quality and delivery |
 | product | 4 | 7 | Discovery, stakeholder proposals and coordination |
 | knowledge | 3 | 5 | Private notes and presentations |
@@ -52,8 +53,9 @@ python3 tools/ai_toolkit.py export --runtime opencode --preset engineering \
 
 Remove --dry-run after inspecting the selection. Without --preset, export preserves
 all active entries for existing users. Commands are generated only for selected agents;
-for example /brain requires second-brain. Phase/model/review options require the phase
-agent. A narrower re-export removes only unchanged owned profiles; edited files stop the
+for example /brain requires second-brain. Phase-specific options require that phase agent;
+lead/worker/review routes apply only to selected profiles. A narrower re-export removes only
+unchanged owned profiles; edited files stop the
 update before writes. Prefer a new output directory when protecting local customizations.
 
 The bundle retains the canonical reference catalog for on-demand reading and stable

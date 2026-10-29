@@ -28,6 +28,10 @@ role profile, guide or historical ADR. Expand when needed without omitting gover
 
 ## Preserve these boundaries
 
+- Treat the assigned outcome as standing authorization for routine internal team coordination
+  within host/project limits; apply the [autonomous default](toolkit/SESSION-RULES.md#autonomous-team-default).
+  Choose leads, specialists and qualified models, then carry work through review and checks
+  without requiring the user to repeat orchestration instructions.
 - Edit canonical agents/<domain>/<name>.agent.md and skills/<domain>/<name>/SKILL.md;
   keep portable name/description metadata and regenerate catalog indexes after changes.
 - Preserve Python 3.11+, the standard-library core, loopback/local assets, comment

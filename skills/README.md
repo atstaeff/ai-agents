@@ -10,7 +10,7 @@ Choose expertise, plan bounded work and coordinate verified results.
 
 | Name | Select for |
 | --- | --- |
-| [agent-routing](general/agent-routing/SKILL.md) | Select the next skill or bounded specialist for a concrete uncertainty. Handle clear small tasks directly; delegate only when authorized capabilities and expected benefit justify coordination. |
+| [agent-routing](general/agent-routing/SKILL.md) | Autonomously route an authorized outcome to the needed lead, skill, qualified model and bounded specialists; coordinate useful parallel work and review. Handle clear small tasks directly within host/project limits. |
 
 ## Product & Project Management
 

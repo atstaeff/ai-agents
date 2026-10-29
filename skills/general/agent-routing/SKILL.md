@@ -1,6 +1,6 @@
 ---
 name: "agent-routing"
-description: "Select the next skill or bounded specialist for a concrete uncertainty. Handle clear small tasks directly; delegate only when authorized capabilities and expected benefit justify coordination."
+description: "Autonomously route an authorized outcome to the needed lead, skill, qualified model and bounded specialists; coordinate useful parallel work and review. Handle clear small tasks directly within host/project limits."
 ---
 
 # Agent Routing
@@ -9,6 +9,9 @@ Reuse a known matching Herdr context; otherwise check executable availability on
 Use Herdr when available and usable under the [execution policy](../../../toolkit/HERDR.md);
 report a concrete gap before fallback. Small tasks stay in the current applicable pane.
 Read detailed policy only when readiness, routing or dispatch is uncertain.
+Treat routine internal delegation/model/layout choices within an authorized assignment
+and approved setup as already authorized. Do not wait for the user to request parallel
+agents again. Preserve host permissions, scoped requests and human decision rights.
 
 1. Use the current request and available metadata. A clear small task stays in this
    session. Select one skill for the next unresolved activity; load another only when
@@ -29,6 +32,8 @@ Read detailed policy only when readiness, routing or dispatch is uncertain.
    requirements and the diff; seek counterexamples. A second model is not automatic
    independent approval. Native wait/status alone does not establish this task's completion.
    Read-only reviewers return findings, not claimed execution.
+   Route substantive findings back to the responsible writer, inspect corrections and
+   repeat affected checks/review until the assignment's criteria are met or a real blocker remains.
 5. Preserve shared feedback/handoff at the assignment; keep personal plans private. Never create a mirror
    tracker or treat an available connector as the information owner.
 6. Stop repeated ineffective retries at the agreed limit; revise scope/context or escalate

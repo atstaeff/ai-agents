@@ -13,6 +13,22 @@ import generate as site
 
 
 class CatalogSelectionTests(unittest.TestCase):
+    def test_team_preset_exposes_three_leads_without_forcing_models(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            result = tk.export('opencode', root, preset='team')
+            self.assertEqual((result['agents'], result['skills']), (13, 20))
+            config = json.loads((root/'opencode.json').read_text())
+            self.assertEqual(config['default_agent'], 'task-orchestrator')
+            self.assertNotIn('agent', config)
+            for name in ('product-manager', 'lead-architect', 'task-orchestrator'):
+                profile = (root/f'agents/{name}.md').read_text()
+                self.assertIn('mode: all', profile)
+                for link in tk.LINK.findall(tk.FENCE.sub('', profile)):
+                    if '://' not in link:
+                        self.assertTrue((root/'agents'/link.split('#')[0]).exists())
+            self.assertFalse((root/'agents/game-developer.md').exists())
+
     def test_engineering_exports_only_selected_native_profiles_in_every_runtime(self):
         layouts = {'opencode': ('agents', 'skills', '.md'),
                    'copilot': ('.github/agents', '.github/skills', '.agent.md'),

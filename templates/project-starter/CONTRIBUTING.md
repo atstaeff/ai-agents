@@ -78,6 +78,13 @@ dependent work.
 
 ## Herdr and model routing
 
+The authorized assignment covers routine internal team coordination within project/host
+limits. Leads choose useful specialists, model routes, layout and parallel work automatically,
+then follow required review, correction, checks and knowledge retention through completion.
+Do not require the user to repeat delegation instructions. Keep analysis/design-only work
+within its requested scope. Configure actual host/model routes and limits once, reuse
+matching evidence and report only concrete setup gaps or decisions that need the user.
+
 Use Herdr when its executable and selected server are available within project/host
 permissions. Reuse matching sessions and load its release-matched native skill through
 `herdr --skill` when supported. Respect managed-pane guards; outside automation needs an

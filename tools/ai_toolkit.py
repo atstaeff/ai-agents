@@ -539,6 +539,12 @@ class OpenCodeOptions:
     plan_variant: str | None = None
     build_variant: str | None = None
     plan_directory: Path | None = None
+    lead_model: str | None = None
+    lead_variant: str | None = None
+    worker_model: str | None = None
+    worker_variant: str | None = None
+    review_model: str | None = None
+    review_variant: str | None = None
 
     def validate(self) -> None:
         if self.plan_directory is not None:
@@ -548,7 +554,7 @@ class OpenCodeOptions:
                 raise ToolkitError('Plan directory must be an existing absolute directory without wildcard characters.')
             if directory.resolve() in {Path.home().resolve(), *Path.home().resolve().parents}:
                 raise ToolkitError('Choose a dedicated plan directory, not a home directory or filesystem root.')
-        for phase in ('plan', 'build'):
+        for phase in ('plan', 'build', 'lead', 'worker', 'review'):
             model = getattr(self, f'{phase}_model')
             variant = getattr(self, f'{phase}_variant')
             if model is not None and (not isinstance(model, str) or not re.fullmatch(r'[^/\s#]+/[^\s#]+', model)):
@@ -561,7 +567,10 @@ class OpenCodeOptions:
 
 
 HERD_UPSTREAM_REVISION = 'fbda6618c7b53524faddbed070e4fbc14970e412'
-HERD_LEADS = {'joerg', 'product-manager', 'lead-architect', 'task-orchestrator'}
+TEAM_LEADS = {'product-manager', 'lead-architect', 'task-orchestrator'}
+HERD_LEADS = TEAM_LEADS | {'joerg'}
+OPENCODE_LEAD_ROUTE = HERD_LEADS | {'plan', 'build', 'gcp-architect', 'test-strategist'}
+OPENCODE_REVIEW_ROUTE = {'code-reviewer', 'architecture-reviewer'}
 
 
 def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
@@ -808,7 +817,8 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         body = LINK.sub(rebase, body)
         header = f'---\nname: {json.dumps(meta["name"])}\ndescription: {json.dumps(meta["description"])}\n'
         if entry.kind == "agent" and runtime == "opencode":
-            mode = "primary" if entry.name in {"joerg", "plan", "build"} else "subagent"
+            mode = ('all' if entry.name in TEAM_LEADS else
+                    'primary' if entry.name in {'joerg', 'plan', 'build'} else 'subagent')
             header += f"mode: {mode}\n"
             if entry.name in {"code-reviewer", "architecture-reviewer", "plan"}:
                 header += "permission:\n  edit:\n    '*': deny\n"
@@ -830,7 +840,8 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 body += '\nThis adapter permits file reading and search only. Return proposed plans or findings to the coordinating session; it owns required review, record updates and executable verification. Do not claim checks you cannot run.\n'
         planned[destination] = (header + "---\n\n" + body).encode()
     if runtime == "opencode":
-        config = {"$schema": "https://opencode.ai/config.json", "default_agent": "joerg" if "joerg" in selected_agents else next(e.name for e in entries if e.kind == "agent"),
+        preferred = catalog_presets()[preset].get('default_agent', 'joerg')
+        config = {"$schema": "https://opencode.ai/config.json", "default_agent": preferred if preferred in selected_agents else next(e.name for e in entries if e.kind == "agent"),
                   "instructions": [str(output / "catalog/toolkit/SESSION-RULES.md")],
                   "permission": {"external_directory": {str(output / 'catalog') + '/*': 'allow'},
                                  "edit": {str(output / 'catalog') + '/*': 'deny'}}}
@@ -845,14 +856,26 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 'before constructing an Obsidian URI; never invent them.\n'
             ).encode()
             config['instructions'].append(str(output / private_name))
+        for entry in entries:
+            if entry.kind != 'agent':
+                continue
+            route = ('review' if entry.name in OPENCODE_REVIEW_ROUTE else
+                     'lead' if entry.name in OPENCODE_LEAD_ROUTE else 'worker')
+            model, variant = getattr(options, f'{route}_model'), getattr(options, f'{route}_variant')
+            if model is not None:
+                settings = {'model': model}
+                if variant is not None:
+                    settings['variant'] = variant
+                config.setdefault('agent', {})[entry.name] = settings
         for phase in ('plan', 'build'):
             model = getattr(options, f'{phase}_model')
             variant = getattr(options, f'{phase}_variant')
             if model is not None:
-                agent = config.setdefault('agent', {}).setdefault(phase, {})
-                agent['model'] = model
+                # An explicit phase model replaces its route, including the old variant.
+                settings = {'model': model}
                 if variant is not None:
-                    agent['variant'] = variant
+                    settings['variant'] = variant
+                config.setdefault('agent', {})[phase] = settings
         if options.plannotator:
             # Let our native profiles own prompts and permissions. The plugin's
             # plan-agent mode would also allow edits to all Markdown files.
@@ -865,9 +888,17 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
                 continue
             planned[f'commands/{name}.md'] = f'---\ndescription: {description}\nagent: {agent}\n---\n\nFollow project instructions and load the next relevant skill only when needed. $ARGUMENTS\n'.encode()
     elif runtime == "copilot":
-        planned['.github/copilot-instructions.md'] = b'Read `catalog/toolkit/SESSION-RULES.md` for shared workflow guidance when needed. Follow project-specific instructions and load only selected skills.\n'
+        planned['.github/copilot-instructions.md'] = b'At session start, read and apply `catalog/toolkit/SESSION-RULES.md`; reuse a matching loaded copy. Follow project-specific instructions. The authorized assignment activates autonomous team coordination within host permissions; load only the relevant skills.\n'
     elif runtime == "claude":
         planned['CLAUDE.md'] = b'@catalog/toolkit/SESSION-RULES.md\n'
+    elif runtime == 'portable':
+        planned['AGENTS.md'] = (
+            '# Shared AI workflow\n\n'
+            'At session start, read and apply [session rules](catalog/toolkit/SESSION-RULES.md); '
+            'reuse a matching loaded copy. Follow applicable project instructions and host permissions. '
+            'The authorized assignment activates autonomous team coordination. '
+            'Load only the next relevant skill, not the full catalog.\n'
+        ).encode()
     elif runtime == 'herd':
         planned.update(herd_files(entries, planned, output))
     changes = _write_export(output, planned, runtime, force, dry_run)
@@ -1236,6 +1267,9 @@ def main(argv: list[str] | None = None) -> int:
     adapter.add_argument('--plan-variant', help='Variant supported by the configured planning model')
     adapter.add_argument('--plan-directory', type=Path, help='Existing absolute private directory for personal Markdown plans (OpenCode only)')
     adapter.add_argument('--build-variant', help='Variant supported by the configured implementation model')
+    for route in ('lead', 'worker', 'review'):
+        adapter.add_argument(f'--{route}-model', help=f'OpenCode {route} route: provider/model-id (configure once)')
+        adapter.add_argument(f'--{route}-variant', help=f'Variant supported by the configured {route} model')
     uri = sub.add_parser('obsidian-uri', help='Encode a Windows Obsidian URI')
     uri.add_argument('--vault', required=True)
     uri.add_argument('--file', required=True)
@@ -1282,8 +1316,12 @@ def main(argv: list[str] | None = None) -> int:
                   else json.dumps([asdict(e) for e in entries], indent=2),
                   end='' if args.format == 'markdown' else '\n')
         elif args.command == 'export':
-            options = OpenCodeOptions(args.plannotator, args.plan_model, args.build_model,
-                                      args.plan_variant, args.build_variant, args.plan_directory)
+            options = OpenCodeOptions(
+                plannotator=args.plannotator, plan_model=args.plan_model, build_model=args.build_model,
+                plan_variant=args.plan_variant, build_variant=args.build_variant, plan_directory=args.plan_directory,
+                lead_model=args.lead_model, lead_variant=args.lead_variant,
+                worker_model=args.worker_model, worker_variant=args.worker_variant,
+                review_model=args.review_model, review_variant=args.review_variant)
             print(json.dumps(export(args.runtime, args.output, force=args.force, dry_run=args.dry_run,
                                     opencode_options=options, preset=args.preset,
                                     agent_names=tuple(args.agent), skill_names=tuple(args.skill)), indent=2))

@@ -22,6 +22,47 @@
       "testing"
     ]
   },
+  "team": {
+    "description": "Autonomous Product, Engineering and Delivery leads with Python/React/GCP/Terraform specialists, tests, review and documentation.",
+    "default_agent": "task-orchestrator",
+    "agents": [
+      "joerg",
+      "product-manager",
+      "lead-architect",
+      "task-orchestrator",
+      "python-expert",
+      "frontend-expert",
+      "gcp-architect",
+      "terraform-engineer",
+      "devops-agent",
+      "test-strategist",
+      "code-reviewer",
+      "architecture-reviewer",
+      "documentation-editor"
+    ],
+    "skills": [
+      "agent-routing",
+      "repository-contribution",
+      "work-management",
+      "product-discovery",
+      "project-management",
+      "architecture-planning",
+      "principal-engineer-decisions",
+      "api-design",
+      "python-patterns",
+      "frontend-patterns",
+      "gcp-patterns",
+      "terraform-iac",
+      "devops-cicd",
+      "software-engineering",
+      "clean-code",
+      "testing",
+      "code-review",
+      "security",
+      "performance",
+      "technical-writing"
+    ]
+  },
   "engineering": {
     "description": "Python/FastAPI and React/JavaScript product engineering, architecture, review and delivery.",
     "agents": [

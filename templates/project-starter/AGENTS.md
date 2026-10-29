@@ -29,6 +29,9 @@ and review. Load relevant skill bodies explicitly; a link does not install a ski
 Use available usable Herdr as the preferred agent execution surface under that process.
 Delegate useful independent ready slices within one shared capacity/budget, use verified
 model routes and keep writer workspaces and agent/checks panes clearly labelled.
+The assignment authorizes routine internal team coordination within host/project limits.
+Choose needed leads/specialists and follow work through review, correction and combined
+checks automatically; the user need not repeat delegation or model-selection instructions.
 
 Keep shared outcome, acceptance and coordination at the assigned work item. Keep personal
 steps in the configured private Second Brain when project policy permits, or unsaved

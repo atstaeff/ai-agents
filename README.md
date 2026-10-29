@@ -32,6 +32,18 @@ profiles. An export is not an installed-host validation: record observed discove
 model/effort, permissions and limits with the [runtime check](templates/delivery/runtime-check.md).
 Configure providers and credentials in the host; generated profiles install no host or model.
 
+## Work with an autonomous team
+
+Give Product, Engineering or Delivery a scoped outcome. The lead selects useful specialists
+and qualified models, coordinates independent work through Herdr, reviews returns, resolves
+bounded findings and checks the combined result. Routine team coordination follows from
+the assignment; no repeated "use Herdr" or "start subagents" prompt is needed.
+
+The `team` preset provides the three directly selectable leads and Python/React/GCP/Terraform,
+test, review and documentation expertise. [Configure the host and model routes once](toolkit/RUNTIMES.md#configure-the-autonomous-team-once),
+then reuse that setup. Current host permissions, project scope and human decision rights govern.
+Existing installed bundles/sessions need a deliberate update to load changed instructions.
+
 ## Adopt in one project
 
 After the first task, merge the [project starter](templates/project-starter/README.md)

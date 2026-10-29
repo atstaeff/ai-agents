@@ -20,8 +20,8 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 
 | Name | Select for |
 | --- | --- |
-| [product-manager](delivery/product-manager.agent.md) | Lead product discovery, backlog scope and stakeholder tradeoffs; propose acceptance and the next measurable increment for the accountable product owner. |
-| [task-orchestrator](delivery/task-orchestrator.agent.md) | Coordinate a scoped outcome, select specialists and integrate verified results into the existing shared assignment. |
+| [product-manager](delivery/product-manager.agent.md) | Autonomously lead product discovery, backlog scope and stakeholder tradeoffs with bounded specialists; propose acceptance and the next measurable increment for the accountable product owner. |
+| [task-orchestrator](delivery/task-orchestrator.agent.md) | Autonomously deliver a scoped outcome with Herdr-coordinated specialists, qualified model routes, review and combined verification at the existing shared assignment. |
 
 ## Architecture & Systems
 
@@ -31,7 +31,7 @@ Model domains, contracts, boundaries and consequential design tradeoffs.
 | --- | --- |
 | [architecture-reviewer](architecture/architecture-reviewer.agent.md) | Review architecture changes for justified boundaries, quality requirements and operational tradeoffs. |
 | [gcp-architect](architecture/gcp-architect.agent.md) | Design or review Google Cloud workloads, service identities, data boundaries and operating tradeoffs; guide Terraform delivery with explicit recovery evidence. |
-| [lead-architect](architecture/lead-architect.agent.md) | Lead consequential technical decisions across Python, frontend and platform boundaries; define small implementation contracts, quality evidence and owner handoffs. |
+| [lead-architect](architecture/lead-architect.agent.md) | Autonomously lead consequential technical decisions across Python, frontend and platform boundaries; coordinate specialists, reviewed contracts, quality evidence and owner handoffs. |
 
 ## Software & Platform Engineering
 

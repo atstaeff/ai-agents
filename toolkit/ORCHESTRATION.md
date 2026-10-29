@@ -23,6 +23,13 @@ workers or task queues. The Herd exporter below is a separate optional integrati
 
 ## A team has one integrated outcome
 
+The user supplies the outcome. Routine internal orchestration within its authority and
+the approved setup is already authorized: select the lead viewpoints, request specialists,
+choose routes, parallelize, review and correct without another delegation prompt. A scoped
+analysis/design request stays scoped. Leads coordinate their handoffs internally and name
+one dispatcher/integrator; only required user decisions or material unresolved blockers
+need user input. Apply the [autonomous startup contract](SESSION-RULES.md#autonomous-team-default).
+
 Activate product, engineering and delivery leadership as needed. Give each lead a distinct
 question and retain one named integration owner. Several commanders can own separate work
 streams; they must not independently rewrite the same contract or prioritize the same issue.

@@ -32,6 +32,12 @@ tools. Report missing access and prepare an unsent update; do not create a mirro
 
 ## Team ownership and integration
 
+The assignment provides standing authorization for routine internal team coordination
+within project/host limits. Leads choose specialists, routes, useful parallelism and review
+without asking for the same orchestration instructions again. Follow the
+[autonomous startup contract](toolkit/SESSION-RULES.md#autonomous-team-default) through the
+stages required by the assignment; analysis-only scope and required human decisions remain effective.
+
 Keep one assigned issue/current PR with outcome, criteria, accountable human,
 active writer, bounded scope, dependencies and integration responsibility. Use separate
 branches and working directories for independent writers. Agree shared contracts first;
