@@ -8,6 +8,8 @@ change or failure requires another check; this is not a form for every task.
 
 - Intended machine/session/project: [verified identity and checkout; private paths stay private].
 - Host/provider/model version or revision: [observed identifiers, not a role nickname].
+- Herdr skill/target/layout, when used: [installed release/native skill evidence, actual
+  session and workspace/tab/pane mapping; private paths remain private].
 - Active tools/permissions and model effort: [configuration evidence and verification method].
 - Accountable owner/date: [who qualifies this route and when].
 - Status: [not checked / structural checks only / live trial passed / failed / blocked].
@@ -35,8 +37,10 @@ Record adoption/exception decisions under the project's existing decision rights
 | Review/integration capacity | [ready work, queue and integrator] | [current assignment] |
 
 Effective additional slots: [smallest relevant remaining allowance; account for active
-leads, workers and builds]. With no observed capacity, use one bounded worker first;
-increase only after successful completion with headroom. Pause new dispatch at a cap,
+leads, workers and builds]. Use one dispatcher and include every nested child in that
+allowance. Dispatch ready siblings before waiting, then refill only within the remaining
+allowance. With unknown capacity, start with one bounded worker; increase only after
+successful completion with headroom. Pause new dispatch at a cap,
 resource pressure, provider throttling or growing review backlog. Recheck before a new
 wave and after a failure; unknown measurements are not unlimited capacity.
 

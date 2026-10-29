@@ -36,7 +36,8 @@ role profile, guide or historical ADR. Expand when needed without omitting gover
   Keep private content and generated bundles out of commits. No unsolicited messages.
 - Use Herdr when available and usable; follow its [execution policy](toolkit/HERDR.md).
   Route complex judgment to strong models with high reasoning, bounded work to economical
-  models, and mechanical coordination to native tools. Scale parallel work within real capacity.
+  models, and mechanical coordination to native tools. Delegate useful independent ready
+  slices by default within one shared capacity/budget; keep tabs and panes labelled.
 - Keep shared scope and acceptance in the assignment; personal plans stay private. Preserve other writers' changes, coordinate overlapping
   scopes and shared contracts, and verify combined changes. Delegate only when supported,
   authorized and useful. Significant decisions and current knowledge stay at their owners.

@@ -63,9 +63,10 @@ policy at an explicit revision; evolving technique links do not silently change 
 
 Use Herdr whenever its executable and selected server are usable. Complex judgment uses
 strong approved models with high reasoning; bounded work uses proven economical routes;
-mechanical coordination uses native tools. Reuse labelled project tabs and isolate
-concurrent writers. Fill available capacity only within measured machine, provider,
-budget and review limits. See the [Herdr policy](toolkit/HERDR.md) for readiness and fallback.
+mechanical coordination uses native tools. Delegate useful independent ready slices by
+default, group isolated writer workspaces and label agent/checks/log panes. All leads and
+child agents share one capacity/budget within measured machine, provider and review limits.
+See the [Herdr policy](toolkit/HERDR.md) for native skill discovery, layout and fallback.
 
 ## Knowledge that survives a session
 

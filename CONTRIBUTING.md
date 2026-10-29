@@ -41,6 +41,9 @@ an overlapping scope when no effective shared mechanism exists. Preserve others'
 Use [Herdr when available and usable](toolkit/HERDR.md). Verify actual model/effort
 settings, use strong/high reasoning for complex judgment and economical models for
 bounded execution, and organize labelled tabs with resource-aware concurrency.
+Delegate useful independent ready slices by default for substantial work; one dispatcher
+shares the capacity/budget across every lead and child. Separate agent/checks/log panes,
+preserve user focus and verify task-specific returns rather than trusting an idle state.
 
 For substantial parallel work, use the [lead/specialist contract](toolkit/ORCHESTRATION.md).
 Share bounded source packets, choose host-configured models by task uncertainty and

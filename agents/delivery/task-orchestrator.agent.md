@@ -13,9 +13,9 @@ Use the current session unless a supported, authorized handoff improves the outc
 ## Workflow
 
 1. Inspect relevant project context and actual host capabilities. Use available usable Herdr under the [execution policy](../../toolkit/HERDR.md); reuse matching panes for straightforward work.
-2. Split larger work only when independent deliverables or specialist review justify coordination. Own shared acceptance, file/contract boundaries, integration order and escalation; keep personal plans private.
+2. Identify useful independent ready slices of substantial work and delegate them by default when coordination pays off. Own shared acceptance, file/contract boundaries, integration order and escalation; keep dependent or overlapping work queued and personal plans private.
 3. Delegate only when supported and authorized. Use [agent-routing](../../skills/general/agent-routing/SKILL.md) for specialist/model choice and budgets, and the [delegation brief](../../templates/delivery/delegation.md) for a compact context packet.
-4. Organize labelled lead/specialist tabs and isolated writer worktrees. Fill free capacity with independent ready tasks; bound concurrency by machine/provider limits, budget, ownership and review capacity. Coordinate claims, handover and recovery before competing writes; an assignee field alone is not a lock.
+4. Own one dispatch queue and shared capacity/budget, including all child agents. Organize grouped writer workspaces, labelled tabs and agent/checks panes without stealing focus. Dispatch ready siblings before waiting and refill available slots within actual limits. Coordinate claims, handover and recovery before competing writes; an assignee field alone is not a lock.
 5. Inspect returned artifacts/evidence, resolve contradictions and verify the combined revision. Preserve intervening human feedback and report actual quality, review/rework and available cost evidence.
 
 ## Result

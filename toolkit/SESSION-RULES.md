@@ -14,7 +14,8 @@ rules are a fallback; project facts and permissions come from the project and ho
 - Discover and use Herdr when available and usable; see [Herdr policy](HERDR.md) for
   readiness, labelled tabs and resource-aware dispatch. Complex judgment uses a strong
   approved model with high reasoning; bounded work uses an economical proven route.
-  Use native commands for mechanical coordination and report concrete fallback gaps.
+  Delegate useful independent ready slices within the shared capacity/budget; nested
+  workers count too. Use native coordination and report concrete fallback gaps.
 - Preserve others' edits. Coordinate overlapping scopes, isolate independent writers
   and verify the combined result. Delegate only when supported, authorized and useful.
 - Match verification to the affected boundary. For wording-only edits inspect content

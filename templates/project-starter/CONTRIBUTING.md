@@ -79,10 +79,19 @@ dependent work.
 ## Herdr and model routing
 
 Use Herdr when its executable and selected server are available within project/host
-permissions. Reuse matching sessions, use labelled lead/specialist tabs and isolate
-concurrent writers in Git worktrees. Fill free capacity with independent ready work
-within machine, provider, cost and review limits. If unavailable, state the concrete gap
-and continue independent work through the authorized host.
+permissions. Reuse matching sessions and load its release-matched native skill through
+`herdr --skill` when supported. Respect managed-pane guards; outside automation needs an
+explicitly selected authorized target. An installed binary alone does not identify it.
+
+For substantial work, delegate useful independent ready slices by default when the benefit
+justifies coordination. Dispatch siblings before waiting; keep dependent/overlapping work
+queued. One dispatcher allocates capacity/budget across leads and all nested workers.
+Group isolated writer worktree workspaces with the project. Reuse labelled Control/Work/
+Review tabs; separate agent, nonconflicting checks and service/log panes without stealing
+focus. Use native state/notifications and bounded reads/waits; verify the returned artifact
+and task revision before accepting it. No additional fleet tool is required for native
+Herdr dispatch. Fill free capacity within machine, provider, cost and review limits.
+If unavailable, state the concrete gap and continue independent work through the authorized host.
 
 Use strong approved models with high reasoning for complex judgment, architecture,
 decomposition, integration conflicts and consequential review. Use economical proven
