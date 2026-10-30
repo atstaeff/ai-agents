@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.10.2">
 <title data-rh="true">Native tools, one engineering process | AI Agents</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://atstaeff.github.io/ai-agents/getting-started/integrations/"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Native tools, one engineering process | AI Agents"><meta data-rh="true" name="description" content="Choose tools by responsibility. Record the actual project choices and access paths in"><meta data-rh="true" property="og:description" content="Choose tools by responsibility. Record the actual project choices and access paths in"><link data-rh="true" rel="icon" href="/ai-agents/img/mark.svg"><link data-rh="true" rel="canonical" href="https://atstaeff.github.io/ai-agents/getting-started/integrations/"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/integrations/" hreflang="en"><link data-rh="true" rel="alternate" href="https://atstaeff.github.io/ai-agents/getting-started/integrations/" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ponytail, Graphify and Herdr","item":"https://atstaeff.github.io/ai-agents/getting-started/integrations"}]}</script><link rel="stylesheet" href="/ai-agents/assets/css/styles.39e65234.css">
-<script src="/ai-agents/assets/js/runtime~main.efa6518f.js" defer="defer"></script>
-<script src="/ai-agents/assets/js/main.dbbe3202.js" defer="defer"></script>
+<script src="/ai-agents/assets/js/runtime~main.ad8ae00b.js" defer="defer"></script>
+<script src="/ai-agents/assets/js/main.7e06e3b1.js" defer="defer"></script>
 </head>
 <body>
 <svg style="display: none;"><defs>
@@ -85,9 +85,13 @@ not interchangeable with this export. Adopt only the named tool the project actu
 <h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="ponytail-keep-implementation-proportionate">Ponytail: keep implementation proportionate<a href="#ponytail-keep-implementation-proportionate" class="hash-link" aria-label="Direct link to Ponytail: keep implementation proportionate" title="Direct link to Ponytail: keep implementation proportionate" translate="no">​</a></h2>
 <p>Use the official <a href="https://github.com/DietrichGebert/ponytail" target="_blank" rel="noopener noreferrer" class="">DietrichGebert/ponytail</a>
 installation for the selected host. Its <a href="https://github.com/DietrichGebert/ponytail/blob/main/INSTALL.md" target="_blank" rel="noopener noreferrer" class="">installation guide</a>
-covers native plugins and instruction-based hosts. For example, a compatible OpenCode
-installation supports:</p>
-<div class="language-sh codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-sh codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token plain">opencode plugin add @dietrichgebert/ponytail</span><br></div></code></pre></div></div>
+covers native plugins and instruction-based hosts. For this catalog&#x27;s <strong>OpenCode 1</strong>
+adapter, merge this entry into the existing private host configuration, preserving its
+other plugins and settings:</p>
+<div class="language-json codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#bfc7d5;--prism-background-color:#292d3e"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-json codeBlock_bY9V thin-scrollbar" style="color:#bfc7d5;background-color:#292d3e"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#bfc7d5"><span class="token punctuation" style="color:rgb(199, 146, 234)">{</span><span class="token property">&quot;plugin&quot;</span><span class="token operator" style="color:rgb(137, 221, 255)">:</span><span class="token plain"> </span><span class="token punctuation" style="color:rgb(199, 146, 234)">[</span><span class="token string" style="color:rgb(195, 232, 141)">&quot;@dietrichgebert/ponytail&quot;</span><span class="token punctuation" style="color:rgb(199, 146, 234)">]</span><span class="token punctuation" style="color:rgb(199, 146, 234)">}</span><br></div></code></pre></div></div>
+<p>OpenCode 1 has no <code>plugin add</code> command. OpenCode 2 uses a different plugin installation
+contract; follow the upstream instructions for the installed major version. The
+OpenCode 1 catalog adapter is not a verified OpenCode 2 adapter.</p>
 <p>Install into the actual worker harness as well as the lead if those use separate
 configurations. Check discovery with a harmless change. This exporter neither installs
 Ponytail nor copies its rules into every skill. Preserve the project&#x27;s acceptance,
