@@ -1,7 +1,7 @@
 ---
 title: "Bound retries for document processing"
 knowledge_id: ADR-0004
-slug: /decisions/bounded-retries
+slug: decisions/bounded-retries
 status: proposed
 owner: platform-owner
 area: document-processing

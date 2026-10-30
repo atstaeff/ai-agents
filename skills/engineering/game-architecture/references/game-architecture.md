@@ -322,8 +322,15 @@ class SceneManager {
 
 ## Save / Load System
 
+This example assumes one writer per save slot. Replace a completed temporary file in
+the same directory so a failed serialization/write preserves the previous save. A
+multi-writer system needs a version/ownership contract; crash durability and restore
+behavior still need checks on the target filesystem.
+
 ```python
 import json
+import os
+import tempfile
 from pathlib import Path
 from dataclasses import dataclass, asdict
 from datetime import datetime
@@ -352,15 +359,28 @@ class SaveSystem:
         self.SAVE_DIR.mkdir(parents=True, exist_ok=True)
 
     def save(self, slot: int, data: SaveData) -> None:
-        data.timestamp = datetime.now().isoformat()
+        timestamp = datetime.now().isoformat()
+        payload = json.dumps({**asdict(data), "timestamp": timestamp}, indent=2)
         path = self.SAVE_DIR / f"save_{slot}.json"
-        path.write_text(json.dumps(asdict(data), indent=2))
+        temporary = None
+        try:
+            with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8", dir=self.SAVE_DIR,
+                                             prefix=".save-", suffix=".tmp", delete=False) as stream:
+                temporary = Path(stream.name)
+                stream.write(payload)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.replace(temporary, path)
+            data.timestamp = timestamp
+        finally:
+            if temporary is not None:
+                temporary.unlink(missing_ok=True)
 
     def load(self, slot: int) -> SaveData | None:
         path = self.SAVE_DIR / f"save_{slot}.json"
         if not path.exists():
             return None
-        raw = json.loads(path.read_text())
+        raw = json.loads(path.read_text(encoding="utf-8"))
         # Version migration
         if raw.get("version", 0) < SaveData.version:
             raw = self._migrate(raw)
@@ -370,7 +390,7 @@ class SaveSystem:
         saves = []
         for f in sorted(self.SAVE_DIR.glob("save_*.json")):
             slot = int(f.stem.split("_")[1])
-            data = json.loads(f.read_text())
+            data = json.loads(f.read_text(encoding="utf-8"))
             saves.append((slot, data.get("timestamp", "unknown")))
         return saves
 

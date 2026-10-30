@@ -39,12 +39,17 @@ not interchangeable with this export. Adopt only the named tool the project actu
 
 Use the official [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
 installation for the selected host. Its [installation guide](https://github.com/DietrichGebert/ponytail/blob/main/INSTALL.md)
-covers native plugins and instruction-based hosts. For example, a compatible OpenCode
-installation supports:
+covers native plugins and instruction-based hosts. For this catalog's **OpenCode 1**
+adapter, merge this entry into the existing private host configuration, preserving its
+other plugins and settings:
 
-```sh
-opencode plugin add @dietrichgebert/ponytail
+```json
+{"plugin": ["@dietrichgebert/ponytail"]}
 ```
+
+OpenCode 1 has no `plugin add` command. OpenCode 2 uses a different plugin installation
+contract; follow the upstream instructions for the installed major version. The
+OpenCode 1 catalog adapter is not a verified OpenCode 2 adapter.
 
 Install into the actual worker harness as well as the lead if those use separate
 configurations. Check discovery with a harmless change. This exporter neither installs

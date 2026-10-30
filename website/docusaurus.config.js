@@ -1,5 +1,5 @@
 const navigation = require('./navigation.json');
-const {loadKnowledgeSource} = require('./knowledge.config.cjs');
+const {loadKnowledgeSource, knowledgeFrontMatterParser} = require('./knowledge.config.cjs');
 const knowledgeSource = loadKnowledgeSource();
 
 const config = {
@@ -18,6 +18,7 @@ const config = {
   future: {faster: {swcJsMinimizer: true}},
   markdown: {
     format: 'detect',
+    parseFrontMatter: knowledgeFrontMatterParser(knowledgeSource),
     mermaid: true,
     hooks: {onBrokenMarkdownLinks: 'throw'},
   },
@@ -36,6 +37,7 @@ const config = {
     id: knowledgeSource.id, path: knowledgeSource.root,
     routeBasePath: knowledgeSource.routeBasePath,
     include: [...knowledgeSource.include],
+    exclude: [...knowledgeSource.exclude],
     sidebarPath: knowledgeSource.sidebarPath,
   }]],
   themes: ['@docusaurus/theme-mermaid'],

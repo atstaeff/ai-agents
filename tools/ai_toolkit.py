@@ -27,7 +27,14 @@ SLUG = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 TASK_STATES = {"open", "in_progress", "blocked", "done"}
 MAX_RECORD = 1024 * 1024
 LINK = re.compile(r"\[[^\]]*\]\(([^\s)]+)\)")
-FENCE = re.compile(r"^```[^\n]*\n.*?^```[^\n]*$", re.M | re.S)
+# CommonMark fences: 0–3 spaces, matching marker, closing run at least as long.
+# Possessive opening counts (Python 3.11+) prevent a shorter close shrinking the opener.
+# An unclosed fenced block extends to the end of its document.
+FENCE = re.compile(
+    r"^ {0,3}(?:"
+    r"(?P<ticks>`{3,}+)[^`\n]*(?:\n|\Z).*?(?:^ {0,3}(?P=ticks)`*[ \t]*\r?(?=\n|\Z)|\Z)"
+    r"|(?P<tildes>~{3,}+)[^\n]*(?:\n|\Z).*?(?:^ {0,3}(?P=tildes)~*[ \t]*\r?(?=\n|\Z)|\Z)"
+    r")", re.M | re.S)
 RUNTIMES = {'opencode', 'copilot', 'claude', 'portable', 'herd'}
 EXPORT_MANIFEST = '.ai-toolkit-manifest.json'
 EXPORT_JOURNAL = '.ai-toolkit-transaction.json'
@@ -91,7 +98,7 @@ def cell(value: str) -> str:
 
 def metadata(text: str) -> tuple[dict[str, str], str]:
     """Read our deliberately portable YAML scalar subset without runtime dependencies."""
-    match = re.match(r"\A---\n(.*?)\n---\n", text, re.S)
+    match = re.match(r"\A---\r?\n(.*?)\r?\n---\r?\n", text, re.S)
     if not match:
         raise ToolkitError("Missing YAML frontmatter.")
     result = {}
@@ -608,6 +615,13 @@ def repository_opencode_config(root: Path = ROOT) -> dict:
             'instructions': ['toolkit/SESSION-RULES.md'], 'agent': profiles}
 
 
+def _rebase_markdown_links(text: str, rebase) -> str:
+    """Keep fenced examples literal at every export stage."""
+    fences = [(match.start(), match.end()) for match in FENCE.finditer(text)]
+    return LINK.sub(lambda match: match[0] if any(
+        start <= match.start() < end for start, end in fences) else rebase(match), text)
+
+
 def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
     """Keep copied references local; point omitted public sources at their reading view."""
     for name, data in list(planned.items()):
@@ -615,11 +629,8 @@ def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
             continue
         source = root / name.removeprefix('catalog/')
         content = data.decode('utf-8')
-        fences = [(match.start(), match.end()) for match in FENCE.finditer(content)]
 
         def rebase(match):
-            if any(start <= match.start() < end for start, end in fences):
-                return match[0]
             parts = urlsplit(match[1])
             if parts.scheme or parts.netloc or not parts.path:
                 return match[0]
@@ -645,7 +656,7 @@ def _catalog_reading_links(planned: dict[str, bytes], root: Path) -> None:
             start, end = match.start(1) - match.start(), match.end(1) - match.start()
             return match[0][:start] + target + match[0][end:]
 
-        planned[name] = LINK.sub(rebase, content).encode('utf-8')
+        planned[name] = _rebase_markdown_links(content, rebase).encode('utf-8')
 
 
 def _herd_installed_markdown(text: str, exported_path: str, installed_path: str) -> str:
@@ -662,7 +673,7 @@ def _herd_installed_markdown(text: str, exported_path: str, installed_path: str)
         if parts.fragment:
             relative += '#' + parts.fragment
         return match[0].replace(match.group(1), relative)
-    return LINK.sub(rebase, text)
+    return _rebase_markdown_links(text, rebase)
 
 
 def herd_files(entries: list[Entry], planned: dict[str, bytes], output: Path) -> dict[str, bytes]:
@@ -849,7 +860,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
             if parts.fragment:
                 target += "#" + parts.fragment
             return match.group(0).replace(match.group(1), target)
-        body = LINK.sub(rebase, body)
+        body = _rebase_markdown_links(body, rebase)
         header = f'---\nname: {json.dumps(meta["name"])}\ndescription: {json.dumps(meta["description"])}\n'
         if entry.kind == "agent" and runtime == "opencode":
             mode = opencode_agent_mode(entry.name)
@@ -1055,7 +1066,12 @@ class WorkStore:
             if path.exists() or self.path(name, True).exists():
                 raise Conflict('A work record with this ID already exists.')
             text = (ROOT/'templates/delivery/work-item.md').read_text(encoding='utf-8')
-            text = text.replace('{{id}}', slug(name)).replace('{{title_json}}', json.dumps(title, ensure_ascii=False)).replace('{{kind}}', kind).replace('{{title}}', title.replace('\n', ' '))
+            values = {'id': slug(name), 'title_json': json.dumps(title, ensure_ascii=False),
+                      'kind': kind, 'title': title.replace('\n', ' ')}
+            # Substitute only source-template tokens, never tokens inside user text.
+            text = re.sub(r'\{\{(id|title_json|kind|title)\}\}', lambda match: values[match[1]], text)
+            metadata(text)
+            tasks(text)
             atomic_write(path, text.encode(), expected_hash=None)
             return self.read(name)
 
