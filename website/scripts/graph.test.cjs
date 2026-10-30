@@ -10,7 +10,12 @@ const {
   loadKnowledgeSource,
   publicKnowledgeSource,
   KNOWLEDGE_INCLUDE,
+  KNOWLEDGE_EXCLUDE,
+  listKnowledgeFiles,
+  knowledgeFrontMatterParser,
 } = require("../knowledge.config.cjs");
+const { DEFAULT_PARSE_FRONT_MATTER, Globby } = require("@docusaurus/utils");
+const getDocSlug = require("@docusaurus/plugin-content-docs/lib/slug.js").default;
 
 function fixture(t) {
   const root = fs.mkdtempSync(path.join(os.tmpdir(), "atlas-"));
@@ -25,6 +30,19 @@ function record(root, id, fields = "") {
     `---\nknowledge_id: ${id}\ntitle: Example\nowner: team\narea: engineering\nstatus: accepted\nslug: /decisions/${id.toLowerCase()}\n${fields}---\n`,
   );
 }
+test("graph and documentation discover the same pages while omitting partials and test files", async (t) => {
+  const root = fixture(t);
+  record(root, "ADR-1");
+  for (const name of ["_partial.md", ".hidden.md", "sample.test.md", "_parts/included.md"]) {
+    const file = path.join(root, "decisions", name);
+    fs.mkdirSync(path.dirname(file), {recursive: true});
+    fs.writeFileSync(file, "---\nnot: [valid YAML\n");
+  }
+  const docs = await Globby(KNOWLEDGE_INCLUDE, {cwd: root, ignore: KNOWLEDGE_EXCLUDE});
+  const graphFiles = listKnowledgeFiles(root).files.map(({file}) => path.relative(root, file).split(path.sep).join("/"));
+  assert.deepEqual(docs.sort(), graphFiles.sort());
+  assert.deepEqual(buildGraph(root).nodes.map(({id}) => id), ["ADR-1"]);
+});
 test("only allowlisted shared content enters the graph", (t) => {
   const root = fixture(t);
   record(root, "ADR-1");
@@ -220,7 +238,7 @@ test("long decision histories do not overflow the call stack and still reject cy
   );
 });
 
-test("the actual ADR template can be copied into both graph publishers with unique IDs", (t) => {
+test("the actual ADR template resolves to the same graph and Docusaurus route", async (t) => {
   const root = fixture(t);
   const repository = path.resolve(__dirname, "../..");
   const template = fs.readFileSync(path.join(repository, "templates/architecture/decision.md"), "utf8");
@@ -240,6 +258,17 @@ test("the actual ADR template can be copied into both graph publishers with uniq
     assert.equal(node.status, "proposed");
     assert.equal(node.area, "engineering");
     assert.equal(node.href, `/demo-knowledge/decisions/${id.toLowerCase()}/`);
+    const filePath = path.join(demo, node.path);
+    const fileContent = fs.readFileSync(filePath, "utf8");
+    const parsed = await knowledgeFrontMatterParser({root: demo})({
+      filePath, fileContent, defaultParseFrontMatter: DEFAULT_PARSE_FRONT_MATTER,
+    });
+    const actualSlug = getDocSlug({
+      baseID: id.toLowerCase(), source: node.path,
+      sourceDirName: path.posix.dirname(node.path), frontMatterSlug: parsed.frontMatter.slug,
+    });
+    assert.equal(`/demo-knowledge${actualSlug}/`, node.href);
+    assert.equal(fs.readFileSync(filePath, "utf8"), fileContent);
   }
   // Reuse the repository's existing optional validation environment, without a new dependency.
   const virtualPython = path.join(repository, ".venv", process.platform === "win32" ? "Scripts/python.exe" : "bin/python");
@@ -258,6 +287,29 @@ test("the actual ADR template can be copied into both graph publishers with uniq
     const node = legacyGraph.nodes.find((node) => node.id === id);
     assert.equal(node.status, "proposed");
     assert.equal(node.slug, `decisions/${id.toLowerCase()}`);
+  }
+});
+
+test("knowledge route normalization preserves nested, absolute and unrelated document contracts", async (t) => {
+  const root = fixture(t);
+  const parse = knowledgeFrontMatterParser({root});
+  for (const sourceSlug of ["decisions/adr-42", "/decisions/adr-42"]) {
+    const source = "decisions/payments/adr-42.md";
+    const result = await parse({
+      filePath: path.join(root, source),
+      fileContent: `---\nslug: ${sourceSlug}\ntitle: Keep me\n---\nBody\n`,
+      defaultParseFrontMatter: DEFAULT_PARSE_FRONT_MATTER,
+    });
+    assert.equal(getDocSlug({baseID: "adr-42", source, sourceDirName: "decisions/payments",
+      frontMatterSlug: result.frontMatter.slug}), "/decisions/adr-42");
+    assert.equal(result.frontMatter.title, "Keep me");
+    assert.equal(result.content, "Body");
+  }
+  for (const filePath of [path.join(root, "intro.md"), path.join(root, "other/page.md"),
+    path.join(root, "../outside/decisions/page.md")]) {
+    const input = {filePath, fileContent: "---\nslug: decisions/adr-42\n---\nBody\n"};
+    assert.deepEqual(await parse({...input, defaultParseFrontMatter: DEFAULT_PARSE_FRONT_MATTER}),
+      await DEFAULT_PARSE_FRONT_MATTER(input));
   }
 });
 

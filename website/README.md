@@ -72,3 +72,10 @@ describes the data contract and its production indexing boundary. `test:browser`
 this navigation, request failures/retry, document links and mobile overflow. It saves
 overview, focused and mobile screenshots to `.generated/browser-preview/`; CI uploads
 them as the `knowledge-map-preview` artifact.
+
+Curated knowledge slugs such as `decisions/adr-0042` are relative to the selected
+content root. The Docusaurus frontmatter adapter resolves them from that root, including
+records in nested folders, so graph links and document routes agree. Canonical Markdown
+and unrelated documentation retain their original metadata.
+The graph and document plugin share exclusions for `_` partials, hidden Markdown and
+`*.test.md` files, so the graph cannot link to those unpublished pages.

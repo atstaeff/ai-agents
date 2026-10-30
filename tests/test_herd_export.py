@@ -54,6 +54,49 @@ class HerdExportTests(ExportFixture):
     # These tests do not execute a Herd installation or prove host permissions.
     UPSTREAM_REVISION = 'fbda6618c7b53524faddbed070e4fbc14970e412'
 
+    def test_windows_line_endings_preserve_examples_and_rebase_links_after_fences(self):
+        skill = self.source / 'skills/work-management/SKILL.md'
+        body = skill.read_text() + '\n```md\n[Example](missing.md)\n```\nAfter: [details](references/detail.md).\n'
+        skill.write_bytes(body.replace('\n', '\r\n').encode())
+        for runtime, prefix in [('portable', '.agents'), ('copilot', '.github'),
+                                ('claude', '.claude'), ('opencode', ''), ('herd', 'herd')]:
+            with self.subTest(runtime=runtime):
+                output = self.base / runtime
+                tk.export(runtime, output, self.source)
+                native = output / prefix / 'skills/work-management/SKILL.md'
+                content = native.read_text()
+                self.assertIn('```md\n[Example](missing.md)\n```', content)
+                real_link = tk.LINK.findall(content)[-1]
+                self.assertTrue((native.parent / real_link).is_file())
+                self.assertNotEqual(real_link, 'references/detail.md')
+
+    def test_fenced_markdown_examples_survive_every_export_and_herd_import(self):
+        example = '\n```markdown\n[Example](missing.md)\n[Literal](references/detail.md)\n```\n'
+        example += '\n  ~~~~markdown\n[Example](missing.md)\n  ~~~~~\n'
+        example += '\n````markdown\n```inner\n[Example](missing.md)\n```\n`````\n'
+        example += '\n~~~markdown\n[Unclosed example](missing.md)\n'
+        skill = self.source / 'skills/work-management/SKILL.md'
+        skill.write_text(skill.read_text() + example)
+        profile = self.source / 'agents/product-manager.agent.md'
+        profile.write_text(profile.read_text() + example)
+        for runtime, prefix in [('portable', '.agents'), ('copilot', '.github'),
+                                ('claude', '.claude'), ('opencode', ''), ('herd', 'herd')]:
+            with self.subTest(runtime=runtime):
+                output = self.base / runtime
+                tk.export(runtime, output, self.source)
+                native = output / prefix / 'skills/work-management/SKILL.md'
+                content = native.read_text()
+                self.assertIn(example, content)
+                real_link = tk.LINK.findall(content)[0]
+                self.assertTrue((native.parent / real_link).is_file())
+                self.assertIn(example, (output / 'catalog/skills/work-management/SKILL.md').read_text())
+                if runtime == 'herd':
+                    bundle = json.loads((output / 'herd/imports/product-manager.bundle.json').read_text())
+                    self.assertIn(example, bundle['commanderMd'])
+                    binding = next(item for item in bundle['skillBindings'] if item['skillId'] == 'work-management')
+                    entry = next(item for item in binding['bundle']['files'] if item['path'] == 'SKILL.md')
+                    self.assertIn(example, base64.b64decode(entry['contentBase64']).decode())
+
     def assert_bundle_installs(self, bundle, folder):
         self.assertEqual(bundle['schemaVersion'], 2)
         self.assertIsInstance(bundle['exportedAt'], str)

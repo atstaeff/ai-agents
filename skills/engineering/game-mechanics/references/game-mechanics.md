@@ -76,6 +76,8 @@ func _handle_jump(delta: float) -> void:
         velocity.y = jump_force
         coyote_timer = 0
         jump_buffer_timer = 0
+        # A deliberate jump must not rearm coyote time on the next frame.
+        was_on_floor = false
 
 func _update_timers(delta: float) -> void:
     coyote_timer = maxf(coyote_timer - delta, 0)
@@ -419,6 +421,11 @@ class WaveFunctionCollapse {
     private rules: TileRule[]
   ) {
     const allTiles = rules.map(r => r.tile);
+    if (!Number.isInteger(width) || width < 1 || !Number.isInteger(height) || height < 1 ||
+        rules.length === 0 || new Set(allTiles).size !== rules.length ||
+        rules.some(r => !Number.isFinite(r.weight) || r.weight <= 0)) {
+      throw new Error('Use positive dimensions, unique tiles and positive finite weights');
+    }
     this.grid = Array.from({ length: height }, () => Array(width).fill(null));
     this.possibilities = Array.from({ length: height }, () =>
       Array.from({ length: width }, () => new Set(allTiles))
@@ -459,6 +466,7 @@ class WaveFunctionCollapse {
 
   private collapse(x: number, y: number): void {
     const possible = [...this.possibilities[y][x]];
+    if (possible.length === 0) throw new Error('WFC contradiction: no valid tile');
     // Weighted random selection
     const weights = possible.map(t => this.rules.find(r => r.tile === t)!.weight);
     const totalWeight = weights.reduce((a, b) => a + b, 0);
@@ -472,6 +480,7 @@ class WaveFunctionCollapse {
       }
     }
     this.grid[y][x] = possible[possible.length - 1];
+    this.possibilities[y][x] = new Set([this.grid[y][x]!]);
   }
 
   private propagate(x: number, y: number): void {
@@ -486,7 +495,6 @@ class WaveFunctionCollapse {
 
       for (const [nx, ny, dir] of neighbors) {
         if (nx < 0 || nx >= this.width || ny < 0 || ny >= this.height) continue;
-        if (this.grid[ny][nx] !== null) continue;
 
         const allowed = new Set<string>();
         for (const tile of currentPossible) {
@@ -501,6 +509,7 @@ class WaveFunctionCollapse {
         for (const tile of [...neighborPossible]) {
           if (!allowed.has(tile)) neighborPossible.delete(tile);
         }
+        if (neighborPossible.size === 0) throw new Error('WFC contradiction: incompatible neighbors');
         if (neighborPossible.size < before) {
           stack.push([nx, ny]); // Re-propagate
         }
@@ -509,6 +518,10 @@ class WaveFunctionCollapse {
   }
 }
 ```
+
+This greedy WFC example reports contradictions instead of returning undefined tiles.
+It has no backtracking. A caller may start a fresh instance with a bounded retry policy;
+use a seeded random source for reproducible generation and stop on impossible rules.
 
 ## Collision & Spatial Systems
 
@@ -571,6 +584,7 @@ class SpatialHashGrid<T extends { x: number; y: number; width: number; height: n
 
 ```python
 import heapq
+import math
 from dataclasses import dataclass, field
 
 @dataclass(order=True)
@@ -587,22 +601,32 @@ def astar(
     allow_diagonal: bool = True,
 ) -> list[tuple[int, int]]:
     """A* pathfinding on a 2D grid. 0 = walkable, 1 = wall."""
+    if not grid or not grid[0]:
+        return []
     rows, cols = len(grid), len(grid[0])
+    if any(len(row) != cols for row in grid):
+        raise ValueError("The grid must be rectangular")
+    if any(not (0 <= x < rows and 0 <= y < cols) or grid[x][y] != 0
+           for x, y in (start, goal)):
+        return []
 
     directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     if allow_diagonal:
         directions += [(1, 1), (1, -1), (-1, 1), (-1, -1)]
 
     def heuristic(a: tuple[int, int], b: tuple[int, int]) -> float:
-        return ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2) ** 0.5
+        return math.hypot(a[0] - b[0], a[1] - b[1])
 
     open_set: list[AStarNode] = []
     start_node = AStarNode(f_cost=heuristic(start, goal), position=start, g_cost=0)
     heapq.heappush(open_set, start_node)
     closed_set: set[tuple[int, int]] = set()
+    best_g = {start: 0.0}
 
     while open_set:
         current = heapq.heappop(open_set)
+        if current.position in closed_set or current.g_cost != best_g[current.position]:
+            continue
 
         if current.position == goal:
             path = []
@@ -617,14 +641,22 @@ def astar(
         for dx, dy in directions:
             nx, ny = current.position[0] + dx, current.position[1] + dy
             if 0 <= nx < rows and 0 <= ny < cols and grid[nx][ny] == 0 and (nx, ny) not in closed_set:
-                move_cost = 1.414 if abs(dx) + abs(dy) == 2 else 1.0
+                move_cost = math.sqrt(2) if abs(dx) + abs(dy) == 2 else 1.0
                 g = current.g_cost + move_cost
+                if g >= best_g.get((nx, ny), math.inf):
+                    continue
+                best_g[(nx, ny)] = g
                 f = g + heuristic((nx, ny), goal)
                 neighbor = AStarNode(f_cost=f, position=(nx, ny), g_cost=g, parent=current)
                 heapq.heappush(open_set, neighbor)
 
     return []  # No path found
 ```
+
+Track the best known cost and discard stale queue entries; revisiting every duplicate
+path can grow exponentially even on a small grid. The Euclidean heuristic above uses
+the same exact diagonal cost as movement. Diagonal moves permit corner cutting in this
+example; reject those neighbors when the game's collision rules require clearance.
 
 ## Best Practices
 

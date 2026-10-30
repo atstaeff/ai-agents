@@ -25,6 +25,8 @@ const KNOWLEDGE_INCLUDE = Object.freeze([
   "intro.md",
   ...Object.keys(SOURCE_KINDS).map((folder) => `${folder}/**/*.md`),
 ]);
+// Keep graph discovery and Docusaurus publication on the same partial/test boundary.
+const KNOWLEDGE_EXCLUDE = Object.freeze(["**/_*.md", "**/_*/**", "**/.*", "**/*.test.md"]);
 const PRIVATE_DIRECTORIES = new Set([
   "private",
   "plans",
@@ -101,8 +103,10 @@ function listKnowledgeFiles(contentRoot) {
         if (stat.isDirectory()) {
           if (name.startsWith(".") || PRIVATE_DIRECTORIES.has(name.toLowerCase()))
             throw new Error("Private directories cannot enter published knowledge");
+          if (name.startsWith("_")) continue;
           visit(file, folder);
         } else if (name.endsWith(".md")) {
+          if (name.startsWith("_") || name.startsWith(".") || name.endsWith(".test.md")) continue;
           if (!stat.isFile()) throw new Error("Knowledge source has an invalid file type");
           files.push({ file, folder });
         }
@@ -171,6 +175,7 @@ function loadKnowledgeSource(source = selectedSource) {
       routeBasePath: route,
       sidebarPath,
       include: KNOWLEDGE_INCLUDE,
+      exclude: KNOWLEDGE_EXCLUDE,
       title: source.title,
       description: source.description,
       example: source.example,
@@ -186,13 +191,33 @@ function publicKnowledgeSource(source) {
   return { id, routeBasePath, introHref, title, description, example };
 }
 
+function knowledgeFrontMatterParser(source) {
+  // Source slugs are relative to the curated root. Docusaurus otherwise resolves
+  // them against each document's directory, duplicating e.g. decisions/decisions/.
+  return async ({ filePath, fileContent, defaultParseFrontMatter }) => {
+    const result = await defaultParseFrontMatter({ filePath, fileContent });
+    const folder = path.relative(source.root, path.resolve(filePath)).split(path.sep)[0];
+    const slug = result.frontMatter.slug;
+    if (
+      Object.hasOwn(SOURCE_KINDS, folder) &&
+      typeof slug === "string" &&
+      new RegExp(`^/?${folder}/[a-z0-9-]+$`).test(slug)
+    ) {
+      return { ...result, frontMatter: { ...result.frontMatter, slug: `/${slug.replace(/^\//, "")}` } };
+    }
+    return result;
+  };
+}
+
 module.exports = {
   SOURCE_KINDS,
   KNOWLEDGE_INCLUDE,
+  KNOWLEDGE_EXCLUDE,
   DEFAULT_ROUTE_BASE_PATH: selectedSource.routeBasePath,
   listKnowledgeFiles,
   readPublishedMatter,
   routeBasePath,
   loadKnowledgeSource,
   publicKnowledgeSource,
+  knowledgeFrontMatterParser,
 };

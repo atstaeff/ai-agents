@@ -513,6 +513,19 @@ class WorkTests(unittest.TestCase):
         with self.assertRaises(tk.Conflict):
             self.store.create('feature','Duplicate')
 
+    def test_create_preserves_literal_template_tokens_in_user_titles(self):
+        titles = ['Investigate "{{title}}" escaping', 'Investigate {{kind}} escaping',
+                  '{{id}} / {{title_json}} / {{title}} / {{kind}}',
+                  'Quoted "title" with Unicode: Z\u00fcrich\nsecond line']
+        for index, title in enumerate(titles):
+            with self.subTest(title=title):
+                record = self.store.create(f'literal-{index}', title, 'product')
+                self.assertEqual(record['title'], title)
+                self.assertEqual(record['kind'], 'product')
+                self.assertIn('# ' + title.replace('\n', ' ') + '\n', record['markdown'])
+                self.assertEqual(tk.WorkStore(self.workspace).read(record['id'])['title'], title)
+        self.assertEqual([record['title'] for record in self.store.list()][1:], titles)
+
     def test_feedback_preserves_plan_comments_and_task_evidence(self):
         first = self.store.feedback('feature','Keep my exact words: <script>alert(1)</script>',self.record['etag'])
         second = self.store.feedback('feature','A second\nmultiline comment',first['etag'])

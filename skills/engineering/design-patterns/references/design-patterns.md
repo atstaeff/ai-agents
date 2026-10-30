@@ -110,10 +110,14 @@ func (s *Support) Process(ordering OrderingFunc) {
 ```python
 # ❌ Before: register_new_user() directly calls email, Slack, logging
 # ✅ After: post_event("user_registered", user) — listeners handle side effects
+from collections import defaultdict
+from collections.abc import Callable
+from typing import Any
+
 subscribers: dict[str, list[Callable]] = defaultdict(list)
 def subscribe(event: str, handler: Callable): subscribers[event].append(handler)
 def post_event(event: str, data: Any):
-    for handler in subscribers[event]: handler(data)
+    for handler in tuple(subscribers[event]): handler(data)
 ```
 
 **Go Observer — Use channels or callback slices:**
@@ -126,17 +130,25 @@ type EventBus struct {
 func (b *EventBus) Subscribe(event string, handler func(any)) {
 	b.mu.Lock()
 	defer b.mu.Unlock()
+	if b.subs == nil {
+		b.subs = make(map[string][]func(any))
+	}
 	b.subs[event] = append(b.subs[event], handler)
 }
 
 func (b *EventBus) Publish(event string, data any) {
 	b.mu.RLock()
-	defer b.mu.RUnlock()
-	for _, handler := range b.subs[event] {
+	handlers := append([]func(any){}, b.subs[event]...)
+	b.mu.RUnlock()
+	for _, handler := range handlers {
 		handler(data)
 	}
 }
 ```
+
+Take a subscriber snapshot before calling handlers. A handler may subscribe another
+handler; it starts receiving subsequent events. Never hold the registry lock while
+calling user code. Handlers own synchronization of their state when publishers run concurrently.
 
 ### Command
 - Encapsulate request as object
