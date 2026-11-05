@@ -35,6 +35,10 @@ There is deliberately **no separate Needs Clarification column**. Incomplete iss
 
 The **default specialist route** is GPT-6.1 Sol (`opencode/gpt-6.1-sol` in the provided example); use GPT-6 Astra (`opencode/gpt-6-astra`) for consequential lead architecture and independent architecture review, with the highest locally supported reasoning setting only when justified. Verify actual identifiers, permissions and costs in the installed OpenCode host. Do not let subprocesses inherit the expensive route accidentally.
 
+## Configurable team workflows
+
+For new adopters use [Multi-team Product Intake](PRODUCT-INTAKE-MULTITEAM.md): schema-v2 profiles for 3/10/20-person teams, non-destructive scaffolding, configurable workflow stages, roles, model routes, prompts and skill identifiers. The schema-v1 validator and fixed-board demo remain legacy offline examples; **neither** runs real GitHub automation. Central human approval and no-engineering requirements remain mandatory.
+
 ## Adopt in another repository
 
 Follow the [step-by-step repository setup and WSL pilot how-to](PRODUCT-INTAKE-HOWTO.md). The how-to distinguishes the current offline simulation from the future GitHub Projects live adapter.
