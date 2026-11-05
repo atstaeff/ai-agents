@@ -35,6 +35,19 @@ class ScaffoldTests(unittest.TestCase):
             config = json.loads((target / ".product-intake/config.json").read_text())
             self.assertEqual(config["team"]["size"], 3)
 
+    def test_custom_nested_folder(self):
+        with tempfile.TemporaryDirectory() as temp:
+            target = Path(temp)
+            scaffold(target, 3, ".ai/product")
+            config = target / ".ai/product/config.json"
+            self.assertTrue(config.is_file())
+            self.assertIn(".ai/product/config.json", (target / ".ai/product/AGENTS.snippet.md").read_text())
+
+    def test_rejects_traversal(self):
+        with tempfile.TemporaryDirectory() as temp:
+            with self.assertRaises(ValueError):
+                scaffold(Path(temp), 3, "../outside")
+
     def test_missing_target(self):
         with tempfile.TemporaryDirectory() as temp:
             with self.assertRaises(FileNotFoundError):
