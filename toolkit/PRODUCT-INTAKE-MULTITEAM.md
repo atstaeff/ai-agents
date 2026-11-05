@@ -20,18 +20,18 @@ The last example should return `blocked_pending_external_approval_verifier` even
 
 ```bash
 mkdir -p ~/src/my-service
-python3 ~/src/ai-agents/tools/intake_scaffold.py --target ~/src/my-service --team-size 10
+python3 ~/src/ai-agents/tools/intake_scaffold.py --target ~/src/my-service --team-size 10 --output-dir .ai/product
 python3 ~/src/ai-agents/tools/intake_workflow.py ~/src/my-service/.product-intake/config.json
 ```
 
 The tool creates only:
-- `.product-intake/config.json`: team-owned process graph, roles, reviewer placeholders, model routes, and resource limits.
-- `.product-intake/prompts/*.md`: initial read-only Product/Architecture/Security brief templates, edited and reviewed by the team.
-- `.product-intake/AGENTS.snippet.md`: instructions to **merge** manually into existing `AGENTS.md`, never overwrite it.
+- `.ai/product/config.json` (or another selected path): team-owned process graph, roles, reviewer placeholders, model routes, and resource limits.
+- `.ai/product/prompts/*.md`: initial read-only Product/Architecture/Security brief templates, edited and reviewed by the team.
+- `.ai/product/AGENTS.snippet.md`: instructions to **merge** manually into existing `AGENTS.md`, never overwrite it.
 
 Project teams must fill in their actual organization/repository, GitHub Project number, named reviewers, approved model IDs and prompts. These are examples, not authorized identities. Skills in the examples (`product-refinement`, `architecture-review`, `security-review`) are **logical identifiers**; map them to actual approved central skills and versions before the future runtime executes them.
 
-The scaffold is intentionally safe: refuses to overwrite an existing product-intake configuration. If you change profiles, use a reviewed diff and migration rather than re-running the scaffold.
+The folder name is not part of the platform contract. `AGENTS.md` links to the adopted project-local configuration; the headless CLI receives the same explicit path via its argument or a future launcher configuration. Do not depend on the AI interpreting free-form Markdown to discover a config file in an unattended process. The default destination remains `.product-intake` for compatibility.\n\nThe scaffold is intentionally safe: refuses to overwrite an existing product-intake configuration. If you change profiles, use a reviewed diff and migration rather than re-running the scaffold.
 
 ## Profiles and scope
 
@@ -60,7 +60,7 @@ The WSL prototype now includes a **bounded read-only GitHub CLI discovery adapte
 
 ```bash
 gh auth status
-python3 tools/intake_gh_read.py .product-intake/config.json --limit 50
+python3 tools/intake_gh_read.py .ai/product/config.json --limit 50
 ```
 
 This discovers **Backlog** and, if configured, **AI Takes Over** items in that exact repository, but it does **not** load and assess their full requirements, run OpenCode, or move them through the board. It never requests a write operation. The current CLI query is bounded to 100 items and reports possible truncation. Do not rely on it for exhaustive discovery or multi-team scale; use paginated, minimal-field GraphQL queries in the full adapter. GitHub CLI documents `gh project item-list --format json --owner --limit`; exact installed CLI and access must be verified.
