@@ -1,0 +1,95 @@
+{
+  "schema_version": "2",
+  "team": {
+    "id": "team-small",
+    "size": 3
+  },
+  "project": {
+    "repository": "example-org/small-service",
+    "project_number": 1
+  },
+  "process": {
+    "stages": {
+      "backlog": "Backlog",
+      "claimed": "AI Takes Over",
+      "working": "AI Working",
+      "review": "Human Review",
+      "ready": "Ready for Engineering"
+    },
+    "entry": "backlog",
+    "review": "review",
+    "handoff": "ready",
+    "transitions": [
+      {
+        "from": "backlog",
+        "to": "claimed",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "claimed",
+        "to": "working",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "working",
+        "to": "review",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "claimed",
+        "actor": "human",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "ready",
+        "actor": "controller",
+        "gate": "human_approval"
+      }
+    ]
+  },
+  "roles": {
+    "product": {
+      "reviewers": [
+        "po-small"
+      ],
+      "model": "specialist",
+      "skills": [
+        "product-refinement"
+      ],
+      "prompt": "prompts/product-intake.md"
+    }
+  },
+  "models": {
+    "specialist": {
+      "provider": "opencode",
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "architecture": {
+      "provider": "opencode",
+      "model": "gpt-6-astra",
+      "effort": "xhigh"
+    }
+  },
+  "skills": [
+    "product-refinement"
+  ],
+  "prompts": [
+    "prompts/product-intake.md"
+  ],
+  "limits": {
+    "concurrency": 1,
+    "max_agent_calls": 3,
+    "max_attempts": 2
+  },
+  "automation": {
+    "mode": "dry_run",
+    "require_human_approval": true,
+    "allow_implementation": false
+  }
+}
