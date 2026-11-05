@@ -57,7 +57,7 @@ def validate(data: object) -> dict:
             _string(account, f"reviewers.{role}")
     checks = _mapping(d["checks"], {"required", "architecture", "security"}, "checks")
     required = checks["required"]
-    if not isinstance(required, list) or any(x not in FIELDS for x in required) or len(set(required)) != len(required):
+    if not isinstance(required, list) or any(not isinstance(x, str) or x not in FIELDS for x in required) or len(set(required)) != len(required):
         raise ConfigError("checks.required: invalid or duplicate field")
     if not set(FIELDS).issubset(required):
         raise ConfigError("checks.required: central readiness minimum cannot be disabled")
