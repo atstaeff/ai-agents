@@ -72,6 +72,10 @@ The controller must use compare-before-write (re-fetch version), leases/claims, 
 - Roll out by team: offline fixtures → read-only shadow mode → write mode in sandbox → limited production canary → progressive rollout with kill switch.
 - Observability: issue age, review cycles, accepted/rejected suggestions, false positive rate, API failures, cost by route/team, stale approvals and unauthorized transitions. Prioritize outcome quality and human review time over token counts.
 
+## Schema-v2 configurable workflow pilot
+
+The [multi-team guide](PRODUCT-INTAKE-MULTITEAM.md) now includes project scaffolding, a version-2 offline workflow graph validator, configurable roles/models/prompts/skills, and example team profiles. The original schema-v1 sample is retained for backward compatibility. These additions **do not** implement a live queue, a policy overlay resolver, verified approvals, actual role/skill execution or the GitHub/Herdr adapters. Before rollout, validate resolved policy and real actor entitlements server-side; configuration file text alone is not sufficient.
+
 ## Current review findings / blockers
 
 | Severity | Finding | Recommendation |
@@ -80,7 +84,7 @@ The controller must use compare-before-write (re-fetch version), leases/claims, 
 | P0 | Approval is documented but not technically enforced | Build authenticated approval adapter and immutable audit |
 | P0 | AI-only permissions, untrusted-input isolation and per-tenant access untested | Sandbox and threat-model before any customer issue processing |
 | P1 | Demo models/routes are illustrative and not validated against actual provider account | Qualify IDs/effort/budget per runtime |
-| P1 | No multi-team configuration protocol previously | Add schema-v1 dry-run contract and migration policy (included here) |
+| P1 | Multi-team workflow profile only runs offline | Schema-v2 configuration/scaffold now provided; implement real adapters and policy-inheritance migrations before live use |
 | P1 | SQLite and WSL are single-host choices | Do not claim horizontal scaling without durable queue / DB |
 | P1 | No versioned results/adapters or integration contract tests | Add before multiple teams adopt |
 | P2 | Product/Engineering names are still mixed in some pilot filenames | Preserve compatibility for demo; use Product Intake in new public APIs |
