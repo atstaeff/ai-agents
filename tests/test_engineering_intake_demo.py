@@ -28,7 +28,7 @@ class IntakePilotTest(unittest.TestCase):
     def test_unknown_adr_routes_to_human_review(self):
         issue = {**self.data["issue"], "referenced_adrs": ["ADR-404"]}
         self.assertEqual(assess(issue, self.data["decisions"])["proposed_column"],
-                         "Needs Clarification")
+                         "Human Review")
 
     def test_missing_data_blocks_approval(self):
         issue = {**self.data["issue"], "acceptance_criteria": []}
@@ -42,6 +42,12 @@ class IntakePilotTest(unittest.TestCase):
     def test_model_routing(self):
         self.assertEqual(MODEL_ROUTES["default"]["model"], "opencode/gpt-6.1-sol")
         self.assertEqual(MODEL_ROUTES["architecture"]["model"], "opencode/gpt-6-astra")
+
+    def test_intake_never_implements(self):
+        result = assess(self.data["issue"], self.data["decisions"])
+        self.assertEqual(result["actor"], "product-ai")
+        self.assertFalse(result["implementation_allowed"])
+        self.assertNotIn("Needs Clarification", COLUMNS)
 
     def test_human_gate(self):
         self.assertIn("Ready for Engineering", COLUMNS)
