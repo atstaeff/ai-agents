@@ -1,0 +1,114 @@
+{
+  "schema_version": "2",
+  "team": {
+    "id": "team-medium",
+    "size": 10
+  },
+  "project": {
+    "repository": "example-org/platform-api",
+    "project_number": 2
+  },
+  "process": {
+    "stages": {
+      "backlog": "Backlog",
+      "claimed": "AI Takes Over",
+      "working": "AI Working",
+      "review": "Human Review",
+      "ready": "Ready for Engineering",
+      "triage": "Product Triage"
+    },
+    "entry": "backlog",
+    "review": "review",
+    "handoff": "ready",
+    "transitions": [
+      {
+        "from": "backlog",
+        "to": "triage",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "triage",
+        "to": "claimed",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "claimed",
+        "to": "working",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "working",
+        "to": "review",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "claimed",
+        "actor": "human",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "ready",
+        "actor": "controller",
+        "gate": "human_approval"
+      }
+    ]
+  },
+  "roles": {
+    "product": {
+      "reviewers": [
+        "po-small"
+      ],
+      "model": "specialist",
+      "skills": [
+        "product-refinement"
+      ],
+      "prompt": "prompts/product-intake.md"
+    },
+    "architecture": {
+      "reviewers": [
+        "architecture-lead"
+      ],
+      "model": "architecture",
+      "skills": [
+        "architecture-review"
+      ],
+      "prompt": "prompts/architecture-check.md"
+    }
+  },
+  "models": {
+    "specialist": {
+      "provider": "opencode",
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "architecture": {
+      "provider": "opencode",
+      "model": "gpt-6-astra",
+      "effort": "xhigh"
+    }
+  },
+  "skills": [
+    "product-refinement",
+    "architecture-review"
+  ],
+  "prompts": [
+    "prompts/product-intake.md",
+    "prompts/architecture-check.md"
+  ],
+  "limits": {
+    "concurrency": 3,
+    "max_agent_calls": 6,
+    "max_attempts": 3
+  },
+  "automation": {
+    "mode": "dry_run",
+    "require_human_approval": true,
+    "allow_implementation": false
+  }
+}
