@@ -1,5 +1,7 @@
 # How to adopt Product AI Intake in another GitHub repository
 
+**For new teams, start with the [configurable schema-v2 multi-team guide](PRODUCT-INTAKE-MULTITEAM.md).** The instructions below document the original schema-v1 issue simulation and remain available for compatibility. Schema-v1 and schema-v2 are **different pilot contracts**; schema-v2 is the recommended starting point for new project customization.
+
 > **Implementation status (pilot):** The current implementation is an **offline simulation**. It does **not** watch GitHub Projects, call an LLM, create comments, assign reviewers, or change board columns. Follow **Part A** to run what exists today; **Part B** documents the target deployment and the missing integration work. Do not treat successful pilot tests as a working live automation.
 
 This guide integrates the **Product AI / PO refinement** contract into an existing project without letting an AI implement code. Source process: [Product Intake](../../toolkit/PRODUCT-INTAKE.md). Review existing project instructions and keep authoritative project facts in their original homes.
