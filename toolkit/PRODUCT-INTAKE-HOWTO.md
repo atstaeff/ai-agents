@@ -4,7 +4,7 @@
 
 > **Implementation status (pilot):** The current implementation is an **offline simulation**. It does **not** watch GitHub Projects, call an LLM, create comments, assign reviewers, or change board columns. Follow **Part A** to run what exists today; **Part B** documents the target deployment and the missing integration work. Do not treat successful pilot tests as a working live automation.
 
-This guide integrates the **Product AI / PO refinement** contract into an existing project without letting an AI implement code. Source process: [Product Intake](../../toolkit/PRODUCT-INTAKE.md). Review existing project instructions and keep authoritative project facts in their original homes.
+This guide integrates the **Product AI / PO refinement** contract into an existing project without letting an AI implement code. Source process: [Product Intake](PRODUCT-INTAKE.md). Review existing project instructions and keep authoritative project facts in their original homes.
 
 ## Part A — Runnable local pilot (no GitHub mutations)
 
@@ -67,7 +67,7 @@ Also link from `AGENTS.md` to your real `PROJECT.md` / equivalent, active ADR in
 
 ### 4. Configure model routes for *your actual installed host*
 
-The example [model-routing.json](../../examples/intake/model-routing.json) is a **reference**, not a replacement for your existing OpenCode configuration. Keep existing agent prompts and tool permissions. Use **GPT-6.1 Sol** by default for specialists; reserve **GPT-6 Astra** and highest verified supported reasoning effort for consequential lead architecture/review. Check actual provider/model identifiers with:
+The example [model-routing.json](../examples/intake/model-routing.json) is a **reference**, not a replacement for your existing OpenCode configuration. Keep existing agent prompts and tool permissions. Use **GPT-6.1 Sol** by default for specialists; reserve **GPT-6 Astra** and highest verified supported reasoning effort for consequential lead architecture/review. Check actual provider/model identifiers with:
 
 ```bash
 opencode --version
