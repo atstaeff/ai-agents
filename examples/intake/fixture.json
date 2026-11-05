@@ -1,0 +1,32 @@
+{
+  "issue": {
+    "number": 142,
+    "title": "Document extraction retries",
+    "problem": "Retries can duplicate results",
+    "outcome": "One logical result per execution",
+    "scope": "Extraction retries only",
+    "owner": "example-owner",
+    "acceptance_criteria": [
+      "Duplicate requests do not duplicate results",
+      "Failures remain observable"
+    ],
+    "architecture_change": true,
+    "security_impact": false,
+    "referenced_adrs": [
+      "ADR-100",
+      "ADR-101"
+    ]
+  },
+  "decisions": [
+    {
+      "id": "ADR-100",
+      "status": "accepted",
+      "title": "Idempotency"
+    },
+    {
+      "id": "ADR-101",
+      "status": "proposed",
+      "title": "Retry tuning"
+    }
+  ]
+}

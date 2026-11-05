@@ -1,0 +1,59 @@
+{
+  "schema_version": "1",
+  "project": {
+    "repository": "example-org/document-service",
+    "project_number": 7,
+    "status_field": "Status"
+  },
+  "workflow": {
+    "backlog": "Backlog",
+    "claimed": "AI Takes Over",
+    "working": "AI Working",
+    "review": "Human Review",
+    "ready": "Ready for Engineering"
+  },
+  "reviewers": {
+    "product": [
+      "product-owner"
+    ],
+    "architecture": [
+      "architecture-owner"
+    ],
+    "security": [
+      "security-owner"
+    ]
+  },
+  "checks": {
+    "required": [
+      "problem",
+      "outcome",
+      "scope",
+      "acceptance_criteria",
+      "owner"
+    ],
+    "architecture": "risk_based",
+    "security": "risk_based"
+  },
+  "models": {
+    "specialist": {
+      "provider": "opencode",
+      "id": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "architecture": {
+      "provider": "opencode",
+      "id": "gpt-6-astra",
+      "effort": "xhigh"
+    }
+  },
+  "limits": {
+    "max_concurrent_issues": 2,
+    "max_agent_calls_per_issue": 4,
+    "max_attempts": 3
+  },
+  "automation": {
+    "mode": "dry_run",
+    "allow_engineering": false,
+    "require_human_approval": true
+  }
+}

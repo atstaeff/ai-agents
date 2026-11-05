@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode/gpt-6.1-sol",
+  "agent": {
+    "product-manager": {
+      "model": "opencode/gpt-6.1-sol"
+    },
+    "task-orchestrator": {
+      "model": "opencode/gpt-6.1-sol"
+    },
+    "lead-architect": {
+      "model": "opencode/gpt-6-astra"
+    },
+    "architecture-reviewer": {
+      "model": "opencode/gpt-6-astra"
+    },
+    "python-expert": {
+      "model": "opencode/gpt-6.1-sol"
+    },
+    "test-strategist": {
+      "model": "opencode/gpt-6.1-sol"
+    },
+    "code-reviewer": {
+      "model": "opencode/gpt-6.1-sol"
+    }
+  }
+}
