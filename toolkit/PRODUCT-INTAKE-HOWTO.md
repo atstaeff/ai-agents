@@ -156,3 +156,14 @@ Prefer a WSL `systemd` timer invoking a **single-run CLI**, with credentials fro
 - [ ] Live GitHub/agent integration remains **disabled until implemented and tested**.
 
 **Boundary:** This project setup is **Product AI**. An eventual Engineering AI gets its own workflow and can only start following a separately authorized engineering assignment.
+
+## Multi-team configuration and platform readiness
+
+Before adopting this across teams, read the [multi-team architecture review](PRODUCT-INTAKE-ARCHITECTURE-REVIEW.md). A team may start with the [sample schema-v1 config](../examples/intake/team-config.json) and run:
+
+```bash
+python3 tools/intake_config.py examples/intake/team-config.json
+python3 -m unittest discover -s tests -p 'test_intake_config.py' -v
+```
+
+The schema-v1 validator is offline-only. Team configuration does **not** install a GitHub connector, authorize live mode, or enforce a GitHub approval. In a target repository, keep a reviewed copy of the config under a project-chosen path and point the future controller to it. Do not copy the toolkit or agent code into each team repository.
