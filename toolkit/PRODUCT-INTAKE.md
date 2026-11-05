@@ -42,3 +42,7 @@ Follow the [step-by-step repository setup and WSL pilot how-to](PRODUCT-INTAKE-H
 ## Pilot and implementation status
 
 The [offline pilot](ENGINEERING-INTAKE-PILOT.md) simulates the board and tests static checks. It **does not** currently connect to GitHub Projects, launch OpenCode/Herdr or enforce approvals in a live system. Do not claim production readiness from the simulation. Production integration needs GitHub Project V2 read/write adapters, permission validation, idempotent controller, host integration, and real end-to-end testing.
+
+## Multi-team adoption
+
+Use the [multi-team architecture review](PRODUCT-INTAKE-ARCHITECTURE-REVIEW.md) before rollout; it defines configuration ownership, security boundaries, adapter contracts, scaling requirements and release gates. The included [schema-v1 sample](../examples/intake/team-config.json) is validated locally using `python3 tools/intake_config.py examples/intake/team-config.json` and supports **dry-run only**.
