@@ -1,0 +1,133 @@
+{
+  "schema_version": "2",
+  "team": {
+    "id": "team-large",
+    "size": 20
+  },
+  "project": {
+    "repository": "example-org/document-platform",
+    "project_number": 3
+  },
+  "process": {
+    "stages": {
+      "backlog": "Backlog",
+      "claimed": "AI Takes Over",
+      "working": "AI Working",
+      "review": "Human Review",
+      "ready": "Ready for Engineering",
+      "triage": "Product Triage",
+      "domain_review": "Domain Review"
+    },
+    "entry": "backlog",
+    "review": "review",
+    "handoff": "ready",
+    "transitions": [
+      {
+        "from": "backlog",
+        "to": "triage",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "triage",
+        "to": "claimed",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "claimed",
+        "to": "working",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "working",
+        "to": "domain_review",
+        "actor": "controller",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "claimed",
+        "actor": "human",
+        "gate": "none"
+      },
+      {
+        "from": "review",
+        "to": "ready",
+        "actor": "controller",
+        "gate": "human_approval"
+      },
+      {
+        "from": "domain_review",
+        "to": "review",
+        "actor": "controller",
+        "gate": "none"
+      }
+    ]
+  },
+  "roles": {
+    "product": {
+      "reviewers": [
+        "po-small"
+      ],
+      "model": "specialist",
+      "skills": [
+        "product-refinement"
+      ],
+      "prompt": "prompts/product-intake.md"
+    },
+    "architecture": {
+      "reviewers": [
+        "architecture-lead"
+      ],
+      "model": "architecture",
+      "skills": [
+        "architecture-review"
+      ],
+      "prompt": "prompts/architecture-check.md"
+    },
+    "security": {
+      "reviewers": [
+        "security-owner"
+      ],
+      "model": "specialist",
+      "skills": [
+        "security-review"
+      ],
+      "prompt": "prompts/security-review.md"
+    }
+  },
+  "models": {
+    "specialist": {
+      "provider": "opencode",
+      "model": "gpt-6.1-sol",
+      "effort": "medium"
+    },
+    "architecture": {
+      "provider": "opencode",
+      "model": "gpt-6-astra",
+      "effort": "xhigh"
+    }
+  },
+  "skills": [
+    "product-refinement",
+    "architecture-review",
+    "security-review"
+  ],
+  "prompts": [
+    "prompts/product-intake.md",
+    "prompts/architecture-check.md",
+    "prompts/security-review.md"
+  ],
+  "limits": {
+    "concurrency": 5,
+    "max_agent_calls": 10,
+    "max_attempts": 3
+  },
+  "automation": {
+    "mode": "dry_run",
+    "require_human_approval": true,
+    "allow_implementation": false
+  }
+}
