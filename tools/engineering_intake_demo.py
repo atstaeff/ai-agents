@@ -8,8 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COLUMNS = (
-    "Backlog", "AI Takes Over", "AI Working", "Needs Clarification",
-    "Human Review", "Changes Requested", "Ready for Engineering",
+    "Backlog", "AI Takes Over", "AI Working", "Human Review", "Changes Requested", "Ready for Engineering",
 )
 MODEL_ROUTES = {
     "default": {"model": "opencode/gpt-6.1-sol", "effort": "medium"},
@@ -40,10 +39,7 @@ def assess(issue: dict, adrs: list[dict]) -> dict:
     questions += [f"Resolve ADR reference {key}" for key in unknown]
     if issue.get("architecture_change") and not accepted:
         questions.append("Architecture owner must verify applicable accepted decisions")
-    if missing or unknown:
-        proposed = "Needs Clarification"
-    else:
-        proposed = "Human Review"
+    proposed = "Human Review"
     fingerprint = hashlib.sha256(json.dumps(
         {"issue": issue, "adrs": adrs}, sort_keys=True
     ).encode()).hexdigest()[:16]
@@ -53,6 +49,7 @@ def assess(issue: dict, adrs: list[dict]) -> dict:
         "proposed_column": proposed,
         "review_roles": review_roles,
         "questions": questions,
+        "review_blocked": bool(questions),
         "accepted_adr_evidence": accepted,
         "informative_adrs": informative,
         "architecture_assessment": "human_required" if issue.get("architecture_change") else "not_applicable",
