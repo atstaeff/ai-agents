@@ -35,6 +35,10 @@ There is deliberately **no separate Needs Clarification column**. Incomplete iss
 
 The **default specialist route** is GPT-6.1 Sol (`opencode/gpt-6.1-sol` in the provided example); use GPT-6 Astra (`opencode/gpt-6-astra`) for consequential lead architecture and independent architecture review, with the highest locally supported reasoning setting only when justified. Verify actual identifiers, permissions and costs in the installed OpenCode host. Do not let subprocesses inherit the expensive route accidentally.
 
+## Adopt in another repository
+
+Follow the [step-by-step repository setup and WSL pilot how-to](PRODUCT-INTAKE-HOWTO.md). The how-to distinguishes the current offline simulation from the future GitHub Projects live adapter.
+
 ## Pilot and implementation status
 
 The [offline pilot](ENGINEERING-INTAKE-PILOT.md) simulates the board and tests static checks. It **does not** currently connect to GitHub Projects, launch OpenCode/Herdr or enforce approvals in a live system. Do not claim production readiness from the simulation. Production integration needs GitHub Project V2 read/write adapters, permission validation, idempotent controller, host integration, and real end-to-end testing.
