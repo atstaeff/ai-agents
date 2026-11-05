@@ -1,4 +1,4 @@
-"""Safe offline simulation of a GitHub Projects Engineering Intake board."""
+"""Safe offline simulation of a GitHub Projects Product AI Intake board."""
 from __future__ import annotations
 
 import argparse
@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COLUMNS = (
-    "Backlog", "AI Takes Over", "AI Working", "Human Review", "Changes Requested", "Ready for Engineering",
+    "Backlog", "AI Takes Over", "AI Working", "Human Review", "Ready for Engineering",
 )
 MODEL_ROUTES = {
     "default": {"model": "opencode/gpt-6.1-sol", "effort": "medium"},
@@ -50,6 +50,8 @@ def assess(issue: dict, adrs: list[dict]) -> dict:
         "review_roles": review_roles,
         "questions": questions,
         "review_blocked": bool(questions),
+        "actor": "product-ai",
+        "implementation_allowed": False,
         "accepted_adr_evidence": accepted,
         "informative_adrs": informative,
         "architecture_assessment": "human_required" if issue.get("architecture_change") else "not_applicable",
