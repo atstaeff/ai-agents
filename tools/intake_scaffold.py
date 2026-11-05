@@ -13,7 +13,7 @@ PROFILES = ROOT / "examples" / "intake" / "profiles"
 PROMPTS = ROOT / "examples" / "intake" / "prompts"
 SNIPPET = """## Product AI Intake
 
-- Read .product-intake/config.json (schema v2) and the adopted Product Intake
+- Read {config_path} (schema v2) and the adopted Product Intake
   policy pinned to a reviewed ai-agents release/commit.
 - Product AI performs requirements refinement and consults read-only specialists.
 - It must not write implementation code, self-approve, or start Engineering AI.
@@ -23,13 +23,20 @@ SNIPPET = """## Product AI Intake
 """
 
 
-def scaffold(target: Path, size: int) -> list[Path]:
+def scaffold(target: Path, size: int, output_dir: str = ".product-intake") -> list[Path]:
     if size not in (3, 10, 20):
         raise ValueError("size must be 3, 10 or 20")
     root = target.resolve(strict=True)
     if not root.is_dir():
         raise ValueError("target must be an existing directory")
-    directory = root / ".product-intake"
+    relative = Path(output_dir)
+    if (not output_dir.strip() or relative.is_absolute()
+            or any(part in ("..", ".") for part in relative.parts)):
+        raise ValueError("output_dir must be a nonempty project-relative path without traversal")
+    directory = root / relative
+    # Resolve after validating existing parents to avoid writing through symlinks.
+    if not directory.resolve().is_relative_to(root):
+        raise ValueError("output_dir must remain inside project root")
     source = PROFILES / f"team-{size}.json"
     outputs = [(source, directory / "config.json")]
     outputs.extend((p, directory / "prompts" / p.name) for p in sorted(PROMPTS.glob("*.md")))
@@ -43,7 +50,7 @@ def scaffold(target: Path, size: int) -> list[Path]:
     for src, dest in outputs:
         shutil.copyfile(src, dest)
         created.append(dest)
-    snippet.write_text(SNIPPET, encoding="utf-8")
+    snippet.write_text(SNIPPET.format(config_path=(relative / "config.json").as_posix()), encoding="utf-8")
     created.append(snippet)
     return created
 
@@ -52,9 +59,11 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target", type=Path, required=True)
     parser.add_argument("--team-size", type=int, choices=(3, 10, 20), required=True)
+    parser.add_argument("--output-dir", default=".product-intake",
+                        help="Project-relative destination (default: .product-intake)")
     args = parser.parse_args()
     try:
-        paths = scaffold(args.target, args.team_size)
+        paths = scaffold(args.target, args.team_size, args.output_dir)
     except (OSError, ValueError) as exc:
         parser.exit(2, f"Scaffolding failed: {exc}\n")
     for path in paths:
