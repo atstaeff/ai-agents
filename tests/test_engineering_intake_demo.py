@@ -20,15 +20,19 @@ class IntakePilotTest(unittest.TestCase):
                          ["Backlog", "AI Takes Over", "AI Working", "Human Review"])
         self.assertFalse(result["report"]["remote_changes"])
 
-    def test_missing_data_requires_clarification(self):
+    def test_missing_data_routes_to_human_review(self):
         issue = {**self.data["issue"], "acceptance_criteria": []}
         self.assertEqual(assess(issue, self.data["decisions"])["proposed_column"],
-                         "Needs Clarification")
+                         "Human Review")
 
-    def test_unknown_adr_requires_clarification(self):
+    def test_unknown_adr_routes_to_human_review(self):
         issue = {**self.data["issue"], "referenced_adrs": ["ADR-404"]}
         self.assertEqual(assess(issue, self.data["decisions"])["proposed_column"],
                          "Needs Clarification")
+
+    def test_missing_data_blocks_approval(self):
+        issue = {**self.data["issue"], "acceptance_criteria": []}
+        self.assertTrue(assess(issue, self.data["decisions"])["review_blocked"])
 
     def test_proposed_adr_not_accepted(self):
         result = assess(self.data["issue"], self.data["decisions"])
