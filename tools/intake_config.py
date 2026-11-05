@@ -6,6 +6,8 @@ import json
 import re
 from pathlib import Path
 
+from intake_workflow import WorkflowError, validate_profile
+
 STAGES = ("backlog", "claimed", "working", "review", "ready")
 FIELDS = ("problem", "outcome", "scope", "acceptance_criteria", "owner")
 LEVELS = ("low", "medium", "high", "xhigh")
@@ -37,6 +39,11 @@ def _positive(value: object, where: str, maximum: int) -> None:
 
 
 def validate(data: object) -> dict:
+    if isinstance(data, dict) and data.get("schema_version") == "2":
+        try:
+            return validate_profile(data)
+        except WorkflowError as exc:
+            raise ConfigError(str(exc)) from exc
     d = _mapping(data, {"schema_version", "project", "workflow", "reviewers", "checks", "models", "limits", "automation"}, "root")
     if d["schema_version"] != "1":
         raise ConfigError("schema_version: unsupported; fail closed until migrated")
