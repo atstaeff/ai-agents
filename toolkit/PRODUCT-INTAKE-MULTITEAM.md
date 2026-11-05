@@ -54,6 +54,17 @@ These are examples, not staffing rules: all profiles use the same code. Teams ca
 
 Current schema-v2 validation is a **single-file, already-resolved profile**; automatic hierarchical inheritance, organization policy registry, live reviewer membership validation and dynamic skill resolution are future work. For rollout, add a deterministic release-pinned overlay resolver with explicit precedence and migration reports; avoid hidden defaults and arbitrary executable plugins.
 
+## Optional: read actual GitHub Project items safely
+
+The WSL prototype now includes a **bounded read-only GitHub CLI discovery adapter**, so you can see real issues without allowing the bot to modify them. Install and authenticate `gh` with appropriate project *read* permissions, edit a copy of the team profile to point to the correct repository and Project V2 number, then run:
+
+```bash
+gh auth status
+python3 tools/intake_gh_read.py .product-intake/config.json --limit 50
+```
+
+This discovers **Backlog** and, if configured, **AI Takes Over** items in that exact repository, but it does **not** load and assess their full requirements, run OpenCode, or move them through the board. It never requests a write operation. The current CLI query is bounded to 100 items and reports possible truncation. Do not rely on it for exhaustive discovery or multi-team scale; use paginated, minimal-field GraphQL queries in the full adapter. GitHub CLI documents `gh project item-list --format json --owner --limit`; exact installed CLI and access must be verified.
+
 ## Model routing and skill ownership
 
 The sample profiles use GPT-6.1 Sol for product/specialist work and GPT-6 Astra for consequential architecture consultation, but teams can replace model routes with *approved* alternatives. The JSON declares a route; it neither establishes model availability nor applies `xhigh` to an actual provider. A production adapter must verify installed model capabilities, per-route spending ceilings and the actual prompt/skill version before dispatch.
