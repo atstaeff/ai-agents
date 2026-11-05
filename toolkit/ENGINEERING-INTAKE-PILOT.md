@@ -9,13 +9,13 @@ python3 tools/engineering_intake_demo.py
 python3 -m unittest discover -s tests -p 'test_engineering_intake_demo.py' -v
 ```
 
-Change `examples/intake/fixture.json`: remove acceptance criteria to route to **Needs Clarification**, or add security impact to propose a security reviewer. Re-run the demo.
+Change `examples/intake/fixture.json`: remove acceptance criteria to create **blocking questions in Human Review**, or add security impact to propose a security reviewer. Re-run the demo.
 
 ## Board contract
 
-`Backlog` → `AI Takes Over` → `AI Working` → `Human Review` → `Ready for Engineering`. Incomplete work routes from `AI Working` to `Needs Clarification`; review feedback routes to `Changes Requested`, which can go back to `AI Takes Over` after material edits. These are proposed GitHub Project V2 status option names; create and validate them manually before real integration.
+`Backlog` → `AI Takes Over` → `AI Working` → `Human Review` → `Ready for Engineering`. Incomplete work also routes to `Human Review` with blocking questions, not a separate clarification column; review feedback routes to `Changes Requested`, which can go back to `AI Takes Over` after material edits. These are proposed GitHub Project V2 status option names; create and validate them manually before real integration.
 
-The agent **cannot** approve its own work. An authorized reviewer must approve an exact issue+ADR+policy revision. Any material change invalidates approvals. An architecture-change with no accepted ADR evidence needs architecture review even if basic fields are complete.
+The agent **cannot** approve its own work. An authorized reviewer must approve an exact issue+ADR+policy revision. Any material change invalidates approvals. An architecture-change with no accepted ADR evidence needs architecture review even if basic fields are complete. Missing requirements remain visible as blocking questions within Human Review, and must be resolved before approval.
 
 ## Model routing (OpenCode Console)
 
