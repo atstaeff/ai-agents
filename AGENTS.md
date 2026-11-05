@@ -15,6 +15,7 @@ for process, skill selection and checks. Read further sources only for the curre
 
 | Need | Source |
 | --- | --- |
+| Product AI intake and handoff to Engineering | [Product Intake workflow](toolkit/PRODUCT-INTAKE.md) |
 | Concise execution rules | [Session rules](toolkit/SESSION-RULES.md) |
 | Current knowledge and significant reasons | [Knowledge index](knowledge/README.md) |
 | Decision/acceptance or action boundary | [Stakeholders](knowledge/stakeholders.md), [agreement](knowledge/working-agreement.md) |
@@ -28,6 +29,8 @@ for process, skill selection and checks. Read further sources only for the curre
 The [published process](https://atstaeff.github.io/ai-agents/contributing/) is a reading view;
 this checkout owns its revision. Load the next relevant skill body, not every linked skill,
 role profile, guide or historical ADR. Expand when needed without omitting governing constraints.
+
+For tasks explicitly in Product Intake, follow the [Product Intake workflow](toolkit/PRODUCT-INTAKE.md) before selecting agents. Product AI prepares and reviews requirements, but does not implement code or start engineering delivery. An authorized human approval is required before handoff to Engineering. This boundary does not restrict explicitly authorized engineering tasks outside Intake.
 
 ## Preserve these boundaries
 
