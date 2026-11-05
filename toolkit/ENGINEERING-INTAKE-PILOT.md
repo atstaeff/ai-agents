@@ -1,4 +1,6 @@
-# Engineering Intake board pilot (offline)
+# Product AI Intake board pilot (offline)
+
+See the [authoritative Product Intake workflow](PRODUCT-INTAKE.md). The intake agent acts as a Product Owner assistant, **not an Engineering AI**.
 
 A **runnable read-only simulation**, not a deployed GitHub automation. It makes no API calls or GitHub writes, starts no OpenCode/Herdr sessions and incurs no model costs. Issue #142 and ADRs in the fixture are synthetic.
 
@@ -13,7 +15,7 @@ Change `examples/intake/fixture.json`: remove acceptance criteria to create **bl
 
 ## Board contract
 
-`Backlog` → `AI Takes Over` → `AI Working` → `Human Review` → `Ready for Engineering`. Incomplete work also routes to `Human Review` with blocking questions, not a separate clarification column; review feedback routes to `Changes Requested`, which can go back to `AI Takes Over` after material edits. These are proposed GitHub Project V2 status option names; create and validate them manually before real integration.
+`Backlog` → `AI Takes Over` → `AI Working` → `Human Review` → `Ready for Engineering`. Incomplete work also routes to `Human Review` with blocking questions, not a separate clarification column; review feedback can send the issue back to `AI Takes Over` after material edits; no extra column is required. These are proposed GitHub Project V2 status option names; create and validate them manually before real integration.
 
 The agent **cannot** approve its own work. An authorized reviewer must approve an exact issue+ADR+policy revision. Any material change invalidates approvals. An architecture-change with no accepted ADR evidence needs architecture review even if basic fields are complete. Missing requirements remain visible as blocking questions within Human Review, and must be resolved before approval.
 
