@@ -9,6 +9,7 @@ discovery, effective permissions, model/effort and handoff before depending on t
 
 | Situation | Template | Adapt before use |
 | --- | --- | --- |
+| Adaptable project-specific process (recommended for new projects) | [Markdown-first entry](../markdown-project/AGENTS.md) | Process steps, folder names, skill/agent sources and ADR homes |
 | Team building in one repository | [Team contract](../project-starter/AGENTS.md) | Source table, roles, project locations, tools, commands and knowledge homes |
 | Established repository with existing rules | [Existing repository](existing-repository/AGENTS.md) | Existing process, tooling, source locations, commands and ownership |
 | Central process or project documentation over the web | [Remote documentation](remote-docs/AGENTS.md) | Real URLs, adopted revision, project locations, tools, access and fallback |
@@ -16,7 +17,7 @@ discovery, effective permissions, model/effort and handoff before depending on t
 | Package or component-specific details | [Component instructions](component/AGENTS.md) | Applicable root process/tools, component locations, knowledge and checks |
 
 Copy or merge the chosen template into the intended instruction scope; these are alternatives
-and scoped additions, not five files required in each project. Fill every prompt and replace
+and scoped additions, not a set of files required in each project. Fill every prompt and replace
 example.org URLs. The [project starter](../project-starter/README.md) supplies matching
 context/process pages. Link an existing owning section for each concern; keep detailed
 policy and commands there. [Adoption](../../toolkit/ADOPT-PROJECT.md) explains the checks.

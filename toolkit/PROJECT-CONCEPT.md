@@ -3,6 +3,7 @@
 ## Contents
 
 - [Entry and source ownership](#entry-and-source-ownership)
+- [Adaptable Markdown process](#adaptable-markdown-process)
 - [Local files and web documentation](#local-files-and-web-documentation)
 - [Team coordination](#team-coordination)
 - [Knowledge and decision lifecycle](#knowledge-and-decision-lifecycle)
@@ -37,6 +38,21 @@ and CONTRIBUTING.md. Reuse existing equivalents; several source links may point 
 page. There is no obligation to create seven documents. The [instruction templates](../templates/agent-instructions/README.md)
 cover an existing repository, remote documentation, multi-repository coordination and
 component-specific rules. [This repository's entry](../AGENTS.md) is a filled example.
+
+## Adaptable Markdown process
+
+For new projects, prefer the [Markdown-first structure](../templates/markdown-project/README.md)
+when the process benefits from separate steps. AGENTS.md maps the actual homes for project
+facts, process, skills, agents, current knowledge and ADRs. A process index routes to only
+the applicable step; numbered Markdown files are editable procedures, not fixed gates or
+execution records. Projects may rename folders and add, combine, remove or reorder steps.
+CONTRIBUTING.md owns common tools/commands and links the process instead of duplicating it.
+
+Capture significant architectural decisions when they arise, then reconcile status and
+evidence during delivery. Keep current behavior in living knowledge and progress in the
+actual issue/PR. Publish selected original sources through Docusaurus without maintaining
+a second process copy. No workspace manifest or YAML configuration is needed. Existing
+compact or externally owned processes remain supported; migrate links, not duplicated policy.
 
 ## Local files and web documentation
 

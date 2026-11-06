@@ -5,7 +5,8 @@ create separate sessions only for useful bounded delivery or independent assessm
 
 - Parent assignment and revision: <authoritative link>
 - Accountable human and acting lead: <existing decision owner; lead responsible for this delegated result>
-- Outcome and acceptance: <one independently verifiable deliverable>
+- Outcome and acceptance: <one independently verifiable deliverable; relevant tests,
+  schema, prototype or review rubric when these express the requirement more precisely>
 - Relevant context: <selected sources, contracts and decisions>
 - Allowed files/worktree and action scope: <explicit boundary>
 - Constraints and human content to preserve: <applicable requirements>
