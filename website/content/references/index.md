@@ -7,7 +7,7 @@ and observed behavior determine what applies.
 
 | Need | Start here |
 | --- | --- |
-| Adopt root `AGENTS.md`, `PROJECT.md` and `CONTRIBUTING.md` | [Project starter](../getting-started/lean-project.md) and [adoption guide](../getting-started/adopt-workspace.md) |
+| Adopt a project-specific Markdown process | [Markdown-first starter](../getting-started/markdown-project.md) and [adoption guide](../getting-started/adopt-workspace.md) |
 | Choose an artifact for an actual need | [Template chooser](../templates/index.md) |
 | Coordinate product, architecture or delivery work | [Orchestration](../getting-started/orchestration.md) |
 | Export to an AI host | [Runtime exports](../getting-started/installation.md) |

@@ -33,8 +33,10 @@ imports and web access must be verified with the chosen host; see [portability](
 | Current knowledge | Project-owned knowledge sources | Read affected contracts and update verified behavior |
 | Significant reasons | Project-owned decision records | Read relevant status/scope and preserve rationale |
 
-The [default starter](../templates/project-starter/README.md) provides AGENTS.md, PROJECT.md
-and CONTRIBUTING.md. Reuse existing equivalents; several source links may point to one
+The [recommended Markdown-first starter](../templates/markdown-project/README.md) maps
+project facts, a configurable set of process pages, expertise and knowledge. The
+[compact starter](../templates/project-starter/README.md) keeps procedure in CONTRIBUTING.md
+when one page is enough. Reuse existing equivalents; several source links may point to one
 page. There is no obligation to create seven documents. The [instruction templates](../templates/agent-instructions/README.md)
 cover an existing repository, remote documentation, multi-repository coordination and
 component-specific rules. [This repository's entry](../AGENTS.md) is a filled example.

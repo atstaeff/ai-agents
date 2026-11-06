@@ -7,10 +7,12 @@ State: implemented for review on the current branch; integration and publication
 
 AGENTS.md starts a person or AI session and links project context, contribution process,
 current knowledge, decision history and the assigned work home. PROJECT.md owns project
-facts; CONTRIBUTING.md owns detailed contribution procedure, tool routing and commands.
-No YAML manifest is needed for this route.
+facts; engineering/process/ owns selected phase procedures. CONTRIBUTING.md owns repository
+contribution requirements and links actual tools/check commands.
+No YAML manifest is needed for this route. The [process index](../engineering/process/README.md)
+selects relevant steps; folders and step counts remain adaptable.
 
-Reusable agents and skills live in agents/ and skills/. toolkit/ owns reusable process,
+Reusable agents and skills live in agents/ and skills/. toolkit/ owns cross-cutting policy,
 quality, recovery and host-adapter guidance. templates/ supplies adaptable project entries,
 AGENTS.md variants and engineering records. tools/ and tests/ implement and verify local
 catalog, export and work-record behavior.
@@ -22,7 +24,8 @@ Decisions remain in decisions/ with status, owner, context, alternatives, conseq
 source links. Accepted replacements link both records. Shared scope, acceptance and feedback stay
 at the assigned issue or PR; personal execution steps stay private, subject to customer policy; a bounded handoff points to the relevant revisions.
 See [ADR-0003](decisions/0003-agents-first-project-entry.md) for this proposed arrangement
-and [knowledge lifecycle](../toolkit/PROJECT-KNOWLEDGE.md) for retention and retrieval.
+and [ADR-0007](decisions/0007-markdown-process.md) for the phase-procedure migration.
+Use [knowledge lifecycle](../toolkit/PROJECT-KNOWLEDGE.md) for retention and retrieval.
 
 ## Preferred execution surface
 

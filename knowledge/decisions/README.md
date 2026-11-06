@@ -2,6 +2,7 @@
 
 | Record | Status | Relevance |
 | --- | --- | --- |
+| [ADR-0007: Adaptable Markdown process](0007-markdown-process.md) | Proposed | Project-selected procedures, flexible folders and one owner per rule |
 | [ADR-0006: Native orchestration and focused expertise](0006-native-orchestration-and-focused-expertise.md) | Proposed | Native fleet imports, bounded specialists and focused engineering procedures |
 | [ADR-0005: Bounded knowledge views](0005-bounded-knowledge-views.md) | Proposed | Aggregate maps and paginated direct context |
 | [ADR-0004: Private plans and shared knowledge](0004-private-plans-shared-knowledge.md) | Proposed | Private execution notes and durable shared outcomes |

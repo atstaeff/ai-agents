@@ -6,6 +6,15 @@ At session startup, load and apply [session rules](toolkit/SESSION-RULES.md), re
 matching loaded copy. Herdr discovery and autonomous team coordination are the default;
 the user does not need to request them again.
 
+## Repository map
+
+| Source | Owns |
+| --- | --- |
+| [engineering/process/](engineering/process/README.md) | Applicable process step and next action |
+| [skills/](skills/README.md), [agents/](agents/README.md) | Reusable techniques and role profiles |
+| [knowledge/](knowledge/README.md), [decisions](knowledge/decisions/README.md) | Current facts and ADR rationale |
+| [templates/](templates/README.md) | Adaptable project structures and records |
+
 ## Choose the relevant context
 
 For a clear small correction, inspect affected files. For unfamiliar substantial work,

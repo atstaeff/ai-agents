@@ -1,76 +1,58 @@
-# Adopt AGENTS.md in a project
+# Adopt the Markdown-first structure
 
-Use one discoverable collaboration entry and shared project sources. Start with the
-[project starter](../templates/project-starter/README.md) or choose an
-[AGENTS.md variant](../templates/agent-instructions/README.md). All shared artifacts are English.
+For a new project, use the adaptable [Markdown-first project structure](../templates/markdown-project/README.md).
+For an existing project, preserve its authoritative sources and adopt only the parts that
+help with the next assignment. The compact [project starter](../templates/project-starter/README.md)
+and [AGENTS.md variants](../templates/agent-instructions/README.md) remain useful for
+smaller setups. Keep shared artifacts in English.
 
-## 1. Inspect and preserve
+## Map the sources
 
-Read existing agent instructions, project docs, repository state, tracker, CI, architecture
-and decisions. Identify the actual owner and access boundaries. Merge into existing files;
-never replace human wording or create a competing live plan.
+Start with the project's existing `AGENTS.md` as the discovery entry. Link its real sources
+for project facts, contributor process, issue and review homes, current knowledge,
+decisions, roles and relevant skills. These can live in existing files, Markdown folders,
+or authorized web documentation; the example structure is a starting point, not a required
+folder tree. Keep existing owners and tool commands. Do not create empty directories or a
+new manifest to match the example.
 
-## 2. Link the project sources
+## Adapt the working process
 
-Fill the AGENTS.md source table with local Markdown or real, accessible web URLs:
+Point contributors to the project's own process source and actual commands. Select and
+adapt only the procedures that support the work; no fixed lifecycle or numbered sequence
+is required. Keep assignment scope, acceptance, progress and review evidence at the
+project's existing work and review homes. Record significant decisions when they arise,
+and keep current verified behavior separate from decision history.
 
-| Source | Required information |
-| --- | --- |
-| Vision | Intended users, problem, direction, current goals and success signals |
-| Stakeholders | Affected groups, priority, technical decision and acceptance roles |
-| Scope | Included responsibilities, exclusions and material constraints |
-| Process | Working method, tools, checks, relevant skills and action boundaries |
-| Work/review | Actual issue/ticket home and code-review home |
-| Knowledge/decisions | Current knowledge and significant rationale, including record status |
+During adoption, verify that the chosen AI host discovers `AGENTS.md` and can load linked
+sources. A link does not install instructions, guarantee retrieval or grant access. Replace
+placeholder paths, URLs and roles, and preserve host-specific entry files such as
+`CLAUDE.md` or `.github/copilot-instructions.md` when the project uses them.
 
-Several links may point to the same page. The default uses PROJECT.md and CONTRIBUTING.md;
-these names and all content folders are choices. AGENTS.md is the entry convention. Verify
-how the selected host discovers it; adapt host imports without duplicating project rules.
-No project.yaml, TOML file or workspace folder is required.
+## Adopt remote policy deliberately
 
-## 3. Adopt the process and coordination
+A central process is optional. Record its immutable source URL and adopted SHA/version
+in the project, explicitly read the body and verify access. Use only a declared fallback
+with matching provenance when access fails; name the blocked action and continue
+independent authorized work. Evolving technique links do not silently adopt policy.
 
-Use Clarify, Plan, Build, Verify, Integrate and retain; an existing adopted process takes
-precedence. Keep shared outcome, criteria, feedback and team handoff at one work item. Name
-the accountable human, active writer, scope, dependencies and integration owner.
-For parallel work, separate working directories and agree shared interfaces and effective
-claims. Serialize overlapping changes if the project has no shared coordination mechanism.
-Keep BMAD/Spec-Driven artifacts at their native authoritative homes when selected.
+## Verify a bounded assignment
 
-## 4. Choose local or remote instructions deliberately
+Resolve source links, actual owners and commands, then try one real task and fresh-session
+recovery. Check a missing required source and overlapping-writer handoff before scaling
+parallel work. Static Markdown checks establish links, not acceptance, source quality or
+host behavior. Follow the [runtime check](../templates/delivery/runtime-check.md) as needed.
 
-Local sources keep facts tied to the checkout. Central web policy can serve several projects.
-In AGENTS.md explicitly instruct the session to read and follow the adopted process.
-Pin shared policy to a verified source commit or maintained documentation version and record
-what was actually read. A link does not install skills, guarantee retrieval or grant access.
-Use the [remote documentation template](../templates/agent-instructions/remote-docs/AGENTS.md)
-for fallback and version handling. Its example.org addresses are fictional placeholders.
+## Keep personal and shared work distinct
 
-## 5. Make knowledge recoverable
-
-Use an existing knowledge index or start one when needed. Link current architecture,
-contracts and operations separately from decision history. Store significant reasons as
-they arise. Keep personal plans historical in the Second Brain; retain shared outcomes in the project. Before pausing, save result,
-revisions, evidence/limits, blockers, pending writes and one next action in the assignment.
-The [worked example](examples/project-kernel.md) shows record placement and relationships.
-
-## 6. Verify the adopted project
-
-Resolve every local source link, replace placeholder roles/URLs and run actual project
-checks. Review the prose for missing facts; link validation cannot prove completeness.
-Try one bounded real task, a fresh session and a required-source access failure. Verify
-that the session chooses the correct source, preserves others' edits and reports real
-check evidence. Test parallel integration before increasing concurrency.
-
-Docusaurus is an optional reading view of those same sources. Publish only explicitly
-selected material; keep private sources and local work outside the published set.
+Shared sources should let an authorized teammate understand the outcome, relevant evidence
+and next action. Keep personal planning in the user's permitted private system, or unsaved
+in-session when unavailable; do not publish private paths or notes in project guidance.
+Docusaurus or another documentation site can provide a reading view of selected shared
+Markdown, while the original source remains authoritative.
 
 ## Existing YAML and local workbench users
 
-Keep a legacy tooling map only if existing tools need it; see
-[optional YAML compatibility](PROJECT-CONFIG.md). Preserve real locations while moving
-human/AI navigation into AGENTS.md. Do not leave contradictory process copies.
-The optional local toolkit still uses workspace/work/ storage; --workspace means project
-root. It remains independent of adopting the documentation model.
-
-Personal planning follows the [shared workflow](WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.
+Keep an existing YAML configuration only when current tools depend on it. The optional
+[project config](PROJECT-CONFIG.md) and local workbench remain compatibility paths; they
+are not prerequisites for Markdown-first adoption. Preserve real data locations and avoid
+contradictory copies of project policy.

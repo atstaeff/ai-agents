@@ -9,7 +9,7 @@ coordinate bounded work; specialists contribute implementation and evidence.
 Every adopted project has an `AGENTS.md` entry linking its purpose, boundaries, responsible
 people, delivery process, tools, commands and knowledge. Keep facts in their existing homes:
 `PROJECT.md`, `CONTRIBUTING.md`, repository Markdown or an accessible adopted web source.
-The [starter](../templates/project-starter/README.md) provides a complete example.
+The [Markdown-first starter](../templates/markdown-project/README.md) provides a complete example.
 Record which version of a central process applies. Read relevant linked content explicitly.
 
 | Information | Authoritative home | Update when |
@@ -27,7 +27,9 @@ all storage and model use. No particular folder name, YAML manifest or extra tra
 
 ## The value stream
 
-Use the smallest complete increment. A routine correction can move directly from the
+The stages below describe responsibilities, not a fixed sequence. The adopted project
+may combine, rename or add steps. This repository uses [numbered Markdown procedures](../engineering/process/README.md)
+with context loaded on demand. Use the smallest complete increment. A routine correction can move directly from the
 request to implementation and relevant checks; it needs no new planning document.
 
 | Stage | Work and accountable viewpoint | Evidence to continue |

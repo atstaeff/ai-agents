@@ -94,10 +94,13 @@ Keep the temporary directory for inspection or remove it when finished.
 
 ## 4. Adopt only what your next assignment needs
 
-Merge the [project starter](lean-project.md) or an [AGENTS.md variant](agents-templates.md)
-into existing instructions. Identify the assignment, acceptance, real checks and required
-sources before the work depends on them. Add context and knowledge as the work produces it;
-no YAML manifest, empty knowledge tree or full agent team is required.
+For a new project, start with the adaptable
+[Markdown-first structure](markdown-project.md). In an existing
+project, merge only the useful parts into its current instructions; the compact
+[project starter](lean-project.md) and [AGENTS.md variants](agents-templates.md) are also
+available. Identify the assignment, acceptance, real checks and required sources before
+the work depends on them. Add context and knowledge as the work produces it; no YAML
+manifest, empty knowledge tree or full agent team is required.
 
 Before relying on a host for real delivery, record its observed discovery, model/effort,
 permissions, handoff and limits with the [runtime check template](../templates/delivery/runtime-check.md).

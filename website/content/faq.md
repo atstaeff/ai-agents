@@ -7,7 +7,7 @@ export a small catalog locally, then use your host for a supplied documentation 
 
 Start with root `AGENTS.md`, `PROJECT.md` and `CONTRIBUTING.md`, or link their existing
 equivalents. Name the project's actual work, review, knowledge and decision sources.
-Merge the [project starter](getting-started/lean-project.md) into existing instructions;
+Merge the [Markdown-first starter](getting-started/markdown-project.md) into existing instructions;
 no YAML file or `workspace/` directory is required.
 
 ## Where do plans and delivery evidence belong?

@@ -103,6 +103,25 @@ class WebsitePublishingTests(unittest.TestCase):
                             site.sidebar_items([{'Work': 'https://github.com/atstaeff/ai-agents/issues'}])))
         self.assertFalse(any('workspace/work/' in path for path in pages))
 
+    def test_markdown_process_publishes_indices_steps_and_navigation_once(self):
+        pages, sidebars, _ = site.generate()
+        self.assertIn('getting-started/markdown-project.md', pages)
+        self.assertIn('(engineering/process/index.md)',
+                      pages['templates/markdown-project/AGENTS.md'])
+        self.assertIn('(01-clarify.md)', pages['process/index.md'])
+        self.assertIn('(../getting-started/session-rules.md)', pages['process/index.md'])
+        steps = sidebars['operating'][0]['items']
+        self.assertEqual(steps[0]['id'], 'process/index')
+        for step in steps[1:]:
+            text = pages[step['id'] + '.md']
+            self.assertIn('parse_number_prefixes: false', text)
+            self.assertIn('custom_edit_url: "https://github.com/atstaeff/ai-agents/edit/main/engineering/process/', text)
+        for name in ('process', 'skills', 'agents', 'decisions', 'knowledge'):
+            self.assertIn(f'templates/markdown-project/engineering/{name}/index.md', pages)
+            self.assertNotIn(f'templates/markdown-project/engineering/{name}/README.md', pages)
+        self.assertIn('(../process/02-plan.md)', pages['getting-started/workflow.md'])
+        self.assertIn('knowledge/decisions/adr-0007.md', pages)
+
     def test_decision_frontmatter_is_not_treated_as_a_catalog_profile(self):
         site.prepare({})
         current = page('customer-workspace/decisions/adr-0001.md')

@@ -13,6 +13,19 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'process/index.md': 'engineering/process/README.md',
+    'process/01-clarify.md': 'engineering/process/01-clarify.md',
+    'process/02-plan.md': 'engineering/process/02-plan.md',
+    'process/03-build.md': 'engineering/process/03-build.md',
+    'process/04-verify.md': 'engineering/process/04-verify.md',
+    'process/05-integrate-retain.md': 'engineering/process/05-integrate-retain.md',
+    'getting-started/markdown-project.md': 'templates/markdown-project/README.md',
+    'knowledge/decisions/adr-0007.md': 'knowledge/decisions/0007-markdown-process.md',
+    'templates/markdown-project/engineering/process/index.md': 'templates/markdown-project/engineering/process/README.md',
+    'templates/markdown-project/engineering/skills/index.md': 'templates/markdown-project/engineering/skills/README.md',
+    'templates/markdown-project/engineering/agents/index.md': 'templates/markdown-project/engineering/agents/README.md',
+    'templates/markdown-project/engineering/decisions/index.md': 'templates/markdown-project/engineering/decisions/README.md',
+    'templates/markdown-project/engineering/knowledge/index.md': 'templates/markdown-project/engineering/knowledge/README.md',
     'getting-started/repository-map.md': 'toolkit/README.md',
     'getting-started/local-tools.md': 'tools/README.md',
     'getting-started/agents-observation.md': 'toolkit/evaluations/agents-entry-20261022.md',
@@ -277,6 +290,9 @@ def generate():
         slug = '/' + (path[:-len('index.md')] if path.endswith('/index.md') else path.removesuffix('.md'))
         fields = {'slug': slug, 'custom_edit_url': page.edit_url or
                   'https://github.com/atstaeff/ai-agents/edit/main/website/content/' + path}
+        # Numbered source files retain the IDs used by generated sidebar links.
+        if re.match(r'\d+[-_]', Path(path).stem):
+            fields['parse_number_prefixes'] = False
         if page.meta.get('description'):
             fields['description'] = page.meta['description']
         pages[path] = '---\n' + ''.join(f'{k}: {json.dumps(v)}\n' for k,v in fields.items()) + '---\n\n' + text
