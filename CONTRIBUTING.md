@@ -1,65 +1,28 @@
 # Contributing
 
-This document is the shared working process for people and AI in this repository.
-Follow linked procedures and skills when relevant to the assignment.
-
-Improve a concrete workflow or verified behavior. Keep changes focused and English
-instructions concise. Follow [AGENTS.md](AGENTS.md) and the
-[shared workflow](toolkit/WORKFLOW.md).
+This guide owns repository contribution requirements and tool references. The
+[engineering process](engineering/process/README.md) owns phase procedures; start with
+[AGENTS.md](AGENTS.md) and load only the relevant step. Keep shared artifacts English.
 
 ## Working process and skills
 
-Read [PROJECT.md](PROJECT.md) for vision, goals, boundaries, responsibilities and current
-sources. The [working agreement](knowledge/working-agreement.md) defines acceptance
-and action boundaries; [AGENTS.md](AGENTS.md) and PROJECT.md link the authoritative sources. Use **Clarify → Plan → Build → Verify → Integrate and retain**.
-Keep personal execution plans in the privately configured Second Brain; use the assigned work home for shared scope, acceptance and coordination. Clear small corrections need no extra record.
+Use [PROJECT.md](PROJECT.md) for vision, boundaries, owners and real work/review homes.
+The [working agreement](knowledge/working-agreement.md) defines acceptance and action
+boundaries. Select the applicable procedure from the [process index](engineering/process/README.md);
+it links focused skills for clarification, design, implementation, verification and retention.
 
-| Need | Load when relevant |
-| --- | --- |
-| Establish how to contribute in an unfamiliar repository | [repository-contribution](skills/delivery/repository-contribution/SKILL.md) |
-| Clarify vision, value, boundaries and acceptance | [product-discovery](skills/delivery/product-discovery/SKILL.md) |
-| Coordinate a larger assignment and session handoff | [work-management](skills/delivery/work-management/SKILL.md) |
-| Resolve consequential design choices | [principal-engineer-decisions](skills/architecture/principal-engineer-decisions/SKILL.md) |
-| Implement in the existing stack | Relevant [engineering or language skill](skills/README.md) |
-| Verify behavior and assess a change | [testing](skills/quality/testing/SKILL.md), [code-review](skills/quality/code-review/SKILL.md) |
-| Prepare the contribution for review | [pr-crafting](skills/delivery/pr-crafting/SKILL.md) |
-
-Load only the selected skill body and necessary references. A link does not install or
-execute a skill; use the host's installed catalog or read its canonical source explicitly.
-Skills provide reusable technique; project rules and current instructions determine
-the assignment, authoritative tools and permissions. Use available integrations for those
-tools. Report missing access and prepare an unsent update; do not create a mirror tracker.
+For unfamiliar repository rules, use [repository contribution](skills/delivery/repository-contribution/SKILL.md).
+Load selected skill bodies explicitly; a link does not install or execute a skill.
+Use actual project tools and report missing access instead of creating a mirror tracker.
 
 ## Team ownership and integration
 
-The assignment provides standing authorization for routine internal team coordination
-within project/host limits. Leads choose specialists, routes, useful parallelism and review
-without asking for the same orchestration instructions again. Follow the
-[autonomous startup contract](toolkit/SESSION-RULES.md#autonomous-team-default) through the
-stages required by the assignment; analysis-only scope and required human decisions remain effective.
-
-Keep one assigned issue/current PR with outcome, criteria, accountable human,
-active writer, bounded scope, dependencies and integration responsibility. Use separate
-branches and working directories for independent writers. Agree shared contracts first;
-coordinate overlapping edits through the adopted claim/handover mechanism. Serialize
-an overlapping scope when no effective shared mechanism exists. Preserve others' work.
-
-Use [Herdr when available and usable](toolkit/HERDR.md). Verify actual model/effort
-settings, use strong/high reasoning for complex judgment and economical models for
-bounded execution, and organize labelled tabs with resource-aware concurrency.
-Delegate useful independent ready slices by default for substantial work; one dispatcher
-shares the capacity/budget across every lead and child. Separate agent/checks/log panes,
-preserve user focus and verify task-specific returns rather than trusting an idle state.
-
-For substantial parallel work, use the [lead/specialist contract](toolkit/ORCHESTRATION.md).
-Share bounded source packets, choose host-configured models by task uncertainty and
-inspect returned evidence. Independent documentation authoring and editing apply when
-changes alter the product narrative or procedures.
-
-Keep increments reviewable and integration order visible. Run checks on the combined
-revision; individual green branches do not establish an integrated feature. Reassess
-required review after material changes. Before handing over, save revisions, result,
-evidence/limits, blockers, pending writes and one next action at the same work home.
+Apply [session rules](toolkit/SESSION-RULES.md#autonomous-team-default) for autonomous
+startup and coordination. [Herdr](toolkit/HERDR.md) owns native execution and model routes;
+[orchestration](toolkit/ORCHESTRATION.md) owns delegation, write scopes and integration.
+The process's [plan](engineering/process/02-plan.md), [build](engineering/process/03-build.md)
+and [verify](engineering/process/04-verify.md) steps cover the relevant handoffs.
+Keep shared acceptance and evidence at the assignment and personal plans at their private home.
 
 ## Agents and skills
 
@@ -119,5 +82,3 @@ After changing team profile metadata, regenerate the native checkout adapter wit
 Use [catalog management](toolkit/CATALOG-GUIDE.md), the
 [quality standard](toolkit/QUALITY-STANDARD.md) and
 [template chooser](templates/README.md) to keep new expertise specific and evidence-based.
-
-Personal planning follows the [shared workflow](toolkit/WORKFLOW.md). Keep private vault paths out of shared sources; an unavailable vault means an unsaved session plan, not an automatic repository fallback.

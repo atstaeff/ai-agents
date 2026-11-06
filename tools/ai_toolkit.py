@@ -39,7 +39,10 @@ RUNTIMES = {'opencode', 'copilot', 'claude', 'portable', 'herd'}
 EXPORT_MANIFEST = '.ai-toolkit-manifest.json'
 EXPORT_JOURNAL = '.ai-toolkit-transaction.json'
 EXPORT_LOCK = '.ai-toolkit-export.lock'
-EXPORT_SOURCE_FOLDERS = ('agents', 'skills', 'toolkit', 'templates', 'marp-templates', 'reference-repos')
+# Engineering's process is a deliberately narrow addition to the export surface.
+# Do not add the whole engineering tree: it can contain unrelated or private material.
+EXPORT_SOURCE_FOLDERS = ('agents', 'skills', 'toolkit', 'templates', 'marp-templates', 'reference-repos',
+                         'engineering/process')
 # A source archive and a checkout use the same publication policy. Git tracking
 # and ignore rules are deliberately not the boundary for reading export sources.
 EXPORT_SOURCE_SUFFIXES = {
@@ -250,6 +253,7 @@ def check(root: Path = ROOT) -> list[str]:
                     errors.append(f'Invalid catalog alias: {kind}/{old} -> {new}')
     paths = list((root / "agents").rglob("*.md")) + list((root / "skills").rglob("*.md"))
     paths += list((root / "toolkit").rglob("*.md")) + list((root / "templates").rglob("*.md"))
+    paths += list((root / "engineering/process").rglob("*.md"))
     paths += list((root / "examples").rglob("*.md"))
     paths += list((root / "knowledge").rglob("*.md"))
     if (root / "PROJECT.md").is_file():
@@ -330,6 +334,11 @@ def _export_source_files(root: Path) -> dict[str, bytes]:
     sources = {}
     for folder in EXPORT_SOURCE_FOLDERS:
         source_directory = root / folder
+        for ancestor in source_directory.parents:
+            if ancestor == root:
+                break
+            if ancestor.is_symlink():
+                raise ToolkitError(f'Cannot export a symlink: {ancestor}')
         if source_directory.is_symlink():
             raise ToolkitError(f'Cannot export a symlink: {source_directory}')
         for directory, folders, filenames in os.walk(source_directory, followlinks=False):
@@ -817,7 +826,7 @@ def export(runtime: str, output: Path, root: Path = ROOT, force: bool = False, d
         raise ToolkitError('Keep generated bundles separate from personal plan directories.')
     if output.resolve() == root.resolve() or output.resolve() in root.resolve().parents:
         raise ToolkitError("Export to a separate directory, not the source repository or its parent.")
-    if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','tools','assets','website')):
+    if any(output.resolve().is_relative_to((root / folder).resolve()) for folder in ('agents','skills','toolkit','templates','marp-templates','reference-repos','engineering','tools','assets','website')):
         raise ToolkitError('Export outside canonical source folders.')
     source_files = _export_source_files(root)
     planned = {'catalog/' + name: data for name, data in source_files.items()}

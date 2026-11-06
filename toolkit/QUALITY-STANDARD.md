@@ -104,3 +104,28 @@ software. It complements an adopted customer standard. Useful primary references
 [quality scenarios](https://quality.arc42.org/articles/specify-quality-requirements),
 [DORA small batches](https://dora.dev/capabilities/working-in-small-batches/) and
 [WIP limits](https://dora.dev/capabilities/wip-limits/).
+
+### Evaluate context changes
+
+Treat startup rules, skill wording, automatic memory and delegation as testable choices.
+Keep unique project constraints and remove repeated policy or summaries discoverable from
+the source. Put task-specific examples, tests, schemas and prototypes behind relevant
+pointers; one prompt design need not fit every model or task class.
+
+For a consequential change, compare the current entry with a smaller candidate on the
+same representative tasks and source revisions. Hold host/model/effort, tools, permissions,
+budget and acceptance constant; vary one context layer first. Preserve mandatory constraints
+in both variants. Use fresh sessions and repeat enough cases to distinguish a trend from
+one lucky run. Include a normal feature, a small correction, unavailable tooling and recovery.
+Assess accepted results, required-policy compliance, actual time/spend, review and rework.
+Count all workers and retries. Record missing measurements and retain the current variant
+if quality worsens. Fewer words, passing static tests or a single model observation alone
+do not establish better task performance.
+
+The [Claude context-engineering article (2026-07-24)](https://claude.dev/blog/the-new-rules-of-context-engineering-for-claude-5-generation-models/)
+motivates selective context and lighter guidance. [Evaluating AGENTS.md, v3 (2026-09-29)](https://arxiv.org/abs/2602.11988v3)
+finds increased inference cost without a significant general task-success benefit in its
+Python benchmarks. Its tested models and issue-resolution criteria do not establish the
+effect on this repository's runtime, collaboration, security or long-term knowledge. Use
+these findings to form and test a local hypothesis, not to claim a universal token target
+or delete required project knowledge.

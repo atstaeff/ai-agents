@@ -6,7 +6,10 @@
         "First Useful Task": "getting-started/quick-start.md"
       },
       {
-        "Team Project Starter": "getting-started/lean-project.md"
+        "Markdown-first Project": "getting-started/markdown-project.md"
+      },
+      {
+        "Compact Project Alternative": "getting-started/lean-project.md"
       },
       {
         "AGENTS.md Templates": "getting-started/agents-templates.md"
@@ -47,6 +50,28 @@
   "operating": {
     "label": "Process",
     "items": [
+      {
+        "Process Steps": [
+          {
+            "Choose a Step": "process/index.md"
+          },
+          {
+            "01 Clarify": "process/01-clarify.md"
+          },
+          {
+            "02 Plan": "process/02-plan.md"
+          },
+          {
+            "03 Build": "process/03-build.md"
+          },
+          {
+            "04 Verify": "process/04-verify.md"
+          },
+          {
+            "05 Integrate and Retain": "process/05-integrate-retain.md"
+          }
+        ]
+      },
       {
         "Session Rules": "getting-started/session-rules.md"
       },
@@ -145,6 +170,9 @@
         "Choose an Artifact": "templates/index.md"
       },
       {
+        "Markdown-first Project": "getting-started/markdown-project.md"
+      },
+      {
         "AGENTS.md Variants": "getting-started/agents-templates.md"
       },
       {
@@ -237,6 +265,9 @@
         "Decisions": [
           {
             "Decision Index": "knowledge/decisions/index.md"
+          },
+          {
+            "Adaptable Markdown Process": "knowledge/decisions/adr-0007.md"
           },
           {
             "Native Orchestration": "knowledge/decisions/adr-0006.md"

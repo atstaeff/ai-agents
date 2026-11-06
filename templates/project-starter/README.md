@@ -1,5 +1,8 @@
 # Team project starter
 
+For new projects with adaptable step files, prefer the [Markdown-first structure](../markdown-project/README.md).
+This compact variant keeps the process in one contributor guide when that is sufficient.
+
 Use AGENTS.md as the collaboration entry, PROJECT.md for project facts and CONTRIBUTING.md
 for the working process, tools and relevant skills. Reuse equivalent existing sources.
 No project.yaml or workspace folder is required. Shared artifacts are English.

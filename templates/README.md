@@ -45,6 +45,7 @@ plans stay private; shared outcomes and coordination stay at the assignment.
 | --- | --- | --- |
 | Preserve current behavior or operating knowledge | [Current knowledge](knowledge/current.md) | Existing project knowledge |
 | Explain a significant product/process choice | [General decision](knowledge/decision.md) | Designated decision space |
+| Adopt an adaptable Markdown-first process | [Markdown-first structure](markdown-project/README.md) | Project root, chosen process/skills/agents/ADR homes; no manifest required |
 | Establish a project entry and source map | [Project starter](project-starter/README.md), [AGENTS.md variants](agent-instructions/README.md) | Existing project root and authoritative sources |
 | Configure private planning | [Private planning](agent-instructions/personal-planning.md) | User-local host instructions |
 | Guide initial inspection and adoption | [Setup prompt example](../examples/document-portal/SETUP-PROMPT.md) | Current setup request; adapt its optional legacy layout |

@@ -9,9 +9,10 @@ page, not this whole directory at the start of each session.
 | Location | Purpose | Example |
 | --- | --- | --- |
 | Root AGENTS.md | Short AI entry, essential boundaries and source links | Where to read project scope and process |
-| PROJECT.md / CONTRIBUTING.md | This project's facts / contribution process | Goals, owners / checks and skill selection |
+| PROJECT.md / CONTRIBUTING.md | This project's facts / contribution requirements | Goals, owners / tool and check references |
+| engineering/process/ | This repository's phase procedures | Read the relevant step; shared rules stay at their owner |
 | agents/ / skills/ | Reusable roles / actionable procedures | Reviewer / review method |
-| toolkit/ | Reusable engineering model, adoption and tool documentation | How any project retains decisions |
+| toolkit/ | Adoption guidance, operating model and optional tool documentation | How a project can adapt this model |
 | knowledge/ | Durable facts and decisions about this repository | Why this catalog uses private plans |
 | templates/ | Copyable starting documents | ADR, request or architecture review |
 | examples/ / reference-repos/ | Runnable demonstrations / worked projects / illustrative code | Decision graph / document portal / architecture patterns |
@@ -29,8 +30,9 @@ unavailable. The shared result remains understandable without access to those pl
 | Question | Read |
 | --- | --- |
 | What rules are needed for a normal session? | [Session rules](SESSION-RULES.md) |
-| How does delivery work? | [Operating model](OPERATING-MODEL.md), [detailed workflow](WORKFLOW.md) |
-| How do I adopt this in a project? | [Adoption](ADOPT-PROJECT.md), [project concept](PROJECT-CONCEPT.md) |
+| How does this repository's process work? | [Process index](../engineering/process/README.md) |
+| How do I adopt this in a project? | [Markdown-first structure](../templates/markdown-project/README.md), [adoption guidance](ADOPT-PROJECT.md) |
+| How does delivery work in the wider model? | [Operating model](OPERATING-MODEL.md), [detailed workflow](WORKFLOW.md) |
 | How are knowledge and decisions retained? | [Project knowledge](PROJECT-KNOWLEDGE.md), [recovery](CONTEXT-RECOVERY.md) |
 | How do I select or maintain expertise? | [Catalog guide](CATALOG-GUIDE.md) |
 | How do available Herdr, model tiers, tabs and capacity work? | [Herdr policy](HERDR.md) |

@@ -1,7 +1,8 @@
 # AI Agents project
 
 Start at [AGENTS.md](AGENTS.md) for the collaboration contract and source navigation.
-This document owns project facts. [CONTRIBUTING.md](CONTRIBUTING.md) defines how to work.
+This document owns project facts. [engineering/process/](engineering/process/README.md) defines how to work;
+[CONTRIBUTING.md](CONTRIBUTING.md) owns repository contribution requirements.
 
 ## Vision and goals
 
@@ -38,7 +39,8 @@ current revision. Roles do not grant access or authorization on another person's
 | --- | --- |
 | Current assignments | [GitHub issues](https://github.com/atstaeff/ai-agents/issues), or the current PR already representing a direct request |
 | Implementation, review and checks | [Pull requests](https://github.com/atstaeff/ai-agents/pulls) |
-| Process and skill selection | [Contributing](CONTRIBUTING.md) |
+| Process and skill selection | [Process index](engineering/process/README.md) |
+| Repository contribution requirements | [Contributing](CONTRIBUTING.md) |
 | Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
 | Setup, checks and local replay | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
 | Shared delivery method | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
@@ -51,9 +53,10 @@ current revision. Roles do not grant access or authorization on another person's
 
 ## Working method and AI process
 
-Use Clarify, Plan, Build, Verify, then required integration and knowledge retention.
-Follow the [contribution process](CONTRIBUTING.md#working-process-and-skills), selecting
-only relevant skills. The assignment owns shared scope, acceptance and coordination; personal plans stay private. The PR
+Choose the relevant step from the [process index](engineering/process/README.md).
+The current steps can be combined, revisited or changed with the project; they do not
+require a record per stage. Follow [contribution requirements](CONTRIBUTING.md#working-process-and-skills),
+selecting only relevant skills. The assignment owns shared scope, acceptance and coordination; personal plans stay private. The PR
 owns implementation and review evidence. Keep writing scopes explicit when working in
 parallel and verify the combined result. Small corrections need no additional plan record.
 

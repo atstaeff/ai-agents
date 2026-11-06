@@ -6,7 +6,7 @@ import counts from '../../.generated/catalog.json';
 const paths = [
   {number: '01', title: 'Try one small task', to: '/getting-started/quick-start/', text: 'Export a small catalog into a temporary directory, then use your host for a harmless documentation exercise.'},
   {number: '02', title: 'Choose focused expertise', to: '/catalog/', text: 'Find the roles and procedures your next outcome needs. Load a selected skill without starting another agent.'},
-  {number: '03', title: 'Adopt in your project', to: '/getting-started/lean-project/', text: 'Merge a short project entry into your existing rules. Keep assignments, decisions and evidence at their owners.'},
+  {number: '03', title: 'Adopt in your project', to: '/getting-started/markdown-project/', text: 'Map project-specific process steps, skills, agents and ADRs from a short AGENTS.md. Adapt folders and steps without a workspace manifest.'},
   {number: '04', title: 'Start with a useful template', to: '/templates/', text: 'Project briefs, architecture reviews, decisions and handoffs. Use only the artifact the assignment needs.'},
 ];
 

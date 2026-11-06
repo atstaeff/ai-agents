@@ -52,9 +52,12 @@ Private model routes and host permissions still come from your local configurati
 
 ## Adopt in one project
 
-After the first task, merge the [project starter](templates/project-starter/README.md)
-or an [AGENTS.md variant](templates/agent-instructions/README.md) into existing instructions.
-Begin with what the next assignment needs:
+For a new project, start with the adaptable
+[Markdown-first structure](templates/markdown-project/README.md). For an existing project,
+merge only the needed parts into its current instructions; the compact
+[project starter](templates/project-starter/README.md) and
+[AGENTS.md variants](templates/agent-instructions/README.md) remain available. Begin with
+what the next assignment needs:
 
 1. Identify its outcome, acceptance, accountable human and real work/review homes.
 2. Link relevant project facts, rules and actual check commands. Keep existing owners.
@@ -102,8 +105,9 @@ dependency evidence; reviewed project knowledge remains authoritative.
 
 ## Maintain this repository
 
-`agents/` and `skills/` own reusable expertise; `templates/` supplies copyable artifacts.
-`toolkit/` explains the method. `knowledge/` records this repository's own facts and decisions.
+`agents/` and `skills/` own reusable expertise; `engineering/process/` owns this repository's
+shared process; `templates/` supplies copyable artifacts. `toolkit/` documents the model,
+adoption and optional tools. `knowledge/` records this repository's own facts and decisions.
 `examples/` and `reference-repos/` illustrate adoption. `tools/` and `tests/` implement and
 verify the optional toolkit. `website/` owns Docusaurus sources; root `docs/` is generated.
 

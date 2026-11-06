@@ -24,6 +24,14 @@ links and inspect current code/tests. Search the bounded project when a relevant
 is missing; an absent link is not proof that no decision exists. Do not load every ADR,
 archive or conversation by default. Teammates must not need a private vault to continue.
 
+## Runtime memory
+
+Host auto-memory may cache useful preferences and source pointers. Treat it as a derived
+aid: check project/revision, freshness and access before reuse. It cannot approve a decision,
+override current project instructions or become the only copy of shared knowledge. Promote
+verified durable facts to their existing owner; keep private preferences private and retire
+stale cache entries. Another host or teammate must be able to recover from the shared sources.
+
 ## Dependency evidence
 
 When Graphify is adopted, query the affected components and verify returned source

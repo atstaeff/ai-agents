@@ -59,6 +59,60 @@ class CatalogSelectionTests(unittest.TestCase):
                         if '://' not in link:
                             self.assertTrue((native.parent/link.split('#')[0]).exists(), (native, link))
 
+    def test_canonical_process_is_exported_with_resolving_links_in_every_runtime(self):
+        process = tk.ROOT/'engineering/process'
+        sources = sorted(process.rglob('*.md'))
+        self.assertTrue(sources, 'canonical engineering process Markdown is present')
+        for runtime in tk.RUNTIMES:
+            with self.subTest(runtime=runtime), tempfile.TemporaryDirectory() as folder:
+                root = Path(folder)
+                tk.export(runtime, root, preset='engineering')
+                for source in sources:
+                    exported = root/'catalog'/source.relative_to(tk.ROOT)
+                    self.assertTrue(exported.is_file(), exported)
+                    for link in tk.LINK.findall(tk.FENCE.sub('', exported.read_text())):
+                        parts = tk.urlsplit(link)
+                        if parts.scheme or parts.netloc or not parts.path:
+                            continue
+                        target = exported.parent/tk.unquote(parts.path)
+                        self.assertTrue(target.exists(), (runtime, source, link))
+
+    def test_process_allowlist_is_narrow_and_checker_finds_broken_local_links(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root/'engineering/process/phases').mkdir(parents=True)
+            (root/'engineering/private').mkdir(parents=True)
+            (root/'engineering/process/README.md').write_text('[Phase](phases/plan.md)\n')
+            (root/'engineering/process/phases/plan.md').write_text('# Plan\n')
+            (root/'engineering/process/private').mkdir()
+            (root/'engineering/process/private/secret.md').write_text('private')
+            (root/'engineering/unrelated.md').write_text('unrelated')
+            sources = tk._export_source_files(root)
+            self.assertEqual(set(sources), {
+                'engineering/process/README.md', 'engineering/process/phases/plan.md'})
+            self.assertFalse(any('private' in name or 'unrelated' in name for name in sources))
+
+            (root/'engineering/process/README.md').write_text('[Missing](phases/missing.md)\n')
+            self.assertTrue(any('Broken link: engineering/process/README.md' in error
+                                for error in tk.check(root)))
+
+    def test_nested_process_source_rejects_symlinked_engineering_ancestor(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)/'repo'
+            outside = Path(folder)/'outside'
+            (outside/'process').mkdir(parents=True)
+            (outside/'process/README.md').write_text('must not read')
+            root.mkdir()
+            (root/'engineering').symlink_to(outside, target_is_directory=True)
+            with self.assertRaisesRegex(tk.ToolkitError, 'Cannot export a symlink'):
+                tk._export_source_files(root)
+
+    def test_export_output_cannot_be_placed_under_canonical_engineering_tree(self):
+        output = tk.ROOT/'engineering/.export-test'
+        with self.assertRaisesRegex(tk.ToolkitError, 'canonical source folders'):
+            tk.export('portable', output)
+        self.assertFalse(output.exists())
+
     def test_additive_cli_selection_and_unknown_name_leave_no_partial_export(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)/'selected'
