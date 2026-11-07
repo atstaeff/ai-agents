@@ -52,6 +52,6 @@ plans stay private; shared outcomes and coordination stay at the assignment.
 | Add reusable expertise | [Skill](catalog/skill-template.md) or [agent](catalog/agent-template.md) | Canonical catalog |
 
 State unknowns and missing evidence explicitly. Preserve human-owned text and actual
-decision status. Do not fill approval, successful checks or deployed results merely to
-complete a template. Use the [quality standard](../toolkit/QUALITY-STANDARD.md) and
+decision status. Copy the canonical Markdown source for records that use frontmatter.
+Do not fill approval, successful checks or deployed results merely to complete a template. Use the [quality standard](../toolkit/QUALITY-STANDARD.md) and
 [operating model](../toolkit/OPERATING-MODEL.md) for the applicable completion criteria.

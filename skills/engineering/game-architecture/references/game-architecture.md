@@ -226,9 +226,13 @@ func _ready() -> void:
 
 ### Fixed + Variable Timestep
 
+Start and stop the loop at the scene or component's lifecycle boundary. Repeated
+starts reuse the running loop; a restart discards elapsed time while stopped.
+
 ```typescript
-// Correct game loop: Fixed updates for physics, variable for rendering
+// Fixed updates for physics, variable timing for rendering
 class GameLoop {
+  private frameId: number | null = null;
   private lastTime = 0;
   private accumulator = 0;
   private readonly fixedDelta = 1 / 60; // 60Hz physics
@@ -239,32 +243,40 @@ class GameLoop {
   ) {}
 
   start(): void {
+    if (this.frameId !== null) return;
     this.lastTime = performance.now() / 1000;
-    requestAnimationFrame(this.loop.bind(this));
+    this.accumulator = 0;
+    this.frameId = requestAnimationFrame(this.loop);
   }
 
-  private loop(timeMs: number): void {
+  stop(): void {
+    if (this.frameId === null) return;
+    cancelAnimationFrame(this.frameId);
+    this.frameId = null;
+  }
+
+  private loop = (timeMs: number): void => {
+    const frameId = this.frameId;
+    if (frameId === null) return;
     const time = timeMs / 1000;
-    let frameTime = time - this.lastTime;
+    const frameTime = Math.min(Math.max(time - this.lastTime, 0), 0.25);
     this.lastTime = time;
-
-    // Cap frame time to avoid spiral of death
-    if (frameTime > 0.25) frameTime = 0.25;
-
     this.accumulator += frameTime;
 
-    // Fixed-step updates (deterministic physics)
-    while (this.accumulator >= this.fixedDelta) {
-      this.update(this.fixedDelta);
-      this.accumulator -= this.fixedDelta;
+    try {
+      while (this.accumulator >= this.fixedDelta) {
+        this.accumulator -= this.fixedDelta;
+        this.update(this.fixedDelta);
+        if (this.frameId !== frameId) return; // Stopped or restarted by the update
+      }
+      this.render(this.accumulator / this.fixedDelta);
+    } catch (error) {
+      if (this.frameId === frameId) this.stop();
+      throw error;
     }
 
-    // Render with interpolation factor
-    const alpha = this.accumulator / this.fixedDelta;
-    this.render(alpha);
-
-    requestAnimationFrame(this.loop.bind(this));
-  }
+    if (this.frameId === frameId) this.frameId = requestAnimationFrame(this.loop);
+  };
 }
 ```
 
@@ -325,7 +337,9 @@ class SceneManager {
 This example assumes one writer per save slot. Replace a completed temporary file in
 the same directory so a failed serialization/write preserves the previous save. A
 multi-writer system needs a version/ownership contract; crash durability and restore
-behavior still need checks on the target filesystem.
+behavior still need checks on the target filesystem. A missing slot returns `None`;
+an unsupported version raises an error and leaves the file untouched. Surface that
+error rather than treating the slot as empty and replacing its contents.
 
 ```python
 import json
@@ -381,9 +395,13 @@ class SaveSystem:
         if not path.exists():
             return None
         raw = json.loads(path.read_text(encoding="utf-8"))
-        # Version migration
-        if raw.get("version", 0) < SaveData.version:
-            raw = self._migrate(raw)
+        if not isinstance(raw, dict):
+            raise ValueError("Save data must be an object")
+        version = raw.get("version", 0)
+        if type(version) is not int or version not in (0, SaveData.version):
+            raise ValueError(f"Unsupported save version: {version!r}")
+        if version == 0:
+            raw = self._migrate_v0(raw)
         return SaveData(**raw)
 
     def list_saves(self) -> list[tuple[int, str]]:
@@ -399,12 +417,11 @@ class SaveSystem:
         path.unlink(missing_ok=True)
 
     @staticmethod
-    def _migrate(raw: dict) -> dict:
-        """Migrate old save formats to current version."""
-        if raw.get("version", 0) < 1:
-            raw.setdefault("unlocked_abilities", [])
-            raw.setdefault("settings", {})
-            raw["version"] = 1
+    def _migrate_v0(raw: dict) -> dict:
+        """Migrate the supported legacy format to version 1 in memory."""
+        raw.setdefault("unlocked_abilities", [])
+        raw.setdefault("settings", {})
+        raw["version"] = 1
         return raw
 ```
 

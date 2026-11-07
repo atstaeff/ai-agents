@@ -14,18 +14,18 @@ the user does not need to request them again.
 | [skills/](skills/README.md), [agents/](agents/README.md) | Reusable techniques and role profiles |
 | [knowledge/](knowledge/README.md), [decisions](knowledge/decisions/README.md) | Current facts and ADR rationale |
 | [templates/](templates/README.md) | Adaptable project structures and records |
+| [scripts/](scripts/README.md) | Persistent local Herdr and OpenCode services |
 
 ## Choose the relevant context
 
 For a clear small correction, inspect affected files. For unfamiliar substantial work,
-use [PROJECT.md](PROJECT.md) for scope, owners and actual work homes, then
-[CONTRIBUTING.md](CONTRIBUTING.md) for the process. Reuse current loaded instructions;
+use [PROJECT.md](PROJECT.md) for scope, owners and actual work homes, then the applicable [process step](engineering/process/README.md) and
+[CONTRIBUTING.md](CONTRIBUTING.md) for contribution requirements. Reuse current loaded instructions;
 follow further pointers only to resolve the assignment's uncertainty:
 
 | Need | Source |
 | --- | --- |
 | Product AI intake and handoff to Engineering | [Product Intake workflow](toolkit/PRODUCT-INTAKE.md) |
-| Current knowledge and significant reasons | [Knowledge index](knowledge/README.md) |
 | Decision/acceptance or action boundary | [Stakeholders](knowledge/stakeholders.md), [agreement](knowledge/working-agreement.md) |
 | Native execution and team coordination | [Herdr policy](toolkit/HERDR.md), [orchestration](toolkit/ORCHESTRATION.md) |
 | Native Herd, Herdr, Ponytail or Graphify | [Integrations](toolkit/INTEGRATIONS.md) |
@@ -33,7 +33,7 @@ follow further pointers only to resolve the assignment's uncertainty:
 | Information ownership, entry or publication change | [Project concept](toolkit/PROJECT-CONCEPT.md) |
 | Interrupted or conflicting state | [Recovery contract](toolkit/CONTEXT-RECOVERY.md) |
 
-The [published process](https://atstaeff.github.io/ai-agents/contributing/) is a reading view;
+The [published process](https://atstaeff.github.io/ai-agents/process/) is a reading view;
 this checkout owns its revision. Load relevant skill bodies and source sections on demand.
 
 For tasks explicitly in Product Intake, follow the [Product Intake workflow](toolkit/PRODUCT-INTAKE.md) before selecting agents. Product AI prepares and reviews requirements, but does not implement code or start engineering delivery. An authorized human approval is required before handoff to Engineering. This boundary does not restrict explicitly authorized engineering tasks outside Intake.

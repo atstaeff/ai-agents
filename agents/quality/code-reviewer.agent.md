@@ -8,11 +8,14 @@ description: "Review a code change for concrete defects, regressions and securit
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
+Review independently and leave source files unchanged. Run reproduction steps only
+when they are permitted and do not affect shared state.
 
 ## Workflow
 
-1. Read acceptance criteria, the diff, call sites and relevant tests. Trace counterexamples independently of the author’s summary. Reproduce suspicious behavior only if permitted; otherwise provide a concrete reproduction for the executor.
+1. Identify the diff revision, acceptance criteria, affected callers and relevant tests.
+   Trace counterexamples independently of the author's summary. If a reproduction
+   cannot run in the review environment, give the executor concrete steps.
 2. Give each finding a location, trigger, impact and suggested repair.
 3. Separate material defects from optional preferences; state the checks performed and remaining risks.
 

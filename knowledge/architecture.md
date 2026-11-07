@@ -29,6 +29,11 @@ Use [knowledge lifecycle](../toolkit/PROJECT-KNOWLEDGE.md) for retention and ret
 
 ## Preferred execution surface
 
+The [local runtime CLI](../scripts/README.md) configures separate systemd user services
+for Herdr and OpenCode. [ADR-0008](decisions/0008-local-runtime-services.md) records
+the lifecycle decision. The CLI manages availability; the assigned work and process
+sources still govern dispatch.
+
 Sessions discover and use Herdr whenever its executable and selected server are usable.
 The [Herdr policy](../toolkit/HERDR.md) defines verified model/effort routes, labelled
 tabs, isolated writers and adaptive capacity. Complex judgment uses strong approved

@@ -32,6 +32,6 @@ this option Plan stays read-only; use the coordinating writing agent to save a p
 Do not point the option at an entire vault, home directory or repository.
 
 For Obsidian links, encode the exact vault name and the path relative to that vault,
-never the `/mnt/c/` path. See [the skill](../../skills/knowledge/obsidian-para/SKILL.md).
+never the `/mnt/c/` path. See the [Obsidian skill](https://github.com/atstaeff/ai-agents/blob/main/skills/knowledge/obsidian-para/SKILL.md).
 Link clicking still depends on the chat UI and Windows protocol registration; it is not
 proved by a generated configuration. Check the installed host once with a harmless note.

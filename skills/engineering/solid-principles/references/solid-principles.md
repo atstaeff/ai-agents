@@ -93,35 +93,22 @@ class Square(Shape):
 ### Interface Segregation Principle (ISP)
 - Clients should not depend on interfaces they don't use
 - Create small, focused interfaces
-- Split fat interfaces into multiple specific ones
+- Give consumers only the capabilities their operation needs.
 
 ```python
-# ❌ Before: PaymentProcessor forces SMS auth on all implementations
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def auth_sms(self, code): ...   # Credit card doesn't need this!
-    @abstractmethod
-    def pay(self, order): ...
+from typing import Protocol
 
-# ✅ After: Separate Authorizer from PaymentProcessor
-class Authorizer(ABC):
-    @abstractmethod
-    def is_authorized(self) -> bool: ...
+# The preview can use an archive reader that has no write operation.
+class DocumentReader(Protocol):
+    def read(self, name: str) -> str: ...
 
-class SMSAuthorizer(Authorizer):
-    def verify_code(self, code): self.authorized = True
-    def is_authorized(self) -> bool: return self.authorized
-
-class PaymentProcessor(ABC):
-    @abstractmethod
-    def pay(self, order) -> None: ...
-
-class DebitPaymentProcessor(PaymentProcessor):
-    def __init__(self, code: str, authorizer: Authorizer): ...
-    def pay(self, order):
-        if not self.authorizer.is_authorized(): raise Exception("Not authorized")
-        ...
+def preview(reader: DocumentReader, name: str) -> str:
+    return reader.read(name)[:200]
 ```
+
+An editing consumer can require a write operation. A writable store can still satisfy
+the preview's smaller contract. Introduce the interface when a read-only consumer or
+substitution actually needs it.
 
 ### Dependency Inversion Principle (DIP)
 - Depend on abstractions, not concretions

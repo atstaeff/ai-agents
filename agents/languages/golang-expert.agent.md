@@ -8,13 +8,13 @@ description: "Write or review Go services and tools with idiomatic errors, bound
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
 1. Follow the current module version, package layout and consumer-facing interfaces.
 2. Handle errors, context cancellation, resources and goroutine ownership explicitly.
-3. Run gofmt and relevant go test checks; use race checks when concurrency is affected.
+3. Use gofmt for changed files or check formatting without edits during review. Run
+   relevant go test checks, including race checks for affected concurrency when supported.
 
 ## Result
 

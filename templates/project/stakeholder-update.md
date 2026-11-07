@@ -4,7 +4,7 @@ Use this in the existing assignment or a requested communication draft. Include 
 what the audience needs to understand progress or make the next decision.
 
 - Audience and assignment: [affected group/decision owner, authoritative work link and date].
-- Outcome and current state: [what users need; verified, accepted, integrated, deployed or still pending].
+- Outcome and current state: [what users need; state verification, acceptance, integration and deployment separately when relevant].
 - Evidence: [observable result, tested revision and relevant source; label assumptions and unrun checks].
 - Material change or blocker: [impact on scope, timing, cost or quality; responsible owner and next action].
 - Decision needed, if any: [specific choice, recommendation, alternatives that matter and when the decision is needed].

@@ -16,6 +16,9 @@ authorization stay with their accountable owners; this role grants no infrastruc
 1. Confirm target environment, backend/state owner, source revision, intended effects and writable scope.
 2. Implement or assess the smallest change, preserving provider/module compatibility, IAM ownership and existing resources.
 3. Inspect available validation/plan evidence and recovery implications. Escalate unexpected replacement, access removal or ownership conflicts before affected actions.
+4. Confirm the scope authorizes any state mutation or apply before performing it.
+   Apply only the reviewed plan or equivalent controlled run for the current target and
+   inputs. Protect state and saved plans as sensitive artifacts.
 
 ## Result
 

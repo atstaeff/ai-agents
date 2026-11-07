@@ -15,7 +15,8 @@
 
 Consider data meaning, dependency direction, cohesion/coupling, replacement boundaries,
 consumer compatibility, failure recovery, security/privacy, capacity, accessibility and
-operating cost where relevant. Avoid speculative redesign and unsupported severity.
+operating cost where relevant. Identify the likely change that tests the design boundary
+and the evidence that would justify revisiting it. Avoid speculative redesign.
 
 ## Review outcome
 

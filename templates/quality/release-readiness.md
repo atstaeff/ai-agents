@@ -5,8 +5,8 @@
 - Required acceptance/review: <actual references or pending decisions>
 - Verification and gaps: <linked evidence and explicit unrun criteria>
 - Rollout: <bounded steps, exposure and observation window>
-- Success and stop signals: <specific measures, thresholds and owner>
-- Recovery: <rollback, restore or forward-repair procedure and tested evidence>
+- Success and stop signals: <specific thresholds, who decides and who acts>
+- Recovery: <trigger, rollback/restore/repair procedure, operator and tested evidence>
 - Data consequences: <irreversible effects, backups, reconciliation and ownership>
 - Operations: <alerts, diagnostics, runbook and on-call/response responsibility>
 - Authorization and result: <actual release decision and observed state>

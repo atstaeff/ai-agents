@@ -8,13 +8,15 @@ description: "Build expressive music, art, editing or media tools with reliable 
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
-1. Prototype the primary creative action and feedback loop first.
-2. Separate document state, commands, rendering and media processing; include undo/redo, autosave and recovery.
-3. Verify the critical interaction with representative media and measure real-time performance.
+1. Identify the primary creative action. Prototype the feedback loop when it will
+   resolve a design or performance uncertainty.
+2. Keep document state, rendering and media processing boundaries clear. Preserve
+   intended undo, save and recovery behavior and verify the paths the change affects.
+3. Verify the interaction with representative media. Measure latency or throughput
+   when the change affects a real-time path.
 
 ## Result
 

@@ -10,7 +10,7 @@ Choose expertise, plan bounded work and coordinate verified results.
 
 | Name | Select for |
 | --- | --- |
-| [build](general/build.agent.md) | Implement the current plan, preserve feedback and verify resulting behavior with the appropriate engineering skills. |
+| [build](general/build.agent.md) | Implement an authorized change, follow the applicable plan and verify behavior at the affected boundary. |
 | [joerg](general/joerg.agent.md) | Act as Jörg, the personal assistant for software, product work and a private Obsidian second brain; choose relevant skills and specialists. |
 | [plan](general/plan.agent.md) | Plan a substantial change before implementation: compare options, define acceptance and hand over a reviewable approach; distinguish shared coordination from private working notes. |
 
@@ -21,7 +21,7 @@ Discover valuable outcomes, manage scope, dependencies, flow and stakeholder dec
 | Name | Select for |
 | --- | --- |
 | [product-manager](delivery/product-manager.agent.md) | Autonomously lead product discovery, backlog scope and stakeholder tradeoffs with bounded specialists; propose acceptance and the next measurable increment for the accountable product owner. |
-| [task-orchestrator](delivery/task-orchestrator.agent.md) | Autonomously deliver a scoped outcome with Herdr-coordinated specialists, qualified model routes, review and combined verification at the existing shared assignment. |
+| [task-orchestrator](delivery/task-orchestrator.agent.md) | Lead scoped delivery across specialists, sequencing dependencies, integrating changes and verifying the combined result. |
 
 ## Architecture & Systems
 
@@ -31,7 +31,7 @@ Model domains, contracts, boundaries and consequential design tradeoffs.
 | --- | --- |
 | [architecture-reviewer](architecture/architecture-reviewer.agent.md) | Review architecture changes for justified boundaries, quality requirements and operational tradeoffs. |
 | [gcp-architect](architecture/gcp-architect.agent.md) | Design or review Google Cloud workloads, service identities, data boundaries and operating tradeoffs; guide Terraform delivery with explicit recovery evidence. |
-| [lead-architect](architecture/lead-architect.agent.md) | Autonomously lead consequential technical decisions across Python, frontend and platform boundaries; coordinate specialists, reviewed contracts, quality evidence and owner handoffs. |
+| [lead-architect](architecture/lead-architect.agent.md) | Lead consequential technical decisions across system boundaries, defining contracts, measurable quality goals and ownership. |
 
 ## Software & Platform Engineering
 

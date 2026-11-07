@@ -38,6 +38,9 @@ Apply Domain-Driven Design principles to model complex business domains:
 - Identity persists across state changes
 - Example: User, Order, Product (with ID)
 
+The Python examples here assume a project that already uses Pydantic. Use the
+project's existing model conventions; no new dependency is required for DDD.
+
 ```python
 # Python — Entity with Pydantic
 from pydantic import BaseModel, Field
@@ -55,7 +58,7 @@ class Order(BaseModel):
 
     @property
     def total(self) -> Decimal:
-        return sum(line.subtotal for line in self.lines)
+        return sum((line.subtotal for line in self.lines), Decimal(0))
 ```
 
 ```go
@@ -128,8 +131,8 @@ class Order(BaseModel):
 
 ### Repositories
 - Abstraction for data access
-- One repository per aggregate root
-- Hides persistence details
+- Introduce a repository where it gives an aggregate a useful persistence boundary.
+- Keep its operations focused on what actual consumers need.
 
 ```python
 # Python — Repository protocol
@@ -219,14 +222,14 @@ type OrderPlacedEvent struct {
 ## Best Practices
 
 ### Anemic vs Rich Domain Model
-- ❌ Anemic: Data classes with getters/setters, logic in services
-- ✅ Rich: Behavior in domain objects, encapsulate business logic
+Keep invariants with the data they protect. A simple value and a focused function
+can express a rule without a service or class hierarchy.
 
 ### Aggregate Design Rules
 - Keep aggregates small
-- Reference other aggregates by ID only
-- Use eventual consistency between aggregates
-- One transaction modifies one aggregate
+- Prefer stable identities across ownership boundaries.
+- Let consistency requirements define the transaction boundary. Use eventual
+  consistency only where the business accepts it and failure can be recovered.
 
 ### Value Object Usage
 - Use for money, dates, measurements
@@ -235,10 +238,11 @@ type OrderPlacedEvent struct {
 - No side effects in methods
 
 ### Domain Events Usage
-- Publish after transaction commits
-- Use for loose coupling between contexts
-- Enable auditing and event sourcing
-- Name in past tense (OrderPlaced, PaymentProcessed)
+Name events after something that happened (`OrderPlaced`, `PaymentProcessed`). An
+in-process event does not need a broker. When a committed write must reach another
+system, persist the intent with the write or define an equivalent recovery mechanism.
+Publishing after commit alone can lose the event if the process exits between them.
+See [durable workflows](../../../architecture/microservices/references/microservices.md#durable-workflows).
 
 ## Common Patterns
 
@@ -272,15 +276,14 @@ class UnitOfWork(Protocol):
 ## DDD with Modern Architecture
 
 ### DDD + Microservices
-- Each microservice = One bounded context (or few)
-- Services communicate via events
-- Anti-corruption layers at boundaries
+A bounded context can be a module. Split deployment only for a concrete ownership,
+scaling or reliability need; choose communication according to the contract.
 
 ### DDD + CQRS
 - Separate read and write models
 - Commands modify aggregates
 - Queries use optimized read models
-- Event sourcing stores domain events
+- Event sourcing is a separate choice; CQRS can use ordinary persistence.
 
 ### DDD + Event Sourcing
 - Store events instead of current state
@@ -290,10 +293,9 @@ class UnitOfWork(Protocol):
 
 ## Anti-Patterns
 
-❌ Anemic domain model
+❌ Invariants duplicated across callers or bypassed by direct writes
 ❌ Aggregates too large
-❌ Direct aggregate-to-aggregate references
-❌ Business logic in application services
+❌ Cross-boundary writes with unclear ownership or consistency
 ❌ Ignoring ubiquitous language
 ❌ One model for entire system
 

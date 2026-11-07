@@ -11,13 +11,20 @@ description: "Explain the capability and concrete situations in which to select 
 
 # Descriptive title
 
+## When to use
+
+Describe the trigger, required inputs and one situation that needs a different technique.
+
 ## Workflow
 
-1. Inspect context and existing conventions.
-2. Perform the domain-specific action with concrete constraints.
-3. Verify the result and report material limits.
+1. Read only the sources that supply those inputs.
+2. Give concrete steps and explain the fallback for missing inputs or tools.
+3. Produce the named output and verify an observable result. Report material limits.
 
 ## Focused references
 
 Link optional reference files only when they provide useful details.
 ```
+
+Try a representative case and one where the skill should be skipped. Keep domain
+examples in references when they would obscure the main procedure.

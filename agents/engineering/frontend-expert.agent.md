@@ -8,13 +8,16 @@ description: "Build or review React, JavaScript or existing web interfaces with 
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
 1. Inspect the existing framework, routing, package lock, design language and primary user journey. Keep the project's JavaScript or TypeScript conventions.
-2. Implement a complete interaction with explicit loading, empty, error and success states. For React, keep state near its owner, derive values during render and clean up synchronization with external systems.
-3. Align API contracts, stale-response handling and mutation recovery with the backend. Enforce authorization on the server; render user content safely.
+2. Implement the complete interaction and handle its applicable loading, empty, error
+   and success states. For React, keep state near its owner, derive values during render
+   and clean up synchronization with external systems.
+3. Align API contracts, stale responses and mutation recovery with the backend owner.
+   Confirm that access restrictions are enforced server-side; UI controls alone cannot
+   enforce them. Render user content safely.
 4. Verify the running journey, relevant keyboard/focus and responsive behavior, and the important failure path. Report unavailable browser or backend checks.
 
 ## Result

@@ -16,9 +16,10 @@ process obligations. Project rules, current instructions and effective host perm
 If the process owner adopts external policy, replace both `none` fields with the verified
 immutable source URL and full commit SHA or governed documentation version. For example,
 construct a URL using `https://github.com/atstaeff/ai-agents/blob/COMMIT_SHA/toolkit/WORKFLOW.md`,
-replace `COMMIT_SHA` with the actual 40-character revision and verify the body before use.
-Record which local sections it replaces and any approved fallback. Keep this pattern
-literal until adoption; it is not an active policy link.
+replace `COMMIT_SHA` with the actual 40-character revision and read that source before use.
+If it routes to procedure files in the same repository, read the applicable bodies at that
+same revision. Pin any separate binding source explicitly; a mutable web rendering is a
+reference. Record which local sections the policy replaces and any approved fallback.
 
 ## Working process and skills
 
@@ -59,10 +60,9 @@ an unsent update in the response or handoff, naming its intended destination. Ch
 retrying a write. Keep credentials and personal filesystem paths in local configuration.
 
 Qualify the installed host's discovery, effective model/effort, tools and handoff before
-depending on them. The [runtime check template](../delivery/runtime-check.md) records
-observations, limits and capacity at the existing work/review home; export format checks
-alone do not qualify a host. When copying this guide, replace this template link with
-your adopted local copy or an intentional catalog reference.
+depending on them. The [runtime check template](https://github.com/atstaeff/ai-agents/blob/main/templates/delivery/runtime-check.md)
+is a catalog reference for recording observations, limits and capacity at the existing
+work/review home. Export format checks alone do not qualify a host.
 
 ## Setup and checks
 
@@ -85,10 +85,10 @@ Do not require the user to repeat delegation instructions. Keep analysis/design-
 within its requested scope. Configure actual host/model routes and limits once, reuse
 matching evidence and report only concrete setup gaps or decisions that need the user.
 
-Use Herdr when its executable and selected server are available within project/host
-permissions. Reuse matching sessions and load its release-matched native skill through
-`herdr --skill` when supported. Respect managed-pane guards; outside automation needs an
-explicitly selected authorized target. An installed binary alone does not identify it.
+If the project adopts Herdr, use it when its executable and selected server are
+available within project and host permissions. Reuse matching sessions and load the native
+skill for that release through `herdr --skill` when supported. Outside automation needs an
+explicitly selected authorized target. Respect managed pane guards.
 
 For substantial work, delegate useful independent ready slices by default when the benefit
 justifies coordination. Dispatch siblings before waiting; keep dependent/overlapping work

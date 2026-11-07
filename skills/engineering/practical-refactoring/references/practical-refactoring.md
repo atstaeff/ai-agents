@@ -38,38 +38,44 @@ Refactor when pain is felt, not preemptively:
 
 ## Tactical Refactoring Patterns
 
-### Extract Until Clear
+### Extract a Cohesive Rule
 
-When encountering confusing code:
+Give a rule its own name when that makes it easier to read or exercise. Keep steps
+together when splitting them would hide the data flow or add unhelpful navigation.
 
-Step 1: Extract smallest confusing piece into named function
-Step 2: Does it make sense now? If not, extract more
-Step 3: Repeat until the intent is obvious
-
-Original complex code:
+Original checkout calculation (all amounts are integer cents and the coupon applies
+to orders of at least $25):
 ```javascript
-function handleCheckout(cart, user) {
-    const total = cart.items.reduce((sum, item) =>
-        sum + (item.price * item.quantity * (1 - item.discount)), 0);
-    if (user.loyaltyPoints > 100) total *= 0.95;
-    if (total > 50) total -= 10;
-    // ... 30 more lines
+function checkoutTotal(items, couponCents) {
+    let subtotal = 0;
+    for (const item of items) subtotal += item.unitPriceCents * item.quantity;
+    if (subtotal < 2500) return subtotal;
+    return Math.max(0, subtotal - couponCents);
 }
 ```
 
 After extraction:
 ```javascript
-function handleCheckout(cart, user) {
-    const subtotal = calculateCartSubtotal(cart.items);
-    const withLoyalty = applyLoyaltyDiscount(subtotal, user);
-    const final = applyShippingRules(withLoyalty);
-    return processPayment(final, user);
+function checkoutTotal(items, couponCents) {
+    let subtotal = 0;
+    for (const item of items) subtotal += item.unitPriceCents * item.quantity;
+    return applyCoupon(subtotal, couponCents);
+}
+
+function applyCoupon(subtotal, couponCents) {
+    if (subtotal < 2500) return subtotal;
+    return Math.max(0, subtotal - couponCents);
 }
 ```
 
+This extraction helps when the coupon rule needs to be checked or changed separately.
+Check an order just below the minimum, one at the minimum, and a coupon larger than
+the subtotal in both versions.
+
 ### Introduce Parameter Object
 
-When functions have 4+ parameters:
+Group parameters when they describe a cohesive value with a shared meaning or
+validation rule. Argument count alone does not justify a wrapper:
 
 Before:
 ```python
@@ -106,22 +112,21 @@ area = shape.calculateArea();  // Each shape knows how
 
 ### Test-Protected Refactoring
 
-Never refactor without protection:
+Reuse checks that protect the behavior. Add a focused characterization check when a
+risky path is unprotected:
 
-1. **Write Characterization Tests First**
-   - Capture current behavior (even if wrong)
-   - Tests document what code actually does
-   - Prevents accidental changes
+1. **Establish the Behavior to Preserve**
+   - Capture observable behavior at the relevant boundary.
+   - Document known defects separately; changing them is a behavior change.
 
 2. **Refactor in Tiny Steps**
    - One change at a time
-   - Run tests after each change
+   - Run affected checks after a risky step
    - Commit working state frequently
 
-3. **Keep Tests Green**
-   - If tests fail, immediately revert
-   - Fix or adjust tests before continuing
-   - Never proceed with failing tests
+3. **Investigate Failures**
+   - Find the cause and preserve the expected contract. Change an expectation only
+     when evidence shows it was wrong or an authorized behavior change requires it.
 
 ## The Strangler Approach
 
@@ -164,7 +169,8 @@ Once nothing uses legacy implementation, delete it.
 
 Translate technical debt to business terms:
 
-"This refactoring reduces average bug fix time from 2 days to 4 hours, letting us respond to customer issues 4x faster."
+"The last two fixes required coordinated edits in three modules. Try the same
+representative fix after consolidation and compare the number of coordinated edits."
 
 Not: "The code violates SOLID principles and needs refactoring."
 
@@ -187,10 +193,9 @@ Instead: Incremental improvement with strangler pattern
 
 ### The Abstract Too Soon Problem
 
-Don't create abstractions before you have 3 concrete examples:
-- First instance: Write specifically
-- Second instance: Notice duplication
-- Third instance: Now create abstraction
+Keep similar code local while its meaning is still diverging. Extract shared behavior
+when callers need the same rule to change together, or when an actual substitution
+boundary makes the added indirection useful. A fixed example count cannot decide that.
 
 ### The Premature Generalization
 

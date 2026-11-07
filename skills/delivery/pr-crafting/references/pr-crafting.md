@@ -47,15 +47,12 @@ Include when relevant:
 - Diagrams explaining complex changes
 
 ### The Checklist
-Track what you've verified:
-- Passes all existing tests
-- New tests cover the changes
-- Documentation reflects the updates
-- No unintended side effects observed
-- Follows the codebase conventions
+Report checks actually run, their result and tested revision. Link them to the affected
+behavior. Identify material checks that failed, were blocked or were not run; add a
+regression test where the changed behavior needs one.
 
 ### Request Reviews Thoughtfully
-- Tag people familiar with affected areas
+- Suggest reviewers familiar with the affected areas; request or tag them only when authorized
 - Add context if reviewers aren't domain experts
 - Use labels to categorize the change type
 

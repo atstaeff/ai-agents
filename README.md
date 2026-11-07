@@ -1,128 +1,60 @@
 # AI Agents
 
-**Build useful software with AI. Keep the context and evidence your team needs to continue.**
+A practical engineering kit for building and maintaining software with AI. Use focused
+[agents](agents/README.md), [skills](skills/README.md) and [templates](templates/README.md)
+with the tools, permissions and tracker your project already uses.
 
-An English catalog of reusable AI roles, focused skills and project templates, with a
-practical engineering process and optional local Python tools. Use your existing stack,
-tracker and review workflow. Your host runs the models and controls tools and permissions.
-
-[Try the first task](website/content/getting-started/quick-start.md) ·
 [Documentation](https://atstaeff.github.io/ai-agents/) ·
-[Catalog](toolkit/CATALOG-GUIDE.md) ·
-[Templates](templates/README.md)
+[First task](website/content/getting-started/quick-start.md) ·
+[Engineering process](engineering/process/README.md)
 
-## Start with a small result
+## Keep the tools ready locally
 
-The [quick start](website/content/getting-started/quick-start.md) gives you a disposable
-portable export and a supplied note-to-runbook exercise. The local export needs only Git,
-Python 3.11+ and a Bash shell; the AI task uses a host and model access you already have.
-It separates local file checks from an actual host result and shows what success looks like.
-No project manifest, server or agent team is needed.
-
-Already have a checkout? Inspect a focused selection without installing anything:
+On Linux or WSL with systemd, install and configure Herdr and OpenCode, then run:
 
 ```sh
-python3 tools/ai_toolkit.py check
-python3 tools/ai_toolkit.py catalog --preset minimal
+python3 scripts/local_agents.py doctor
+python3 scripts/local_agents.py install
+python3 scripts/local_agents.py status
 ```
 
-For native installation, follow the [runtime guide](toolkit/RUNTIMES.md). Adapters emit
-OpenCode, Claude Code, VS Code/Copilot and Herd layouts, plus portable Agent Skills and
-profiles. An export is not an installed-host validation: record observed discovery,
-model/effort, permissions and limits with the [runtime check](templates/delivery/runtime-check.md).
-Configure providers and credentials in the host; generated profiles install no host or model.
+This enables both user services for this checkout. Use `--project /path/to/project`
+for another checkout. See [local runtime setup](scripts/README.md) for login startup,
+ports, logs, connecting through Herdr and uninstalling. Use the native host and
+[export a focused catalog](toolkit/RUNTIMES.md) when persistent services are unnecessary.
 
-## Work with an autonomous team
+## Work from Markdown
 
-Give Product, Engineering or Delivery a scoped outcome. The lead selects useful specialists
-and qualified models, coordinates independent work through Herdr, reviews returns, resolves
-bounded findings and checks the combined result. Routine team coordination follows from
-the assignment; no repeated "use Herdr" or "start subagents" prompt is needed.
+Start with [AGENTS.md](AGENTS.md). It maps the project and routes a session to the
+relevant [process step](engineering/process/README.md), skill, agent and decision.
+Choose the steps and folders that fit your project using the
+[Markdown project starter](templates/markdown-project/README.md). A small correction
+can go directly from the affected source to a change and checks.
 
-The `team` preset provides the three directly selectable leads and Python/React/GCP/Terraform,
-test, review and documentation expertise. [Configure the host and model routes once](toolkit/RUNTIMES.md#configure-the-autonomous-team-once),
-then reuse that setup. Current host permissions, project scope and human decision rights govern.
-Existing installed bundles/sessions need a deliberate update to load changed instructions.
+The existing issue or ticket owns scope and acceptance; the PR owns the changes and
+review evidence. Record consequential decisions when they arise. Keep current behavior
+and ADR rationale in their [project knowledge homes](knowledge/README.md). No workspace
+manifest or local task tracker is required.
 
-In this checkout, the native `opencode.json` already selects Delivery and registers the
-team from canonical profile files. Start your installed OpenCode from the repository in
-the intended Herdr pane; startup rules discover/use Herdr automatically when available
-and usable. No export or delegation prompt is needed to activate this repository's lead.
-Private model routes and host permissions still come from your local configuration.
+Use [Herdr](toolkit/HERDR.md) when available. A lead coordinates useful independent work,
+chooses qualified model routes and verifies the combined result. The host owns model
+execution and permissions. The [operating model](toolkit/OPERATING-MODEL.md) explains
+the delivery responsibilities.
 
-## Adopt in one project
+## Repository map
 
-For a new project, start with the adaptable
-[Markdown-first structure](templates/markdown-project/README.md). For an existing project,
-merge only the needed parts into its current instructions; the compact
-[project starter](templates/project-starter/README.md) and
-[AGENTS.md variants](templates/agent-instructions/README.md) remain available. Begin with
-what the next assignment needs:
-
-1. Identify its outcome, acceptance, accountable human and real work/review homes.
-2. Link relevant project facts, rules and actual check commands. Keep existing owners.
-3. Read only the relevant [skills](skills/README.md) and [role profiles](agents/README.md).
-   Make one reviewable change, run its checks and preserve significant reasons.
-4. Add coordination, knowledge views or more templates when a concrete need appears.
-
-A clear small change needs no separate plan or additional agent. Personal execution notes
-stay private, subject to project policy; shared sources must let a teammate continue.
-Projects choose their own folders or authorized web documentation. Adopt binding external
-policy at an explicit revision; evolving technique links do not silently change project rules.
-
-## Choose your next step
-
-| Goal | Use |
+| Path | Purpose |
 | --- | --- |
-| Find expertise for Python/FastAPI, React/JavaScript, GCP or Terraform | [Catalog selection](toolkit/CATALOG-GUIDE.md) |
-| Clarify a product problem, acceptance or stakeholder decision | [Product preset](toolkit/CATALOG-GUIDE.md) and [templates](templates/README.md) |
-| Understand delivery roles and information ownership | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
-| Coordinate leads and bounded specialists | [Orchestration](toolkit/ORCHESTRATION.md) and [runtime/capacity check](templates/delivery/runtime-check.md) |
-| Use Herdr, Ponytail or Graphify | [Native integrations](toolkit/INTEGRATIONS.md) |
-| Explore decisions and relationships in Docusaurus | [Knowledge map example](examples/engineering-demo/README.md) |
-| Inspect optional local tools and repository structure | [Repository map](toolkit/README.md) |
+| `agents/`, `skills/` | Canonical roles and reusable techniques |
+| `templates/` | Adaptable project layout, assignments, ADRs and reviews |
+| `engineering/process/`, `knowledge/` | This repository's procedures, facts and decisions |
+| `scripts/` | Local Herdr and OpenCode service management |
+| `toolkit/`, `tools/` | Guidance and optional validation, export and compatibility tools |
+| `examples/`, `reference-repos/` | Worked examples and reference implementations |
+| `website/`, `docs/` | Docusaurus source and generated Pages output |
 
-Use Herdr whenever its executable and selected server are usable. Complex judgment uses
-strong approved models with high reasoning; bounded work uses proven economical routes;
-mechanical coordination uses native tools. Delegate useful independent ready slices by
-default, group isolated writer workspaces and label agent/checks/log panes. All leads and
-child agents share one capacity/budget within measured machine, provider and review limits.
-See the [Herdr policy](toolkit/HERDR.md) for native skill discovery, layout and fallback.
-
-## Knowledge that survives a session
-
-| Source | Owns |
-| --- | --- |
-| AGENTS.md and linked project sources | Context navigation, responsibilities, process and real tooling |
-| Issue/ticket and PR/MR | Shared scope, acceptance, coordination and review evidence |
-| Current Markdown and ADRs | Implemented behavior, operating knowledge and significant reasons |
-| Docusaurus and scoped graph views | Derived reading and retrieval views of selected shared sources |
-
-The [knowledge map demo](examples/engineering-demo/README.md) starts with areas, then
-loads filtered records and direct relationships. It is a bounded static example; a
-million-record installation needs an incremental index service. Graphify can supply
-dependency evidence; reviewed project knowledge remains authoritative.
-
-## Maintain this repository
-
-`agents/` and `skills/` own reusable expertise; `engineering/process/` owns this repository's
-shared process; `templates/` supplies copyable artifacts. `toolkit/` documents the model,
-adoption and optional tools. `knowledge/` records this repository's own facts and decisions.
-`examples/` and `reference-repos/` illustrate adoption. `tools/` and `tests/` implement and
-verify the optional toolkit. `website/` owns Docusaurus sources; root `docs/` is generated.
-
-```sh
-uv sync --locked --group validation
-python3 tools/ai_toolkit.py check
-uv run --locked --group validation python -m unittest discover -s tests -v
-python3 tools/workspace_smoke.py
-npm --prefix website ci
-npm --prefix website run test:graph
-npm --prefix website run build
-```
-
-See [contributing](CONTRIBUTING.md), the [runbook](toolkit/REPOSITORY-WORKFLOW.md) and
-[quality standard](toolkit/QUALITY-STANDARD.md). Checks and bounded observations establish
-specific behavior; they do not establish productivity gains or staffing reductions.
-The catalog and toolkit are [MIT licensed](LICENSE). Third-party hosts and integrations
-retain their own licenses and configuration requirements.
+For maintenance, see [contributing](CONTRIBUTING.md) and the
+[verification runbook](toolkit/REPOSITORY-WORKFLOW.md). The
+[optional workbench](toolkit/WORK-RECORDS.md) and legacy project config are compatibility
+features. Existing local records stay outside the tracked source. The catalog and tooling
+are [MIT licensed](LICENSE).
