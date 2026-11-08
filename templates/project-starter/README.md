@@ -21,9 +21,10 @@ first; extend the map when more context becomes useful.
    [CONTRIBUTING.md](CONTRIBUTING.md): workflow, skills, tools/access, setup/check commands,
    review and action boundaries.
 3. Keep binding process in the local contribution guide, or record a deliberately adopted
-   immutable source URL and its full SHA/governed version. The starter's catalog links are
-   evolving technique/reference links, not automatically adopted external policy. Use the [instruction variants](../agent-instructions/README.md)
-   for remote documentation, existing repositories, multiple repositories or a component.
+   immutable source URL and its full SHA/governed version. Verify the applicable procedure
+   bodies at that revision. The starter's catalog links are evolving technique references.
+   Use the [instruction variants](../agent-instructions/README.md) for remote documentation,
+   existing repositories, multiple repositories or a component.
 4. Merge [.gitignore](.gitignore) only when using the optional local workbench. Create no
    empty knowledge tree, fictional work items or duplicate plan. Do not copy this README
    as the customer's project facts.

@@ -6,6 +6,9 @@
         "First Useful Task": "getting-started/quick-start.md"
       },
       {
+        "Run Herdr and OpenCode Locally": "getting-started/local-runtime.md"
+      },
+      {
         "Markdown-first Project": "getting-started/markdown-project.md"
       },
       {
@@ -267,6 +270,9 @@
             "Decision Index": "knowledge/decisions/index.md"
           },
           {
+            "Local Runtime Services": "knowledge/decisions/adr-0008.md"
+          },
+          {
             "Adaptable Markdown Process": "knowledge/decisions/adr-0007.md"
           },
           {
@@ -301,6 +307,9 @@
     "label": "Tools",
     "items": [
       {
+        "Local Runtime CLI": "getting-started/local-runtime.md"
+      },
+      {
         "Runtime Exports": "getting-started/installation.md"
       },
       {
@@ -311,12 +320,6 @@
       },
       {
         "Tool and Model Independence": "getting-started/portability.md"
-      },
-      {
-        "Local Work Records": "toolkit/work-records.md"
-      },
-      {
-        "Local API": "toolkit/api.md"
       },
       {
         "Preview the Website": "getting-started/local-preview.md"
@@ -387,6 +390,12 @@
         "Compatibility": [
           {
             "Optional Legacy YAML": "getting-started/project-config.md"
+          },
+          {
+            "Local Work Records": "toolkit/work-records.md"
+          },
+          {
+            "Local API": "toolkit/api.md"
           }
         ]
       }

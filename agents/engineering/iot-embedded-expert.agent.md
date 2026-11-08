@@ -8,11 +8,13 @@ description: "Develop or troubleshoot firmware and device integration under hard
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
 
 ## Workflow
 
-1. Establish hardware and timing limits, toolchain and available test devices.
+1. Establish hardware and timing limits, toolchain and available test devices. Start
+   live discovery read-only. Identify the safe state and responsible site owner before
+   changing anything that can actuate equipment or alter a safety function; use the
+   authorized commissioning procedure for live writes.
 2. Separate deterministic logic from hardware adapters; specify safe failure and update recovery.
 3. Validate actual device behavior when available and clearly label simulated or desktop-only evidence.
 

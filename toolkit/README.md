@@ -16,6 +16,7 @@ page, not this whole directory at the start of each session.
 | knowledge/ | Durable facts and decisions about this repository | Why this catalog uses private plans |
 | templates/ | Copyable starting documents | ADR, request or architecture review |
 | examples/ / reference-repos/ | Runnable demonstrations / worked projects / illustrative code | Decision graph / document portal / architecture patterns |
+| scripts/ | Local runtime service management | Herdr and OpenCode startup, status and logs |
 | tools/ / tests/ | Executable local tooling / behavior checks | Runtime exporter / export protection tests |
 | website/ | Docusaurus source, configuration, navigation and publisher | Source-to-page mapping |
 | docs/ | Compiled GitHub Pages output | Generated HTML and assets |
@@ -39,6 +40,7 @@ unavailable. The shared result remains understandable without access to those pl
 | How do several leads and specialists work together? | [Orchestration](ORCHESTRATION.md) |
 | How do Ponytail, Graphify and Herdr fit? | [Integrations](INTEGRATIONS.md) |
 | How do I qualify models, host behavior and dispatch capacity? | [Runtime qualification](RUNTIME-QUALIFICATION.md) |
+| How do I keep the tools running locally? | [Local runtime CLI](../scripts/README.md) |
 | How do I export to my AI host? | [Runtime adapters](RUNTIMES.md), [portability](PORTABILITY.md) |
 | What quality or approval applies? | [Quality standard](QUALITY-STANDARD.md), [optional plan review](PLAN-REVIEW.md) |
 | How do I develop this repository? | [Repository runbook](REPOSITORY-WORKFLOW.md) |

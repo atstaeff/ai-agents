@@ -2,6 +2,7 @@
 
 | Record | Status | Relevance |
 | --- | --- | --- |
+| [ADR-0008: Local runtime services](0008-local-runtime-services.md) | Proposed | Local process lifecycle without an extra tracker or scheduler |
 | [ADR-0007: Adaptable Markdown process](0007-markdown-process.md) | Proposed | Project-selected procedures, flexible folders and one owner per rule |
 | [ADR-0006: Native orchestration and focused expertise](0006-native-orchestration-and-focused-expertise.md) | Proposed | Native fleet imports, bounded specialists and focused engineering procedures |
 | [ADR-0005: Bounded knowledge views](0005-bounded-knowledge-views.md) | Proposed | Aggregate maps and paginated direct context |

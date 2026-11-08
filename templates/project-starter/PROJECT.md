@@ -37,11 +37,9 @@ short and expand it when the next assignment needs more context.
 
 ## Working method and AI process
 
-Follow [CONTRIBUTING.md](CONTRIBUTING.md). The default is clarify, plan when useful, build,
-verify, then required acceptance/integration and knowledge retention. The guide links
-reusable skills and actual commands; AGENTS.md supplies source navigation and collaboration rules.
-Small fixes need no phase documents. Record an adopted alternative method and its
-authoritative instructions in the contribution guide.
+[CONTRIBUTING.md](CONTRIBUTING.md) owns the working process, skills and actual commands.
+[AGENTS.md](AGENTS.md) supplies source navigation. Small fixes need no phase documents.
+Record any adopted external policy in the contribution guide.
 
 ## Current knowledge and decisions
 

@@ -3,7 +3,7 @@
 - Owner and current assignment: <role, link and revision>
 - Intended users and problem: <observed pain, frequency and evidence>
 - Affected stakeholders: <groups, their needs and the input/decision each owns; omit groups unaffected by this increment>
-- Desired outcome: <behavior and measurable user/business signal>
+- Desired outcome: <behavior, measurable signal and, when measuring later, owner and observation window>
 - Current baseline: <what happens today and how it is measured>
 - Scope and exclusions: <smallest complete increment and explicit boundaries>
 - Alternatives: <reuse, process change, smallest software change, larger option>

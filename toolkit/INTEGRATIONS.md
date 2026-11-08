@@ -51,12 +51,17 @@ OpenCode 1 has no `plugin add` command. OpenCode 2 uses a different plugin insta
 contract; follow the upstream instructions for the installed major version. The
 OpenCode 1 catalog adapter is not a verified OpenCode 2 adapter.
 
-Install into the actual worker harness as well as the lead if those use separate
-configurations. Check discovery with a harmless change. This exporter neither installs
-Ponytail nor copies its rules into every skill. Preserve the project's acceptance,
-security, accessibility and required checks when simplifying an implementation.
-Keep plugin versions in the host's managed configuration; evaluate local outcomes rather
-than inheriting another project's benchmark percentages.
+Use Ponytail to find the smallest readable change that meets the full assignment.
+Reuse the project's existing code and conventions. Keep its acceptance, compatibility,
+security, accessibility and recovery requirements. Follow the [quality standard](QUALITY-STANDARD.md#scale-checks-to-consequence)
+for verification; a narrow self-check does not replace required integration, recovery
+or review evidence. Record a material shortcut's limit and when to revisit it.
+
+Keep the plugin version in managed host configuration. If the lead and workers use
+separate configurations, check discovery and try a harmless representative change in
+each harness that will use it. Record the host and plugin versions, result and any
+unverified harness. Evaluate local outcomes before claiming a benefit. The exporter
+neither installs Ponytail nor copies its rules into the catalog.
 
 ## Graphify: retrieve dependency context
 

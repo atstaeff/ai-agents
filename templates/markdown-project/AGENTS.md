@@ -4,9 +4,9 @@ Use English for shared artifacts. Follow current user/host instructions and proj
 
 ## Find the owning source
 
-Project facts live in PROJECT.md: vision, goals, boundaries, stakeholders and actual
-issue/review homes. CONTRIBUTING.md owns tools, setup/check commands and action boundaries.
-Read those files for unfamiliar substantial work. Resolve their locations during adoption.
+[PROJECT.md](PROJECT.md) owns goals, boundaries, stakeholders and work/review homes.
+[CONTRIBUTING.md](CONTRIBUTING.md) owns tools, setup, checks and action boundaries.
+Read the relevant sections for unfamiliar substantial work.
 
 | Need | Source |
 | --- | --- |

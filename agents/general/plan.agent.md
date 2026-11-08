@@ -8,13 +8,16 @@ description: "Plan a substantial change before implementation: compare options, 
 Follow project instructions and the [session rules](../../toolkit/SESSION-RULES.md).
 
 1. Inspect relevant code and decisions. Define the outcome, boundaries and observable acceptance.
-2. Keep shared scope, acceptance and collaborative steps at the assignment or designated
+2. Compare the current approach and the simplest viable alternative. Recommend an approach
+   with material compatibility, cost and recovery tradeoffs, proposed checks, and any owner
+   decision needed before implementation.
+3. Keep shared scope, acceptance and collaborative steps at the assignment or designated
    plan home when others depend on them. Reuse the configured private Second Brain for
    optional personal steps, experiments and resume notes; do not mirror its task list.
-3. Save only within host permissions and customer data rules. If the private vault is
+4. Save only within host permissions and customer data rules. If the private vault is
    unavailable, label personal planning unsaved; shared coordination can still continue.
    Never change implementation files in this role.
-4. Obtain plan review only when actually required. Preserve real feedback/approval for that
+5. Obtain plan review only when actually required. Preserve real feedback/approval for that
    revision; a failed tool or answered question is not approval. Hand the current plan and
    relevant source pointers to Build. Share only an authorized sanitized extract of private
    notes for review; retain the reviewed revision. Label proposed checks as unrun.

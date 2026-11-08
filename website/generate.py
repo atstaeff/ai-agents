@@ -13,6 +13,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from ai_toolkit import ROOT, LINK, catalog, domains, metadata
 
 DOCUMENTS = {
+    'getting-started/local-runtime.md': 'scripts/README.md',
     'process/index.md': 'engineering/process/README.md',
     'process/01-clarify.md': 'engineering/process/01-clarify.md',
     'process/02-plan.md': 'engineering/process/02-plan.md',
@@ -20,6 +21,7 @@ DOCUMENTS = {
     'process/04-verify.md': 'engineering/process/04-verify.md',
     'process/05-integrate-retain.md': 'engineering/process/05-integrate-retain.md',
     'getting-started/markdown-project.md': 'templates/markdown-project/README.md',
+    'knowledge/decisions/adr-0008.md': 'knowledge/decisions/0008-local-runtime-services.md',
     'knowledge/decisions/adr-0007.md': 'knowledge/decisions/0007-markdown-process.md',
     'templates/markdown-project/engineering/process/index.md': 'templates/markdown-project/engineering/process/README.md',
     'templates/markdown-project/engineering/skills/index.md': 'templates/markdown-project/engineering/skills/README.md',
@@ -226,6 +228,9 @@ def render(markdown, page, config):
             if not frontmatter:
                 raise ValueError(f'Unclosed documentation frontmatter: {source}')
             text = text[frontmatter.end():]
+            if source.startswith('templates/'):
+                # Readers need the copyable source metadata as well as the prose.
+                text = f'```yaml\n{frontmatter.group().rstrip()}\n```\n\n' + text.lstrip()
         else:
             meta, text = metadata(text)
             page.meta['description'] = meta['description']

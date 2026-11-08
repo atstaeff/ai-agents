@@ -1,8 +1,8 @@
 # Run this repository
 
 Read [AGENTS.md](../AGENTS.md) first. It links actual context, decisions and commands.
-The repository keeps existing `workspace/` paths for compatibility, without making that
-layout a requirement for projects adopting the catalog.
+Run the [local runtime CLI](../scripts/README.md) to keep Herdr and OpenCode available
+without an open terminal. The optional workbench keeps ignored local state in workspace/.
 
 ## Set up and verify
 

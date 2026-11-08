@@ -9,7 +9,7 @@ description: "Model business rules, aggregates, bounded contexts or domain termi
 
 1. Build a small shared vocabulary from real user scenarios. Put business invariants close to the data they protect.
 2. Define boundaries by behavior and ownership, not by copying database tables. Start with modules before distributed services.
-3. Use dataclasses and explicit validation for new Python domain objects; use the project's established validation library at external boundaries.
+3. In Python, use the project's conventions; dataclasses and explicit validation can be enough for new domain objects. Use the established validation library at external boundaries.
 4. Introduce aggregates, repositories or domain events only when they simplify invariants, persistence or a real integration.
 5. Test business behavior without infrastructure. Return the vocabulary, invariants and owned boundaries with representative scenarios; record the few decisions that constrain future changes.
 

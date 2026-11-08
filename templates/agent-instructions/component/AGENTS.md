@@ -5,7 +5,7 @@
 Apply this file to [component path] according to the selected host's instruction-scoping
 rules. Read applicable root instructions first; this file adds component-specific detail.
 Check the host's precedence/import behavior rather than assuming every tool loads nested files.
-Inherit the root's binding process and explicit adopted policy SHA/version. A component
+Inherit the root's binding process and any explicitly adopted policy revision. A component
 technique/reference link does not silently replace that process.
 
 ## Component sources
@@ -34,7 +34,7 @@ report unrun checks and limitations. Follow existing review and action permissio
 ## Knowledge and handoff
 
 Update affected component knowledge and preserve significant rationale at its decision
-home. Keep personal steps in the project's configured private planning home; use an
-unsaved session plan if unavailable. Keep shared progress and handoff in the assigned
+home. Follow the parent policy for private working notes; use an unsaved session plan
+if the configured home is unavailable. Keep shared progress and handoff in the assigned
 work item: result, revisions, evidence, blockers, pending writes and one next action.
-Share an execution plan only when collaborators need one; retain the parent's planning policy.
+Share an execution plan only when collaborators need one.

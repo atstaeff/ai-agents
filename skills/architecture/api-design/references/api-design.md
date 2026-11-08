@@ -66,7 +66,8 @@ Operations: list, create, retrieve, update, delete (where applicable)
 - 403 Forbidden: Not permitted
 - 404 Not Found: Resource doesn't exist
 - 409 Conflict: Conflicting state
-- 422 Unprocessable Entity: Validation errors
+- 412 Precondition Failed: A request precondition did not match current state
+- 422 Unprocessable Content: Understood content that cannot be processed
 
 **Server Errors:**
 - 500 Internal Server Error: Generic error
@@ -75,16 +76,10 @@ Operations: list, create, retrieve, update, delete (where applicable)
 - 504 Gateway Timeout: Upstream timeout
 
 ### Versioning
-**URL Versioning**: `/v1/users` (Recommended)
-- Clear and explicit
-- Easy to route
-
-**Header Versioning**: `Accept: application/vnd.api+json; version=1`
-- Cleaner URLs
-- More complex
-
-**Query Parameter**: `/users?version=1`
-- Not recommended
+Preserve the existing contract and versioning convention. Add a distinct version only
+when consumers need incompatible contracts to coexist. A URL prefix such as `/v1/users`
+is visible in routes; header-based negotiation keeps URLs stable but requires clients
+and caches to account for the negotiated representation.
 
 ### Pagination
 ```json
@@ -157,10 +152,9 @@ GET /users?status=active&sort=-createdAt&search=john
 ## Security
 
 ### Authentication
-- **JWT**: Stateless, good for microservices
-- **OAuth 2.0**: Industry standard for authorization
-- **API Keys**: Simple, for service-to-service
-- **Session-based**: Traditional web apps
+Reuse the project's established identity and token or session profile. A JWT is a
+token format; OAuth 2.0 is an authorization framework. A validated identity alone does
+not authorize an action on a resource. See [security review](../../../quality/security/references/security.md#identity-and-resource-authorization).
 
 ### Rate Limiting
 ```
@@ -170,24 +164,37 @@ X-RateLimit-Reset: 1614556800
 ```
 
 ### CORS
-- Configure allowed origins
-- Whitelist specific domains
-- Avoid wildcard (*) in production
+Configure origins and credentials for the actual browser clients. CORS controls browser
+access to responses; it does not replace server-side authorization or CSRF protection.
 
 ### Input Validation
-- Validate all inputs server-side
-- Sanitize against injection attacks
-- Use schema validation (JSON Schema)
-- Whitelist vs blacklist approach
+Validate type, size and business constraints on the server. Use parameterized queries
+and context-specific output encoding where appropriate; schema validation alone does
+not prevent injection.
 
 ## Performance
 
 ### Caching
-```
+For a public resource with the same representation for all callers, a shared cache can
+reduce repeated work:
+
+```http
 Cache-Control: public, max-age=3600
 ETag: "abc123"
 Last-Modified: Thu, 05 Feb 2026 19:00:00 GMT
 ```
+
+Use `private` when only a private cache may retain a caller-specific response, or
+`no-store` when it must not be stored. `public` can permit shared reuse even for a
+request with an `Authorization` header. Test with two identities through the cache
+when the response depends on the caller. See [HTTP caching](https://www.rfc-editor.org/rfc/rfc9111.html#section-3.5).
+
+### Concurrent Writes and Retries
+
+Where lost updates matter, use an atomic version check. For HTTP, one option is a
+strong `ETag` with `If-Match`; reject a stale precondition with `412` and preserve the
+newer write. For a retried operation that creates an effect, define how the server
+recognizes the same operation and returns its outcome without repeating the effect.
 
 ### Compression
 - Enable gzip/brotli compression
@@ -310,23 +317,23 @@ message User {
 ### Deprecation Process
 1. Announce deprecation well in advance
 2. Provide migration guide
-3. Give ample time (6-12 months)
+3. Set a migration window with affected consumers and the contract owner
 4. Monitor usage before removing
 5. Offer support during migration
 
 ## Best Practices Checklist
 
 ✅ Use proper HTTP methods and status codes
-✅ Version your API from day one
+✅ Preserve compatibility or agree an explicit migration with affected consumers
 ✅ Implement consistent error handling
 ✅ Add pagination to list endpoints
 ✅ Document with OpenAPI/Swagger
 ✅ Implement authentication and authorization
-✅ Add rate limiting
+✅ Bound resource usage; rate-limit where the abuse or capacity model calls for it
 ✅ Enable CORS properly
-✅ Validate and sanitize inputs
+✅ Validate input and use the right injection defenses at each boundary
 ✅ Use HTTPS everywhere
-✅ Log requests for debugging
+✅ Log useful request metadata without credentials or private data
 ✅ Monitor performance and errors
 ✅ Provide changelog for updates
 ✅ Support filtering and sorting
@@ -338,12 +345,11 @@ message User {
 ❌ Inconsistent naming conventions
 ❌ Exposing internal implementation details
 ❌ Missing or poor error messages
-❌ No API versioning
+❌ Changing a consumer contract without a compatibility plan
 ❌ Returning 200 OK for errors
 ❌ Overly nested URLs
-❌ No rate limiting
+❌ Allowing expensive operations to exhaust shared capacity
 ❌ Returning entire objects when not needed
-❌ Breaking changes without versioning
 
 ## Example Prompts
 

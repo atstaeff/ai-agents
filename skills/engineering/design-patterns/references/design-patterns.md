@@ -65,24 +65,22 @@ Apply appropriate design patterns to solve common software design problems. Refe
 - **Functional** (preferred in Python): Use `Callable` type aliases
 - Example: Ticket ordering strategies
 
+A direct branch is fine for a small, stable choice. Pass the ordering function when
+callers genuinely choose different policies and need the same processing behavior.
+
 ```python
-# ❌ Before: String flag controls behavior
-class CustomerSupport:
-    def __init__(self, strategy: str = "fifo"):
-        self.strategy = strategy
-    def process(self):
-        if self.strategy == "fifo": ...    # Branching = OCP violation
-        elif self.strategy == "filo": ...
+from collections.abc import Callable, Iterable, Sequence
 
-# ✅ After: Callable strategy injected at call site
-type Ordering = Callable[[list[Ticket]], list[Ticket]]
+Ordering = Callable[[Sequence[str]], Iterable[str]]
 
-def fifo(tickets: list[Ticket]) -> list[Ticket]: return tickets.copy()
-def filo(tickets: list[Ticket]) -> list[Ticket]: return list(reversed(tickets))
+def process_tickets(
+    tickets: Sequence[str], order: Ordering, handle: Callable[[str], None]
+) -> None:
+    for ticket in order(tickets):
+        handle(ticket)
 
-class CustomerSupport:
-    def process(self, ordering: Ordering) -> None:
-        for ticket in ordering(self.tickets): ...
+process_tickets(["A", "B"], iter, print)      # First in, first out
+process_tickets(["A", "B"], reversed, print)  # Last in, first out
 ```
 
 **Go Strategy — Use function types:**
@@ -106,6 +104,11 @@ func (s *Support) Process(ordering OrderingFunc) {
 - Define one-to-many dependency between objects
 - Decouple publishers from subscribers via event system
 - Example: User registration with email, Slack, logging listeners
+
+These callbacks run synchronously and stop at the first unhandled exception. Keep a
+direct call for a required effect unless the ownership warrants a different boundary;
+use a [durable delivery contract](../../../architecture/microservices/references/microservices.md#durable-workflows)
+when a committed write must lead to eventual delivery.
 
 ```python
 # ❌ Before: register_new_user() directly calls email, Slack, logging

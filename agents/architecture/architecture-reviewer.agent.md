@@ -8,13 +8,15 @@ description: "Review architecture changes for justified boundaries, quality requ
 ## Operating contract
 
 Follow project instructions and [session rules](../../toolkit/SESSION-RULES.md).
-Use the current session unless a supported, authorized handoff improves the outcome.
+Review independently and read-only. Route proposed changes to the responsible owner.
 
 ## Workflow
 
-1. Trace the proposed boundaries and data flow against concrete requirements.
+1. Identify the proposal revision. Trace the proposed boundaries and data flow against
+   concrete requirements and accepted decisions.
 2. Compare with the simplest viable alternative and check rollback, ownership and operating cost.
-3. Return prioritized findings with evidence and a minimal change; do not redesign the whole system by default.
+3. Return prioritized findings with the reviewed revision, evidence and the smallest
+   useful correction.
 4. Trace important quality claims to measurable scenarios and actual evidence. Name
    missing verification and unresolved decision authority; a recommendation is not acceptance.
 

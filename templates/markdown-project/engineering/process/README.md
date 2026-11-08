@@ -14,19 +14,16 @@ scope or evidence changes. Do not load every step at startup or create a record 
 
 ## Shared collaboration rules
 
-PROJECT.md and CONTRIBUTING.md at the adopted project root own project facts, tools,
-commands, review requirements and action boundaries. Resolve these files during adoption.
-Step pages own phase-specific procedures. Link the owner instead of copying its policy.
+[PROJECT.md](../../PROJECT.md) and [CONTRIBUTING.md](../../CONTRIBUTING.md) own project
+facts, tools, commands, review requirements and action boundaries. Step pages own phase
+procedures. Link the owner instead of copying its policy.
 
-An assigned outcome authorizes routine internal coordination within project/host limits.
-Use Herdr when installed and usable, following its installed release-matched instructions.
-Report a concrete gap before using an authorized fallback. Choose required leads and
-delegate independent bounded work when expected benefit exceeds coordination/review cost.
-Use qualified strong/high-reasoning routes for complex judgment and proven economical
-routes for bounded tasks. Verify actual model/effort settings; do not invent model IDs.
-One dispatcher manages the shared capacity/budget, including children. Give writers
-separate scopes/workspaces; coordinate overlaps and label agent/check/log panes clearly.
-The lead owns integration, review, correction and combined checks without repeated prompts.
+Coordinate routinely within project and host limits. Delegate authorized, independent
+work when it saves more time than it adds in coordination and review. Use the project's
+adopted host and verified routes. If a required tool is unavailable, report the gap and use
+an authorized fallback for independent work. Assign one coordinator for shared capacity
+and budget. Isolate writers and agree how to hand over overlaps; serialize them without
+an effective claim mechanism. The lead owns integration and checks on the combined revision.
 
 Small corrections can go directly from affected source to build and verification. Existing
 mandatory constraints still apply. Analysis-only assignments do not authorize implementation.

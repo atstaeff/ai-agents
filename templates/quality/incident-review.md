@@ -6,7 +6,7 @@ recurrence or important uncertainty; an ordinary defect can remain in its issue.
 
 ## Impact and timeline
 
-[Actual affected users/data/service, observed period, detection and uncertainty.]
+[Actual affected users/data/service, observed period, how it was detected and uncertainty.]
 [Factual sequence and source links; keep assumptions separate.]
 
 ## Recovery and contributing factors
@@ -16,7 +16,7 @@ recurrence or important uncertainty; an ordinary defect can remain in its issue.
 
 ## Learning and follow-up
 
-[Link each necessary follow-up to its owner, priority and observable acceptance in the
-existing work system. Update affected current knowledge and runbooks.]
+[Link necessary follow-ups to owners and observable acceptance in the existing work
+system. State when and how to check that the fix helps. Update affected knowledge and runbooks.]
 [Link any proposed consequential decision; do not declare acceptance or effectiveness
 without evidence. Retain the review as history after recovery.]

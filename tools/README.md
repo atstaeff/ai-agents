@@ -1,5 +1,6 @@
 # Local executable tools
 
+For persistent Herdr and OpenCode services, use the [runtime CLI](../scripts/README.md).
 These tools are optional. Reading agents, skills and the operating model does not
 require running a server or installing a model framework.
 
@@ -25,7 +26,7 @@ for interrupted exports. These protections do not make the local workbench a dis
 team scheduler.
 
 Exports include supported document, configuration, script, fixture and asset file types
-from the six canonical source folders. The same explicit path/type policy applies to Git
+from the allowlisted canonical source folders, including engineering/process/. The same explicit path/type policy applies to Git
 checkouts and unpacked source archives before any source bytes are read. Hidden state,
 environment files, credential/key names in any path component, nested private/local state, dependency/build/cache
 directories and unsupported file types are omitted. References to excluded sources fail

@@ -42,6 +42,7 @@ current revision. Roles do not grant access or authorization on another person's
 | Process and skill selection | [Process index](engineering/process/README.md) |
 | Repository contribution requirements | [Contributing](CONTRIBUTING.md) |
 | Acceptance and action boundaries | [Working agreement](knowledge/working-agreement.md) |
+| Persistent local runtime | [Herdr and OpenCode services](scripts/README.md) |
 | Setup, checks and local replay | [Repository runbook](toolkit/REPOSITORY-WORKFLOW.md) |
 | Shared delivery method | [Engineering operating model](toolkit/OPERATING-MODEL.md) |
 | Source ownership and web documentation | [Project concept](toolkit/PROJECT-CONCEPT.md) |

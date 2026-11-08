@@ -23,7 +23,7 @@
       "prompt": "Canonical role source: agents/architecture/gcp-architect.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/architecture/gcp-architect.agent.md}"
     },
     "lead-architect": {
-      "description": "Autonomously lead consequential technical decisions across Python, frontend and platform boundaries; coordinate specialists, reviewed contracts, quality evidence and owner handoffs.",
+      "description": "Lead consequential technical decisions across system boundaries, defining contracts, measurable quality goals and ownership.",
       "mode": "all",
       "prompt": "Canonical role source: agents/architecture/lead-architect.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/architecture/lead-architect.agent.md}"
     },
@@ -33,7 +33,7 @@
       "prompt": "Canonical role source: agents/delivery/product-manager.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/delivery/product-manager.agent.md}"
     },
     "task-orchestrator": {
-      "description": "Autonomously deliver a scoped outcome with Herdr-coordinated specialists, qualified model routes, review and combined verification at the existing shared assignment.",
+      "description": "Lead scoped delivery across specialists, sequencing dependencies, integrating changes and verifying the combined result.",
       "mode": "all",
       "prompt": "Canonical role source: agents/delivery/task-orchestrator.agent.md. Resolve its relative links from that file's directory.\n\n{file:./agents/delivery/task-orchestrator.agent.md}"
     },

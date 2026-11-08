@@ -17,16 +17,18 @@ discovery, effective permissions, model/effort and handoff before depending on t
 | Package or component-specific details | [Component instructions](component/AGENTS.md) | Applicable root process/tools, component locations, knowledge and checks |
 
 Copy or merge the chosen template into the intended instruction scope; these are alternatives
-and scoped additions, not a set of files required in each project. Fill every prompt and replace
-example.org URLs. The [project starter](../project-starter/README.md) supplies matching
-context/process pages. Link an existing owning section for each concern; keep detailed
+and scoped additions, not a set of files required in each project. Resolve required source,
+authority and command fields before use. Remove irrelevant prompts and replace example.org
+URLs. The [project starter](../project-starter/README.md) supplies matching context and
+process pages. Link an existing owning section for each concern; keep detailed
 policy and commands there. [Adoption](../../toolkit/ADOPT-PROJECT.md) explains the checks.
 
 Distinguish binding project process from evolving technique/reference links. For binding
 external policy, record both its immutable source URL and an explicit adopted SHA/version
 in the project's contribution guide. A `main` branch link or current documentation page
 is a reference until deliberately adopted. Use the [starter policy fields](../project-starter/CONTRIBUTING.md#policy-adoption)
-and replace the literal URL pattern with the verified revision; create no extra manifest.
+and replace the literal URL pattern with the verified revision. If the source is a routing
+page, verify its applicable linked procedure bodies at that same revision.
 
 AGENTS.md links project facts and the working process. Keep current knowledge and decisions
 in project-owned sources; use the [worked example](../../toolkit/examples/project-kernel.md)

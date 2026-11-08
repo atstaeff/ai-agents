@@ -39,10 +39,8 @@ site/
 .venv/
 __pycache__/
 *.py[cod]
-/workspace/work/
-/workspace/archive/
-/workspace/generated/
-/workspace/exports/
+# Root workspace is local compatibility state; example workspaces stay tracked.
+/workspace/
 
 # Previous layout stays ignored until explicitly migrated.
 .ai/work/

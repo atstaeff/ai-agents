@@ -9,7 +9,7 @@ Manage production incidents efficiently to restore service and learn from failur
 
 ## Response Framework
 
-### Detection and Initial Response (0-5 minutes)
+### Detection and Initial Response
 
 **Recognize the Incident**
 Determine if this requires immediate action:
@@ -32,7 +32,7 @@ Based on severity, bring in:
 - Communication lead (updates stakeholders)
 - Customer support liaison (handles user questions)
 
-### Investigation Phase (5-30 minutes)
+### Investigation Phase
 
 **Gather Information**
 - What symptoms are users experiencing?
@@ -54,20 +54,20 @@ Check each theory:
 - Test specific scenarios
 
 **Communicate Status**
-Update stakeholders every 15-30 minutes:
+Use the project's incident channel and update cadence. If you cannot send updates,
+prepare the facts for the authorized communicator:
 - What you know so far
 - What you're investigating
-- Estimated time to resolution (if possible)
+- Next update time and any supported estimate, with uncertainty
 - Workarounds users can try
 
 ### Mitigation Phase (varies)
 
 **Immediate Actions**
-Take steps to reduce impact:
-- Roll back recent changes if suspected
-- Scale up resources if capacity-related
-- Enable backup systems if available
-- Disable problematic features if necessary
+Choose a reversible mitigation within your authority, or hand the action to its owner.
+Check the consequences first: an older application may be incompatible with newer
+data, and a fallback system may lack recent writes. Agree a stop or recovery condition
+and verify the affected user journey after the change.
 
 **Track Actions**
 Document everything tried:
@@ -88,11 +88,11 @@ After each mitigation attempt:
 Confirm the incident is truly resolved:
 - Key metrics returned to normal
 - Users can complete critical workflows
-- No errors in monitoring systems
+- Incident signals remain within the recovery criteria during the observation window
 - Customer support confirms improvement
 
 **Communicate Resolution**
-Notify stakeholders:
+Have the authorized communicator use the project's channel:
 - What was the issue
 - What fixed it
 - Any ongoing concerns
@@ -104,7 +104,7 @@ Continue monitoring closely for:
 - Related problems emerging
 - Unusual patterns
 
-### Post-Incident Phase (24-72 hours later)
+### Post-Incident Phase
 
 **Document Timeline**
 Create incident record with:
@@ -138,12 +138,12 @@ Write an incident report covering:
 - Prevention measures planned
 - Response improvements planned
 
-Share with broader team and relevant stakeholders.
+Use the designated review and sharing channels. Keep restricted evidence in its source.
 
 ## Commander Responsibilities
 
 **During the Incident**
-- Make final decisions on actions
+- Coordinate decisions with the owners who can authorize each action
 - Coordinate team members
 - Ensure communication happens
 - Keep focus on restoration

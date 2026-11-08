@@ -14,11 +14,10 @@ Setup, build and verification commands: [actual runbook/CI source].
 Work and review: [actual tracker, repositories and review homes].
 Current knowledge and decisions: [existing indexes].
 
-Read these sources and the current assignment before substantial changes. Preserve
-applicable existing instructions, established architecture and human edits. Load the
-relevant installed skill or canonical body; a link does not install skills or grant tools.
-Use Herdr when its executable and selected server are usable; otherwise report the
-concrete gap and continue through the authorized host. Verify its effective capabilities.
+Read the current assignment and only the sources it needs. Preserve applicable
+instructions, established architecture and human edits. Load the relevant skill body;
+a link does not install skills or grant tools. Use the project's adopted host after
+verifying its capabilities. Report any gap that blocks work.
 
 ## Coordinate and deliver
 

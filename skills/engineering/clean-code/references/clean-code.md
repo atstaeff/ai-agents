@@ -29,16 +29,20 @@ A method should only call methods on: itself, its parameters, objects it creates
 - Use consistent naming patterns across the codebase
 
 ```python
-# ❌ Before
-def calc(d: list[dict]) -> float:
+# Before (the stored fields p and q are unit price in cents and quantity)
+def calc(d: list[dict[str, int]]) -> int:
     t = 0
     for i in d:
         t += i["p"] * i["q"]
     return t
 
-# ✅ After
-def calculate_order_total(line_items: list[LineItem]) -> Decimal:
-    return sum(item.price * item.quantity for item in line_items)
+# After: preserve input and output contracts while making the units clear.
+def calculate_order_total_cents(line_items: list[dict[str, int]]) -> int:
+    total_cents = 0
+    for item in line_items:
+        unit_price_cents, quantity = item["p"], item["q"]
+        total_cents += unit_price_cents * quantity
+    return total_cents
 ```
 
 ```go
@@ -50,10 +54,9 @@ func CalculateOrderTotal(items []LineItem) (decimal.Decimal, error) { ... }
 ```
 
 ## Functions
-- Keep functions small (ideally < 20 lines)
-- Functions should do one thing and do it well
-- Minimize parameters (ideally ≤ 3)
-- Avoid flag arguments — split into separate functions
+- Keep a coherent operation together and name its inputs and effects clearly.
+- Split functions when callers need distinct operations, not to meet a line or parameter count.
+- Keep a flag when it configures one coherent operation and callers can read its meaning.
 
 ```python
 # ❌ Before: flag argument controls behavior
@@ -94,16 +97,19 @@ try:
 except Exception:
     print("error")
 
-# ✅ After: specific exception, structured context
+# After: specific exceptions and contextual fields with standard Python logging
 try:
-    result = await order_service.process(order)
-except OrderValidationError as exc:
-    logger.warning("order_validation_failed", order_id=order.id, reason=str(exc))
+    result = process_order(order)
+except OrderValidationError:
+    logger.warning("order_validation_failed")
     raise
 except PaymentGatewayError as exc:
-    logger.error("payment_failed", order_id=order.id, gateway=exc.gateway)
-    raise OrderProcessingError(f"Payment failed for order {order.id}") from exc
+    logger.error("payment_failed", extra={"failure_kind": "gateway"})
+    raise OrderProcessingError("Payment failed") from exc
 ```
+
+Keep chained exception details internal; do not expose them to an API consumer or an
+unapproved log destination.
 
 ```go
 // ❌ Before
@@ -123,7 +129,7 @@ if err != nil {
 
 ## Testing
 - Write tests first (TDD) when appropriate
-- One assertion per test when possible
+- Check one scenario per test; include the assertions needed to verify its outcome
 - Use descriptive test names that explain the scenario
 - Follow AAA pattern: Arrange, Act, Assert
 - Test edge cases and error conditions

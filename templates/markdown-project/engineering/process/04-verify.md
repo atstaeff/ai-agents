@@ -4,7 +4,7 @@ Use to establish whether the changed boundary satisfies acceptance. Read the dif
 acceptance references and relevant project check/review requirements.
 
 - Run checks proportionate to the affected behavior, including important failure cases.
-  Use actual commands from CONTRIBUTING.md; do not invent successful test evidence.
+  Use actual commands from [CONTRIBUTING.md](../../CONTRIBUTING.md); report missing evidence.
 - Review the combined revision, not just individual worker results. Use an independent
   reviewer where warranted or required; AI review does not imply human approval.
 - Report tested revision, actual results, unrun checks and material limitations at the PR

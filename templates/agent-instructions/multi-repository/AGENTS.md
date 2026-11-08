@@ -31,8 +31,8 @@ Agree interface revisions, compatibility, rollout and recovery before dependent 
 Use separate branches/working directories. Coordinate overlapping scopes through an
 actual shared claim/handover mechanism; serialize overlap when no mechanism exists.
 Delegate only through supported authorized host capabilities. Preserve others' work.
-Use Herdr when its executable and selected server are usable; report a concrete gap
-before using the authorized fallback. Qualify host capabilities and capacity before dispatch.
+Qualify the adopted host's capabilities and capacity before dispatch. Report a gap
+and use an authorized fallback where possible.
 
 ## Verify the product result
 

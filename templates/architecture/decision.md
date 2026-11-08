@@ -28,14 +28,15 @@ reference when accepted. A proposal alone authorizes no implementation or deploy
 
 ## Consequences
 
-Record benefits, drawbacks, operating/change cost, compatibility, recovery and follow-up.
+Record the material benefits, drawbacks, change and operating costs, compatibility and
+recovery. Name a follow-up owner and the condition for revisiting the decision when useful.
 Link implementation and verification evidence separately as it becomes available.
 
 ## Status and relationships
 
-Set a stable unique ID/slug, a curated `area` slug and actual status. Keep the source
-`slug` relative (for example `decisions/adr-0042`); the publishing site supplies its route
-prefix. Change the placeholder ID, title and slug together when copying this template.
+Use a stable ID and actual status. Plain Markdown can record these in the body. If
+the project indexes decisions from frontmatter, update the ID, title, relative `slug`
+(for example `decisions/adr-0042`) and curated `area` together; the site supplies its prefix.
 To replace an accepted decision, preserve its rationale and create a new ADR with
 `supersedes`; mark the old one superseded after
 authorized acceptance. A proposed replacement uses `relates_to` until agreed. Record

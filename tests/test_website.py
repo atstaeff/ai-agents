@@ -122,6 +122,18 @@ class WebsitePublishingTests(unittest.TestCase):
         self.assertIn('(../process/02-plan.md)', pages['getting-started/workflow.md'])
         self.assertIn('knowledge/decisions/adr-0007.md', pages)
 
+    def test_published_templates_show_copyable_source_metadata(self):
+        site.prepare({})
+        for path, field in (
+            ('templates/architecture/decision.md', 'knowledge_id: ADR-0000'),
+            ('templates/delivery/work-item.md', 'id: {{id}}'),
+        ):
+            with self.subTest(path=path):
+                text = site.render('', page(path), {})
+                self.assertIn('```yaml\n---\n', text)
+                self.assertIn(field, text.split('```', 2)[1])
+                self.assertIn('Canonical source:', text)
+
     def test_decision_frontmatter_is_not_treated_as_a_catalog_profile(self):
         site.prepare({})
         current = page('customer-workspace/decisions/adr-0001.md')

@@ -11,6 +11,7 @@
 - Migration, rollout and recovery: <needed actions, owners and conditions>
 - Needed decision: <responsible role, recommendation and consequence of waiting>
 - Status: <proposed, accepted, rejected or superseded; actual source of decision>
-- Next authorized step: <independent work can proceed while affected work waits>
+- Next authorized step: <who updates the affected acceptance, contract or decision source
+  after approval; independent work can proceed while affected work waits>
 
 Preserve original feedback. A newer request does not silently revoke an accepted ADR.
